@@ -9,7 +9,7 @@
                 <div class="center">
                     <button class="vertical" onclick="goto NewGame">New Game</button>
                     <button class="vertical" onclick="goto LoadGame">Load Game</button>
-                    <button class="vertical" onclick="exit">Exit Game</button>
+                    <button class="vertical" onclick="quitGame">Exit Game</button>
                 </div>
             </div>
         </div>

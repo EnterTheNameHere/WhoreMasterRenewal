@@ -30,23 +30,25 @@
 #include <Rocket/Core/RenderInterface.h>
 #include <SFML/Graphics.hpp>
 
-class RocketSFMLRenderer : public Rocket::Core::RenderInterface
+#include <memory>
+
+class RocketSFMLRenderInterface : public Rocket::Core::RenderInterface
 {
 public:
-    RocketSFMLRenderer();
-    virtual ~RocketSFMLRenderer();
+    RocketSFMLRenderInterface();
+    virtual ~RocketSFMLRenderInterface();
     
     // no copy or move
-    RocketSFMLRenderer( const RocketSFMLRenderer& ) = delete;
-    RocketSFMLRenderer& operator= ( const RocketSFMLRenderer& ) = delete;
-    RocketSFMLRenderer( RocketSFMLRenderer&& ) = delete;
-    RocketSFMLRenderer& operator= ( RocketSFMLRenderer& ) = delete;
+    RocketSFMLRenderInterface( const RocketSFMLRenderInterface& ) = delete;
+    RocketSFMLRenderInterface& operator= ( const RocketSFMLRenderInterface& ) = delete;
+    RocketSFMLRenderInterface( RocketSFMLRenderInterface&& ) = delete;
+    RocketSFMLRenderInterface& operator= ( RocketSFMLRenderInterface& ) = delete;
     
     /// Sets the window
-    void SetWindow( sf::RenderWindow* window );
+    void SetWindow( std::weak_ptr<sf::RenderWindow> window );
     
     /// Returns the currently assigned window
-    sf::RenderWindow* GetWindow();
+    std::weak_ptr<sf::RenderWindow> GetWindowWeakPtr();
     
     /// Resizes the viewport automatically
     void Resize();
@@ -76,7 +78,7 @@ public:
     
 private:
     /// RenderWindow we render to. Destruction of this object should be handled by its owner.
-    sf::RenderWindow* m_Window = {nullptr};
+    std::weak_ptr<sf::RenderWindow> m_WindowPtr;
 };
 
 #endif // RENDERINTERFACESFML_H_INCLUDED_1545
