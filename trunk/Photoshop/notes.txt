@@ -1,0 +1,9 @@
+These files were created in Photoshop CS4. The font "Hobo Std" is used for basically everything, with the exception noted below.
+
+For most buttons, you can simply edit the text in the text field; the text will stay centered.
+
+To get the initial "Off" button image, make sure the "Button (disabled)" layer is hidden and the "Button" layer is visible and the Stroke effect is visible on the "Text" layer.
+Then, hide the Stroke effect on the "Text" layer and you'll have the "On" button image.
+Finally, set the "Button (disabled)" layer to visible and the "Button" layer to hidden (preventing bleedthrough around the corners) and you have the "Disabled" button image.
+
+The up/down/left/right arrows were done with the Arial font and their size and position were tweaked, but they are indeed text.

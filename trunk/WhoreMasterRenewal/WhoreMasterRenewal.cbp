@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Whore Master Renewal" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="..\bin\WhoreMasterRenewal-DEBUG" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\bin" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add directory="Dependencies\SDL\include\SDL" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="..\bin\WhoreMasterRenewal" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\bin" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-Wall" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="Dependencies\SDL\include\SDL" />
+			<Add directory="Dependencies\lua\src" />
+			<Add directory="Dependencies\TinyXML\src" />
+		</Compiler>
+		<Linker>
+			<Add option="-static" />
+			<Add library="mingw32" />
+			<Add library="libTinyXML.a" />
+			<Add library="libSDLmain.a" />
+			<Add library="libSDL.dll.a" />
+			<Add library="libSDL_gfx.dll.a" />
+			<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
+			<Add library="libSDL_gfx.a" />
+			<Add library="Dependencies\SDL\lib\SDL_image.lib" />
+			<Add library="liblua.a" />
+			<Add directory="Dependencies\SDL\lib" />
+			<Add directory="Dependencies\lua\lib" />
+			<Add directory="Dependencies\TinyXML\lib" />
+		</Linker>
+		<Unit filename="src\CGameObject.cpp" />
+		<Unit filename="src\CGameObject.h" />
+		<Unit filename="src\CGraphics.cpp" />
+		<Unit filename="src\CGraphics.h" />
+		<Unit filename="src\CLog.cpp" />
+		<Unit filename="src\CLog.h" />
+		<Unit filename="src\CRenderQue.cpp" />
+		<Unit filename="src\CRenderQue.h" />
+		<Unit filename="src\CResource.h" />
+		<Unit filename="src\CResourceManager.cpp" />
+		<Unit filename="src\CResourceManager.h" />
+		<Unit filename="src\CSurface.cpp" />
+		<Unit filename="src\CSurface.h" />
+		<Unit filename="src\CTimer.h" />
+		<Unit filename="src\Constants.h" />
+		<Unit filename="src\DirPath.cpp" />
+		<Unit filename="src\DirPath.h" />
+		<Unit filename="src\FileList.cpp" />
+		<Unit filename="src\FileList.h" />
+		<Unit filename="src\GameFlags.cpp" />
+		<Unit filename="src\GameFlags.h" />
+		<Unit filename="src\GameSystem.h" />
+		<Unit filename="src\GraphicsSystem.h" />
+		<Unit filename="src\IconSurface.h" />
+		<Unit filename="src\InterfaceGlobals.cpp" />
+		<Unit filename="src\InterfaceGlobals.h" />
+		<Unit filename="src\InterfaceIDs.h" />
+		<Unit filename="src\InterfaceProcesses.cpp" />
+		<Unit filename="src\InterfaceProcesses.h" />
+		<Unit filename="src\MasterFile.h" />
+		<Unit filename="src\Revision.h" />
+		<Unit filename="src\SDLStuff.h" />
+		<Unit filename="src\WorkAdvertising.cpp" />
+		<Unit filename="src\WorkBar.cpp" />
+		<Unit filename="src\WorkBeastCapture.cpp" />
+		<Unit filename="src\WorkBeastCare.cpp" />
+		<Unit filename="src\WorkBrothelMassusse.cpp" />
+		<Unit filename="src\WorkExploreCatacombs.cpp" />
+		<Unit filename="src\WorkFluffer.cpp" />
+		<Unit filename="src\WorkFreetime.cpp" />
+		<Unit filename="src\WorkHall.cpp" />
+		<Unit filename="src\WorkMatron.cpp" />
+		<Unit filename="src\WorkSecurity.cpp" />
+		<Unit filename="src\WorkStripper.cpp" />
+		<Unit filename="src\WorkTorturer.cpp" />
+		<Unit filename="src\WorkWhore.cpp" />
+		<Unit filename="src\XmlMisc.cpp" />
+		<Unit filename="src\XmlMisc.h" />
+		<Unit filename="src\XmlUtil.cpp" />
+		<Unit filename="src\XmlUtil.h" />
+		<Unit filename="src\cAnimatedSurface.cpp" />
+		<Unit filename="src\cAnimatedSurface.h" />
+		<Unit filename="src\cBrothel.cpp" />
+		<Unit filename="src\cBrothel.h" />
+		<Unit filename="src\cBuilding.cpp" />
+		<Unit filename="src\cBuilding.h" />
+		<Unit filename="src\cButton.cpp" />
+		<Unit filename="src\cButton.h" />
+		<Unit filename="src\cCheckBox.cpp" />
+		<Unit filename="src\cCheckBox.h" />
+		<Unit filename="src\cChoiceMessage.cpp" />
+		<Unit filename="src\cChoiceMessage.h" />
+		<Unit filename="src\cColor.cpp" />
+		<Unit filename="src\cColor.h" />
+		<Unit filename="src\cCustomers.cpp" />
+		<Unit filename="src\cCustomers.h" />
+		<Unit filename="src\cDungeon.cpp" />
+		<Unit filename="src\cDungeon.h" />
+		<Unit filename="src\cEditBox.cpp" />
+		<Unit filename="src\cEditBox.h" />
+		<Unit filename="src\cEvents.cpp" />
+		<Unit filename="src\cEvents.h" />
+		<Unit filename="src\cFont.cpp" />
+		<Unit filename="src\cFont.h" />
+		<Unit filename="src\cGameScript.cpp" />
+		<Unit filename="src\cGameScript.h" />
+		<Unit filename="src\cGangs.cpp" />
+		<Unit filename="src\cGangs.h" />
+		<Unit filename="src\cGetStringScreenManager.cpp" />
+		<Unit filename="src\cGetStringScreenManager.h" />
+		<Unit filename="src\cGirlGangFight.cpp" />
+		<Unit filename="src\cGirlGangFight.h" />
+		<Unit filename="src\cGirlTorture.cpp" />
+		<Unit filename="src\cGirlTorture.h" />
+		<Unit filename="src\cGirls.cpp" />
+		<Unit filename="src\cGirls.h" />
+		<Unit filename="src\cGold.cpp" />
+		<Unit filename="src\cGold.h" />
+		<Unit filename="src\cImageItem.cpp" />
+		<Unit filename="src\cImageItem.h" />
+		<Unit filename="src\cInterfaceEvent.h" />
+		<Unit filename="src\cInterfaceObject.h" />
+		<Unit filename="src\cInterfaceWindow.cpp" />
+		<Unit filename="src\cInterfaceWindow.h" />
+		<Unit filename="src\cInventory.cpp" />
+		<Unit filename="src\cInventory.h" />
+		<Unit filename="src\cInventoryManagementSM.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+		</Unit>
+		<Unit filename="src\cInventoryManagementSM.h" />
+		<Unit filename="src\cJobManager.cpp" />
+		<Unit filename="src\cJobManager.h" />
+		<Unit filename="src\cJobs.h" />
+		<Unit filename="src\cListBox.cpp" />
+		<Unit filename="src\cListBox.h" />
+		<Unit filename="src\cLuaMenu.cpp" />
+		<Unit filename="src\cLuaMenu.h" />
+		<Unit filename="src\cLuaScript.cpp" />
+		<Unit filename="src\cLuaScript.h" />
+		<Unit filename="src\cMessageBox.cpp" />
+		<Unit filename="src\cMessageBox.h" />
+		<Unit filename="src\cNameList.cpp" />
+		<Unit filename="src\cNameList.h" />
+		<Unit filename="src\cPlayer.cpp" />
+		<Unit filename="src\cPlayer.h" />
+		<Unit filename="src\cRival.cpp" />
+		<Unit filename="src\cRival.h" />
+		<Unit filename="src\cRng.cpp" />
+		<Unit filename="src\cRng.h" />
+		<Unit filename="src\cScreenBank.cpp" />
+		<Unit filename="src\cScreenBank.h" />
+		<Unit filename="src\cScreenBuildingManagement.cpp" />
+		<Unit filename="src\cScreenBuildingManagement.h" />
+		<Unit filename="src\cScreenBuildingSetup.cpp" />
+		<Unit filename="src\cScreenBuildingSetup.h" />
+		<Unit filename="src\cScreenDungeon.cpp" />
+		<Unit filename="src\cScreenDungeon.h" />
+		<Unit filename="src\cScreenGangs.cpp" />
+		<Unit filename="src\cScreenGangs.h" />
+		<Unit filename="src\cScreenGirlDetails.cpp" />
+		<Unit filename="src\cScreenGirlDetails.h" />
+		<Unit filename="src\cScreenGirlManagement.cpp" />
+		<Unit filename="src\cScreenGirlManagement.h" />
+		<Unit filename="src\cScreenHouse.cpp" />
+		<Unit filename="src\cScreenHouse.h" />
+		<Unit filename="src\cScreenItemManagement.cpp" />
+		<Unit filename="src\cScreenItemManagement.h" />
+		<Unit filename="src\cScreenMayor.cpp" />
+		<Unit filename="src\cScreenMayor.h" />
+		<Unit filename="src\cScreenPrison.cpp" />
+		<Unit filename="src\cScreenPrison.h" />
+		<Unit filename="src\cScreenSlaveMarket.cpp" />
+		<Unit filename="src\cScreenSlaveMarket.h" />
+		<Unit filename="src\cScreenTown.cpp" />
+		<Unit filename="src\cScreenTown.h" />
+		<Unit filename="src\cScriptManager.cpp" />
+		<Unit filename="src\cScriptManager.h" />
+		<Unit filename="src\cScriptUtils.cpp" />
+		<Unit filename="src\cScriptUtils.h" />
+		<Unit filename="src\cScripts.cpp" />
+		<Unit filename="src\cScripts.h" />
+		<Unit filename="src\cScrollBar.cpp" />
+		<Unit filename="src\cScrollBar.h" />
+		<Unit filename="src\cSlider.cpp" />
+		<Unit filename="src\cSlider.h" />
+		<Unit filename="src\cTariff.cpp" />
+		<Unit filename="src\cTariff.h" />
+		<Unit filename="src\cTextItem.h" />
+		<Unit filename="src\cTrainable.cpp" />
+		<Unit filename="src\cTrainable.h" />
+		<Unit filename="src\cTraits.cpp" />
+		<Unit filename="src\cTraits.h" />
+		<Unit filename="src\cTriggers.cpp" />
+		<Unit filename="src\cTriggers.h" />
+		<Unit filename="src\cWindowManager.cpp" />
+		<Unit filename="src\cWindowManager.h" />
+		<Unit filename="src\cWorkCleaning.cpp" />
+		<Unit filename="src\cXmlWidget.h" />
+		<Unit filename="src\linux.h" />
+		<Unit filename="src\main.cpp" />
+		<Unit filename="src\main.h" />
+		<Unit filename="src\sConfig.cpp" />
+		<Unit filename="src\sConfig.h" />
+		<Unit filename="src\sFacility.cpp" />
+		<Unit filename="src\sFacility.h" />
+		<Unit filename="src\sFacilityList.cpp" />
+		<Unit filename="src\sFacilityList.h" />
+		<Unit filename="src\strnatcmp.cpp" />
+		<Unit filename="src\strnatcmp.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
