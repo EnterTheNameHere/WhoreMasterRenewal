@@ -932,4 +932,85 @@ Setting up MessageBox
 Interface Loaded
 Game Flags Initialized
 Brothel Images Set
+itemsx files:
+clobber_extension: s = .\Resources\Data\Items.itemsx
+clobber_extension: pos = 22
+clobber_extension: s = .\Resources\Data\Items.itemsx
+clobber_extension: base = .\Resources\Data\Items
+	adding .\Resources\Data\Items.itemsx
+	under .\Resources\Data\Items
+	result .\Resources\Data\Items.itemsx
+items files:
+walking map...
+	key = .\Resources\Data\Items
+	path = .\Resources\Data\Items.itemsx
+		loading xml
+Loading Pigtail Girl
+	min money = 0
+	max money = 200
+Loading Sex Priest
+	min money = 0
+	max money = 200
+Loading Bunny Girl
+	min money = 0
+	max money = 200
+Loading Witch Girl
+	min money = 0
+	max money = 200
+Loading Demon G2
+	min money = 0
+	max money = 400
+Loading ArinKoohGirl
+	min money = 0
+	max money = 200
+Loading Spunky Girl
+	min money = 0
+	max money = 200
+Loading Cute Girl
+	min money = 0
+	max money = 200
+Loading Horny Girl
+	min money = 0
+	max money = 200
+Loading Quiet Girl
+	min money = 0
+	max money = 200
+Loading Sexy Girl
+	min money = 0
+	max money = 200
+Loading Dangerous Girl
+	min money = 0
+	max money = 400
+Loading Demon Girl
+	min money = 0
+	max money = 400
+Loading Cat Girl
+	min money = 0
+	max money = 400
+Loading girls
+Loading gang Data
+Loading brothel Data
+***************** loading Player ******************
+***************** loading dungeon *****************
+Loading customers
+***************** Loading rivals *****************
+loaded rival: Death Road Bandits
+loaded rival: North Coast Rats
+loaded rival: Land Tribe
+loaded rival: Death Road Mashers
+************ Loading players inventory ************
+***************** Loading brothels ****************
+Loading brothel: test
+Loading global triggers
+Loading default images
+Error in RenderText m_Message. Text which was to be rendered: 
+Text has zero width
+Error in RenderText m_Message. Text which was to be rendered: 
+Text has zero width
+Error in RenderText m_Message. Text which was to be rendered: 
+Text has zero width
+Error in RenderText m_Message. Text which was to be rendered: 
+Text has zero width
+Error in RenderText m_Message. Text which was to be rendered: 
+Text has zero width
 Shutting Down

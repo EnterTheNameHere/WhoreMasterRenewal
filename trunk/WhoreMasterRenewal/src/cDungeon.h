@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -23,6 +23,9 @@
 
 #include <string>
 #include <fstream>
+
+#define TIXML_USE_STL
+#include "tinyxml.h"
 
 #include "cGirls.h"
 
@@ -82,7 +85,7 @@ private:
 
 	int m_NumGirlsTort;						//	WD:	Tracking for Torturer
 	int m_NumCustsTort;
-	void updateGirlTurnDungeonStats(sDungeonGirl* d_girl);	
+	void updateGirlTurnDungeonStats(sDungeonGirl* d_girl);
 
 public:
 	cDungeon();								// constructor
@@ -115,9 +118,9 @@ public:
 	int NumCustsTort(int n)			{ m_NumCustsTort += n; return m_NumCustsTort; }
 
 
-	// WD:	Torturer tortures dungeon girl. 
+	// WD:	Torturer tortures dungeon girl.
 	//void doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, string& summary);	{ cGirlTorture::cGirlTorture(d_girl, t_girl) }
- 
+
 	void PlaceDungeonGirl(sDungeonGirl* newGirl);
 	void PlaceDungeonCustomer(sDungeonCust* newCust);
 };

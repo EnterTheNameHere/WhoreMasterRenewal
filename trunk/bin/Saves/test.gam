@@ -1,12 +1,12 @@
 <?xml version="1.0" standalone="yes" ?>
-<Root MajorVersion="1" MinorVersionA="3" MinorVersionB="0" StableVersion="4" ApproxRevision="644" ExeVersion="official" WalkAround="1" TalkCount="10" Year="1209" Month="1" Day="1">
+<Root MajorVersion="1" MinorVersionA="3" MinorVersionB="0" StableVersion="4" ApproxRevision="644" ExeVersion="official" WalkAround="1" TalkCount="6" Year="1209" Month="1" Day="8">
     <Loaded_Files>
         <Girls_Files>
             <File Filename="Girls.girlsx" />
             <File Filename="GirlsAddon1.girlsx" />
         </Girls_Files>
     </Loaded_Files>
-    <Gold value="18715" income="0" upkeep="80" cash_in="1" cash_out="-153586" />
+    <Gold value="89213" income="0" upkeep="0" cash_in="125" cash_out="-27410" />
     <Girls>
         <Girl Name="Hong Meiling" Realname="Hong Meiling" Desc="Hong Meiling is a wandering ex-guard who is very lost. She wants to raise some cash to get home but there isn&apos;t much guard work around at the moment." DaysUnhappy="0" States="0" Virgin="0" UseAntiPreg="1" Withdrawals="0" Money="30" AccLevel="1" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
             <Traits>
@@ -1833,7 +1833,7 @@
     </Girls>
     <Gang_Manager BusinessesExtort="0" SwordLevel="4" NumHealingPotions="40" NumNets="40" KeepHealStocked="40" KeepNetsStocked="40">
         <Gangs>
-            <Gang Num="11" Name="Vice" MissionID="10" LastMissID="-1" Combat="0" AutoRecruit="0">
+            <Gang Num="12" Name="Vice" MissionID="0" LastMissID="-1" Combat="0" AutoRecruit="0">
                 <Skills>
                     <Anal Value="50" />
                     <Magic Value="53" />
@@ -1871,7 +1871,7 @@
                     <PCHate Value="57" />
                 </Stats>
             </Gang>
-            <Gang Num="4" Name="Cobras" MissionID="10" LastMissID="-1" Combat="0" AutoRecruit="0">
+            <Gang Num="8" Name="Cobras" MissionID="10" LastMissID="-1" Combat="0" AutoRecruit="0">
                 <Skills>
                     <Anal Value="22" />
                     <Magic Value="49" />
@@ -1909,7 +1909,7 @@
                     <PCHate Value="49" />
                 </Stats>
             </Gang>
-            <Gang Num="7" Name="The Warriors" MissionID="10" LastMissID="-1" Combat="0" AutoRecruit="0">
+            <Gang Num="11" Name="The Warriors" MissionID="10" LastMissID="-1" Combat="0" AutoRecruit="0">
                 <Skills>
                     <Anal Value="26" />
                     <Magic Value="26" />
@@ -1947,7 +1947,7 @@
                     <PCHate Value="49" />
                 </Stats>
             </Gang>
-            <Gang Num="7" Name="Young Guns" MissionID="10" LastMissID="-1" Combat="0" AutoRecruit="0">
+            <Gang Num="11" Name="Young Guns" MissionID="10" LastMissID="-1" Combat="0" AutoRecruit="0">
                 <Skills>
                     <Anal Value="70" />
                     <Magic Value="58" />
@@ -1985,10 +1985,86 @@
                     <PCHate Value="36" />
                 </Stats>
             </Gang>
+            <Gang Num="6" Name="Ironheads" MissionID="10" LastMissID="-1" Combat="0" AutoRecruit="0">
+                <Skills>
+                    <Anal Value="48" />
+                    <Magic Value="41" />
+                    <BDSM Value="22" />
+                    <NormalSex Value="53" />
+                    <Beastiality Value="44" />
+                    <Group Value="37" />
+                    <Lesbian Value="46" />
+                    <Service Value="32" />
+                    <Strip Value="23" />
+                    <Combat Value="49" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="42" />
+                    <Happiness Value="28" />
+                    <Libido Value="26" />
+                    <Constitution Value="41" />
+                    <Intelligence Value="26" />
+                    <Confidence Value="36" />
+                    <Mana Value="46" />
+                    <Agility Value="26" />
+                    <Fame Value="46" />
+                    <Level Value="31" />
+                    <AskPrice Value="27" />
+                    <House Value="25" />
+                    <Exp Value="28" />
+                    <Age Value="35" />
+                    <Obedience Value="43" />
+                    <Spirit Value="37" />
+                    <Beauty Value="29" />
+                    <Tiredness Value="44" />
+                    <Health Value="29" />
+                    <PCFear Value="50" />
+                    <PCLove Value="32" />
+                    <PCHate Value="22" />
+                </Stats>
+            </Gang>
+            <Gang Num="3" Name="Little Tykes" MissionID="10" LastMissID="-1" Combat="0" AutoRecruit="0">
+                <Skills>
+                    <Anal Value="26" />
+                    <Magic Value="55" />
+                    <BDSM Value="53" />
+                    <NormalSex Value="50" />
+                    <Beastiality Value="45" />
+                    <Group Value="30" />
+                    <Lesbian Value="50" />
+                    <Service Value="29" />
+                    <Strip Value="42" />
+                    <Combat Value="37" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="35" />
+                    <Happiness Value="42" />
+                    <Libido Value="31" />
+                    <Constitution Value="45" />
+                    <Intelligence Value="48" />
+                    <Confidence Value="24" />
+                    <Mana Value="25" />
+                    <Agility Value="35" />
+                    <Fame Value="43" />
+                    <Level Value="28" />
+                    <AskPrice Value="38" />
+                    <House Value="27" />
+                    <Exp Value="50" />
+                    <Age Value="45" />
+                    <Obedience Value="37" />
+                    <Spirit Value="44" />
+                    <Beauty Value="47" />
+                    <Tiredness Value="31" />
+                    <Health Value="37" />
+                    <PCFear Value="44" />
+                    <PCLove Value="25" />
+                    <PCHate Value="43" />
+                </Stats>
+            </Gang>
         </Gangs>
         <Hireables />
     </Gang_Manager>
-    <Brothel_Manager AntiPregPotions="40" SupplyShedLevel="1" HandmadeGoods="0" Beasts="0" AlchemyIngredients="0" BribeRate="1000" Bank="100000" KeepPotionsStocked="1">
+    <Brothel_Manager AntiPregPotions="40" SupplyShedLevel="1" HandmadeGoods="0" Beasts="0" AlchemyIngredients="0" BribeRate="1000" Bank="9920000" KeepPotionsStocked="1">
         <Player WinGame="0" Suspicion="0" Disposition="0" CustomerFear="0">
             <Stats>
                 <Charisma Value="60" />
@@ -2033,12 +2109,13 @@
         </Dungeon>
         <Runaways />
         <PrisonGirls />
+        <Objective Difficulty="0" Limit="12" Objective="3" Reward="2" SoFar="0" Target="6" />
         <Rival_Manager>
             <Rivals>
-                <Rival Name="Death Road Bandits" BribeRate="200" BusinessesExtort="5" Gold="10000" NumBars="2" NumBrothels="2" NumGamblingHalls="0" NumGirls="26" NumGangs="2" />
-                <Rival Name="North Coast Rats" BribeRate="400" BusinessesExtort="10" Gold="15000" NumBars="2" NumBrothels="2" NumGamblingHalls="1" NumGirls="30" NumGangs="3" />
-                <Rival Name="Land Tribe" BribeRate="600" BusinessesExtort="15" Gold="20000" NumBars="3" NumBrothels="3" NumGamblingHalls="1" NumGirls="56" NumGangs="5" />
-                <Rival Name="Death Road Mashers" BribeRate="800" BusinessesExtort="20" Gold="25000" NumBars="4" NumBrothels="4" NumGamblingHalls="2" NumGirls="74" NumGangs="8" />
+                <Rival Name="Death Road Bandits" BribeRate="0" BusinessesExtort="6" Gold="9064" NumBars="2" NumBrothels="2" NumGamblingHalls="0" NumGirls="32" NumGangs="5" />
+                <Rival Name="North Coast Rats" BribeRate="0" BusinessesExtort="12" Gold="14081" NumBars="2" NumBrothels="2" NumGamblingHalls="1" NumGirls="36" NumGangs="5" />
+                <Rival Name="Land Tribe" BribeRate="650" BusinessesExtort="17" Gold="22543" NumBars="3" NumBrothels="3" NumGamblingHalls="2" NumGirls="57" NumGangs="7" />
+                <Rival Name="Death Road Mashers" BribeRate="0" BusinessesExtort="20" Gold="21653" NumBars="4" NumBrothels="4" NumGamblingHalls="1" NumGirls="80" NumGangs="8" />
             </Rivals>
         </Rival_Manager>
         <Inventory>
@@ -2046,85 +2123,241 @@
                 <Item Name="Brainwashing Oil" isEquipped="0" quantity="1" />
                 <Item Name="Brothel Gown" isEquipped="0" quantity="1" />
                 <Item Name="Crystal Staff" isEquipped="0" quantity="2" />
-                <Item Name="Dagger" isEquipped="0" quantity="10" />
-                <Item Name="Fancy Breath Mints" isEquipped="0" quantity="2" />
-                <Item Name="Free Weights" isEquipped="0" quantity="1" />
+                <Item Name="Dagger" isEquipped="0" quantity="4" />
+                <Item Name="Chalice of Bestial Purge" isEquipped="0" quantity="2" />
+                <Item Name="Chlamydia Cure" isEquipped="0" quantity="1" />
                 <Item Name="Gemstone Dress" isEquipped="0" quantity="1" />
                 <Item Name="Incense of Serenity (S)" isEquipped="0" quantity="1" />
-                <Item Name="Lace Lingerie" isEquipped="0" quantity="10" />
+                <Item Name="Lace Lingerie" isEquipped="0" quantity="6" />
                 <Item Name="Leather Armor" isEquipped="0" quantity="10" />
                 <Item Name="Leprechaun Biscuit" isEquipped="0" quantity="1" />
-                <Item Name="Long Sword" isEquipped="0" quantity="1" />
+                <Item Name="Healing Salve (S)" isEquipped="0" quantity="1" />
                 <Item Name="Glass Cane" isEquipped="0" quantity="1" />
-                <Item Name="Manual of Health" isEquipped="0" quantity="1" />
+                <Item Name="Philtre of Abortion" isEquipped="0" quantity="1" />
                 <Item Name="Mistress Boots" isEquipped="0" quantity="1" />
-                <Item Name="Obsidian Choker" isEquipped="0" quantity="1" />
-                <Item Name="Paw-Print Teddy" isEquipped="0" quantity="1" />
-                <Item Name="Prophylactic Ring" isEquipped="0" quantity="1" />
                 <Item Name="Quality Perfume" isEquipped="0" quantity="2" />
-                <Item Name="Rainbow Ring" isEquipped="0" quantity="1" />
                 <Item Name="Short Sword" isEquipped="0" quantity="10" />
-                <Item Name="Silver Necklace" isEquipped="0" quantity="1" />
                 <Item Name="Spiked Collar" isEquipped="0" quantity="1" />
                 <Item Name="Syphilis Cure" isEquipped="0" quantity="1" />
                 <Item Name="Vira Blood" isEquipped="0" quantity="1" />
                 <Item Name="Willbreaker Spice" isEquipped="0" quantity="1" />
                 <Item Name="Wool Slippers" isEquipped="0" quantity="10" />
                 <Item Name="Apple Tart" isEquipped="0" quantity="1" />
-                <Item Name="Basic Makeup" isEquipped="0" quantity="1" />
                 <Item Name="Bestial Ring" isEquipped="0" quantity="1" />
+                <Item Name="Ring of Breast Reduction" isEquipped="0" quantity="1" />
+                <Item Name="Oil of Lesser Breast Growth" isEquipped="0" quantity="1" />
+                <Item Name="Sinspice" isEquipped="0" quantity="1" />
+                <Item Name="Bauble Necklace" isEquipped="0" quantity="10" />
+                <Item Name="Designer Lingerie" isEquipped="0" quantity="1" />
+                <Item Name="Plain Lingerie" isEquipped="0" quantity="10" />
+                <Item Name="Velvet Dress" isEquipped="0" quantity="1" />
             </Items>
         </Inventory>
         <Brothels>
-            <Brothel Name="test" RestrictAnal="0" RestrictBDSM="0" RestrictBeast="1" RestrictGroup="0" RestrictNormal="0" RestrictLesbian="0" AdvertisingBudget="1100" Bar="0" Fame="0" GamblingHall="97" Happiness="0" HasBarStaff="0" id="0" HasGambStaff="1" MovieRunTime="0" NumRooms="40" ShowQuality="0" ShowTime="0" Filthiness="0" SecurityLevel="0">
-                <Gold value="0" income="0" upkeep="0" cash_in="0" cash_out="0" />
+            <Brothel Name="test" RestrictAnal="0" RestrictBDSM="0" RestrictBeast="1" RestrictGroup="0" RestrictNormal="0" RestrictLesbian="0" AdvertisingBudget="1100" Bar="0" Fame="2" GamblingHall="97" Happiness="2" HasBarStaff="0" id="0" HasGambStaff="1" MovieRunTime="0" NumRooms="40" ShowQuality="0" ShowTime="0" Filthiness="7" SecurityLevel="0">
+                <Gold value="0" income="377" upkeep="1186" cash_in="0" cash_out="0" />
                 <Movies />
                 <Girls>
-                    <Girl Name="Dangerous Girl" Realname="Zhalore" Desc="Dangerous Girl" DaysUnhappy="0" States="32" Virgin="1" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="0" DayJob="12" NightJob="12" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                    <Girl Name="Dangerous Girl" Realname="Zhalore" Desc="Dangerous Girl" DaysUnhappy="0" States="32" Virgin="1" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="12" NightJob="12" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="1" BDay="1" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
                         <Traits>
-                            <Adventurer Temp="0" />
                             <Strong Temp="0" />
+                            <Adventurer Temp="0" />
                             <Lolita Temp="0" />
                         </Traits>
                         <Remembered_Traits />
                         <Inventory>
-                            <Items />
+                            <Items>
+                                <Item Name="Wool Slippers" isEquipped="1" />
+                                <Item Name="Rainbow Ring" isEquipped="1" />
+                                <Item Name="Silver Necklace" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Dancer Costume" isEquipped="1" />
+                                <Item Name="Manual of Sex" isEquipped="1" />
+                            </Items>
                         </Inventory>
                         <Stats>
-                            <Charisma Value="44" Mod="10" />
+                            <Charisma Value="44" Mod="33" />
                             <Happiness Value="100" />
-                            <Libido Value="45" />
+                            <Libido Value="45" Mod="5" />
                             <Constitution Value="72" />
                             <Intelligence Value="27" />
-                            <Confidence Value="72" Mod="10" />
+                            <Confidence Value="72" Mod="15" />
                             <Mana Value="30" />
                             <Agility Value="21" />
                             <Fame Value="0" />
                             <Level Value="0" />
-                            <AskPrice Value="0" Mod="50" />
+                            <AskPrice Value="0" Mod="62" />
                             <House Value="100" />
                             <Exp Value="0" />
                             <Age Value="18" />
-                            <Obedience Value="20" Mod="5" />
-                            <Spirit Value="92" />
-                            <Beauty Value="62" Mod="20" />
+                            <Obedience Value="20" Mod="11" />
+                            <Spirit Value="92" Mod="-2" />
+                            <Beauty Value="62" Mod="35" Temp="10" />
                             <Tiredness Value="0" />
                             <Health Value="100" />
-                            <PCFear Value="0" />
-                            <PCLove Value="0" />
-                            <PCHate Value="0" />
+                            <PCFear Value="0" Mod="-28" />
+                            <PCLove Value="0" Mod="5" />
+                            <PCHate Value="0" Mod="-21" />
                         </Stats>
                         <Skills>
-                            <Anal Value="0" />
+                            <Anal Value="0" Mod="5" />
                             <Magic Value="4" />
                             <BDSM Value="8" />
-                            <NormalSex Value="10" />
+                            <NormalSex Value="10" Mod="15" />
                             <Beastiality Value="3" />
                             <Group Value="28" />
                             <Lesbian Value="14" />
                             <Service Value="3" />
-                            <Strip Value="26" />
-                            <Combat Value="65" Mod="20" />
+                            <Strip Value="26" Mod="15" />
+                            <Combat Value="65" Mod="30" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-17" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Cute Girl" Realname="Elmira" Desc="Cute Girl" DaysUnhappy="0" States="32" Virgin="0" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="10" NightJob="10" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="1" BDay="1" WeeksPreg="0" NumCusts="5" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Quick_Learner Temp="0" />
+                            <Cute Temp="0" />
+                            <Elegant Temp="0" />
+                            <Lesbian Temp="0" />
+                            <Sterile Temp="0" />
+                        </Traits>
+                        <Remembered_Traits>
+                            <Cute />
+                        </Remembered_Traits>
+                        <Inventory>
+                            <Items>
+                                <Item Name="Wool Slippers" isEquipped="0" />
+                                <Item Name="Paw-Print Teddy" isEquipped="1" />
+                                <Item Name="Prophylactic Ring" isEquipped="1" />
+                                <Item Name="Obsidian Choker" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Plate Boots" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="52" Mod="25" />
+                            <Happiness Value="90" />
+                            <Libido Value="17" Mod="20" Temp="-20" />
+                            <Constitution Value="20" Mod="10" />
+                            <Intelligence Value="98" />
+                            <Confidence Value="44" Mod="13" />
+                            <Mana Value="5" />
+                            <Agility Value="32" Mod="-10" />
+                            <Fame Value="0" Mod="5" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="55" />
+                            <House Value="100" />
+                            <Exp Value="39" />
+                            <Age Value="28" />
+                            <Obedience Value="27" Mod="7" />
+                            <Spirit Value="23" Mod="-8" />
+                            <Beauty Value="49" Mod="5" />
+                            <Tiredness Value="40" />
+                            <Health Value="98" />
+                            <PCFear Value="0" Mod="-32" />
+                            <PCLove Value="0" Mod="3" />
+                            <PCHate Value="0" Mod="-34" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" Mod="4" />
+                            <Magic Value="25" />
+                            <BDSM Value="0" Mod="10" />
+                            <NormalSex Value="26" Mod="13" />
+                            <Beastiality Value="0" Mod="25" />
+                            <Group Value="0" Mod="10" />
+                            <Lesbian Value="0" Mod="54" />
+                            <Service Value="33" Mod="20" />
+                            <Strip Value="2" Mod="10" />
+                            <Combat Value="7" Mod="15" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-10" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Dangerous Girl" Realname="Hasna" Desc="Dangerous Girl" DaysUnhappy="0" States="32" Virgin="1" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="3" NightJob="3" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Big_Boobs Temp="0" />
+                            <Strong Temp="0" />
+                            <Adventurer Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Lace Lingerie" isEquipped="1" />
+                                <Item Name="Wool Slippers" isEquipped="0" />
+                                <Item Name="Long Sword" isEquipped="1" />
+                                <Item Name="Leather Armor" isEquipped="1" />
+                                <Item Name="Manual of Health" isEquipped="1" />
+                                <Item Name="High Heels" isEquipped="1" />
+                                <Item Name="Manual of Health" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="27" Mod="-3" />
+                            <Happiness Value="100" />
+                            <Libido Value="90" Mod="10" />
+                            <Constitution Value="11" Mod="35" />
+                            <Intelligence Value="28" />
+                            <Confidence Value="65" Mod="25" />
+                            <Mana Value="38" />
+                            <Agility Value="79" Mod="-20" />
+                            <Fame Value="0" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="27" />
+                            <House Value="100" />
+                            <Exp Value="0" />
+                            <Age Value="22" />
+                            <Obedience Value="20" Mod="7" />
+                            <Spirit Value="77" />
+                            <Beauty Value="20" Mod="10" />
+                            <Tiredness Value="15" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-32" />
+                            <PCLove Value="0" Mod="4" />
+                            <PCHate Value="0" Mod="-29" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="3" Mod="10" />
+                            <Magic Value="2" Mod="-5" />
+                            <BDSM Value="22" Mod="28" />
+                            <NormalSex Value="10" Mod="10" />
+                            <Beastiality Value="2" Mod="40" />
+                            <Group Value="8" Mod="40" />
+                            <Lesbian Value="5" Mod="10" />
+                            <Service Value="3" Mod="10" />
+                            <Strip Value="10" Mod="10" />
+                            <Combat Value="31" Mod="40" />
                         </Skills>
                         <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
                         <Children />
@@ -2144,51 +2377,348 @@
                         </Actions>
                         <Triggers />
                     </Girl>
-                    <Girl Name="Cute Girl" Realname="Elmira" Desc="Cute Girl" DaysUnhappy="0" States="32" Virgin="0" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="0" DayJob="10" NightJob="10" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                    <Girl Name="Dangerous Girl" Realname="Anna" Desc="Dangerous Girl" DaysUnhappy="0" States="32" Virgin="0" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="7" NightJob="7" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
                         <Traits>
-                            <Lesbian Temp="0" />
-                            <Cute Temp="0" />
+                            <Horrific_Scars Temp="0" />
+                            <Strong Temp="0" />
+                            <Adventurer Temp="0" />
+                            <Assassin Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Lace Lingerie" isEquipped="1" />
+                                <Item Name="Wool Slippers" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                                <Item Name="Leather Armor" isEquipped="1" />
+                                <Item Name="Free Weights" isEquipped="1" />
+                                <Item Name="Long Sword" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="47" Mod="-17" />
+                            <Happiness Value="100" />
+                            <Libido Value="37" Mod="11" />
+                            <Constitution Value="12" Mod="30" />
+                            <Intelligence Value="52" />
+                            <Confidence Value="47" Mod="25" />
+                            <Mana Value="29" />
+                            <Agility Value="78" Mod="-5" />
+                            <Fame Value="0" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="39" />
+                            <House Value="100" />
+                            <Exp Value="0" />
+                            <Age Value="21" />
+                            <Obedience Value="20" Mod="6" />
+                            <Spirit Value="74" Mod="-10" />
+                            <Beauty Value="68" Mod="-5" />
+                            <Tiredness Value="2" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-41" />
+                            <PCLove Value="0" Mod="11" />
+                            <PCHate Value="0" Mod="-37" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="2" Mod="10" />
+                            <Magic Value="6" Mod="-5" />
+                            <BDSM Value="19" Mod="28" />
+                            <NormalSex Value="10" Mod="12" />
+                            <Beastiality Value="4" Mod="10" />
+                            <Group Value="28" Mod="25" />
+                            <Lesbian Value="10" Mod="10" />
+                            <Service Value="1" Mod="10" />
+                            <Strip Value="26" Mod="10" />
+                            <Combat Value="61" Mod="65" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-20" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Pigtail Girl" Realname="Jayne" Desc="Pigtail Girl" DaysUnhappy="0" States="32" Virgin="1" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="2" NightJob="2" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
                             <Quick_Learner Temp="0" />
                         </Traits>
                         <Remembered_Traits />
                         <Inventory>
-                            <Items />
+                            <Items>
+                                <Item Name="Lace Lingerie" isEquipped="1" />
+                                <Item Name="Wool Slippers" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Minor Ring of the Horndog" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                            </Items>
                         </Inventory>
                         <Stats>
-                            <Charisma Value="52" Mod="10" />
+                            <Charisma Value="45" Mod="9" />
                             <Happiness Value="100" />
-                            <Libido Value="17" />
-                            <Constitution Value="20" />
-                            <Intelligence Value="98" />
-                            <Confidence Value="44" />
-                            <Mana Value="5" />
-                            <Agility Value="32" />
+                            <Libido Value="47" Mod="40" />
+                            <Constitution Value="8" />
+                            <Intelligence Value="83" />
+                            <Confidence Value="1" Mod="5" />
+                            <Mana Value="0" />
+                            <Agility Value="49" />
                             <Fame Value="0" />
                             <Level Value="0" />
-                            <AskPrice Value="0" Mod="47" />
+                            <AskPrice Value="0" Mod="35" />
                             <House Value="100" />
                             <Exp Value="0" />
-                            <Age Value="28" />
-                            <Obedience Value="27" />
-                            <Spirit Value="23" />
-                            <Beauty Value="49" Mod="5" />
+                            <Age Value="25" />
+                            <Obedience Value="36" Mod="4" />
+                            <Spirit Value="45" />
+                            <Beauty Value="37" />
                             <Tiredness Value="0" />
                             <Health Value="100" />
-                            <PCFear Value="0" />
-                            <PCLove Value="0" />
-                            <PCHate Value="0" />
+                            <PCFear Value="0" Mod="-24" />
+                            <PCLove Value="0" Mod="12" />
+                            <PCHate Value="0" Mod="-23" />
                         </Stats>
                         <Skills>
-                            <Anal Value="0" />
-                            <Magic Value="25" />
-                            <BDSM Value="0" />
-                            <NormalSex Value="26" />
-                            <Beastiality Value="0" />
-                            <Group Value="0" />
-                            <Lesbian Value="0" Mod="40" />
-                            <Service Value="33" />
-                            <Strip Value="2" />
-                            <Combat Value="7" />
+                            <Anal Value="0" Mod="10" />
+                            <Magic Value="19" />
+                            <BDSM Value="0" Mod="10" />
+                            <NormalSex Value="19" Mod="10" />
+                            <Beastiality Value="0" Mod="10" />
+                            <Group Value="0" Mod="10" />
+                            <Lesbian Value="0" Mod="10" />
+                            <Service Value="29" Mod="10" />
+                            <Strip Value="4" Mod="10" />
+                            <Combat Value="1" Mod="10" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-20" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Quiet Girl" Realname="Wendy" Desc="Quiet Girl" DaysUnhappy="0" States="32" Virgin="1" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="0" DayJob="21" NightJob="21" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Clumsy Temp="0" />
+                            <Fast_orgasms Temp="0" />
+                            <Cute Temp="0" />
+                            <Lolita Temp="0" />
+                            <Nymphomaniac Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Wool Slippers" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Dancer Costume" isEquipped="1" />
+                                <Item Name="Pearl Necklace" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="37" Mod="52" />
+                            <Happiness Value="100" />
+                            <Libido Value="19" Mod="40" />
+                            <Constitution Value="69" Mod="5" />
+                            <Intelligence Value="79" />
+                            <Confidence Value="14" Mod="11" />
+                            <Mana Value="5" />
+                            <Agility Value="0" />
+                            <Fame Value="0" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="65" />
+                            <House Value="100" />
+                            <Exp Value="0" />
+                            <Age Value="17" />
+                            <Obedience Value="100" Mod="10" />
+                            <Spirit Value="7" />
+                            <Beauty Value="76" Mod="25" />
+                            <Tiredness Value="0" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-25" />
+                            <PCLove Value="0" Mod="11" />
+                            <PCHate Value="0" Mod="-25" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="13" />
+                            <Magic Value="14" />
+                            <BDSM Value="16" />
+                            <NormalSex Value="9" />
+                            <Beastiality Value="1" />
+                            <Group Value="5" />
+                            <Lesbian Value="6" />
+                            <Service Value="29" />
+                            <Strip Value="10" Mod="15" />
+                            <Combat Value="3" Mod="10" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-20" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Quiet Girl" Realname="Rosanna" Desc="Quiet Girl" DaysUnhappy="0" States="32" Virgin="1" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="0" DayJob="19" NightJob="19" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Big_Boobs Temp="0" />
+                            <Clumsy Temp="0" />
+                            <Cute Temp="0" />
+                            <Nervous Temp="0" />
+                            <Sexy_Air Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Elegant Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Wool Slippers" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Dancer Costume" isEquipped="1" />
+                                <Item Name="Obsidian Choker" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="35" Mod="54" />
+                            <Happiness Value="100" />
+                            <Libido Value="15" Mod="15" />
+                            <Constitution Value="46" Mod="5" />
+                            <Intelligence Value="76" />
+                            <Confidence Value="18" Mod="-7" />
+                            <Mana Value="11" />
+                            <Agility Value="9" Mod="-5" />
+                            <Fame Value="0" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="56" />
+                            <House Value="100" />
+                            <Exp Value="0" />
+                            <Age Value="24" />
+                            <Obedience Value="98" Mod="15" />
+                            <Spirit Value="1" />
+                            <Beauty Value="28" Mod="45" />
+                            <Tiredness Value="0" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-25" />
+                            <PCLove Value="0" Mod="11" />
+                            <PCHate Value="0" Mod="-25" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" Mod="-10" />
+                            <Magic Value="16" />
+                            <BDSM Value="13" Mod="-10" />
+                            <NormalSex Value="8" Mod="-10" />
+                            <Beastiality Value="5" Mod="-10" />
+                            <Group Value="0" Mod="-10" />
+                            <Lesbian Value="8" Mod="-10" />
+                            <Service Value="13" />
+                            <Strip Value="4" Mod="15" />
+                            <Combat Value="14" Mod="10" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-20" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Horny Girl" Realname="Kalama" Desc="Horny Girl" DaysUnhappy="0" States="32" Virgin="0" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="0" DayJob="22" NightJob="22" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Fast_orgasms Temp="0" />
+                            <Lolita Temp="0" />
+                            <Good_Kisser Temp="0" />
+                            <Nymphomaniac Temp="0" />
+                            <Sexy_Air Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Great_Arse Temp="0" />
+                            <Lesbian Temp="0" />
+                            <Elegant Temp="0" />
+                        </Traits>
+                        <Remembered_Traits>
+                            <Great_Figure />
+                        </Remembered_Traits>
+                        <Inventory>
+                            <Items>
+                                <Item Name="Wool Slippers" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="White String Bikini" isEquipped="1" />
+                                <Item Name="Obsidian Choker" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="26" Mod="67" />
+                            <Happiness Value="100" />
+                            <Libido Value="64" Mod="43" />
+                            <Constitution Value="51" Mod="10" />
+                            <Intelligence Value="48" />
+                            <Confidence Value="51" Mod="30" />
+                            <Mana Value="13" />
+                            <Agility Value="5" Mod="30" />
+                            <Fame Value="0" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="69" />
+                            <House Value="100" />
+                            <Exp Value="0" />
+                            <Age Value="17" />
+                            <Obedience Value="44" Mod="10" />
+                            <Spirit Value="59" />
+                            <Beauty Value="59" Mod="55" />
+                            <Tiredness Value="2" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-30" />
+                            <PCLove Value="0" Mod="24" />
+                            <PCHate Value="0" Mod="-25" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="14" Mod="20" />
+                            <Magic Value="13" />
+                            <BDSM Value="0" Mod="10" />
+                            <NormalSex Value="24" Mod="12" />
+                            <Beastiality Value="3" Mod="10" />
+                            <Group Value="25" Mod="10" />
+                            <Lesbian Value="21" Mod="50" />
+                            <Service Value="7" Mod="5" />
+                            <Strip Value="12" />
+                            <Combat Value="1" Mod="10" />
                         </Skills>
                         <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
                         <Children />

@@ -1,22 +1,24 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#define TIXML_USE_STL
 #include "tinyxml.h"
+
 #include "cInventory.h"
 #include <iostream>
 #include <fstream>
@@ -50,7 +52,7 @@ const char *sEffect::girl_status_name(unsigned int id)
 	if(id < sGirl::max_statuses) {
 		return sGirl::status_names[id];
 	}
-	g_LogFile.os() << "[sEffect::girl_status_name] Error: girl status id " << id 
+	g_LogFile.os() << "[sEffect::girl_status_name] Error: girl status id " << id
 	     << " too large (max is "
 	     << sGirl::max_statuses
 	     << ")"
@@ -63,7 +65,7 @@ const char *sEffect::skill_name(unsigned int id)
 	if(id < sGirl::max_skills) {
 		return sGirl::skill_names[id];
 	}
-	g_LogFile.os() << "[sEffect::skill_name] Error: skill id " << id 
+	g_LogFile.os() << "[sEffect::skill_name] Error: skill id " << id
 	     << " too large (max is "
 	     << sGirl::max_skills
 	     << ")"
@@ -76,7 +78,7 @@ const char *sEffect::stat_name(unsigned int id)
 	if(id < sGirl::max_stats) {
 		return sGirl::stat_names[id];
 	}
-	g_LogFile.os() << "[sEffect::stat_name] Error: stat id " << id 
+	g_LogFile.os() << "[sEffect::stat_name] Error: stat id " << id
 	     << " too large (max is "
 	     << sGirl::max_stats
 	     << ")"
@@ -87,12 +89,12 @@ const char *sEffect::stat_name(unsigned int id)
 
 bool sEffect::set_skill(string s)
 	{
-		
+
 		int nID	= sGirl::lookup_skill_code(s);
 
 		if (nID == -1)		// ERROR
 		{
-			g_LogFile.os() << "[sEffect::set_skill] Error: unknown Skill: " << s << 
+			g_LogFile.os() << "[sEffect::set_skill] Error: unknown Skill: " << s <<
 				". Skill ID: " << nID << endl;
 			return false;
 		}
@@ -102,7 +104,7 @@ bool sEffect::set_skill(string s)
 
 	bool sEffect::set_girl_status(string s)
 	{
-		
+
 		int nID	= sGirl::lookup_status_code(s);
 
 		if (nID == -1)		// ERROR
@@ -116,7 +118,7 @@ bool sEffect::set_skill(string s)
 	}
 	bool sEffect::set_stat(string s)
 	{
-		
+
 		int nID	= sGirl::lookup_stat_code(s);
 
 		if (nID == -1)		// ERROR
@@ -189,7 +191,7 @@ static void do_effects(TiXmlElement *parent, sInventoryItem *item)
 	for(el = parent->FirstChildElement(); el; el = el->NextSiblingElement()) {
 		sEffect *ept = new sEffect;
 
-		if((pt = el->Attribute("What"))) 
+		if((pt = el->Attribute("What")))
 			ept->set_what(pt);
 
 		if((pt = el->Attribute("Name"))) {
@@ -215,9 +217,9 @@ static void do_effects(TiXmlElement *parent, sInventoryItem *item)
 			}
 		}
 
-		if((pt = el->Attribute("Amount", &ival))) 
+		if((pt = el->Attribute("Amount", &ival)))
 			ept->m_Amount = ival;
-		
+
 		item->m_Effects.push_back(*ept);
 	}
 
@@ -234,7 +236,7 @@ void cInventory::remove_trait(sGirl* girl, int num, int index)
 	string trait_name = girl->m_Inventory[num]->m_Effects[index].m_Trait;
 
 	/*
-	 *	WD:	New logic for remembering traits 
+	 *	WD:	New logic for remembering traits
 	 *		moved to AddTrait() RemoveTrait() fn's
 	 *
 	 *		Don't think this is called any more.
@@ -246,15 +248,15 @@ void cInventory::remove_trait(sGirl* girl, int num, int index)
 }
 
 bool cInventory::GirlBuyItem(sGirl* girl, int ShopItem, int MaxItems, bool AutoEquip)
-{  
+{
 	// girl buys selected item if possible; returns true if bought
 	sInventoryItem* item = GetShopItem(ShopItem);
 	if(g_Girls.GetNumItemType(girl, item->m_Type) >= MaxItems)
-	{  
+	{
 		// if she has enough of this type, she won't buy more unless it's better than what she has
 		int nicerThan = g_Girls.GetWorseItem(girl,(int)item->m_Type, item->m_Cost);
 		if(nicerThan != -1)
-		{  
+		{
 			// found a worse item of the same type in her inventory
 			g_Girls.SellInvItem(girl, nicerThan);
 			girl->m_Money -= item->m_Cost;
@@ -606,13 +608,13 @@ void cInventory::Equip(sGirl* girl, int num, bool force)
 		return;
 
 	// if already equiped do nothing
-	if(girl->m_EquipedItems[num] == 1) 
+	if(girl->m_EquipedItems[num] == 1)
 		return;
 
-	if(girl->m_Inventory[num]->m_Special == sInventoryItem::AffectsAll) 
+	if(girl->m_Inventory[num]->m_Special == sInventoryItem::AffectsAll)
 		return;
 
-	if(ok_2_equip(girl, num, force) == false) 
+	if(ok_2_equip(girl, num, force) == false)
 		return;
 
 	// apply the effects
@@ -645,13 +647,13 @@ void cInventory::Equip(sGirl* girl, int num, bool force)
 			case sEffect::Trait:			// affects skill
 #if 1
 					/*
-					 *	WD:	New logic for remembering traits 
+					 *	WD:	New logic for remembering traits
 					 *		moved to AddTrait() RemoveTrait() fn's
 					 *
 					 *		EQUIP Temporary Item
 					 */
 
-				if(amount == 0)													// remove trait temporarily from equiping an item	
+				if(amount == 0)													// remove trait temporarily from equiping an item
 					g_Girls.RemoveTrait(girl, girl->m_Inventory[num]->m_Effects[i].m_Trait,	true);		// addrememberlist = true Temporary Item trait removal
 
 				else if(girl->m_Inventory[num]->m_Effects[i].m_Amount == 1)		// add temporary trait
@@ -750,18 +752,18 @@ void cInventory::Equip(sGirl* girl, int num, bool force)
 			else if(girl->m_Inventory[num]->m_Effects[i].m_Affects == 4)	// trait
 			{
 			/*
-			 *	WD:	New logic for remembering traits 
+			 *	WD:	New logic for remembering traits
 			 *		moved to AddTrait() RemoveTrait() fn's
 			 *
 			 *		EQUIP Normal Item
 			 */
 
 			if(girl->m_Inventory[num]->m_Effects[i].m_Amount == 0)				// remove trait from equiping an item
-					g_Girls.RemoveTrait(girl, girl->m_Inventory[num]->m_Effects[i].m_Trait,								
+					g_Girls.RemoveTrait(girl, girl->m_Inventory[num]->m_Effects[i].m_Trait,
 						girl->m_Inventory[num]->m_Type != INVFOOD && girl->m_Inventory[num]->m_Type != INVMAKEUP);		// addrememberlist = true only if not consumable
 
 			else if(girl->m_Inventory[num]->m_Effects[i].m_Amount == 1)			// add normal trait	from equiping an item
-					g_Girls.AddTrait(girl, girl->m_Inventory[num]->m_Effects[i].m_Trait, false,							
+					g_Girls.AddTrait(girl, girl->m_Inventory[num]->m_Effects[i].m_Trait, false,
 						girl->m_Inventory[num]->m_Type != INVFOOD && girl->m_Inventory[num]->m_Type != INVMAKEUP);		// Temp = false Normal Item, removeitem = true only if not consumable
 			}
 		}
@@ -804,7 +806,7 @@ void cInventory::Unequip(sGirl* girl, int num)
 		{
 
 			/*
-			 *	WD:	New logic for remembering traits 
+			 *	WD:	New logic for remembering traits
 			 *		moved to AddTrait() RemoveTrait() fn's
 			 *
 			 *		UNEQUIP
@@ -852,10 +854,10 @@ void cInventory::Unequip(sGirl* girl, int num)
 void cInventory::Equip(sGirl* girl, sInventoryItem* item, bool force)
 {
 	// this function is only used for global effects sInventoryItem::AffectsAll = 1
-	if(item->m_Special != sInventoryItem::AffectsAll)	
+	if(item->m_Special != sInventoryItem::AffectsAll)
 		return;
 
-	for(u_int i = 0; i < item->m_Effects.size(); i++) 
+	for(u_int i = 0; i < item->m_Effects.size(); i++)
 	{
 		if(item->m_Effects[i].m_Affects == 0)	// affects skill
 			g_Girls.UpdateTempSkill(girl,item->m_Effects[i].m_EffectID, item->m_Effects[i].m_Amount);
@@ -865,17 +867,17 @@ void cInventory::Equip(sGirl* girl, sInventoryItem* item, bool force)
 		{
 
 		/*
-		 *	WD:	New logic for remembering traits 
+		 *	WD:	New logic for remembering traits
 		 *		moved to AddTrait() RemoveTrait() fn's
 		 *
 		 *		EQUIP AffectAll Item
 		 */
 
-			if(item->m_Effects[i].m_Amount == 0)			// remove trait temporarily from equiping an item							
+			if(item->m_Effects[i].m_Amount == 0)			// remove trait temporarily from equiping an item
 				g_Girls.RemoveTrait(girl, item->m_Effects[i].m_Trait, true);	// addrememberlist = true AffectAll trait removal
-						
 
-			else if(item->m_Effects[i].m_Amount == 1)		// add temporary trait 					
+
+			else if(item->m_Effects[i].m_Amount == 1)		// add temporary trait
 				g_Girls.AddTrait(girl, item->m_Effects[i].m_Trait, true, true); // Temp = true AffectAll Item, removeitem = true for AffectAll trait
 
 		}
@@ -902,7 +904,7 @@ bool cInventory::equip_limited_item_ok(sGirl* girl, int num, bool force, int lim
 	int count = 0;
 	int target_type = girl->m_Inventory[num]->m_Type;
 /*
- *	there's a limited number of items that can be 
+ *	there's a limited number of items that can be
  *	equipped for any given type
  *
  *	so we're going to loop through the inventory
@@ -916,23 +918,23 @@ bool cInventory::equip_limited_item_ok(sGirl* girl, int num, bool force, int lim
 /*
  *		if there's nothing in the slot, skip it
  */
-		if(girl->m_Inventory[i] == 0) 
+		if(girl->m_Inventory[i] == 0)
 			continue;
-		
+
 /*
  *		ok - there's something in the slot
  *		if it's not the correct type, skip it anyway
  */
-		if(girl->m_Inventory[i]->m_Type != target_type) 
+		if(girl->m_Inventory[i]->m_Type != target_type)
 			continue;
-		
+
 /*
  *		so it is the target type: she might not have it equipped
  *		if not, skip it.
  */
-		if(girl->m_EquipedItems[i] != 1) 
+		if(girl->m_EquipedItems[i] != 1)
 			continue;
-		
+
 /*
  *		All right, all right. it's the right type, and it's equipped
  *		add it to the count.
@@ -946,9 +948,9 @@ bool cInventory::equip_limited_item_ok(sGirl* girl, int num, bool force, int lim
  *		less than the limit, we might still find a free slot
  *		so we skip on then, too
  */
- 		if(!force || count < limit) 
+ 		if(!force || count < limit)
 			continue;
-		
+
 /*
  *		If we get here, we have no free slots,
  *		and we're forcing her to wear it (Muh-ha-ha-ha-ha!)
@@ -961,7 +963,7 @@ bool cInventory::equip_limited_item_ok(sGirl* girl, int num, bool force, int lim
 		break;
 	}
 
-	if(count == limit) 
+	if(count == limit)
 		return false;
 
 	return true;
@@ -973,20 +975,20 @@ bool cInventory::ok_2_equip(sGirl *girl, int num, bool force)
 	switch(girl->m_Inventory[num]->m_Type)
 	{
 	case sInventoryItem::Ring:
-		if(equip_ring_ok(girl, num, force) == false) 
+		if(equip_ring_ok(girl, num, force) == false)
 			return false;
 		break;
 	case sInventoryItem::Dress:
 	case sInventoryItem::Shoes:
 	case sInventoryItem::Necklace:
 	case sInventoryItem::Armor:
-		if(equip_singleton_ok(girl,  num, force) == false) 
+		if(equip_singleton_ok(girl,  num, force) == false)
 			return false;
 		break;
 	case sInventoryItem::SmWeapon:	// doc: added missing enum
 	case sInventoryItem::Weapon:
 	case sInventoryItem::Armband:
-		if(equip_pair_ok(girl,  num, force) == false) 
+		if(equip_pair_ok(girl,  num, force) == false)
 			return false;
 		break;
 	case sInventoryItem::Food:
@@ -1004,41 +1006,41 @@ static sInventoryItem* handle_element(TiXmlElement *el)
 	int ival;
 	const char *pt;
 	sInventoryItem* item = new sInventoryItem();
-	if ((pt = el->Attribute("Name"))) 
+	if ((pt = el->Attribute("Name")))
 		item->m_Name = pt;
-	
-	if ((pt = el->Attribute("Desc"))) 
+
+	if ((pt = el->Attribute("Desc")))
 		item->m_Desc = pt;
-	else 
+	else
 		cout << "no desc attribute found" << endl;
-	
-	if((pt = el->Attribute("Type"))) 
+
+	if((pt = el->Attribute("Type")))
 		item->set_type(pt);
-	
-	if((pt = el->Attribute("Badness", &ival))) 
+
+	if((pt = el->Attribute("Badness", &ival)))
 		item->m_Badness = ival;
 	else
 		item->m_Badness = 0;
-	
-	if((pt = el->Attribute("GirlBuyChance", &ival))) 
+
+	if((pt = el->Attribute("GirlBuyChance", &ival)))
 		item->m_GirlBuyChance = ival;
 	else  // if not specified, set chance based on badness
 		item->m_GirlBuyChance = (item->m_Badness < 20) ? (100 - (item->m_Badness * 5)) : 0;
-	
-	if((pt = el->Attribute("Special"))) 
+
+	if((pt = el->Attribute("Special")))
 		item->set_special(pt);
-	
-	if((pt = el->Attribute("Cost", &ival))) 
+
+	if((pt = el->Attribute("Cost", &ival)))
 		item->m_Cost = ival;
-	
-	if((pt = el->Attribute("Rarity"))) 
+
+	if((pt = el->Attribute("Rarity")))
 		item->set_rarity(pt);
-	
-	if((pt = el->Attribute("Infinite"))) 
+
+	if((pt = el->Attribute("Infinite")))
 		item->m_Infinite = (string(pt) == "true");
-	else 
+	else
 		item->m_Infinite = false;
-	
+
 	do_effects(el, item);
 	return item;
 }
@@ -1061,7 +1063,7 @@ bool cInventory::LoadItemsXML(string filename)
 
 	for(el = root_el->FirstChildElement(); el; el = el->NextSiblingElement()) {
 		sInventoryItem* item = handle_element(el);
-		if(log_flag) 
+		if(log_flag)
 			g_LogFile.os() << *item << endl;
 		items.push_back(item);
 	}
@@ -1076,7 +1078,7 @@ void cInventory::LoadItems(string filename)
 	g_LogFile.os() << "loading items from '" << filename << "'" << endl;
 	ifstream in;
 	in.open(filename.c_str());
-	if(!in.good()) 
+	if(!in.good())
 		g_LogFile.os() << "LoadItems: stream not good after open" << endl;
 
 	char buffer[1000];
@@ -1090,9 +1092,9 @@ void cInventory::LoadItems(string filename)
 		if (in.peek()=='\n') in.ignore(1,'\n');
 		in.getline(buffer, sizeof(buffer), '\n');		// get the name
 		g_LogFile.os() << "LoadItems: " << buffer << endl;
-		if(buffer[0] == 0) 
+		if(buffer[0] == 0)
 			break;
-		
+
 		newItem->m_Name = buffer;
 
 		if (in.peek()=='\n') in.ignore(1,'\n');

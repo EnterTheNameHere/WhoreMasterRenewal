@@ -25,6 +25,8 @@
 #include <iostream>
 #include <istream>
 #include <fstream>
+
+#define TIXML_USE_STL
 #include "tinyxml.h"
 
 class MasterFile

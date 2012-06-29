@@ -28,6 +28,9 @@
 #include "cTariff.h"
 #include "sFacility.h"
 
+#define TIXML_USE_STL
+#include "tinyxml.h"
+
 using namespace std;
 
 class cBuilding

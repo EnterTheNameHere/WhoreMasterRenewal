@@ -24,7 +24,10 @@
 #include "cBrothel.h"
 #include "cMessageBox.h"
 #include "cGold.h"
+
+#define TIXML_USE_STL
 #include "tinyxml.h"
+
 #include "XmlMisc.h"
 #include "cGangs.h"
 #include "CGraphics.h"

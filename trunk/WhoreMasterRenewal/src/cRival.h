@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -22,6 +22,8 @@
 
 #include <string>
 #include "cNameList.h"
+
+#define TIXML_USE_STL
 #include "tinyxml.h"
 using namespace std;
 
@@ -30,7 +32,7 @@ class cRival
 public:
 	cRival(){m_Next=m_Prev=0;m_Name="";m_Influence=0;m_BribeRate=0;m_Gold=5000;m_NumBrothels=1;m_NumGangs=3;m_NumGirls=8;m_NumBars=0;m_NumGamblingHalls=0;m_BusinessesExtort=0;}
 	~cRival(){if(m_Next)delete m_Next;m_Next=0;m_Prev=0;}
-	
+
 	// variables
 	int m_NumGangs;
 	int m_NumBrothels;
@@ -69,7 +71,7 @@ public:
 	void AddRival(cRival* rival);
 	void RemoveRival(cRival* rival);
 	void CreateRandomRival();
-	
+
 	int GetNumBusinesses();
 
 	int GetNumRivals() {return m_NumRivals;}

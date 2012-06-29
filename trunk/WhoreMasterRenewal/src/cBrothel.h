@@ -31,6 +31,9 @@
 #include "cDungeon.h"		// WD:	cBrothel clean up move class to own file
 #include "cPlayer.h"		// WD:	cBrothel clean up move class to own file
 
+#define TIXML_USE_STL
+#include "tinyxml.h"
+
 using namespace std;
 
 extern  cGirls  g_Girls;

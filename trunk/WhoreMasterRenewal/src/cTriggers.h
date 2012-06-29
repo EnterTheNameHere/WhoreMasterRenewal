@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -23,7 +23,10 @@
 #include <string>
 #include <queue>
 #include "GameFlags.h"
+
+#define TIXML_USE_STL
 #include "tinyxml.h"
+
 struct sGirl;
 using namespace std;
 
@@ -74,7 +77,7 @@ public:
 	int	load_flag_from_xml(TiXmlElement *el);
 
 /*
- *	some accessor funcs to make the meaning of the values 
+ *	some accessor funcs to make the meaning of the values
  *	array elements a little less opaque
  */
 	int global_flag()	{ return m_Values[0]; }
@@ -185,7 +188,7 @@ private:
 	//cTriggerQue* m_EndQue;
 	queue<cTriggerQue *> m_TriggerQueue;//mod
 
-	
+
 	// script targets (things that the script will affect with certain commands)
 	sGirl* m_GirlTarget;	// if not 0 then the script is affecting a girl
 };

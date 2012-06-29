@@ -25,6 +25,8 @@
 #include <iomanip>
 #include <math.h>
 #include "CLog.h"
+
+#define TIXML_USE_STL
 #include "tinyxml.h"
 
 using namespace std;

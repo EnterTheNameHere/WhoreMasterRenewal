@@ -20,7 +20,10 @@
 #include <time.h>
 #include "DirPath.h"
 #include "CLog.h"
+
+#define TIXML_USE_STL
 #include "tinyxml.h"
+
 #include "XmlUtil.h"
 #include <string>
 #include <cctype>

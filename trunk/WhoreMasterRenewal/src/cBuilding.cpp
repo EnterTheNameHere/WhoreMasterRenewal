@@ -1,24 +1,23 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "cBuilding.h"
 #include "CLog.h"
-#include "tinyxml.h"
 #include "XmlUtil.h"
 
 ofstream &cBuilding::save(ofstream &ofs, string name)
@@ -37,19 +36,19 @@ ofstream &cBuilding::save(ofstream &ofs, string name)
  *
  *	not sure how well this will play embedded in mid file.
  */
-	TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "", "" );  
-	doc.LinkEndChild( decl ); 
+	TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "", "" );
+	doc.LinkEndChild( decl );
 /*
  *	document root node. In this case we'll use a <building> tag
  */
-	TiXmlElement * root = new TiXmlElement("Building");  
+	TiXmlElement * root = new TiXmlElement("Building");
 /*
  *	use an attribute to store the capacity
  *	we can re-create the used and free counts, but we
  *	need to save the capacity
  */
 	root->SetAttribute("Capacity", m_capacity);
-	doc.LinkEndChild( root );  
+	doc.LinkEndChild( root );
 /*
  *	let's add in a comment
  */
@@ -57,8 +56,8 @@ ofstream &cBuilding::save(ofstream &ofs, string name)
 	doc.LinkEndChild( root );
 	//TiXmlComment *comment = new TiXmlComment();
 	//ss << "Building configuration for '" << name << "'";
-	//comment->SetValue(ss.str().c_str());  
-	//root->LinkEndChild( comment );  
+	//comment->SetValue(ss.str().c_str());
+	//root->LinkEndChild( comment );
 /*
  *	Now we loop over all the rooms in the building
  */
@@ -69,7 +68,7 @@ ofstream &cBuilding::save(ofstream &ofs, string name)
  *		OK: for each building, we need an element
  *		to store the data
  */
-		/*TiXmlElement *el = new TiXmlElement("Facility");  
+		/*TiXmlElement *el = new TiXmlElement("Facility");
 		el->SetAttribute("Capacity",	m_capacity);
 		el->SetAttribute("Name",	fac->m_type_name);
 		el->SetAttribute("Instance",	fac->m_instance_name);
@@ -79,7 +78,7 @@ ofstream &cBuilding::save(ofstream &ofs, string name)
 		el->LinkEndChild(fac->m_glitz.to_xml("Glitz"));
 		el->LinkEndChild(fac->m_secure.to_xml("Secure"));
 		el->LinkEndChild(fac->m_stealth.to_xml("Stealth"));
-		root->LinkEndChild( el );  
+		root->LinkEndChild( el );
 	}*/
 
 	ss.str("");

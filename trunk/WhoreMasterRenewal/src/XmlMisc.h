@@ -20,7 +20,9 @@
 #define XMLMISC_H_INCLUDED_1534
 #pragma once
 
+#define TIXML_USE_STL
 #include "tinyxml.h"
+
 #include <string>
 #include "cTraits.h"
 #include "cInventory.h"

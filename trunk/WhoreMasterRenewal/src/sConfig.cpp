@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -23,7 +23,10 @@
 #include "sConfig.h"
 #include "DirPath.h"
 #include "CLog.h"
+
+#define TIXML_USE_STL
 #include "tinyxml.h"
+
 #include "cColor.h"
 
 extern CLog g_LogFile;
@@ -40,7 +43,7 @@ sConfigData::sConfigData(const char *a_filename)
 {
 	DirPath dp = DirPath() << "Resources" << "Data" << a_filename;
 	string filename = dp.c_str();
-	l.ss() 
+	l.ss()
 		<< "Loading configration variables from '"
 		<< filename
 		<< "'"
@@ -453,7 +456,7 @@ void sConfigData::set_defaults()
 	in_fact.barmaid_work	    = 1.0;
 	in_fact.slave_sales	        = 1.0;
 	in_fact.item_sales	        = 1.0;
-	
+
     out_fact.training	        = 0.0;
 	out_fact.actress_wages	    = 0.0;
 	out_fact.movie_cost	        = 1.0;
@@ -467,17 +470,17 @@ void sConfigData::set_defaults()
 	out_fact.bribes		        = 1.0;
 	out_fact.fines		        = 1.0;
 	out_fact.advertising	    = 1.0;
-	
+
     tax.rate		            = 0.06;
 	tax.minimum		            = 0.01;
 	tax.laundry		            = 0.25;
-	
+
     gamble.odds		            = 49;
 	gamble.base		            = 79;
 	gamble.spread		        = 400;
 	gamble.house_factor	        = 1.0;
 	gamble.customer_factor	    = 0.5;
-	
+
     pregnancy.player_chance	    = 8;
 	pregnancy.customer_chance   = 8;
 	pregnancy.monster_chance    = 8;
@@ -525,6 +528,6 @@ void sConfigData::set_defaults()
 	debug.log_girls		= false;
 	debug.log_rgirls	= false;
 	debug.log_fonts		= false;
-	debug.log_torture	= false;	
+	debug.log_torture	= false;
 }
 

@@ -1,34 +1,337 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="src\cLuaScript.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="16498" topLine="703" />
+	<File name="src\main.h" open="1" top="0" tabpos="69" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1533" topLine="7" />
 	</File>
-	<File name="src\sConfig.cpp" open="1" top="1" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1666" topLine="43" />
+	<File name="src\cGangs.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
 	</File>
-	<File name="src\cScripts.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="6023" topLine="200" />
+	<File name="src\cScrollBar.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1636" topLine="26" />
 	</File>
-	<File name="src\cLuaScript.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="934" topLine="12" />
+	<File name="src\cMessageBox.h" open="1" top="0" tabpos="28" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
 	</File>
-	<File name="src\main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="1070" topLine="8" />
-	</File>
-	<File name="src\SDLStuff.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="886" topLine="0" />
-	</File>
-	<File name="src\cInventoryManagementSM.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="39148" topLine="1034" />
-	</File>
-	<File name="src\cLuaMenu.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="892" topLine="10" />
-	</File>
-	<File name="src\InterfaceGlobals.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src\InterfaceGlobals.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor1 position="1826" topLine="22" />
 	</File>
-	<File name="src\cInventoryManagementSM.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor1 position="889" topLine="10" />
+	<File name="src\cImageItem.h" open="1" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\CLog.h" open="1" top="0" tabpos="25" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1916" topLine="0" />
+	</File>
+	<File name="src\linux.h" open="1" top="0" tabpos="68" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1390" topLine="7" />
+	</File>
+	<File name="src\cGameScript.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cLuaScript.h" open="1" top="0" tabpos="27" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="902" topLine="7" />
+	</File>
+	<File name="src\GraphicsSystem.h" open="1" top="0" tabpos="63" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\CGraphics.h" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cFont.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3062" topLine="44" />
+	</File>
+	<File name="src\WorkFreetime.cpp" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="6319" topLine="209" />
+	</File>
+	<File name="src\cLuaMenu.h" open="1" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2209" topLine="0" />
+	</File>
+	<File name="src\cBuilding.cpp" open="0" top="0" tabpos="25" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\GameFlags.h" open="1" top="0" tabpos="61" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\CGameObject.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cEvents.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2106" topLine="0" />
+	</File>
+	<File name="src\cListBox.h" open="1" top="0" tabpos="24" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cBrothel.cpp" open="0" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="125232" topLine="4098" />
+	</File>
+	<File name="src\FileList.h" open="1" top="0" tabpos="60" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="4234" topLine="0" />
+	</File>
+	<File name="src\cTriggers.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="11473" topLine="433" />
+	</File>
+	<File name="src\cEditBox.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cJobs.h" open="1" top="0" tabpos="23" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="4131" topLine="101" />
+	</File>
+	<File name="src\DirPath.h" open="1" top="0" tabpos="59" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1150" topLine="0" />
+	</File>
+	<File name="src\cDungeon.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cJobManager.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="28186" topLine="598" />
+	</File>
+	<File name="src\Constants.h" open="1" top="0" tabpos="30" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3359" topLine="0" />
+	</File>
+	<File name="src\cGirls.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="57515" topLine="2572" />
+	</File>
+	<File name="src\cCustomers.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\SDLStuff.h" open="1" top="0" tabpos="85" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1005" topLine="1" />
+	</File>
+	<File name="src\cInventoryManagementSM.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="39148" topLine="1034" />
+	</File>
+	<File name="src\CSurface.h" open="1" top="0" tabpos="51" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2517" topLine="0" />
+	</File>
+	<File name="src\sFacilityList.cpp" open="0" top="0" tabpos="30" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cTariff.h" open="1" top="0" tabpos="50" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3651" topLine="0" />
+	</File>
+	<File name="src\cColor.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\MasterFile.h" open="1" top="0" tabpos="70" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3264" topLine="114" />
+	</File>
+	<File name="src\CResourceManager.h" open="1" top="0" tabpos="34" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cScreenGirlManagement.h" open="1" top="0" tabpos="43" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2403" topLine="54" />
+	</File>
+	<File name="src\cSlider.h" open="1" top="0" tabpos="49" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cChoiceMessage.h" open="1" top="0" tabpos="78" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3686" topLine="103" />
+	</File>
+	<File name="src\InterfaceProcesses.cpp" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="83198" topLine="2697" />
+	</File>
+	<File name="src\cInterfaceWindow.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2485" topLine="0" />
+	</File>
+	<File name="src\CResource.h" open="1" top="0" tabpos="33" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\sConfig.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1666" topLine="43" />
+	</File>
+	<File name="src\cScreenGirlDetails.h" open="1" top="0" tabpos="42" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2848" topLine="68" />
+	</File>
+	<File name="src\cScrollBar.h" open="1" top="0" tabpos="48" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="569" topLine="0" />
+	</File>
+	<File name="src\cNameList.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="601" topLine="100" />
+	</File>
+	<File name="src\cCheckBox.h" open="1" top="0" tabpos="77" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1661" topLine="26" />
+	</File>
+	<File name="src\InterfaceGlobals.h" open="1" top="0" tabpos="65" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cInterfaceEvent.h" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\main.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1504" topLine="27" />
+	</File>
+	<File name="src\cScreenGangs.h" open="1" top="0" tabpos="41" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2674" topLine="63" />
+	</File>
+	<File name="src\cScripts.h" open="1" top="0" tabpos="82" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="906" topLine="0" />
+	</File>
+	<File name="src\cButton.h" open="1" top="0" tabpos="76" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="904" topLine="0" />
+	</File>
+	<File name="src\IconSurface.h" open="1" top="0" tabpos="64" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1217" topLine="22" />
+	</File>
+	<File name="src\cImageItem.cpp" open="0" top="0" tabpos="26" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cXmlWidget.h" open="1" top="0" tabpos="58" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1428" topLine="18" />
+	</File>
+	<File name="src\cScreenDungeon.h" open="1" top="0" tabpos="40" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2669" topLine="0" />
+	</File>
+	<File name="src\cScriptUtils.h" open="1" top="0" tabpos="83" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="427" topLine="3" />
+	</File>
+	<File name="src\cLuaScript.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="17693" topLine="754" />
+	</File>
+	<File name="src\cBuilding.h" open="1" top="0" tabpos="75" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2812" topLine="86" />
+	</File>
+	<File name="src\GameSystem.h" open="1" top="0" tabpos="62" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\strnatcmp.h" open="1" top="0" tabpos="88" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1952" topLine="26" />
+	</File>
+	<File name="src\cWindowManager.h" open="1" top="0" tabpos="57" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1660" topLine="0" />
+	</File>
+	<File name="src\cScreenBuildingSetup.h" open="1" top="0" tabpos="39" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2329" topLine="52" />
+	</File>
+	<File name="src\cScriptManager.h" open="1" top="0" tabpos="81" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="3003" topLine="98" />
+	</File>
+	<File name="src\cLuaMenu.cpp" open="0" top="0" tabpos="27" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cBrothel.h" open="1" top="0" tabpos="74" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="11939" topLine="309" />
+	</File>
+	<File name="src\cTriggers.h" open="1" top="0" tabpos="56" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="5055" topLine="0" />
+	</File>
+	<File name="src\cScreenBuildingManagement.h" open="1" top="0" tabpos="38" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2887" topLine="79" />
+	</File>
+	<File name="src\cScreenTown.h" open="1" top="0" tabpos="80" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2422" topLine="62" />
+	</File>
+	<File name="src\cAnimatedSurface.h" open="1" top="0" tabpos="73" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2944" topLine="0" />
+	</File>
+	<File name="src\cGold.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="9193" topLine="286" />
+	</File>
+	<File name="src\cTraits.h" open="1" top="0" tabpos="55" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cScreenBank.h" open="1" top="0" tabpos="37" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1471" topLine="41" />
+	</File>
+	<File name="src\cScreenSlaveMarket.h" open="1" top="0" tabpos="79" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2469" topLine="65" />
+	</File>
+	<File name="src\cJobManager.h" open="1" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="6668" topLine="125" />
+	</File>
+	<File name="src\XmlUtil.h" open="1" top="1" tabpos="89" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="862" topLine="0" />
+	</File>
+	<File name="src\cGirls.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="8244" topLine="0" />
+	</File>
+	<File name="src\cTrainable.h" open="1" top="0" tabpos="54" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="4172" topLine="139" />
+	</File>
+	<File name="src\cRng.h" open="1" top="0" tabpos="36" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cDungeon.cpp" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="14717" topLine="589" />
+	</File>
+	<File name="src\cScreenPrison.h" open="1" top="0" tabpos="47" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1688" topLine="48" />
+	</File>
+	<File name="src\cInventoryManagementSM.h" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1418" topLine="21" />
+	</File>
+	<File name="src\XmlMisc.h" open="1" top="0" tabpos="87" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2432" topLine="14" />
+	</File>
+	<File name="src\CTimer.h" open="1" top="0" tabpos="53" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\sFacilityList.h" open="1" top="0" tabpos="86" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1315" topLine="13" />
+	</File>
+	<File name="src\cGirlTorture.h" open="1" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cTextItem.h" open="1" top="0" tabpos="52" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cRival.h" open="1" top="0" tabpos="35" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cScreenMayor.h" open="1" top="0" tabpos="46" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1633" topLine="8" />
+	</File>
+	<File name="src\Revision.h" open="1" top="0" tabpos="71" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="101" topLine="0" />
+	</File>
+	<File name="src\cInventory.h" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\sFacility.h" open="1" top="0" tabpos="72" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="8041" topLine="279" />
+	</File>
+	<File name="src\cScreenHouse.cpp" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="4158" topLine="116" />
+	</File>
+	<File name="src\cGirlGangFight.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="0" />
+	</File>
+	<File name="src\cPlayer.h" open="1" top="0" tabpos="31" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="0" topLine="10" />
+	</File>
+	<File name="src\cScreenItemManagement.h" open="1" top="0" tabpos="45" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2795" topLine="70" />
+	</File>
+	<File name="src\InterfaceProcesses.h" open="1" top="0" tabpos="67" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="969" topLine="7" />
+	</File>
+	<File name="src\cInterfaceWindow.h" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="7757" topLine="0" />
+	</File>
+	<File name="src\sConfig.h" open="1" top="0" tabpos="84" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="904" topLine="0" />
+	</File>
+	<File name="src\cScreenGirlManagement.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="18112" topLine="0" />
+	</File>
+	<File name="src\cGetStringScreenManager.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="2748" topLine="90" />
+	</File>
+	<File name="src\cSlider.cpp" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1242" topLine="9" />
+	</File>
+	<File name="src\cNameList.h" open="1" top="0" tabpos="29" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1571" topLine="28" />
+	</File>
+	<File name="src\cScreenHouse.h" open="1" top="0" tabpos="44" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1524" topLine="30" />
+	</File>
+	<File name="src\InterfaceIDs.h" open="1" top="0" tabpos="66" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="939" topLine="8" />
+	</File>
+	<File name="src\cInterfaceObject.h" open="1" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="1293" topLine="9" />
+	</File>
+	<File name="src\CRenderQue.h" open="1" top="0" tabpos="32" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor1 position="865" topLine="8" />
 	</File>
 </CodeBlocks_layout_file>

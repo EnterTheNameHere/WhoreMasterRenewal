@@ -1,0 +1,3477 @@
+<?xml version="1.0" standalone="yes" ?>
+<Root MajorVersion="1" MinorVersionA="3" MinorVersionB="0" StableVersion="4" ApproxRevision="643" ExeVersion="official" WalkAround="1" TalkCount="0" Year="1209" Month="6" Day="5">
+    <Loaded_Files>
+        <Girls_Files>
+            <File Filename="Airi.girlsx" />
+            <File Filename="Bianca Whitaker.girlsx" />
+            <File Filename="Cecilia Alcott.girlsx" />
+            <File Filename="Charlotte Dunois.girlsx" />
+            <File Filename="Dark Magician Girl.girlsx" />
+            <File Filename="Elina Vance.girlsx" />
+            <File Filename="Jessica Albert.girlsx" />
+            <File Filename="Leina Vance.girlsx" />
+            <File Filename="Lunamaria Hawke.girlsx" />
+            <File Filename="Meiko.girlsx" />
+            <File Filename="Nena Trinity.girlsx" />
+            <File Filename="Orihime Inoue.girlsx" />
+            <File Filename="Rangiku Matsumoto.girlsx" />
+            <File Filename="Ranka Lee.girlsx" />
+            <File Filename="Rukia Kuchiki.girlsx" />
+            <File Filename="Sheryl Nome.girlsx" />
+            <File Filename="Soifon.girlsx" />
+            <File Filename="Tifa Lockhart.girlsx" />
+            <File Filename="Tiffania Westwood.girlsx" />
+            <File Filename="Tomoe.girlsx" />
+            <File Filename="Yoruichi Shihouin.girlsx" />
+        </Girls_Files>
+    </Loaded_Files>
+    <Gold value="331.000000" income="0.000000" upkeep="0.000000" cash_in="270.000000" cash_out="-2369.000000" />
+    <Girls>
+        <Girl Name="Bianca Whitaker" Realname="Bianca Whitaker" Desc="Dragon Quest V - The hero and his father first meet Bianca as a child in Whealbrook. She and her mother are in town getting medicine. After the herb-maker is found in a cave, Pankraz escorts them back to their home in Roundbeck." DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Adventurer Temp="0" />
+                <Big_Boobs Temp="0" />
+                <Charming Temp="0" />
+                <Cute Temp="0" />
+                <Elegant Temp="0" />
+                <Good_Kisser Temp="0" />
+                <Great_Figure Temp="0" />
+                <Long_Legs Temp="0" />
+                <Meek Temp="0" />
+                <MILF Temp="0" />
+                <Optimist Temp="0" />
+                <Perky_Nipples Temp="0" />
+                <Sexy_Air Temp="0" />
+                <Slow_Learner Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="24" Mod="41" />
+                <Happiness Value="100" />
+                <Libido Value="62" />
+                <Constitution Value="94" Mod="15" />
+                <Intelligence Value="65" Mod="-18" />
+                <Confidence Value="40" Mod="-11" />
+                <Mana Value="79" />
+                <Agility Value="6" Mod="2" />
+                <Fame Value="0" />
+                <Level Value="0" />
+                <AskPrice Value="0" Mod="40" />
+                <House Value="100" />
+                <Exp Value="0" />
+                <Age Value="22" />
+                <Obedience Value="20" Mod="20" />
+                <Spirit Value="8" Mod="22" />
+                <Beauty Value="69" Mod="55" />
+                <Tiredness Value="0" />
+                <Health Value="100" />
+                <PCFear Value="0" />
+                <PCLove Value="0" />
+                <PCHate Value="0" />
+                <Cleaning_Talent Value="0" Mod="34" />
+                <Security_Talent Value="0" Mod="27" />
+                <Advertising_Talent Value="0" Mod="39" />
+                <Cust._Service_Talent Value="0" Mod="33" />
+                <Matron_Talent Value="0" Mod="33" />
+                <Torturer_Talent Value="0" Mod="27" />
+                <Explorer_Talent Value="0" Mod="31" />
+                <Brothel_Whore_Talent Value="0" Mod="32" />
+                <Street_Whore_Talent Value="0" Mod="33" />
+                <Stripper_Talent Value="0" Mod="36" />
+                <Masseuse_Talent Value="0" Mod="39" />
+                <G._Hall_Whore_Talent Value="0" Mod="32" />
+                <Game_Dealer_Talent Value="0" Mod="36" />
+                <Entertainer_Talent Value="0" Mod="42" />
+                <XXX_Entertainer_Talent Value="193" Mod="43" />
+                <Barmaid_Talent Value="1" Mod="37" />
+                <Waitress_Talent Value="12" Mod="27" />
+                <Bar_Stripper_Talent Value="2" Mod="35" />
+                <Bar_Whore_Talent Value="20" Mod="32" />
+                <Singer_Talent Value="0" Mod="40" />
+            </Stats>
+            <Skills>
+                <Anal Value="45" />
+                <Magic Value="11" />
+                <BDSM Value="92" />
+                <NormalSex Value="7" />
+                <OralSex Value="0" Mod="15" />
+                <Group Value="25" />
+                <Lesbian Value="53" />
+                <Service Value="44" Mod="20" />
+                <Strip Value="34" Mod="30" />
+                <Combat Value="16" Mod="10" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-20" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-20" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Cecilia Alcott" Realname="Cecilia Alcott" Desc='Infintie Stratos - Apparently an aristocrat, as her haughty personality attests, though royalty from this &quot;Britain&quot; place carries no authority here in Crossgate, as her slave brand attests.  Often complains about being unable to use her &quot;Eye Ess&quot; which, based on her description, is probably a good thing.' DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Aggressive Temp="0" />
+                <Big_Boobs Temp="0" />
+                <Charismatic Temp="0" />
+                <Elegant Temp="0" />
+                <Fearless Temp="0" />
+                <Great_Arse Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="30" Mod="37" />
+                <Happiness Value="100" />
+                <Libido Value="50" />
+                <Constitution Value="55" Mod="7" />
+                <Intelligence Value="65" Mod="7" />
+                <Confidence Value="60" Mod="10" />
+                <Mana Value="0" />
+                <Agility Value="60" />
+                <Fame Value="0" />
+                <Level Value="0" />
+                <AskPrice Value="0" Mod="34" />
+                <House Value="100" />
+                <Exp Value="0" />
+                <Age Value="17" />
+                <Obedience Value="50" />
+                <Spirit Value="65" Mod="30" />
+                <Beauty Value="55" Mod="22" />
+                <Tiredness Value="0" />
+                <Health Value="100" />
+                <PCFear Value="0" />
+                <PCLove Value="0" />
+                <PCHate Value="0" />
+                <Cleaning_Talent Value="0" Mod="31" />
+                <Security_Talent Value="0" Mod="33" />
+                <Advertising_Talent Value="0" Mod="38" />
+                <Cust._Service_Talent Value="0" Mod="37" />
+                <Matron_Talent Value="0" Mod="36" />
+                <Torturer_Talent Value="0" Mod="30" />
+                <Explorer_Talent Value="0" Mod="31" />
+                <Brothel_Whore_Talent Value="0" Mod="32" />
+                <Street_Whore_Talent Value="0" Mod="32" />
+                <Stripper_Talent Value="0" Mod="36" />
+                <Masseuse_Talent Value="15" Mod="36" />
+                <G._Hall_Whore_Talent Value="0" Mod="32" />
+                <Game_Dealer_Talent Value="0" Mod="37" />
+                <Entertainer_Talent Value="0" Mod="38" />
+                <XXX_Entertainer_Talent Value="0" Mod="37" />
+                <Barmaid_Talent Value="0" Mod="37" />
+                <Waitress_Talent Value="0" Mod="27" />
+                <Bar_Stripper_Talent Value="0" Mod="33" />
+                <Bar_Whore_Talent Value="204" Mod="32" />
+                <Singer_Talent Value="91" Mod="38" />
+            </Stats>
+            <Skills>
+                <Anal Value="25" Mod="10" />
+                <Magic Value="0" />
+                <BDSM Value="30" />
+                <NormalSex Value="15" />
+                <OralSex Value="93" Mod="5" />
+                <Group Value="15" />
+                <Lesbian Value="10" />
+                <Service Value="30" Mod="5" />
+                <Strip Value="5" Mod="15" />
+                <Combat Value="40" Mod="10" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-20" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-20" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Meiko" Realname="Meiko" Desc="Vocaloid - The sexy redhead of the group!" DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="100" AccLevel="1" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Big_Boobs Temp="0" />
+                <Charming Temp="0" />
+                <Cool_Person Temp="0" />
+                <Construct Temp="0" />
+                <Cute Temp="0" />
+                <Good_Kisser Temp="0" />
+                <Great_Arse Temp="0" />
+                <Great_Figure Temp="0" />
+                <Not_Human Temp="0" />
+                <Sterile Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="20" Mod="36" />
+                <Happiness Value="100" />
+                <Libido Value="20" />
+                <Constitution Value="20" Mod="27" />
+                <Intelligence Value="20" />
+                <Confidence Value="20" Mod="12" />
+                <Mana Value="0" />
+                <Agility Value="20" Mod="-3" />
+                <Fame Value="0" />
+                <Level Value="0" />
+                <AskPrice Value="0" Mod="39" />
+                <House Value="100" />
+                <Exp Value="0" />
+                <Age Value="21" />
+                <Obedience Value="100" />
+                <Spirit Value="100" Mod="30" />
+                <Beauty Value="100" Mod="40" />
+                <Tiredness Value="0" />
+                <Health Value="100" />
+                <PCFear Value="0" />
+                <PCLove Value="0" />
+                <PCHate Value="0" />
+                <Cleaning_Talent Value="253" Mod="31" />
+                <Security_Talent Value="13" Mod="32" />
+                <Advertising_Talent Value="8" Mod="38" />
+                <Cust._Service_Talent Value="0" Mod="36" />
+                <Matron_Talent Value="0" Mod="36" />
+                <Torturer_Talent Value="0" Mod="27" />
+                <Explorer_Talent Value="0" Mod="32" />
+                <Brothel_Whore_Talent Value="0" Mod="32" />
+                <Street_Whore_Talent Value="0" Mod="32" />
+                <Stripper_Talent Value="0" Mod="36" />
+                <Masseuse_Talent Value="168" Mod="34" />
+                <G._Hall_Whore_Talent Value="115" Mod="32" />
+                <Game_Dealer_Talent Value="255" Mod="36" />
+                <Entertainer_Talent Value="13" Mod="37" />
+                <XXX_Entertainer_Talent Value="1" Mod="37" />
+                <Barmaid_Talent Value="0" Mod="37" />
+                <Waitress_Talent Value="0" Mod="33" />
+                <Bar_Stripper_Talent Value="0" Mod="34" />
+                <Bar_Whore_Talent Value="0" Mod="32" />
+                <Singer_Talent Value="0" Mod="35" />
+            </Stats>
+            <Skills>
+                <Anal Value="100" Mod="10" />
+                <Magic Value="100" />
+                <BDSM Value="100" />
+                <NormalSex Value="100" />
+                <OralSex Value="0" Mod="10" />
+                <Group Value="100" />
+                <Lesbian Value="100" />
+                <Service Value="100" Mod="5" />
+                <Strip Value="100" Mod="25" />
+                <Combat Value="100" Mod="10" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-20" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-20" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Jessica Albert" Realname="Jessica Albert" Desc="Dragon Quest VIII - A girl from a good home, she comes from a wealthy family in the small village of Alexandria. However, contrary to her upbringing, she is unskilled in the social niceties and expected behaviour of her environment, which often leads to conflict with her mother." DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="78" AccLevel="1" DayJob="2" NightJob="19" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="7" BDay="7" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Adventurer Temp="0" />
+                <Big_Boobs Temp="0" />
+                <Elegant Temp="0" />
+                <Great_Figure Temp="0" />
+                <Perky_Nipples Temp="0" />
+                <Sexy_Air Temp="0" />
+                <Slow_Learner Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="31" Mod="19" />
+                <Happiness Value="98" />
+                <Libido Value="43" Mod="2" Temp="13" />
+                <Constitution Value="68" Mod="14" />
+                <Intelligence Value="16" Mod="-18" />
+                <Confidence Value="50" Mod="-7" />
+                <Mana Value="52" Mod="55" />
+                <Agility Value="89" Mod="-3" />
+                <Fame Value="0" Mod="4" />
+                <Level Value="0" />
+                <AskPrice Value="0" Mod="30" />
+                <House Value="100" />
+                <Exp Value="15" />
+                <Age Value="17" />
+                <Obedience Value="83" Mod="12" />
+                <Spirit Value="61" Mod="-9" />
+                <Beauty Value="98" Mod="35" />
+                <Tiredness Value="15" />
+                <Health Value="100" />
+                <PCFear Value="0" Mod="20" />
+                <PCLove Value="0" Mod="-3" />
+                <PCHate Value="0" Mod="7" />
+                <Cleaning_Talent Value="111" Mod="30" />
+                <Security_Talent Value="117" Mod="30" />
+                <Advertising_Talent Value="110" Mod="33" />
+                <Cust._Service_Talent Value="116" Mod="31" />
+                <Matron_Talent Value="0" Mod="32" />
+                <Torturer_Talent Value="0" Mod="26" />
+                <Explorer_Talent Value="0" Mod="32" />
+                <Brothel_Whore_Talent Value="0" Mod="32" />
+                <Street_Whore_Talent Value="0" Mod="32" />
+                <Stripper_Talent Value="0" Mod="34" />
+                <Masseuse_Talent Value="0" Mod="34" />
+                <G._Hall_Whore_Talent Value="0" Mod="32" />
+                <Game_Dealer_Talent Value="0" Mod="31" />
+                <Entertainer_Talent Value="0" Mod="36" />
+                <XXX_Entertainer_Talent Value="0" Mod="35" />
+                <Barmaid_Talent Value="0" Mod="32" />
+                <Waitress_Talent Value="0" Mod="27" />
+                <Bar_Stripper_Talent Value="0" Mod="33" />
+                <Bar_Whore_Talent Value="15" Mod="32" />
+                <Singer_Talent Value="0" Mod="34" />
+            </Stats>
+            <Skills>
+                <Anal Value="93" />
+                <Magic Value="38" />
+                <BDSM Value="27" />
+                <NormalSex Value="45" />
+                <OralSex Value="0" Mod="5" />
+                <Group Value="81" />
+                <Lesbian Value="19" />
+                <Service Value="14" Mod="5" />
+                <Strip Value="50" Mod="30" />
+                <Combat Value="44" Mod="10" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="6" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-18" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-14" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Airi" Realname="Airi" Desc="Queen&apos;s Blade - Airi is a calm and reserved person, who is generally kind but will attack people if need be. Her kindness can get in the way sometimes, as a wraith, she must feed on others&apos; life force. " DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="4" BDay="4" WeeksPreg="0" NumCusts="0" Tort="1" PregCooldown="0">
+            <Traits>
+                <Average_Boobs Temp="0" />
+                <Cool_Person Temp="0" />
+                <Cute Temp="0" />
+                <Elegant Temp="0" />
+                <Fleet_of_Foot Temp="0" />
+                <Good_Kisser Temp="0" />
+                <Great_Figure Temp="0" />
+                <Iron_Will Temp="0" />
+                <Not_Human Temp="0" />
+                <Optimist Temp="0" />
+                <Perky_Nipples Temp="0" />
+                <Sexy_Air Temp="0" />
+                <Strong Temp="0" />
+                <Tough Temp="0" />
+                <Yandere Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV1 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="56" Mod="34" />
+                <Happiness Value="95" />
+                <Libido Value="53" Temp="17" />
+                <Constitution Value="29" Mod="38" />
+                <Intelligence Value="25" Mod="2" />
+                <Confidence Value="14" Mod="21" />
+                <Mana Value="30" Mod="55" />
+                <Agility Value="100" Mod="22" />
+                <Fame Value="0" />
+                <Level Value="0" />
+                <AskPrice Value="0" Mod="36" />
+                <House Value="100" />
+                <Exp Value="5" />
+                <Age Value="23" />
+                <Obedience Value="95" Mod="-86" />
+                <Spirit Value="97" Mod="68" />
+                <Beauty Value="73" Mod="30" />
+                <Tiredness Value="0" />
+                <Health Value="77" />
+                <PCFear Value="0" Mod="19" />
+                <PCLove Value="0" Mod="-36" />
+                <PCHate Value="0" Mod="31" />
+                <Cleaning_Talent Value="0" Mod="30" />
+                <Security_Talent Value="0" Mod="37" />
+                <Advertising_Talent Value="0" Mod="37" />
+                <Cust._Service_Talent Value="0" Mod="36" />
+                <Matron_Talent Value="0" Mod="37" />
+                <Torturer_Talent Value="0" Mod="33" />
+                <Explorer_Talent Value="0" Mod="33" />
+                <Brothel_Whore_Talent Value="0" Mod="32" />
+                <Street_Whore_Talent Value="0" Mod="32" />
+                <Stripper_Talent Value="0" Mod="38" />
+                <Masseuse_Talent Value="0" Mod="35" />
+                <G._Hall_Whore_Talent Value="0" Mod="32" />
+                <Game_Dealer_Talent Value="0" Mod="39" />
+                <Entertainer_Talent Value="0" Mod="39" />
+                <XXX_Entertainer_Talent Value="0" Mod="40" />
+                <Barmaid_Talent Value="0" Mod="34" />
+                <Waitress_Talent Value="0" Mod="34" />
+                <Bar_Stripper_Talent Value="0" Mod="37" />
+                <Bar_Whore_Talent Value="20" Mod="32" />
+                <Singer_Talent Value="0" Mod="36" />
+            </Stats>
+            <Skills>
+                <Anal Value="0" />
+                <Magic Value="62" />
+                <BDSM Value="46" />
+                <NormalSex Value="69" />
+                <OralSex Value="0" Mod="-5" />
+                <Group Value="19" />
+                <Lesbian Value="47" />
+                <Service Value="62" Mod="-10" />
+                <Strip Value="64" Mod="50" />
+                <Combat Value="94" Mod="10" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-20" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-20" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Dark Magician Girl" Realname="Dark Magician Girl" Desc="Yu-Gi-Oh! - Dark Magician Girl brought Yugi and Yami Yugi to the World of Duel Monsters to revive the Sacred Dragon Timaeus to help them to fight the Doma. " DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="0" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="1" BDay="1" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Average_Boobs Temp="0" />
+                <Basic_Magic Temp="0" />
+                <Clumsy Temp="0" />
+                <Great_Figure Temp="0" />
+                <Not_Human Temp="0" />
+                <Nymphomaniac Temp="0" />
+                <Optimist Temp="0" />
+                <Slow_Learner Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="40" Mod="2" />
+                <Happiness Value="75" />
+                <Libido Value="20" />
+                <Constitution Value="40" Mod="7" />
+                <Intelligence Value="20" Mod="-10" />
+                <Confidence Value="50" Mod="-7" />
+                <Mana Value="20" Mod="5" />
+                <Agility Value="50" Mod="-8" />
+                <Fame Value="0" />
+                <Level Value="0" />
+                <AskPrice Value="0" Mod="17" />
+                <House Value="100" />
+                <Exp Value="0" />
+                <Age Value="18" />
+                <Obedience Value="30" Mod="-4" />
+                <Spirit Value="80" Mod="27" />
+                <Beauty Value="50" Mod="10" />
+                <Tiredness Value="0" />
+                <Health Value="10" />
+                <PCFear Value="0" Mod="14" />
+                <PCLove Value="0" Mod="-19" />
+                <PCHate Value="0" Mod="11" />
+                <Cleaning_Talent Value="0" Mod="29" />
+                <Security_Talent Value="0" Mod="25" />
+                <Advertising_Talent Value="15" Mod="29" />
+                <Cust._Service_Talent Value="0" Mod="31" />
+                <Matron_Talent Value="0" Mod="29" />
+                <Torturer_Talent Value="0" Mod="27" />
+                <Explorer_Talent Value="188" Mod="31" />
+                <Brothel_Whore_Talent Value="106" Mod="31" />
+                <Street_Whore_Talent Value="248" Mod="31" />
+                <Stripper_Talent Value="13" Mod="29" />
+                <Masseuse_Talent Value="0" Mod="28" />
+                <G._Hall_Whore_Talent Value="50" Mod="31" />
+                <Game_Dealer_Talent Value="0" Mod="29" />
+                <Entertainer_Talent Value="1" Mod="30" />
+                <XXX_Entertainer_Talent Value="72" Mod="30" />
+                <Barmaid_Talent Value="0" Mod="26" />
+                <Waitress_Talent Value="8" Mod="29" />
+                <Bar_Stripper_Talent Value="2" Mod="30" />
+                <Bar_Whore_Talent Value="96" Mod="31" />
+                <Singer_Talent Value="2" Mod="29" />
+            </Stats>
+            <Skills>
+                <Anal Value="0" />
+                <Magic Value="70" Mod="20" />
+                <BDSM Value="35" Mod="-5" />
+                <NormalSex Value="35" />
+                <OralSex Value="0" />
+                <Group Value="0" />
+                <Lesbian Value="40" />
+                <Service Value="0" />
+                <Strip Value="20" />
+                <Combat Value="20" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-20" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-20" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Tiffania Westwood" Realname="Tiffania Westwood" Desc="Familiar of Zero - Tiffania is rather naive for her age. One example of this is when she asks Saito to check if her chest is real by touching them, which of course, got Saito into trouble with Louise and Siesta. Her breasts are often called to &apos;debate&apos; by many of the male characters in the series. Some of them include Guiche, Malicorne, and even Headmaster Osmond, as well as several of the woman who are considerably less endowed than her. " DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="15" AccLevel="1" DayJob="20" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="6" BDay="6" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Abnormally_Large_Boobs Temp="0" />
+                <Clumsy Temp="0" />
+                <Cute Temp="0" />
+                <Fleet_of_Foot Temp="0" />
+                <Great_Arse Temp="0" />
+                <Great_Figure Temp="0" />
+                <Inhuman_Lifespan Temp="0" />
+                <Meek Temp="0" />
+                <Not_Human Temp="0" />
+                <Optimist Temp="0" />
+                <Perky_Nipples Temp="0" />
+                <Sexy_Air Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="20" Mod="22" />
+                <Happiness Value="98" />
+                <Libido Value="20" Mod="2" Temp="15" />
+                <Constitution Value="20" Mod="10" />
+                <Intelligence Value="20" />
+                <Confidence Value="20" Mod="-29" />
+                <Mana Value="0" Mod="70" />
+                <Agility Value="20" Mod="2" />
+                <Fame Value="0" Mod="3" />
+                <Level Value="0" />
+                <AskPrice Value="0" Mod="35" />
+                <House Value="100" />
+                <Exp Value="27" />
+                <Age Value="17" />
+                <Obedience Value="20" Mod="12" />
+                <Spirit Value="20" Mod="8" />
+                <Beauty Value="20" Mod="50" />
+                <Tiredness Value="0" />
+                <Health Value="93" />
+                <PCFear Value="0" Mod="3" />
+                <PCLove Value="0" Mod="-2" />
+                <PCHate Value="0" Mod="1" />
+                <Cleaning_Talent Value="0" Mod="30" />
+                <Security_Talent Value="0" Mod="24" />
+                <Advertising_Talent Value="244" Mod="37" />
+                <Cust._Service_Talent Value="0" Mod="33" />
+                <Matron_Talent Value="20" Mod="32" />
+                <Torturer_Talent Value="0" Mod="29" />
+                <Explorer_Talent Value="0" Mod="31" />
+                <Brothel_Whore_Talent Value="0" Mod="32" />
+                <Street_Whore_Talent Value="0" Mod="32" />
+                <Stripper_Talent Value="0" Mod="35" />
+                <Masseuse_Talent Value="0" Mod="36" />
+                <G._Hall_Whore_Talent Value="0" Mod="32" />
+                <Game_Dealer_Talent Value="0" Mod="34" />
+                <Entertainer_Talent Value="0" Mod="41" />
+                <XXX_Entertainer_Talent Value="8" Mod="39" />
+                <Barmaid_Talent Value="240" Mod="36" />
+                <Waitress_Talent Value="248" Mod="29" />
+                <Bar_Stripper_Talent Value="13" Mod="37" />
+                <Bar_Whore_Talent Value="12" Mod="32" />
+                <Singer_Talent Value="0" Mod="38" />
+            </Stats>
+            <Skills>
+                <Anal Value="0" />
+                <Magic Value="0" />
+                <BDSM Value="0" Mod="-10" />
+                <NormalSex Value="0" Mod="-10" />
+                <OralSex Value="0" Mod="5" />
+                <Group Value="0" Mod="-10" />
+                <Lesbian Value="0" Mod="-10" />
+                <Service Value="0" Mod="10" />
+                <Strip Value="0" Mod="40" />
+                <Combat Value="0" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-4" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-20" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-22" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-22" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-22" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Nena Trinity" Realname="Nena Trinity" Desc="Gundam 00 - She is the youngest of the Trinity siblings and pilot to Gundam Throne Drei." DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="149" AccLevel="1" DayJob="0" NightJob="16" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="10" BDay="10" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Adventurer Temp="0" />
+                <Aggressive Temp="0" />
+                <Big_Boobs Temp="0" />
+                <Good_Kisser Temp="0" />
+                <Great_Arse Temp="0" />
+                <Great_Figure Temp="0" />
+                <Merciless Temp="0" />
+                <Sadistic Temp="0" />
+                <Sexy_Air Temp="0" />
+                <Twisted Temp="0" />
+                <Yandere Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items>
+                    <Item Name="Dagger" isEquipped="1" />
+                    <Item Name="Linen Dress" isEquipped="1" />
+                    <Item Name="Bauble Necklace" isEquipped="1" />
+                </Items>
+            </Inventory>
+            <Stats>
+                <Charisma Value="60" Mod="21" />
+                <Happiness Value="100" />
+                <Libido Value="35" Mod="11" Temp="18" />
+                <Constitution Value="60" Mod="17" />
+                <Intelligence Value="50" />
+                <Confidence Value="40" Mod="11" />
+                <Mana Value="0" Mod="100" />
+                <Agility Value="60" Mod="2" />
+                <Fame Value="0" Mod="-8" />
+                <Level Value="0" />
+                <AskPrice Value="0" Mod="35" />
+                <House Value="100" />
+                <Exp Value="56" />
+                <Age Value="18" />
+                <Obedience Value="45" Mod="-22" />
+                <Spirit Value="35" Mod="37" />
+                <Beauty Value="85" Mod="40" />
+                <Tiredness Value="7" />
+                <Health Value="100" />
+                <PCFear Value="0" Mod="-10" />
+                <PCLove Value="0" Mod="5" />
+                <PCHate Value="0" Mod="-5" />
+                <Cleaning_Talent Value="0" Mod="21" />
+                <Security_Talent Value="0" Mod="37" />
+                <Advertising_Talent Value="15" Mod="29" />
+                <Cust._Service_Talent Value="0" Mod="30" />
+                <Matron_Talent Value="0" Mod="29" />
+                <Torturer_Talent Value="0" Mod="36" />
+                <Explorer_Talent Value="0" Mod="33" />
+                <Brothel_Whore_Talent Value="0" Mod="32" />
+                <Street_Whore_Talent Value="0" Mod="32" />
+                <Stripper_Talent Value="0" Mod="38" />
+                <Masseuse_Talent Value="36" Mod="26" />
+                <G._Hall_Whore_Talent Value="169" Mod="32" />
+                <Game_Dealer_Talent Value="188" Mod="38" />
+                <Entertainer_Talent Value="0" Mod="35" />
+                <XXX_Entertainer_Talent Value="36" Mod="37" />
+                <Barmaid_Talent Value="169" Mod="33" />
+                <Waitress_Talent Value="188" Mod="20" />
+                <Bar_Stripper_Talent Value="0" Mod="33" />
+                <Bar_Whore_Talent Value="155" Mod="32" />
+                <Singer_Talent Value="0" Mod="29" />
+            </Stats>
+            <Skills>
+                <Anal Value="10" Mod="10" />
+                <Magic Value="0" />
+                <BDSM Value="10" Mod="20" />
+                <NormalSex Value="10" />
+                <OralSex Value="0" />
+                <Group Value="10" />
+                <Lesbian Value="10" />
+                <Service Value="10" Mod="-25" />
+                <Strip Value="10" Mod="35" />
+                <Combat Value="40" Mod="35" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="70" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-22" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-18" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-8" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Waitress" Realname="Phrynia" Desc="Waitress" DaysUnhappy="0" States="0" UseAntiPreg="1" Withdrawals="0" Money="9" AccLevel="1" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Average_Boobs Temp="0" />
+                <Lolita Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="0" Mod="5" />
+                <Happiness Value="100" />
+                <Libido Value="7" />
+                <Constitution Value="1" />
+                <Intelligence Value="8" />
+                <Confidence Value="9" />
+                <Mana Value="0" />
+                <Agility Value="9" />
+                <Fame Value="0" />
+                <Level Value="0" />
+                <AskPrice Value="0" />
+                <House Value="60" />
+                <Exp Value="0" />
+                <Age Value="17" />
+                <Obedience Value="18" />
+                <Spirit Value="9" />
+                <Beauty Value="6" Mod="5" />
+                <Tiredness Value="0" />
+                <Health Value="100" />
+                <PCFear Value="0" />
+                <PCLove Value="0" />
+                <PCHate Value="0" />
+                <Cleaning_Talent Value="59" Mod="30" />
+                <Security_Talent Value="54" Mod="30" />
+                <Advertising_Talent Value="52" Mod="31" />
+                <Cust._Service_Talent Value="49" Mod="31" />
+                <Matron_Talent Value="36" Mod="30" />
+                <Torturer_Talent Value="52" Mod="29" />
+                <Explorer_Talent Value="56" Mod="30" />
+                <Brothel_Whore_Talent Value="49" Mod="30" />
+                <Street_Whore_Talent Value="33" Mod="30" />
+                <Stripper_Talent Value="34" Mod="30" />
+                <Masseuse_Talent Value="46" Mod="31" />
+                <G._Hall_Whore_Talent Value="37" Mod="30" />
+                <Game_Dealer_Talent Value="38" Mod="31" />
+                <Entertainer_Talent Value="30" Mod="31" />
+                <XXX_Entertainer_Talent Value="39" Mod="31" />
+                <Barmaid_Talent Value="36" Mod="31" />
+                <Waitress_Talent Value="44" Mod="31" />
+                <Bar_Stripper_Talent Value="46" Mod="31" />
+                <Bar_Whore_Talent Value="54" Mod="30" />
+                <Singer_Talent Value="43" Mod="31" />
+            </Stats>
+            <Skills>
+                <Anal Value="0" />
+                <Magic Value="0" />
+                <BDSM Value="0" />
+                <NormalSex Value="0" />
+                <OralSex Value="30" />
+                <Group Value="0" />
+                <Lesbian Value="0" />
+                <Service Value="0" />
+                <Strip Value="0" />
+                <Combat Value="0" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-20" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-20" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Hadaka Apron" Realname="Fennella" Desc="Hadaka Apron" DaysUnhappy="0" States="0" UseAntiPreg="1" Withdrawals="0" Money="1" AccLevel="1" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Average_Boobs Temp="0" />
+                <Great_Figure Temp="0" />
+                <Lolita Temp="0" />
+                <Pessimist Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="30" Mod="7" />
+                <Happiness Value="100" />
+                <Libido Value="35" />
+                <Constitution Value="34" Mod="-3" />
+                <Intelligence Value="65" />
+                <Confidence Value="30" />
+                <Mana Value="12" />
+                <Agility Value="60" Mod="2" />
+                <Fame Value="0" />
+                <Level Value="0" />
+                <AskPrice Value="0" />
+                <House Value="60" />
+                <Exp Value="0" />
+                <Age Value="19" />
+                <Obedience Value="70" />
+                <Spirit Value="50" Mod="-55" />
+                <Beauty Value="70" Mod="15" />
+                <Tiredness Value="0" />
+                <Health Value="100" />
+                <PCFear Value="0" />
+                <PCLove Value="0" />
+                <PCHate Value="0" />
+                <Cleaning_Talent Value="36" Mod="28" />
+                <Security_Talent Value="55" Mod="28" />
+                <Advertising_Talent Value="59" Mod="31" />
+                <Cust._Service_Talent Value="46" Mod="29" />
+                <Matron_Talent Value="40" Mod="29" />
+                <Torturer_Talent Value="58" Mod="30" />
+                <Explorer_Talent Value="57" Mod="31" />
+                <Brothel_Whore_Talent Value="51" Mod="31" />
+                <Street_Whore_Talent Value="52" Mod="31" />
+                <Stripper_Talent Value="46" Mod="29" />
+                <Masseuse_Talent Value="40" Mod="30" />
+                <G._Hall_Whore_Talent Value="35" Mod="31" />
+                <Game_Dealer_Talent Value="56" Mod="29" />
+                <Entertainer_Talent Value="55" Mod="31" />
+                <XXX_Entertainer_Talent Value="32" Mod="30" />
+                <Barmaid_Talent Value="49" Mod="30" />
+                <Waitress_Talent Value="56" Mod="30" />
+                <Bar_Stripper_Talent Value="45" Mod="32" />
+                <Bar_Whore_Talent Value="52" Mod="31" />
+                <Singer_Talent Value="49" Mod="30" />
+            </Stats>
+            <Skills>
+                <Anal Value="35" />
+                <Magic Value="35" />
+                <BDSM Value="13" />
+                <NormalSex Value="27" />
+                <OralSex Value="30" />
+                <Group Value="27" />
+                <Lesbian Value="37" />
+                <Service Value="11" />
+                <Strip Value="31" Mod="10" />
+                <Combat Value="17" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-20" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-20" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Kirin" Realname="Darlene" Desc="Kirin" DaysUnhappy="0" States="0" UseAntiPreg="1" Withdrawals="0" Money="1" AccLevel="1" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Average_Boobs Temp="0" />
+                <Basic_Magic Temp="0" />
+                <Cool_Person Temp="0" />
+                <Virgin Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items />
+            </Inventory>
+            <Stats>
+                <Charisma Value="9" Mod="5" />
+                <Happiness Value="100" />
+                <Libido Value="19" />
+                <Constitution Value="3" />
+                <Intelligence Value="14" Mod="10" />
+                <Confidence Value="18" Mod="10" />
+                <Mana Value="0" />
+                <Agility Value="3" />
+                <Fame Value="0" />
+                <Level Value="0" />
+                <AskPrice Value="0" />
+                <House Value="60" />
+                <Exp Value="0" />
+                <Age Value="21" />
+                <Obedience Value="19" />
+                <Spirit Value="10" Mod="10" />
+                <Beauty Value="5" />
+                <Tiredness Value="0" />
+                <Health Value="100" />
+                <PCFear Value="0" />
+                <PCLove Value="0" />
+                <PCHate Value="0" />
+                <Cleaning_Talent Value="31" Mod="30" />
+                <Security_Talent Value="58" Mod="31" />
+                <Advertising_Talent Value="54" Mod="31" />
+                <Cust._Service_Talent Value="45" Mod="32" />
+                <Matron_Talent Value="31" Mod="31" />
+                <Torturer_Talent Value="52" Mod="29" />
+                <Explorer_Talent Value="49" Mod="30" />
+                <Brothel_Whore_Talent Value="53" Mod="30" />
+                <Street_Whore_Talent Value="38" Mod="31" />
+                <Stripper_Talent Value="38" Mod="30" />
+                <Masseuse_Talent Value="37" Mod="31" />
+                <G._Hall_Whore_Talent Value="36" Mod="30" />
+                <Game_Dealer_Talent Value="57" Mod="32" />
+                <Entertainer_Talent Value="30" Mod="32" />
+                <XXX_Entertainer_Talent Value="33" Mod="31" />
+                <Barmaid_Talent Value="48" Mod="31" />
+                <Waitress_Talent Value="50" Mod="31" />
+                <Bar_Stripper_Talent Value="43" Mod="31" />
+                <Bar_Whore_Talent Value="56" Mod="30" />
+                <Singer_Talent Value="38" Mod="31" />
+            </Stats>
+            <Skills>
+                <Anal Value="0" />
+                <Magic Value="0" Mod="20" />
+                <BDSM Value="0" />
+                <NormalSex Value="0" />
+                <OralSex Value="30" />
+                <Group Value="0" />
+                <Lesbian Value="0" />
+                <Service Value="0" />
+                <Strip Value="0" />
+                <Combat Value="0" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-20" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-20" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+        <Girl Name="Rukia Kuchiki" Realname="Rukia Kuchiki" Desc="Bleach - Wears black cloths." DaysUnhappy="0" States="0" UseAntiPreg="1" Withdrawals="0" Money="75" AccLevel="1" DayJob="0" NightJob="0" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="1" BDay="1" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+            <Traits>
+                <Adventurer Temp="0" />
+                <Basic_Magic Temp="0" />
+                <Charming Temp="0" />
+                <Cute Temp="0" />
+                <Fleet_of_Foot Temp="0" />
+                <Inhuman_Lifespan Temp="0" />
+                <Pessimist Temp="0" />
+                <Small_Boobs Temp="0" />
+                <Strong_Magic Temp="0" />
+                <Tsundere Temp="0" />
+                <Virgin Temp="0" />
+                <Normal_Sex_LV0 Temp="0" />
+                <Anal_Sex_LV0 Temp="0" />
+                <Oral_Sex_LV0 Temp="0" />
+                <BDSM_LV0 Temp="0" />
+                <Exhibitionist_LV0 Temp="0" />
+                <Lesbian_LV0 Temp="0" />
+                <Group_Sex_LV0 Temp="0" />
+            </Traits>
+            <Remembered_Traits />
+            <Inventory>
+                <Items>
+                    <Item Name="Paw-Print Teddy" isEquipped="1" />
+                </Items>
+            </Inventory>
+            <Stats>
+                <Charisma Value="20" Mod="17" />
+                <Happiness Value="95" />
+                <Libido Value="20" Mod="5" Temp="2" />
+                <Constitution Value="20" Mod="7" />
+                <Intelligence Value="20" Mod="20" />
+                <Confidence Value="20" Mod="10" />
+                <Mana Value="10" Mod="20" />
+                <Agility Value="20" Mod="25" />
+                <Fame Value="0" />
+                <Level Value="0" />
+                <AskPrice Value="0" Mod="34" />
+                <House Value="60" />
+                <Exp Value="10" />
+                <Age Value="17" />
+                <Obedience Value="20" Mod="-20" />
+                <Spirit Value="20" Mod="-45" />
+                <Beauty Value="20" Mod="10" />
+                <Tiredness Value="16" />
+                <Health Value="100" />
+                <PCFear Value="0" />
+                <PCLove Value="0" Mod="1" />
+                <PCHate Value="0" Mod="-1" />
+                <Cleaning_Talent Value="0" Mod="25" />
+                <Security_Talent Value="0" Mod="30" />
+                <Advertising_Talent Value="0" Mod="28" />
+                <Cust._Service_Talent Value="0" Mod="29" />
+                <Matron_Talent Value="0" Mod="29" />
+                <Torturer_Talent Value="0" Mod="35" />
+                <Explorer_Talent Value="88" Mod="33" />
+                <Brothel_Whore_Talent Value="5" Mod="31" />
+                <Street_Whore_Talent Value="252" Mod="31" />
+                <Stripper_Talent Value="13" Mod="31" />
+                <Masseuse_Talent Value="216" Mod="29" />
+                <G._Hall_Whore_Talent Value="8" Mod="31" />
+                <Game_Dealer_Talent Value="252" Mod="29" />
+                <Entertainer_Talent Value="13" Mod="31" />
+                <XXX_Entertainer_Talent Value="132" Mod="28" />
+                <Barmaid_Talent Value="27" Mod="29" />
+                <Waitress_Talent Value="82" Mod="33" />
+                <Bar_Stripper_Talent Value="0" Mod="31" />
+                <Bar_Whore_Talent Value="255" Mod="31" />
+                <Singer_Talent Value="255" Mod="31" />
+            </Stats>
+            <Skills>
+                <Anal Value="0" />
+                <Magic Value="0" Mod="40" />
+                <BDSM Value="0" Mod="5" />
+                <NormalSex Value="0" Mod="5" />
+                <OralSex Value="255" Mod="-5" />
+                <Group Value="0" Mod="5" />
+                <Lesbian Value="0" Mod="5" />
+                <Service Value="0" Mod="5" />
+                <Strip Value="0" Mod="5" />
+                <Combat Value="0" Mod="10" />
+            </Skills>
+            <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+            <Children />
+            <Actions>
+                <COMBAT Enjoys="-20" />
+                <SEX Enjoys="-20" />
+                <GENERAL Enjoys="-20" />
+                <WORKCLEANING Enjoys="-24" />
+                <WORKMATRON Enjoys="-20" />
+                <WORKBAR Enjoys="-20" />
+                <WORKHALL Enjoys="-20" />
+                <WORKSHOW Enjoys="-20" />
+                <WORKSECURITY Enjoys="-20" />
+                <WORKADVERTISING Enjoys="-20" />
+                <WORKTORTURER Enjoys="-20" />
+                <WORKCARING Enjoys="-20" />
+                <WORKMASSEUSE Enjoys="-20" />
+                <WORKDEALER Enjoys="-20" />
+                <WORKWAITRESS Enjoys="-20" />
+                <WORKENTERTAINER Enjoys="-20" />
+                <WORKSINGER Enjoys="-20" />
+                <WORKBARSTRIPPER Enjoys="-20" />
+                <WORKSTRIPPER Enjoys="-20" />
+                <WORKXXXENTERTAINER Enjoys="-20" />
+                <WHOREHALL Enjoys="-20" />
+                <WHOREBAR Enjoys="-20" />
+                <WHOREBROTHEL Enjoys="-20" />
+                <WHORESTREET Enjoys="-20" />
+            </Actions>
+            <Triggers />
+        </Girl>
+    </Girls>
+    <Gang_Manager BusinessesExtort="42" SwordLevel="0" NumHealingPotions="40" NumNets="20" KeepHealStocked="40" KeepNetsStocked="20">
+        <Gangs>
+            <Gang Num="15" Name="The Warriors" MissionID="4" LastMissID="-1" Combat="0" AutoRecruit="0">
+                <Skills>
+                    <Anal Value="48" />
+                    <Magic Value="62" />
+                    <BDSM Value="37" />
+                    <NormalSex Value="59" />
+                    <OralSex Value="58" />
+                    <Group Value="35" />
+                    <Lesbian Value="59" />
+                    <Service Value="45" />
+                    <Strip Value="34" />
+                    <Combat Value="52" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="65" />
+                    <Happiness Value="60" />
+                    <Libido Value="62" />
+                    <Constitution Value="42" />
+                    <Intelligence Value="34" />
+                    <Confidence Value="45" />
+                    <Mana Value="54" />
+                    <Agility Value="56" />
+                    <Fame Value="47" />
+                    <Level Value="37" />
+                    <AskPrice Value="44" />
+                    <House Value="53" />
+                    <Exp Value="42" />
+                    <Age Value="36" />
+                    <Obedience Value="52" />
+                    <Spirit Value="42" />
+                    <Beauty Value="53" />
+                    <Tiredness Value="64" />
+                    <Health Value="35" />
+                    <PCFear Value="57" />
+                    <PCLove Value="63" />
+                    <PCHate Value="60" />
+                    <Cleaning_Talent Value="39" />
+                    <Security_Talent Value="72" />
+                    <Advertising_Talent Value="48" />
+                    <Cust._Service_Talent Value="51" />
+                    <Matron_Talent Value="55" />
+                    <Torturer_Talent Value="35" />
+                    <Explorer_Talent Value="48" />
+                    <Brothel_Whore_Talent Value="53" />
+                    <Street_Whore_Talent Value="61" />
+                    <Stripper_Talent Value="38" />
+                    <Masseuse_Talent Value="62" />
+                    <G._Hall_Whore_Talent Value="41" />
+                    <Game_Dealer_Talent Value="45" />
+                    <Entertainer_Talent Value="56" />
+                    <XXX_Entertainer_Talent Value="50" />
+                    <Barmaid_Talent Value="35" />
+                    <Waitress_Talent Value="43" />
+                    <Bar_Stripper_Talent Value="47" />
+                    <Bar_Whore_Talent Value="54" />
+                    <Singer_Talent Value="43" />
+                </Stats>
+            </Gang>
+            <Gang Num="15" Name="Folks" MissionID="4" LastMissID="-1" Combat="0" AutoRecruit="0">
+                <Skills>
+                    <Anal Value="35" />
+                    <Magic Value="47" />
+                    <BDSM Value="68" />
+                    <NormalSex Value="54" />
+                    <OralSex Value="46" />
+                    <Group Value="61" />
+                    <Lesbian Value="51" />
+                    <Service Value="49" />
+                    <Strip Value="38" />
+                    <Combat Value="43" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="48" />
+                    <Happiness Value="51" />
+                    <Libido Value="41" />
+                    <Constitution Value="42" />
+                    <Intelligence Value="71" />
+                    <Confidence Value="54" />
+                    <Mana Value="52" />
+                    <Agility Value="50" />
+                    <Fame Value="45" />
+                    <Level Value="37" />
+                    <AskPrice Value="38" />
+                    <House Value="57" />
+                    <Exp Value="59" />
+                    <Age Value="51" />
+                    <Obedience Value="60" />
+                    <Spirit Value="61" />
+                    <Beauty Value="53" />
+                    <Tiredness Value="76" />
+                    <Health Value="46" />
+                    <PCFear Value="39" />
+                    <PCLove Value="67" />
+                    <PCHate Value="48" />
+                    <Cleaning_Talent Value="51" />
+                    <Security_Talent Value="37" />
+                    <Advertising_Talent Value="54" />
+                    <Cust._Service_Talent Value="65" />
+                    <Matron_Talent Value="56" />
+                    <Torturer_Talent Value="43" />
+                    <Explorer_Talent Value="56" />
+                    <Brothel_Whore_Talent Value="52" />
+                    <Street_Whore_Talent Value="47" />
+                    <Stripper_Talent Value="53" />
+                    <Masseuse_Talent Value="55" />
+                    <G._Hall_Whore_Talent Value="51" />
+                    <Game_Dealer_Talent Value="48" />
+                    <Entertainer_Talent Value="56" />
+                    <XXX_Entertainer_Talent Value="57" />
+                    <Barmaid_Talent Value="41" />
+                    <Waitress_Talent Value="66" />
+                    <Bar_Stripper_Talent Value="65" />
+                    <Bar_Whore_Talent Value="70" />
+                    <Singer_Talent Value="31" />
+                </Stats>
+            </Gang>
+        </Gangs>
+        <Hireables>
+            <Gang Num="8" Name="Shining Monkeys">
+                <Skills>
+                    <Anal Value="45" />
+                    <Magic Value="43" />
+                    <BDSM Value="34" />
+                    <NormalSex Value="30" />
+                    <OralSex Value="39" />
+                    <Group Value="33" />
+                    <Lesbian Value="37" />
+                    <Service Value="44" />
+                    <Strip Value="40" />
+                    <Combat Value="43" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="49" />
+                    <Happiness Value="30" />
+                    <Libido Value="30" />
+                    <Constitution Value="33" />
+                    <Intelligence Value="27" />
+                    <Confidence Value="41" />
+                    <Mana Value="43" />
+                    <Agility Value="30" />
+                    <Fame Value="49" />
+                    <Level Value="56" />
+                    <AskPrice Value="31" />
+                    <House Value="21" />
+                    <Exp Value="39" />
+                    <Age Value="37" />
+                    <Obedience Value="23" />
+                    <Spirit Value="46" />
+                    <Beauty Value="42" />
+                    <Tiredness Value="33" />
+                    <Health Value="30" />
+                    <PCFear Value="31" />
+                    <PCLove Value="42" />
+                    <PCHate Value="29" />
+                    <Cleaning_Talent Value="40" />
+                    <Security_Talent Value="43" />
+                    <Advertising_Talent Value="44" />
+                    <Cust._Service_Talent Value="33" />
+                    <Matron_Talent Value="30" />
+                    <Torturer_Talent Value="23" />
+                    <Explorer_Talent Value="38" />
+                    <Brothel_Whore_Talent Value="30" />
+                    <Street_Whore_Talent Value="42" />
+                    <Stripper_Talent Value="25" />
+                    <Masseuse_Talent Value="37" />
+                    <G._Hall_Whore_Talent Value="44" />
+                    <Game_Dealer_Talent Value="40" />
+                    <Entertainer_Talent Value="44" />
+                    <XXX_Entertainer_Talent Value="23" />
+                    <Barmaid_Talent Value="37" />
+                    <Waitress_Talent Value="35" />
+                    <Bar_Stripper_Talent Value="36" />
+                    <Bar_Whore_Talent Value="48" />
+                    <Singer_Talent Value="39" />
+                </Stats>
+            </Gang>
+            <Gang Num="7" Name="Young Guns">
+                <Skills>
+                    <Anal Value="25" />
+                    <Magic Value="30" />
+                    <BDSM Value="22" />
+                    <NormalSex Value="52" />
+                    <OralSex Value="25" />
+                    <Group Value="29" />
+                    <Lesbian Value="34" />
+                    <Service Value="23" />
+                    <Strip Value="37" />
+                    <Combat Value="36" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="45" />
+                    <Happiness Value="39" />
+                    <Libido Value="39" />
+                    <Constitution Value="31" />
+                    <Intelligence Value="31" />
+                    <Confidence Value="37" />
+                    <Mana Value="49" />
+                    <Agility Value="40" />
+                    <Fame Value="44" />
+                    <Level Value="48" />
+                    <AskPrice Value="31" />
+                    <House Value="37" />
+                    <Exp Value="48" />
+                    <Age Value="31" />
+                    <Obedience Value="39" />
+                    <Spirit Value="40" />
+                    <Beauty Value="40" />
+                    <Tiredness Value="50" />
+                    <Health Value="39" />
+                    <PCFear Value="21" />
+                    <PCLove Value="37" />
+                    <PCHate Value="42" />
+                    <Cleaning_Talent Value="36" />
+                    <Security_Talent Value="39" />
+                    <Advertising_Talent Value="37" />
+                    <Cust._Service_Talent Value="23" />
+                    <Matron_Talent Value="41" />
+                    <Torturer_Talent Value="31" />
+                    <Explorer_Talent Value="50" />
+                    <Brothel_Whore_Talent Value="26" />
+                    <Street_Whore_Talent Value="45" />
+                    <Stripper_Talent Value="34" />
+                    <Masseuse_Talent Value="49" />
+                    <G._Hall_Whore_Talent Value="37" />
+                    <Game_Dealer_Talent Value="22" />
+                    <Entertainer_Talent Value="32" />
+                    <XXX_Entertainer_Talent Value="25" />
+                    <Barmaid_Talent Value="34" />
+                    <Waitress_Talent Value="40" />
+                    <Bar_Stripper_Talent Value="55" />
+                    <Bar_Whore_Talent Value="38" />
+                    <Singer_Talent Value="23" />
+                </Stats>
+            </Gang>
+            <Gang Num="7" Name="Wicked Messengers">
+                <Skills>
+                    <Anal Value="29" />
+                    <Magic Value="50" />
+                    <BDSM Value="32" />
+                    <NormalSex Value="44" />
+                    <OralSex Value="48" />
+                    <Group Value="36" />
+                    <Lesbian Value="36" />
+                    <Service Value="41" />
+                    <Strip Value="44" />
+                    <Combat Value="30" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="21" />
+                    <Happiness Value="49" />
+                    <Libido Value="44" />
+                    <Constitution Value="36" />
+                    <Intelligence Value="26" />
+                    <Confidence Value="52" />
+                    <Mana Value="38" />
+                    <Agility Value="25" />
+                    <Fame Value="23" />
+                    <Level Value="30" />
+                    <AskPrice Value="28" />
+                    <House Value="40" />
+                    <Exp Value="47" />
+                    <Age Value="31" />
+                    <Obedience Value="43" />
+                    <Spirit Value="46" />
+                    <Beauty Value="29" />
+                    <Tiredness Value="41" />
+                    <Health Value="45" />
+                    <PCFear Value="42" />
+                    <PCLove Value="40" />
+                    <PCHate Value="26" />
+                    <Cleaning_Talent Value="21" />
+                    <Security_Talent Value="35" />
+                    <Advertising_Talent Value="37" />
+                    <Cust._Service_Talent Value="33" />
+                    <Matron_Talent Value="23" />
+                    <Torturer_Talent Value="21" />
+                    <Explorer_Talent Value="23" />
+                    <Brothel_Whore_Talent Value="48" />
+                    <Street_Whore_Talent Value="24" />
+                    <Stripper_Talent Value="21" />
+                    <Masseuse_Talent Value="48" />
+                    <G._Hall_Whore_Talent Value="28" />
+                    <Game_Dealer_Talent Value="57" />
+                    <Entertainer_Talent Value="50" />
+                    <XXX_Entertainer_Talent Value="35" />
+                    <Barmaid_Talent Value="33" />
+                    <Waitress_Talent Value="48" />
+                    <Bar_Stripper_Talent Value="34" />
+                    <Bar_Whore_Talent Value="45" />
+                    <Singer_Talent Value="36" />
+                </Stats>
+            </Gang>
+            <Gang Num="2" Name="Shadow Men">
+                <Skills>
+                    <Anal Value="50" />
+                    <Magic Value="25" />
+                    <BDSM Value="46" />
+                    <NormalSex Value="34" />
+                    <OralSex Value="37" />
+                    <Group Value="44" />
+                    <Lesbian Value="39" />
+                    <Service Value="31" />
+                    <Strip Value="43" />
+                    <Combat Value="32" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="51" />
+                    <Happiness Value="28" />
+                    <Libido Value="37" />
+                    <Constitution Value="31" />
+                    <Intelligence Value="26" />
+                    <Confidence Value="37" />
+                    <Mana Value="37" />
+                    <Agility Value="39" />
+                    <Fame Value="49" />
+                    <Level Value="22" />
+                    <AskPrice Value="33" />
+                    <House Value="22" />
+                    <Exp Value="22" />
+                    <Age Value="44" />
+                    <Obedience Value="26" />
+                    <Spirit Value="50" />
+                    <Beauty Value="21" />
+                    <Tiredness Value="45" />
+                    <Health Value="48" />
+                    <PCFear Value="43" />
+                    <PCLove Value="31" />
+                    <PCHate Value="23" />
+                    <Cleaning_Talent Value="27" />
+                    <Security_Talent Value="25" />
+                    <Advertising_Talent Value="25" />
+                    <Cust._Service_Talent Value="23" />
+                    <Matron_Talent Value="28" />
+                    <Torturer_Talent Value="50" />
+                    <Explorer_Talent Value="41" />
+                    <Brothel_Whore_Talent Value="24" />
+                    <Street_Whore_Talent Value="34" />
+                    <Stripper_Talent Value="50" />
+                    <Masseuse_Talent Value="48" />
+                    <G._Hall_Whore_Talent Value="42" />
+                    <Game_Dealer_Talent Value="25" />
+                    <Entertainer_Talent Value="26" />
+                    <XXX_Entertainer_Talent Value="44" />
+                    <Barmaid_Talent Value="45" />
+                    <Waitress_Talent Value="40" />
+                    <Bar_Stripper_Talent Value="26" />
+                    <Bar_Whore_Talent Value="29" />
+                    <Singer_Talent Value="42" />
+                </Stats>
+            </Gang>
+            <Gang Num="6" Name="Wild Bunch">
+                <Skills>
+                    <Anal Value="34" />
+                    <Magic Value="24" />
+                    <BDSM Value="40" />
+                    <NormalSex Value="40" />
+                    <OralSex Value="44" />
+                    <Group Value="47" />
+                    <Lesbian Value="41" />
+                    <Service Value="30" />
+                    <Strip Value="30" />
+                    <Combat Value="29" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="47" />
+                    <Happiness Value="28" />
+                    <Libido Value="43" />
+                    <Constitution Value="23" />
+                    <Intelligence Value="27" />
+                    <Confidence Value="33" />
+                    <Mana Value="40" />
+                    <Agility Value="24" />
+                    <Fame Value="25" />
+                    <Level Value="49" />
+                    <AskPrice Value="39" />
+                    <House Value="50" />
+                    <Exp Value="41" />
+                    <Age Value="29" />
+                    <Obedience Value="28" />
+                    <Spirit Value="41" />
+                    <Beauty Value="22" />
+                    <Tiredness Value="31" />
+                    <Health Value="26" />
+                    <PCFear Value="33" />
+                    <PCLove Value="53" />
+                    <PCHate Value="31" />
+                    <Cleaning_Talent Value="42" />
+                    <Security_Talent Value="25" />
+                    <Advertising_Talent Value="44" />
+                    <Cust._Service_Talent Value="27" />
+                    <Matron_Talent Value="50" />
+                    <Torturer_Talent Value="36" />
+                    <Explorer_Talent Value="49" />
+                    <Brothel_Whore_Talent Value="38" />
+                    <Street_Whore_Talent Value="25" />
+                    <Stripper_Talent Value="36" />
+                    <Masseuse_Talent Value="40" />
+                    <G._Hall_Whore_Talent Value="43" />
+                    <Game_Dealer_Talent Value="29" />
+                    <Entertainer_Talent Value="49" />
+                    <XXX_Entertainer_Talent Value="25" />
+                    <Barmaid_Talent Value="24" />
+                    <Waitress_Talent Value="32" />
+                    <Bar_Stripper_Talent Value="41" />
+                    <Bar_Whore_Talent Value="39" />
+                    <Singer_Talent Value="43" />
+                </Stats>
+            </Gang>
+            <Gang Num="10" Name="Knockaround Guys">
+                <Skills>
+                    <Anal Value="35" />
+                    <Magic Value="35" />
+                    <BDSM Value="50" />
+                    <NormalSex Value="48" />
+                    <OralSex Value="32" />
+                    <Group Value="27" />
+                    <Lesbian Value="22" />
+                    <Service Value="28" />
+                    <Strip Value="32" />
+                    <Combat Value="57" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="32" />
+                    <Happiness Value="30" />
+                    <Libido Value="42" />
+                    <Constitution Value="24" />
+                    <Intelligence Value="44" />
+                    <Confidence Value="43" />
+                    <Mana Value="30" />
+                    <Agility Value="39" />
+                    <Fame Value="38" />
+                    <Level Value="34" />
+                    <AskPrice Value="48" />
+                    <House Value="49" />
+                    <Exp Value="48" />
+                    <Age Value="21" />
+                    <Obedience Value="46" />
+                    <Spirit Value="34" />
+                    <Beauty Value="22" />
+                    <Tiredness Value="29" />
+                    <Health Value="45" />
+                    <PCFear Value="42" />
+                    <PCLove Value="47" />
+                    <PCHate Value="41" />
+                    <Cleaning_Talent Value="52" />
+                    <Security_Talent Value="46" />
+                    <Advertising_Talent Value="50" />
+                    <Cust._Service_Talent Value="45" />
+                    <Matron_Talent Value="24" />
+                    <Torturer_Talent Value="44" />
+                    <Explorer_Talent Value="45" />
+                    <Brothel_Whore_Talent Value="35" />
+                    <Street_Whore_Talent Value="23" />
+                    <Stripper_Talent Value="26" />
+                    <Masseuse_Talent Value="26" />
+                    <G._Hall_Whore_Talent Value="40" />
+                    <Game_Dealer_Talent Value="50" />
+                    <Entertainer_Talent Value="29" />
+                    <XXX_Entertainer_Talent Value="23" />
+                    <Barmaid_Talent Value="36" />
+                    <Waitress_Talent Value="47" />
+                    <Bar_Stripper_Talent Value="41" />
+                    <Bar_Whore_Talent Value="40" />
+                    <Singer_Talent Value="35" />
+                </Stats>
+            </Gang>
+            <Gang Num="3" Name="Patrons of Purgatory">
+                <Skills>
+                    <Anal Value="49" />
+                    <Magic Value="31" />
+                    <BDSM Value="52" />
+                    <NormalSex Value="48" />
+                    <OralSex Value="21" />
+                    <Group Value="29" />
+                    <Lesbian Value="30" />
+                    <Service Value="25" />
+                    <Strip Value="53" />
+                    <Combat Value="24" />
+                </Skills>
+                <Stats>
+                    <Charisma Value="31" />
+                    <Happiness Value="39" />
+                    <Libido Value="34" />
+                    <Constitution Value="42" />
+                    <Intelligence Value="44" />
+                    <Confidence Value="40" />
+                    <Mana Value="49" />
+                    <Agility Value="25" />
+                    <Fame Value="41" />
+                    <Level Value="40" />
+                    <AskPrice Value="46" />
+                    <House Value="51" />
+                    <Exp Value="30" />
+                    <Age Value="21" />
+                    <Obedience Value="23" />
+                    <Spirit Value="31" />
+                    <Beauty Value="28" />
+                    <Tiredness Value="39" />
+                    <Health Value="36" />
+                    <PCFear Value="40" />
+                    <PCLove Value="53" />
+                    <PCHate Value="48" />
+                    <Cleaning_Talent Value="43" />
+                    <Security_Talent Value="24" />
+                    <Advertising_Talent Value="26" />
+                    <Cust._Service_Talent Value="37" />
+                    <Matron_Talent Value="34" />
+                    <Torturer_Talent Value="33" />
+                    <Explorer_Talent Value="45" />
+                    <Brothel_Whore_Talent Value="30" />
+                    <Street_Whore_Talent Value="40" />
+                    <Stripper_Talent Value="47" />
+                    <Masseuse_Talent Value="36" />
+                    <G._Hall_Whore_Talent Value="27" />
+                    <Game_Dealer_Talent Value="47" />
+                    <Entertainer_Talent Value="22" />
+                    <XXX_Entertainer_Talent Value="35" />
+                    <Barmaid_Talent Value="21" />
+                    <Waitress_Talent Value="33" />
+                    <Bar_Stripper_Talent Value="50" />
+                    <Bar_Whore_Talent Value="48" />
+                    <Singer_Talent Value="27" />
+                </Stats>
+            </Gang>
+        </Hireables>
+    </Gang_Manager>
+    <Brothel_Manager AntiPregPotions="40" SupplyShedLevel="1" HandmadeGoods="0" Beasts="32" AlchemyIngredients="0" BribeRate="200" Bank="4014" KeepPotionsStocked="1">
+        <Player WinGame="0" Suspicion="31" Disposition="-59" CustomerFear="46">
+            <Stats>
+                <Charisma Value="60" />
+                <Happiness Value="60" />
+                <Libido Value="60" />
+                <Constitution Value="60" />
+                <Intelligence Value="60" />
+                <Confidence Value="60" />
+                <Mana Value="60" />
+                <Agility Value="60" />
+                <Fame Value="60" />
+                <Level Value="60" />
+                <AskPrice Value="60" />
+                <House Value="60" />
+                <Exp Value="60" />
+                <Age Value="60" />
+                <Obedience Value="60" />
+                <Spirit Value="60" />
+                <Beauty Value="60" />
+                <Tiredness Value="60" />
+                <Health Value="60" />
+                <PCFear Value="60" />
+                <PCLove Value="60" />
+                <PCHate Value="60" />
+                <Cleaning_Talent Value="60" />
+                <Security_Talent Value="60" />
+                <Advertising_Talent Value="60" />
+                <Cust._Service_Talent Value="60" />
+                <Matron_Talent Value="60" />
+                <Torturer_Talent Value="60" />
+                <Explorer_Talent Value="60" />
+                <Brothel_Whore_Talent Value="60" />
+                <Street_Whore_Talent Value="60" />
+                <Stripper_Talent Value="60" />
+                <Masseuse_Talent Value="60" />
+                <G._Hall_Whore_Talent Value="60" />
+                <Game_Dealer_Talent Value="60" />
+                <Entertainer_Talent Value="60" />
+                <XXX_Entertainer_Talent Value="60" />
+                <Barmaid_Talent Value="60" />
+                <Waitress_Talent Value="60" />
+                <Bar_Stripper_Talent Value="60" />
+                <Bar_Whore_Talent Value="60" />
+                <Singer_Talent Value="60" />
+            </Stats>
+            <Skills>
+                <Anal Value="10" />
+                <Magic Value="10" />
+                <BDSM Value="10" />
+                <NormalSex Value="10" />
+                <OralSex Value="10" />
+                <Group Value="10" />
+                <Lesbian Value="10" />
+                <Service Value="10" />
+                <Strip Value="10" />
+                <Combat Value="17" />
+            </Skills>
+        </Player>
+        <Dungeon NumberDied="0">
+            <Dungeon_Girls />
+            <Dungeon_Customers />
+        </Dungeon>
+        <Runaways />
+        <PrisonGirls />
+        <Objective Difficulty="0" Limit="-1" Objective="1" Reward="1" SoFar="0" Target="0" />
+        <Rival_Manager>
+            <Rivals>
+                <Rival Name="West Coast Assassins" BribeRate="0" BusinessesExtort="55" Gold="3283" NumBars="2" NumBrothels="2" NumGamblingHalls="1" NumGirls="40" NumGangs="8" />
+                <Rival Name="High Level Tribe" BribeRate="0" BusinessesExtort="68" Gold="14867" NumBars="6" NumBrothels="6" NumGamblingHalls="4" NumGirls="112" NumGangs="8" />
+            </Rivals>
+        </Rival_Manager>
+        <Inventory>
+            <Items>
+                <Item Name="Linen Dress" isEquipped="0" quantity="10" />
+                <Item Name="Incense of Serenity (S)" isEquipped="0" quantity="2" />
+                <Item Name="Sinspice" isEquipped="0" quantity="1" />
+                <Item Name="Oil of Redemption" isEquipped="0" quantity="1" />
+                <Item Name="Double Dildo" isEquipped="0" quantity="1" />
+                <Item Name="Plain Lingerie" isEquipped="0" quantity="1" />
+                <Item Name="Dagger" isEquipped="0" quantity="9" />
+                <Item Name="Bauble Necklace" isEquipped="0" quantity="9" />
+                <Item Name="Willbreaker Spice" isEquipped="0" quantity="1" />
+            </Items>
+        </Inventory>
+        <Brothels>
+            <Brothel Name="Temptations" RestrictAnal="0" RestrictBDSM="0" RestrictBeast="0" RestrictGroup="0" RestrictNormal="0" RestrictLesbian="0" AdvertisingBudget="0" Bar="110" Fame="4" GamblingHall="100" Happiness="1" HasBarStaff="0" id="0" HasGambStaff="0" MovieRunTime="0" NumRooms="20" ShowQuality="0" ShowTime="0" Filthiness="0" SecurityLevel="500">
+                <Gold value="0.000000" income="2678.000000" upkeep="466.000000" cash_in="0.000000" cash_out="0.000000" />
+                <Movies />
+                <Girls>
+                    <Girl Name="Soifon" Realname="Soifon" Desc="Bleach - Captain of division 2, whaterver that means. She is quite skilled at killing people." DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="1717" AccLevel="1" DayJob="0" NightJob="3" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="22" BDay="22" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Aggressive Temp="0" />
+                            <Assassin Temp="0" />
+                            <Basic_Magic Temp="0" />
+                            <Fleet_of_Foot Temp="0" />
+                            <Inhuman_Lifespan Temp="0" />
+                            <Iron_Will Temp="0" />
+                            <Lesbian Temp="0" />
+                            <Merciless Temp="0" />
+                            <Small_Boobs Temp="0" />
+                            <Strong Temp="0" />
+                            <Tough Temp="0" />
+                            <Tsundere Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0.1 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Sandals of Mercury" isEquipped="1" />
+                                <Item Name="Manual of Arms" isEquipped="1" />
+                                <Item Name="Short Sword" isEquipped="1" />
+                                <Item Name="Cat" isEquipped="1" />
+                                <Item Name="Godward Shell" isEquipped="1" />
+                                <Item Name="Oiran Dress" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="20" Mod="-24" />
+                            <Happiness Value="100" />
+                            <Libido Value="35" Mod="34" Temp="17" />
+                            <Constitution Value="55" Mod="54" />
+                            <Intelligence Value="65" Mod="14" />
+                            <Confidence Value="45" Mod="28" />
+                            <Mana Value="10" Mod="53" />
+                            <Agility Value="95" Mod="56" />
+                            <Fame Value="0" />
+                            <Level Value="1" />
+                            <AskPrice Value="0" Mod="14" />
+                            <House Value="91" />
+                            <Exp Value="125" />
+                            <Age Value="20" />
+                            <Obedience Value="15" Mod="-56" />
+                            <Spirit Value="65" Mod="4" />
+                            <Beauty Value="50" />
+                            <Tiredness Value="21" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-35" />
+                            <PCLove Value="0" Mod="100" />
+                            <PCHate Value="0" Mod="-72" />
+                            <Cleaning_Talent Value="0" Mod="25" />
+                            <Security_Talent Value="0" Mod="41" />
+                            <Advertising_Talent Value="4" Mod="28" />
+                            <Cust._Service_Talent Value="135" Mod="32" />
+                            <Matron_Talent Value="254" Mod="39" />
+                            <Torturer_Talent Value="13" Mod="38" />
+                            <Explorer_Talent Value="0" Mod="38" />
+                            <Brothel_Whore_Talent Value="0" Mod="31" />
+                            <Street_Whore_Talent Value="0" Mod="31" />
+                            <Stripper_Talent Value="0" Mod="31" />
+                            <Masseuse_Talent Value="0" Mod="25" />
+                            <G._Hall_Whore_Talent Value="0" Mod="31" />
+                            <Game_Dealer_Talent Value="0" Mod="32" />
+                            <Entertainer_Talent Value="0" Mod="31" />
+                            <XXX_Entertainer_Talent Value="15" Mod="29" />
+                            <Barmaid_Talent Value="0" Mod="31" />
+                            <Waitress_Talent Value="0" Mod="27" />
+                            <Bar_Stripper_Talent Value="0" Mod="30" />
+                            <Bar_Whore_Talent Value="12" Mod="31" />
+                            <Singer_Talent Value="0" Mod="25" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" Mod="-20" />
+                            <Magic Value="15" Mod="20" />
+                            <BDSM Value="15" />
+                            <NormalSex Value="5" Mod="-20" />
+                            <OralSex Value="0" Mod="-25" />
+                            <Group Value="5" Mod="-20" />
+                            <Lesbian Value="15" Mod="20" />
+                            <Service Value="0" Mod="-10" />
+                            <Strip Value="0" />
+                            <Combat Value="60" Mod="94" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="0" />
+                            <SEX Enjoys="-20" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="10" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-20" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Yoruichi Shihouin" Realname="Yoruichi Shihouin" Desc="Bleach - *meow*" DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="216" AccLevel="1" DayJob="3" NightJob="8" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="16" BDay="16" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Adventurer Temp="0" />
+                            <Assassin Temp="0" />
+                            <Basic_Magic Temp="0" />
+                            <Big_Boobs Temp="0" />
+                            <Fake_Orgasm_Expert Temp="0" />
+                            <Fearless Temp="0" />
+                            <Fleet_of_Foot Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Inhuman_Lifespan Temp="0" />
+                            <Iron_Will Temp="0" />
+                            <Long_Legs Temp="0" />
+                            <Strong Temp="0" />
+                            <Tough Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Linen Dress" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Leather Armor" isEquipped="1" />
+                                <Item Name="Short Sword" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                                <Item Name="Healing Salve (L)" isEquipped="0" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="20" Mod="-8" />
+                            <Happiness Value="100" />
+                            <Libido Value="20" Mod="13" Temp="17" />
+                            <Constitution Value="20" Mod="52" />
+                            <Intelligence Value="20" Mod="13" />
+                            <Confidence Value="20" Mod="5" />
+                            <Mana Value="20" Mod="59" />
+                            <Agility Value="20" Mod="29" />
+                            <Fame Value="0" Mod="1" />
+                            <Level Value="1" />
+                            <AskPrice Value="0" Mod="24" />
+                            <House Value="91" />
+                            <Exp Value="15" />
+                            <Age Value="26" />
+                            <Obedience Value="20" Mod="-74" />
+                            <Spirit Value="20" Mod="30" />
+                            <Beauty Value="20" Mod="30" />
+                            <Tiredness Value="2" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-11" />
+                            <PCLove Value="0" Mod="9" />
+                            <PCHate Value="0" Mod="-15" />
+                            <Cleaning_Talent Value="0" Mod="27" />
+                            <Security_Talent Value="0" Mod="41" />
+                            <Advertising_Talent Value="0" Mod="36" />
+                            <Cust._Service_Talent Value="0" Mod="34" />
+                            <Matron_Talent Value="0" Mod="39" />
+                            <Torturer_Talent Value="0" Mod="37" />
+                            <Explorer_Talent Value="0" Mod="35" />
+                            <Brothel_Whore_Talent Value="0" Mod="31" />
+                            <Street_Whore_Talent Value="0" Mod="31" />
+                            <Stripper_Talent Value="0" Mod="38" />
+                            <Masseuse_Talent Value="0" Mod="31" />
+                            <G._Hall_Whore_Talent Value="0" Mod="31" />
+                            <Game_Dealer_Talent Value="0" Mod="34" />
+                            <Entertainer_Talent Value="0" Mod="38" />
+                            <XXX_Entertainer_Talent Value="0" Mod="36" />
+                            <Barmaid_Talent Value="0" Mod="33" />
+                            <Waitress_Talent Value="0" Mod="30" />
+                            <Bar_Stripper_Talent Value="0" Mod="36" />
+                            <Bar_Whore_Talent Value="12" Mod="31" />
+                            <Singer_Talent Value="0" Mod="32" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" Mod="2" />
+                            <Magic Value="0" Mod="15" />
+                            <BDSM Value="0" Mod="6" />
+                            <NormalSex Value="0" Mod="2" />
+                            <OralSex Value="0" Mod="5" />
+                            <Group Value="0" Mod="2" />
+                            <Lesbian Value="0" Mod="2" />
+                            <Service Value="0" Mod="-10" />
+                            <Strip Value="0" Mod="25" />
+                            <Combat Value="0" Mod="52" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-6" />
+                            <SEX Enjoys="-14" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-18" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="10" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-20" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Sheryl Nome" Realname="Sheryl Nome" Desc='Macross Frontier - Sheryl Nome is the top idol from the Macross Galaxy fleet. Since she is constantly topping the music charts, it is said that &quot;there&apos;s no way you haven&apos;t heard Sheryl&apos;s songs as long as you live in this galaxy.&quot;' DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="424" AccLevel="1" DayJob="4" NightJob="20" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="15" BDay="15" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Big_Boobs Temp="0" />
+                            <Cool_Person Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Psychic Temp="0" />
+                            <Puffy_Nipples Temp="0" />
+                            <Sexy_Air Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Faerie Gown" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Gold Pendant" isEquipped="1" />
+                                <Item Name="Fur Slippers" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="20" Mod="43" Temp="21" />
+                            <Happiness Value="100" />
+                            <Libido Value="20" Mod="11" Temp="17" />
+                            <Constitution Value="20" Mod="2" />
+                            <Intelligence Value="20" Mod="10" />
+                            <Confidence Value="20" Mod="21" />
+                            <Mana Value="0" Mod="100" />
+                            <Agility Value="20" Mod="-13" />
+                            <Fame Value="0" Mod="14" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="51" />
+                            <House Value="91" />
+                            <Exp Value="98" />
+                            <Age Value="17" />
+                            <Obedience Value="20" />
+                            <Spirit Value="20" Mod="15" />
+                            <Beauty Value="20" Mod="40" />
+                            <Tiredness Value="0" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-17" />
+                            <PCLove Value="0" Mod="36" />
+                            <PCHate Value="0" Mod="-34" />
+                            <Cleaning_Talent Value="0" Mod="33" />
+                            <Security_Talent Value="0" Mod="32" />
+                            <Advertising_Talent Value="20" Mod="38" />
+                            <Cust._Service_Talent Value="0" Mod="36" />
+                            <Matron_Talent Value="252" Mod="34" />
+                            <Torturer_Talent Value="1" Mod="30" />
+                            <Explorer_Talent Value="0" Mod="31" />
+                            <Brothel_Whore_Talent Value="0" Mod="33" />
+                            <Street_Whore_Talent Value="0" Mod="33" />
+                            <Stripper_Talent Value="0" Mod="37" />
+                            <Masseuse_Talent Value="15" Mod="36" />
+                            <G._Hall_Whore_Talent Value="0" Mod="33" />
+                            <Game_Dealer_Talent Value="0" Mod="36" />
+                            <Entertainer_Talent Value="0" Mod="40" />
+                            <XXX_Entertainer_Talent Value="0" Mod="39" />
+                            <Barmaid_Talent Value="0" Mod="37" />
+                            <Waitress_Talent Value="0" Mod="35" />
+                            <Bar_Stripper_Talent Value="0" Mod="38" />
+                            <Bar_Whore_Talent Value="15" Mod="33" />
+                            <Singer_Talent Value="0" Mod="37" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" />
+                            <Magic Value="0" Mod="12" />
+                            <BDSM Value="0" />
+                            <NormalSex Value="0" />
+                            <OralSex Value="0" Mod="5" />
+                            <Group Value="0" />
+                            <Lesbian Value="0" />
+                            <Service Value="0" />
+                            <Strip Value="0" Mod="30" />
+                            <Combat Value="0" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-22" />
+                            <SEX Enjoys="100" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-16" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-18" />
+                            <WORKHALL Enjoys="-18" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-18" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-8" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Leina Vance" Realname="Leina Vance" Desc="Queen&apos;s Blade - Leina Vance is the middle daughter of the Vance family and the hier to the Count&apos;s throne. She runs away from home to follow in her mother&apos;s footsteps of a warrior and make her own way in the world in hopes of becoming a stronger warrior by entering the Queen&apos;s Blade Tournament." DaysUnhappy="0" States="0" UseAntiPreg="1" Withdrawals="0" Money="661" AccLevel="1" DayJob="6" NightJob="6" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="13" BDay="13" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Abnormally_Large_Boobs Temp="0" />
+                            <Adventurer Temp="0" />
+                            <Elegant Temp="0" />
+                            <Fearless Temp="0" />
+                            <Fleet_of_Foot Temp="0" />
+                            <Great_Arse Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Iron_Will Temp="0" />
+                            <Merciless Temp="0" />
+                            <Perky_Nipples Temp="0" />
+                            <Sexy_Air Temp="0" />
+                            <Strong Temp="0" />
+                            <Tough Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV1 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Linen Dress" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                                <Item Name="Fur Slippers" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="18" Mod="30" />
+                            <Happiness Value="100" />
+                            <Libido Value="16" Mod="12" Temp="3" />
+                            <Constitution Value="33" Mod="49" />
+                            <Intelligence Value="8" Mod="2" />
+                            <Confidence Value="7" Mod="19" />
+                            <Mana Value="85" Mod="20" />
+                            <Agility Value="99" Mod="12" />
+                            <Fame Value="0" Mod="2" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="36" />
+                            <House Value="60" />
+                            <Exp Value="107" />
+                            <Age Value="18" />
+                            <Obedience Value="29" Mod="-86" />
+                            <Spirit Value="14" Mod="42" />
+                            <Beauty Value="48" Mod="45" />
+                            <Tiredness Value="22" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-14" />
+                            <PCLove Value="0" Mod="30" />
+                            <PCHate Value="0" Mod="-20" />
+                            <Cleaning_Talent Value="0" Mod="27" />
+                            <Security_Talent Value="13" Mod="37" />
+                            <Advertising_Talent Value="16" Mod="37" />
+                            <Cust._Service_Talent Value="168" Mod="38" />
+                            <Matron_Talent Value="246" Mod="40" />
+                            <Torturer_Talent Value="13" Mod="34" />
+                            <Explorer_Talent Value="132" Mod="34" />
+                            <Brothel_Whore_Talent Value="27" Mod="32" />
+                            <Street_Whore_Talent Value="82" Mod="32" />
+                            <Stripper_Talent Value="0" Mod="41" />
+                            <Masseuse_Talent Value="0" Mod="33" />
+                            <G._Hall_Whore_Talent Value="0" Mod="32" />
+                            <Game_Dealer_Talent Value="0" Mod="38" />
+                            <Entertainer_Talent Value="0" Mod="42" />
+                            <XXX_Entertainer_Talent Value="15" Mod="39" />
+                            <Barmaid_Talent Value="0" Mod="37" />
+                            <Waitress_Talent Value="0" Mod="28" />
+                            <Bar_Stripper_Talent Value="0" Mod="39" />
+                            <Bar_Whore_Talent Value="0" Mod="32" />
+                            <Singer_Talent Value="0" Mod="36" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="36" Mod="10" />
+                            <Magic Value="83" />
+                            <BDSM Value="8" />
+                            <NormalSex Value="54" />
+                            <OralSex Value="163" Mod="10" />
+                            <Group Value="35" />
+                            <Lesbian Value="23" />
+                            <Service Value="10" Mod="-5" />
+                            <Strip Value="92" Mod="70" />
+                            <Combat Value="99" Mod="35" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-10" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-2" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-20" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Orihime Inoue" Realname="Orihime Inoue" Desc="Bleach - A cheerfull girl with hair-clips." DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="128" AccLevel="1" DayJob="4" NightJob="4" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="14" BDay="14" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Basic_Magic Temp="0" />
+                            <Big_Boobs Temp="0" />
+                            <Clumsy Temp="0" />
+                            <Meek Temp="0" />
+                            <Optimist Temp="0" />
+                            <Slow_Learner Temp="0" />
+                            <Virgin Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Maid Uniform" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="20" Mod="12" />
+                            <Happiness Value="87" />
+                            <Libido Value="20" Mod="11" Temp="17" />
+                            <Constitution Value="20" Mod="3" />
+                            <Intelligence Value="20" Mod="-10" />
+                            <Confidence Value="20" Mod="-28" />
+                            <Mana Value="0" Mod="90" />
+                            <Agility Value="20" Mod="-15" />
+                            <Fame Value="0" Mod="11" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="21" />
+                            <House Value="94" />
+                            <Exp Value="45" />
+                            <Age Value="17" />
+                            <Obedience Value="20" Mod="30" />
+                            <Spirit Value="20" />
+                            <Beauty Value="20" Mod="10" />
+                            <Tiredness Value="0" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-34" />
+                            <PCLove Value="0" Mod="72" />
+                            <PCHate Value="0" Mod="-39" />
+                            <Cleaning_Talent Value="0" Mod="31" />
+                            <Security_Talent Value="0" Mod="25" />
+                            <Advertising_Talent Value="0" Mod="30" />
+                            <Cust._Service_Talent Value="0" Mod="29" />
+                            <Matron_Talent Value="0" Mod="29" />
+                            <Torturer_Talent Value="0" Mod="26" />
+                            <Explorer_Talent Value="0" Mod="31" />
+                            <Brothel_Whore_Talent Value="0" Mod="31" />
+                            <Street_Whore_Talent Value="0" Mod="32" />
+                            <Stripper_Talent Value="0" Mod="25" />
+                            <Masseuse_Talent Value="0" Mod="31" />
+                            <G._Hall_Whore_Talent Value="0" Mod="31" />
+                            <Game_Dealer_Talent Value="0" Mod="30" />
+                            <Entertainer_Talent Value="0" Mod="30" />
+                            <XXX_Entertainer_Talent Value="0" Mod="29" />
+                            <Barmaid_Talent Value="0" Mod="29" />
+                            <Waitress_Talent Value="0" Mod="25" />
+                            <Bar_Stripper_Talent Value="0" Mod="28" />
+                            <Bar_Whore_Talent Value="12" Mod="31" />
+                            <Singer_Talent Value="0" Mod="30" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" Mod="-10" />
+                            <Magic Value="0" Mod="20" />
+                            <BDSM Value="0" Mod="-10" />
+                            <NormalSex Value="0" Mod="-10" />
+                            <OralSex Value="0" Mod="10" />
+                            <Group Value="0" Mod="-10" />
+                            <Lesbian Value="0" Mod="-10" />
+                            <Service Value="0" Mod="25" />
+                            <Strip Value="0" Mod="-5" />
+                            <Combat Value="0" Mod="5" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="54" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-12" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-20" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Tifa Lockhart" Realname="Tifa Lockhart" Desc="Final Fantasy VII" DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="467" AccLevel="1" DayJob="19" NightJob="23" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="9" BDay="9" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Adventurer Temp="0" />
+                            <Big_Boobs Temp="0" />
+                            <Charming Temp="0" />
+                            <Cool_Person Temp="0" />
+                            <Fleet_of_Foot Temp="0" />
+                            <Great_Arse Temp="0" />
+                            <Long_Legs Temp="0" />
+                            <Optimist Temp="0" />
+                            <Sexy_Air Temp="0" />
+                            <Strong Temp="0" />
+                            <Tough Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="White String Bikini" isEquipped="1" />
+                                <Item Name="Fur Slippers" isEquipped="1" />
+                                <Item Name="Gold Pendant" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="40" Mod="51" Temp="9" />
+                            <Happiness Value="100" />
+                            <Libido Value="30" Mod="6" Temp="5" />
+                            <Constitution Value="30" Mod="46" />
+                            <Intelligence Value="40" />
+                            <Confidence Value="30" Mod="19" />
+                            <Mana Value="0" Mod="10" />
+                            <Agility Value="70" Mod="35" />
+                            <Fame Value="0" Mod="13" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="51" />
+                            <House Value="91" />
+                            <Exp Value="81" />
+                            <Age Value="18" />
+                            <Obedience Value="20" Mod="11" />
+                            <Spirit Value="30" Mod="37" />
+                            <Beauty Value="60" Mod="45" />
+                            <Tiredness Value="13" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-14" />
+                            <PCLove Value="0" Mod="24" />
+                            <PCHate Value="0" Mod="-27" />
+                            <Cleaning_Talent Value="0" Mod="32" />
+                            <Security_Talent Value="0" Mod="40" />
+                            <Advertising_Talent Value="15" Mod="40" />
+                            <Cust._Service_Talent Value="0" Mod="37" />
+                            <Matron_Talent Value="0" Mod="39" />
+                            <Torturer_Talent Value="0" Mod="34" />
+                            <Explorer_Talent Value="83" Mod="34" />
+                            <Brothel_Whore_Talent Value="101" Mod="33" />
+                            <Street_Whore_Talent Value="120" Mod="33" />
+                            <Stripper_Talent Value="0" Mod="39" />
+                            <Masseuse_Talent Value="0" Mod="38" />
+                            <G._Hall_Whore_Talent Value="98" Mod="33" />
+                            <Game_Dealer_Talent Value="101" Mod="37" />
+                            <Entertainer_Talent Value="100" Mod="43" />
+                            <XXX_Entertainer_Talent Value="105" Mod="41" />
+                            <Barmaid_Talent Value="101" Mod="39" />
+                            <Waitress_Talent Value="110" Mod="35" />
+                            <Bar_Stripper_Talent Value="99" Mod="40" />
+                            <Bar_Whore_Talent Value="101" Mod="33" />
+                            <Singer_Talent Value="0" Mod="43" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" Mod="10" />
+                            <Magic Value="5" />
+                            <BDSM Value="0" />
+                            <NormalSex Value="0" />
+                            <OralSex Value="25" Mod="5" />
+                            <Group Value="0" />
+                            <Lesbian Value="0" />
+                            <Service Value="0" />
+                            <Strip Value="5" Mod="35" />
+                            <Combat Value="30" Mod="25" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="100" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-14" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-14" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-22" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-10" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Ranka Lee" Realname="Ranka Lee" Desc='Macross Frontier - Known as the &quot;Super-Dimension Cinderella&quot;, Ranka is a petite, lively and cheerful (although naive) teenage girl with green hair. She is one-quarter Zentradi, which gives her the ability to have her hair move on its own according to her feelings, as well as an above-average resistance to the vacuum of space' DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="179" AccLevel="1" DayJob="19" NightJob="19" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="7" BDay="7" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Charming Temp="0" />
+                            <Clumsy Temp="0" />
+                            <Cool_Person Temp="0" />
+                            <Cute Temp="0" />
+                            <Dependant Temp="0" />
+                            <Elegant Temp="0" />
+                            <Fleet_of_Foot Temp="0" />
+                            <Good_Kisser Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Lesbian Temp="0" />
+                            <Lolita Temp="0" />
+                            <Meek Temp="0" />
+                            <Nervous Temp="0" />
+                            <Not_Human Temp="0" />
+                            <Optimist Temp="0" />
+                            <Psychic Temp="0" />
+                            <Quick_Learner Temp="0" />
+                            <Small_Boobs Temp="0" />
+                            <Strong Temp="0" />
+                            <Tough Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0.1 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Linen Dress" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="30" Mod="46" />
+                            <Happiness Value="100" />
+                            <Libido Value="40" Mod="12" Temp="4" />
+                            <Constitution Value="100" Mod="30" />
+                            <Intelligence Value="80" Mod="32" />
+                            <Confidence Value="30" Mod="-21" />
+                            <Mana Value="0" Mod="10" />
+                            <Agility Value="80" Mod="17" />
+                            <Fame Value="0" Mod="4" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="39" />
+                            <House Value="91" />
+                            <Exp Value="65" />
+                            <Age Value="17" />
+                            <Obedience Value="60" Mod="74" />
+                            <Spirit Value="30" />
+                            <Beauty Value="60" Mod="25" />
+                            <Tiredness Value="16" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-9" />
+                            <PCLove Value="0" Mod="12" />
+                            <PCHate Value="0" Mod="-15" />
+                            <Cleaning_Talent Value="0" Mod="37" />
+                            <Security_Talent Value="0" Mod="30" />
+                            <Advertising_Talent Value="15" Mod="38" />
+                            <Cust._Service_Talent Value="0" Mod="34" />
+                            <Matron_Talent Value="0" Mod="36" />
+                            <Torturer_Talent Value="0" Mod="28" />
+                            <Explorer_Talent Value="0" Mod="33" />
+                            <Brothel_Whore_Talent Value="0" Mod="32" />
+                            <Street_Whore_Talent Value="0" Mod="33" />
+                            <Stripper_Talent Value="0" Mod="33" />
+                            <Masseuse_Talent Value="0" Mod="38" />
+                            <G._Hall_Whore_Talent Value="49" Mod="32" />
+                            <Game_Dealer_Talent Value="0" Mod="35" />
+                            <Entertainer_Talent Value="13" Mod="40" />
+                            <XXX_Entertainer_Talent Value="196" Mod="40" />
+                            <Barmaid_Talent Value="232" Mod="38" />
+                            <Waitress_Talent Value="248" Mod="31" />
+                            <Bar_Stripper_Talent Value="13" Mod="33" />
+                            <Bar_Whore_Talent Value="12" Mod="32" />
+                            <Singer_Talent Value="0" Mod="37" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="15" Mod="-30" />
+                            <Magic Value="15" Mod="10" />
+                            <BDSM Value="20" Mod="-10" />
+                            <NormalSex Value="10" Mod="-30" />
+                            <OralSex Value="0" Mod="-15" />
+                            <Group Value="40" Mod="-30" />
+                            <Lesbian Value="35" Mod="10" />
+                            <Service Value="15" Mod="40" />
+                            <Strip Value="25" />
+                            <Combat Value="15" Mod="15" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="56" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-18" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-20" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Rangiku Matsumoto" Realname="Rangiku Matsumoto" Desc="Bleach - Look at these breasts......" DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="28" AccLevel="1" DayJob="20" NightJob="16" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="8" BDay="8" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Abnormally_Large_Boobs Temp="0" />
+                            <Basic_Magic Temp="0" />
+                            <Fake_Orgasm_Expert Temp="0" />
+                            <Fearless Temp="0" />
+                            <Fleet_of_Foot Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Inhuman_Lifespan Temp="0" />
+                            <Nymphomaniac Temp="0" />
+                            <Optimist Temp="0" />
+                            <Tough Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Linen Dress" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="20" Mod="7" />
+                            <Happiness Value="100" />
+                            <Libido Value="20" Mod="11" Temp="21" />
+                            <Constitution Value="20" Mod="29" />
+                            <Intelligence Value="20" Mod="10" />
+                            <Confidence Value="20" Mod="3" />
+                            <Mana Value="20" Mod="71" />
+                            <Agility Value="20" Mod="12" />
+                            <Fame Value="0" Mod="1" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="24" />
+                            <House Value="97" />
+                            <Exp Value="17" />
+                            <Age Value="28" />
+                            <Obedience Value="20" Mod="-1" />
+                            <Spirit Value="20" Mod="43" />
+                            <Beauty Value="20" Mod="20" />
+                            <Tiredness Value="6" />
+                            <Health Value="100" />
+                            <PCFear Value="0" />
+                            <PCLove Value="0" Mod="-7" />
+                            <PCHate Value="0" Mod="-3" />
+                            <Cleaning_Talent Value="188" Mod="30" />
+                            <Security_Talent Value="0" Mod="32" />
+                            <Advertising_Talent Value="12" Mod="36" />
+                            <Cust._Service_Talent Value="0" Mod="36" />
+                            <Matron_Talent Value="0" Mod="34" />
+                            <Torturer_Talent Value="0" Mod="35" />
+                            <Explorer_Talent Value="0" Mod="33" />
+                            <Brothel_Whore_Talent Value="0" Mod="32" />
+                            <Street_Whore_Talent Value="0" Mod="32" />
+                            <Stripper_Talent Value="0" Mod="38" />
+                            <Masseuse_Talent Value="20" Mod="34" />
+                            <G._Hall_Whore_Talent Value="251" Mod="32" />
+                            <Game_Dealer_Talent Value="18" Mod="36" />
+                            <Entertainer_Talent Value="0" Mod="39" />
+                            <XXX_Entertainer_Talent Value="0" Mod="38" />
+                            <Barmaid_Talent Value="104" Mod="33" />
+                            <Waitress_Talent Value="97" Mod="38" />
+                            <Bar_Stripper_Talent Value="116" Mod="37" />
+                            <Bar_Whore_Talent Value="0" Mod="32" />
+                            <Singer_Talent Value="0" Mod="37" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" Mod="12" />
+                            <Magic Value="0" Mod="20" />
+                            <BDSM Value="0" Mod="7" />
+                            <NormalSex Value="0" Mod="12" />
+                            <OralSex Value="115" Mod="20" />
+                            <Group Value="0" Mod="12" />
+                            <Lesbian Value="0" Mod="12" />
+                            <Service Value="0" />
+                            <Strip Value="0" Mod="25" />
+                            <Combat Value="0" Mod="5" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-16" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-18" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-18" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Tomoe" Realname="Tomoe" Desc="Queen&apos;s Blade - Tomoe is a very calm and softspoken person. She has an amiable and modest personality. Although she is skilled in combat with the reputation of Musha-Mikos for being feared and respected, she usually holds back when fighting." DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="28" AccLevel="1" DayJob="0" NightJob="19" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="6" BDay="6" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Big_Boobs Temp="0" />
+                            <Elegant Temp="0" />
+                            <Fast_Orgasms Temp="0" />
+                            <Fearless Temp="0" />
+                            <Fleet_of_Foot Temp="0" />
+                            <Iron_Will Temp="0" />
+                            <Optimist Temp="0" />
+                            <Perky_Nipples Temp="0" />
+                            <Sexy_Air Temp="0" />
+                            <Strong Temp="0" />
+                            <Tough Temp="0" />
+                            <Virgin Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV1 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Linen Dress" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="20" Mod="23" />
+                            <Happiness Value="100" />
+                            <Libido Value="20" Mod="10" Temp="4" />
+                            <Constitution Value="20" Mod="37" />
+                            <Intelligence Value="20" Mod="2" />
+                            <Confidence Value="20" Mod="39" />
+                            <Mana Value="20" Mod="10" />
+                            <Agility Value="20" Mod="15" />
+                            <Fame Value="0" Mod="7" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="34" />
+                            <House Value="97" />
+                            <Exp Value="36" />
+                            <Age Value="19" />
+                            <Obedience Value="20" Mod="-96" />
+                            <Spirit Value="20" Mod="57" />
+                            <Beauty Value="20" Mod="25" />
+                            <Tiredness Value="20" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-11" />
+                            <PCLove Value="0" Mod="3" />
+                            <PCHate Value="0" Mod="-8" />
+                            <Cleaning_Talent Value="0" Mod="32" />
+                            <Security_Talent Value="0" Mod="38" />
+                            <Advertising_Talent Value="236" Mod="38" />
+                            <Cust._Service_Talent Value="135" Mod="39" />
+                            <Matron_Talent Value="247" Mod="39" />
+                            <Torturer_Talent Value="13" Mod="34" />
+                            <Explorer_Talent Value="236" Mod="33" />
+                            <Brothel_Whore_Talent Value="135" Mod="32" />
+                            <Street_Whore_Talent Value="247" Mod="32" />
+                            <Stripper_Talent Value="13" Mod="39" />
+                            <Masseuse_Talent Value="51" Mod="36" />
+                            <G._Hall_Whore_Talent Value="1" Mod="32" />
+                            <Game_Dealer_Talent Value="235" Mod="39" />
+                            <Entertainer_Talent Value="0" Mod="40" />
+                            <XXX_Entertainer_Talent Value="34" Mod="38" />
+                            <Barmaid_Talent Value="0" Mod="36" />
+                            <Waitress_Talent Value="12" Mod="34" />
+                            <Bar_Stripper_Talent Value="2" Mod="38" />
+                            <Bar_Whore_Talent Value="192" Mod="32" />
+                            <Singer_Talent Value="117" Mod="38" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" Mod="10" />
+                            <Magic Value="0" />
+                            <BDSM Value="0" Mod="10" />
+                            <NormalSex Value="0" Mod="10" />
+                            <OralSex Value="0" Mod="5" />
+                            <Group Value="0" Mod="10" />
+                            <Lesbian Value="0" Mod="10" />
+                            <Service Value="0" Mod="-5" />
+                            <Strip Value="0" Mod="25" />
+                            <Combat Value="0" Mod="15" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="66" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-10" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-20" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Lunamaria Hawke" Realname="Lunamaria Hawke" Desc="Gundam Seed - She is a mobile suit pilot for the ZAFT military forces." DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="116" AccLevel="1" DayJob="4" NightJob="17" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="5" BDay="5" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Big_Boobs Temp="0" />
+                            <Charming Temp="0" />
+                            <Cute Temp="0" />
+                            <Great_Arse Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Virgin Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Linen Dress" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="60" Mod="35" />
+                            <Happiness Value="100" />
+                            <Libido Value="20" Mod="10" Temp="11" />
+                            <Constitution Value="30" Mod="7" />
+                            <Intelligence Value="40" />
+                            <Confidence Value="10" Mod="2" />
+                            <Mana Value="0" Mod="30" />
+                            <Agility Value="40" Mod="-3" />
+                            <Fame Value="0" Mod="1" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="37" />
+                            <House Value="97" />
+                            <Exp Value="38" />
+                            <Age Value="18" />
+                            <Obedience Value="20" Mod="-6" />
+                            <Spirit Value="30" Mod="20" />
+                            <Beauty Value="60" Mod="40" />
+                            <Tiredness Value="12" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-9" />
+                            <PCLove Value="0" Mod="5" />
+                            <PCHate Value="0" Mod="-13" />
+                            <Cleaning_Talent Value="0" Mod="31" />
+                            <Security_Talent Value="0" Mod="29" />
+                            <Advertising_Talent Value="0" Mod="37" />
+                            <Cust._Service_Talent Value="0" Mod="34" />
+                            <Matron_Talent Value="0" Mod="33" />
+                            <Torturer_Talent Value="0" Mod="29" />
+                            <Explorer_Talent Value="0" Mod="31" />
+                            <Brothel_Whore_Talent Value="0" Mod="32" />
+                            <Street_Whore_Talent Value="0" Mod="32" />
+                            <Stripper_Talent Value="0" Mod="36" />
+                            <Masseuse_Talent Value="0" Mod="35" />
+                            <G._Hall_Whore_Talent Value="102" Mod="32" />
+                            <Game_Dealer_Talent Value="102" Mod="34" />
+                            <Entertainer_Talent Value="101" Mod="36" />
+                            <XXX_Entertainer_Talent Value="99" Mod="36" />
+                            <Barmaid_Talent Value="116" Mod="36" />
+                            <Waitress_Talent Value="0" Mod="31" />
+                            <Bar_Stripper_Talent Value="0" Mod="34" />
+                            <Bar_Whore_Talent Value="0" Mod="32" />
+                            <Singer_Talent Value="50" Mod="36" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="0" Mod="10" />
+                            <Magic Value="0" />
+                            <BDSM Value="0" />
+                            <NormalSex Value="0" />
+                            <OralSex Value="255" Mod="5" />
+                            <Group Value="0" />
+                            <Lesbian Value="0" />
+                            <Service Value="0" />
+                            <Strip Value="0" Mod="25" />
+                            <Combat Value="5" Mod="5" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-2" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-12" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-24" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-20" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Elina Vance" Realname="Elina Vance" Desc="Queen&apos;s Blade - Unlike her sister Leina, Elina has a cruel personality, and doesn&apos;t hesitate to mock her opponents or use curses to break their concentration. She has a demeaning view on anyone who is not part of the Vance family, such as commoners, workers and servitors. Since her childhood she&apos;s felt a deep adoration (bordering on obsession) for Leina." DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="25" AccLevel="1" DayJob="8" NightJob="16" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="3" BDay="3" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Aggressive Temp="0" />
+                            <Assassin Temp="0" />
+                            <Average_Boobs Temp="0" />
+                            <Cool_Person Temp="0" />
+                            <Elegant Temp="0" />
+                            <Fearless Temp="0" />
+                            <Fleet_of_Foot Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Iron_Will Temp="0" />
+                            <Merciless Temp="0" />
+                            <Perky_Nipples Temp="0" />
+                            <Sadistic Temp="0" />
+                            <Sexy_Air Temp="0" />
+                            <Strong Temp="0" />
+                            <Tough Temp="0" />
+                            <Yandere Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV1 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Linen Dress" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="5" Mod="27" />
+                            <Happiness Value="100" />
+                            <Libido Value="54" Mod="11" Temp="14" />
+                            <Constitution Value="85" Mod="34" />
+                            <Intelligence Value="63" Mod="2" />
+                            <Confidence Value="77" Mod="14" />
+                            <Mana Value="30" Mod="10" />
+                            <Agility Value="32" Mod="37" />
+                            <Fame Value="0" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="22" />
+                            <House Value="94" />
+                            <Exp Value="41" />
+                            <Age Value="20" />
+                            <Obedience Value="96" Mod="-85" />
+                            <Spirit Value="76" Mod="69" />
+                            <Beauty Value="2" Mod="25" />
+                            <Tiredness Value="3" />
+                            <Health Value="85" />
+                            <PCFear Value="0" />
+                            <PCLove Value="0" Mod="-4" />
+                            <PCHate Value="0" Mod="-18" />
+                            <Cleaning_Talent Value="66" Mod="25" />
+                            <Security_Talent Value="68" Mod="44" />
+                            <Advertising_Talent Value="83" Mod="32" />
+                            <Cust._Service_Talent Value="77" Mod="35" />
+                            <Matron_Talent Value="44" Mod="37" />
+                            <Torturer_Talent Value="32" Mod="38" />
+                            <Explorer_Talent Value="43" Mod="35" />
+                            <Brothel_Whore_Talent Value="50" Mod="31" />
+                            <Street_Whore_Talent Value="32" Mod="31" />
+                            <Stripper_Talent Value="67" Mod="39" />
+                            <Masseuse_Talent Value="111" Mod="29" />
+                            <G._Hall_Whore_Talent Value="110" Mod="31" />
+                            <Game_Dealer_Talent Value="115" Mod="41" />
+                            <Entertainer_Talent Value="41" Mod="39" />
+                            <XXX_Entertainer_Talent Value="0" Mod="40" />
+                            <Barmaid_Talent Value="0" Mod="33" />
+                            <Waitress_Talent Value="12" Mod="26" />
+                            <Bar_Stripper_Talent Value="2" Mod="37" />
+                            <Bar_Whore_Talent Value="56" Mod="31" />
+                            <Singer_Talent Value="2" Mod="29" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="43" />
+                            <Magic Value="4" />
+                            <BDSM Value="67" Mod="20" />
+                            <NormalSex Value="87" />
+                            <OralSex Value="48" Mod="-10" />
+                            <Group Value="7" />
+                            <Lesbian Value="15" />
+                            <Service Value="3" Mod="-35" />
+                            <Strip Value="73" Mod="50" />
+                            <Combat Value="92" Mod="50" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-16" />
+                            <SEX Enjoys="0" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-16" />
+                            <WORKWAITRESS Enjoys="-20" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Charlotte Dunois" Realname="Charlotte Dunois" Desc="Infinite Stratos - Captured by slavers after they realized breasts that large aren&apos;t normally found on men that skinny.  Despite this apparent lack of intelligence on her part, you discover she is not stupid, and is more accepting of her new life than the other girls who came through with her.  But still, who the hell would ever mistake her for a guy?" DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="20" NightJob="20" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="1" BDay="1" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Adventurer Temp="0" />
+                            <Average_Boobs Temp="0" />
+                            <Charming Temp="0" />
+                            <Cool_Person Temp="0" />
+                            <Cute Temp="0" />
+                            <Fleet_of_Foot Temp="0" />
+                            <Great_Figure Temp="0" />
+                            <Long_Legs Temp="0" />
+                            <Optimist Temp="0" />
+                            <Virgin Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                                <Item Name="Linen Dress" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="30" Mod="32" Temp="5" />
+                            <Happiness Value="100" />
+                            <Libido Value="50" Mod="9" Temp="1" />
+                            <Constitution Value="60" Mod="17" />
+                            <Intelligence Value="90" />
+                            <Confidence Value="80" Mod="12" />
+                            <Mana Value="0" />
+                            <Agility Value="80" Mod="27" />
+                            <Fame Value="0" Mod="1" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="35" />
+                            <House Value="100" />
+                            <Exp Value="5" />
+                            <Age Value="17" />
+                            <Obedience Value="60" Mod="4" />
+                            <Spirit Value="30" Mod="49" />
+                            <Beauty Value="60" Mod="30" />
+                            <Tiredness Value="14" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-14" />
+                            <PCLove Value="0" Mod="-6" />
+                            <PCHate Value="0" Mod="-8" />
+                            <Cleaning_Talent Value="0" Mod="30" />
+                            <Security_Talent Value="0" Mod="34" />
+                            <Advertising_Talent Value="15" Mod="38" />
+                            <Cust._Service_Talent Value="0" Mod="36" />
+                            <Matron_Talent Value="0" Mod="36" />
+                            <Torturer_Talent Value="0" Mod="32" />
+                            <Explorer_Talent Value="0" Mod="33" />
+                            <Brothel_Whore_Talent Value="0" Mod="32" />
+                            <Street_Whore_Talent Value="0" Mod="32" />
+                            <Stripper_Talent Value="0" Mod="37" />
+                            <Masseuse_Talent Value="12" Mod="36" />
+                            <G._Hall_Whore_Talent Value="7" Mod="32" />
+                            <Game_Dealer_Talent Value="251" Mod="36" />
+                            <Entertainer_Talent Value="13" Mod="41" />
+                            <XXX_Entertainer_Talent Value="12" Mod="39" />
+                            <Barmaid_Talent Value="7" Mod="36" />
+                            <Waitress_Talent Value="251" Mod="36" />
+                            <Bar_Stripper_Talent Value="13" Mod="37" />
+                            <Bar_Whore_Talent Value="36" Mod="32" />
+                            <Singer_Talent Value="0" Mod="40" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="10" />
+                            <Magic Value="0" />
+                            <BDSM Value="5" />
+                            <NormalSex Value="25" />
+                            <OralSex Value="0" />
+                            <Group Value="15" />
+                            <Lesbian Value="5" />
+                            <Service Value="15" />
+                            <Strip Value="20" Mod="20" />
+                            <Combat Value="45" Mod="15" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-12" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-22" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                    <Girl Name="Blonde Elf" Realname="Zaylin" Desc="Blonde Elf" DaysUnhappy="0" States="32" UseAntiPreg="1" Withdrawals="0" Money="0" AccLevel="1" DayJob="2" NightJob="2" PrevDayJob="255" PrevNightJob="255" RunAway="0" Spotted="0" WeeksPast="0" BDay="0" WeeksPreg="0" NumCusts="0" Tort="0" PregCooldown="0">
+                        <Traits>
+                            <Big_Boobs Temp="0" />
+                            <Charismatic Temp="0" />
+                            <Cool_Person Temp="0" />
+                            <Cute Temp="0" />
+                            <Elegant Temp="0" />
+                            <Inhuman_Lifespan Temp="0" />
+                            <Mind_Fucked Temp="0" />
+                            <Not_Human Temp="0" />
+                            <Strange_Eyes Temp="0" />
+                            <Normal_Sex_LV0 Temp="0" />
+                            <Anal_Sex_LV0 Temp="0" />
+                            <Oral_Sex_LV0 Temp="0" />
+                            <BDSM_LV0 Temp="0" />
+                            <Exhibitionist_LV0 Temp="0" />
+                            <Lesbian_LV0 Temp="0" />
+                            <Group_Sex_LV0 Temp="0" />
+                        </Traits>
+                        <Remembered_Traits />
+                        <Inventory>
+                            <Items>
+                                <Item Name="Linen Dress" isEquipped="1" />
+                                <Item Name="Bauble Necklace" isEquipped="1" />
+                                <Item Name="Dagger" isEquipped="1" />
+                            </Items>
+                        </Inventory>
+                        <Stats>
+                            <Charisma Value="23" Mod="52" />
+                            <Happiness Value="100" />
+                            <Libido Value="25" Mod="11" />
+                            <Constitution Value="58" />
+                            <Intelligence Value="98" Mod="7" />
+                            <Confidence Value="52" Mod="-33" />
+                            <Mana Value="48" />
+                            <Agility Value="76" Mod="-5" />
+                            <Fame Value="0" />
+                            <Level Value="0" />
+                            <AskPrice Value="0" Mod="34" />
+                            <House Value="94" />
+                            <Exp Value="0" />
+                            <Age Value="25" />
+                            <Obedience Value="26" Mod="100" />
+                            <Spirit Value="48" Mod="-35" />
+                            <Beauty Value="94" Mod="17" />
+                            <Tiredness Value="2" />
+                            <Health Value="100" />
+                            <PCFear Value="0" Mod="-13" />
+                            <PCLove Value="0" Mod="1" />
+                            <PCHate Value="6" Mod="-11" />
+                            <Cleaning_Talent Value="51" Mod="34" />
+                            <Security_Talent Value="39" Mod="29" />
+                            <Advertising_Talent Value="43" Mod="35" />
+                            <Cust._Service_Talent Value="53" Mod="35" />
+                            <Matron_Talent Value="33" Mod="33" />
+                            <Torturer_Talent Value="58" Mod="29" />
+                            <Explorer_Talent Value="54" Mod="31" />
+                            <Brothel_Whore_Talent Value="42" Mod="32" />
+                            <Street_Whore_Talent Value="40" Mod="33" />
+                            <Stripper_Talent Value="44" Mod="32" />
+                            <Masseuse_Talent Value="33" Mod="41" />
+                            <G._Hall_Whore_Talent Value="56" Mod="32" />
+                            <Game_Dealer_Talent Value="34" Mod="35" />
+                            <Entertainer_Talent Value="31" Mod="35" />
+                            <XXX_Entertainer_Talent Value="55" Mod="37" />
+                            <Barmaid_Talent Value="56" Mod="35" />
+                            <Waitress_Talent Value="46" Mod="33" />
+                            <Bar_Stripper_Talent Value="44" Mod="33" />
+                            <Bar_Whore_Talent Value="57" Mod="32" />
+                            <Singer_Talent Value="54" Mod="35" />
+                        </Stats>
+                        <Skills>
+                            <Anal Value="52" />
+                            <Magic Value="49" />
+                            <BDSM Value="35" />
+                            <NormalSex Value="54" />
+                            <OralSex Value="30" Mod="5" />
+                            <Group Value="22" />
+                            <Lesbian Value="30" />
+                            <Service Value="7" Mod="15" />
+                            <Strip Value="31" Mod="5" />
+                            <Combat Value="79" Mod="5" />
+                        </Skills>
+                        <Flags Flag_0="0" Flag_1="0" Flag_2="0" Flag_3="0" Flag_4="0" Flag_5="0" Flag_6="0" Flag_7="0" Flag_8="0" Flag_9="0" Flag_10="0" Flag_11="0" Flag_12="0" Flag_13="0" Flag_14="0" Flag_15="0" Flag_16="0" Flag_17="0" Flag_18="0" Flag_19="0" Flag_20="0" Flag_21="0" Flag_22="0" Flag_23="0" Flag_24="0" Flag_25="0" Flag_26="0" Flag_27="0" Flag_28="0" Flag_29="0" />
+                        <Children />
+                        <Actions>
+                            <COMBAT Enjoys="-20" />
+                            <SEX Enjoys="-20" />
+                            <GENERAL Enjoys="-20" />
+                            <WORKCLEANING Enjoys="-20" />
+                            <WORKMATRON Enjoys="-20" />
+                            <WORKBAR Enjoys="-20" />
+                            <WORKHALL Enjoys="-20" />
+                            <WORKSHOW Enjoys="-20" />
+                            <WORKSECURITY Enjoys="-20" />
+                            <WORKADVERTISING Enjoys="-20" />
+                            <WORKTORTURER Enjoys="-20" />
+                            <WORKCARING Enjoys="-20" />
+                            <WORKMASSEUSE Enjoys="-20" />
+                            <WORKDEALER Enjoys="-20" />
+                            <WORKWAITRESS Enjoys="-20" />
+                            <WORKENTERTAINER Enjoys="-20" />
+                            <WORKSINGER Enjoys="-20" />
+                            <WORKBARSTRIPPER Enjoys="-20" />
+                            <WORKSTRIPPER Enjoys="-20" />
+                            <WORKXXXENTERTAINER Enjoys="-20" />
+                            <WHOREHALL Enjoys="-20" />
+                            <WHOREBAR Enjoys="-20" />
+                            <WHOREBROTHEL Enjoys="-20" />
+                            <WHORESTREET Enjoys="-20" />
+                        </Actions>
+                        <Triggers />
+                    </Girl>
+                </Girls>
+            </Brothel>
+        </Brothels>
+    </Brothel_Manager>
+    <Triggers>
+        <Trigger Type="9" Flag="0" Triggered="0" Chance="100" Once="0" Script="CustNoPay.script" />
+        <Trigger Type="9" Flag="4" Triggered="2" Chance="100" Once="0" Script="RivalLose.script" />
+        <Trigger Type="9" Flag="3" Triggered="0" Chance="100" Once="0" Script="CustGambCheat.script" />
+        <Trigger Type="12" PlayerMoney="0" Value="-5000" Triggered="0" Chance="100" Once="0" Script="NoMoney.script" />
+    </Triggers>
+</Root>
