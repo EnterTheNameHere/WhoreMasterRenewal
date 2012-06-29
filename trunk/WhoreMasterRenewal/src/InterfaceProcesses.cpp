@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -129,7 +129,7 @@ void LoadGameScreen()
 		return;
 	}
 	string temp = fl[selection].leaf();
-/* 
+/*
  *	enable cheat mode for a test brothel
  */
 	g_Cheats = (temp == "Test.gam");
@@ -308,7 +308,7 @@ void NewGame()
 		"his assets looted by rivals. All that remains is the "
 		"fire-gutted shell of an old brothel that served as your "
 		"father's headquarters.\n"
-		
+
 		"However this building hides some interesting secrets. "
 		"Still concealed in the cellars is the dungeon where "
 		"your father conducted the less savory aspects of "
@@ -611,7 +611,7 @@ void LoadGirlsFiles()
 /*
  *	Load random girls
  *
- *	"girlfiles" is still an XMLFileList, so this will get 
+ *	"girlfiles" is still an XMLFileList, so this will get
  *	XML format files in preference to original format ones
  */
 	for(int i = 0; i < rgirlfiles.size(); i++)
@@ -951,7 +951,7 @@ void Turnsummary()
 					ID++;
 				}
 			}
-				
+
 			// Girls with warning events next
 			for(int j=0; j<nNumGirls; j++)
 			{
@@ -998,7 +998,7 @@ void Turnsummary()
 		// 3. Dungeon
 		else if(category == 3)
 		{
-			
+
 			// Fill the list box
 			cDungeon* pDungeon	= g_Brothels.GetDungeon();
 			int nNumGirls		= pDungeon->GetNumGirls();
@@ -1031,7 +1031,7 @@ void Turnsummary()
 					ID++;
 				}
 			}
-				
+
 			// Girls with warning events next
 			for(int j=0; j<nNumGirls; j++)
 			{
@@ -1122,7 +1122,7 @@ void Turnsummary()
 					// change the picture to profile (no event selected)
 					ImageType = IMGTYPE_PROFILE;
 
-#if 1	
+#if 1
 					if (!girl->m_Events.IsEmpty())
 					{
 						girl->m_Events.DoSort();						// Sort Events to put Warnings & Dangers first.
@@ -1156,7 +1156,7 @@ void Turnsummary()
 						}
 					}
 
-					// Warnings 
+					// Warnings
                     for(int m=0; m<girl->m_Events.GetNumEvents(); m++)
 					{
 						if(girl->m_Events.GetMessage(m).m_Event == EVENT_WARNING)
@@ -1208,8 +1208,8 @@ void Turnsummary()
 							  FoundFirstMessage = true;
 							}
 						}
-					} 
-					
+					}
+
 #endif
 					if(g_Turnsummary.GetListBoxSize(g_interfaceid.LIST_TSEVENTS) > 0)
 						g_Turnsummary.SetSelectedItemInList(g_interfaceid.LIST_TSEVENTS, 0, true);
@@ -1227,7 +1227,7 @@ void Turnsummary()
 					if(gang == 0)
 						return;
 
-#if 1	
+#if 1
 					if (!gang->m_Events.IsEmpty())
 					{
 						gang->m_Events.DoSort();						// Sort Events to put Warnings & Dangers first.
@@ -1257,7 +1257,7 @@ void Turnsummary()
 			{
 				if(selected != -1)
 				{
-#if 1	
+#if 1
 					sBrothel	*pSelectedBrothel = g_Brothels.GetBrothel(selected);
 					if (!pSelectedBrothel->m_Events.IsEmpty())
 					{
@@ -1288,7 +1288,7 @@ void Turnsummary()
 			else if (category == 3) {
 				if(selected != -1)
 				{
-#if 1	
+#if 1
 					// list the events
 					// Get the girl
 					string selectedName		= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
@@ -1385,11 +1385,11 @@ void Turnsummary()
 				//	WD: The message queue is now sorted in cEvents::DoSort()
 				//		so ID's will match
 				// ****************************
-				if((SelEvent = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSEVENTS)) != -1)	
+				if((SelEvent = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSEVENTS)) != -1)
 				{
 					int SelGirl;
 					// if a girl is selected then
-					if((SelGirl = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)	
+					if((SelGirl = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)
 					{
 						sGirl* girl = 0;
 
@@ -1413,11 +1413,11 @@ void Turnsummary()
 			{
 				int SelEvent = -1;
 				// if a event is selected then
-				if((SelEvent = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSEVENTS)) != -1)	
+				if((SelEvent = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSEVENTS)) != -1)
 				{
 					int SelGang;
 					// if a gang is selected then
-					if((SelGang = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)	
+					if((SelGang = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)
 					{
 						sGang* gang = g_Gangs.GetGang(SelGang);
 
@@ -1590,7 +1590,7 @@ void Turnsummary()
 		return;
 	}
 /*
- *	make sure we don't trip over any other categories that were being 
+ *	make sure we don't trip over any other categories that were being
  *	silently ignored
  */
 	if(category != 0 && category != 3) {
@@ -1632,7 +1632,7 @@ void Turnsummary()
 		}
 	}
 /*
- *	not really sure what's going on here. lastNum is static so 
+ *	not really sure what's going on here. lastNum is static so
  *	persists from one invocation to the next. Ditto lastType.
  *
  *	num is the selection in the list box
@@ -1683,7 +1683,7 @@ void Turnsummary()
 		string brothel = "Current Brothel: ";
 		brothel += g_Brothels.GetName(g_CurrBrothel);
 		g_Turnsummary.EditTextItem(brothel, g_interfaceid.TEXT_CURRENTBROTHEL);
-		
+
 		Item = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM);
 
 		// Clear the lists
@@ -2258,7 +2258,7 @@ void Turnsummary()
 		return;
 	}
 /*
- *	make sure we don't trip over any other categories that were being 
+ *	make sure we don't trip over any other categories that were being
  *	silently ignored
  */
 	if(category != 0 && category != 3) {
@@ -2297,7 +2297,7 @@ void Turnsummary()
 		}
 	}
 /*
- *	not really sure what's going on here. lastNum is static so 
+ *	not really sure what's going on here. lastNum is static so
  *	persists from one invocation to the next. Ditto lastType.
  *
  *	num is the selection in the list box
@@ -2392,7 +2392,7 @@ void GameEvents()
 {
 	cScriptManager sm;
 /*
- *	The "" on the end forces it to end in a / or \   
+ *	The "" on the end forces it to end in a / or \
  */
 	DirPath dp = DirPath() << "Resources" << "Scripts" << "";
 
@@ -2440,24 +2440,24 @@ void GameEvents()
 	else if(CheckGameFlag(FLAG_DUNGEONCUSTDIE))	// a customer has died in the dungeon
 	{
 		g_MessageQue.AddToQue("A customer has died in the dungeon.\nTheir body will be removed by the end of the week.", 1);
-		
+
 		if(g_Dice%100 < 10)	// only 10% chance of being found out
 		{
-			// WD: Use acessor methods 
+			// WD: Use acessor methods
 			//g_Brothels.GetPlayer()->m_Suspicion++;
 			//if(g_Brothels.GetPlayer()->m_Suspicion > 100)
 			//	g_Brothels.GetPlayer()->m_Suspicion = 100;
 			g_Brothels.GetPlayer()->suspicion(1);
-			
+
 		}
 
-		// WD: Use acessor methods 
+		// WD: Use acessor methods
 		//g_Brothels.GetPlayer()->m_Disposition--;
 		//if(g_Brothels.GetPlayer()->m_Disposition < -100)
 		//	g_Brothels.GetPlayer()->m_Disposition = -100;
 		g_Brothels.GetPlayer()->disposition(-1);
 
-		// WD: Use acessor methods 
+		// WD: Use acessor methods
 		//g_Brothels.GetPlayer()->m_CustomerFear++;
 		//if(g_Brothels.GetPlayer()->m_CustomerFear > 100)
 		//	g_Brothels.GetPlayer()->m_CustomerFear = 100;
@@ -2644,9 +2644,10 @@ void Gallery()
 	}
 }
 
+/*
 void SaveMasterFile(string filename)
 {
-/*
+ *
  *	I think this is outdated now. Which is to say
  *	we re-write the masterfile after we finish loading
  *	and I don't think we can pick up any new .girls files
@@ -2667,7 +2668,7 @@ void SaveMasterFile(string filename)
 	mastfile += ".mast";
 	load.open(mastfile.c_str());
 
-	numSaved = 0; 
+	numSaved = 0;
 	if(load)
 	{
 		while(load.good())
@@ -2717,8 +2718,9 @@ void SaveMasterFile(string filename)
 			save<<savedFiles[j].c_str()<<endl;
 	}
 	save.close();
-*/
+
 }
+*/
 
 void SaveGameXML(string filename)
 {
@@ -2868,7 +2870,7 @@ bool LoadGameXML(TiXmlHandle hDoc)
 	g_TalkCount = 0;
 	pRoot->QueryIntAttribute("TalkCount", &g_TalkCount);
 
-	
+
 	// load player gold
 	g_Gold.loadGoldXML(hRoot.FirstChildElement("Gold"));
 
@@ -2989,7 +2991,7 @@ bool LoadGameLegacy(string directory, string filename)
 	g_Girls.LoadDefaultImages();
 
 	ifs.close();
-	
+
 	if(g_Cheats)
 	{
 		g_WalkAround = false;
@@ -3161,7 +3163,7 @@ void TransferGirls()
 					i++;
 					temp = temp->m_Next;
 				}
-			}				
+			}
 		}
 	}
 }
