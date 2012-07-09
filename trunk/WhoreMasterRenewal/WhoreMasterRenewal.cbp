@@ -3,7 +3,9 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="Whore Master Renewal" />
+		<Option platforms="Windows;" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="Tests\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="..\bin\WhoreMasterRenewal-DEBUG" prefix_auto="1" extension_auto="1" />
@@ -40,6 +42,19 @@
 					<Add option="-s" />
 				</Linker>
 			</Target>
+			<Target title="Tests">
+				<Option output="Tests\bin\WMRTests" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="Tests\bin" />
+				<Option object_output="Tests\obj" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DTESTS" />
+					<Add directory="Tests\Dependencies" />
+					<Add directory="src" />
+				</Compiler>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add directory="Dependencies\SDL\include\SDL" />
@@ -50,17 +65,23 @@
 			<Add option="-static" />
 			<Add library="mingw32" />
 			<Add library="libTinyXML.a" />
+			<Add library="libSDL.a" />
 			<Add library="libSDLmain.a" />
-			<Add library="libSDL.dll.a" />
 			<Add library="libSDL_gfx.dll.a" />
 			<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
 			<Add library="libSDL_gfx.a" />
 			<Add library="Dependencies\SDL\lib\SDL_image.lib" />
 			<Add library="liblua.a" />
+			<Add library="libwinmm.a" />
+			<Add library="libgdi32.a" />
 			<Add directory="Dependencies\SDL\lib" />
 			<Add directory="Dependencies\lua\lib" />
 			<Add directory="Dependencies\TinyXML\lib" />
 		</Linker>
+		<Unit filename="Tests\src\cSurfaceTest.cpp">
+			<Option virtualFolder="Tests\" />
+			<Option target="Tests" />
+		</Unit>
 		<Unit filename="src\CGameObject.cpp" />
 		<Unit filename="src\CGameObject.h" />
 		<Unit filename="src\CGraphics.cpp" />
@@ -246,6 +267,15 @@
 			<envvars />
 			<debugger />
 			<lib_finder disable_auto="1" />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

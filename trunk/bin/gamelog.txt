@@ -1,5 +1,5 @@
-Loading configration variables from '.\Resources\Data\config.xml'
 [sGirl::setup_maps] Setting up Stats, Skills and Status codes.
+Loading configration variables from '.\Resources\Data\config.xml'
 calling init
 Initializing Graphics
 Reading Screen Mode
@@ -1004,13 +1004,5 @@ Loading brothel: test
 Loading global triggers
 Loading default images
 Error in RenderText m_Message. Text which was to be rendered: 
-Text has zero width
-Error in RenderText m_Message. Text which was to be rendered: 
-Text has zero width
-Error in RenderText m_Message. Text which was to be rendered: 
-Text has zero width
-Error in RenderText m_Message. Text which was to be rendered: 
-Text has zero width
-Error in RenderText m_Message. Text which was to be rendered: 
-Text has zero width
+
 Shutting Down

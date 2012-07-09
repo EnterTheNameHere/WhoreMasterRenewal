@@ -71,5 +71,3 @@ adding button: minus_20x20Off.png
 adding button: plus_20x20Off.png
 adding button: minus_20x20Off.png
 adding button: plus_20x20Off.png
-loading .\Resources\Characters\RandomAddon1.rgirlsx as XML
-loading .\Resources\Characters\RandomGirls.rgirlsx as XML

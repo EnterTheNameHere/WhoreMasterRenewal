@@ -1566,3 +1566,1731 @@
 	<assert.h>
 	<string.h>
 
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workstripper.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340976317 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cjobmanager.h
+	<string>
+	<vector>
+	"cGirls.h"
+
+1340976550 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.h
+	<map>
+	<iostream>
+	<iomanip>
+	<string>
+	<fstream>
+	"Constants.h"
+	"cTraits.h"
+	"cInventory.h"
+	"cCustomers.h"
+	"cEvents.h"
+	"CSurface.h"
+	"cTriggers.h"
+	"cNameList.h"
+	"cAnimatedSurface.h"
+
+1340976152 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\constants.h
+	"cRng.h"
+
+1340976010 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crng.h
+	<cstdlib>
+	<ctime>
+
+1340975395 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.h
+	"Constants.h"
+	<string>
+	<fstream>
+
+1340976356 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinventory.h
+	<iostream>
+	<ostream>
+	<string>
+	<vector>
+	"Constants.h"
+
+1340976780 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccustomers.h
+	"cGirls.h"
+
+1340976708 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cevents.h
+	<string>
+	<vector>
+	"Constants.h"
+
+1341140775 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\csurface.h
+	"GameSystem.h"
+	"CResource.h"
+	<SDL_rotozoom.h>
+	<string>
+	<vector>
+
+1340975217 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gamesystem.h
+	"CLog.h"
+	"SDLStuff.h"
+	"GraphicsSystem.h"
+	"CResourceManager.h"
+	"CTimer.h"
+
+1340976253 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.h
+	<iostream>
+	<fstream>
+	<sstream>
+	<string>
+
+1340974835 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sdlstuff.h
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1341403326 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_config.h
+	"SDL_platform.h"
+	<stdarg.h>
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_platform.h
+
+1326114594 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_config_win32.h
+	"SDL_platform.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\begin_code.h
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\close_code.h
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_keysym.h
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1326958206 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325788834 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325793194 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1340975225 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\graphicssystem.h
+	"cFont.h"
+	"CSurface.h"
+	"CGraphics.h"
+
+1340976683 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cfont.h
+	<SDL_ttf.h>
+	<string>
+
+1340976484 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgraphics.h
+	"SDLStuff.h"
+	"CTimer.h"
+	<string>
+
+1340975435 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctimer.h
+
+1340976054 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cresourcemanager.h
+	"CResource.h"
+
+1340976083 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cresource.h
+	"CGraphics.h"
+
+1340380271 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_rotozoom.h
+	<math.h>
+	"SDL.h"
+
+1340982141 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctriggers.h
+	<string>
+	<queue>
+	"GameFlags.h"
+	"tinyxml.h"
+
+1340975208 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gameflags.h
+
+1305393898 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\tinyxml\src\tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1305393898 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\tinyxml\src\tinystr.h
+	<assert.h>
+	<string.h>
+
+1340976170 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cnamelist.h
+	<vector>
+	<string>
+
+1340976847 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\canimatedsurface.h
+	"CSurface.h"
+	<string>
+	<iostream>
+	<fstream>
+
+1340981878 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbrothel.h
+	<string>
+	<vector>
+	"cGirls.h"
+	"cRival.h"
+	"cGold.h"
+	"cJobManager.h"
+	"cBuilding.h"
+	"cDungeon.h"
+	"cPlayer.h"
+	"tinyxml.h"
+
+1340981800 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crival.h
+	<string>
+	"cNameList.h"
+	"tinyxml.h"
+
+1340982141 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgold.h
+	<string>
+	<map>
+	<iomanip>
+	<math.h>
+	"CLog.h"
+	"tinyxml.h"
+
+1340981737 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbuilding.h
+	<iostream>
+	<ostream>
+	<fstream>
+	<string>
+	<vector>
+	"cTariff.h"
+	"sFacility.h"
+	"tinyxml.h"
+
+1340975474 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctariff.h
+	"CLog.h"
+	"cRng.h"
+	"sConfig.h"
+
+1340974853 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sconfig.h
+	<iostream>
+	<string>
+	<vector>
+
+1340974821 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacility.h
+	<math.h>
+	"cTariff.h"
+
+1340980841 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cdungeon.h
+	<string>
+	<fstream>
+	"tinyxml.h"
+	"cGirls.h"
+
+1340981996 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cplayer.h
+	<fstream>
+	"Constants.h"
+	"tinyxml.h"
+
+1340975414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctrainable.h
+	<vector>
+
+1340976621 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgangs.h
+	"cGirls.h"
+	"cRival.h"
+	"cGold.h"
+	"cBrothel.h"
+	<vector>
+
+1340976192 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cmessagebox.h
+	"cFont.h"
+	<queue>
+
+1340982038 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinventory.cpp
+	"tinyxml.h"
+	"cInventory.h"
+	<iostream>
+	<fstream>
+	"cBrothel.h"
+	"cMessageBox.h"
+	"cCustomers.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cfont.cpp
+	<iostream>
+	"cFont.h"
+	"CLog.h"
+	"CGraphics.h"
+	"sConfig.h"
+	<vector>
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingsetup.cpp
+	"cBrothel.h"
+	"cScreenBuildingSetup.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"cTariff.h"
+
+1340975944 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingsetup.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340975281 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\dirpath.h
+	<string>
+	<iostream>
+	<fstream>
+
+1340976379 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfacewindow.h
+	"cButton.h"
+	"GameSystem.h"
+	"CSurface.h"
+	"cInterfaceObject.h"
+	"cEditBox.h"
+	"cImageItem.h"
+	"cTextItem.h"
+	"cListBox.h"
+	"cScrollBar.h"
+	"cCheckBox.h"
+	"cSlider.h"
+	"cXmlWidget.h"
+	"DirPath.h"
+	<vector>
+	<map>
+
+1340976812 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbutton.h
+	<string>
+	"CSurface.h"
+	"cInterfaceObject.h"
+	"cInterfaceEvent.h"
+
+1340976401 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfaceobject.h
+
+1340976424 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfaceevent.h
+
+1340976734 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ceditbox.h
+	<string>
+	"CSurface.h"
+	"cInterfaceObject.h"
+	"cInterfaceEvent.h"
+	"cFont.h"
+
+1340977324 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cimageitem.h
+	"CSurface.h"
+	"cAnimatedSurface.h"
+	"cInterfaceObject.h"
+
+1340975457 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctextitem.h
+	"cFont.h"
+	"cInterfaceObject.h"
+	"sConfig.h"
+	"cScrollBar.h"
+
+1340975550 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscrollbar.h
+	<string>
+	"CSurface.h"
+	"cInterfaceObject.h"
+	"cInterfaceEvent.h"
+
+1340976278 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clistbox.h
+	"cInterfaceObject.h"
+	"cScrollBar.h"
+	"cFont.h"
+	"DirPath.h"
+	"Constants.h"
+
+1340976462 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccheckbox.h
+	"CSurface.h"
+	"cInterfaceObject.h"
+	"cInterfaceEvent.h"
+	"cFont.h"
+
+1340975519 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cslider.h
+	<string>
+	"CSurface.h"
+	"cInterfaceObject.h"
+	"cInterfaceEvent.h"
+
+1340975300 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cxmlwidget.h
+	<vector>
+
+1340975122 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceglobals.h
+	"cInterfaceWindow.h"
+	"cInterfaceEvent.h"
+	"cMessageBox.h"
+	"InterfaceIDs.h"
+	"cChoiceMessage.h"
+	"linux.h"
+
+1340975094 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceids.h
+
+1340976450 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cchoicemessage.h
+	"CSurface.h"
+	"cFont.h"
+	<string>
+
+1340975025 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\linux.h
+	<limits.h>
+	<stdlib.h>
+	<string.h>
+	<stdio.h>
+
+1340975330 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cwindowmanager.h
+	<stack>
+	<vector>
+	"cInterfaceWindow.h"
+
+1341397001 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
+	"main.h"
+	"InterfaceGlobals.h"
+	"GameFlags.h"
+	"InterfaceProcesses.h"
+	"sConfig.h"
+	"CSurface.h"
+	"cJobManager.h"
+	"Revision.h"
+	<stdlib.h>
+	<crtdbg.h>
+	"linux.h"
+	<signal.h>
+	<sstream>
+	"IconSurface.h"
+
+1340974955 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.h
+	"GameSystem.h"
+	<iostream>
+	<fstream>
+	<sstream>
+	<stdio.h>
+	<time.h>
+	"main.h"
+	"Constants.h"
+	"cTraits.h"
+	"cGirls.h"
+	"cBrothel.h"
+	"cGangs.h"
+	"cEvents.h"
+	"cCustomers.h"
+	"math.h"
+	"cTriggers.h"
+	"cGameScript.h"
+	"cWindowManager.h"
+	"cRival.h"
+	"cGold.h"
+	"cScrollBar.h"
+
+1340976645 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgamescript.h
+	"cScripts.h"
+	"cGirls.h"
+
+1340975577 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscripts.h
+	<stdio.h>
+	<string>
+
+1340981632 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.h
+	<string>
+	"tinyxml.h"
+
+1340974977 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\revision.h
+
+1340975154 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\iconsurface.h
+	"linux.h"
+	"DirPath.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workfluffer.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenitemmanagement.cpp
+	"cBrothel.h"
+	"cScreenItemManagement.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"InterfaceGlobals.h"
+	"InterfaceProcesses.h"
+	"sConfig.h"
+
+1340975723 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenitemmanagement.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptutils.cpp
+	"cScriptUtils.h"
+	"cGirls.h"
+	"cMessageBox.h"
+	"cBrothel.h"
+
+1340975562 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptutils.h
+
+1340736013 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbrothel.cpp
+	<sstream>
+	"linux.h"
+	"cBrothel.h"
+	"cGangs.h"
+	"DirPath.h"
+	"cMessageBox.h"
+	"strnatcmp.h"
+	"XmlMisc.h"
+
+1340974782 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\strnatcmp.h
+
+1340981963 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlmisc.h
+	"tinyxml.h"
+	<string>
+	"cTraits.h"
+	"cInventory.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cchoicemessage.cpp
+	"cChoiceMessage.h"
+	"IconSurface.h"
+	"CGraphics.h"
+	"sConfig.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workadvertising.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340980868 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cdungeon.cpp
+	<sstream>
+	"linux.h"
+	"cDungeon.h"
+	"cBrothel.h"
+	"cMessageBox.h"
+	"cGangs.h"
+	"strnatcmp.h"
+	"cGirlTorture.h"
+
+1340976527 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirltorture.h
+	<string>
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ceditbox.cpp
+	"cEditBox.h"
+	"CGraphics.h"
+	"sConfig.h"
+
+1340735843 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenhouse.cpp
+	"cBrothel.h"
+	"cScreenHouse.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"cGetStringScreenManager.h"
+	"InterfaceGlobals.h"
+	"cGangs.h"
+
+1340975705 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenhouse.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340976596 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgetstringscreenmanager.h
+	<string>
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\worktorturer.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenprison.cpp
+	"cBrothel.h"
+	"cScreenPrison.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"sFacilityList.h"
+	"cGetStringScreenManager.h"
+	"linux.h"
+
+1340977106 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenprison.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340974797 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacilitylist.h
+	<vector>
+	<string>
+	"sFacility.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crenderque.cpp
+	"CRenderQue.h"
+
+1340976102 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crenderque.h
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctriggers.cpp
+	"cTriggers.h"
+	<fstream>
+	"cScriptManager.h"
+	"GameFlags.h"
+	"cGirls.h"
+	"cGold.h"
+
+1340975606 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptmanager.h
+	"CLog.h"
+	"cGameScript.h"
+	"cLuaScript.h"
+	"DirPath.h"
+	<queue>
+
+1340976212 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluascript.h
+	<string>
+	<iostream>
+	<fstream>
+	<sstream>
+	"lua.h"
+	"lualib.h"
+	"lauxlib.h"
+	"CLog.h"
+	"DirPath.h"
+
+1322585708 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\src\lua.h
+	<stdarg.h>
+	<stddef.h>
+	"luaconf.h"
+
+1323194316 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\src\luaconf.h
+	<limits.h>
+	<stddef.h>
+	<stdio.h>
+	<math.h>
+
+1323349898 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\src\lualib.h
+	"lua.h"
+
+1322585708 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\src\lauxlib.h
+	<stddef.h>
+	<stdio.h>
+	"lua.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirlgangfight.cpp
+	"cGirlGangFight.h"
+	"cBrothel.h"
+	"cGangs.h"
+
+1340976577 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirlgangfight.h
+	<string>
+	<vector>
+	"CLog.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crival.cpp
+	"cRival.h"
+	<stdlib.h>
+	<fstream>
+	<sstream>
+	"linux.h"
+	"cBrothel.h"
+	"cMessageBox.h"
+	"cGold.h"
+	"GameFlags.h"
+	"DirPath.h"
+	"cGangs.h"
+
+1340485532 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluascript.cpp
+	"cLuaScript.h"
+	"cLuaMenu.h"
+	"cScriptUtils.h"
+	"CLog.h"
+	"cMessageBox.h"
+	"cChoiceMessage.h"
+	"cBrothel.h"
+	"DirPath.h"
+	"FileList.h"
+	"SDLStuff.h"
+	"sConfig.h"
+	"cInterfaceWindow.h"
+	"cWindowManager.h"
+	"cScriptManager.h"
+
+1340976237 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluamenu.h
+	<string>
+	<vector>
+	"cChoiceMessage.h"
+	"cLuaScript.h"
+	"CLog.h"
+	"sConfig.h"
+	"CGraphics.h"
+
+1340975253 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\filelist.h
+	<string>
+	<vector>
+	"DirPath.h"
+
+1340369414 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscripts.cpp
+	"cScripts.h"
+	<string>
+	<cstring>
+	<cstdlib>
+	"linux.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.cpp
+	<iostream>
+	"CLog.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctrainable.cpp
+	<algorithm>
+	<math.h>
+	"cRng.h"
+	"CLog.h"
+	"cGirls.h"
+	"cTrainable.h"
+	"Constants.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgangs.cpp
+	<sstream>
+	<algorithm>
+	"cGangs.h"
+	"cBrothel.h"
+	"cJobManager.h"
+	"cCustomers.h"
+	"cGirls.h"
+	"cMessageBox.h"
+	"GameFlags.h"
+	"CGraphics.h"
+	"sConfig.h"
+	"cTariff.h"
+	"XmlMisc.h"
+	"linux.h"
+	"DirPath.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clistbox.cpp
+	<algorithm>
+	"cListBox.h"
+	"CGraphics.h"
+	"cInterfaceEvent.h"
+	"strnatcmp.h"
+	<SDL_rotozoom.h>
+	"sConfig.h"
+	<sstream>
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cslider.cpp
+	"cSlider.h"
+	"CResourceManager.h"
+	"DirPath.h"
+	"main.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cworkcleaning.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbar.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cimageitem.cpp
+	"cImageItem.h"
+	"CGraphics.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptmanager.cpp
+	"cScriptManager.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengangs.cpp
+	"cBrothel.h"
+	"cScreenGangs.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"InterfaceProcesses.h"
+	"cGangs.h"
+
+1340975906 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengangs.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340982141 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfacewindow.cpp
+	"cInterfaceWindow.h"
+	<time.h>
+	"DirPath.h"
+	"CLog.h"
+	"tinyxml.h"
+	"XmlUtil.h"
+	<string>
+	<cctype>
+
+1340976859 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlutil.h
+	<string>
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workwhore.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+	<algorithm>
+
+1340982141 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacilitylist.cpp
+	"tinyxml.h"
+	"sFacilityList.h"
+	"DirPath.h"
+	"FileList.h"
+	"CLog.h"
+
+1340686867 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cjobmanager.cpp
+	<algorithm>
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cnamelist.cpp
+	<fstream>
+	"Constants.h"
+	"cNameList.h"
+	"CLog.h"
+	"cRng.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbeastcapture.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340735843 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workfreetime.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccolor.cpp
+	"cColor.h"
+
+1340976801 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccolor.h
+	<iostream>
+	<string>
+	<SDL.h>
+	"CLog.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbeastcare.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreentown.cpp
+	"cBrothel.h"
+	"cScreenTown.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"sFacilityList.h"
+	"cGetStringScreenManager.h"
+	"InterfaceProcesses.h"
+	"cScriptManager.h"
+	<iostream>
+	<locale>
+	<sstream>
+	"cGangs.h"
+
+1340975621 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreentown.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenmayor.cpp
+	"cBrothel.h"
+	"cScreenMayor.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"cGetStringScreenManager.h"
+	"InterfaceGlobals.h"
+	"linux.h"
+
+1340977074 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenmayor.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340982141 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sconfig.cpp
+	<iostream>
+	<ostream>
+	<fstream>
+	<cctype>
+	"sConfig.h"
+	"DirPath.h"
+	"CLog.h"
+	"tinyxml.h"
+	"cColor.h"
+
+1340711930 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.cpp
+	"InterfaceProcesses.h"
+	"InterfaceGlobals.h"
+	"GameFlags.h"
+	"main.h"
+	"cGetStringScreenManager.h"
+	"cTariff.h"
+	"cScriptManager.h"
+	"Revision.h"
+	"linux.h"
+	<windows.h>
+	"DirPath.h"
+	"FileList.h"
+	"MasterFile.h"
+
+1340981333 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\masterfile.h
+	<map>
+	<iostream>
+	<istream>
+	<fstream>
+	"tinyxml.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlmisc.cpp
+	"Constants.h"
+	"XmlMisc.h"
+	"cGirls.h"
+	"cBrothel.h"
+
+1340982141 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.cpp
+	"cTariff.h"
+	"cGirls.h"
+	"cEvents.h"
+	"math.h"
+	<fstream>
+	"cBrothel.h"
+	"cMessageBox.h"
+	"cGold.h"
+	"tinyxml.h"
+	"XmlMisc.h"
+	"cGangs.h"
+	"CGraphics.h"
+	<algorithm>
+	<limits.h>
+	"linux.h"
+	"DirPath.h"
+	"FileList.h"
+
+1340996010 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cresourcemanager.cpp
+	"CResourceManager.h"
+
+1340981737 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbuilding.cpp
+	"cBuilding.h"
+	"CLog.h"
+	"XmlUtil.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workhall.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingmanagement.cpp
+	"cBrothel.h"
+	"cScreenBuildingManagement.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"sFacilityList.h"
+	"cGetStringScreenManager.h"
+
+1340975962 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingmanagement.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccustomers.cpp
+	"cCustomers.h"
+	"cBrothel.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreendungeon.cpp
+	<string>
+	<sstream>
+	<algorithm>
+	"InterfaceIDs.h"
+	"InterfaceGlobals.h"
+	"cScreenDungeon.h"
+	"cScriptManager.h"
+	"cBrothel.h"
+	"main.h"
+	"DirPath.h"
+	"cTariff.h"
+	"cGirlGangFight.h"
+	"cGirlTorture.h"
+
+1340975925 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreendungeon.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crng.cpp
+	"cRng.h"
+	"sConfig.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirlmanagement.cpp
+	<algorithm>
+	"cBrothel.h"
+	"cScreenGirlManagement.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"cTariff.h"
+	"cJobManager.h"
+	"InterfaceProcesses.h"
+
+1340975871 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirlmanagement.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cevents.cpp
+	<algorithm>
+	<iostream>
+	<iterator>
+	"cEvents.h"
+	"cGirls.h"
+
+1340369752 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\filelist.cpp
+	"FileList.h"
+	<map>
+	<sys/types.h>
+	<dirent.h>
+	<errno.h>
+	<vector>
+	<string>
+	<iostream>
+	<regex.h>
+	<string.h>
+	"cInterfaceWindow.h"
+	<windows.h>
+	"interfaceIDs.h"
+
+1340982141 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlutil.cpp
+	"XmlUtil.h"
+	"CLog.h"
+	"tinyxml.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctariff.cpp
+	"CLog.h"
+	"cTariff.h"
+	"cGirls.h"
+	"cBrothel.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cwindowmanager.cpp
+	"cWindowManager.h"
+	"CLog.h"
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgamescript.cpp
+	"cGameScript.h"
+	"cMessageBox.h"
+	"cChoiceMessage.h"
+	"cBrothel.h"
+	"GameFlags.h"
+	"cGirls.h"
+	"cInventory.h"
+	"cWindowManager.h"
+	"cGangs.h"
+	"cScriptUtils.h"
+	"cGirlGangFight.h"
+	"cGirlTorture.h"
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workmatron.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\dirpath.cpp
+	"DirPath.h"
+	"sConfig.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbutton.cpp
+	"cButton.h"
+	"CResourceManager.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluamenu.cpp
+	"cLuaMenu.h"
+	"cChoiceMessage.h"
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenslavemarket.cpp
+	"cBrothel.h"
+	"cScreenSlaveMarket.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"sFacilityList.h"
+	"cGetStringScreenManager.h"
+
+1340975636 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenslavemarket.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbrothelmassusse.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgameobject.cpp
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cmessagebox.cpp
+	"cMessageBox.h"
+	"CGraphics.h"
+	"sConfig.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\canimatedsurface.cpp
+	"cAnimatedSurface.h"
+	"CLog.h"
+
+1340369894 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.cpp
+	<iostream>
+	"cTraits.h"
+	"stdio.h"
+	<cstring>
+	"linux.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cplayer.cpp
+	"linux.h"
+	<cmath>
+	"cPlayer.h"
+	"XmlMisc.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gameflags.cpp
+	"GameFlags.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceglobals.cpp
+	"InterfaceGlobals.h"
+	<iostream>
+	"DirPath.h"
+	"cBrothel.h"
+	"Constants.h"
+	"cTariff.h"
+	"cWindowManager.h"
+	"cScreenBuildingManagement.h"
+	"cScreenPrison.h"
+	"cScreenTown.h"
+	"cScreenSlaveMarket.h"
+	"cScreenMayor.h"
+	"cScreenBank.h"
+	"cScreenHouse.h"
+	"cScreenItemManagement.h"
+	"cScreenBuildingSetup.h"
+	"cScreenGangs.h"
+	"cScreenGirlManagement.h"
+	"cScreenGirlDetails.h"
+	"cScreenDungeon.h"
+
+1340975981 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbank.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340975888 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirldetails.h
+	"DirPath.h"
+	"cInterfaceWindow.h"
+	"InterfaceGlobals.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgetstringscreenmanager.cpp
+	"cGetStringScreenManager.h"
+	"InterfaceGlobals.h"
+	"main.h"
+
+1340982141 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacility.cpp
+	"sFacility.h"
+	"XmlUtil.h"
+	"CLog.h"
+	"tinyxml.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\worksecurity.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccheckbox.cpp
+	"cCheckBox.h"
+	"DirPath.h"
+	"CGraphics.h"
+	"sConfig.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirldetails.cpp
+	<algorithm>
+	"cBrothel.h"
+	"cScreenGirlDetails.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"cTariff.h"
+	"cJobManager.h"
+	"InterfaceProcesses.h"
+	"cGetStringScreenManager.h"
+	"cGangs.h"
+	"cScriptManager.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgold.cpp
+	"cGold.h"
+	"CLog.h"
+	"sConfig.h"
+	<sstream>
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\strnatcmp.cpp
+	<ctype.h>
+	<string.h>
+	<assert.h>
+	<stdio.h>
+	"strnatcmp.h"
+
+1340314298 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirltorture.cpp
+	"cGirls.h"
+	"cGirlTorture.h"
+	"cMessageBox.h"
+	"cBrothel.h"
+	"cDungeon.h"
+	"cGirlGangFight.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscrollbar.cpp
+	"cScrollBar.h"
+	"CResourceManager.h"
+	"DirPath.h"
+	"main.h"
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgraphics.cpp
+	"CGraphics.h"
+	"fstream"
+	"CLog.h"
+	"DirPath.h"
+
+1341140869 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\csurface.cpp
+	"CSurface.h"
+	"CLog.h"
+	"CGraphics.h"
+	"CResourceManager.h"
+	<SDL_image.h>
+
+1340314299 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbank.cpp
+	"cBrothel.h"
+	"cScreenBank.h"
+	"cWindowManager.h"
+	"cGold.h"
+	"cGetStringScreenManager.h"
+	"InterfaceGlobals.h"
+
+1340314300 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workexplorecatacombs.cpp
+	"cJobManager.h"
+	"cBrothel.h"
+	"cCustomers.h"
+	"cRng.h"
+	"cInventory.h"
+	"sConfig.h"
+	"cRival.h"
+	<sstream>
+	"CLog.h"
+	"cTrainable.h"
+	"cTariff.h"
+	"cGold.h"
+	"cGangs.h"
+	"cMessageBox.h"
+
+1341396411 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\src\csurfacetest.cpp
+	<igloo/igloo.h>
+	<string>
+	"CSurface.h"
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\igloo.h
+	<igloo/igloo_framework.h>
+	<igloo/core/defaultregistrationaliases.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\igloo_framework.h
+	<iostream>
+	<map>
+	<vector>
+	<sstream>
+	<stack>
+	<list>
+	<memory>
+	<algorithm>
+	<igloo/core/stringize.h>
+	<igloo/constraints/constraints.h>
+	<igloo/fluent/fluent.h>
+	<igloo/core/core.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\stringize.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\constraints.h
+	<igloo/constraints/containsconstraint.h>
+	<igloo/constraints/endswithconstraint.h>
+	<igloo/constraints/equalsconstraint.h>
+	<igloo/constraints/haslengthconstraint.h>
+	<igloo/constraints/isgreaterthanconstraint.h>
+	<igloo/constraints/islessthanconstraint.h>
+	<igloo/constraints/startswithconstraint.h>
+	<igloo/constraints/fulfillsconstraint.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\containsconstraint.h
+	<algorithm>
+	<igloo/constraints/expressions/expression.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\expressions\expression.h
+	<igloo/constraints/expressions/notexpression.h>
+	<igloo/constraints/expressions/andexpression.h>
+	<igloo/constraints/expressions/orexpression.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\expressions\notexpression.h
+	<igloo/constraints/expressions/expression_fwd.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\expressions\expression_fwd.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\expressions\andexpression.h
+	<igloo/constraints/expressions/expression_fwd.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\expressions\orexpression.h
+	<igloo/constraints/expressions/expression_fwd.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\endswithconstraint.h
+	<igloo/constraints/expressions/expression.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\equalsconstraint.h
+	<igloo/constraints/expressions/expression.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\haslengthconstraint.h
+	<igloo/constraints/expressions/expression.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\isgreaterthanconstraint.h
+	<igloo/constraints/expressions/expression.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\islessthanconstraint.h
+	<igloo/constraints/expressions/expression.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\startswithconstraint.h
+	<igloo/constraints/expressions/expression.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\constraints\fulfillsconstraint.h
+	<igloo/constraints/expressions/expression.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\fluent.h
+	<igloo/fluent/constraintlist.h>
+	<igloo/fluent/constraintadapter.h>
+	<igloo/fluent/operators/constraintoperator.h>
+	<igloo/fluent/operators/andoperator.h>
+	<igloo/fluent/operators/oroperator.h>
+	<igloo/fluent/operators/collections/collectionconstraintevaluator.h>
+	<igloo/fluent/operators/collections/alloperator.h>
+	<igloo/fluent/operators/collections/noneoperator.h>
+	<igloo/fluent/operators/collections/atleastoperator.h>
+	<igloo/fluent/operators/collections/exactlyoperator.h>
+	<igloo/fluent/operators/collections/atmostoperator.h>
+	<igloo/fluent/operators/notoperator.h>
+	<igloo/fluent/expressionbuilder.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\constraintlist.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\constraintadapter.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\constraintoperator.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\andoperator.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\oroperator.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\collections\collectionconstraintevaluator.h
+	<string>
+	<igloo/core/assertionexception.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\assertionexception.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\collections\alloperator.h
+	<igloo/fluent/operators/collections/collectionoperator.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\collections\collectionoperator.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\collections\noneoperator.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\collections\atleastoperator.h
+	<igloo/fluent/operators/collections/collectionoperator.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\collections\exactlyoperator.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\collections\atmostoperator.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\operators\notoperator.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\fluent\expressionbuilder.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\core.h
+	<igloo/core/progressoutput.h>
+	<igloo/core/testresult.h>
+	<igloo/core/testresultfactory.h>
+	<igloo/core/testresults.h>
+	<igloo/core/testlistener.h>
+	<igloo/core/testlisteneraggregator.h>
+	<igloo/core/outputters/outputters.h>
+	<igloo/core/assertionexception.h>
+	<igloo/core/context.h>
+	<igloo/core/contextregistry.h>
+	<igloo/core/contextrunner.h>
+	<igloo/core/testrunner.h>
+	<igloo/core/assert.h>
+	<igloo/core/assertmacro.h>
+	<igloo/core/contextprovider.h>
+	<igloo/core/registration.h>
+	<igloo/core/exceptions.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\progressoutput.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\testresult.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\testresultfactory.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\testresults.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\testlistener.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\testlisteneraggregator.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\outputters\outputters.h
+	<igloo/core/outputters/testresultsoutput.h>
+	<igloo/core/outputters/defaulttestresultsoutput.h>
+	<igloo/core/outputters/visualstudiooutput.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\outputters\testresultsoutput.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\outputters\defaulttestresultsoutput.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\outputters\visualstudiooutput.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\context.h
+	<igloo/core/assertionexception.h>
+	<igloo/core/assert.h>
+	<igloo/core/testresult.h>
+	<igloo/core/context.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\assert.h
+	<igloo/core/stringize.h>
+	<igloo/core/stringizers.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\stringizers.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\contextregistry.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\contextrunner.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\testrunner.h
+	<igloo/core/testresult.h>
+	<igloo/core/testresults.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\assertmacro.h
+	<igloo/core/assert.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\contextprovider.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\registration.h
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\exceptions.h
+	<igloo/core/assert.h>
+
+1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\defaultregistrationaliases.h
+	<igloo/core/registration.h>
+
