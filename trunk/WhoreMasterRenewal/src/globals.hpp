@@ -16,17 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef LINUX_H_INCLUDED_1503
-#define LINUX_H_INCLUDED_1503
-#pragma once
+#ifndef GLOBALS_HPP_INCLUDED_1442
+#define GLOBALS_HPP_INCLUDED_1442
 
-#include <limits.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-
-#ifdef LINUX
-inline char *_strdup(const char *buff) { return strdup(buff); }
-#endif
-
-#endif // LINUX_H_INCLUDED_1503
+#endif // GLOBALS_HPP_INCLUDED_1442

@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -42,7 +42,6 @@ extern string g_ReturnText;
 extern cGangManager g_Gangs;
 extern bool g_AllTogle;
 
-extern void GetString();
 extern cInterfaceWindow g_GetString;
 
 bool cScreenTown::ids_set = false;
@@ -141,7 +140,7 @@ void cScreenTown::init()
 	HideButton(brothel3_id, (g_Brothels.GetBrothel(2)==0));
 	HideButton(brothel4_id, (g_Brothels.GetBrothel(3)==0));
 	HideButton(brothel5_id, (g_Brothels.GetBrothel(4)==0));
-	
+
 	string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, curbrothel_id);
@@ -157,7 +156,7 @@ void cScreenTown::process()
 	}
 
 	init();
-/* 
+/*
  *	no events means we can go home
  */
 	if(g_InterfaceEvents.GetNumEvents() == 0) {
@@ -165,7 +164,7 @@ void cScreenTown::process()
 	}
 
 /*
- *	otherwise, compare event IDs 
+ *	otherwise, compare event IDs
  *
  *	if it's the back button, pop the window off the stack
  *	and we're done
@@ -391,7 +390,7 @@ void cScreenTown::do_walk()
 void cScreenTown::check_brothel(int BrothelNum)
 {	// player clicked on one of the brothels
 	if(g_Brothels.GetNumBrothels() == BrothelNum)
-	{	// player doesn't own this brothel... can he buy it? 
+	{	// player doesn't own this brothel... can he buy it?
 		static_brothel_data *bck = brothel_data + BrothelNum;
 		locale syslocale("");
 		stringstream ss;

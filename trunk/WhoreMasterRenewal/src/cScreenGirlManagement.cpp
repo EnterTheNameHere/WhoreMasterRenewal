@@ -46,6 +46,11 @@ static bool FreeGirl = false;
 static bool SellGirl = false;
 static int selection = -1;
 static int DayNight = 0;	// 1 is night, 0 is day.
+
+// need to undefine the stupid windows header macro SetJob
+#ifdef SetJob
+#undef SetJob
+#endif
 static bool SetJob = false;
 
 extern sGirl *selected_girl;

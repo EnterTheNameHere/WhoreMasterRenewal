@@ -61,7 +61,8 @@ public:
 		}
 		inner = 0;
 	}
-	void write(string text)	{
+	void write(string text)
+	{
 		if(!inner) inner = new CLogInner();
 		inner->write(text);
 	}

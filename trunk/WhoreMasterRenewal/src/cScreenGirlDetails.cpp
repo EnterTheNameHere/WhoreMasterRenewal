@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -52,6 +52,11 @@ static stringstream ss;
 static int ImageNum = -1;
 static int DetailLevel = 0;
 static int DayNight = 0;
+
+// need to undefine the stupid windows header macro SetJob
+#ifdef SetJob
+#undef SetJob
+#endif
 static bool SetJob = true;
 
 extern sGirl *selected_girl;
@@ -107,7 +112,7 @@ void cScreenGirlDetails::init()
 		g_InitWin = true;
 		g_LogFile.write("ERROR - girl details screen, selected_girl is null");
 /*
- *		adding this because the game will crash if we 
+ *		adding this because the game will crash if we
  *		go past this point with a null girl
  *
  *		Now as to why it was null in the first place ...
@@ -457,7 +462,7 @@ void cScreenGirlDetails::check_events()
 
 					temp->m_RunAway = 6;	// player has 6 weeks to retreive
 					temp->m_NightJob = temp->m_DayJob = JOB_RUNAWAY;
-					
+
 					g_Brothels.AddGirlToRunaways(temp);
 
 					string smess = "";
@@ -492,7 +497,7 @@ void cScreenGirlDetails::check_events()
 			else	// otherwise put her in the dungeon
 			{
 				message += "She puts up a fight ";
-				
+
 				if(gang)
 				{
 					if(gang->m_Num == 0)
@@ -506,7 +511,7 @@ void cScreenGirlDetails::check_events()
 				sGirl* nextGirl = remove_selected_girl();
 				g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 				g_Brothels.GetDungeon()->AddGirl(selected_girl,reason);
-				
+
 				if(g_Brothels.GetNumGirls(g_CurrBrothel) == 0)
 					g_WinManager.Pop();
 				else
@@ -522,7 +527,7 @@ void cScreenGirlDetails::check_events()
 			g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 			g_Brothels.GetDungeon()->AddGirl(selected_girl,reason);
 			message += "She goes quietly with a sullen look on her face.";
-			
+
 			if(g_Brothels.GetNumGirls(g_CurrBrothel) == 0)
 				g_WinManager.Pop();
 			else
@@ -663,8 +668,8 @@ sGirl *cScreenGirlDetails::get_prev_girl()
 {
 	sGirl *prev_girl = 0;
 
-	if (cycle_girls.size() == 0)					// Myr: Found this case from an exception. Will test to see if this 
-		return prev_girl;							//      is a good fix. 
+	if (cycle_girls.size() == 0)					// Myr: Found this case from an exception. Will test to see if this
+		return prev_girl;							//      is a good fix.
 
 	if(cycle_pos <= 0)
 		cycle_pos = cycle_girls.size() - 1;
@@ -693,7 +698,7 @@ sGirl *cScreenGirlDetails::get_next_girl()
 
 	if (cycle_pos <= 0) // Myr: Just in case
 		cycle_pos = 0;
-	if(cycle_pos >= (int)cycle_girls.size() - 1) 
+	if(cycle_pos >= (int)cycle_girls.size() - 1)
 		cycle_pos = 0;
 	else
 		cycle_pos++;
@@ -762,7 +767,7 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
 		return GIRL_LOSES;	// no fight -> girl lose
 	}
 /*
- *	OK - she's going to fight - 
+ *	OK - she's going to fight -
  */
 	sGang* gang;
 /*
@@ -783,7 +788,7 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
  *
  *		Suggestion on the forums that we allow clever girls to
  *		outwit stupid gang memebers here, which sounds cool.
- *		Also nice would be if a strongly magical girl could 
+ *		Also nice would be if a strongly magical girl could
  *		use sorcery to evade a none-too-crafty goon squad.
  *		(possibly make her fight the first one).
  *
@@ -835,7 +840,7 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
 	sGirl* nextGirl = remove_selected_girl();
 	sGirl* temp = girl;
 /*
- *	what we have to do depends on whether she was in brothel 
+ *	what we have to do depends on whether she was in brothel
  *	or dungeon
  */
 	if(girl->m_DayJob != JOB_INDUNGEON)
@@ -886,7 +891,7 @@ void cScreenGirlDetails::take_gold(sGirl *girl)
 	girl->m_Money = 0;
 /*
  *	she isn't going to like this much
- *	but it's not so bad for slaves 
+ *	but it's not so bad for slaves
  */
 	if(girl->m_States&(1<<STATUS_SLAVE))
 	{

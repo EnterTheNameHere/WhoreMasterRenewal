@@ -644,59 +644,49 @@ void ChangeGirlJobs()
 
 		// Fill the list boxes and set the current selections
 		string text = "Freetime (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 0, true), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 0, true));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJDAYTIME, 0, text);
 		text = "Freetime (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 0, false), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 0, false));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJNIGHTTIME, 0, text);
 
 		text = "Work Brothel (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 3, true), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 3, true));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJDAYTIME, 3, text);
 		text = "Work Brothel (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 3, false), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 3, false));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJNIGHTTIME, 3, text);
 
 		text = "Work Streets (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 2, true), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 2, true));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJDAYTIME, 2, text);
 		text = "Work Streets (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 2, false), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 2, false));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJNIGHTTIME, 2, text);
 
 		text = "Produce Movie (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 5, true), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 5, true));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJDAYTIME, 5, text);
 		text = "Produce Movie (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 5, false), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 5, false));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJNIGHTTIME, 5, text);
 
 		if(g_Brothels.GetBrothel(g_CurrBrothel)->m_Bar == 1)
 		{
 			text = "Strip Bar (";
-			_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 4, true), buffer, 10);
-			text += buffer;
+			text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 4, true));
 			text += ")";
 			g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJDAYTIME, 4, text);
 			text = "Strip Bar (";
-			_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 4, false), buffer, 10);
-			text += buffer;
+			text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 4, false));
 			text += ")";
 			g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJNIGHTTIME, 4, text);
 		}
@@ -704,25 +694,21 @@ void ChangeGirlJobs()
 		if(g_Brothels.GetBrothel(g_CurrBrothel)->m_GamblingHall == 1)
 		{
 			text = "Gambling Hall (";
-			_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 8, true), buffer, 10);
-			text += buffer;
+			text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 8, true));
 			text += ")";
 			g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJDAYTIME, 8, text);
 			text = "Gambling Hall (";
-			_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 8, false), buffer, 10);
-			text += buffer;
+			text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 8, false));
 			text += ")";
 			g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJNIGHTTIME, 8, text);
 		}
 
 		text = "Training (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 9, true), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 9, true));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJDAYTIME, 9, text);
 		text = "Training (";
-		_itoa(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 9, false), buffer, 10);
-		text += buffer;
+		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 9, false));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJNIGHTTIME, 9, text);
 
@@ -752,8 +738,7 @@ void ChangeGirlJobs()
 						int time = (g_Dice%14)+2;
 						g_Brothels.StartMovie(g_CurrBrothel, time);
 						string message = "The movie will be done in ";
-						_itoa(time, buffer, 10);
-						message += buffer;
+						message += toString(time);
 						message += " days, add more girls to increase quality of final product.";
 						g_MessageQue.AddToQue(message, 0);
 					}
@@ -770,8 +755,7 @@ void ChangeGirlJobs()
 						int time = (g_Dice%14)+2;
 						g_Brothels.StartMovie(g_CurrBrothel, time);
 						string message = "The movie will be done in ";
-						_itoa(time, buffer, 10);
-						message += buffer;
+						message += toString(time);
 						message += " weeks, add more girls to increase quality of final product.";
 						g_MessageQue.AddToQue(message, 0);
 					}
@@ -797,8 +781,7 @@ void ChangeGirlJobs()
 							int time = (g_Dice%14)+2;
 							g_Brothels.StartMovie(g_CurrBrothel, time);
 							string message = "The movie will be done in ";
-							_itoa(time, buffer, 10);
-							message += buffer;
+							message += toString(time);
 							message += " weeks, add more girls to increase quality of final product.";
 							g_MessageQue.AddToQue(message, 0);
 						}
@@ -815,8 +798,7 @@ void ChangeGirlJobs()
 							int time = (g_Dice%14)+2;
 							g_Brothels.StartMovie(g_CurrBrothel, time);
 							string message = "The movie will be done in ";
-							_itoa(time, buffer, 10);
-							message += buffer;
+							message += toString(time);
 							message += " weeks, add more girls to increase quality of final product.";
 							g_MessageQue.AddToQue(message, 0);
 						}

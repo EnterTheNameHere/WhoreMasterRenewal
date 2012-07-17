@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -55,6 +55,11 @@ public:
 	~cInterfaceWindow();
 
 	virtual void Free();
+
+    // need to undefine the stupid windows headers macro CreateWindow
+	#ifdef CreateWindow
+	#undef CreateWindow
+	#endif
 	void CreateWindow(int x, int y, int width, int height, int BorderSize);	// and color options latter
 	void UpdateWindow(int x, int y);
 	void MouseDown(int x, int y);
@@ -83,16 +88,16 @@ public:
 	void DisableButton(int id, bool disable);
 	void DisableButton(int id){DisableButton(id,true);}
 	void EnableButton(int id){DisableButton(id,false);}
-	
+
 	void HideImage(int id, bool hide);
 	void HideImage(int id) { HideImage(id, true); }
 	void UnhideImage(int id) { HideImage(id, false); }
 	void AddImage(int & id, string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
 	void SetImage(int id, CSurface* image);
 	void SetImage(int id, cAnimatedSurface* image);
-	
+
 	void AddEditBox(int & ID, int x, int y, int width, int height, int BorderSize);
-	
+
 	void EditTextItem(string text, int ID);
 	void HideText(int id, bool hide);
 	void HideText(int id) { HideText(id, true); }
@@ -186,7 +191,7 @@ public:
 	};
 	cInterfaceWindowXML();
 	void load();
-/* 
+/*
  *	this has static linkage so we can pass it
  *	to the window manager's Push method
  */

@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -22,6 +22,13 @@
 #include "CGraphics.h"
 #include "sConfig.h"
 #include <vector>
+
+
+// need to undefine the stupid windows headers macro DrawText
+#ifdef DrawText
+#undef DrawText
+#endif
+
 using namespace std;
 
 extern CLog g_LogFile;
@@ -76,7 +83,7 @@ void cFont::RenderMultilineText(string text)
 	int charwidth,charheight;
 	int width = m_Width - 10;  // pad the sides a bit, it was otherwise slightly overflowing
 
-	// -- Get until either ' ' or '\0' 
+	// -- Get until either ' ' or '\0'
 	while(n != -1)
 	{
 		string strSub;
@@ -136,6 +143,7 @@ void cFont::RenderMultilineText(string text)
 	for(unsigned int i=0; i<m_NumLines; i++)
 	{
 		SetText(lines[i].c_str());
+
 		DrawText(0,i*m_Lineskip,m_MultilineMessage, true);
 	}
 	m_Text = otext;

@@ -23,6 +23,7 @@
 #include "linux.h"
 #endif
 
+#include "main.h"
 #include "cBrothel.h"
 #include "cGangs.h"
 #include "DirPath.h"
@@ -1730,8 +1731,7 @@ void cBrothelManager::UpdateBrothels()
 		current->m_TotalCustomers += current->m_MiscCustomers;
 
 		string data = "";
-		_itoa(current->m_TotalCustomers+current->m_MiscCustomers, buffer, 10);
-		data += buffer;
+		data += toString( (current->m_TotalCustomers+current->m_MiscCustomers) );
 		data += " customers visited the building.";
 
 		current->m_Events.AddMessage(data, IMGTYPE_PROFILE, EVENT_BROTHEL);
@@ -1752,14 +1752,12 @@ void cBrothelManager::UpdateBrothels()
 
 		string data2 = "";
 		data2 += "Your advertising budget for this brothel is ";
-		_itoa(current->m_AdvertisingBudget, buffer, 10);
-		data2 += buffer;
+		data2 += toString(current->m_AdvertisingBudget);
 		data2 += " gold.";
 		if(tariff.advertising_costs(current->m_AdvertisingBudget) != current->m_AdvertisingBudget)
 		{
 			data2 += " However, due to your configuration, you instead had to pay ";
-			_itoa(tariff.advertising_costs(current->m_AdvertisingBudget), buffer, 10);
-			data2 += buffer;
+			data2 += toString(tariff.advertising_costs(current->m_AdvertisingBudget));
 			data2 += " gold.";
 		}
 		current->m_Events.AddMessage(data2, IMGTYPE_PROFILE, EVENT_BROTHEL);
@@ -1857,11 +1855,9 @@ void cBrothelManager::UpdateBrothels()
 		if(num == 1)
 			gold -= INCOME_BUSINESS;
 		string message = "You gain ";
-		_ltoa(gold, buffer, 10);
-		message += buffer;
+		message += toString(gold);
 		message += " gold from the ";
-		_itoa(g_Gangs.GetNumBusinessExtorted(), buffer, 10);
-		message += buffer;
+		message += toString(g_Gangs.GetNumBusinessExtorted());
 		message += " businesses under your control.\n";
 		g_Gold.extortion(gold);
 		if(num == 1)
@@ -2272,8 +2268,7 @@ void cBrothelManager::UpdateGirls(sBrothel* brothel, int DayNight)
 		else if(totalGold > 0)
 		{
 			summary += girlName + " earned a total of ";
-			_itoa(totalGold, buffer, 10);
-			summary += buffer;
+			summary += toString(totalGold);
 			summary += " gold";
 //			if(sw == JOB_MATRON)
 
@@ -2285,8 +2280,7 @@ void cBrothelManager::UpdateGirls(sBrothel* brothel, int DayNight)
 			else
 			{
 				summary += ", you keep ";
-				_itoa((int)current->m_Stats[STAT_HOUSE], buffer, 10);
-				summary += buffer;
+				summary += toString(current->m_Stats[STAT_HOUSE]);
 				summary += "%. ";
 			}
 		}
@@ -2299,8 +2293,7 @@ void cBrothelManager::UpdateGirls(sBrothel* brothel, int DayNight)
 		else if(totalGold < 0)
 		{
 			summary += "ERROR: She has a loss of ";
-			_itoa(totalGold, buffer, 10);
-			summary += buffer;
+			summary += toString(totalGold);
 			summary += " gold";
 			summary += "\n\n Please report this to the Pink Petal Devloment Team at http://pinkpetal.co.cc";
 			current->m_Events.AddMessage(summary, IMGTYPE_PROFILE, EVENT_DEBUG);
@@ -3444,18 +3437,15 @@ void cBrothelManager::CreateNewObjective()
 				{
 					m_Objective->m_Limit = (g_Dice%20)+10;
 					m_Objective->m_Target = m_Objective->m_Limit*1000;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " gold within ";
-					_itoa(m_Objective->m_Limit, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Limit);
 					message += " weeks.";
 				}
 				else
 				{
 					m_Objective->m_Target = ((g_Dice%20)+1)*200;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " gold.";
 				}
 				done = true;
@@ -3467,8 +3457,7 @@ void cBrothelManager::CreateNewObjective()
 					m_Objective->m_Limit = (g_Dice%5)+3;
 				else
 					m_Objective->m_Limit = (g_Dice%10)+10;
-				_itoa(m_Objective->m_Limit, buffer, 10);
-				message += buffer;
+				message += toString(m_Objective->m_Limit);
 				message += " weeks.";
 				done = true;
 				break;
@@ -3480,15 +3469,13 @@ void cBrothelManager::CreateNewObjective()
 					m_Objective->m_Target = g_Gangs.GetNumGangs() + ((g_Dice%3) + 1);
 					if( m_Objective->m_Target > 8 )
 						m_Objective->m_Target = 8;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " gangs within ";
 					if(m_Objective->m_Difficulty >= 3)
 						m_Objective->m_Limit = (g_Dice%4)+3;
 					else
 						m_Objective->m_Limit = (g_Dice%7)+6;
-					_itoa(m_Objective->m_Limit, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Limit);
 					message += " weeks.";
 					done = true;
 				}
@@ -3500,19 +3487,16 @@ void cBrothelManager::CreateNewObjective()
 					message += "Steal ";
 					m_Objective->m_Limit = (g_Dice%20)+13;
 					m_Objective->m_Target = m_Objective->m_Limit*1300;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " gold within ";
-					_itoa(m_Objective->m_Limit, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Limit);
 					message += " weeks.";
 				}
 				else
 				{
 					m_Objective->m_Target = ((g_Dice%20)+1)*200;
 					message += "Steal ";
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " gold.";
 				}
 				done = true;
@@ -3524,18 +3508,15 @@ void cBrothelManager::CreateNewObjective()
 				{
 					m_Objective->m_Limit = (g_Dice%5)+1;
 					m_Objective->m_Target = (g_Dice%(m_Objective->m_Limit-1))+1;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " monster girls from the catacombs within ";
-					_itoa(m_Objective->m_Limit, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Limit);
 					message += " weeks.";
 				}
 				else
 				{
 					m_Objective->m_Target = (g_Dice%5)+1;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " monster girls from the catacombs.";
 				}
 				done = true;
@@ -3547,18 +3528,15 @@ void cBrothelManager::CreateNewObjective()
 				{
 					m_Objective->m_Limit = (g_Dice%8)+3;
 					m_Objective->m_Target = GetTotalNumGirls(true)+(g_Dice%(m_Objective->m_Limit-1))+1;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " monster girls within ";
-					_itoa(m_Objective->m_Limit, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Limit);
 					message += " weeks.";
 				}
 				else
 				{
 					m_Objective->m_Target = GetTotalNumGirls(true)+(g_Dice%8)+1;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " monster girls.";
 				}
 				done = true;
@@ -3571,18 +3549,15 @@ void cBrothelManager::CreateNewObjective()
 					{
 						m_Objective->m_Limit = (g_Dice%5)+1;
 						m_Objective->m_Target = (g_Dice%(m_Objective->m_Limit-1))+1;
-						_itoa(m_Objective->m_Target, buffer, 10);
-						message += buffer;
+						message += toString(m_Objective->m_Target);
 						message += " girls from the streets within ";
-						_itoa(m_Objective->m_Limit, buffer, 10);
-						message += buffer;
+						message += toString(m_Objective->m_Limit);
 						message += " weeks.";
 					}
 					else
 					{
 						m_Objective->m_Target = (g_Dice%5)+1;
-						_itoa(m_Objective->m_Target, buffer, 10);
-						message += buffer;
+						message += toString(m_Objective->m_Target);
 						message += " girls from the streets.";
 					}
 					done = true;
@@ -3595,18 +3570,15 @@ void cBrothelManager::CreateNewObjective()
 					{
 						m_Objective->m_Limit = (g_Dice%5)+1;
 						m_Objective->m_Target = (g_Dice%(m_Objective->m_Limit-1))+1;
-						_itoa(m_Objective->m_Target, buffer, 10);
-						message += buffer;
+						message += toString(m_Objective->m_Target);
 						message += " new bussinesses within ";
-						_itoa(m_Objective->m_Limit, buffer, 10);
-						message += buffer;
+						message += toString(m_Objective->m_Limit);
 						message += " weeks.";
 					}
 					else
 					{
 						m_Objective->m_Target = (g_Dice%5)+1;
-						_itoa(m_Objective->m_Target, buffer, 10);
-						message += buffer;
+						message += toString(m_Objective->m_Target);
 						message += " new bussinesses.";
 					}
 					done = true;
@@ -3618,18 +3590,15 @@ void cBrothelManager::CreateNewObjective()
 				{
 					m_Objective->m_Limit = (g_Dice%8)+3;
 					m_Objective->m_Target = GetTotalNumGirls()+(g_Dice%(m_Objective->m_Limit-1))+1;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " girls within ";
-					_itoa(m_Objective->m_Limit, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Limit);
 					message += " weeks.";
 				}
 				else
 				{
 					m_Objective->m_Target = GetTotalNumGirls()+(g_Dice%8)+1;
-					_itoa(m_Objective->m_Target, buffer, 10);
-					message += buffer;
+					message += toString(m_Objective->m_Target);
 					message += " girls.";
 				}
 				done = true;
@@ -3643,8 +3612,7 @@ void cBrothelManager::CreateNewObjective()
 					{
 						m_Objective->m_Limit = (g_Dice%10)+10;
 						message += " within ";
-						_itoa(m_Objective->m_Limit, buffer, 10);
-						message += buffer;
+						message += toString(m_Objective->m_Limit);
 						message += " weeks.";
 					}
 					else
@@ -3674,8 +3642,7 @@ void cBrothelManager::PassObjective()
 				long gold = (g_Dice%200)+33;
 				if(m_Objective->m_Difficulty > 0)
 					gold *= m_Objective->m_Difficulty;
-				_ltoa(gold, buffer, 10);
-				message += buffer;
+				message += toString(gold);
 				message += " gold.";
 				g_Gold.objective_reward(gold);
 			}break;
@@ -3685,8 +3652,7 @@ void cBrothelManager::PassObjective()
 				int girls = 1;
 				if(m_Objective->m_Difficulty > 0)
 					girls *= m_Objective->m_Difficulty;
-				_itoa(girls, buffer, 10);
-				message += buffer;
+				message += toString(girls);
 				message += " slave girls.";
 				while(girls > 0)
 				{
@@ -3707,8 +3673,7 @@ void cBrothelManager::PassObjective()
 					else
 						gold = 436;
 					rival->m_Gold -= gold;
-					_ltoa(gold, buffer, 10);
-					message += buffer;
+					message += toString(gold);
 					message += " gold from the ";
 					message += rival->m_Name;
 					message += ".";
@@ -3892,30 +3857,23 @@ void cBrothelManager::updateGirlTurnBrothelStats(sGirl* girl)
 #ifdef WDTEST // debuging
 
 	string sum = "Start\n";
-	_itoa(girl->happiness(), buffer, 10);
 	sum	+= "   h=";
-	sum	+= buffer;
-	_itoa(girl->obedience(), buffer, 10);
+	sum	+= toString(girl->happiness());
 	sum	+= "   o=";
-	sum	+= buffer;
-	_itoa(girl->pclove(), buffer, 10);
+	sum	+= toString(girl->obedience());
 	sum	+= "   l=";
-	sum	+= buffer;
-	_itoa(girl->pcfear(), buffer, 10);
+	sum	+= toString(girl->pclove());
 	sum	+= "   f=";
-	sum	+= buffer;
-	_itoa(girl->pchate(), buffer, 10);
+	sum	+= toString(girl->pcfear());
 	sum	+= "   h=";
-	sum	+= buffer;
+	sum	+= toString(girl->pchate());
 
 
 
-	_itoa(girl->health(), buffer, 10);
 	sum	+= "   HP=";
-	sum	+= buffer;
-	_itoa(girl->tiredness(), buffer, 10);
+	sum	+= toString(girl->health());
 	sum	+= "  TD=";
-	sum	+= buffer;
+	sum	+= toString(girl->tiredness());
 
 #endif
 
@@ -3947,28 +3905,20 @@ void cBrothelManager::updateGirlTurnBrothelStats(sGirl* girl)
 #ifdef WDTEST // debuging
 
 	sum += "\n\nFinal\n";
-	_itoa(girl->happiness(), buffer, 10);
 	sum	+= "   h=";
-	sum	+= buffer;
-	_itoa(girl->obedience(), buffer, 10);
+	sum	+= toString(girl->happiness());
 	sum	+= "   o=";
-	sum	+= buffer;
-	_itoa(girl->pclove(), buffer, 10);
+	sum	+= toString(girl->obedience());
 	sum	+= "   l=";
-	sum	+= buffer;
-	_itoa(girl->pcfear(), buffer, 10);
+	sum	+= toString(girl->pclove());
 	sum	+= "   f=";
-	sum	+= buffer;
-	_itoa(girl->pchate(), buffer, 10);
+	sum	+= toString(girl->pcfear());
 	sum	+= "   h=";
-	sum	+= buffer;
-
-	_itoa(girl->health(), buffer, 10);
+	sum	+= toString(girl->pchate());
 	sum	+= "   HP=";
-	sum	+= buffer;
-	_itoa(girl->tiredness(), buffer, 10);
+	sum	+= toString(girl->health());
 	sum	+= "  TD=";
-	sum	+= buffer;
+	sum	+= toString(girl->tiredness());
 
 	girl->m_Events.AddMessage(sum, IMGTYPE_PROFILE, EVENT_DEBUG);
 

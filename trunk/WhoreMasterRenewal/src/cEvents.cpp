@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -33,7 +33,7 @@ string CEvent::TitleText()
 
 /*
  *	Returns default Title Texts
- *	
+ *
  *	Used to simplify code in TurnSummary
  *
  */
@@ -82,7 +82,7 @@ unsigned int CEvent::ListboxColour()
 {
 /*
  *	Returns default listbox colours
- *	
+ *
  *	Used to simplify code in TurnSummary
  *
  */
@@ -195,6 +195,10 @@ void cEvents::AddMessage(string message, int type, int eve)
 	events.push_back(newEvent);
 }
 
+// need to undefine the stupid windows headers macro GetMessage
+#ifdef GetMessage
+#undef GetMessage
+#endif
 CEvent cEvents::GetMessage(int id)
 {
 	return events.at(id);
@@ -202,18 +206,18 @@ CEvent cEvents::GetMessage(int id)
 
 //bool CEvent::CmpEventPredicate(CEvent eFirst, CEvent eSecond)
 //{
-//	if (eFirst.IsDanger())			
+//	if (eFirst.IsDanger())
 //		return true;			// In Order
 //
 //	if (eSecond.IsDanger())		// && !eFirst.IsDanger()
 //		return false;			// Swap
-//	
+//
 //	if (eFirst.IsWarning())		// && !eSecond.IsDanger()
 //		return true;			// In Order
 //
-//	if (eSecond.IsWarning())	// && !eFirst.IsDanger() && eFirst.IsWarning() 
+//	if (eSecond.IsWarning())	// && !eFirst.IsDanger() && eFirst.IsWarning()
 //		return false;			// Swap
-//	
+//
 //	if (eFirst.m_Event == EVENT_NOWORK)
 //		return true;
 //
@@ -241,9 +245,9 @@ unsigned int cEvents::MakeOrdinal(int nEvent)
 {
 /*
  *	Returns a int that is used in sorting events
- *	
+ *
  */
-	unsigned int nOffset; 
+	unsigned int nOffset;
 	switch (nEvent)
 	{
 	//case EVENT_DAYSHIFT:
@@ -296,6 +300,6 @@ void cEvents::DoSort()
 		m_bSorted = true;
 	}
 }
-	
-	
+
+
 

@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -34,6 +34,10 @@ public:
 	cMessageBox() {m_Color=0;m_TextAdvance=false;m_Font = 0;m_Text = "";for(int i=0; i<NUM_MESSBOXCOLOR; i++)m_Background[i]=0;m_Border=0;m_Active=false;m_Advance=false;m_Position=0;}
 	~cMessageBox();
 
+    // need to undefine the stupid windows headers macro CreateWindow
+    #ifdef CreateWindow
+    #undef CreateWindow
+    #endif
 	void CreateWindow(int x = 32, int y = 416, int width = 736, int height = 160, int BorderSize = 1, int FontSize = 16, bool scale = true);
 	void ChangeFontSize(int FontSize = 16);
 	void Draw();
@@ -50,7 +54,7 @@ private:
 
 	SDL_Surface* m_Background[NUM_MESSBOXCOLOR];
 	SDL_Surface* m_Border;
-	
+
 	cFont* m_Font;
 	string m_Text;	// contains the entire text string
 	int m_Position;	// where we are up too
@@ -81,7 +85,7 @@ public:
 
 	void AddToQue(string text, int color)
 	{
-		if(text != "") 
+		if(text != "")
 		{
 			// Allocate a new process and push it on stack
 			sMessage *Ptr = new sMessage();

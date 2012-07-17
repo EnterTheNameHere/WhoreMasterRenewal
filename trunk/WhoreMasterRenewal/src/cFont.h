@@ -33,6 +33,11 @@ public:
 	void Free();
 
 	void SetColor(unsigned char r, unsigned char g, unsigned char b);
+
+	// need to undefine the stupid windows headers macro DrawText
+    #ifdef DrawText
+    #undef DrawText
+    #endif
 	bool DrawText(int x, int y, SDL_Surface* destination = 0, bool multi = false);	// draws the text surface to the screen
 	bool DrawMultilineText(int x, int y, int linesToSkip = 0, int offsetY = 0, SDL_Surface* destination = 0);	// draws the text surface to the screen
 	bool LoadFont(string font, int size);
