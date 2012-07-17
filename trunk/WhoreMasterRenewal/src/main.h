@@ -45,6 +45,14 @@ using namespace std;
 #include "cScrollBar.h"
 
 
+template<typename T> string toString( T value )
+{
+    std::stringstream str;
+    str << value;
+    string result;
+    str >> result;
+    return result;
+}
 void handle_hotkeys();
 
 

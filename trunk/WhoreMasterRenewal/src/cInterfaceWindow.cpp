@@ -340,11 +340,11 @@ void cInterfaceWindow::HideImage(int id, bool hide)
 {
 	if(id == -1) return;
 	if(hide) {
-		//cerr << "hiding image ID " << id << endl;
+		//cout << "hiding image ID " << id << endl;
 		m_Images[id]->hide();
 	}
 	else {
-		//cerr << "unhiding image ID " << id << endl;
+		//cout << "unhiding image ID " << id << endl;
 		m_Images[id]->unhide();
 	}
 }
@@ -1090,7 +1090,7 @@ void cInterfaceWindowXML::add_widget(string widget_name,int x,int y,string seq)
 		int full_y = y + xw.y;
 
 		if(tag == "Button") {
-			cerr << "adding button: " << xw.off << endl;
+			cout << "adding button: " << xw.off << endl;
 			AddButton(
 				ButtonPath(xw.off),
 				ButtonPath(xw.disabled),
@@ -1105,7 +1105,7 @@ void cInterfaceWindowXML::add_widget(string widget_name,int x,int y,string seq)
 			HideButton(id, xw.hide);
 		}
 		else if(tag == "Image") {
-			cerr << "adding image: " << xw.file << endl;
+			cout << "adding image: " << xw.file << endl;
 			DirPath dp = ImagePath(xw.file);
 			AddImage(id, dp,
 				full_x, full_y, xw.w, xw.h, xw.stat,

@@ -22,6 +22,7 @@
 #include "linux.h"
 #endif
 
+#include "main.h"
 #include "cDungeon.h"
 #include "cBrothel.h"
 #include "cMessageBox.h"
@@ -848,32 +849,30 @@ void cDungeon::Update()
  *			Allow girl sorting in turn summary
  */
 			// Health
-			int		nHealth	= girl->health();
-			_itoa(nHealth, buffer, 10);
+			int	nHealth	= girl->health();
 
 			if (nHealth < 20)
 			{
-				msg	= "DANGER: " + girlName + " is severely injured.\n\nHer health is " + buffer + ".";
+				msg	= "DANGER: " + girlName + " is severely injured.\n\nHer health is " + toString(nHealth) + ".";
 				girl->m_Events.AddMessage(msg, IMGTYPE_DEATH, EVENT_DANGER);
 			}
 			else if (nHealth < 40)
 			{
-				msg	= girlName + " is injured.\n\nHer health is " + buffer + ".";
+				msg	= girlName + " is injured.\n\nHer health is " + toString(nHealth) + ".";
 				girl->m_Events.AddMessage(msg, IMGTYPE_PROFILE, EVENT_WARNING);
 			}
 
 			// Tiredness
-			int		nTired	= girl->tiredness();
-			_itoa(nTired, buffer, 10);
+			int	nTired	= girl->tiredness();
 
 			if (nTired > 80)
 			{
-				msg	= girlName + " is exhausted  and it may effect her health.\n\nHer tiredness is " + buffer + ".";
+				msg	= girlName + " is exhausted  and it may effect her health.\n\nHer tiredness is " + toString(nTired) + ".";
 				girl->m_Events.AddMessage(msg, IMGTYPE_PROFILE, EVENT_WARNING);
 			}
 			else if (nTired > 60)
 			{
-				msg	= girlName + " is tired.\n\nHer tiredness is " + buffer + ".";
+				msg	= girlName + " is tired.\n\nHer tiredness is " + toString(nTired) + ".";
 				girl->m_Events.AddMessage(msg, IMGTYPE_PROFILE, EVENT_DUNGEON);
 			}
 
@@ -896,8 +895,7 @@ void cDungeon::Update()
 		if (tort)
 		{
 			msg	= TorturerGirlref->m_Realname + " has tortured ";
-			_itoa(m_NumGirlsTort, buffer, 10);
-			msg += buffer;
+			msg += toString(m_NumGirlsTort);
 			msg += " girls in the Dungeon.";
 			TorturerGirlref->m_Events.AddMessage( msg, IMGTYPE_PROFILE, EVENT_DUNGEON);
 		}
@@ -971,27 +969,20 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 #ifdef WDTEST // debuging
 
 	string sum = "Start\n";
-	_itoa(girl->happiness(), buffer, 10);
 	sum	+= "   h=";
-	sum	+= buffer;
-	_itoa(girl->obedience(), buffer, 10);
+	sum	+= toString(girl->happiness());
 	sum	+= "   o=";
-	sum	+= buffer;
-	_itoa(girl->pclove(), buffer, 10);
+	sum	+= toString(girl->obedience());
 	sum	+= "   l=";
-	sum	+= buffer;
-	_itoa(girl->pcfear(), buffer, 10);
+	sum	+= toString(girl->pclove());
 	sum	+= "   f=";
-	sum	+= buffer;
-	_itoa(girl->pchate(), buffer, 10);
+	sum	+= toString(girl->pcfear());
 	sum	+= "   h=";
-	sum	+= buffer;
-	_itoa(girl->health(), buffer, 10);
+	sum	+= toString(girl->pchate());
 	sum	+= "   HP=";
-	sum	+= buffer;
-	_itoa(girl->tiredness(), buffer, 10);
+	sum	+= toString(girl->health());
 	sum	+= "  TD=";
-	sum	+= buffer;
+	sum	+= toString(girl->tiredness());
 
 #endif
 
@@ -1066,27 +1057,20 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 #ifdef WDTEST // debuging
 
 	sum += "\n\nFinal\n";
-	_itoa(girl->happiness(), buffer, 10);
 	sum	+= "   h=";
-	sum	+= buffer;
-	_itoa(girl->obedience(), buffer, 10);
+	sum	+= toString(girl->happiness());
 	sum	+= "   o=";
-	sum	+= buffer;
-	_itoa(girl->pclove(), buffer, 10);
+	sum	+= toString(girl->obedience());
 	sum	+= "   l=";
-	sum	+= buffer;
-	_itoa(girl->pcfear(), buffer, 10);
+	sum	+= toString(girl->pclove());
 	sum	+= "   f=";
-	sum	+= buffer;
-	_itoa(girl->pchate(), buffer, 10);
+	sum	+= toString(girl->pcfear());
 	sum	+= "   h=";
-	sum	+= buffer;
-	_itoa(girl->health(), buffer, 10);
+	sum	+= toString(girl->pchate());
 	sum	+= "   HP=";
-	sum	+= buffer;
-	_itoa(girl->tiredness(), buffer, 10);
+	sum	+= toString(girl->health());
 	sum	+= "  TD=";
-	sum	+= buffer;
+	sum	+= toString(girl->tiredness());
 
 	girl->m_Events.AddMessage(sum, IMGTYPE_PROFILE, EVENT_DEBUG);
 

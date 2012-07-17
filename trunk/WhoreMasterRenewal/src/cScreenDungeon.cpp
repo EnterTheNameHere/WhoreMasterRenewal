@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -135,7 +135,7 @@ void cScreenDungeon::init()
 	DisableButton(brandslave_id);
 	DisableButton(torture_id);
 	DisableButton(sellslave_id);
-	cerr << "::init: disabling torture" << endl;
+	cout << "::init: disabling torture" << endl;
 	DisableButton(viewdetails_id);
 /*
  *	only enable "release all girls" if there are girls to release
@@ -160,7 +160,7 @@ void cScreenDungeon::init()
 		}
 		select_girls.clear();
 	}
-	else if(selection >= 0) 
+	else if(selection >= 0)
 		SetSelectedItemInList(girllist_id, selection);
 }
 
@@ -179,7 +179,7 @@ void cScreenDungeon::selection_change()
 		DisableButton(interact_id);
 		DisableButton(release_id);
 		DisableButton(torture_id);
-		cerr << "selection = " << selection << " (-1) - disabling torture" << endl;
+		cout << "selection = " << selection << " (-1) - disabling torture" << endl;
 		DisableButton(viewdetails_id);
 		DisableButton(sellslave_id);
 		selection = -1;		// can this have changed?
@@ -190,7 +190,7 @@ void cScreenDungeon::selection_change()
  */
 	DisableButton(sellslave_id);
 	DisableButton(torture_id, !torture_possible());
-	cerr << "selection = " << selection << " - enabling torture" << endl;
+	cout << "selection = " << selection << " - enabling torture" << endl;
 	DisableButton(interact_id, g_TalkCount == 0);
 	EnableButton(release_id);
 	DisableButton(brandslave_id);
@@ -249,7 +249,7 @@ int cScreenDungeon::view_girl()
  */
 	if((selection - dungeon->GetNumGirls()) >= 0) {
 		return Continue;
-	} 
+	}
 /*
  *	if we can't find the girl, there's nothing we can do
  */
@@ -289,7 +289,7 @@ int cScreenDungeon::enslave_customer(int girls_removed, int custs_removed)
 {
 /*
  *	mod - docclox - nerfed the cash for selling a customer.
- *	a fat smelly brothel creeper probably shouldn't raise as much as 
+ *	a fat smelly brothel creeper probably shouldn't raise as much as
  *	a sexy young slavegirl. Feel free to un-nerf if you disagree.
  */
 	long gold = (g_Dice%200)+63;
@@ -535,7 +535,7 @@ void cScreenDungeon::sell_slaves()
 			deadcount++;
 			continue;
 		}
-/* 
+/*
  *		she's a living slave, she's out of here
  */
 		g_Girls.CalculateAskPrice(girl, false);
@@ -791,7 +791,7 @@ bool cScreenDungeon::torture_possible()
 	int	nPosition	= 0;
 	int nNumGirls	= dungeon->GetNumGirls();
 /*
- *	don't use selection for the loop - 
+ *	don't use selection for the loop -
  *	it's a class global and can mess things up elsewhere
  */
 	for(
@@ -841,7 +841,7 @@ void cScreenDungeon::torture()
 	) {
 
 /*
- *		if it's a customer, we have a separate routine 
+ *		if it's a customer, we have a separate routine
  */
 		if((selection - (dungeon->GetNumGirls()+numGirlsRemoved)) >= 0)	{
 			player->evil(5);
@@ -883,7 +883,7 @@ void cScreenDungeon::release()
 			player->evil(-5);
 			continue;
 		}
-/* 
+/*
  *		if there's room, remove her from the dungeon
  *		and add her to the current brothel
  */
@@ -922,7 +922,7 @@ void cScreenDungeon::talk()
 	int v[2] = {0, -1};
 /*
  *	customers are always last in the list,
- *	so we can determine if this is a customer by simple 
+ *	so we can determine if this is a customer by simple
  *	aritmetic
  */
 	if((selection - g_Brothels.GetDungeon()->GetNumGirls()) >= 0)	// it is a customer

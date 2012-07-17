@@ -920,8 +920,8 @@ bool cJobManager::gang_stops_rape(sGirl* girl, vector<sGang *> gangs_guarding, s
 			<< girl->m_Realname << ".";
 		girl_ss	<< "Customer attempt to rape her, but guards " << guarding_gang->m_Name << " killed them.";
 	}
-	cerr << "gang ss=" << gang_ss.str() << endl;
-	cerr << "girl ss=" << girl_ss.str() << endl;
+	cout << "gang ss=" << gang_ss.str() << endl;
+	cout << "girl ss=" << girl_ss.str() << endl;
 
 	girl->m_Events.AddMessage(girl_ss.str(), IMGTYPE_DEATH, day_night);
 	guarding_gang->m_Events.AddMessage(gang_ss.str(), IMGTYPE_PROFILE, EVENT_GANG);
@@ -1000,8 +1000,8 @@ bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_
 			<<	girl->m_Realname;
 		girl_ss	<<	"Customer attempt to rape her but " << "the was killed by the guard.";
 	}
-	cerr << "gang ss=" << gang_ss.str() << endl;
-	cerr << "girl ss=" << girl_ss.str() << endl;
+	cout << "gang ss=" << gang_ss.str() << endl;
+	cout << "girl ss=" << girl_ss.str() << endl;
 	gang->m_Events.AddMessage(gang_ss.str(), 0, 0);
 	girl->m_Events.AddMessage(girl_ss.str(), IMGTYPE_DEATH, day_night);
 	return true;

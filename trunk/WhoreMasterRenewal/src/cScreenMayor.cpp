@@ -1,21 +1,22 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "main.h"
 #include "cBrothel.h"
 #include "cScreenMayor.h"
 #include "cWindowManager.h"
@@ -70,7 +71,7 @@ void cScreenMayor::init()
 			SetBribe = false;
 		}
 	}
-	
+
 	g_Brothels.UpdateBribeInfluence();
 
 	int PlayersInfluence = g_Brothels.GetInfluence();
@@ -101,13 +102,11 @@ void cScreenMayor::init()
 			r++;
 			rival = rival->m_Next;
 		}
-		
+
 		data += "Your influence: ";
-		_itoa(PlayersInfluence, buffer, 10);
-		data += buffer;
+		data += toString(PlayersInfluence);
 		data += "% costing ";
-		_ltoa(g_Brothels.GetBribeRate(), buffer, 10);
-		data += buffer;
+		data += toString(g_Brothels.GetBribeRate());
 		data += " gold per week.";
 
 		for(int i=0; i<4; i++)
@@ -117,8 +116,7 @@ void cScreenMayor::init()
 				data += "\n";
 				data += g_Brothels.GetRivalManager()->GetRival(top[i])->m_Name;
 				data += ": ";
-				_itoa(g_Brothels.GetRivalManager()->GetRival(top[i])->m_Influence, buffer, 10);
-				data += buffer;
+				data += toString(g_Brothels.GetRivalManager()->GetRival(top[i])->m_Influence);
 				data += "% influence";
 			}
 		}
@@ -126,14 +124,12 @@ void cScreenMayor::init()
 	else
 	{
 		data += "Your influence: ";
-		_itoa(PlayersInfluence,buffer,10);
-		data += buffer;
+		data += toString(PlayersInfluence);
 		data += "%\nNo Rivals";
 	}
 
 	data += "\n\nNumber of girls in prison: ";
-	_itoa(g_Brothels.GetNumInPrison(), buffer, 10);
-	data += buffer;
+	data += toString(g_Brothels.GetNumInPrison());
 	EditTextItem(data, details_id);
 }
 
@@ -159,7 +155,7 @@ void cScreenMayor::process()
 
 void cScreenMayor::check_events()
 {
-/* 
+/*
  *	no events means we can go home
  */
 	if(g_InterfaceEvents.GetNumEvents() == 0)

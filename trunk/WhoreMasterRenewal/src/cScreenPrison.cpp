@@ -1,21 +1,22 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include "main.h"
 #include "cBrothel.h"
 #include "cScreenPrison.h"
 #include "cWindowManager.h"
@@ -76,8 +77,7 @@ void cScreenPrison::init()
 		if(pgirls->m_Virgin)
 			cost += 158;
 		cost *= 2;
-		_itoa(cost,buffer,10);
-		data += buffer;
+		data += toString(cost);
 		data += " gold)";
 
 		AddToListBox(prison_list_id, i, data);
@@ -137,7 +137,7 @@ void cScreenPrison::process()
 	}
 
 	init();
-/* 
+/*
  *	no events means we can go home
  */
 	if(g_InterfaceEvents.GetNumEvents() == 0) {
@@ -145,7 +145,7 @@ void cScreenPrison::process()
 	}
 
 /*
- *	otherwise, compare event IDs 
+ *	otherwise, compare event IDs
  *
  *	if it's the back button, pop the window off the stack
  *	and we're done

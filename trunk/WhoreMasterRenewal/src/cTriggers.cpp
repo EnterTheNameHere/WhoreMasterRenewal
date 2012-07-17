@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -547,7 +547,7 @@ void cTriggerList::ProcessTriggers()
  *				depending on values[1]
  */
 				if(curr->m_Values[0] == 0)	doit = lt;
-				else 				doit = !lt; 
+				else 				doit = !lt;
 /*
  *				if the doit flag is set, we're done
  */
@@ -571,12 +571,12 @@ void cTriggerList::ProcessTriggers()
 				}
 				bool doit;
 				if(curr->m_Values[0] == 0) {
-					doit = (m_GirlTarget->m_Money < 
+					doit = (m_GirlTarget->m_Money <
 						curr->m_Values[1]
 					);
 				}
 				else {
-					doit = (m_GirlTarget->m_Money >= 
+					doit = (m_GirlTarget->m_Money >=
 						curr->m_Values[1]
 					);
 				}
@@ -726,7 +726,7 @@ cTriggerQue* cTriggerList::GetNextQueItem()
 {//mod
 	if(!m_TriggerQueue.empty())
 	return m_TriggerQueue.front();
-	else 
+	else
 		return 0;
 	//end mod
 }
@@ -1381,11 +1381,11 @@ void cTriggerList::LoadList(string filename)
 	if(!doc.LoadFile()) {
 		if(!doc.ErrorRow() && !doc.ErrorCol())
 		{
-			cerr << "Girl has no script trigger file: " << filename << endl;
+			cout << "Warning: Girl has no script trigger file: " << filename << endl;
 			return;
 		}
-		cerr << "can't load script trigger list " << filename << endl;
-		cerr	<< "Error: line "
+		cerr << "Error: Can't load script trigger list " << filename << endl;
+		cerr << "Line "
 			<< doc.ErrorRow()
 			<< ", col "
 			<< doc.ErrorCol()

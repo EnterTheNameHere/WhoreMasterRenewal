@@ -92,7 +92,7 @@ void FileList::scan(const char *pattern)
  *	open the directory. Print an error to the console if it fails
  */
 	if((dpt = opendir(base_path)) == NULL) {
-		cerr << "Error(" << errno << ") opening " << base_path << endl;
+		cerr __FILE__ << " (" << __LINE__ << "): " << "Error(" << errno << ") opening " << base_path << endl;
 		return;
 	}
 /*
@@ -173,9 +173,9 @@ void XMLFileList::scan(const char *pattern)
 		string str = fl[i].full();
 		string key = clobber_extension(str);
 		lookup[key] = fl[i];
-		//cerr << "       adding " << str << endl;
-		//cerr << "       under " << key << endl;
-		//cerr << "       result " << lookup[key].full() << endl;
+		//cout << "       adding " << str << endl;
+		//cout << "       under " << key << endl;
+		//cout << "       result " << lookup[key].full() << endl;
 	}
 /*
  *	Repeat with "x" added to the end of the pattern.
@@ -188,9 +188,9 @@ void XMLFileList::scan(const char *pattern)
 		string str = fl[i].full();
 		string key = clobber_extension(str);
 		lookup[key] = fl[i];
-		//cerr << "       adding " << str << endl;
-		//cerr << "       under " << key << endl;
-		//cerr << "       result " << lookup[key].full() << endl;
+		//cout << "       adding " << str << endl;
+		//cout << "       under " << key << endl;
+		//cout << "       result " << lookup[key].full() << endl;
 	}
 /*
  *	We now have a map of files with the desired extensions
@@ -206,14 +206,14 @@ void XMLFileList::scan(const char *pattern)
 
 static string clobber_extension(string s)
 {
-	//cerr << "clobber_extension: s = " << s << endl;
+	//cout << "clobber_extension: s = " << s << endl;
 	size_t pos = s.rfind(".");
 
-	//cerr << "clobber_extension: pos = " << pos << endl;
+	//cout << "clobber_extension: pos = " << pos << endl;
 	string base = s.substr(0, pos);
 
-	//cerr << "clobber_extension: s = " << s << endl;
-	//cerr << "clobber_extension: base = " << base << endl;
+	//cout << "clobber_extension: s = " << s << endl;
+	//cout << "clobber_extension: base = " << base << endl;
 	return base;
 }
 

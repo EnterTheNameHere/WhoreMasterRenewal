@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -43,7 +43,7 @@ void cBuildingManagement::IDBlock::hide(cBuildingManagement *mgr)
 	mgr->HideImage(shade);
 	mgr->HideText(desc);
 	mgr->HideText(type);
-	cerr << "hiding rename button : " << rename << endl;
+	cout << "hiding rename button : " << rename << endl;
 	mgr->HideButton(rename);
 	mgr->HideText(unit);
 	mgr->HideText(space);
@@ -147,7 +147,7 @@ void cBuildingManagement::IDBlock::display(
 	mgr->EditTextItem("Glitz", glitz_cap);
 	ss << facility->glitz();
 	mgr->EditTextItem(ss.str(), glitz_level);
-	cerr	<< "setting glitz_level (" << glitz_level << ") to "
+	cout << "setting glitz_level (" << glitz_level << ") to "
 		<< ss.str()
 		<< endl;
 	ss.str("");
@@ -404,14 +404,14 @@ void cBuildingManagement::process()
 	building = &brothel->building;
 
 	init();
-/* 
+/*
  *	no events means we can go home
  */
 	if(g_InterfaceEvents.GetNumEvents() == 0) {
 		return;
 	}
 /*
- *	otherwise, compare event IDs 
+ *	otherwise, compare event IDs
  *
  *	if it's the back button, pop the window off the stack
  *	and we're done
@@ -560,7 +560,7 @@ void cBuildingManagement::rename_button(int facility_idx)
  */
  	sFacility *sfac = building->item_at(facility_idx);
 /*
- *	tell the GetString screen where to store the 
+ *	tell the GetString screen where to store the
  *	string
  */
 	gssm.set_dest( sfac->m_instance_name );

@@ -40,6 +40,8 @@
 #include "DirPath.h"
 #include "FileList.h"
 
+#include "main.h"
+
 using namespace std;
 
 extern cMessageQue g_MessageQue;
@@ -1768,8 +1770,7 @@ string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 		return string("");
 	string data = "Looks: ";
 	int variable = ((GetStat(girl, STAT_BEAUTY)+GetStat(girl, STAT_CHARISMA))/2);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(variable);
 	data += "%\n";
 
 	data += "Age: ";
@@ -1779,26 +1780,22 @@ string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 	}
 	else
 	{
-		_itoa(GetStat(girl, STAT_AGE), buffer, 10);
-		data += buffer;
+		data += toString(GetStat(girl, STAT_AGE));
 	}
 	data += "\n";
 
 	data += "Level: ";
-	_itoa(GetStat(girl, STAT_LEVEL), buffer, 10);
-	data += buffer;
+	data += toString(GetStat(girl, STAT_LEVEL));
 	data += " | ";
 	data += "Exp: ";
-	_itoa(GetStat(girl, STAT_EXP), buffer, 10);
-	data += buffer;
+	data += toString(GetStat(girl, STAT_EXP));
 	data += "\n";
 
 	if(girl->m_Virgin)
 		data += "She is a virgin\n";
 
 	data += "Rebelliousness: ";
-	_itoa(GetRebelValue(girl, false), buffer, 10);
-	data += buffer;
+	data += toString(GetRebelValue(girl, false));
 	data += "\n";
 
 	if(girl->m_States&(1<<STATUS_POISONED))
@@ -1809,22 +1806,20 @@ string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 	int to_go = cfg.pregnancy.weeks_pregnant() - girl->m_WeeksPreg;
 	if(girl->m_States&(1<<STATUS_PREGNANT))
 	{
-		//cerr << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << endl;
-		//cerr << "to go            : " << to_go << endl;
+		//cout << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << endl;
+		//cout << "to go            : " << to_go << endl;
 
-		_itoa(to_go, buffer, 10);
 		data += "Is pregnant, due: ";
-		data += buffer;
+		data += toString(to_go);
 		data += " weeks\n";
 	}
 	if(girl->m_States&(1<<STATUS_PREGNANT_BY_PLAYER))
 	{
-		//cerr << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << endl;
-		//cerr << "to go (player's) : " << to_go << endl;
+		//cout << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << endl;
+		//cout << "to go (player's) : " << to_go << endl;
 
-		_itoa(to_go, buffer, 10);
 		data += "Is pregnant with your child, due: ";
-		data += buffer;
+		data += toString(to_go);
 		data += " weeks\n";
 	}
 	if(girl->m_States&(1<<STATUS_SLAVE))
@@ -1835,16 +1830,14 @@ string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 		data += "Has Son\n";
 	if(girl->m_States&(1<<STATUS_INSEMINATED))
 	{
-		_itoa(to_go, buffer, 10);
 		data += "Is inseminated, due: ";
-		data += buffer;
+		data += toString(to_go);
 		data += " weeks\n";
 	}
 	if(girl->m_PregCooldown != 0)
 	{
-		_itoa(((int)girl->m_PregCooldown), buffer, 10);
 		data += "Cannot get pregnant for: ";
-		data += buffer;
+		data += toString(girl->m_PregCooldown);
 		data += " weeks\n";
 	}
 
@@ -1853,27 +1846,21 @@ string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 
 	variable = GetStat(girl, STAT_HAPPINESS);
 	data += "Happiness: ";
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetStat(girl, STAT_HAPPINESS));
 	data += "%\n";
 
 	if(!purchase)
 	{
 		data += "Health: ";
-		_itoa((int)GetStat(girl, STAT_HEALTH), buffer, 10);
-		data += buffer;
+		data += toString(GetStat(girl, STAT_HEALTH));
 		data += "%\n";
 
 		data += "Tiredness: ";
-		variable = (int)GetStat(girl, STAT_TIREDNESS);
-		_itoa(variable, buffer, 10);
-		data += buffer;
+		data += toString(GetStat(girl, STAT_TIREDNESS));
 		data += "%\n";
 
 		data += "Constitution: ";
-		variable = (int)GetStat(girl, STAT_CONSTITUTION);
-		_itoa(variable, buffer, 10);
-		data += buffer;
+		data += toString(GetStat(girl, STAT_CONSTITUTION));
 		data += "%\n";
 
 		data += "Accomodation: ";
@@ -1893,9 +1880,7 @@ string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 		if(g_Gangs.GetGangOnMission(MISS_SPYGIRLS))
 		{
 			data += "Gold: ";
-			int money = girl->m_Money;
-			_itoa(money,buffer,10);
-			data += buffer;
+			data += toString(girl->m_Money);
 			data += "\n";
 		}
 		else
@@ -1918,79 +1903,56 @@ string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 
 	data += "Avg Pay per customer: ";
 	CalculateAskPrice(girl, false);
-	cost = g_Girls.GetStat(girl, STAT_ASKPRICE);
-	_itoa(cost,buffer,10);
-	data += buffer;
+	data += toString(g_Girls.GetStat(girl, STAT_ASKPRICE));
 	data += " gold\n";
 
 /*  // shown elsewhere now
 	data += "House Percentage: ";
 	cost = g_Girls.GetStat(girl, STAT_HOUSE);
-	_itoa(cost,buffer,10);
-	data += buffer;
+	data += toString(cost);
 	data += "%\n";
 */
 
 	data += "\nSKILLS\n";
 
 	data += "Magic Ability: ";
-	variable = GetSkill(girl, SKILL_MAGIC);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_MAGIC));
 	data += "%\n";
 
 	data += "Combat Ability: ";
-	variable = GetSkill(girl, SKILL_COMBAT);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_COMBAT));
 	data += "%\n";
 
 	data += "Anal Sex: ";
-	variable = GetSkill(girl, SKILL_ANAL);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_ANAL));
 	data += "%\n";
 
 	data += "BDSM Sex: ";
-	variable = GetSkill(girl, SKILL_BDSM);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_BDSM));
 	data += "%\n";
 
 	data += "Normal Sex: ";
-	variable = GetSkill(girl, SKILL_NORMALSEX);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_NORMALSEX));
 	data += "%\n";
 
 	data += "Bestiality Sex: ";
-	variable = GetSkill(girl, SKILL_BEASTIALITY);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_BEASTIALITY));
 	data += "%\n";
 
 	data += "Group Sex: ";
-	variable = GetSkill(girl, SKILL_GROUP);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_GROUP));
 	data += "%\n";
 
 	data += "Lesbian Sex: ";
-	variable = GetSkill(girl, SKILL_LESBIAN);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_LESBIAN));
 	data += "%\n";
 
 	data += "Service Skills: ";
-	variable = GetSkill(girl, SKILL_SERVICE);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_SERVICE));
 	data += "%\n";
 
 	data += "Stripping Sex: ";
-	variable = GetSkill(girl, SKILL_STRIP);
-	_itoa(variable, buffer, 10);
-	data += buffer;
+	data += toString(GetSkill(girl, SKILL_STRIP));
 	data += "%\n";
 
 	return data;
@@ -3348,11 +3310,11 @@ void cGirls::LoadRandomGirl(string filename)
  *	now decide how we want to really load the file
  */
 	if(c == 'x') {
-		cerr << "loading " << filename << " as XML" << endl;
+		cout << "loading " << filename << " as XML" << endl;
 		LoadRandomGirlXML(filename);
 	}
 	else {
-		cerr << "loading " << filename << " as Legacy" << endl;
+		cout << "loading " << filename << " as Legacy" << endl;
 		LoadRandomGirlLegacy(filename);
 	}
 }
@@ -3507,11 +3469,11 @@ void cGirls::LoadGirlsDecider(string filename)
  *	now decide how we want to really load the file
  */
 	if(c == 'x') {
-		cerr << "loading " << filename << " as XML" << endl;
+		cout << "loading " << filename << " as XML" << endl;
 		LoadGirlsXML(filename);
 	}
 	else {
-		cerr << "loading " << filename << " as legacy" << endl;
+		cout << "loading " << filename << " as legacy" << endl;
 		LoadGirlsLegacy(filename);
 	}
 }
@@ -6413,8 +6375,7 @@ string cGirls::GetRandomSexString()
 
 		random = g_Dice%9999 + 1;
 		char buffer[10];
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 
 		break;
 	case 6:
@@ -6684,8 +6645,7 @@ string cGirls::GetRandomSexString()
 
 		random = g_Dice%3 + 2;
 		char buffer[10];
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 
 		OutStr += " reinforcements to tame";
 		break;
@@ -6693,8 +6653,7 @@ string cGirls::GetRandomSexString()
 		OutStr += "She orgasmed ";
 
 		random = g_Dice%100 + 30;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 
 		OutStr += " times with"; break;
 	}
@@ -6848,8 +6807,7 @@ string cGirls::GetRandomSexString()
 			OutStr += "stop at ";
 
 			random = g_Dice%50 + 30;
-			_itoa(random, buffer, 10);
-			OutStr += buffer;
+			OutStr += toString(random);
 
 			OutStr += " orgasms";
 		}
@@ -6891,8 +6849,7 @@ string cGirls::GetRandomSexString()
 		if (random <= 2)
 		{
 			random = g_Dice%200000 + 100000;
-			_itoa(random, buffer, 10);
-			OutStr += buffer;
+			OutStr += toString(random);
 			OutStr += " years in the future.";
 		}
 		else if (random <= 4)
@@ -6924,20 +6881,17 @@ string cGirls::GetRandomSexString()
 		OutStr += "the ";
 
 		random = g_Dice%20 + 5;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 		OutStr += " dick, ";
 
 		random = g_Dice%20 + 5;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 		OutStr += "-armed ";
 
 		OutStr += "(Each wearing ";
 
 		random = g_Dice%2 + 4;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 		OutStr += " ";
 
 		random = g_Dice%8 + 1;
@@ -6990,8 +6944,7 @@ string cGirls::GetRandomGroupString()
 		OutStr += "counted the number of customers: ";
 
 		random = g_Dice%20 + 5;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 		OutStr += ". ";
 
 		random = g_Dice%14 + 1;
@@ -7449,8 +7402,7 @@ string cGirls::GetRandomGroupString()
 		OutStr += " from the ";
 
 		random = g_Dice%20 + 1991;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 
 		OutStr += " H anime season.";
 		break;
@@ -7458,8 +7410,7 @@ string cGirls::GetRandomGroupString()
 		OutStr += "Grandpa Parkins and his extended family of ";
 
 		random = g_Dice%200 + 100;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 
 		OutStr += ".";
 
@@ -7469,8 +7420,7 @@ string cGirls::GetRandomGroupString()
 			OutStr += " (And ";
 
 			random = g_Dice%100 + 50;
-			_itoa(random, buffer, 10);
-			OutStr += buffer;
+			OutStr += toString(random);
 
 			OutStr += " guests.)";
 		}
@@ -7481,8 +7431,7 @@ string cGirls::GetRandomGroupString()
 			OutStr += " (And ";
 
 			random = g_Dice%100 + 50;
-			_itoa(random, buffer, 10);
-			OutStr += buffer;
+			OutStr += toString(random);
 
 			OutStr += " more from the extended extended family.)";
 		}
@@ -7890,8 +7839,7 @@ string cGirls::GetRandomBDSMString()
 	case 13: OutStr += "Sexbot Mk-";
 
 		random = g_Dice%200+50;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 		OutStr += ".";
 
 		break;
@@ -8518,13 +8466,11 @@ string cGirls::GetRandomBeastString()
 		OutStr += " with an urge to exercise his ";
 
 		random = g_Dice%30 + 20;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 		OutStr += " cocks and ";
 
 		random = g_Dice%30 + 20;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 		OutStr += " claws.";
 
 		break;
@@ -8551,8 +8497,7 @@ string cGirls::GetRandomBeastString()
 		break;
 	case 9:
 		random = g_Dice%10 + 5;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 
 		OutStr += " werewolves wearing ";
 
@@ -8586,8 +8531,7 @@ string cGirls::GetRandomBeastString()
 		break;
 	case 10:
 		random = g_Dice%10 + 5;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 
 		OutStr += " Elder Gods.";
 
@@ -8617,8 +8561,7 @@ string cGirls::GetRandomBeastString()
 		OutStr += "the level ";
 
 		random = g_Dice%20 + 25;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 
 		OutStr += " epic paragon ";
 
@@ -8639,13 +8582,11 @@ string cGirls::GetRandomBeastString()
 		OutStr += " with ";
 
 		random = g_Dice%20 + 20;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 		OutStr += " strength and ";
 
 		random = g_Dice%20 + 20;
-		_itoa(random, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(random);
 		OutStr += " constitution.";
 
 		break;
@@ -8724,8 +8665,7 @@ string cGirls::GetRandomLesString()
 		OutStr += " with a +";
 
 		plus = g_Dice%7 + 4;
-		_itoa(plus, buffer, 10);
-		OutStr += buffer;
+		OutStr += toString(plus);
 		OutStr += " ";
 
 		random = g_Dice%14 + 1;
@@ -8735,8 +8675,7 @@ string cGirls::GetRandomLesString()
 		{
 			OutStr += "dagger, +";
 			plus = plus + g_Dice%5 + 2;
-		    _itoa(plus, buffer, 10);
-		    OutStr += buffer;
+		    OutStr += toString(plus);
 		    OutStr += " vs pubic hair";
 		}
 		else if (random <= 6)
@@ -11362,6 +11301,11 @@ bool cImageList::AddImage(string filename, string path, string file)
 		name.erase(name.size()-4, 4);
 		name += ".jpg";
 		newImage->m_Surface = new CSurface();
+
+		// Undefine the stupid LoadImage macro from windows headers
+        #ifdef LoadImage
+        #undef LoadImage
+        #endif
 		newImage->m_Surface->LoadImage(name);
 		newImage->m_AniSurface = new cAnimatedSurface();
 		int numFrames, speed, aniwidth, aniheight;

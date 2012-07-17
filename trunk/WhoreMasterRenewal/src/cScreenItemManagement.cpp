@@ -1,3 +1,6 @@
+
+
+#include "main.h"
 #include "cBrothel.h"
 #include "cScreenItemManagement.h"
 #include "cWindowManager.h"
@@ -215,12 +218,10 @@ void cScreenItemManagement::check_events()
 			if(leftOwner == 0)
 			{
 				temp = "Value: ";
-				_itoa(g_Brothels.m_Inventory[selection]->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(g_Brothels.m_Inventory[selection]->m_Cost);
 				temp += " gold    ";
 				temp += "Sell for: ";
-				_itoa(int((float)g_Brothels.m_Inventory[selection]->m_Cost*0.5f), buffer, 10);
-				temp += buffer;
+				temp += toString( (g_Brothels.m_Inventory[selection]->m_Cost*0.5f) );
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += g_Brothels.m_Inventory[selection]->m_Name;
@@ -233,8 +234,7 @@ void cScreenItemManagement::check_events()
 			}
 			else if(leftOwner == 1)
 			{
-				_itoa(g_InvManager.GetShopItem(selection)->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(g_InvManager.GetShopItem(selection)->m_Cost);
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += g_InvManager.GetShopItem(selection)->m_Name;
@@ -254,12 +254,10 @@ void cScreenItemManagement::check_events()
 					targetGirl = (g_Brothels.GetDungeon()->GetGirl(leftOwner-(2+g_Brothels.GetNumGirls(g_CurrBrothel))))->m_Girl;
 
 				temp = "Value: ";
-				_itoa(targetGirl->m_Inventory[selection]->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(targetGirl->m_Inventory[selection]->m_Cost);
 				temp += " gold    ";
 				temp += "Sell for: ";
-				_itoa(int((float)targetGirl->m_Inventory[selection]->m_Cost*0.5f), buffer, 10);
-				temp += buffer;
+				temp += toString( (targetGirl->m_Inventory[selection]->m_Cost*0.5f) );
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += targetGirl->m_Inventory[selection]->m_Name;
@@ -292,12 +290,10 @@ void cScreenItemManagement::check_events()
 			if(rightOwner == 0)
 			{
 				temp = "Value: ";
-				_itoa(g_Brothels.m_Inventory[selection]->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(g_Brothels.m_Inventory[selection]->m_Cost);
 				temp += " gold    ";
 				temp += "Sell for: ";
-				_itoa(int((float)g_Brothels.m_Inventory[selection]->m_Cost*0.5f), buffer, 10);
-				temp += buffer;
+				temp += toString( (g_Brothels.m_Inventory[selection]->m_Cost*0.5f) );
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += g_Brothels.m_Inventory[selection]->m_Name;
@@ -310,8 +306,7 @@ void cScreenItemManagement::check_events()
 			}
 			else if(rightOwner == 1)
 			{
-				_itoa(g_InvManager.GetShopItem(selection)->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(g_InvManager.GetShopItem(selection)->m_Cost);
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += g_InvManager.GetShopItem(selection)->m_Name;
@@ -331,12 +326,10 @@ void cScreenItemManagement::check_events()
 					targetGirl = (g_Brothels.GetDungeon()->GetGirl(rightOwner-(2+g_Brothels.GetNumGirls(g_CurrBrothel))))->m_Girl;
 
 				temp = "Value: ";
-				_itoa(targetGirl->m_Inventory[selection]->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(targetGirl->m_Inventory[selection]->m_Cost);
 				temp += " gold    ";
 				temp += "Sell for: ";
-				_itoa(int((float)targetGirl->m_Inventory[selection]->m_Cost*0.5f), buffer, 10);
-				temp += buffer;
+				temp += toString( (targetGirl->m_Inventory[selection]->m_Cost*0.5f) );
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += targetGirl->m_Inventory[selection]->m_Name;
@@ -490,8 +483,7 @@ void cScreenItemManagement::refresh_item_list(Side which_list)
 					if(*sel_name == it)  // if we just transferred this item here, might want to select it
 						*sel_pos = i;
 					it += " (";
-					_itoa(g_Brothels.m_NumItem[i], buffer, 10);
-					it += buffer;
+					it += toString(g_Brothels.m_NumItem[i]);
 					it += ")";
 					int item_type = g_Brothels.m_Inventory[i]->m_Type;
 					if(		(filter == 0)  // unfiltered?
@@ -851,7 +843,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 						g_InvManager.Equip(targetGirl, g_Girls.AddInv(targetGirl, ShopItem), false);
 					else
 						g_Girls.AddInv(targetGirl, ShopItem);
-					
+
 					g_InvManager.BuyShopItem(selection);
 					g_MessageQue.AddToQue("She doesn't seem happy with the gift.", 0);
 					selection = GetNextSelectedItemFromList(source_list, pos+1, pos);

@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -298,7 +298,7 @@ void cInventoryManagementSM::handle_events()
 
 						// add the gold
 						long gold = targetGirl->m_Inventory[selection]->m_Cost / 2;
-						
+
 						g_Gold.item_sales(gold);
 
 						// remove the item
@@ -506,8 +506,7 @@ void cInventoryManagementSM::handle_events()
 					{
 						string it = g_Brothels.m_Inventory[i]->m_Name;
 						it += " (";
-						itoa(g_Brothels.m_NumItem[i], buffer, 10);
-						it += buffer;
+						it += toString(g_Brothels.m_NumItem[i]);
 						it += ")";
 						if(filter == 0)
 							g_ItemManagement.AddToListBox(g_interfaceid.LIST_ITMITEMSR, i, it);
@@ -592,8 +591,7 @@ void cInventoryManagementSM::handle_events()
 			string temp = "Cost: ";
 			if(leftOwner == 0)
 			{
-				itoa(g_Brothels.m_Inventory[selection]->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(g_Brothels.m_Inventory[selection]->m_Cost);
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += g_Brothels.m_Inventory[selection]->m_Name;
@@ -606,8 +604,7 @@ void cInventoryManagementSM::handle_events()
 			}
 			else if(leftOwner == 1)
 			{
-				itoa(g_InvManager.GetShopItem(selection)->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(g_InvManager.GetShopItem(selection)->m_Cost);
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += g_InvManager.GetShopItem(selection)->m_Name;
@@ -626,8 +623,7 @@ void cInventoryManagementSM::handle_events()
 				else // dungeon girl
 					targetGirl = (g_Brothels.GetDungeon()->GetGirl(leftOwner-(2+g_Brothels.GetNumGirls(g_CurrBrothel))))->m_Girl;
 
-				itoa(targetGirl->m_Inventory[selection]->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(targetGirl->m_Inventory[selection]->m_Cost);
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += targetGirl->m_Inventory[selection]->m_Name;
@@ -665,8 +661,7 @@ void cInventoryManagementSM::handle_events()
 			string temp = "Cost: ";
 			if(rightOwner == 0)
 			{
-				itoa(g_Brothels.m_Inventory[selection]->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(g_Brothels.m_Inventory[selection]->m_Cost);
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += g_Brothels.m_Inventory[selection]->m_Name;
@@ -679,8 +674,7 @@ void cInventoryManagementSM::handle_events()
 			}
 			else if(rightOwner == 1)
 			{
-				itoa(g_InvManager.GetShopItem(selection)->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(g_InvManager.GetShopItem(selection)->m_Cost);
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += g_InvManager.GetShopItem(selection)->m_Name;
@@ -699,8 +693,7 @@ void cInventoryManagementSM::handle_events()
 				else // dungeon girl
 					targetGirl = (g_Brothels.GetDungeon()->GetGirl(rightOwner-(2+g_Brothels.GetNumGirls(g_CurrBrothel))))->m_Girl;
 
-				itoa(targetGirl->m_Inventory[selection]->m_Cost, buffer, 10);
-				temp += buffer;
+				temp += toString(targetGirl->m_Inventory[selection]->m_Cost);
 				temp += " gold\n";
 				temp += "Item Name: ";
 				temp += targetGirl->m_Inventory[selection]->m_Name;
@@ -929,7 +922,7 @@ sGirl *InventoryManagementSM::get_girl_from_list(int owner_idx, int list_id)
 
 void cInventoryManagementSM::take_from_player(int index)
 {
-/* 
+/*
  *	decrement the number of items of that type
  */
 	g_Brothels.m_NumItem[index]--;
@@ -984,7 +977,7 @@ void cInventoryManagementSM::take_from_girl(sGirl *girl, int index)
  * handling thingumabob to handle this
  *
  * could do it as a basic neural network ... add results with the
- * set of stats they're most strongly 
+ * set of stats they're most strongly
  *
  * would we need to consider more that hate, love and fear?
  * libido?
@@ -992,13 +985,13 @@ void cInventoryManagementSM::take_from_girl(sGirl *girl, int index)
 string cInventoryManagementSM::nice_item_message(sGirl *girl, sInventoryItem *item)
 {
 	stringstream ss;
-/* 
+/*
  *	if she's obedient enough, she won't let her personal
  *	feelings get in the way
  */
 	if(girl->obedience() >= 90 && girl->pchate() > 25) {
 /*
- *		if she's high enough level, she can go into 
+ *		if she's high enough level, she can go into
  *		professional mode
  */
 		if(girl->level() >= 4) {
@@ -1042,9 +1035,9 @@ string cInventoryManagementSM::nice_item_message(sGirl *girl, sInventoryItem *it
 		;
 	}
 /*
- *	it's not easy deciding on an order of evaluation here 
+ *	it's not easy deciding on an order of evaluation here
  */
-	
+
 
 	return "She is happy with the gift and gives you a big hug and a kiss on the cheek.";
 }
@@ -1057,7 +1050,7 @@ void cInventoryManagementSM::give_to_girl(sGirl *girl, sInventoryItem *item)
  *	they make her complain, but there's not happiness hit
  *	this means you can cheer a girl up by repeatedly
  *	giving her bad things and then taking them away again
- *	
+ *
  *	In the absence of any indication otherwise,
  *	I'm going to consider this a bug, and fix it
  *
@@ -1065,7 +1058,7 @@ void cInventoryManagementSM::give_to_girl(sGirl *girl, sInventoryItem *item)
  */
 	if(item->m_Badness >= 20) {
 		int slot2 = g_Girls.AddInv(girl, item);
-		if(item->m_Type != INVFOOD && item->m_Type != INVMAKEUP) 
+		if(item->m_Type != INVFOOD && item->m_Type != INVMAKEUP)
 			g_InvManager.Equip(girl, slot2, false);
 		g_MessageQue.AddToQue("She doesn't seem happy with the gift.", 0);
 		g_Girls.UpdateStat(girl, STAT_HAPPINESS, item->m_Badness/5);
@@ -1172,7 +1165,7 @@ void cInventoryManagementSM::item_shift_r()
 					break;
 				}
 /*
- *				add to player inventory using the slot 
+ *				add to player inventory using the slot
  */
 				add_item_to_inventory(item, slot);
 /*

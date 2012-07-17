@@ -40,6 +40,7 @@
 #include <sstream>
 
 #include "IconSurface.h"
+#include <string>
 
 extern int g_ScreenWidth, g_ScreenHeight;
 extern bool g_Fullscreen;
@@ -535,8 +536,7 @@ bool Init()
  *		reference
  */
 		char buffer[32];
-		_itoa(i,buffer,10);
-		g_BrothelImages[i] = new ImageSurface("Brothel", buffer);
+		g_BrothelImages[i] = new ImageSurface("Brothel", toString(i).c_str());
 		//g_BrothelImages[i]->LoadImage(file,false);
 	}
 	g_LogFile.write("Brothel Images Set");

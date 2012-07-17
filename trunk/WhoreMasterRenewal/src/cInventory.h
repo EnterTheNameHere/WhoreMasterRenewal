@@ -1,18 +1,18 @@
 /*
  * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders 
+ * The Pink Petal Devloment Team are defined as the game's coders
  * who meet on http://pinkpetal.co.cc
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -65,7 +65,8 @@ struct sEffect
 		else if	(s == "Trait")		m_Affects = Trait;
 		else {
 			m_Affects = Nothing;
-			cerr	<< "Error: Bad 'what' string for item effect: '"
+			cerr << __FILE__ << " (" << __LINE__ << "): "
+                << "Error: Bad 'what' string for item effect: '"
 				<< s
 				<< "'"
 				<< endl;
@@ -107,7 +108,7 @@ struct sEffect
 		if(id < n_skills) {
 			return skills[id];
 		}
-		cerr << "Error: skill id " << id << " too large (max is " << n_skills << ")" << endl;
+		cerr __FILE__ << " (" << __LINE__ << "): " << "Error: skill id " << id << " too large (max is " << n_skills << ")" << endl;
 		return "";
 	}
 	const char *stat_name(unsigned int id) {
@@ -123,7 +124,7 @@ struct sEffect
 		if(id < n_stats) {
 			return stats[id];
 		}
-		cerr << "Error: stat id " << id << " too large (max is " << n_stats << ")" << endl;
+		cerr __FILE__ << " (" << __LINE__ << "): " << "Error: stat id " << id << " too large (max is " << n_stats << ")" << endl;
 		return 0;
 	}
 #endif
@@ -154,7 +155,7 @@ struct sEffect
 		else if(s == "Strip")		m_EffectID = 8;
 		else if(s == "Combat")		m_EffectID = 9;
 		else {
-			cerr << "unknown skill: " << s << endl;
+			cerr __FILE__ << " (" << __LINE__ << "): " << "unknown skill: " << s << endl;
 			return false;
 		}
 		return true;
@@ -172,14 +173,14 @@ struct sEffect
 		else if(s == "Controlled")	m_EffectID = 9;
 		else if(s == "Catacombs")	m_EffectID = 10;
 		else {
-			cerr << "unknown girl status: " << s << endl;
+			cerr __FILE__ << " (" << __LINE__ << "): " << "unknown girl status: " << s << endl;
 			return false;
 		}
 		return true;
 	}
 	bool set_stat(string s)
 	{
-		//cerr << "looking up " << s << endl;
+		//cout << "looking up " << s << endl;
 		if(s == "Age")			m_EffectID = STAT_AGE;
 		else if(s == "Agility") 	m_EffectID = STAT_AGILITY;
 		else if(s == "AskPrice")	m_EffectID = STAT_ASKPRICE;
@@ -203,7 +204,8 @@ struct sEffect
 		else if(s == "Spirit") 		m_EffectID = STAT_SPIRIT;
 		else if(s == "Tiredness") 	m_EffectID = STAT_TIREDNESS;
 		else {
-			cerr	<< "Error: unknown stat string '"
+			cerr __FILE__ << " (" << __LINE__ << "): "
+				<< "Error: unknown stat string '"
 				<< s
 				<< "'"
 				<< endl
@@ -214,9 +216,9 @@ struct sEffect
 		return true;
 	}
 #endif
-	
+
 /*
- *	magnitude of the effect. 
+ *	magnitude of the effect.
  *	-10 will subtract 10 from the target stat while equiped
  *	and add 10 when unequiped.
  *
@@ -356,7 +358,8 @@ typedef struct sInventoryItem
 			m_Rarity = ScriptOrReward;
 		}
 		else {
-			cerr	<< "Error in set_rarity: unexpected value '"
+			cerr << __FILE__ << " (" << __LINE__ << "): "
+                << "Error in set_rarity: unexpected value '"
 				<< s
 				<< "'"
 				<< endl;
@@ -376,7 +379,8 @@ typedef struct sInventoryItem
 			m_Special = Temporary;
 		}
 		else {
-			cerr	<< "unexpected special string: '"
+			cerr << __FILE__ << " (" << __LINE__ << "): "
+                << "unexpected special string: '"
 				<< s
 				<< "'"
 				<< endl
@@ -421,7 +425,7 @@ typedef struct sInventoryItem
 			m_Type = Armband;
 		}
 		else {
-			cerr << "Error: unexpected item type: " << s << endl;
+			cerr << __FILE__ << " (" << __LINE__ << "): " << "Error: unexpected item type: " << s << endl;
 			m_Type = Misc;
 		}
 	}
@@ -435,7 +439,7 @@ typedef struct sInventoryItem
 		case Temporary:
 			return os << "Temporary";
 		default:
-			cerr << "error: unexpected special value: " << int(spec) << endl;
+			cerr << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected special value: " << int(spec) << endl;
 			return os << "Error(" << int(spec) << ")";
 		}
 	}
@@ -461,7 +465,7 @@ typedef struct sInventoryItem
 		case ScriptOrReward:
 			return os << "Scripts or Reward";
 		default:
-			cerr << "error: unexpected rarity value: " << int(r) << endl;
+			cerr << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected rarity value: " << int(r) << endl;
 			return os << "Error(" << int(r) << ")";
 		}
 	}
@@ -491,10 +495,10 @@ typedef struct sInventoryItem
 		case Armband:
 			return os << "Armband";
 		default:
-			cerr << "Unexpected type value: " << int(typ) << endl;
+			cerr << __FILE__ << " (" << __LINE__ << "): " << "Unexpected type value: " << int(typ) << endl;
 			return os << "Error";
 		}
-		cerr << "How the hell did I get here?" << endl;
+		cerr << __FILE__ << " (" << __LINE__ << "): " << "How the hell did I get here?" << endl;
 		return os;
 	}
 

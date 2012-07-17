@@ -309,7 +309,7 @@ bool cFont::LoadFont(string font, int size)
 	m_Font = 0;
 
 	if(cfg.debug.log_fonts()) {
-		std::cerr << "loading font: '"
+		std::cout << "loading font: '"
 			  << font
 			  << "' at size "
 			  << size
