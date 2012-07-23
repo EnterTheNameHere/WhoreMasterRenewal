@@ -233,7 +233,564 @@ void handle_hotkeys()
 	}
 }
 
-int main(int ac, char* av[])
+
+#define SFML_STATIC
+#include <SFML/Graphics.hpp>
+#define SFGUI_STATIC
+#include <SFGUI/SFGUI.hpp>
+
+class HelloWorld
+{
+public:
+    HelloWorld();
+    ~HelloWorld();
+    void Run();
+
+private:
+    void OnAddButtonHClicked();
+    void OnAddButtonVClicked();
+    void OnToggleTitlebarClicked();
+    void OnHideWindowClicked();
+    void OnToggleSpaceClicked();
+    void OnLimitCharsToggled();
+    void OnLoadThemeClicked();
+    void OnAdjustementChanged();
+    void OnToggleSpinner();
+
+    sfg::SFGUI m_SFGUI;
+
+    sfg::Window::Ptr m_MainWindow;
+    sfg::Box::Ptr m_BoxButtonsH;
+    sfg::Box::Ptr m_BoxButtonsV;
+    sfg::Entry::Ptr m_Entry;
+    sfg::Table::Ptr m_Table;
+    sfg::ScrolledWindow::Ptr m_ScrolledWindow;
+    sfg::Box::Ptr m_ScrolledWindowBox;
+    sfg::ToggleButton::Ptr m_TitleBarToggleButton;
+    sfg::CheckButton::Ptr m_LimitCheckButton;
+    sfg::Scale::Ptr m_Scale;
+    sfg::ComboBox::Ptr m_ComboBox;
+    sfg::ProgressBar::Ptr m_ProgressBar;
+    sfg::ProgressBar::Ptr m_ProgressBarVertical;
+    sfg::Spinner::Ptr m_Spinner;
+
+    sfg::Desktop m_Desktop;
+
+    unsigned int m_FPS_Counter;
+    sf::Clock m_FPS_Clock;
+
+    sf::Texture m_BackgroundTexture;
+    sf::Sprite m_BackgroundSprite;
+
+    sf::RenderWindow m_RenderWindow;
+};
+
+class Ouchy : public sfg::EnableSharedFromThis<Ouchy>
+{
+public:
+    typedef sfg::SharedPtr<Ouchy> Ptr;
+    Ouchy( sfg::Button::Ptr button );
+
+    void DoOuch();
+
+    static std::vector<Ptr> m_Ouchies;
+
+private:
+    sfg::Button::Ptr m_Button;
+    bool m_State;
+};
+
+std::vector<Ouchy::Ptr> Ouchy::m_Ouchies;
+
+Ouchy::Ouchy( sfg::Button::Ptr button ) :
+    m_Button( button ),
+    m_State( false )
+{}
+
+void Ouchy::DoOuch()
+{
+    if( !m_State )
+        m_Button->SetLabel( "Ouch" );
+    else
+        m_Button->SetLabel( "Boom" );
+
+    m_State = !m_State;
+}
+
+HelloWorld::HelloWorld() :
+    m_Desktop(),
+    m_RenderWindow( sf::VideoMode( 1024, 768, 32 ), "Whore Master Renewal", sf::Style::Default, sf::ContextSettings( 16, 0, 0, 2, 1 ) )
+{
+    m_BackgroundTexture.create( 1024, 768 );
+
+    sf::Uint8* pixels = new sf::Uint8[ 1024 * 768 * 4 ];
+    sf::Uint8 pixelValue = 139;
+
+    for( std::size_t index = 0; index < 1024 * 768; ++index )
+    {
+        pixelValue = static_cast<sf::Uint8>( pixelValue ^ ( index + 809 ) );
+        pixelValue = static_cast<sf::Uint8>( pixelValue << ( index % 11 ) );
+        pixelValue = static_cast<sf::Uint8>( pixelValue * 233 );
+
+        pixels[ index * 4 + 0 ] = static_cast<sf::Uint8>( pixelValue % 16 + 72 );
+
+        pixelValue ^= static_cast<sf::Uint8>( index );
+        pixelValue = static_cast<sf::Uint8>( pixelValue * 23 );
+
+        pixels[ index * 4 + 1 ] = static_cast<sf::Uint8>( pixelValue % 16 + 72 );
+
+        pixelValue ^= static_cast<sf::Uint8>( index );
+        pixelValue = static_cast<sf::Uint8>( pixelValue * 192 );
+
+        pixels[ index * 4 + 2 ] = static_cast<sf::Uint8>( pixelValue % 16 + 72 );
+
+        pixels[ index * 4 + 3 ] = 255;
+    }
+
+    m_BackgroundTexture.update( pixels );
+
+    m_BackgroundSprite.setTexture( m_BackgroundTexture );
+
+    delete[] pixels;
+}
+
+HelloWorld::~HelloWorld()
+{
+    Ouchy::m_Ouchies.clear();
+}
+
+void HelloWorld::Run()
+{
+    m_SFGUI.TuneUseFBO( true );
+    m_SFGUI.TuneAlphaThreshold( .2f );
+    m_SFGUI.TuneCull( true );
+
+    m_MainWindow = sfg::Window::Create( sfg::Window::TITLEBAR | sfg::Window::BACKGROUND | sfg::Window::RESIZE );
+    m_MainWindow->SetTitle( L"Example application" );
+
+    sfg::Button::Ptr btnAddButtonH( sfg::Button::Create( L"Add button horizontally" ) );
+    sfg::Button::Ptr btnAddButtonV( sfg::Button::Create( L"Add button vertically" ) );
+
+    m_TitleBarToggleButton = sfg::ToggleButton::Create( L"Toggle titlebar" );
+    m_TitleBarToggleButton->SetActive( true );
+
+    {
+        sf::Image addImage;
+        if( addImage.loadFromFile( "Resources/Buttons/plus_24x24On.png" ) )
+        {
+            sfg::Image::Ptr image( sfg::Image::Create( addImage ) );
+            btnAddButtonH->SetImage( image );
+
+            image = sfg::Image::Create( addImage );
+            btnAddButtonV->SetImage( image );
+        }
+    }
+
+    sfg::Button::Ptr btnHideWindow( sfg::Button::Create( L"Close window" ) );
+    btnHideWindow->SetId( "close" );
+
+    {
+        sf::Image closeImage;
+        if( closeImage.loadFromFile( "Resources/Buttons/minus_24x24On.png" ) )
+        {
+            sfg::Image::Ptr image( sfg::Image::Create( closeImage ) );
+            btnHideWindow->SetImage( image );
+        }
+    }
+
+    sfg::Button::Ptr btnToggleSpace( sfg::Button::Create( L"Box Spacing") );
+	sfg::Button::Ptr btnLoadStyle( sfg::Button::Create( L"Load theme") );
+
+	m_Entry = sfg::Entry::Create( L"Type" );
+	m_Entry->SetRequisition( sf::Vector2f( 100.f, .0f ) );
+	m_Entry->AppendText( L" something!" );
+
+	m_LimitCheckButton = sfg::CheckButton::Create( L"Limit to 4 chars" );
+	m_LimitCheckButton->SetId( "limit_check" );
+
+	sfg::Entry::Ptr password( sfg::Entry::Create() );
+	password->HideText( '*' );
+
+	// Layout.
+	sfg::Box::Ptr boxtoolbar( sfg::Box::Create( sfg::Box::HORIZONTAL ) );
+	boxtoolbar->SetSpacing( 5.f );
+	boxtoolbar->Pack( btnAddButtonH, false );
+	boxtoolbar->Pack( btnAddButtonV, false );
+	boxtoolbar->Pack( m_TitleBarToggleButton, false );
+	boxtoolbar->Pack( btnHideWindow, false );
+	boxtoolbar->Pack( m_Entry, true );
+	boxtoolbar->Pack( m_LimitCheckButton, false );
+
+	sfg::Frame::Ptr frame1( sfg::Frame::Create( L"Toolbar 1" ) );
+	frame1->Add( boxtoolbar );
+
+	sfg::Box::Ptr boxtoolbar2( sfg::Box::Create( sfg::Box::HORIZONTAL ) );
+	boxtoolbar2->SetSpacing( 5.f );
+	boxtoolbar2->Pack( btnToggleSpace, false );
+	boxtoolbar2->Pack( btnLoadStyle, false );
+
+	m_BoxButtonsH = sfg::Box::Create( sfg::Box::HORIZONTAL );
+	m_BoxButtonsH->SetSpacing( 5.f );
+
+	m_BoxButtonsV = sfg::Box::Create( sfg::Box::VERTICAL );
+	m_BoxButtonsV->SetSpacing( 5.f );
+
+	sfg::Entry::Ptr username_entry( sfg::Entry::Create() );
+	username_entry->SetMaximumLength( 8 );
+
+	m_ProgressBar = sfg::ProgressBar::Create( sfg::ProgressBar::HORIZONTAL );
+	m_ProgressBar->SetRequisition( sf::Vector2f( 0.f, 20.f ) );
+
+	m_ProgressBarVertical = sfg::ProgressBar::Create( sfg::ProgressBar::VERTICAL );
+	m_ProgressBarVertical->SetRequisition( sf::Vector2f( 20.f, 0.f ) );
+
+	sfg::Separator::Ptr separatorv( sfg::Separator::Create( sfg::Separator::VERTICAL ) );
+
+	m_Table = sfg::Table::Create();
+	m_Table->Attach( sfg::Label::Create( L"Please login using your username and password (span example)." ), sf::Rect<sf::Uint32>( 0, 0, 2, 1 ), sfg::Table::FILL, sfg::Table::FILL | sfg::Table::EXPAND );
+	m_Table->Attach( sfg::Label::Create( L"Username:" ), sf::Rect<sf::Uint32>( 0, 1, 1, 1 ), sfg::Table::FILL, sfg::Table::FILL );
+	m_Table->Attach( username_entry, sf::Rect<sf::Uint32>( 1, 1, 1, 1 ), sfg::Table::EXPAND | sfg::Table::FILL, sfg::Table::FILL );
+	m_Table->Attach( sfg::Label::Create( L"Password:" ), sf::Rect<sf::Uint32>( 0, 2, 1, 1 ), sfg::Table::FILL, sfg::Table::FILL );
+	m_Table->Attach( password, sf::Rect<sf::Uint32>( 1, 2, 1, 1 ), sfg::Table::FILL, sfg::Table::FILL );
+	m_Table->Attach( sfg::Button::Create( L"Login" ), sf::Rect<sf::Uint32>( 2, 1, 1, 2 ), sfg::Table::FILL, sfg::Table::FILL );
+	m_Table->Attach( separatorv, sf::Rect<sf::Uint32>( 3, 0, 1, 3 ), sfg::Table::FILL, sfg::Table::FILL );
+	m_Table->Attach( m_ProgressBarVertical, sf::Rect<sf::Uint32>( 4, 0, 1, 3 ), sfg::Table::FILL, sfg::Table::FILL );
+	m_Table->SetRowSpacings( 5.f );
+	m_Table->SetColumnSpacings( 5.f );
+
+	m_ScrolledWindowBox = sfg::Box::Create( sfg::Box::VERTICAL );
+
+	for( int i = 0; i < 5; i++ ) {
+		sfg::Box::Ptr box = sfg::Box::Create( sfg::Box::HORIZONTAL );
+
+		for( int j = 0; j < 20; j++ ) {
+			box->Pack( sfg::Button::Create( L"One button among many" ), true );
+		}
+
+		m_ScrolledWindowBox->Pack( box, false );
+	}
+
+	m_ScrolledWindow = sfg::ScrolledWindow::Create();
+	m_ScrolledWindow->SetRequisition( sf::Vector2f( .0f, 160.f ) );
+	m_ScrolledWindow->SetScrollbarPolicy( sfg::ScrolledWindow::HORIZONTAL_AUTOMATIC | sfg::ScrolledWindow::VERTICAL_AUTOMATIC );
+	m_ScrolledWindow->SetPlacement( sfg::ScrolledWindow::TOP_LEFT );
+	m_ScrolledWindow->AddWithViewport( m_ScrolledWindowBox );
+
+	sfg::Scrollbar::Ptr scrollbar( sfg::Scrollbar::Create() );
+	scrollbar->SetRange( .0f, 100.f );
+
+	m_Scale = sfg::Scale::Create();
+	m_Scale->SetAdjustment( scrollbar->GetAdjustment() );
+	m_Scale->SetRequisition( sf::Vector2f( 100.f, .0f ) );
+	boxtoolbar2->Pack( m_Scale, false );
+
+	m_ComboBox = sfg::ComboBox::Create();
+	m_ComboBox->AppendItem( "Item 0" );
+	m_ComboBox->AppendItem( "Item 1" );
+	m_ComboBox->AppendItem( "Item 2" );
+	m_ComboBox->AppendItem( "Item 3" );
+	boxtoolbar2->Pack( m_ComboBox, true );
+
+	sfg::Frame::Ptr frame2( sfg::Frame::Create( L"Toolbar 2" ) );
+	frame2->Add( boxtoolbar2 );
+	frame2->SetAlignment( sf::Vector2f( .8f, .0f ) );
+
+	sfg::Separator::Ptr separatorh( sfg::Separator::Create( sfg::Separator::HORIZONTAL ) );
+
+	sfg::Box::Ptr box_image( sfg::Box::Create( sfg::Box::HORIZONTAL ) );
+	box_image->SetSpacing( 15.f );
+
+	sfg::Fixed::Ptr fixed_container( sfg::Fixed::Create() );
+	sfg::Button::Ptr fixed_button( sfg::Button::Create( L"I'm at (34,61)" ) );
+	fixed_container->Put( fixed_button, sf::Vector2f( 34.f, 61.f ) );
+	box_image->Pack( fixed_container, false );
+
+	sf::Image sfgui_logo;
+	sfg::Image::Ptr image = sfg::Image::Create();
+
+	if( sfgui_logo.loadFromFile( "data/sfgui.png" ) ) {
+		image->SetImage( sfgui_logo );
+		box_image->Pack( image, false );
+	}
+
+	sfg::Box::Ptr spinner_box( sfg::Box::Create( sfg::Box::VERTICAL ) );
+
+	m_Spinner = sfg::Spinner::Create();
+	m_Spinner->SetRequisition( sf::Vector2f( 40.f, 40.f ) );
+	m_Spinner->Start();
+	sfg::ToggleButton::Ptr spinner_toggle( sfg::ToggleButton::Create( L"Spin") );
+	spinner_toggle->SetActive( true );
+	spinner_box->SetSpacing( 5.f );
+	spinner_box->Pack( m_Spinner, false );
+	spinner_box->Pack( spinner_toggle, false );
+
+	box_image->Pack( spinner_box, false );
+
+	sfg::Box::Ptr radio_box( sfg::Box::Create( sfg::Box::VERTICAL ) );
+
+	sfg::RadioButton::Ptr radio1( sfg::RadioButton::Create( "Radio 1" ) );
+	sfg::RadioButton::Ptr radio2( sfg::RadioButton::Create( "Radio 2", radio1->GetGroup() ) );
+	sfg::RadioButton::Ptr radio3( sfg::RadioButton::Create( "Radio 3", radio2->GetGroup() ) );
+
+	radio_box->Pack( radio1 );
+	radio_box->Pack( radio2 );
+	radio_box->Pack( radio3 );
+
+	box_image->Pack( radio_box, false );
+
+	sfg::ComboBox::Ptr aligned_combo_box( sfg::ComboBox::Create() );
+	aligned_combo_box->AppendItem( L"I'm way over here" );
+	aligned_combo_box->AppendItem( L"Me too" );
+	aligned_combo_box->AppendItem( L"Me three" );
+	aligned_combo_box->SelectItem( 0 );
+
+	sfg::Alignment::Ptr alignment( sfg::Alignment::Create() );
+	alignment->Add( aligned_combo_box );
+	box_image->Pack( alignment, true );
+	alignment->SetAlignment( sf::Vector2f( 1.f, .5f ) );
+	alignment->SetScale( sf::Vector2f( 0.f, .01f ) );
+
+	sfg::Box::Ptr boxmain( sfg::Box::Create( sfg::Box::VERTICAL ) );
+	boxmain->SetSpacing( 5.f );
+	boxmain->Pack( scrollbar, false );
+	boxmain->Pack( m_ProgressBar, false );
+	boxmain->Pack( frame1, false );
+	boxmain->Pack( frame2, false );
+	boxmain->Pack( m_BoxButtonsH, false );
+	boxmain->Pack( m_BoxButtonsV, false );
+	boxmain->Pack( box_image, true );
+	boxmain->Pack( separatorh, false );
+	boxmain->Pack( m_Table, true );
+	boxmain->Pack( m_ScrolledWindow );
+
+	sfg::Notebook::Ptr notebook1( sfg::Notebook::Create() );
+	sfg::Notebook::Ptr notebook2( sfg::Notebook::Create() );
+	sfg::Notebook::Ptr notebook3( sfg::Notebook::Create() );
+	sfg::Notebook::Ptr notebook4( sfg::Notebook::Create() );
+
+	notebook1->SetTabPosition( sfg::Notebook::TOP );
+	notebook2->SetTabPosition( sfg::Notebook::RIGHT );
+	notebook3->SetTabPosition( sfg::Notebook::BOTTOM );
+	notebook4->SetTabPosition( sfg::Notebook::LEFT );
+
+	sfg::Box::Ptr vertigo_box( sfg::Box::Create( sfg::Box::HORIZONTAL ) );
+	sfg::Button::Ptr vertigo_button( sfg::Button::Create( L"Vertigo" ) );
+	vertigo_box->Pack( vertigo_button, true, true );
+
+	notebook1->AppendPage( boxmain, sfg::Label::Create( "Page Name Here" ) );
+	notebook1->AppendPage( notebook2, sfg::Label::Create( "Another Page" ) );
+	notebook2->AppendPage( notebook3, sfg::Label::Create( "Yet Another Page" ) );
+	notebook2->AppendPage( sfg::Label::Create( L"" ), sfg::Label::Create( "Dummy Page" ) );
+	notebook3->AppendPage( notebook4, sfg::Label::Create( "And Another Page" ) );
+	notebook3->AppendPage( sfg::Label::Create( L"" ), sfg::Label::Create( "Dummy Page" ) );
+	notebook4->AppendPage( vertigo_box, sfg::Label::Create( "And The Last Page" ) );
+	notebook4->AppendPage( sfg::Label::Create( L"" ), sfg::Label::Create( "Dummy Page" ) );
+
+	m_MainWindow->Add( notebook1 );
+
+	// Signals.
+	btnAddButtonH->GetSignal( sfg::Widget::OnLeftClick ).Connect( &HelloWorld::OnAddButtonHClicked, this );
+	btnAddButtonV->GetSignal( sfg::Widget::OnLeftClick ).Connect( &HelloWorld::OnAddButtonVClicked, this );
+	m_TitleBarToggleButton->GetSignal( sfg::Widget::OnLeftClick ).Connect( &HelloWorld::OnToggleTitlebarClicked, this );
+	btnHideWindow->GetSignal( sfg::Widget::OnLeftClick ).Connect( &HelloWorld::OnHideWindowClicked, this );
+	btnToggleSpace->GetSignal( sfg::Widget::OnLeftClick ).Connect( &HelloWorld::OnToggleSpaceClicked, this );
+	m_LimitCheckButton->GetSignal( sfg::ToggleButton::OnToggle ).Connect( &HelloWorld::OnLimitCharsToggled, this );
+	btnLoadStyle->GetSignal( sfg::Widget::OnLeftClick ).Connect( &HelloWorld::OnLoadThemeClicked, this );
+	m_Scale->GetAdjustment()->GetSignal( sfg::Adjustment::OnChange ).Connect( &HelloWorld::OnAdjustementChanged, this );
+	spinner_toggle->GetSignal( sfg::Widget::OnLeftClick ).Connect( &HelloWorld::OnToggleSpinner, this );
+
+	m_MainWindow->SetPosition( sf::Vector2f( 100.f, 100.f ) );
+
+	// Another window
+	sfg::Window::Ptr second_window( sfg::Window::Create( sfg::Window::TITLEBAR | sfg::Window::BACKGROUND | sfg::Window::RESIZE ) );
+	second_window->SetId( "second_window" );
+	second_window->SetTitle( "Resize this window to see ad-hoc wrapping." );
+	sfg::Box::Ptr box( sfg::Box::Create( sfg::Box::VERTICAL, 5.f ) );
+
+	sfg::Label::Ptr lipsum = sfg::Label::Create(
+		"Nullam ut ante leo. Quisque consequat condimentum pulvinar. "
+		"Duis a enim sapien, ut vestibulum est. Vestibulum commodo, orci non gravida. "
+		"Aliquam sed pretium lacus. "
+		"Nullam placerat mauris vel nulla sagittis pellentesque. "
+		"Suspendisse in justo dui.\n"
+		"Ut dolor massa, gravida eu facilisis convallis, convallis sed odio.\n"
+		"Nunc placerat consequat vehicula."
+	);
+
+	lipsum->SetRequisition( sf::Vector2f( 400.f, 0.f ) );
+	lipsum->SetLineWrap( true );
+
+	box->Pack( lipsum );
+	second_window->Add( box );
+	second_window->SetPosition( sf::Vector2f( 10.f, 10.f ) );
+	second_window->SetId( "second_window" );
+	m_Desktop.Add( second_window );
+
+	// Add window to desktop
+	m_Desktop.Add( m_MainWindow );
+
+	// Play around with resource manager.
+	sf::Font my_font;
+	my_font.loadFromFile( "comic.ttf" );
+	m_Desktop.GetEngine().GetResourceManager().AddFont( "custom_font", my_font, false ); // false -> do not manage!
+
+	// Set properties.
+	m_Desktop.SetProperty( "Button#close:Normal", "Color", sf::Color::Yellow );
+	m_Desktop.SetProperty( "Button#close", "FontName", "comic.ttf" );
+	m_Desktop.SetProperty( "Button#close", "FontSize", 15.f );
+	m_Desktop.SetProperty( "Window#second_window > Box > Label", "FontName", "custom_font" );
+	m_Desktop.SetProperty( "Window#second_window > Box > Label", "FontSize", 18.f );
+
+	m_FPS_Counter = 0;
+	m_FPS_Clock.restart();
+
+	sf::Clock clock;
+	sf::Clock frame_time_clock;
+
+	sf::Int64 frame_times[5000];
+	std::size_t frame_times_index = 0;
+
+    sf::Event event;
+
+    while( m_RenderWindow.isOpen() )
+    {
+        while( m_RenderWindow.pollEvent( event ) )
+        {
+            if( event.type == sf::Event::Closed )
+            {
+                m_RenderWindow.close();
+            }
+            else if( event.type == sf::Event::Resized )
+            {
+                m_Desktop.UpdateViewRect( sf::FloatRect( 0.f, 0.f, static_cast<float>( event.size.width ), static_cast<float>( event.size.height ) ) );
+            }
+
+            m_Desktop.HandleEvent( event );
+        }
+
+        m_RenderWindow.draw( m_BackgroundSprite );
+
+        sf::Uint64 microseconds = clock.getElapsedTime().asMicroseconds();
+
+        if( microseconds > 5000 )
+        {
+            m_Desktop.Update( static_cast<float>( microseconds ) / 1000000.f );
+            clock.restart();
+        }
+
+        m_SFGUI.Display( m_RenderWindow );
+
+        m_RenderWindow.display();
+
+        sf::Int64 frameTime = frame_time_clock.getElapsedTime().asMicroseconds();
+        frame_time_clock.restart();
+
+        frame_times[ frame_times_index ] = frameTime;
+        frame_times_index = ( frame_times_index + 1 ) % 5000;
+
+        if( m_FPS_Clock.getElapsedTime().asMicroseconds() >= 1000000 ) {
+			m_FPS_Clock.restart();
+
+			sf::Int64 total_time = 0;
+
+			for( std::size_t index = 0; index < 5000; ++index ) {
+				total_time += frame_times[index];
+			}
+
+			std::stringstream sstr;
+			sstr << "SFGUI test -- FPS: " << m_FPS_Counter << " -- Frame Time (microsecs): min: "
+			<< *std::min_element( frame_times, frame_times + 5000 ) << " max: "
+			<< *std::max_element( frame_times, frame_times + 5000 ) << " avg: "
+			<< static_cast<float>( total_time ) / 5000.f;
+
+			m_RenderWindow.setTitle( sstr.str() );
+
+			m_FPS_Counter = 0;
+		}
+
+		++m_FPS_Counter;
+    }
+}
+
+void HelloWorld::OnAddButtonHClicked() {
+	sfg::Button::Ptr button( sfg::Button::Create( L"New ->" ) );
+
+	Ouchy::Ptr ouchy( new Ouchy( button ) );
+	Ouchy::m_Ouchies.push_back( ouchy );
+
+	button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Ouchy::DoOuch, ouchy.get() );
+
+	m_BoxButtonsH->Pack( button, true );
+}
+
+void HelloWorld::OnAddButtonVClicked() {
+	sfg::Button::Ptr button( sfg::Button::Create( L"<- New" ) );
+
+	Ouchy::Ptr ouchy( new Ouchy( button ) );
+	Ouchy::m_Ouchies.push_back( ouchy );
+
+	button->GetSignal( sfg::Widget::OnLeftClick ).Connect( &Ouchy::DoOuch, ouchy.get() );
+
+	m_BoxButtonsV->Pack( button, false );
+}
+
+void HelloWorld::OnToggleTitlebarClicked() {
+	m_MainWindow->SetStyle( m_MainWindow->GetStyle() ^ sfg::Window::TITLEBAR );
+}
+
+void HelloWorld::OnHideWindowClicked() {
+	m_MainWindow->Show( !m_MainWindow->IsLocallyVisible() );
+}
+
+void HelloWorld::OnToggleSpaceClicked() {
+	if( m_ScrolledWindowBox->GetSpacing() > .0f ) {
+		m_ScrolledWindowBox->SetSpacing( .0f );
+	}
+	else {
+		m_ScrolledWindowBox->SetSpacing( 40.f );
+	}
+}
+
+void HelloWorld::OnLimitCharsToggled() {
+	if( m_LimitCheckButton->IsActive() ) {
+		m_Entry->SetMaximumLength( 4 );
+	}
+	else {
+		m_Entry->SetMaximumLength( 0 );
+	}
+}
+
+void HelloWorld::OnLoadThemeClicked() {
+	m_Desktop.LoadThemeFromFile( "example.theme" );
+}
+
+void HelloWorld::OnAdjustementChanged() {
+	m_ProgressBar->SetFraction( m_Scale->GetValue() / 100.f );
+	m_ProgressBarVertical->SetFraction( m_Scale->GetValue() / 100.f );
+}
+
+void HelloWorld::OnToggleSpinner() {
+	if( !m_Spinner->Started() ) {
+		m_Spinner->Start();
+	}
+	else {
+		m_Spinner->Stop();
+	}
+}
+
+int main( int argc, char* argv[] )
+{
+    HelloWorld hello_world;
+    hello_world.Run();
+
+    return 0;
+}
+
+
+
+
+
+int main_old(int ac, char* av[])
 {
 	#ifndef LINUX
 		#ifdef _DEBUG
@@ -263,7 +820,7 @@ int main(int ac, char* av[])
 
 	while(running)
 	{
-		while(SDL_PollEvent(&vent))
+        while(SDL_PollEvent(&vent))
 		{
 			if(vent.type == SDL_QUIT)
 				running = false;

@@ -53,6 +53,9 @@ template<typename T> string toString( T value )
     str >> result;
     return result;
 }
+
+int main_old( int, char* [] );
+
 void handle_hotkeys();
 
 

@@ -13,7 +13,6 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-Wshadow" />
 					<Add option="-Winit-self" />
 					<Add option="-Wredundant-decls" />
 					<Add option="-Wcast-align" />
@@ -22,7 +21,6 @@
 					<Add option="-Wunreachable-code" />
 					<Add option="-Wmissing-declarations" />
 					<Add option="-Wmissing-include-dirs" />
-					<Add option="-Wmain" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -45,25 +43,36 @@
 		<Compiler>
 			<Add option="-std=c++0x" />
 			<Add directory="Dependencies\SDL\include\SDL" />
-			<Add directory="Dependencies\lua\src" />
-			<Add directory="Dependencies\TinyXML\src" />
+			<Add directory="Dependencies\lua\include" />
+			<Add directory="Dependencies\TinyXML\include" />
+			<Add directory="Dependencies\SFML\include" />
+			<Add directory="Dependencies\SFGUI\include" />
 		</Compiler>
 		<Linker>
-			<Add option="-static" />
+			<Add option="-static-libstdc++" />
+			<Add option="-static-libgcc" />
 			<Add library="mingw32" />
-			<Add library="libTinyXML.a" />
-			<Add library="libSDL.a" />
-			<Add library="libSDLmain.a" />
-			<Add library="libSDL_gfx.dll.a" />
+			<Add library="Dependencies\SDL\lib\libSDLmain.a" />
+			<Add library="Dependencies\lua\lib\liblua.a" />
+			<Add library="Dependencies\SDL\lib\libSDL_gfx.a" />
+			<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
 			<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
-			<Add library="libSDL_gfx.a" />
 			<Add library="Dependencies\SDL\lib\SDL_image.lib" />
-			<Add library="liblua.a" />
-			<Add library="libwinmm.a" />
-			<Add library="libgdi32.a" />
+			<Add library="Dependencies\SDL\lib\libSDL.a" />
+			<Add library="Dependencies\SFGUI\lib\libsfgui-s-d.a" />
+			<Add library="Dependencies\SFML\lib\libsfml-graphics-s-d.a" />
+			<Add library="glew" />
+			<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
+			<Add library="Dependencies\SFML\lib\libsfml-window-s-d.a" />
+			<Add library="Dependencies\SFML\lib\libsfml-system-s-d.a" />
+			<Add library="opengl32" />
+			<Add library="gdi32" />
+			<Add library="winmm" />
 			<Add directory="Dependencies\SDL\lib" />
 			<Add directory="Dependencies\lua\lib" />
 			<Add directory="Dependencies\TinyXML\lib" />
+			<Add directory="Dependencies\SFML\lib" />
+			<Add directory="Dependencies\SFGUI\lib" />
 		</Linker>
 		<Unit filename="src\CGameObject.cpp" />
 		<Unit filename="src\CGameObject.h" />
