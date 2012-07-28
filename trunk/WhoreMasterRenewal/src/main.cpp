@@ -778,10 +778,20 @@ void HelloWorld::OnToggleSpinner() {
 	}
 }
 
+
+#include "WhoreMasterRenewalWindow.hpp"
+
 int main( int argc, char* argv[] )
 {
-    HelloWorld hello_world;
-    hello_world.Run();
+    std::clog << "main()\n";
+
+    WhoreMasterRenewalWindow window;
+
+    std::clog << "main() : pre window.Run()\n";
+
+    window.Run();
+
+    std::clog << "main() : post window.Run()\n";
 
     return 0;
 }

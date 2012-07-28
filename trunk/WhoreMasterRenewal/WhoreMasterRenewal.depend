@@ -2117,7 +2117,7 @@
 	<vector>
 	"cInterfaceWindow.h"
 
-1342912540 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
+1343393102 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
 	"main.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2135,6 +2135,7 @@
 	<string>
 	<SFML/Graphics.hpp>
 	<SFGUI/SFGUI.hpp>
+	"WhoreMasterRenewalWindow.hpp"
 
 1342737924 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.h
 	"GameSystem.h"
@@ -5065,4 +5066,14 @@
 	<stddef.h>
 	<stdio.h>
 	"lua.h"
+
+1343499467 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.cpp
+	"WhoreMasterRenewalWindow.hpp"
+	<map>
+
+1343404298 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.hpp
+	<SFML/Graphics.hpp>
+	<SFGUI/SFGUI.hpp>
+	<string>
+	<map>
 
