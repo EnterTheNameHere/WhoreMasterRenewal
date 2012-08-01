@@ -16,7 +16,6 @@
 					<Add option="-Winit-self" />
 					<Add option="-Wredundant-decls" />
 					<Add option="-Wcast-align" />
-					<Add option="-Wundef" />
 					<Add option="-Winline" />
 					<Add option="-Wunreachable-code" />
 					<Add option="-Wmissing-declarations" />
@@ -103,6 +102,7 @@
 		<Unit filename="src\InterfaceIDs.h" />
 		<Unit filename="src\InterfaceProcesses.cpp" />
 		<Unit filename="src\InterfaceProcesses.h" />
+		<Unit filename="src\LuaUtils.hpp" />
 		<Unit filename="src\MasterFile.h" />
 		<Unit filename="src\Revision.h" />
 		<Unit filename="src\SDLStuff.h" />

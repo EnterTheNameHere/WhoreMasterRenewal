@@ -2117,7 +2117,7 @@
 	<vector>
 	"cInterfaceWindow.h"
 
-1343393102 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
+1343808481 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
 	"main.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2168,7 +2168,7 @@
 	<stdio.h>
 	<string>
 
-1340981632 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.h
+1343808519 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.h
 	<string>
 	"tinyxml.h"
 
@@ -2704,7 +2704,7 @@
 	"tinyxml.h"
 	"cColor.h"
 
-1342561417 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.cpp
+1343807347 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.cpp
 	"InterfaceProcesses.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -4804,7 +4804,7 @@
 	<SFML/OpenGL.hpp>
 	<vector>
 
-1342729319 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfgui\include\sfgui\primitive.hpp
+1343516962 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfgui\include\sfgui\primitive.hpp
 	<SFGUI/Config.hpp>
 	<SFGUI/SharedPtr.hpp>
 	<SFML/Graphics.hpp>
@@ -4831,7 +4831,7 @@
 	<SFGUI/SharedPtr.hpp>
 	<SFML/System/String.hpp>
 
-1342729319 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfgui\include\sfgui\image.hpp
+1343516962 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfgui\include\sfgui\image.hpp
 	<SFGUI/Config.hpp>
 	<SFGUI/Widget.hpp>
 	<SFGUI/Misc.hpp>
@@ -4847,7 +4847,7 @@
 	<SFGUI/Config.hpp>
 	<SFGUI/SharedPtr.hpp>
 
-1342729319 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfgui\include\sfgui\desktop.hpp
+1343516962 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfgui\include\sfgui\desktop.hpp
 	<SFGUI/Config.hpp>
 	<SFGUI/Context.hpp>
 	<SFGUI/Engine.hpp>
@@ -5024,7 +5024,7 @@
 	<SFML/System/String.hpp>
 	<vector>
 
-1342729319 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfgui\include\sfgui\renderer.hpp
+1343516962 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfgui\include\sfgui\renderer.hpp
 	<SFGUI/Config.hpp>
 	<SFGUI/SharedPtr.hpp>
 	<SFGUI/Primitive.hpp>
@@ -5032,6 +5032,7 @@
 	<SFML/OpenGL.hpp>
 	<vector>
 	<map>
+	<list>
 
 1305393898 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\tinyxml\include\tinyxml.h
 	<ctype.h>
@@ -5067,11 +5068,11 @@
 	<stdio.h>
 	"lua.h"
 
-1343499467 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.cpp
+1343808296 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.cpp
 	"WhoreMasterRenewalWindow.hpp"
 	<map>
 
-1343404298 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.hpp
+1343808260 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.hpp
 	<SFML/Graphics.hpp>
 	<SFGUI/SFGUI.hpp>
 	<string>

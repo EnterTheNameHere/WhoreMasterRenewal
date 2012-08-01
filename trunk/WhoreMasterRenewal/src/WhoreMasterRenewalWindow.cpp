@@ -3,6 +3,8 @@
 
 #include <map>
 
+namespace WhoreMasterRenewal
+{
 
 MainMenuScreen::MainMenuScreen( sfg::Desktop& desktop )
     : Screen( desktop )
@@ -25,11 +27,8 @@ MainMenuScreen::MainMenuScreen( sfg::Desktop& desktop )
     m_QuitGameButton->SetImage( sfg::Image::Create( image ) );
 
     sfg::Box::Ptr outerBox = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
-    outerBox->SetId( "outerbox" );
-
     sfg::Box::Ptr innerBox = sfg::Box::Create( sfg::Box::Orientation::VERTICAL );
-    innerBox->SetId( "innerbox" );
-    innerBox->Pack( m_NewGameButton, true, false );
+    innerBox->Pack( m_NewGameButton, false, false );
     innerBox->Pack( m_LoadGameButton, false, false );
     innerBox->Pack( m_QuitGameButton, false, false );
 
@@ -85,6 +84,41 @@ void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::Vector2u& size )
     this->ResizeAllScreens( rect );
 }
 
+// TODO: Handling missing screens - show error, leave current screen?
+void WhoreMasterRenewalWindow::ShowScreen( const string& screenName )
+{
+    std::clog << "WhoreMasterRenewalWindow::ShowScreen( string screenName )\n";
+
+    // Find and hide current Screen
+    std::map<string, Screen>::iterator it = this->m_Screens.find( this->m_CurrentScreenName );
+    if( it != this->m_Screens.end() )
+    {
+        // Calling Show for current screen has meaning only if it was somehow hidden
+        if( screenName == m_CurrentScreenName )
+        {
+            if( !it->second.IsVisible() )
+                it->second.Show();
+            return;
+        }
+
+        it->second.Hide();
+
+    }
+    else
+        std::cerr << __FILE__ << " (" << __LINE__ << "): "
+                << "Screen \"" << screenName << "\" not found. Cannot hide it.";
+
+    // Set new Screen name and show Screen
+    this->m_CurrentScreenName = screenName;
+
+    it = this->m_Screens.find( this->m_CurrentScreenName );
+    if( it != this->m_Screens.end() )
+        it->second.Show();
+    else
+        std::cerr << __FILE__ << " (" << __LINE__ << "): "
+                << "Screen \"" << screenName << "\" not found. Cannot show it.";
+}
+
 void WhoreMasterRenewalWindow::Run()
 {
     std::clog << "WhoreMasterRenewalWindow::Run()\n";
@@ -95,17 +129,7 @@ void WhoreMasterRenewalWindow::Run()
     m_SFGUI.TuneUseFBO( true );
     m_SFGUI.TuneCull( true );
 
-    std::map<string, Screen>::iterator it;
-    it = m_Screens.find("MainMenu");
-
-    if( it != m_Screens.end() )
-        it->second.Show();
-    else
-    {
-        std::cerr << __FILE__ << " (" << __LINE__ << "): "
-                << "MainMenu screen not found.";
-        return;
-    }
+    this->ShowScreen( "MainMenu" );
 
     sf::Clock fpsClock;
     unsigned int fpsCount = 0;
@@ -155,3 +179,5 @@ void WhoreMasterRenewalWindow::Run()
         fpsCount++;
     }
 }
+
+} // namespace WhoreMasterRenewal
