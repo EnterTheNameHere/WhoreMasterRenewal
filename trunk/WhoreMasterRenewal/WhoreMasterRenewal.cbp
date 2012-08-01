@@ -22,6 +22,25 @@
 					<Add option="-Wmissing-include-dirs" />
 					<Add option="-g" />
 				</Compiler>
+				<Linker>
+					<Add library="mingw32" />
+					<Add library="Dependencies\SDL\lib\libSDLmain.a" />
+					<Add library="Dependencies\lua\lib\liblua.a" />
+					<Add library="Dependencies\SDL\lib\libSDL_gfx.a" />
+					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
+					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
+					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
+					<Add library="Dependencies\SDL\lib\libSDL.a" />
+					<Add library="Dependencies\SFGUI\lib\libsfgui-s-d.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-graphics-s-d.a" />
+					<Add library="glew" />
+					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-window-s-d.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-system-s-d.a" />
+					<Add library="opengl32" />
+					<Add library="gdi32" />
+					<Add library="winmm" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="..\bin\WhoreMasterRenewal" prefix_auto="1" extension_auto="1" />
@@ -36,6 +55,23 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="mingw32" />
+					<Add library="Dependencies\SDL\lib\libSDLmain.a" />
+					<Add library="Dependencies\lua\lib\liblua.a" />
+					<Add library="Dependencies\SDL\lib\libSDL_gfx.a" />
+					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
+					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
+					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
+					<Add library="Dependencies\SDL\lib\libSDL.a" />
+					<Add library="Dependencies\SFGUI\lib\libsfgui-s.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-graphics-s.a" />
+					<Add library="glew" />
+					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-window-s.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-system-s.a" />
+					<Add library="opengl32" />
+					<Add library="gdi32" />
+					<Add library="winmm" />
 				</Linker>
 			</Target>
 		</Build>
@@ -50,23 +86,6 @@
 		<Linker>
 			<Add option="-static-libstdc++" />
 			<Add option="-static-libgcc" />
-			<Add library="mingw32" />
-			<Add library="Dependencies\SDL\lib\libSDLmain.a" />
-			<Add library="Dependencies\lua\lib\liblua.a" />
-			<Add library="Dependencies\SDL\lib\libSDL_gfx.a" />
-			<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
-			<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
-			<Add library="Dependencies\SDL\lib\SDL_image.lib" />
-			<Add library="Dependencies\SDL\lib\libSDL.a" />
-			<Add library="Dependencies\SFGUI\lib\libsfgui-s-d.a" />
-			<Add library="Dependencies\SFML\lib\libsfml-graphics-s-d.a" />
-			<Add library="glew" />
-			<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
-			<Add library="Dependencies\SFML\lib\libsfml-window-s-d.a" />
-			<Add library="Dependencies\SFML\lib\libsfml-system-s-d.a" />
-			<Add library="opengl32" />
-			<Add library="gdi32" />
-			<Add library="winmm" />
 			<Add directory="Dependencies\SDL\lib" />
 			<Add directory="Dependencies\lua\lib" />
 			<Add directory="Dependencies\TinyXML\lib" />
