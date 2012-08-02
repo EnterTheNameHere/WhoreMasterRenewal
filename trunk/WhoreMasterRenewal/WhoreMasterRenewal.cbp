@@ -92,6 +92,9 @@
 			<Add directory="Dependencies\SFML\lib" />
 			<Add directory="Dependencies\SFGUI\lib" />
 		</Linker>
+		<ExtraCommands>
+			<Add after='C:\WINDOWS\system32\cmd.exe /C &quot;&quot;D:\Git\bin\sh.exe&quot; &quot;--login&quot; &quot;../copyRequiredFilesToBin.sh&quot; &quot;Saves&quot;&quot;' />
+		</ExtraCommands>
 		<Unit filename="src\CGameObject.cpp" />
 		<Unit filename="src\CGameObject.h" />
 		<Unit filename="src\CGraphics.cpp" />
