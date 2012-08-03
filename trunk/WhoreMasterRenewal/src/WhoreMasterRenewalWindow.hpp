@@ -365,10 +365,10 @@ public:
     }
 };
 
-class BrothelMainScreen : public Screen
+class BrothelScreen : public Screen
 {
 public:
-    BrothelMainScreen( sfg::Desktop& desktop )
+    BrothelScreen( sfg::Desktop& desktop )
         : Screen( desktop )
     {
         // Label         Stats
@@ -419,6 +419,60 @@ private:
     sf::Texture m_BackgroundTexture;
 };
 
+
+class ConsoleWindow
+{
+public:
+    ConsoleWindow( sfg::Desktop& desktop )
+    : m_Desktop( desktop )
+    {
+        m_Window = sfg::Window::Create();
+        m_Window->SetTitle( "Console" );
+        
+        sfg::Box::Ptr scrolledWindowBox = sfg::Box::Create( sfg::Box::Orientation::VERTICAL );
+        sfg::Entry::Ptr textBox = sfg::Entry::Create( L"Text Box" );
+        sfg::ScrolledWindow::Ptr scrolledWindow = sfg::ScrolledWindow::Create();
+        
+        scrolledWindow->SetScrollbarPolicy( sfg::ScrolledWindow::ScrollbarPolicy::HORIZONTAL_NEVER
+                                            | sfg::ScrolledWindow::ScrollbarPolicy::VERTICAL_ALWAYS );
+        scrolledWindow->AddWithViewport( scrolledWindowBox );
+        scrolledWindow->SetRequisition( sf::Vector2f( 500.f, 100.f ) );
+        
+        //sfg::Viewport::Ptr viewport = sfg::Viewport::Create();
+        //viewport->SetRequisition( sf::Vector2f( 500.f, 200.f ) );
+        
+        //sfg::Box::Ptr viewportBox = sfg::Box::Create( sfg::Box::Orientation::VERTICAL );
+        
+        for( int i = 0; i < 200; i++ )
+        {
+            std::string str;
+            
+            for( int j = 0; j < 20; j++ )
+            {
+                str += static_cast<char>( 65 + rand() % 26 );
+            }
+            
+            //viewportBox->Pack( sfg::Label::Create( str.c_str() ) );
+            scrolledWindowBox->Pack( sfg::Label::Create( str ) );
+        }
+        
+        //viewport->Add( viewportBox );
+        
+        sfg::Box::Ptr box = sfg::Box::Create( sfg::Box::Orientation::VERTICAL );
+        box->Pack( scrolledWindow, false, true );
+        box->Pack( textBox, true, true );
+        
+        m_Window->Add( box );
+        
+        m_Desktop.Add( m_Window );
+    }
+    
+private:
+    sfg::Desktop& m_Desktop;
+    sfg::Window::Ptr m_Window;
+};
+
+
 class WhoreMasterRenewalWindow
 {
 public:
@@ -457,11 +511,13 @@ private:
         { "TransferGirls", TransferGirlsScreen( m_Desktop ) },
         { "GirlManagement", GirlManagementScreen( m_Desktop ) },
         { "BrothelSetup", BrothelSetupScreen( m_Desktop ) },
-        { "Brothel", BrothelMainScreen( m_Desktop ) },
+        { "Brothel", BrothelScreen( m_Desktop ) },
         { "NewGame", NewGameScreen( m_Desktop ) },
         { "LoadGame", LoadGameScreen( m_Desktop ) }
     };
     string m_CurrentScreenName = "MainMenu";
+    
+    ConsoleWindow m_Console = { ConsoleWindow( m_Desktop ) };
 
 public:
     class MessageBox

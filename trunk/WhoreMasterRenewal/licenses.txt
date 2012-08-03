@@ -34,11 +34,20 @@ Utilizes TinyXML-1
 (c) http://www.grinninglizard.com/tinyxml/
 All rights reserved
 
+Utilizes TinyXML-2
+(c) http://www.grinninglizard.com/tinyxml2/
+All rights reserved
+
 
 
 Utilizes Lua
 www.lua.org
 (c) Lua.org, PUC-Rio.
+All rights reserved
+
+Utilizes LuaClassBasedCall
+(c) 2011 Olivetti Engineering SA, CH 1400 Yverdon-les-Bains.  
+Original author: Patrick Rapin.
 All rights reserved
 
 
