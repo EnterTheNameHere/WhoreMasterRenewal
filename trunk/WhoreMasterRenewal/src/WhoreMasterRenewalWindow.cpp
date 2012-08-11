@@ -11,31 +11,52 @@ MainMenuScreen::MainMenuScreen( sfg::Desktop& desktop )
 {
     std::clog << "MainMenuScreen::MainMenuScreen()\n";
 
-    m_NewGameButton = sfg::Button::Create( L"" );
-    m_LoadGameButton = sfg::Button::Create( L"" );
-    m_QuitGameButton = sfg::Button::Create( L"" );
-
+    m_NewGameButton = sfg::Button::Create( L"New Game" );
+    m_LoadGameButton = sfg::Button::Create( L"Load Game" );
+    m_QuitGameButton = sfg::Button::Create( L"Quit Game" );
+/*
     sf::Image image;
     image.loadFromFile( "Resources/Buttons/NewGameOff.png" );
     m_NewGameButton->SetImage( sfg::Image::Create( image ) );
-    m_NewGameButton->SetRequisition( sf::Vector2f( 300.f, 100.f ) );
 
     image.loadFromFile( "Resources/Buttons/LoadGameOff.png" );
     m_LoadGameButton->SetImage( sfg::Image::Create( image ) );
 
     image.loadFromFile( "Resources/Buttons/QuitGameOff.png" );
     m_QuitGameButton->SetImage( sfg::Image::Create( image ) );
-
+*/
     sfg::Box::Ptr outerBox = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
     sfg::Box::Ptr innerBox = sfg::Box::Create( sfg::Box::Orientation::VERTICAL );
-    innerBox->Pack( m_NewGameButton, false, false );
-    innerBox->Pack( m_LoadGameButton, false, false );
-    innerBox->Pack( m_QuitGameButton, false, false );
+    innerBox->Pack( m_NewGameButton );
+    innerBox->Pack( m_LoadGameButton );
+    innerBox->Pack( m_QuitGameButton );
 
-    outerBox->Pack( sfg::Box::Create(), true, true );
-    outerBox->Pack( innerBox, false, false );
+    sfg::Alignment::Ptr alignment = sfg::Alignment::Create();
+    
+    std::clog << "\tScale: " << alignment->GetScale().x << "x" << alignment->GetScale().y << "\n";
+    std::clog << "\tAllocation: " << alignment->GetAllocation().width << "x" << alignment->GetAllocation().height << "\n";
+    std::clog << "\tRequisition: " << alignment->GetRequisition().x << "x" << alignment->GetRequisition().y << "\n";
+
+    
+    alignment->SetScale( sf::Vector2f( 0.f, 0.f ) );
+    alignment->Add( innerBox );
+    alignment->SetAlignment( sf::Vector2f( 0.5f, 0.5f ) );
+    
+    std::clog << "\tScale: " << alignment->GetScale().x << "x" << alignment->GetScale().y << "\n";
+    std::clog << "\tAllocation: " << alignment->GetAllocation().width << "x" << alignment->GetAllocation().height << "\n";
+    std::clog << "\tRequisition: " << alignment->GetRequisition().x << "x" << alignment->GetRequisition().y << "\n";
+    
+    outerBox->Pack( alignment );
+
+    std::clog << "\tScale: " << alignment->GetScale().x << "x" << alignment->GetScale().y << "\n";
+    std::clog << "\tAllocation: " << alignment->GetAllocation().width << "x" << alignment->GetAllocation().height << "\n";
+    std::clog << "\tRequisition: " << alignment->GetRequisition().x << "x" << alignment->GetRequisition().y << "\n";
 
     m_Window->Add( outerBox );
+    
+    std::clog << "\tScale: " << alignment->GetScale().x << "x" << alignment->GetScale().y << "\n";
+    std::clog << "\tAllocation: " << alignment->GetAllocation().width << "x" << alignment->GetAllocation().height << "\n";
+    std::clog << "\tRequisition: " << alignment->GetRequisition().x << "x" << alignment->GetRequisition().y << "\n";
 }
 
 
@@ -129,6 +150,7 @@ void WhoreMasterRenewalWindow::Run()
     m_SFGUI.TuneUseFBO( true );
     m_SFGUI.TuneCull( true );
 
+    this->ResizeAllScreens( m_RenderWindow.getSize() );
     this->ShowScreen( "MainMenu" );
 
     sf::Clock fpsClock;
@@ -136,8 +158,6 @@ void WhoreMasterRenewalWindow::Run()
 
     sf::Clock clock;
     sf::Event event;
-
-    this->ResizeAllScreens( m_RenderWindow.getSize() );
 
     while( m_RenderWindow.isOpen() )
     {

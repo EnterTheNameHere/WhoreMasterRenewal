@@ -22,7 +22,7 @@ public:
     Screen( sfg::Desktop& desktop )
     : m_Desktop( desktop )
     {
-        std::clog << "Screen::Screen()\n";
+        //std::clog << "Screen::Screen()\n";
 
         m_Window->Show( false );
         desktop.Add( m_Window );
@@ -30,28 +30,28 @@ public:
     
     virtual bool IsVisible()
     {
-        std::clog << "Screen::IsVisible()";
+        //std::clog << "Screen::IsVisible()";
 
         return m_Window->IsGloballyVisible();
     }
     
     virtual void Show()
     {
-        std::clog << "Screen::Show()\n";
+        //std::clog << "Screen::Show()\n";
 
         m_Window->Show( true );
     }
     
     virtual void Hide()
     {
-        std::clog << "Screen::Hide()\n";
+        //std::clog << "Screen::Hide()\n";
 
         m_Window->Show( false );
     }
     
     virtual void Resize( const sf::FloatRect& rect )
     {
-        std::clog << "Screen::Resize()\n";
+        //std::clog << "Screen::Resize()\n";
 
         m_Window->SetAllocation( rect );
     }
@@ -425,7 +425,7 @@ class ConsoleWindow
 public:
     ConsoleWindow( sfg::Desktop& desktop )
     : m_Desktop( desktop )
-    {
+    {/*
         m_Window = sfg::Window::Create();
         m_Window->SetTitle( "Console" );
         
@@ -464,7 +464,7 @@ public:
         
         m_Window->Add( box );
         
-        m_Desktop.Add( m_Window );
+        m_Desktop.Add( m_Window );*/
     }
     
 private:
@@ -495,7 +495,7 @@ private:
 
     std::map<string, Screen> m_Screens =
     {
-        { "MainMenu", MainMenuScreen( m_Desktop ) },
+        { "MainMenu", MainMenuScreen( m_Desktop ) }/*,
         { "SlaveMarket", SlaveMarketScreen( m_Desktop ) },
         { "Jail", JailScreen( m_Desktop ) },
         { "Bank", BankScreen( m_Desktop ) },
@@ -513,7 +513,7 @@ private:
         { "BrothelSetup", BrothelSetupScreen( m_Desktop ) },
         { "Brothel", BrothelScreen( m_Desktop ) },
         { "NewGame", NewGameScreen( m_Desktop ) },
-        { "LoadGame", LoadGameScreen( m_Desktop ) }
+        { "LoadGame", LoadGameScreen( m_Desktop ) }*/
     };
     string m_CurrentScreenName = "MainMenu";
     
