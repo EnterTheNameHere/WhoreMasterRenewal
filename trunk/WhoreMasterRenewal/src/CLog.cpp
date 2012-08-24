@@ -19,6 +19,47 @@
 #include <iostream>
 #include "CLog.h"
 
+namespace WhoreMasterRenewal
+{
+    Logger::Logger( const string& filename, bool append )
+    {
+        //if( m_FirstRun )
+        //{
+        //    sf::Lock lock( m_Mutex );
+        //    {
+        //        if( m_FirstRun )
+        //        {
+        //            m_FirstRun = false;
+        //            
+                    if( append )
+                        m_LogFileStream.open( filename, ios_base::out | ios_base::app );
+                    else
+                        m_LogFileStream.open( filename, ios_base::out );
+                    
+        //            if( !m_LogFileStream.is_open() )
+        //            {
+        //                m_FailedToOpenLogFile = true;
+        //                
+        //                std::cerr << "Error: Failed to open \"" << filename << "\" file for logging.\n"
+        //                            << "Logging to file disabled. \n";
+        //            }
+        //        }
+        //    }
+        //}
+    }
+    Logger::~Logger()
+    {
+        if( m_LogFileStream.is_open() )
+        {
+            m_LogFileStream.close();
+        }
+    }
+    
+    //bool Logger::m_FailedToOpenLogFile = false;
+    //bool Logger::m_FirstRun = true;
+}
+
+
 bool CLogInner::setup = false;
 
 CLogInner::CLogInner()

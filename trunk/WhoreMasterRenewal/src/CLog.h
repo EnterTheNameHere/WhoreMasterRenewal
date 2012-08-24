@@ -24,7 +24,52 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <vector>
+#include "SFML/System/Lock.hpp"
+#include "SFML/System/Mutex.hpp"
+
 using namespace std;
+
+
+namespace WhoreMasterRenewal
+{
+    #define LOGGER_LOG_MESSAGE( text ) Logger() << text;
+    
+    class Logger
+    {
+    public:
+        Logger( const string& filename = "GameLog.txt", bool append = true );
+        ~Logger();
+        
+        template<typename T>
+        inline Logger& operator << ( T& value )
+        {
+            //sf::Lock lock( m_Mutex );
+            {
+                std::cout << value;
+ //               if( !m_FailedToOpenLogFile )
+                if( m_LogFileStream.is_open() )
+                    m_LogFileStream << value;
+            }
+        }
+        
+        inline Logger& operator << ( string value )
+        {
+            std::cout << value;
+            if( m_LogFileStream.is_open() )
+                m_LogFileStream << value;
+        }
+        
+    private:
+        std::ofstream m_LogFileStream;
+        //sf::Mutex m_Mutex;
+        
+        //static bool m_FirstRun;
+        //static bool m_FailedToOpenLogFile;
+    };
+}
+
+
 
 struct CLogInner
 {
