@@ -9,7 +9,7 @@ namespace WhoreMasterRenewal
 MainMenuScreen::MainMenuScreen( sfg::Desktop& desktop )
     : Screen( desktop )
 {
-    std::clog << "MainMenuScreen::MainMenuScreen()\n";
+    //std::clog << "MainMenuScreen::MainMenuScreen()\n";
 
     m_NewGameButton = sfg::Button::Create( L"New Game" );
     m_LoadGameButton = sfg::Button::Create( L"Load Game" );
@@ -33,30 +33,13 @@ MainMenuScreen::MainMenuScreen( sfg::Desktop& desktop )
 
     sfg::Alignment::Ptr alignment = sfg::Alignment::Create();
     
-    std::clog << "\tScale: " << alignment->GetScale().x << "x" << alignment->GetScale().y << "\n";
-    std::clog << "\tAllocation: " << alignment->GetAllocation().width << "x" << alignment->GetAllocation().height << "\n";
-    std::clog << "\tRequisition: " << alignment->GetRequisition().x << "x" << alignment->GetRequisition().y << "\n";
-
-    
     alignment->SetScale( sf::Vector2f( 0.f, 0.f ) );
     alignment->Add( innerBox );
     alignment->SetAlignment( sf::Vector2f( 0.5f, 0.5f ) );
-    
-    std::clog << "\tScale: " << alignment->GetScale().x << "x" << alignment->GetScale().y << "\n";
-    std::clog << "\tAllocation: " << alignment->GetAllocation().width << "x" << alignment->GetAllocation().height << "\n";
-    std::clog << "\tRequisition: " << alignment->GetRequisition().x << "x" << alignment->GetRequisition().y << "\n";
-    
+
     outerBox->Pack( alignment );
 
-    std::clog << "\tScale: " << alignment->GetScale().x << "x" << alignment->GetScale().y << "\n";
-    std::clog << "\tAllocation: " << alignment->GetAllocation().width << "x" << alignment->GetAllocation().height << "\n";
-    std::clog << "\tRequisition: " << alignment->GetRequisition().x << "x" << alignment->GetRequisition().y << "\n";
-
     m_Window->Add( outerBox );
-    
-    std::clog << "\tScale: " << alignment->GetScale().x << "x" << alignment->GetScale().y << "\n";
-    std::clog << "\tAllocation: " << alignment->GetAllocation().width << "x" << alignment->GetAllocation().height << "\n";
-    std::clog << "\tRequisition: " << alignment->GetRequisition().x << "x" << alignment->GetRequisition().y << "\n";
 }
 
 
@@ -66,21 +49,21 @@ WhoreMasterRenewalWindow::WhoreMasterRenewalWindow()
         //TODO: use custom resolution from config
         m_RenderWindow( sf::VideoMode( 1024, 768, 32 ), "Whore Master Renewal" )
 {
-    std::clog << "WhoreMasterRenewalWindow::WhoreMasterRenewalWindow()\n";
+    //std::clog << "WhoreMasterRenewalWindow::WhoreMasterRenewalWindow()\n";
 }
 
 WhoreMasterRenewalWindow::~WhoreMasterRenewalWindow()
 {
-    std::clog << "WhoreMasterRenewalWindow::~WhoreMasterRenewalWindow()\n";
+    //std::clog << "WhoreMasterRenewalWindow::~WhoreMasterRenewalWindow()\n";
 }
 
 void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::FloatRect& rect )
 {
-    std::clog << "WhoreMasterRenewalWindow::ResizeAllScreens( const sf::FloatRect& rect )\n";
-    std::clog << "\trect [left:" << rect.left
+    //std::clog << "WhoreMasterRenewalWindow::ResizeAllScreens( const sf::FloatRect& rect )\n";
+    /*std::clog << "\trect [left:" << rect.left
                     << ", top:" << rect.top
                     << ", width:" << rect.width
-                    << ", height:" << rect.height << "]\n";
+                    << ", height:" << rect.height << "]\n";*/
 
     std::map<string, Screen>::iterator it;
     for( it = m_Screens.begin(); it != m_Screens.end(); it++ )
@@ -91,7 +74,7 @@ void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::FloatRect& rect )
 
 void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::View& view )
 {
-    std::clog << "WhoreMasterRenewalWindow::ResizeAllScreens( const sf::View& view )\n";
+    //std::clog << "WhoreMasterRenewalWindow::ResizeAllScreens( const sf::View& view )\n";
 
     sf::FloatRect rect = view.getViewport();
     this->ResizeAllScreens( rect );
@@ -99,7 +82,7 @@ void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::View& view )
 
 void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::Vector2u& size )
 {
-    std::clog << "WhoreMasterRenewalWindow::ResizeAllScreens( const sf::Vector2u& size )\n";
+    //std::clog << "WhoreMasterRenewalWindow::ResizeAllScreens( const sf::Vector2u& size )\n";
 
     sf::FloatRect rect( 0.f, 0.f, static_cast<float>( size.x ), static_cast<float>( size.y ) );
     this->ResizeAllScreens( rect );
@@ -108,7 +91,7 @@ void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::Vector2u& size )
 // TODO: Handling missing screens - show error, leave current screen?
 void WhoreMasterRenewalWindow::ShowScreen( const string& screenName )
 {
-    std::clog << "WhoreMasterRenewalWindow::ShowScreen( string screenName )\n";
+    //std::clog << "WhoreMasterRenewalWindow::ShowScreen( string screenName )\n";
 
     // Find and hide current Screen
     std::map<string, Screen>::iterator it = this->m_Screens.find( this->m_CurrentScreenName );
@@ -127,7 +110,7 @@ void WhoreMasterRenewalWindow::ShowScreen( const string& screenName )
     }
     else
         std::cerr << __FILE__ << " (" << __LINE__ << "): "
-                << "Screen \"" << screenName << "\" not found. Cannot hide it.";
+                << "Screen \"" << screenName << "\" not found. Cannot hide it.\n";
 
     // Set new Screen name and show Screen
     this->m_CurrentScreenName = screenName;
@@ -137,19 +120,29 @@ void WhoreMasterRenewalWindow::ShowScreen( const string& screenName )
         it->second.Show();
     else
         std::cerr << __FILE__ << " (" << __LINE__ << "): "
-                << "Screen \"" << screenName << "\" not found. Cannot show it.";
+                << "Screen \"" << screenName << "\" not found. Cannot show it.\n";
 }
 
 void WhoreMasterRenewalWindow::Run()
 {
-    std::clog << "WhoreMasterRenewalWindow::Run()\n";
+    //std::clog << "WhoreMasterRenewalWindow::Run()\n";
 
     m_RenderWindow.resetGLStates();
 
     m_SFGUI.TuneAlphaThreshold( .2f );
     m_SFGUI.TuneUseFBO( true );
     m_SFGUI.TuneCull( true );
-
+    
+    m_RenderWindow.setFramerateLimit(60);
+    
+    WindowFromXMLLoader loader;
+    
+    std::pair<string,Screen> pair( "MainMenu", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\MainMenu.xml" ) ) );
+    m_Screens.insert( pair );
+    //loader.LoadFile( "Resources\\Interface\\Screens\\Brothel.xml" );
+    //loader.LoadFile( "Resources\\Interface\\Screens\\GirlManagement.xml" );
+    //loader.LoadFile( "Resources\\Interface\\Screens\\GirlDetails.xml" );
+    
     this->ResizeAllScreens( m_RenderWindow.getSize() );
     this->ShowScreen( "MainMenu" );
 
@@ -158,7 +151,7 @@ void WhoreMasterRenewalWindow::Run()
 
     sf::Clock clock;
     sf::Event event;
-
+    
     while( m_RenderWindow.isOpen() )
     {
         while( m_RenderWindow.pollEvent( event ) )

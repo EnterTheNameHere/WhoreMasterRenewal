@@ -239,6 +239,7 @@ void handle_hotkeys()
 #define SFGUI_STATIC
 #include <SFGUI/SFGUI.hpp>
 
+/*
 class HelloWorld
 {
 public:
@@ -777,6 +778,7 @@ void HelloWorld::OnToggleSpinner() {
 		m_Spinner->Stop();
 	}
 }
+*/
 
 int main_old(int ac, char* av[])
 {
@@ -1099,15 +1101,21 @@ using namespace WhoreMasterRenewal;
 
 int main( int argc, char* argv[] )
 {
-    std::clog << "main()\n";
+    try
+    {
+        std::clog << "main()\n";
 
-    WhoreMasterRenewalWindow window;
+        WhoreMasterRenewalWindow window;
 
-    std::clog << "main() : pre window.Run()\n";
+        std::clog << "main() : pre window.Run()\n";
 
-    window.Run();
+        window.Run();
 
-    std::clog << "main() : post window.Run()\n";
-
+        std::clog << "main() : post window.Run()\n";
+    }
+    catch( exception ex )
+    {
+        std::clog << "Exception caught:\n" << ex.what();
+    }
     return 0;
 }
