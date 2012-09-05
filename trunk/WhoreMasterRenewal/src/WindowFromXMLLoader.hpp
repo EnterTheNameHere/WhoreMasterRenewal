@@ -1,9 +1,11 @@
-
 #ifndef WINDOWFROMXMLLOADER_HPP_INCLUDED_2158
 #define WINDOWFROMXMLLOADER_HPP_INCLUDED_2158
+#pragma once
 
 #include <algorithm>
 #include <string>
+
+#include "ResizableImage.hpp"
 
 #include "pugixml.hpp"
 
@@ -91,6 +93,14 @@ namespace WhoreMasterRenewal
                 return this->ProcessAlignment( node );
             else if( name == "Button" )
                 return this->ProcessButton( node );
+            else if( name == "Label" )
+                return this->ProcessLabel( node );
+            else if( name == "Image" )
+                return this->ProcessImage( node );
+            else if( name == "ResizableImage" )
+                return this->ProcessResizableImage( node );
+            else if( name == "Table" )
+                return this->ProcessTable( node );
             else
             {
                 std::stringstream text;
@@ -98,6 +108,122 @@ namespace WhoreMasterRenewal
                 Logger() << text.str() << "\n";
                 return sfg::Label::Create( text.str() );
             }
+        }
+        
+        sfg::Table::Ptr ProcessTable( const pugi::xml_node& node )
+        {
+            Logger() << "Starting parsing of Table\n";
+            
+            sfg::Table::Ptr newTable = sfg::Table::Create();
+            
+            // Process Attach-ments, warn if other tags found
+            for( pugi::xml_node attachNode: node.children() )
+            {
+                string name = attachNode.name();
+                if( name == "Attach" )
+                {
+                    // Check for attributes
+                    int rowNumber = attachNode.attribute("row").as_int( 0 );
+                    int columnNumber = attachNode.attribute("column").as_int( 0 );
+                    int rowSpan = attachNode.attribute("rowSpan").as_int( 1 );        // How many column spaces it should occupy
+                    int columnSpan = attachNode.attribute("columnSpan").as_int( 1 );  // How many row spaces it should occupy
+                    
+                    // TODO: x: EXPAND|FILL
+                    //       y: EXPAND|FILL
+                    //       padding
+                    
+                    auto numberOfNodes = std::distance( attachNode.children().begin(), attachNode.children().end() );
+                    if( numberOfNodes != 1 )
+                    {
+                        Logger() << "Warning, None or more than one tags found inside <Table><Attach> </Attach></Table> tag.\n";
+                        newTable->Attach( sfg::Label::Create( L"Warning: None of more than one tags found inside <Attach>." ), sf::Rect<sf::Uint32>( columnNumber, rowNumber, columnSpan, rowSpan ) );
+                    }
+                    else
+                    {
+                        Logger() << "Adding element to Table: row=" << rowNumber << " column=" << columnNumber << " rowSpan=" << rowSpan << " columnSpan=" << columnSpan << " \n";
+                        newTable->Attach( this->ProcessElement( attachNode.first_child() ), sf::Rect<sf::Uint32>( columnNumber, rowNumber, columnSpan, rowSpan ) );
+                    }
+                }
+                else
+                {
+                    Logger() << "Warning, <Table></Table> contains unsupported tag <" << attachNode.name() << " />. Didn't You want to put it inside <Attach></Attach> tags?\n";
+                    newTable->Attach( sfg::Label::Create( "Error: Unsupported tag found." ), sf::Rect<sf::Uint32>( 0, 0, 1, 1 ) );
+                }
+            }
+            
+            return newTable;
+        }
+        
+        sfg::ResizableImage::Ptr ProcessResizableImage( const pugi::xml_node& node )
+        {
+            Logger() << "Starting parsing of ResizableImage\n";
+            
+            bool pathEmpty = node.attribute("path").empty();
+            
+            sf::Image sfImage;
+            
+            if( !pathEmpty )
+            {
+                string imagePath = node.attribute("path").as_string();
+                sfImage.loadFromFile( imagePath );
+            }
+            else
+            {
+                Logger() << "Warning, resizable image path not specified\n";
+            }
+            
+            sfg::ResizableImage::Ptr sfgResizableImage = sfg::ResizableImage::Create( sfImage );
+            
+            // Should we keep aspect
+            bool keepAspect = node.attribute("keepAspect").as_bool( true );
+            sfgResizableImage->SetKeepAspect( keepAspect );
+            
+            // Get requested size of image
+            unsigned int x = node.attribute("setWidth").as_uint();
+            unsigned int y = node.attribute("setHeight").as_uint();
+            
+            // And resize the image
+            sfgResizableImage->PerformResizing( sf::Vector2u( x, y ) );
+            
+            Logger() << "Finished parsing of ResizableImage\n";
+            return sfgResizableImage;
+        }
+        
+        sfg::Image::Ptr ProcessImage( const pugi::xml_node& node )
+        {
+            Logger() << "Starting parsing of Image\n";
+            
+            bool pathEmpty = node.attribute("path").empty();
+            
+            sf::Image sfImage;
+            
+            if( !pathEmpty )
+            {
+                string imagePath = node.attribute("path").as_string();
+                sfImage.loadFromFile( imagePath );
+            }
+            else
+            {
+                Logger() << "Warning, image path not specified\n";
+            }
+            
+            Logger() << "Finished parsing of Image\n";
+            sfg::Image::Ptr sfgImage = sfg::Image::Create( sfImage );
+            
+            return sfgImage;
+        }
+                
+        sfg::Label::Ptr ProcessLabel( const pugi::xml_node& node )
+        {
+            Logger() << "Starting parsing of Label\n";
+            
+            string text = node.text().as_string();
+            
+            Logger() << "Creating Label:\n";
+            Logger() << "text=\"" << text << "\"\n";
+            
+            Logger() << "Finished parsing of Label\n";
+            return sfg::Label::Create( text );
         }
         
         sfg::Window::Ptr ProcessWindow( const pugi::xml_node& node )

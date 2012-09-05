@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Window name="GirlManagement" titleBar="false" resize="false" background="true" shadow="false">
+	<Box orientation="Vertical">
+		<Box>
+			<Box>
+				<ResizableImage path="Resources\Characters\Dangerous Girl\Profile2.jpg" setWidth="100" setHeight="100" keepAspect="yes" />
+			</Box>
+			<Box orientation="Vertical">
+				<Label>Current Brothel: name</Label>
+				<Table>
+                    <Attach row="0" column="0">
+                        <Label>Girl Name</Label>
+                    </Attach>
+                    <Attach row="0" column="1">
+                        <Label>Age</Label>
+                    </Attach>
+                    <Attach row="0" column="2">
+                        <Label>Looks</Label>
+                    </Attach>
+                    <Attach row="0" column="3">
+                        <Label>HP</Label>
+                    </Attach>
+                    <Attach row="0" column="4">
+                        <Label>Mood</Label>
+                    </Attach>
+                    <Attach row="0" column="5">
+                        <Label>Tired</Label>
+                    </Attach>
+                    <Attach row="0" column="6">
+                        <Label>Day Job</Label>
+                    </Attach>
+                    <Attach row="0" column="7">
+                        <Label>Night Job</Label>
+                    </Attach>
+				</Table>
+			</Box>
+		</Box>
+		<Box>
+			<Box>
+				<Label>Girl description</Label>
+				<Box orientation="Vertical">
+					<Label>Job Types</Label>
+					<List><Row>Row</Row></List>
+				</Box>
+				<Box orientation="Vertical">
+					<Label>Jobs</Label>
+					<Notepad>
+						<Page>
+							<List><Row>Row</Row></List>
+						</Page>
+					</Notepad>
+				</Box>
+				<Label>Job description</Label>
+				<Box orientation="Vertical">
+					<Button image="Resources\Buttons\ViewDetailsOn.png" />
+					<Button image="Resources\Buttons\TransferGirlsOn.png" />
+					<Button image="Resources\Buttons\FreeSlaveOn.png" />
+					<Button image="Resources\Buttons\SellSlaveOn.png" />
+					<Button image="Resources\Buttons\FireGirlDisabled.png" />
+					<Button image="Resources\Buttons\BackOff.png" />
+				</Box>
+			</Box>
+		</Box>
+	</Box>
+</Window>

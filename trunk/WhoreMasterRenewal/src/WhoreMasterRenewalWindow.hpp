@@ -502,29 +502,7 @@ private:
 
     sf::RenderWindow m_RenderWindow;
     
-    
-    std::map<string, Screen> m_Screens =
-    {
-        //{ "MainMenu", MainMenuScreen( m_Desktop ) }//,
-        //{ "SlaveMarket", SlaveMarketScreen( m_Desktop ) },
-        //{ "Jail", JailScreen( m_Desktop ) },
-        //{ "Bank", BankScreen( m_Desktop ) },
-        //{ "House", HouseScreen( m_Desktop ) },
-        //{ "TownHall", TownHallScreen( m_Desktop ) },
-        //{ "Town", TownScreen( m_Desktop ) },
-        //{ "TurnSummary", TurnSummaryScreen( m_Desktop ) },
-        //{ "Dungeon", DungeonScreen( m_Desktop ) },
-        //{ "GangManagement", GangManagementScreen( m_Desktop ) },
-        //{ "Inventory", InventoryScreen( m_Desktop ) },
-        //{ "GirlGallery", GirlGalleryScreen( m_Desktop ) },
-        //{ "GirlDetails", GirlDetailsScreen( m_Desktop ) },
-        //{ "TransferGirls", TransferGirlsScreen( m_Desktop ) },
-        //{ "GirlManagement", GirlManagementScreen( m_Desktop ) },
-        //{ "BrothelSetup", BrothelSetupScreen( m_Desktop ) },
-        //{ "Brothel", BrothelScreen( m_Desktop ) },
-        //{ "NewGame", NewGameScreen( m_Desktop ) },
-        //{ "LoadGame", LoadGameScreen( m_Desktop ) }
-    };
+    std::map<string, Screen> m_Screens = {};
     string m_CurrentScreenName = "MainMenu";
     
     ConsoleWindow m_Console = { ConsoleWindow( m_Desktop ) };

@@ -1104,13 +1104,13 @@ int main( int argc, char* argv[] )
     try
     {
         std::clog << "main()\n";
-
+        
         WhoreMasterRenewalWindow window;
-
+        
         std::clog << "main() : pre window.Run()\n";
-
+        
         window.Run();
-
+        
         std::clog << "main() : post window.Run()\n";
     }
     catch( exception ex )

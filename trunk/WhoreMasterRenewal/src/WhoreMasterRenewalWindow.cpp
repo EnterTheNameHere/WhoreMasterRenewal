@@ -137,15 +137,20 @@ void WhoreMasterRenewalWindow::Run()
     
     WindowFromXMLLoader loader;
     
-    std::pair<string,Screen> pair( "MainMenu", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\MainMenu.xml" ) ) );
-    m_Screens.insert( pair );
-    //loader.LoadFile( "Resources\\Interface\\Screens\\Brothel.xml" );
-    //loader.LoadFile( "Resources\\Interface\\Screens\\GirlManagement.xml" );
-    //loader.LoadFile( "Resources\\Interface\\Screens\\GirlDetails.xml" );
+    std::pair<string,Screen> mainmenu( "MainMenu", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\MainMenu.xml" ) ) );
+    m_Screens.insert( mainmenu );
+    std::pair<string,Screen> brothel( "Brothel", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\Brothel.xml" ) ) );
+    m_Screens.insert( brothel );
+    std::pair<string,Screen> girlManagement( "GirlManagement", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\GirlManagement.xml" ) ) );
+    m_Screens.insert( girlManagement );
+    std::pair<string,Screen> girlDetails( "GirlDetails", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\GirlDetails.xml" ) ) );
+    m_Screens.insert( girlDetails );
     
     this->ResizeAllScreens( m_RenderWindow.getSize() );
-    this->ShowScreen( "MainMenu" );
-
+    this->ShowScreen( "GirlManagement" );
+    
+    this->m_Desktop.LoadThemeFromFile( "Resources\\example.theme" );
+    
     sf::Clock fpsClock;
     unsigned int fpsCount = 0;
 

@@ -2120,7 +2120,7 @@
 	<vector>
 	"cInterfaceWindow.h"
 
-1344986875 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
+1346466284 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
 	"main.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2407,7 +2407,7 @@
 	"DirPath.h"
 	"cGangs.h"
 
-1344657924 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluascript.cpp
+1346761089 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluascript.cpp
 	"cLuaScript.h"
 	"cLuaMenu.h"
 	"cScriptUtils.h"
@@ -5075,15 +5075,16 @@
 	<stdio.h>
 	"lua.h"
 
-1345464164 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.cpp
+1346779273 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.cpp
 	"WhoreMasterRenewalWindow.hpp"
 	<map>
 
-1345464187 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.hpp
+1346759742 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\whoremasterrenewalwindow.hpp
 	<SFML/Graphics.hpp>
 	<SFGUI/SFGUI.hpp>
 	<string>
 	<map>
+	<lua.hpp>
 	"CLog.h"
 	"WindowFromXMLLoader.hpp"
 
@@ -5121,8 +5122,21 @@
 	<SFGUI/SharedPtr.hpp>
 	<SFML/Graphics.hpp>
 
-1345552687 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\windowfromxmlloader.hpp
+1346778184 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\windowfromxmlloader.hpp
 	<algorithm>
 	<string>
+	"ResizableImage.hpp"
 	"pugixml.hpp"
+
+1103766784 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\include\lua.hpp
+	"lua.h"
+	"lualib.h"
+	"lauxlib.h"
+
+1346857020 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\resizableimage.hpp
+	<SFGUI/Config.hpp>
+	<SFGUI/Widget.hpp>
+	<SFGUI/Misc.hpp>
+	<SFGUI/SharedPtr.hpp>
+	<SFGUI/RenderQueue.hpp>
 

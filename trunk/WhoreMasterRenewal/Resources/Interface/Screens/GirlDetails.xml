@@ -1,9 +1,37 @@
-<SomethingElse>
-	<Window></Window>
-</SomethingElse>
-<Window>
-	<Placeholder1></Placeholder1>
-</Window>
-<Window>
-	<Placeholder2></Placeholder2>
+<?xml version="1.0" encoding="UTF-8" ?>
+<Window name="GirlDetails" titleBar="false" resize="false" background="true" shadow="false">
+	<Box>
+		<Box>
+			<Label>Girl Name: name</Label>
+			<Label>Girl details</Label>
+			<Button path="Resources\Buttons\ShowMoreOff.png" />
+			<Box><Label>Use Anti-Preg</Label><CheckBox state="checked" /></Box>
+			<Box>
+				<Box><Button path="Resources\Buttons\PrevOff.png" /><Button path="Resources\Buttons\NextOff.png" /></Box>
+				<Box><Button path="Resources\Buttons\AcomUpOff.png" /><Button path="Resources\Buttons\AcomDownOff.png" /></Box>
+			</Box>
+		</Box>
+		<Box>
+			<Image path="Resources\Characters\Dangerous Girl\Profile2.jpg" />
+			<Box>
+				<Box><Button path="Resources\Buttons\GiveGiftOff.png" /><Button path="Resources\Buttons\TalkDisabled.png" /></Box>
+				<Box><Button path="Resources\Buttons\SendDungeonOff.png" /><Button path="Resources\Buttons\TakeGoldOff.png" /></Box>
+			</Box>
+		</Box>
+		<Box>
+			<Label>Job Types:</Label>
+			<List><Row>Row</Row></List>
+			<Notepad>
+				<Page>
+					<List><Row>Row</Row></List>
+				</Page>
+			</Notepad>
+			<Label>Traits</Label>
+			<List><Row>Row</Row></List>
+			<Scale value="70" />
+			<Label>House Percentage: xx %</Label>
+			<Button path="Resources\Buttons\GalleryOff.png" />
+			<Button path="Resources\Buttons\BackOff.png" />
+		</Box>
+	</Box>
 </Window>
