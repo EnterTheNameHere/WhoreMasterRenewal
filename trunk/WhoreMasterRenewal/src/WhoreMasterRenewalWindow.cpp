@@ -6,43 +6,6 @@
 namespace WhoreMasterRenewal
 {
 
-MainMenuScreen::MainMenuScreen( sfg::Desktop& desktop )
-    : Screen( desktop )
-{
-    //std::clog << "MainMenuScreen::MainMenuScreen()\n";
-
-    m_NewGameButton = sfg::Button::Create( L"New Game" );
-    m_LoadGameButton = sfg::Button::Create( L"Load Game" );
-    m_QuitGameButton = sfg::Button::Create( L"Quit Game" );
-/*
-    sf::Image image;
-    image.loadFromFile( "Resources/Buttons/NewGameOff.png" );
-    m_NewGameButton->SetImage( sfg::Image::Create( image ) );
-
-    image.loadFromFile( "Resources/Buttons/LoadGameOff.png" );
-    m_LoadGameButton->SetImage( sfg::Image::Create( image ) );
-
-    image.loadFromFile( "Resources/Buttons/QuitGameOff.png" );
-    m_QuitGameButton->SetImage( sfg::Image::Create( image ) );
-*/
-    sfg::Box::Ptr outerBox = sfg::Box::Create( sfg::Box::Orientation::HORIZONTAL );
-    sfg::Box::Ptr innerBox = sfg::Box::Create( sfg::Box::Orientation::VERTICAL );
-    innerBox->Pack( m_NewGameButton );
-    innerBox->Pack( m_LoadGameButton );
-    innerBox->Pack( m_QuitGameButton );
-
-    sfg::Alignment::Ptr alignment = sfg::Alignment::Create();
-    
-    alignment->SetScale( sf::Vector2f( 0.f, 0.f ) );
-    alignment->Add( innerBox );
-    alignment->SetAlignment( sf::Vector2f( 0.5f, 0.5f ) );
-
-    outerBox->Pack( alignment );
-
-    m_Window->Add( outerBox );
-}
-
-
 WhoreMasterRenewalWindow::WhoreMasterRenewalWindow()
     :
         m_Desktop(),

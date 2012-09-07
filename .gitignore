@@ -2,3 +2,5 @@ obj
 Thumbs.db
 bin
 /trunk/WhoreMasterRenewal/WhoreMasterRenewal.layout
+!/trunk/Docs/doxygen/WhoreMasterRenewal
+/trunk/Docs/*.*

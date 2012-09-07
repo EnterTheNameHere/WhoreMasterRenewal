@@ -183,7 +183,7 @@ namespace WhoreMasterRenewal
             unsigned int y = node.attribute("setHeight").as_uint();
             
             // And resize the image
-            sfgResizableImage->PerformResizing( sf::Vector2u( x, y ) );
+            sfgResizableImage->Resize( sf::Vector2u( x, y ) );
             
             Logger() << "Finished parsing of ResizableImage\n";
             return sfgResizableImage;
