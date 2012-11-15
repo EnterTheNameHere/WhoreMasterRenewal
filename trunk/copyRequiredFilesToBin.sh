@@ -38,9 +38,10 @@ done
 echo "Copying libraries..."
 
 # Copy found files from libraries
+[ ! -d "$rootDirectory/$binDirectory" ] && mkdir "$rootDirectory/$binDirectory"
 for library in ${libraries[@]}
 do
-	[ -d "$rootDirectory/$wmrProjectDirectory/$dependenciesDirectory/$library/bin" ] && find $rootDirectory/$wmrProjectDirectory/$dependenciesDirectory/$library/bin -type f -print0 | while read -d $'\0' file;
+	[ -d "$rootDirectory/$wmrProjectDirectory/$dependenciesDirectory/$library/bin" ] && find "$rootDirectory/$wmrProjectDirectory/$dependenciesDirectory/$library/bin" -type f -print0 | while read -d $'\0' file;
 		do
 			
 			sourceFile=$file
@@ -68,7 +69,7 @@ done
 echo "Done..."
 echo "Copying resources..."
 
-# Directories in Resources
+# Create directories found in Resources in bin directory, if needed
 find $rootDirectory/$wmrProjectDirectory/$resourcesDirectory/ -type d -print0 | while read -d $'\0' directory;
 do
 	
@@ -90,7 +91,6 @@ done
 
 # Files in Resources
 
-i=0
 find $rootDirectory/$wmrProjectDirectory/$resourcesDirectory/ -type f -print0 | while read -d $'\0' file;
 do
 	
@@ -119,11 +119,11 @@ done
 echo "Done..."
 
 # Saves, if we want them
+[ ! -d "$rootDirectory/$binDirectory/$savesDirectory" ] && mkdir "$rootDirectory/$binDirectory/$savesDirectory" # Create Saves directory
 if [ $saves -eq 1 ]; then
 
 	echo "Copying saves..."
 
-	[ ! -d "$rootDirectory/$binDirectory/$savesDirectory" ] && mkdir "$rootDirectory/$binDirectory/$savesDirectory"
 	find $rootDirectory/$wmrProjectDirectory/$savesDirectory -type f -print0 | while read -d $'\0' file;
 	do
 		
