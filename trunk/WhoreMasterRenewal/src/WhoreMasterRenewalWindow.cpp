@@ -8,7 +8,6 @@ namespace WhoreMasterRenewal
 
 WhoreMasterRenewalWindow::WhoreMasterRenewalWindow()
     :
-        m_Desktop(),
         //TODO: use custom resolution from config
         m_RenderWindow( sf::VideoMode( 1024, 768, 32 ), "Whore Master Renewal" )
 {
@@ -27,28 +26,16 @@ void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::FloatRect& rect )
                     << ", top:" << rect.top
                     << ", width:" << rect.width
                     << ", height:" << rect.height << "]\n";*/
-
-    std::map<string, Screen>::iterator it;
-    for( it = m_Screens.begin(); it != m_Screens.end(); it++ )
-    {
-        it->second.Resize( rect );
-    }
 }
 
 void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::View& view )
 {
     //std::clog << "WhoreMasterRenewalWindow::ResizeAllScreens( const sf::View& view )\n";
-
-    sf::FloatRect rect = view.getViewport();
-    this->ResizeAllScreens( rect );
 }
 
 void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::Vector2u& size )
 {
     //std::clog << "WhoreMasterRenewalWindow::ResizeAllScreens( const sf::Vector2u& size )\n";
-
-    sf::FloatRect rect( 0.f, 0.f, static_cast<float>( size.x ), static_cast<float>( size.y ) );
-    this->ResizeAllScreens( rect );
 }
 
 // TODO: Handling missing screens - show error, leave current screen?
@@ -57,33 +44,6 @@ void WhoreMasterRenewalWindow::ShowScreen( const string& screenName )
     //std::clog << "WhoreMasterRenewalWindow::ShowScreen( string screenName )\n";
 
     // Find and hide current Screen
-    std::map<string, Screen>::iterator it = this->m_Screens.find( this->m_CurrentScreenName );
-    if( it != this->m_Screens.end() )
-    {
-        // Calling Show for current screen has meaning only if it was somehow hidden
-        if( screenName == m_CurrentScreenName )
-        {
-            if( !it->second.IsVisible() )
-                it->second.Show();
-            return;
-        }
-
-        it->second.Hide();
-
-    }
-    else
-        std::cerr << __FILE__ << " (" << __LINE__ << "): "
-                << "Screen \"" << screenName << "\" not found. Cannot hide it.\n";
-
-    // Set new Screen name and show Screen
-    this->m_CurrentScreenName = screenName;
-
-    it = this->m_Screens.find( this->m_CurrentScreenName );
-    if( it != this->m_Screens.end() )
-        it->second.Show();
-    else
-        std::cerr << __FILE__ << " (" << __LINE__ << "): "
-                << "Screen \"" << screenName << "\" not found. Cannot show it.\n";
 }
 
 void WhoreMasterRenewalWindow::Run()
@@ -91,32 +51,14 @@ void WhoreMasterRenewalWindow::Run()
     //std::clog << "WhoreMasterRenewalWindow::Run()\n";
 
     m_RenderWindow.resetGLStates();
-
-    m_SFGUI.TuneAlphaThreshold( .2f );
-    m_SFGUI.TuneUseFBO( true );
-    m_SFGUI.TuneCull( true );
-    
     m_RenderWindow.setFramerateLimit(60);
-    
-    WindowFromXMLLoader loader;
-    
-    std::pair<string,Screen> mainmenu( "MainMenu", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\MainMenu.xml" ) ) );
-    m_Screens.insert( mainmenu );
-    std::pair<string,Screen> brothel( "Brothel", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\Brothel.xml" ) ) );
-    m_Screens.insert( brothel );
-    std::pair<string,Screen> girlManagement( "GirlManagement", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\GirlManagement.xml" ) ) );
-    m_Screens.insert( girlManagement );
-    std::pair<string,Screen> girlDetails( "GirlDetails", Screen( m_Desktop, loader.LoadFile( "Resources\\Interface\\Screens\\GirlDetails.xml" ) ) );
-    m_Screens.insert( girlDetails );
     
     this->ResizeAllScreens( m_RenderWindow.getSize() );
     this->ShowScreen( "GirlManagement" );
     
-    this->m_Desktop.LoadThemeFromFile( "Resources\\example.theme" );
-    
     sf::Clock fpsClock;
     unsigned int fpsCount = 0;
-
+    
     sf::Clock clock;
     sf::Event event;
     
@@ -131,19 +73,14 @@ void WhoreMasterRenewalWindow::Run()
             else if( event.type == sf::Event::EventType::Resized )
             {
                 sf::FloatRect rect( 0.f, 0.f, static_cast<float>( event.size.width ), static_cast<float>( event.size.height ) );
-                m_Desktop.UpdateViewRect( rect );
                 this->ResizeAllScreens( rect );
             }
-
-            m_Desktop.HandleEvent( event );
         }
 
         m_RenderWindow.clear( sf::Color( 255, 0, 0, 255 ) );
 
-        m_Desktop.Update( clock.getElapsedTime().asSeconds() );
         clock.restart();
 
-        m_SFGUI.Display( m_RenderWindow );
         m_RenderWindow.display();
 
         if( fpsClock.getElapsedTime().asSeconds() > 1.f )

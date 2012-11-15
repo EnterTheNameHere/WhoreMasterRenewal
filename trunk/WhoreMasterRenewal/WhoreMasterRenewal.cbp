@@ -42,7 +42,6 @@
 					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
 					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
 					<Add library="Dependencies\SDL\lib\libSDL.a" />
-					<Add library="Dependencies\SFGUI\lib\libsfgui-s-d.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-graphics-s-d.a" />
 					<Add library="glew" />
 					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
@@ -76,7 +75,6 @@
 					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
 					<Add library="Dependencies\SDL\lib\libSDL.a" />
 					<Add library="Dependencies\SFGUI\lib\libsfgui-s.a" />
-					<Add library="Dependencies\SFML\lib\libsfml-graphics-s.a" />
 					<Add library="glew" />
 					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-window-s.a" />
@@ -89,22 +87,16 @@
 		</Build>
 		<Compiler>
 			<Add option="-std=c++0x" />
+			<Add option="-DSFML_STATIC" />
 			<Add directory="Dependencies/SDL/include/SDL" />
 			<Add directory="Dependencies/lua/include" />
 			<Add directory="Dependencies/TinyXML/include" />
 			<Add directory="Dependencies/SFML/include" />
-			<Add directory="Dependencies/SFGUI/include" />
 			<Add directory="Dependencies/pugixml/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-static-libstdc++" />
 			<Add option="-static-libgcc" />
-			<Add directory="Dependencies/SDL/lib" />
-			<Add directory="Dependencies/lua/lib" />
-			<Add directory="Dependencies/TinyXML/lib" />
-			<Add directory="Dependencies/SFML/lib" />
-			<Add directory="Dependencies/SFGUI/lib" />
-			<Add directory="Dependencies/TinyXML-2/lib" />
 		</Linker>
 		<ExtraCommands>
 			<Add after='C:\WINDOWS\system32\cmd.exe /C &quot;&quot;D:\Git\bin\sh.exe&quot; &quot;--login&quot; &quot;../copyRequiredFilesToBin.sh&quot; &quot;saves&quot; &quot;onlyNew&quot; &quot;verbose&quot;&quot;' />
@@ -173,12 +165,10 @@
 		<Unit filename="src/InterfaceProcesses.h" />
 		<Unit filename="src/LuaUtils.hpp" />
 		<Unit filename="src/MasterFile.h" />
-		<Unit filename="src/ResizableImage.hpp" />
 		<Unit filename="src/Revision.h" />
 		<Unit filename="src/SDLStuff.h" />
 		<Unit filename="src/WhoreMasterRenewalWindow.cpp" />
 		<Unit filename="src/WhoreMasterRenewalWindow.hpp" />
-		<Unit filename="src/WindowFromXMLLoader.hpp" />
 		<Unit filename="src/WorkAdvertising.cpp" />
 		<Unit filename="src/WorkBar.cpp" />
 		<Unit filename="src/WorkBeastCapture.cpp" />
