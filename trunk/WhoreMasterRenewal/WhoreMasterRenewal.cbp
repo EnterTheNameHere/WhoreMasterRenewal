@@ -5,22 +5,31 @@
 		<Option title="Whore Master Renewal" />
 		<Option platforms="Windows;" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="Resources\;Resources\Interface\;Resources\Interface\Screens\;Sources\;Headers\;" />
+		<Option virtualFolders="Resources\;Resources\Interface\;Resources\Interface\Screens\;Resources\Scripts\;" />
 		<Build>
 			<Target title="Debug">
-				<Option output="..\bin\WhoreMasterRenewal-DEBUG" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="..\bin" />
-				<Option object_output="obj\Debug\" />
+				<Option output="../bin/WhoreMasterRenewal-DEBUG" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../bin" />
+				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-Wshadow" />
 					<Add option="-Winit-self" />
 					<Add option="-Wredundant-decls" />
 					<Add option="-Wcast-align" />
+					<Add option="-Wundef" />
+					<Add option="-Wfloat-equal" />
 					<Add option="-Winline" />
 					<Add option="-Wunreachable-code" />
 					<Add option="-Wmissing-declarations" />
 					<Add option="-Wmissing-include-dirs" />
+					<Add option="-Wswitch-enum" />
+					<Add option="-Wswitch-default" />
+					<Add option="-Wmain" />
+					<Add option="-pedantic" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
@@ -45,9 +54,9 @@
 				</Linker>
 			</Target>
 			<Target title="Release">
-				<Option output="..\bin\WhoreMasterRenewal" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="..\bin" />
-				<Option object_output="obj\Release\" />
+				<Option output="../bin/WhoreMasterRenewal" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../bin" />
+				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -80,642 +89,256 @@
 		</Build>
 		<Compiler>
 			<Add option="-std=c++0x" />
-			<Add directory="Dependencies\SDL\include\SDL" />
-			<Add directory="Dependencies\lua\include" />
-			<Add directory="Dependencies\TinyXML\include" />
-			<Add directory="Dependencies\SFML\include" />
-			<Add directory="Dependencies\SFGUI\include" />
-			<Add directory="Dependencies\pugixml\include" />
+			<Add directory="Dependencies/SDL/include/SDL" />
+			<Add directory="Dependencies/lua/include" />
+			<Add directory="Dependencies/TinyXML/include" />
+			<Add directory="Dependencies/SFML/include" />
+			<Add directory="Dependencies/SFGUI/include" />
+			<Add directory="Dependencies/pugixml/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-static-libstdc++" />
 			<Add option="-static-libgcc" />
-			<Add directory="Dependencies\SDL\lib" />
-			<Add directory="Dependencies\lua\lib" />
-			<Add directory="Dependencies\TinyXML\lib" />
-			<Add directory="Dependencies\SFML\lib" />
-			<Add directory="Dependencies\SFGUI\lib" />
-			<Add directory="Dependencies\TinyXML-2\lib" />
+			<Add directory="Dependencies/SDL/lib" />
+			<Add directory="Dependencies/lua/lib" />
+			<Add directory="Dependencies/TinyXML/lib" />
+			<Add directory="Dependencies/SFML/lib" />
+			<Add directory="Dependencies/SFGUI/lib" />
+			<Add directory="Dependencies/TinyXML-2/lib" />
 		</Linker>
 		<ExtraCommands>
 			<Add after='C:\WINDOWS\system32\cmd.exe /C &quot;&quot;D:\Git\bin\sh.exe&quot; &quot;--login&quot; &quot;../copyRequiredFilesToBin.sh&quot; &quot;saves&quot; &quot;onlyNew&quot; &quot;verbose&quot;&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
-		<Unit filename="Resources\Interface\Screens\Bank.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\Brothel.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\BrothelSetup.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\Dungeon.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\GangManagement.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\GirlDetails.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\GirlGallery.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\GirlManagement.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\House.xml">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\Inventory.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\Jail.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\LoadGame.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\MainMenu.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\NewGame.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\SlaveMarket.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\Town.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\TownHall.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\TransferGirls.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="Resources\Interface\Screens\TurnSummary.xml">
-			<Option virtualFolder="Resources\Interface\Screens\" />
-		</Unit>
-		<Unit filename="src\CGameObject.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\CGameObject.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\CGraphics.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\CGraphics.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\CLog.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\CLog.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\CRenderQue.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\CRenderQue.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\CResource.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\CResourceManager.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\CResourceManager.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\CSurface.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\CSurface.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\CTimer.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\Constants.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\DirPath.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\DirPath.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\FileList.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\FileList.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\GameFlags.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\GameFlags.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\GameSystem.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\GraphicsSystem.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\IconSurface.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\InterfaceGlobals.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\InterfaceGlobals.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\InterfaceIDs.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\InterfaceProcesses.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\InterfaceProcesses.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\LuaUtils.hpp">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\MasterFile.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\ResizableImage.hpp" />
-		<Unit filename="src\Revision.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\SDLStuff.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\WhoreMasterRenewalWindow.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WhoreMasterRenewalWindow.hpp">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\WindowFromXMLLoader.hpp">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\WorkAdvertising.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkBar.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkBeastCapture.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkBeastCare.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkBrothelMassusse.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkExploreCatacombs.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkFluffer.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkFreetime.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkHall.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkMatron.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkSecurity.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkStripper.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkTorturer.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\WorkWhore.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\XmlMisc.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\XmlMisc.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\XmlUtil.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\XmlUtil.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cAnimatedSurface.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cAnimatedSurface.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cBrothel.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cBrothel.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cBuilding.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cBuilding.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cButton.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cButton.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cCheckBox.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cCheckBox.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cChoiceMessage.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cChoiceMessage.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cColor.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cColor.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cCustomers.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cCustomers.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cDungeon.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cDungeon.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cEditBox.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cEditBox.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cEvents.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cEvents.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cFont.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cFont.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cGameScript.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cGameScript.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cGangs.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cGangs.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cGetStringScreenManager.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cGetStringScreenManager.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cGirlGangFight.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cGirlGangFight.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cGirlTorture.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cGirlTorture.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cGirls.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cGirls.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cGold.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cGold.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cImageItem.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cImageItem.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cInterfaceEvent.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cInterfaceObject.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cInterfaceWindow.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cInterfaceWindow.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cInventory.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cInventory.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cInventoryManagementSM.cpp">
+		<Unit filename="Resources/Interface/Screens/Bank.xml" />
+		<Unit filename="Resources/Interface/Screens/Brothel.xml" />
+		<Unit filename="Resources/Interface/Screens/BrothelSetup.xml" />
+		<Unit filename="Resources/Interface/Screens/Dungeon.xml" />
+		<Unit filename="Resources/Interface/Screens/GangManagement.xml" />
+		<Unit filename="Resources/Interface/Screens/GirlDetails.xml" />
+		<Unit filename="Resources/Interface/Screens/GirlGallery.xml" />
+		<Unit filename="Resources/Interface/Screens/GirlManagement.xml" />
+		<Unit filename="Resources/Interface/Screens/House.xml" />
+		<Unit filename="Resources/Interface/Screens/Inventory.xml" />
+		<Unit filename="Resources/Interface/Screens/Jail.xml" />
+		<Unit filename="Resources/Interface/Screens/LoadGame.xml" />
+		<Unit filename="Resources/Interface/Screens/MainMenu.xml" />
+		<Unit filename="Resources/Interface/Screens/NewGame.xml" />
+		<Unit filename="Resources/Interface/Screens/SlaveMarket.xml" />
+		<Unit filename="Resources/Interface/Screens/Town.xml" />
+		<Unit filename="Resources/Interface/Screens/TownHall.xml" />
+		<Unit filename="Resources/Interface/Screens/TransferGirls.xml" />
+		<Unit filename="Resources/Interface/Screens/TurnSummary.xml" />
+		<Unit filename="Resources/Scripts/CustGambCheat.script" />
+		<Unit filename="Resources/Scripts/CustNoPay.script" />
+		<Unit filename="Resources/Scripts/DefaultInteractDetails.script" />
+		<Unit filename="Resources/Scripts/DefaultInteractDungeon.script" />
+		<Unit filename="Resources/Scripts/GlobalTriggers.xml" />
+		<Unit filename="Resources/Scripts/Intro.lua" />
+		<Unit filename="Resources/Scripts/MeetTownDefault.script" />
+		<Unit filename="Resources/Scripts/NoMoney.script" />
+		<Unit filename="Resources/Scripts/RivalLose.script" />
+		<Unit filename="Resources/Scripts/TalkDetailsDefault.script" />
+		<Unit filename="Resources/Scripts/TalkDungeonDefault.script" />
+		<Unit filename="Resources/Scripts/TestScript.lua" />
+		<Unit filename="src/CGameObject.cpp" />
+		<Unit filename="src/CGameObject.h" />
+		<Unit filename="src/CGraphics.cpp" />
+		<Unit filename="src/CGraphics.h" />
+		<Unit filename="src/CLog.cpp" />
+		<Unit filename="src/CLog.h" />
+		<Unit filename="src/CRenderQue.cpp" />
+		<Unit filename="src/CRenderQue.h" />
+		<Unit filename="src/CResource.h" />
+		<Unit filename="src/CResourceManager.cpp" />
+		<Unit filename="src/CResourceManager.h" />
+		<Unit filename="src/CSurface.cpp" />
+		<Unit filename="src/CSurface.h" />
+		<Unit filename="src/CTimer.h" />
+		<Unit filename="src/Constants.h" />
+		<Unit filename="src/DirPath.cpp" />
+		<Unit filename="src/DirPath.h" />
+		<Unit filename="src/FileList.cpp" />
+		<Unit filename="src/FileList.h" />
+		<Unit filename="src/GameFlags.cpp" />
+		<Unit filename="src/GameFlags.h" />
+		<Unit filename="src/GameSystem.h" />
+		<Unit filename="src/Girl.hpp" />
+		<Unit filename="src/GraphicsSystem.h" />
+		<Unit filename="src/IconSurface.h" />
+		<Unit filename="src/InterfaceGlobals.cpp" />
+		<Unit filename="src/InterfaceGlobals.h" />
+		<Unit filename="src/InterfaceIDs.h" />
+		<Unit filename="src/InterfaceProcesses.cpp" />
+		<Unit filename="src/InterfaceProcesses.h" />
+		<Unit filename="src/LuaUtils.hpp" />
+		<Unit filename="src/MasterFile.h" />
+		<Unit filename="src/ResizableImage.hpp" />
+		<Unit filename="src/Revision.h" />
+		<Unit filename="src/SDLStuff.h" />
+		<Unit filename="src/WhoreMasterRenewalWindow.cpp" />
+		<Unit filename="src/WhoreMasterRenewalWindow.hpp" />
+		<Unit filename="src/WindowFromXMLLoader.hpp" />
+		<Unit filename="src/WorkAdvertising.cpp" />
+		<Unit filename="src/WorkBar.cpp" />
+		<Unit filename="src/WorkBeastCapture.cpp" />
+		<Unit filename="src/WorkBeastCare.cpp" />
+		<Unit filename="src/WorkBrothelMassusse.cpp" />
+		<Unit filename="src/WorkExploreCatacombs.cpp" />
+		<Unit filename="src/WorkFluffer.cpp" />
+		<Unit filename="src/WorkFreetime.cpp" />
+		<Unit filename="src/WorkHall.cpp" />
+		<Unit filename="src/WorkMatron.cpp" />
+		<Unit filename="src/WorkSecurity.cpp" />
+		<Unit filename="src/WorkStripper.cpp" />
+		<Unit filename="src/WorkTorturer.cpp" />
+		<Unit filename="src/WorkWhore.cpp" />
+		<Unit filename="src/XmlMisc.cpp" />
+		<Unit filename="src/XmlMisc.h" />
+		<Unit filename="src/XmlUtil.cpp" />
+		<Unit filename="src/XmlUtil.h" />
+		<Unit filename="src/cAnimatedSurface.cpp" />
+		<Unit filename="src/cAnimatedSurface.h" />
+		<Unit filename="src/cBrothel.cpp" />
+		<Unit filename="src/cBrothel.h" />
+		<Unit filename="src/cBuilding.cpp" />
+		<Unit filename="src/cBuilding.h" />
+		<Unit filename="src/cButton.cpp" />
+		<Unit filename="src/cButton.h" />
+		<Unit filename="src/cCheckBox.cpp" />
+		<Unit filename="src/cCheckBox.h" />
+		<Unit filename="src/cChoiceMessage.cpp" />
+		<Unit filename="src/cChoiceMessage.h" />
+		<Unit filename="src/cColor.cpp" />
+		<Unit filename="src/cColor.h" />
+		<Unit filename="src/cCustomers.cpp" />
+		<Unit filename="src/cCustomers.h" />
+		<Unit filename="src/cDungeon.cpp" />
+		<Unit filename="src/cDungeon.h" />
+		<Unit filename="src/cEditBox.cpp" />
+		<Unit filename="src/cEditBox.h" />
+		<Unit filename="src/cEvents.cpp" />
+		<Unit filename="src/cEvents.h" />
+		<Unit filename="src/cFont.cpp" />
+		<Unit filename="src/cFont.h" />
+		<Unit filename="src/cGameScript.cpp" />
+		<Unit filename="src/cGameScript.h" />
+		<Unit filename="src/cGangs.cpp" />
+		<Unit filename="src/cGangs.h" />
+		<Unit filename="src/cGetStringScreenManager.cpp" />
+		<Unit filename="src/cGetStringScreenManager.h" />
+		<Unit filename="src/cGirlGangFight.cpp" />
+		<Unit filename="src/cGirlGangFight.h" />
+		<Unit filename="src/cGirlTorture.cpp" />
+		<Unit filename="src/cGirlTorture.h" />
+		<Unit filename="src/cGirls.cpp" />
+		<Unit filename="src/cGirls.h" />
+		<Unit filename="src/cGold.cpp" />
+		<Unit filename="src/cGold.h" />
+		<Unit filename="src/cImageItem.cpp" />
+		<Unit filename="src/cImageItem.h" />
+		<Unit filename="src/cInterfaceEvent.h" />
+		<Unit filename="src/cInterfaceObject.h" />
+		<Unit filename="src/cInterfaceWindow.cpp" />
+		<Unit filename="src/cInterfaceWindow.h" />
+		<Unit filename="src/cInventory.cpp" />
+		<Unit filename="src/cInventory.h" />
+		<Unit filename="src/cInventoryManagementSM.cpp">
 			<Option compile="0" />
 			<Option link="0" />
-			<Option virtualFolder="Sources\" />
 		</Unit>
-		<Unit filename="src\cInventoryManagementSM.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cJobManager.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cJobManager.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cJobs.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cListBox.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cListBox.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cLuaMenu.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cLuaMenu.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cLuaScript.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cLuaScript.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cMessageBox.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cMessageBox.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cNameList.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cNameList.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cPlayer.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cPlayer.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cRival.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cRival.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cRng.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cRng.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenBank.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenBank.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenBuildingManagement.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenBuildingManagement.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenBuildingSetup.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenBuildingSetup.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenDungeon.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenDungeon.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenGangs.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenGangs.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenGirlDetails.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenGirlDetails.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenGirlManagement.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenGirlManagement.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenHouse.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenHouse.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenItemManagement.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenItemManagement.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenMayor.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenMayor.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenPrison.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenPrison.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenSlaveMarket.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenSlaveMarket.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScreenTown.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScreenTown.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScriptManager.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScriptManager.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScriptUtils.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScriptUtils.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScripts.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScripts.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cScrollBar.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cScrollBar.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cSlider.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cSlider.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cTariff.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cTariff.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cTextItem.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cTrainable.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cTrainable.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cTraits.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cTraits.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cTriggers.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cTriggers.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cWindowManager.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cWindowManager.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\cWorkCleaning.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\cXmlWidget.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\linux.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\main.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\main.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\sConfig.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\sConfig.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\sFacility.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\sFacility.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\sFacilityList.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\sFacilityList.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
-		<Unit filename="src\strnatcmp.cpp">
-			<Option virtualFolder="Sources\" />
-		</Unit>
-		<Unit filename="src\strnatcmp.h">
-			<Option virtualFolder="Headers\" />
-		</Unit>
+		<Unit filename="src/cInventoryManagementSM.h" />
+		<Unit filename="src/cJobManager.cpp" />
+		<Unit filename="src/cJobManager.h" />
+		<Unit filename="src/cJobs.h" />
+		<Unit filename="src/cListBox.cpp" />
+		<Unit filename="src/cListBox.h" />
+		<Unit filename="src/cLuaMenu.cpp" />
+		<Unit filename="src/cLuaMenu.h" />
+		<Unit filename="src/cLuaScript.cpp" />
+		<Unit filename="src/cLuaScript.h" />
+		<Unit filename="src/cMessageBox.cpp" />
+		<Unit filename="src/cMessageBox.h" />
+		<Unit filename="src/cNameList.cpp" />
+		<Unit filename="src/cNameList.h" />
+		<Unit filename="src/cPlayer.cpp" />
+		<Unit filename="src/cPlayer.h" />
+		<Unit filename="src/cRival.cpp" />
+		<Unit filename="src/cRival.h" />
+		<Unit filename="src/cRng.cpp" />
+		<Unit filename="src/cRng.h" />
+		<Unit filename="src/cScreenBank.cpp" />
+		<Unit filename="src/cScreenBank.h" />
+		<Unit filename="src/cScreenBuildingManagement.cpp" />
+		<Unit filename="src/cScreenBuildingManagement.h" />
+		<Unit filename="src/cScreenBuildingSetup.cpp" />
+		<Unit filename="src/cScreenBuildingSetup.h" />
+		<Unit filename="src/cScreenDungeon.cpp" />
+		<Unit filename="src/cScreenDungeon.h" />
+		<Unit filename="src/cScreenGangs.cpp" />
+		<Unit filename="src/cScreenGangs.h" />
+		<Unit filename="src/cScreenGirlDetails.cpp" />
+		<Unit filename="src/cScreenGirlDetails.h" />
+		<Unit filename="src/cScreenGirlManagement.cpp" />
+		<Unit filename="src/cScreenGirlManagement.h" />
+		<Unit filename="src/cScreenHouse.cpp" />
+		<Unit filename="src/cScreenHouse.h" />
+		<Unit filename="src/cScreenItemManagement.cpp" />
+		<Unit filename="src/cScreenItemManagement.h" />
+		<Unit filename="src/cScreenMayor.cpp" />
+		<Unit filename="src/cScreenMayor.h" />
+		<Unit filename="src/cScreenPrison.cpp" />
+		<Unit filename="src/cScreenPrison.h" />
+		<Unit filename="src/cScreenSlaveMarket.cpp" />
+		<Unit filename="src/cScreenSlaveMarket.h" />
+		<Unit filename="src/cScreenTown.cpp" />
+		<Unit filename="src/cScreenTown.h" />
+		<Unit filename="src/cScriptManager.cpp" />
+		<Unit filename="src/cScriptManager.h" />
+		<Unit filename="src/cScriptUtils.cpp" />
+		<Unit filename="src/cScriptUtils.h" />
+		<Unit filename="src/cScripts.cpp" />
+		<Unit filename="src/cScripts.h" />
+		<Unit filename="src/cScrollBar.cpp" />
+		<Unit filename="src/cScrollBar.h" />
+		<Unit filename="src/cSlider.cpp" />
+		<Unit filename="src/cSlider.h" />
+		<Unit filename="src/cTariff.cpp" />
+		<Unit filename="src/cTariff.h" />
+		<Unit filename="src/cTextItem.h" />
+		<Unit filename="src/cTrainable.cpp" />
+		<Unit filename="src/cTrainable.h" />
+		<Unit filename="src/cTraits.cpp" />
+		<Unit filename="src/cTraits.h" />
+		<Unit filename="src/cTriggers.cpp" />
+		<Unit filename="src/cTriggers.h" />
+		<Unit filename="src/cWindowManager.cpp" />
+		<Unit filename="src/cWindowManager.h" />
+		<Unit filename="src/cWorkCleaning.cpp" />
+		<Unit filename="src/cXmlWidget.h" />
+		<Unit filename="src/linux.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/main.h" />
+		<Unit filename="src/sConfig.cpp" />
+		<Unit filename="src/sConfig.h" />
+		<Unit filename="src/sFacility.cpp" />
+		<Unit filename="src/sFacility.h" />
+		<Unit filename="src/sFacilityList.cpp" />
+		<Unit filename="src/sFacilityList.h" />
+		<Unit filename="src/strnatcmp.cpp" />
+		<Unit filename="src/strnatcmp.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
 			<debugger />
 			<lib_finder disable_auto="1" />
 			<DoxyBlocks>
-				<comment_style block="0" line="0" />
-				<doxyfile_project />
-				<doxyfile_build />
+				<comment_style block="5" line="2" />
+				<doxyfile_project output_directory="Docs" />
+				<doxyfile_build extract_all="1" extract_private="1" extract_static="1" />
 				<doxyfile_warnings />
 				<doxyfile_output />
-				<doxyfile_dot />
+				<doxyfile_dot class_diagrams="1" />
 				<general />
 			</DoxyBlocks>
 		</Extensions>

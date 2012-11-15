@@ -80,6 +80,49 @@ namespace WhoreMasterRenewal
             //windowNode.print( std::cout );
         }
         
+        /**
+        * Searches for one child inside the node and calls ProcessElement for found node.
+        * Issues a warning if more than one or none children are found.
+        * 
+        * @param node The node where to search for the child
+        * @return Shared pointer to the child widget instance
+        *
+        **/
+        sfg::Widget::Ptr TryAddChild( const pugi::xml_node& node )
+        {
+            auto numberOfNodes = std::distance( node.children().begin(), node.children().end() );
+            if( numberOfNodes == 0 )
+            {
+                std::stringstream ss;
+                ss << "Error: No child found inside <" << node.name() << "> tag.\n";
+                ss << "Path to the node: \"" << node.path() << "\".";
+                
+                Logger() << ss.str() << "\n";
+                return sfg::Label::Create( ss.str() );
+            }
+            else if( numberOfNodes > 1 )
+            {
+                std::stringstream ss;
+                ss << "Warning: More than one child found inside <" << node.name() << "> tag. "
+                    << "Only one child is expected.\n";
+                ss << "Only the first child <" << node.first_child().name() << "> will be processed, rest will be ignored.\n";
+                ss << "Path to the node: \"" << node.path() << "\".";
+                
+                Logger() << ss.str() << "\n";
+            }
+            
+            return ProcessElement( node.first_child() );
+        }
+        
+        void ProcessCommonAttributes( const pugi::xml_node& node, sfg::Widget::Ptr widget )
+        {
+            float minWidth = node.attribute( "minWidth" ).as_float( 0.0 );
+            float minHeight = node.attribute( "minHeight" ).as_float( 0.0 );
+            
+            Logger() << "Setting requisition: [" << minHeight << ";" << minWidth << "]\n";
+            widget->SetRequisition( sf::Vector2f( minWidth, minHeight ) );
+        }
+        
         sfg::Widget::Ptr ProcessElement( const pugi::xml_node& node )
         {
             //Logger() << "Processing node \"" << node.name() << "\"\n";
@@ -101,6 +144,10 @@ namespace WhoreMasterRenewal
                 return this->ProcessResizableImage( node );
             else if( name == "Table" )
                 return this->ProcessTable( node );
+            else if( name == "Frame" )
+                return this->ProcessFrame( node );
+            else if( name == "Notepad" )
+                return this->ProcessNotebook( node );
             else
             {
                 std::stringstream text;
@@ -108,6 +155,53 @@ namespace WhoreMasterRenewal
                 Logger() << text.str() << "\n";
                 return sfg::Label::Create( text.str() );
             }
+        }
+        
+        sfg::Notebook::Ptr ProcessNotebook( const pugi::xml_node& node )
+        {
+            Logger() << "Starting parsing of Notebook\n";
+            sfg::Notebook::Ptr notebook = sfg::Notebook::Create();
+            
+            // Check for Pages
+            {
+                for( pugi::xml_node& subNode: node.children() )
+                {
+                    string name = subNode.name();
+                    if( name == "Page" )
+                    {
+                        string pageName = subNode.attribute( "name" ).as_string();
+                        
+                        notebook->AppendPage( this->TryAddChild( subNode ), sfg::Label::Create( pageName ) );
+                    }
+                    else
+                    {
+                        std::stringstream ss;
+                        ss << "Error: unknown <" << name << "> tag found inside <Notebook>.\n";
+                        ss << "Didn't You forget to put widget inside <Notebook><Page> </Page></Notebook> tags?";
+                        
+                        Logger() << ss.str() << "\n";
+                        notebook->AppendPage( sfg::Label::Create( ss.str() ), sfg::Label::Create( "Unknown" ) );
+                    }
+                }
+            }
+            
+            this->ProcessCommonAttributes( node, notebook );
+            
+            Logger() << "Finished parsing of Notebook\n";
+            return notebook;
+        }
+        
+        sfg::Frame::Ptr ProcessFrame( const pugi::xml_node& node )
+        {
+            Logger() << "Starting parsing of Frame\n";
+            
+            sfg::Frame::Ptr frame = sfg::Frame::Create();
+            frame->Add( this->TryAddChild( node ) );
+            
+            this->ProcessCommonAttributes( node, frame );
+            
+            Logger() << "Finished parsing of Frame\n";
+            return frame;
         }
         
         sfg::Table::Ptr ProcessTable( const pugi::xml_node& node )
@@ -283,10 +377,26 @@ namespace WhoreMasterRenewal
             sfg::Box::Ptr box = sfg::Box::Create( orientation, spacing );
             
             // Process children
-            for( pugi::xml_node subNode: node.children() )
+            for( pugi::xml_node packNode: node.children() )
             {
-                box->Pack( this->ProcessElement( subNode ) );
+                string name = packNode.name();
+                if( name == "Pack" )
+                {
+                    bool expand = packNode.attribute( "expand" ).as_bool( true );
+                    bool fill = packNode.attribute( "fill" ).as_bool( true );
+                    
+                    Logger() << "Adding element to Box. expand='" << expand << "' fill='" << fill << "'\n";
+                    
+                    box->Pack( this->ProcessElement( packNode.first_child() ), expand, fill );
+                }
+                else
+                {
+                    Logger() << "Warning: Unsupported tag found inside <Box></Box>. Didn't You forget to put widget inside <Pack></Pack>?\n";
+                    box->Pack( sfg::Label::Create( L"Unsupported tag inside Box. Didn't You forget to put widget inside <Pack></Pack>?" ) );
+                }
             }
+            
+            ProcessCommonAttributes( node, box );
             
             Logger() << "Finished parsing of Box\n";
             
@@ -334,12 +444,10 @@ namespace WhoreMasterRenewal
             
             alignment->SetScale( sf::Vector2f( horizontalScale, verticalScale ) );
             alignment->SetAlignment( sf::Vector2f( horizontalAlignment, verticalAlignment ) );
+
+            alignment->Add( this->TryAddChild( node ) );
             
-            // Add children
-            for( pugi::xml_node subNode: node.children() )
-            {
-                alignment->Add( this->ProcessElement( subNode ) );
-            }
+            ProcessCommonAttributes( node, alignment );
             
             Logger() << "Finished parsing of Alignment\n";
             

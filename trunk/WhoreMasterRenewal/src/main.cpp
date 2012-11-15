@@ -1097,12 +1097,108 @@ bool Init()
 
 #include "WhoreMasterRenewalWindow.hpp"
 
+#include "LuaUtils.hpp"
+
+namespace WhoreMasterRenewal
+{
+
+class Condition
+{
+    Condition() = delete;
+    Condition( const Condition& ) = delete;
+    Condition( const Condition&& ) = delete;
+    Condition& operator= ( const Condition& ) = delete;
+    virtual ~Condition();
+};
+
+class That : Condition
+{
+    That() = delete;
+    virtual ~That();
+    
+    bool Equals();
+};
+
+class Assert
+{
+public:
+    Assert() = delete;
+    Assert( const Assert& ) = delete;
+    Assert( const Assert&& ) = delete;
+    Assert& operator= ( const Assert& ) = delete;
+    ~Assert();
+    
+    template<typename T>
+    void That( T& value, Condition condition )
+    {
+        ;
+    }
+    /*
+    template<typename T, typename U>
+    static void Equals( T& value1, U& value2 )
+    {
+        if( value1 != value2 )
+        {
+            std::cout << "Warning: Assert.Equals expected \"" << value2 << "\", but \"" << value1 << "\" was given.\n";
+        }
+    }
+    */
+    
+    template<typename T>
+    static void Equals( T value1, T value2, T precission = 0.001, typename std::enable_if< std::is_floating_point<T>::value, T >::type* = 0 )
+    {
+        if( (value2 - precission) < value1 && (value2 + precission) > value1 )
+        {
+            std::cout << "Debug: " << (value2 - precission) << " < " << value1 << " < " << (value2 + precission) << "\n";
+            std::cout << "Warning: Assert.Equals expected \"" << value2 << "\" (precission=\"" << precission << "\"), but \"" << value1 << "\" was given.\n";
+        }
+    }
+    
+    template<typename T, typename U>
+    static void Equals( T value1, U value2 )
+    {
+        if( value1 != value2 )
+        {
+            std::cout << "Warning: Assert.Equals expected \"" << value2 << "\", but \"" << value1 << "\" was given.\n";
+        }
+    }
+};
+
+}
+
 using namespace WhoreMasterRenewal;
+
+static int average( lua_State* L )
+{
+    luaD_DumpStack( L );
+    
+    int n = lua_gettop( L );
+    double sum = 0;
+    
+    for( int i = 1; i <= n; i++ )
+    {
+        if( !lua_isnumber( L, i ) )
+        {
+            lua_pushstring( L, "Incorrect argument to 'average'" );
+            lua_error( L );
+        }
+        
+        sum += lua_tonumber( L, i );
+    }
+    
+    lua_pushnumber( L, sum / n );
+    lua_pushnumber( L, sum );
+    
+    luaD_DumpStack( L );
+    
+    return 2;
+}
 
 int main( int argc, char* argv[] )
 {
     try
     {
+        /*
         std::clog << "main()\n";
         
         WhoreMasterRenewalWindow window;
@@ -1112,10 +1208,111 @@ int main( int argc, char* argv[] )
         window.Run();
         
         std::clog << "main() : post window.Run()\n";
+        */
+        
+        
+        LuaRuntime lua( true );
+        
+        lua.RegisterFunction( "average", &average );
+        
+        lua.SetVariable( "answerToEverything", 42 );
+        lua.SetVariable( "temperature", 36.8 );
+        lua.SetVariable( "name", "EnterTheNameHere" );
+        lua.SetVariable( "running", true );
+        lua.SetVariable( "character.health", 100.0 );
+        
+        
+        lua.ExecuteString( "function add( first, second ) return first + second end" );
+        lua.ExecuteString( "temperature = temperature + 0.7" );
+        lua.ExecuteString( "character.health = character.health + answerToEverything" );
+        lua.ExecuteString( "name = name .. \" Galicia\"" );
+        lua.ExecuteString( "avg, sum = average( 10, 12, 17, 3 )" );
+        lua.ExecuteString( "running = false" );
+        lua.ExecuteString( "print( \"avg:\", avg ) print( \"sum:\", avg )" );
+        lua.ExecuteString( "print( \"avg:\", avg )" );
+        lua.ExecuteString( "print( \"sum:\", sum )" );
+        lua.ExecuteString( "result = add( 14.2, 2 )" );
+        
+        Assert::Equals( lua.GetVariable<int>( "notExisting" ), 0 );
+        Assert::Equals( lua.GetVariable<int>( "answerToEverything" ), 42 );
+        Assert::Equals( lua.GetVariable<bool>( "running" ), false );
+        Assert::Equals( lua.GetVariable<string>( "name" ), "EnterTheNameHere Galicia" );
+        Assert::Equals( lua.GetVariable<double>( "temperature" ), 37.5 );
+        Assert::Equals( lua.GetVariable<float>( "character.health" ), 100.0f );
+        Assert::Equals( lua.GetVariable<float>( "result" ), 16.2f );
+        Assert::Equals( lua.GetVariable<int>( "sum" ), lua.GetVariable<int>( "answerToEverything" ) );
+        Assert::Equals( lua.GetVariable<double>( "avg" ), 10.5 );
+        std::cout << "=== 34.5, 34.5 ===\n";
+        Assert::Equals( 34.5, 34.5 );
+        std::cout << "=== 34.6, 34.5 ===\n";
+        Assert::Equals( 34.6, 34.5 );
+        std::cout << "=== 34.5, -34.5 ===\n";
+        Assert::Equals( 34.5, -34.5 );
+        std::cout << "=== 34.5454, 34.5445 ===\n";
+        Assert::Equals( 34.5454, 34.5445 );
+        std::cout << "=== 34.5f, 34.5f ===\n";
+        Assert::Equals( 34.5f, 34.5f );
+        std::cout << "=== 34.6f, 34.5f ===\n";
+        Assert::Equals( 34.6f, 34.5f );
+        std::cout << "=== 34.5f, -34.5f ===\n";
+        Assert::Equals( 34.5f, -34.5f );
+        std::cout << "=== 34.5454f, 34.5445f ===\n";
+        Assert::Equals( 34.5454f, 34.5445f );
+        
+        /*
+        lua_State* L = luaL_newstate();
+        luaL_openlibs(L);
+        
+        lua_register( L, "average", average );
+        
+        if( luaL_dofile( L, "Resources/Scripts/TestScript.lua" ) )
+        {
+            std::cout << "Error while executing script:\n" << lua_tostring( L, -1 ) << "\n";
+        }
+        else
+        {
+            luaD_DumpStack( L );
+        
+            lua_getglobal( L, "add" );
+            lua_pushnumber( L, 3 );
+            lua_pushnumber( L, 4 );
+            
+            luaD_DumpStack( L );
+            
+            lua_call( L, 2, 1 );
+            
+            luaD_DumpStack( L );
+            
+            std::cout << "add( 3, 4 ) = " << lua_tonumber( L, -1 ) << "\n";
+            
+            lua_pop( L, -1 );
+            
+            luaD_DumpStack( L );
+            
+            lua_getglobal( L, "add" );
+            lua_pushnumber( L, 3.f );
+            lua_pushnumber( L, 15.33f );
+            
+            luaD_DumpStack( L );
+            
+            lua_call( L, 2, 1 );
+            
+            luaD_DumpStack( L );
+            
+            std::cout << "add( 3, 4 ) = " << lua_tonumber( L, -1 ) << "\n";
+            
+            lua_pop( L, -1 );
+            
+            luaD_DumpStack( L );
+        };
+        
+        lua_close(L);
+        
+        */
     }
-    catch( exception ex )
+    catch( exception& ex )
     {
-        std::clog << "Exception caught:\n" << ex.what();
+        std::clog << "Exception caught:\nException type: \"" << typeid(ex).name() << "\"\n" << ex.what();
     }
     return 0;
 }

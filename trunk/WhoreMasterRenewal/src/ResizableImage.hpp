@@ -86,7 +86,7 @@ namespace sfg
         **/
         void SetImage( const sf::Image& image )
         {
-            this->m_OriginalImage;
+            this->m_OriginalImage = image;
             Image::SetImage( this->m_OriginalImage );
         }
         

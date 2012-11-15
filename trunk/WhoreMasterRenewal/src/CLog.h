@@ -51,6 +51,8 @@ namespace WhoreMasterRenewal
                 if( m_LogFileStream.is_open() )
                     m_LogFileStream << value;
             }
+            
+            return *this;
         }
         
         inline Logger& operator << ( string value )
@@ -58,6 +60,8 @@ namespace WhoreMasterRenewal
             std::cout << value;
             if( m_LogFileStream.is_open() )
                 m_LogFileStream << value;
+            
+            return *this;
         }
         
     private:

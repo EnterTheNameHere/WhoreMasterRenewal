@@ -1,5 +1,5 @@
 
-Table > Label {
-	FontSize: 18;
-	Color: #ff000088;
-}
+/*Table > Label {
+//	FontSize: 18;
+//	Color: #ff000088;
+}*/
