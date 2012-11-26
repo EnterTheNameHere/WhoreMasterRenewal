@@ -32,7 +32,7 @@ const char	DirPath::sep[] = "\\";
 DirPathR::DirPathR()
 {
 	cConfig cfg;
-	string s = cfg.override_dir();
+    std::string s = cfg.override_dir();
 
 	(*this) << "." << "Resources";
 	over = DirPath() << s;

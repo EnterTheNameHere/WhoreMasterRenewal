@@ -38,7 +38,7 @@ typedef struct sGang
 	u_int m_MissionID;	// the type of mission currently performing
 	int m_LastMissID;	// the last mission if auto changed to recruit mission
 	bool m_AutoRecruit;	// true if auto recruiting
-	string m_Name;
+    std::string m_Name;
 	bool m_Combat;	// is true when gang has seen combat in the last week
 	cEvents m_Events;
 
@@ -103,14 +103,14 @@ public:
 	bool GangBrawl(sGang* gang1, sGang* gang2);	// returns true if gang1 wins
 	sGang* GetTempGang();	// creates a new gang
 	void BoostGangSkill(unsigned char* affect_skill, int count = 1);  // increases a specific skill/stat the specified number of times
-	void BoostGangRandomSkill(vector<unsigned char*>* possible_skills, int count = 1, int boost_count = 1);  // chooses from the passed skills/stats and raises one or more of them
+	void BoostGangRandomSkill(std::vector<unsigned char*>* possible_skills, int count = 1, int boost_count = 1);  // chooses from the passed skills/stats and raises one or more of them
 	void BoostGangCombatSkills(sGang* gang, int count = 1);  // simple function to increase a gang's combat skills a bit
 
 	sGang* GetTempWeakGang();
 
 	TiXmlElement* SaveGangsXML(TiXmlElement* pRoot);
 	bool LoadGangsXML(TiXmlHandle hGangManager);
-	void LoadGangsLegacy(ifstream& ifs);
+	void LoadGangsLegacy(std::ifstream& ifs);
 
 	int GetNumBusinessExtorted() {return m_BusinessesExtort;}
 
@@ -128,10 +128,10 @@ public:
 	int healing_limit();
 
 	// Used by the new brothel security code
-	sGang*	random_gang(vector<sGang*>& v);
+	sGang*	random_gang(std::vector<sGang*>& v);
 	bool GirlVsEnemyGang(sGirl* girl, sGang* enemy_gang);
 
-	vector<sGang*> gangs_on_mission(u_int mission_id);
+	std::vector<sGang*> gangs_on_mission(u_int mission_id);
 
 private:
 	int m_BusinessesExtort;	// number of businesses under your control

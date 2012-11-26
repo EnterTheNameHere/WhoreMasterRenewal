@@ -24,11 +24,7 @@
 #include "cEvents.h"
 #include "cGirls.h"
 
-using namespace std;
-
-
-
-string CEvent::TitleText()
+std::string CEvent::TitleText()
 {
 
 /*
@@ -157,7 +153,7 @@ void cEvents::Free()
 
 bool cEvents::HasUrgent()
 {
-	for (vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
+	for (std::vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
 	{
 		if(iter->IsUrgent())
 			return true;
@@ -167,7 +163,7 @@ bool cEvents::HasUrgent()
 
 bool cEvents::HasDanger()
 {
-	for (vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
+	for (std::vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
 	{
 		if(iter->IsDanger())
 			return true;
@@ -177,7 +173,7 @@ bool cEvents::HasDanger()
 
 bool cEvents::HasWarning()
 {
-	for (vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
+	for (std::vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
 	{
 		if(iter->IsWarning())
 			return true;
@@ -185,7 +181,7 @@ bool cEvents::HasWarning()
 	return false;
 }
 
-void cEvents::AddMessage(string message, int type, int eve)
+void cEvents::AddMessage(std::string message, int type, int eve)
 {
 	CEvent newEvent;
 	newEvent.m_MessageType	= type;

@@ -26,8 +26,6 @@
 
 class TiXmlElement;
 
-using namespace std;
-
 typedef unsigned int u_int;
 
 struct SDL_Color;
@@ -128,8 +126,8 @@ struct sConfigData
 	} items;
 
 	struct font_data {
-		string	normal;
-		string	fixed;
+		std::string	normal;
+		std::string	fixed;
 		bool	antialias;
 		font_data()
 		: normal(""), fixed(""), antialias("")
@@ -145,7 +143,7 @@ struct sConfigData
 		bool	log_torture;
 	} debug;
 
-	string override_dir;
+	std::string override_dir;
 
 	sConfigData(const char *filename = "config.xml");
 
@@ -162,7 +160,7 @@ struct sConfigData
 	void	get_initial_values(TiXmlElement *el);
 	void	get_att(TiXmlElement *el, const char *name, int *data);
 	void	get_att(TiXmlElement *el, const char *name, double *data);
-	void	get_att(TiXmlElement *el, const char *name, string &s);
+	void	get_att(TiXmlElement *el, const char *name, std::string &s);
 	void	get_att(TiXmlElement *el, const char *name, bool &bval);
 	void	get_debug_flags(TiXmlElement *el);
 };
@@ -220,8 +218,8 @@ public:
 	} prostitution;
 
 	struct font_data {
-		string&	normal()	    { return data->fonts.normal; }
-		string&	fixed()		    { return data->fonts.normal; }
+		std::string&	normal()	    { return data->fonts.normal; }
+		std::string&	fixed()		    { return data->fonts.normal; }
 		bool&	antialias()	    { return data->fonts.antialias; }
 	} fonts;
 
@@ -282,7 +280,7 @@ public:
 		bool	log_torture()	    { return data->debug.log_torture; }
 	} debug;
 
-	string override_dir() {
+	std::string override_dir() {
 		return data->override_dir;
 	}
 

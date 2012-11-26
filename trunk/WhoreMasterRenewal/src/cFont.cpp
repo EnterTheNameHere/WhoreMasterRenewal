@@ -29,8 +29,6 @@
 #undef DrawText
 #endif
 
-using namespace std;
-
 extern CLog g_LogFile;
 extern CGraphics g_Graphics;
 
@@ -53,7 +51,7 @@ cFont::~cFont()
 	Free();
 }
 
-void cFont::SetText(string text)
+void cFont::SetText(std::string text)
 {
 	m_NewText = true;
 	m_Text = text;
@@ -62,7 +60,7 @@ void cFont::SetText(string text)
 // ok this works by separating strings lines and storing each line into a vector
 // then it creates a surface capable of fitting all the lines with the correct width
 // it then blits the lines of text to this surface so it is then ready to be drawn as normal
-void cFont::RenderMultilineText(string text)
+void cFont::RenderMultilineText(std::string text)
 {
 	if(m_NewText == false && m_MultilineMessage != 0)
 		return;
@@ -74,8 +72,8 @@ void cFont::RenderMultilineText(string text)
 	text = UpdateLineEndings(text);
 
 	// first separate into lines according to width
-	vector<string> lines;
-	string temp(text);	// current line of text
+	std::vector<std::string> lines;
+    std::string temp(text);	// current line of text
 	temp += " ";	// makes sure that all the text will be displayed
 	int n = 0;	// current index into the string
 	int q = 0;	// the next \n int the string
@@ -86,7 +84,7 @@ void cFont::RenderMultilineText(string text)
 	// -- Get until either ' ' or '\0'
 	while(n != -1)
 	{
-		string strSub;
+	    std::string strSub;
 		n = temp.find(" ", p + 1);		// -- Find the next " "
 		q = temp.find("\n", p + 1);		// -- Find the next "\n"
 		if(q<n && q!=-1)
@@ -98,7 +96,7 @@ void cFont::RenderMultilineText(string text)
 				strSub = temp.substr(0, p);
 				lines.push_back(strSub);	// -- Puts strSub into the lines vector
 				if(q != -1)
-					temp = temp.substr(p+1, string::npos);
+					temp = temp.substr(p+1, std::string::npos);
 				p = 0;
 			}
 			else
@@ -106,7 +104,7 @@ void cFont::RenderMultilineText(string text)
 				strSub = temp.substr(0, q);
 				lines.push_back(strSub);
 				if(q != -1)
-					temp = temp.substr(q+1, string::npos);
+					temp = temp.substr(q+1, std::string::npos);
 				p = 0;
 			}
 		}
@@ -119,7 +117,7 @@ void cFont::RenderMultilineText(string text)
 				strSub = temp.substr(0, p);
 				lines.push_back(strSub);	// -- Puts strSub into the lines vector
 				if(n != -1)
-					temp = temp.substr(p+1, string::npos);
+					temp = temp.substr(p+1, std::string::npos);
 				p = 0;
 			}
 			else
@@ -138,7 +136,7 @@ void cFont::RenderMultilineText(string text)
 	m_MultilineMessage = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, 0xFF000000,0x00FF0000,0x0000FF00,0x000000FF);
 	SDL_SetAlpha(m_MultilineMessage,SDL_SRCALPHA,SDL_ALPHA_TRANSPARENT);
 
-	string otext = m_Text;
+    std::string otext = m_Text;
 	m_NumLines = lines.size();
 	for(unsigned int i=0; i<m_NumLines; i++)
 	{
@@ -155,13 +153,13 @@ void cFont::RenderMultilineText(string text)
 	m_NewText = false;
 }
 
-void cFont::RenderText(string text, bool multi)
+void cFont::RenderText(std::string text, bool multi)
 {
 	if(m_NewText == false && m_Message != 0)
 		return;
 	if(m_Font == 0)
 	{
-		g_LogFile.ss() << "Error rendering font string: " << text << endl;
+		g_LogFile.ss() << "Error rendering font string: " << text << std::endl;
 		g_LogFile.ssend();
 		return;
 	}
@@ -245,7 +243,7 @@ bool cFont::DrawText(int x, int y, SDL_Surface* destination, bool multi)
 			ret = SDL_BlitSurface(m_Message, 0, g_Graphics.GetScreen(), &offset);
 		if(ret == -1)
 		{
-			g_LogFile.ss() << "Error bliting string" << endl;
+			g_LogFile.ss() << "Error bliting string" << std::endl;
 			g_LogFile.ssend();
 			return false;
 		}
@@ -289,7 +287,7 @@ bool cFont::DrawMultilineText(int x, int y, int linesToSkip, int offsetY, SDL_Su
 			ret = SDL_BlitSurface(m_MultilineMessage, &srcRect, g_Graphics.GetScreen(), &offset);
 		if(ret == -1)
 		{
-			g_LogFile.ss() << "Error bliting string" << endl;
+			g_LogFile.ss() << "Error bliting string" << std::endl;
 			g_LogFile.ssend();
 			return false;
 		}
@@ -308,7 +306,7 @@ void cFont::SetColor(unsigned char r, unsigned char g, unsigned char b)
 /*
  * old version for reference (and in case I balls it up
  */
-bool cFont::LoadFont(string font, int size)
+bool cFont::LoadFont(std::string font, int size)
 {
 	cConfig cfg;
 
@@ -321,7 +319,7 @@ bool cFont::LoadFont(string font, int size)
 			  << font
 			  << "' at size "
 			  << size
-			  << endl
+			  << std::endl
 		 ;
 	}
 	if((m_Font = TTF_OpenFont(font.c_str(), (int)(size*FontScale))) == 0) {
@@ -349,13 +347,13 @@ void cFont::Free()
 	m_Font = 0;
 }
 
-string cFont::UpdateLineEndings(string text)
+std::string cFont::UpdateLineEndings(std::string text)
 {
 #ifndef LINUX
 	// for Windows, double "\n\n" newline characters were showing up as one newline and a boxy (bad) character...
 	// so, here's a cheap-ass workaround to add a "\r" carriage return in front of each "\n" for Windows
 	int pos = text.find("\n", 0);
-	while(pos != string::npos)
+	while(pos != std::string::npos)
 	{
 		text.insert(pos, "\r");
 		pos = text.find("\n", pos+2);

@@ -40,7 +40,7 @@ extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGold g_Gold;
 
-bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	int num_monsters = 0;
 	int type_monster_girls = 0;
@@ -50,7 +50,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 	long gold = 0;
 	int num_items = 0;
 	bool raped = false;
-	string message = "";
+    std::string message = "";
 
 	//standard job boilerpate
 	if(Preprocessing(ACTION_COMBAT, girl, brothel, DayNight, summary, message))
@@ -61,9 +61,9 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 
 	// determine if they fight any monsters
 	
-	if ((g_Dice%100)+1 > max(girl->combat(), girl->magic()))	// WD:	Allow best of Combat or Magic skill 
+	if ((g_Dice%100)+1 > std::max(girl->combat(), girl->magic()))	// WD:	Allow best of Combat or Magic skill 
 	{
-		stringstream noplay;
+		std::stringstream noplay;
 		noplay << "Nobody wants to play with you today in the catacombs :(";
 		girl->m_Events.AddMessage(noplay.str(), IMGTYPE_PROFILE, DayNight);
 		//return true;		// WD: not a refusal
@@ -147,7 +147,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 	} // # of monsters to fight loop
 
 
-	stringstream ss;
+	std::stringstream ss;
 	if (raped)
 	{
 		int NumMon = g_Dice%6 + 1;
@@ -183,7 +183,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 
 	int ItemPlace = 0;  // Place in 0..299
 
-	string item_list = "";
+    std::string item_list = "";
 	for(int i = num_monsters; i > 0; i--)
 	{
 		gold += (g_Dice%100) + 25;

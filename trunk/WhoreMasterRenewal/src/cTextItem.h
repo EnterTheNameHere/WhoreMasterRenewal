@@ -42,7 +42,7 @@ public:
 	}
 	~cTextItem() { if(m_Next) delete m_Next; m_Next = 0; }
 
-	void CreateTextItem(int ID, int x, int y, int width, int height, string text, int size, bool auto_scrollbar = true, bool force_scrollbar = false)
+	void CreateTextItem(int ID, int x, int y, int width, int height, std::string text, int size, bool auto_scrollbar = true, bool force_scrollbar = false)
 	{
 		m_ID = ID;
 		SetPosition(x,y,width,height);
@@ -89,7 +89,7 @@ public:
 		m_Font.SetMultiline(true, m_Width, m_Height);
 	}
 
-	void SetText(string text) { m_Text = text; m_Font.SetText(m_Text); }
+	void SetText(std::string text) { m_Text = text; m_Font.SetText(m_Text); }
 
 	void Draw()
 	{
@@ -186,7 +186,7 @@ public:
 	void unhide() { m_Hide = false; if(m_ScrollBar && m_ScrollBar->m_Hidden) m_ScrollBar->unhide(); }
 
 	//int m_CharsPerLine, m_LinesPerBox, m_CharHeight;
-	string m_Text;
+    std::string m_Text;
 	int m_ID;
 	cTextItem* m_Next;
 	cFont m_Font;

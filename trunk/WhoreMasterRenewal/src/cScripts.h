@@ -22,8 +22,6 @@
 
 #include <stdio.h>
 #include <string>
-using namespace std;
-
 
 enum Types { _NONE = 0, _TEXT, _BOOL, _INT, _FLOAT, _CHOICE };
 //typedef unsigned char bool;
@@ -219,7 +217,7 @@ public:
 	cScript() {m_ScriptParent=0;}; // Constructor
 	~cScript() {if(m_ScriptParent)delete m_ScriptParent; m_ScriptParent=0;}; // Destructor
 
-	bool Load(string filename); // Load a script
+	bool Load(std::string filename); // Load a script
 	bool Free(); // Free loaded script
 /*
  *	no idea if this stub needs to return true or false
@@ -229,7 +227,7 @@ public:
 };
 
 // General Functions
-sScript *LoadScriptFile(string Filename);
+sScript *LoadScriptFile(std::string Filename);
 bool SaveScriptFile(const char *Filename, sScript *ScriptRoot);
 void TraverseScript(sScript *pScript);
 

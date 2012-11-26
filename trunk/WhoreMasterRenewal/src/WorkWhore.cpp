@@ -40,7 +40,7 @@ extern cBrothelManager g_Brothels;
 extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 
-bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	// put that shit away, you'll scare off the customers!
 	g_Girls.UnequipCombat(girl);
@@ -99,8 +99,8 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 	 *	
 	 */
 
-	string fuckMessage	= "";
-	string message		= "";
+    std::string fuckMessage	= "";
+    std::string message		= "";
 	sCustomer Cust;
 	int NumCusts		= 0;		// Max number on customers the girl can fuck
 	int NumSleptWith	= 0;		// Total num customers she fucks this session
@@ -123,7 +123,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 	else
 		job				= girl->m_NightJob;
 	bStreetWork			= (job == JOB_WHORESTREETS);
-	stringstream ss;
+	std::stringstream ss;
 
 	girl->m_Pay = 0;
 
@@ -158,7 +158,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 		AskPrice	= AskPrice * 2 / 3;
 	}
 
-	NumCusts = min(NumCusts, 10);		// No more than 10 Customers per shift
+	NumCusts = std::min(NumCusts, 10);		// No more than 10 Customers per shift
 
 	// Complications
 
@@ -184,7 +184,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 				ss	<< girl->m_Realname << " ran into some enemy goons and was attacked.\n";
 
 				// WD: Health loss, Damage 0-15, 25% chance of 0 damage
-				iNum = max(g_Dice%20 - 5, 0);
+				iNum = std::max(g_Dice%20 - 5, 0);
 				iOriginal	= g_Girls.GetStat(girl, STAT_HEALTH);
 				g_Girls.UpdateStat(girl, STAT_HEALTH, -iNum);
 				iNum		= iOriginal - g_Girls.GetStat(girl, STAT_HEALTH);
@@ -226,7 +226,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 
 
 	// WD: Set the limits on the Number of customers a girl can try and fuck
-	LoopCount = max(NumCusts * 2, 5);
+	LoopCount = std::max(NumCusts * 2, 5);
 
 	// WD: limit to number of customers left
 	if(!bStreetWork && LoopCount >g_Customers.GetNumCustomers())		

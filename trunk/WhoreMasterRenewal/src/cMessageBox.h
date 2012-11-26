@@ -42,7 +42,7 @@ public:
 	void ChangeFontSize(int FontSize = 16);
 	void Draw();
 	void Advance();
-	void ResetWindow(string text, int color) {if(m_Font)m_Font->SetText(text);m_Text=text;m_Position=0;m_TextAdvance=false;m_Color = color;}
+	void ResetWindow(std::string text, int color) {if(m_Font)m_Font->SetText(text);m_Text=text;m_Position=0;m_TextAdvance=false;m_Color = color;}
 	bool IsActive() {return m_Active;}
 	void SetActive(bool active) {m_Active = active;}
 
@@ -56,7 +56,7 @@ private:
 	SDL_Surface* m_Border;
 
 	cFont* m_Font;
-	string m_Text;	// contains the entire text string
+    std::string m_Text;	// contains the entire text string
 	int m_Position;	// where we are up too
 
 	bool m_TextAdvance;
@@ -67,7 +67,7 @@ extern cMessageBox g_MessageBox;
 
 typedef struct sMessage
 {
-	string m_Text;
+    std::string m_Text;
 	int m_Color;
 	sMessage* m_Next;
 
@@ -83,7 +83,7 @@ public:
 
 	void Free()	{if(m_Mess) delete m_Mess; m_Last=m_Mess=0;}
 
-	void AddToQue(string text, int color)
+	void AddToQue(std::string text, int color)
 	{
 		if(text != "")
 		{

@@ -27,13 +27,13 @@
 class TiXmlElement;
 
 class sFacilityList {
-static vector<sFacility *> *list;
+static std::vector<sFacility *> *list;
 public:
 	sFacilityList();
 	u_int size()			{ return list->size();	}
 	sFacility *operator[](int i)	{ return (*list)[i];	}
 
-	bool	load_xml(string path);
+	bool	load_xml(std::string path);
 	bool	parse_facility(TiXmlElement*, sFacility &fac);
 };
 

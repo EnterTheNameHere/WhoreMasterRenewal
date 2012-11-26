@@ -42,7 +42,7 @@ sConfigData::sConfigData(const char *a_filename)
 : fonts()
 {
 	DirPath dp = DirPath() << "Resources" << "Data" << a_filename;
-	string filename = dp.c_str();
+    std::string filename = dp.c_str();
 	l.ss()
 		<< "Loading configration variables from '"
 		<< filename
@@ -59,7 +59,7 @@ sConfigData::sConfigData(const char *a_filename)
  */
 	TiXmlDocument doc(filename);
 	if(!doc.LoadFile()) {
-		l.ss()	<< "can't load " << filename << endl;
+		l.ss()	<< "can't load " << filename << std::endl;
 		l.ss()	<< "Error: line "
 			<< doc.ErrorRow()
 			<< ", col "
@@ -73,9 +73,9 @@ sConfigData::sConfigData(const char *a_filename)
  *		if the config isn't being found
  */
 		l.ss()	<< "*** Game will run with default pricing factors."
-			<< endl
+			<< std::endl
 			<< "*** This may seem a little easy. To fix this"
-			<< endl
+			<< std::endl
 			<< "*** get a config.xml file from pinkpetal.co.cc"
 		;
 		l.ssend();
@@ -92,7 +92,7 @@ sConfigData::sConfigData(const char *a_filename)
 		el ;
 		el = el->NextSiblingElement()
 	) {
-		string tag = el->ValueStr();
+	    std::string tag = el->ValueStr();
 		/*
 		l.ss()	<< "processing tag: '"
 		 	<< tag
@@ -211,7 +211,7 @@ void sConfigData::get_att(TiXmlElement *el, const char *name, bool &bval)
 /*
  *	convert to a string, and then squash that to lower case
  */
-	string s = pt;
+    std::string s = pt;
 	for(u_int i = 0; i < s.length(); i++) {
 		s[i] = std::tolower(s[i]);
 	}
@@ -251,7 +251,7 @@ void sConfigData::get_att(TiXmlElement *el, const char *name, double *dpt)
 	l.ssend();
 }
 
-void sConfigData::get_att(TiXmlElement *el, const char *name, string &s)
+void sConfigData::get_att(TiXmlElement *el, const char *name, std::string &s)
 {
 	const char *pt;
 
@@ -426,8 +426,8 @@ void sConfigData::get_item_data(TiXmlElement *el)
 	get_att(el, "AutoCombatEquip", items.auto_combat_equip);
 	for(int i=0; i<7; i++)
 	{
-		string ColorIn;
-		stringstream ss;
+	    std::string ColorIn;
+		std::stringstream ss;
 		ss.str("");
 		ss << "RarityColor" << i;
 		get_att(el, ss.str().c_str(),	ColorIn);

@@ -338,9 +338,9 @@ void cGoldBase::bank_interest(double income)
 
 
 
-string cGoldBase::sval()
+std::string cGoldBase::sval()
 {
-	stringstream ss;
+	std::stringstream ss;
 
 	ss << ival();
 	return ss.str();
@@ -383,7 +383,7 @@ bool cGoldBase::loadGoldXML(TiXmlHandle hGold)
 	return true;
 }
 
-istream &operator>>(istream& is, cGoldBase &g)
+std::istream &operator>>(std::istream& is, cGoldBase &g)
 {
 	double val, inc, up, cashin, cashout;
 
@@ -423,7 +423,7 @@ void cGold::brothel_accounts(cGold &g, int brothel_id)
 	g_LogFile.ss()	<< "Error: can't find account record "
 			<< "for brothel id "
 			<< brothel_id
-			<< endl
+			<< std::endl
 	;
 	g_LogFile.ssend();
 }
@@ -431,33 +431,33 @@ void cGold::brothel_accounts(cGold &g, int brothel_id)
 void cGold::week_end()
 {
 	cGoldBase *bpt;
-	ostream &ss = g_LogFile.ss();
+	std::ostream &ss = g_LogFile.ss();
 
-	ss << "Week End begins: value    = " << m_value << endl;
-	ss << "               : income   = " << m_income << endl;
-	ss << "               : upkeep   = " << m_upkeep << endl;
-	ss << "               : cash in  = " << m_cash_in << endl;
-	ss << "               : cash out = " << m_cash_out << endl;
+	ss << "Week End begins: value    = " << m_value << std::endl;
+	ss << "               : income   = " << m_income << std::endl;
+	ss << "               : upkeep   = " << m_upkeep << std::endl;
+	ss << "               : cash in  = " << m_cash_in << std::endl;
+	ss << "               : cash out = " << m_cash_out << std::endl;
 
 	for(int i = 0; (bpt = brothels[i]); i++) {
 		(*this) += (*bpt);
 
-		ss << "Added Bothel "<< i << ": value    = " << m_value << endl;
-		ss << "               : income   = " << m_income << endl;
-		ss << "               : upkeep   = " << m_upkeep << endl;
-		ss << "               : cash in  = " << m_cash_in << endl;
-		ss << "               : cash out = " << m_cash_out << endl;
+		ss << "Added Bothel "<< i << ": value    = " << m_value << std::endl;
+		ss << "               : income   = " << m_income << std::endl;
+		ss << "               : upkeep   = " << m_upkeep << std::endl;
+		ss << "               : cash in  = " << m_cash_in << std::endl;
+		ss << "               : cash out = " << m_cash_out << std::endl;
 		bpt->zero();
 	}
 	m_value += m_income;
 	m_value -= m_upkeep;
 	m_income = m_upkeep = m_income = m_cash_in = m_cash_out = 0;
 
-	ss << "Week End Final : value    = " << m_value << endl;
-	ss << "               : income   = " << m_income << endl;
-	ss << "               : upkeep   = " << m_upkeep << endl;
-	ss << "               : cash in  = " << m_cash_in << endl;
-	ss << "               : cash out = " << m_cash_out << endl;
+	ss << "Week End Final : value    = " << m_value << std::endl;
+	ss << "               : income   = " << m_income << std::endl;
+	ss << "               : upkeep   = " << m_upkeep << std::endl;
+	ss << "               : cash in  = " << m_cash_in << std::endl;
+	ss << "               : cash out = " << m_cash_out << std::endl;
 	g_LogFile.ssend();
 }
 

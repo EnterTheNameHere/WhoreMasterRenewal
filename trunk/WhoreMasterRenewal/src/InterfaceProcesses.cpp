@@ -39,7 +39,7 @@
 #include "MasterFile.h"
 extern sInterfaceIDs g_interfaceid;
 // globals used for the interface
-string g_ReturnText = "";
+std::string g_ReturnText = "";
 bool g_InitWin = true;
 bool g_AllTogle = false;	// used on screens when wishing to apply something to all items
 long g_IntReturn;
@@ -53,7 +53,7 @@ bool g_Cheats = false;
 extern int g_BrothelScreenImgX, g_BrothelScreenImgY, g_BrothelScreenImgW, g_BrothelScreenImgH;
 
 sGirl* selected_girl;  // global pointer for the currently selected girl
-vector<int> cycle_girls;  // globally available sorted list of girl IDs for Girl Details screen to cycle through
+std::vector<int> cycle_girls;  // globally available sorted list of girl IDs for Girl Details screen to cycle through
 int cycle_pos;  //currently selected girl's position in the cycle_girls vector
 
 sGirl* MarketSlaveGirls[8] = {0,0,0,0,0,0,0,0};
@@ -128,7 +128,7 @@ void LoadGameScreen()
 	{
 		return;
 	}
-	string temp = fl[selection].leaf();
+    std::string temp = fl[selection].leaf();
 /*
  *	enable cheat mode for a test brothel
  */
@@ -237,7 +237,7 @@ void NewGame()
 	sm.Release();
 	g_InvManager.Free();
 
-	string d = g_ReturnText;
+    std::string d = g_ReturnText;
 	if(g_ReturnText == "Test")
 		g_Cheats = true;
 	else
@@ -356,12 +356,12 @@ void BrothelScreen()
 {
 	if(g_InitWin)
 	{
-		string brothel = "Current Brothel: ";
+	    std::string brothel = "Current Brothel: ";
 		brothel = g_Brothels.GetName(g_CurrBrothel);
 		g_BrothelManagement.EditTextItem(brothel, g_interfaceid.TEXT_CURRENTBROTHEL);
 		g_BrothelManagement.Focused();
 
-		stringstream ss;
+		std::stringstream ss;
 		ss << "Day: " << g_Day << " Month: " << g_Month << " Year: " << g_Year << ", Brothel: " << brothel;
 		g_BrothelManagement.EditTextItem(ss.str(), g_interfaceid.TEXT_BROTHELNAME);
 		g_BrothelManagement.EditTextItem(
@@ -477,14 +477,14 @@ void BrothelScreen()
 	g_BrothelManagement.SetImage(g_interfaceid.IMAGE_BIMAGE, g_BrothelImages[g_CurrBrothel]);
 }
 
-static string clobber_extension(string s)
+static std::string clobber_extension(std::string s)
 {
-	g_LogFile.os() << "clobber_extension: s = " << s << endl;
+	g_LogFile.os() << "clobber_extension: s = " << s << std::endl;
 	size_t pos = s.rfind(".");
-	g_LogFile.os() << "clobber_extension: pos = " << pos << endl;
-	string base = s.substr(0, pos);
-	g_LogFile.os() << "clobber_extension: s = " << s << endl;
-	g_LogFile.os() << "clobber_extension: base = " << base << endl;
+	g_LogFile.os() << "clobber_extension: pos = " << pos << std::endl;
+    std::string base = s.substr(0, pos);
+	g_LogFile.os() << "clobber_extension: s = " << s << std::endl;
+	g_LogFile.os() << "clobber_extension: base = " << base << std::endl;
 	return base;
 }
 
@@ -494,52 +494,52 @@ static string clobber_extension(string s)
  */
 static void load_items_temp(FileList &fl)
 {
-	map<string,string> lookup;
+	std::map<std::string,std::string> lookup;
 
-	g_LogFile.os() << "itemsx files:" << endl;
+	g_LogFile.os() << "itemsx files:" << std::endl;
 	fl.scan("*.itemsx");
 	for(int i = 0; i < fl.size(); i++) {
-		string str = fl[i].full();
-		string key = clobber_extension(str);
+	    std::string str = fl[i].full();
+	    std::string key = clobber_extension(str);
 		lookup[key] = str;
-		g_LogFile.os() << "	adding " << str << endl;
-		g_LogFile.os() << "	under " << key << endl;
-		g_LogFile.os() << "	result " << lookup[key] << endl;
+		g_LogFile.os() << "	adding " << str << std::endl;
+		g_LogFile.os() << "	under " << key << std::endl;
+		g_LogFile.os() << "	result " << lookup[key] << std::endl;
 	}
 
-	g_LogFile.os() << "items files:" << endl;
+	g_LogFile.os() << "items files:" << std::endl;
 	fl.scan("*.items");
 	for(int i = 0; i < fl.size(); i++) {
-		string str = fl[i].full();
-		string key = clobber_extension(str);
-		g_LogFile.os() << "	checking " << lookup[key] << endl;
+	    std::string str = fl[i].full();
+	    std::string key = clobber_extension(str);
+		g_LogFile.os() << "	checking " << lookup[key] << std::endl;
 		if(lookup[key] != "") {
 			continue;
 		}
 		lookup[key] = str;
-		g_LogFile.os() << "	adding " << str << endl;
-		g_LogFile.os() << "	under " << key << endl;
+		g_LogFile.os() << "	adding " << str << std::endl;
+		g_LogFile.os() << "	under " << key << std::endl;
 	}
 /*
  *	Iterate over the map and print out all key/value pairs.
  *	kudos: wikipedia
  */
-	g_LogFile.os() << "walking map..." << endl;
-	for(map<string,string>::const_iterator it = lookup.begin(); it != lookup.end(); ++it) {
-		string full_path = it->second;
-		g_LogFile.os() <<	"\tkey = " << it->first << endl;
-		g_LogFile.os() <<	"\tpath = " << full_path << endl;
+	g_LogFile.os() << "walking map..." << std::endl;
+	for(std::map<std::string,std::string>::const_iterator it = lookup.begin(); it != lookup.end(); ++it) {
+	    std::string full_path = it->second;
+		g_LogFile.os() <<	"\tkey = " << it->first << std::endl;
+		g_LogFile.os() <<	"\tpath = " << full_path << std::endl;
 /*
  *		does it end in ".items" or ".itemsx"?
  */
 		size_t len = full_path.length();
 		char c = full_path.at(len-1);
 		if(c == 'x') {
-			g_LogFile.os() << "\t\tloading xml" << endl;
+			g_LogFile.os() << "\t\tloading xml" << std::endl;
 			g_InvManager.LoadItemsXML(full_path);
 		}
 		else {
-			g_LogFile.os() << "\t\tloading orig" << endl;
+			g_LogFile.os() << "\t\tloading orig" << std::endl;
 			g_InvManager.LoadItems(full_path);
 		}
 	}
@@ -643,7 +643,7 @@ void ChangeGirlJobs()
 		g_ChangeJobs.ClearListBox(g_interfaceid.LIST_CJNIGHTTIME);
 
 		// Fill the list boxes and set the current selections
-		string text = "Freetime (";
+	    std::string text = "Freetime (";
 		text += toString(g_Brothels.GetNumGirlsOnJob(g_CurrBrothel, 0, true));
 		text += ")";
 		g_ChangeJobs.AddToListBox(g_interfaceid.LIST_CJDAYTIME, 0, text);
@@ -737,7 +737,7 @@ void ChangeGirlJobs()
 					{
 						int time = (g_Dice%14)+2;
 						g_Brothels.StartMovie(g_CurrBrothel, time);
-						string message = "The movie will be done in ";
+					    std::string message = "The movie will be done in ";
 						message += toString(time);
 						message += " days, add more girls to increase quality of final product.";
 						g_MessageQue.AddToQue(message, 0);
@@ -754,7 +754,7 @@ void ChangeGirlJobs()
 					{
 						int time = (g_Dice%14)+2;
 						g_Brothels.StartMovie(g_CurrBrothel, time);
-						string message = "The movie will be done in ";
+					    std::string message = "The movie will be done in ";
 						message += toString(time);
 						message += " weeks, add more girls to increase quality of final product.";
 						g_MessageQue.AddToQue(message, 0);
@@ -780,7 +780,7 @@ void ChangeGirlJobs()
 						{
 							int time = (g_Dice%14)+2;
 							g_Brothels.StartMovie(g_CurrBrothel, time);
-							string message = "The movie will be done in ";
+						    std::string message = "The movie will be done in ";
 							message += toString(time);
 							message += " weeks, add more girls to increase quality of final product.";
 							g_MessageQue.AddToQue(message, 0);
@@ -797,7 +797,7 @@ void ChangeGirlJobs()
 						{
 							int time = (g_Dice%14)+2;
 							g_Brothels.StartMovie(g_CurrBrothel, time);
-							string message = "The movie will be done in ";
+						    std::string message = "The movie will be done in ";
 							message += toString(time);
 							message += " weeks, add more girls to increase quality of final product.";
 							g_MessageQue.AddToQue(message, 0);
@@ -882,7 +882,7 @@ void Turnsummary()
 	{
 		g_Turnsummary.Focused();
 
-		string brothel = "Current Brothel: ";
+	    std::string brothel = "Current Brothel: ";
 		brothel += g_Brothels.GetName(g_CurrBrothel);
 		g_Turnsummary.EditTextItem(brothel, g_interfaceid.TEXT_CURRENTBROTHEL);
 
@@ -926,7 +926,7 @@ void Turnsummary()
 				sGirl* pTmpGirl = g_Brothels.GetGirl(g_CurrBrothel, i);
 				if(pTmpGirl->m_Events.HasDanger())
 				{
-					string tname = pTmpGirl->m_Realname;
+				    std::string tname = pTmpGirl->m_Realname;
 					g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSITEM, ID, tname, LISTBOX_RED);
 					if (selected_girl == pTmpGirl)
 						Item = ID;
@@ -940,7 +940,7 @@ void Turnsummary()
 				sGirl* pTmpGirl = g_Brothels.GetGirl(g_CurrBrothel, j);
 				if( pTmpGirl->m_Events.HasWarning() && !pTmpGirl->m_Events.HasDanger())
 				{
-					string temp = pTmpGirl->m_Realname;
+				    std::string temp = pTmpGirl->m_Realname;
 					g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSITEM, ID, temp, LISTBOX_DARKBLUE);
 					if (selected_girl == pTmpGirl)
 						Item = ID;
@@ -954,7 +954,7 @@ void Turnsummary()
 				sGirl* pTmpGirl = g_Brothels.GetGirl(g_CurrBrothel, k);
 				if(!pTmpGirl->m_Events.HasUrgent())
 				{
-					string temp = pTmpGirl->m_Realname;
+				    std::string temp = pTmpGirl->m_Realname;
 					g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSITEM, ID, temp);
 					if (selected_girl == pTmpGirl)
 						Item = ID;
@@ -1006,7 +1006,7 @@ void Turnsummary()
 				sGirl* pTmpGirl = pDungeon->GetGirl(i)->m_Girl;
 				if(pTmpGirl->m_Events.HasDanger())
 				{
-					string tname = pTmpGirl->m_Realname;
+				    std::string tname = pTmpGirl->m_Realname;
 					g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSITEM, ID, tname, LISTBOX_RED);
 					if (selected_girl == pTmpGirl)
 						Item = ID;
@@ -1020,7 +1020,7 @@ void Turnsummary()
 				sGirl* pTmpGirl = pDungeon->GetGirl(j)->m_Girl;
 				if( pTmpGirl->m_Events.HasWarning() && !pTmpGirl->m_Events.HasDanger())
 				{
-					string temp = pTmpGirl->m_Realname;
+				    std::string temp = pTmpGirl->m_Realname;
 					g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSITEM, ID, temp, LISTBOX_DARKBLUE);
 					if (selected_girl == pTmpGirl)
 						Item = ID;
@@ -1034,7 +1034,7 @@ void Turnsummary()
 				sGirl* pTmpGirl = pDungeon->GetGirl(k)->m_Girl;
 				if(!pTmpGirl->m_Events.HasUrgent())
 				{
-					string temp = pTmpGirl->m_Realname;
+				    std::string temp = pTmpGirl->m_Realname;
 					g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSITEM, ID, temp);
 					if (selected_girl == pTmpGirl)
 						Item = ID;
@@ -1095,7 +1095,7 @@ void Turnsummary()
 			{
 				if(selected != -1)
 				{
-					string selectedName = g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
+				    std::string selectedName = g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 					girl = selected_girl = g_Brothels.GetGirlByName(g_CurrBrothel, selectedName);
 
 					if(girl == 0)
@@ -1111,14 +1111,14 @@ void Turnsummary()
 
 						for(int l=0; l<girl->m_Events.GetNumEvents(); l++)
 						{
-							string			sTitle			= girl->m_Events.GetMessage(l).TitleText();
+						    std::string 		sTitle			= girl->m_Events.GetMessage(l).TitleText();
 							unsigned int	uiListboxColour	= girl->m_Events.GetMessage(l).ListboxColour();
 							g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSEVENTS, l, sTitle, uiListboxColour);
 						}
 					}
 #else
 					// Important texts at the top
-					string text = "";
+				    std::string text = "";
 					bool selected = false, FoundFirstMessage = false; // Priority is given to selecting danger over warning over standard
 					int ID2 = 0, FirstMessage = -1;
 
@@ -1216,7 +1216,7 @@ void Turnsummary()
 
 						for(int l=0; l<gang->m_Events.GetNumEvents(); l++)
 						{
-							string			sTitle			= gang->m_Events.GetMessage(l).TitleText();
+						    std::string 		sTitle			= gang->m_Events.GetMessage(l).TitleText();
 							unsigned int	uiListboxColour	= gang->m_Events.GetMessage(l).ListboxColour();
 							g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSEVENTS, l, sTitle, uiListboxColour);
 						}
@@ -1225,7 +1225,7 @@ void Turnsummary()
 					// add the newly selected gangs events
 					for(int i=0; i<gang->m_Events.GetNumEvents(); i++)
 					{
-						string text = "Event";
+					    std::string text = "Event";
 						g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSEVENTS, i, text);
 					}
 #endif
@@ -1247,7 +1247,7 @@ void Turnsummary()
 
 						for(int l=0; l<g_Brothels.GetBrothel(selected)->m_Events.GetNumEvents(); l++)
 						{
-							string			sTitle			= pSelectedBrothel->m_Events.GetMessage(l).TitleText();
+						    std::string 		sTitle			= pSelectedBrothel->m_Events.GetMessage(l).TitleText();
 							unsigned int	uiListboxColour	= pSelectedBrothel->m_Events.GetMessage(l).ListboxColour();
 							g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSEVENTS, l, sTitle, uiListboxColour);
 						}
@@ -1257,7 +1257,7 @@ void Turnsummary()
 					// add the events
 					for(int i=0; i<g_Brothels.GetBrothel(selected)->m_Events.GetNumEvents(); i++)
 					{
-						string text = "Event";
+					    std::string text = "Event";
 						g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSEVENTS, i, text);
 					}
 #endif
@@ -1273,7 +1273,7 @@ void Turnsummary()
 #if 1
 					// list the events
 					// Get the girl
-					string selectedName		= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
+				    std::string selectedName		= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 					girl =	selected_girl	= g_Brothels.GetDungeon()->GetGirlByName(selectedName)->m_Girl;
 
 					if(girl == 0)
@@ -1288,7 +1288,7 @@ void Turnsummary()
 
 						for(int l=0; l<girl->m_Events.GetNumEvents(); l++)
 						{
-							string			sTitle			= girl->m_Events.GetMessage(l).TitleText();
+						    std::string 		sTitle			= girl->m_Events.GetMessage(l).TitleText();
 							unsigned int	uiListboxColour	= girl->m_Events.GetMessage(l).ListboxColour();
 							g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSEVENTS, l, sTitle, uiListboxColour);
 						}
@@ -1308,7 +1308,7 @@ void Turnsummary()
 					ImageType = IMGTYPE_PROFILE;
 
 					// add the newly selected girls events
-					string text = "";
+				    std::string text = "";
 
 					for(int i=0; i<girl->m_Events.GetNumEvents(); i++)
 					{
@@ -1376,7 +1376,7 @@ void Turnsummary()
 						sGirl* girl = 0;
 
 						// MYR
-						string selectedName	= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
+					    std::string selectedName	= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 						girl = selected_girl = g_Brothels.GetGirlByName(g_CurrBrothel, selectedName);
 
 						// Set the event desc text
@@ -1444,7 +1444,7 @@ void Turnsummary()
 					if((SelGirl = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)	// if a dungeon is selected then
 					{
 						// WD	Get girl by name
-						string selectedName	= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
+					    std::string selectedName	= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 						sGirl* girl			= g_Brothels.GetDungeon()->GetGirlByName(selectedName)->m_Girl;
 
 						if(girl == 0)
@@ -1504,7 +1504,7 @@ void Turnsummary()
 				if(category == 0)
 				{
 					// MYR
-					string selectedName		= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
+				    std::string selectedName		= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 					girl	= selected_girl	= g_Brothels.GetGirlByName(g_CurrBrothel, selectedName);
 					g_WinManager.push("Girl Details");
 				}
@@ -1515,7 +1515,7 @@ void Turnsummary()
 				else if (category == 3)		// Dungeon
 				{
 					// WD: Add Dungeon Girls Goto
-					string selectedName		= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
+				    std::string selectedName		= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 					selected_girl	= girl	= g_Brothels.GetDungeon()->GetGirlByName(selectedName)->m_Girl;
 					g_WinManager.push("Girl Details");
 
@@ -1597,7 +1597,7 @@ void Turnsummary()
 	if (category == 0)
 	{
 		// MYR
-		string selectedName = g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
+	    std::string selectedName = g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 		selGirl = selected_girl = g_Brothels.GetGirlByName(g_CurrBrothel, selectedName);
 		//selGirl = g_Brothels.GetGirl(g_CurrBrothel, num);
 	}
@@ -1662,7 +1662,7 @@ void Turnsummary()
 	{
 		g_Turnsummary.Focused();
 
-		string brothel = "Current Brothel: ";
+	    std::string brothel = "Current Brothel: ";
 		brothel += g_Brothels.GetName(g_CurrBrothel);
 		g_Turnsummary.EditTextItem(brothel, g_interfaceid.TEXT_CURRENTBROTHEL);
 
@@ -1691,7 +1691,7 @@ void Turnsummary()
 				if (selected_girl == b_girl)
 					Item = i;
 
-				string temp = b_girl->m_Realname;
+			    std::string temp = b_girl->m_Realname;
 
 				if(b_girl->health() <= 10 || b_girl->m_Events.HasDanger())
 					g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSITEM, i, temp, LISTBOX_RED);
@@ -1747,7 +1747,7 @@ void Turnsummary()
 				if (selected_girl == d_girl)
 					Item = i;
 
-				string temp = d_girl->m_Realname;
+			    std::string temp = d_girl->m_Realname;
 
 				if(d_girl->health() <= 10 || d_girl->m_Events.HasDanger())
 					g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSITEM, i, temp, LISTBOX_RED);
@@ -1809,7 +1809,7 @@ void Turnsummary()
 					// add the newly selected girls events
 					for(int i=0; i<girl->m_Events.GetNumEvents(); i++)
 					{
-						string text = "";
+					    std::string text = "";
 						if(girl->m_Events.GetMessage(i).m_Event == EVENT_DAYSHIFT)
 						{
 							text = "Day Shift";
@@ -1880,7 +1880,7 @@ void Turnsummary()
 					// add the newly selected girls events
 					for(int i=0; i<gang->m_Events.GetNumEvents(); i++)
 					{
-						string text = "";
+					    std::string text = "";
 						if(gang->m_Events.GetMessage(i).m_Event == EVENT_WARNING)
 						{
 							text = "Warning";
@@ -1921,7 +1921,7 @@ void Turnsummary()
 					// add the events
 					for(int i=0; i<g_Brothels.GetBrothel(selection)->m_Events.GetNumEvents(); i++)
 					{
-						string text = "";
+					    std::string text = "";
 						if(g_Brothels.GetBrothel(selection)->m_Events.GetMessage(i).m_Event == EVENT_DEBUG)
 						{
 							text = "Debug";
@@ -1971,7 +1971,7 @@ void Turnsummary()
 					// add the newly selected girls events
 					for(int i=0; i<girl->m_Events.GetNumEvents(); i++)
 					{
-						string text = "";
+					    std::string text = "";
 						if(girl->m_Events.GetMessage(i).m_Event == EVENT_DAYSHIFT)
 						{
 							text = "Day Shift";
@@ -2627,7 +2627,7 @@ void Gallery()
 }
 
 /*
-void SaveMasterFile(string filename)
+void SaveMasterFile(std::string filename)
 {
  *
  *	I think this is outdated now. Which is to say
@@ -2638,14 +2638,14 @@ void SaveMasterFile(string filename)
  *	I'm just commenting it out in case I'm wrong
  *	(Do we need this the first time we save?)
  *
-	string savedFiles[400];
+    std::string savedFiles[400];
 	WIN32_FIND_DATAA FindFileData;
 	HANDLE hFind;
 	int numSaved = 0;
 
 	// first load the masterlist to see what has been loaded before
-	ifstream load;
-	string mastfile = ".\\Saves\\";
+	std::ifstream load;
+    std::string mastfile = ".\\Saves\\";
 	mastfile += filename;
 	mastfile += ".mast";
 	load.open(mastfile.c_str());
@@ -2688,7 +2688,7 @@ void SaveMasterFile(string filename)
 	while(FindNextFileA(hFind, &FindFileData) != 0);
 	FindClose(hFind);
 
-	ofstream save;
+	std::ofstream save;
 	mastfile = filename;
 	mastfile += ".mast";
 	save.open(mastfile.c_str());
@@ -2697,14 +2697,14 @@ void SaveMasterFile(string filename)
 		if(j==(numSaved-1))
 			save<<savedFiles[j].c_str();
 		else
-			save<<savedFiles[j].c_str()<<endl;
+			save<<savedFiles[j].c_str()<<std::endl;
 	}
 	save.close();
 
 }
 */
 
-void SaveGameXML(string filename)
+void SaveGameXML(std::string filename)
 {
 	TiXmlDocument doc(filename);
 	TiXmlDeclaration* decl = new TiXmlDeclaration("1.0", "", "yes");
@@ -2768,7 +2768,7 @@ void SaveGameXML(string filename)
 
 }
 
-bool LoadGame(string directory, string filename)
+bool LoadGame(std::string directory, std::string filename)
 {
 	// FREE ANYTHING
 	//other stuff will be freed as it is loaded
@@ -2824,7 +2824,7 @@ bool LoadGameXML(TiXmlHandle hDoc)
 		return false;
 	}
 
-	string version("<blank>");
+    std::string version("<blank>");
 	if (pRoot->Attribute("ExeVersion"))
 	{
 		version = pRoot->Attribute("ExeVersion");
@@ -2899,7 +2899,7 @@ bool LoadGameXML(TiXmlHandle hDoc)
 	return true;
 }
 
-bool LoadGameLegacy(string directory, string filename)
+bool LoadGameLegacy(std::string directory, std::string filename)
 {
 	// load templates
 	g_LogFile.write("Loading what used to be the master file");
@@ -2918,7 +2918,7 @@ bool LoadGameLegacy(string directory, string filename)
 	int minorB = 0;
 	int temp = 0;
 
-	ifstream ifs;
+	std::ifstream ifs;
 	DirPath thefile;
 	thefile<<directory<<filename;
 	ifs.open(thefile.c_str());

@@ -24,7 +24,6 @@
 #include "Constants.h"
 #include <string>
 #include <fstream>
-using namespace std;
 
 // Represents a single trait
 typedef struct sTrait
@@ -65,11 +64,11 @@ public:
 
 	void Free();	// Delete all the loaded data
 
-	void LoadTraits(string filename);	// Loads the traits from a file (adding them to the existing traits)
-	void SaveTraits(string filename);	// Saves the traits to a file
+	void LoadTraits(std::string filename);	// Loads the traits from a file (adding them to the existing traits)
+	void SaveTraits(std::string filename);	// Saves the traits to a file
 	void AddTrait(sTrait* trait);
-	void RemoveTrait(string name);
-	sTrait* GetTrait(string name);
+	void RemoveTrait(std::string name);
+	sTrait* GetTrait(std::string name);
 	sTrait* GetTraitNum(int num);
 	int GetNumTraits() {return m_NumTraits;}
 

@@ -44,10 +44,10 @@ static cDungeon* dungeon = g_Brothels.GetDungeon();
 static cTariff tariff;
 
 extern sGirl *selected_girl;
-extern vector<int> cycle_girls;
+extern std::vector<int> cycle_girls;
 extern int cycle_pos;
 
-static vector<int> select_girls;
+static std::vector<int> select_girls;
 
 bool cScreenDungeon::ids_set = false;
 
@@ -81,18 +81,18 @@ void cScreenDungeon::init()
 	ClearListBox(girllist_id);
 
 	//get a list of all the column names, so we can find which data goes in that column
-	vector<string> columnNames;
+	std::vector<std::string> columnNames;
 	m_ListBoxes[girllist_id]->GetColumnNames(columnNames);
 	int numColumns = columnNames.size();
 
 /*
- *	Display the text: let's use a stringstream for this
+ *	Display the text: let's use a std::stringstream for this
  */
-	stringstream ss;
+	std::stringstream ss;
 	ss << "Your Dungeon where " << dungeon->GetNumDied() << " people have died.";
 	EditTextItem(ss.str(), header_id);
 	// Fill the list box
-	string* Data = new string[numColumns];
+	std::string* Data = new std::string[numColumns];
 	for(int i = 0; i < dungeon->GetNumGirls(); i++)	// add girls
 	{
 /*
@@ -135,7 +135,7 @@ void cScreenDungeon::init()
 	DisableButton(brandslave_id);
 	DisableButton(torture_id);
 	DisableButton(sellslave_id);
-	cout << "::init: disabling torture" << endl;
+	std::cout << "::init: disabling torture" << std::endl;
 	DisableButton(viewdetails_id);
 /*
  *	only enable "release all girls" if there are girls to release
@@ -179,7 +179,7 @@ void cScreenDungeon::selection_change()
 		DisableButton(interact_id);
 		DisableButton(release_id);
 		DisableButton(torture_id);
-		cout << "selection = " << selection << " (-1) - disabling torture" << endl;
+		std::cout << "selection = " << selection << " (-1) - disabling torture" << std::endl;
 		DisableButton(viewdetails_id);
 		DisableButton(sellslave_id);
 		selection = -1;		// can this have changed?
@@ -190,7 +190,7 @@ void cScreenDungeon::selection_change()
  */
 	DisableButton(sellslave_id);
 	DisableButton(torture_id, !torture_possible());
-	cout << "selection = " << selection << " - enabling torture" << endl;
+	std::cout << "selection = " << selection << " - enabling torture" << std::endl;
 	DisableButton(interact_id, g_TalkCount == 0);
 	EnableButton(release_id);
 	DisableButton(brandslave_id);
@@ -297,7 +297,7 @@ int cScreenDungeon::enslave_customer(int girls_removed, int custs_removed)
 /*
  *	format the message
  */
-	stringstream ss;
+	std::stringstream ss;
 	ss <<	"You force the customer into slavery lawfully "
 	   <<	"for committing a crime against your business "
 	   <<	"and sell them for "
@@ -337,7 +337,7 @@ void cScreenDungeon::set_slave_stats(sGirl *girl)
 
 int cScreenDungeon::enslave()
 {
-	string message = "";
+    std::string message = "";
 	int numCustsRemoved = 0;
 	int numGirlsRemoved = 0;
 	int pos = 0, deadcount = 0;
@@ -504,7 +504,7 @@ void cScreenDungeon::release_all_customers()
 void cScreenDungeon::sell_slaves()
 {
 	int paid = 0, count = 0, deadcount = 0;
-	vector<int> girl_array;
+	std::vector<int> girl_array;
 	get_selected_girls(&girl_array);  // get and sort array of girls/customers
 
 	for(int i = girl_array.size(); i --> 0; )
@@ -566,7 +566,7 @@ void cScreenDungeon::sell_slaves()
 	if(count <= 0)
 		return;
 
-	stringstream ss;
+	std::stringstream ss;
 	ss.str("");
 	ss << "You sold ";
 	if(count > 1)
@@ -671,7 +671,7 @@ void cScreenDungeon::start_feeding()
 
 void cScreenDungeon::torture_customer(int girls_removed)
 {
-	string message = "Customer: ";
+    std::string message = "Customer: ";
 /*
  *	get the index number for the customer
  */
@@ -724,7 +724,7 @@ void cScreenDungeon::torture_customer(int girls_removed)
 }
 
 #if 0	// WD	Replaced by Doclox's cGirlTorture and cGirlGangFight code.
-bool cScreenDungeon::girl_fight_torture(sGirl *girl, string &message, bool &fight)
+bool cScreenDungeon::girl_fight_torture(sGirl *girl, std::string &message, bool &fight)
 {
 	cGirlGangFight ggf(girl);
 
@@ -862,7 +862,7 @@ void cScreenDungeon::release()
 	cPlayer* player = g_Brothels.GetPlayer();
 	sBrothel *brothel = g_Brothels.GetBrothel(g_CurrBrothel);
 
-	vector<int> girl_array;
+	std::vector<int> girl_array;
 	get_selected_girls(&girl_array);  // get and sort array of girls/customers
 
 	for(int i = girl_array.size(); i --> 0; )
@@ -1090,7 +1090,7 @@ void cScreenDungeon::process()
 	}
 }
 
-void cScreenDungeon::get_selected_girls(vector<int> *girl_array)
+void cScreenDungeon::get_selected_girls(std::vector<int> *girl_array)
 {  // take passed vector and fill it with sorted list of girl/customer IDs
 	int pos = 0;
 	int GSelection = GetNextSelectedItemFromList(girllist_id, 0, pos);

@@ -40,9 +40,9 @@ extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGold g_Gold;
 
-bool cJobManager::WorkHall(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkHall(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
-	string message = "";
+    std::string message = "";
 	g_Girls.UpdateTempStat(girl, STAT_LIBIDO, 1);
 	if(Preprocessing(ACTION_WORKHALL, girl, brothel, DayNight, summary, message))	// they refuse to have work in the hall
 		return true;
@@ -68,7 +68,7 @@ bool cJobManager::WorkHall(sGirl* girl, sBrothel* brothel, int DayNight, string&
 
 	// work out the pay between the house and the girl
 	girl->m_Pay += (g_Dice%((int)(((g_Girls.GetStat(girl, STAT_BEAUTY)+g_Girls.GetStat(girl, STAT_CHARISMA))/2)*0.5f)))+10;
-	string pay = "";
+    std::string pay = "";
 //	g_Brothels.CalculatePay(brothel,girl, pay, girl->m_Pay, DayNight);  // No longer used this way?
 	girl->m_Events.AddMessage(pay, IMGTYPE_PROFILE, DayNight);
 

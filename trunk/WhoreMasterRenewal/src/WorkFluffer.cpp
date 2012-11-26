@@ -40,9 +40,9 @@ extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGold g_Gold;
 
-bool cJobManager::WorkFluffer(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkFluffer(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
-	string message = "";
+    std::string message = "";
 	if(Preprocessing(ACTION_WORKSHOW, girl, brothel, DayNight, summary, message))
 		return true;
 

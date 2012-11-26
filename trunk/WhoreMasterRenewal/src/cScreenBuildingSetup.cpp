@@ -30,7 +30,7 @@ extern cBrothelManager g_Brothels;
 extern cWindowManager g_WinManager;
 
 static cTariff tariff;
-static stringstream ss;
+static std::stringstream ss;
 
 bool cScreenBuildingSetup::ids_set = false;
 
@@ -89,13 +89,13 @@ void cScreenBuildingSetup::init()
 	ss << "Casino Staff: " << tariff.casino_staff_wages() << " gold / week";
 	EditTextItem(ss.str(), casinostaff_id);
 
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, curbrothel_id);
 
 	int number = g_Brothels.GetNumPotions();
 
-	string message = "You have: ";
+    std::string message = "You have: ";
 	message += toString(number);
 	EditTextItem(message, potionavail_id);
 	DisableCheckBox(autopotions_id, number < 1);
@@ -179,7 +179,7 @@ void cScreenBuildingSetup::check_events()
 		int number = g_Brothels.GetNumPotions();
 		if(number == MaxSupplies)
 		{
-			string message = "You can only store up to ";
+		    std::string message = "You can only store up to ";
 			message += toString(MaxSupplies);
 			message += " potions";
 			g_MessageQue.AddToQue(message, 0);
@@ -210,7 +210,7 @@ void cScreenBuildingSetup::check_events()
 		int number = g_Brothels.GetNumPotions();
 		if(number == MaxSupplies)
 		{
-			string message = "You can only store up to ";
+		    std::string message = "You can only store up to ";
 			message+=toString(MaxSupplies);
 			message += " potions";
 			g_MessageQue.AddToQue(message, 0);

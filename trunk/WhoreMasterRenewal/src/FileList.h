@@ -25,8 +25,6 @@
 
 #include "DirPath.h"
 
-using namespace std;
-
 /*
  * Just a container class to hold the path, filename
  * and full path of a file.
@@ -36,9 +34,9 @@ using namespace std;
  * on the whole.
  */
 class FileListEntry {
-	string m_path;	// the base path: ".\Resources\Characters"
-	string m_leaf;	// the file name: "Girls.girls"
-	string m_full;	// the full path: ".\Resources\Characters\Girls.girls"
+	std::string m_path;	// the base path: ".\Resources\Characters"
+	std::string m_leaf;	// the file name: "Girls.girls"
+	std::string m_full;	// the full path: ".\Resources\Characters\Girls.girls"
 public:
 	FileListEntry() {}
 	FileListEntry(const FileListEntry &fle) {
@@ -46,7 +44,7 @@ public:
 		m_leaf = fle.m_leaf;
 		m_full = fle.m_full;
 	}
-	FileListEntry(string a_path, string a_leaf) {
+	FileListEntry(std::string a_path, std::string a_leaf) {
 		m_path = a_path;
 		m_leaf = a_leaf;
 #ifdef LINUX
@@ -58,14 +56,14 @@ public:
 /*
  *	and some simple accessors
  */
-	string &leaf() { return m_leaf; }
-	string &path() { return m_path; }
+	std::string &leaf() { return m_leaf; }
+	std::string &path() { return m_path; }
 /*
  *	we could do this on the fly, here,
  *	but the overhead of storing an extra string
  *	should be trivial
  */
-	string &full() { return m_full; }
+    std::string &full() { return m_full; }
 };
 
 class FileList {
@@ -74,7 +72,7 @@ class FileList {
  *	std::vector - standard template library class.
  *	produces a typed dynamic array that grows as needed
  */
-	vector<FileListEntry>	files;
+	std::vector<FileListEntry>	files;
 protected:
 	DirPath &folder_dp()	{ return folder; }
 public:
@@ -127,12 +125,12 @@ public:
  *	made them a static class member so they can be overridden in software.
  *	if need be, can be a config file entry
  */
-static	vector<string> file_extensions;
+static	std::vector<std::string> file_extensions;
 	ImageFileList(DirPath dp, const char *pattern = "*")
 	: FileList(dp, 0, true)
 	{
 		if(file_extensions.size() == 0) {
-			file_extensions.push_back(string(".jp*g"));
+			file_extensions.push_back(std::string(".jp*g"));
 			file_extensions.push_back(".gif");
 		}
 		scan(pattern);
@@ -142,7 +140,7 @@ virtual	void	scan(const char *);
 
 class XMLFileList {
 	DirPath folder;
-	vector<FileListEntry>	files;
+	std::vector<FileListEntry>	files;
 public:
 	XMLFileList(DirPath dp, char const *pattern = "*");
 	FileListEntry &operator[](int index) {

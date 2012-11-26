@@ -96,13 +96,13 @@ public:
 	void	torture();
 	void	release();
 	void	talk();
-	void	get_selected_girls(vector<int> *girl_array);
+	void	get_selected_girls(std::vector<int> *girl_array);
 	void	store_selected_girls();
-	void	check_gang_for_survivors(sGirl *girl, sGang *gang, string &message, int start_count);
+	void	check_gang_for_survivors(sGirl *girl, sGang *gang, std::string &message, int start_count);
 
 // WD	Replaced by Doclox's cGirlTorture and cGirlGangFight code.
 //	int		girl_fights_gang(sGirl *girl, sGang *&gang);
-//	bool	girl_fight_torture(sGirl *girl, string &message, bool &fight);
+//	bool	girl_fight_torture(sGirl *girl, std::string &message, bool &fight);
 
 
 	// XML screen replacement for cSelector, for multi-select listboxes

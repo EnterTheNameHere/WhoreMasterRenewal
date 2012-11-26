@@ -39,7 +39,7 @@ extern cBrothelManager g_Brothels;
 extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 
-bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	//brothel->m_Filthiness++;
 	g_Girls.UpdateStat(girl, STAT_TIREDNESS, -20);
@@ -49,7 +49,7 @@ bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, str
 	g_Girls.UpdateTempStat(girl, STAT_LIBIDO, 5);
 	g_Girls.UpdateStat(girl, STAT_EXP, 1);   // Just because!
 
-	string message = "She rested and recovered some energy.";
+    std::string message = "She rested and recovered some energy.";
 
 	if(g_Dice%2 != 1)	// add inventory items since she is going shopping :D
 		return false;
@@ -82,13 +82,13 @@ bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, str
 	// 2. buy any items that catch her fancy
 	int numberToBuy = g_Dice%5;	// buy up to 10 things  MYR: Reduced to 5 to cut down on inventory clutter
 	int itemsBought = 0;
-	string buyList = "";
+    std::string buyList = "";
 
 	for(int i=0; i < numberToBuy && girl->m_NumInventory < 40; i++)
 	{
 		int item = g_InvManager.GetRandomShopItem();
 		int cost = g_InvManager.GetShopItem(item)->m_Cost;
-		string itemName = g_InvManager.GetShopItem(item)->m_Name;
+	    std::string itemName = g_InvManager.GetShopItem(item)->m_Name;
 
 		if(g_Girls.HasItem(girl, itemName) > -1)
 			continue;
@@ -236,7 +236,7 @@ bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, str
 	return false;
 }
 
-bool cJobManager::AddictBuysDrugs(string Addiction, string Drug, sGirl* girl, sBrothel* brothel, int DayNight)
+bool cJobManager::AddictBuysDrugs(std::string Addiction, std::string Drug, sGirl* girl, sBrothel* brothel, int DayNight)
 {
 	int id = g_InvManager.CheckShopItem(Drug);
 	if(id == -1)

@@ -43,7 +43,7 @@ void cBuildingManagement::IDBlock::hide(cBuildingManagement *mgr)
 	mgr->HideImage(shade);
 	mgr->HideText(desc);
 	mgr->HideText(type);
-	cout << "hiding rename button : " << rename << endl;
+	std::cout << "hiding rename button : " << rename << std::endl;
 	mgr->HideButton(rename);
 	mgr->HideText(unit);
 	mgr->HideText(space);
@@ -87,7 +87,7 @@ void cBuildingManagement::IDBlock::display(
 	cBuilding *building
 )
 {
-	stringstream ss;
+	std::stringstream ss;
 	sFacility *facility = building->item_at(num);
 
 	mgr->UnhideImage(shade);
@@ -147,9 +147,9 @@ void cBuildingManagement::IDBlock::display(
 	mgr->EditTextItem("Glitz", glitz_cap);
 	ss << facility->glitz();
 	mgr->EditTextItem(ss.str(), glitz_level);
-	cout << "setting glitz_level (" << glitz_level << ") to "
+	std::cout << "setting glitz_level (" << glitz_level << ") to "
 		<< ss.str()
-		<< endl;
+		<< std::endl;
 	ss.str("");
 
 	mgr->EditTextItem("Secure", secure_cap);
@@ -169,7 +169,7 @@ void cBuildingManagement::IDBlock::display(
 
 void cBuildingManagement::init()
 {
-	stringstream ss;
+	std::stringstream ss;
 
 	if(!g_InitWin) {
 		return;
@@ -237,7 +237,7 @@ bool cBuildingManagement::ids_set = false;
 
 void cBuildingManagement::set_ids()
 {
-	stringstream ss;
+	std::stringstream ss;
 
 	ids_set		= true;
 	header_id	= get_id("ScreenHeader");
@@ -252,49 +252,49 @@ void cBuildingManagement::set_ids()
 	for(int i = 0; i < 6; i++) {
 		ss.str("");
 		ss << i;
-		string istr	= ss.str();
-		blocks[i].unit	= get_id(string("Unit")	+ istr);
-		blocks[i].shade	= get_id(string("Shader") + istr);
-		blocks[i].desc	= get_id(string("Name") + istr);
-		blocks[i].type	= get_id(string("Type") + istr);
-		blocks[i].rename= get_id(string("RenameButton") + istr);
-		blocks[i].space	= get_id(string("Spaces") + istr);
-		blocks[i].cost	= get_id(string("Cost") + istr);
-		blocks[i].delete_btn	= get_id(string("DeleteButton") + istr);
+	    std::string istr	= ss.str();
+		blocks[i].unit	= get_id(std::string("Unit")	+ istr);
+		blocks[i].shade	= get_id(std::string("Shader") + istr);
+		blocks[i].desc	= get_id(std::string("Name") + istr);
+		blocks[i].type	= get_id(std::string("Type") + istr);
+		blocks[i].rename= get_id(std::string("RenameButton") + istr);
+		blocks[i].space	= get_id(std::string("Spaces") + istr);
+		blocks[i].cost	= get_id(std::string("Cost") + istr);
+		blocks[i].delete_btn	= get_id(std::string("DeleteButton") + istr);
 
-		blocks[i].glitz_cap = get_id(string("CaptionGlitz") + istr);
-		blocks[i].glitz_level = get_id(string("LevelGlitz") + istr);
-		blocks[i].glitz_down = get_id(string("DownGlitz") + istr);
-		blocks[i].glitz_up = get_id(string("UpGlitz") + istr);
+		blocks[i].glitz_cap = get_id(std::string("CaptionGlitz") + istr);
+		blocks[i].glitz_level = get_id(std::string("LevelGlitz") + istr);
+		blocks[i].glitz_down = get_id(std::string("DownGlitz") + istr);
+		blocks[i].glitz_up = get_id(std::string("UpGlitz") + istr);
 
-		blocks[i].provides_cap = get_id(string("CaptionProvides") + istr);
-		blocks[i].provides_level = get_id(string("LevelProvides") + istr);
-		blocks[i].provides_down = get_id(string("DownProvides") + istr);
-		blocks[i].provides_up = get_id(string("UpProvides") + istr);
+		blocks[i].provides_cap = get_id(std::string("CaptionProvides") + istr);
+		blocks[i].provides_level = get_id(std::string("LevelProvides") + istr);
+		blocks[i].provides_down = get_id(std::string("DownProvides") + istr);
+		blocks[i].provides_up = get_id(std::string("UpProvides") + istr);
 
-		blocks[i].secure_cap = get_id(string("CaptionSecure") + istr);
-		blocks[i].secure_level = get_id(string("LevelSecure") + istr);
-		blocks[i].secure_down = get_id(string("DownSecure") + istr);
-		blocks[i].secure_up = get_id(string("UpSecure") + istr);
+		blocks[i].secure_cap = get_id(std::string("CaptionSecure") + istr);
+		blocks[i].secure_level = get_id(std::string("LevelSecure") + istr);
+		blocks[i].secure_down = get_id(std::string("DownSecure") + istr);
+		blocks[i].secure_up = get_id(std::string("UpSecure") + istr);
 
-		blocks[i].stealth_cap = get_id(string("CaptionStealth") + istr);
-		blocks[i].stealth_level = get_id(string("LevelStealth") + istr);
-		blocks[i].stealth_down = get_id(string("DownStealth") + istr);
-		blocks[i].stealth_up = get_id(string("UpStealth") + istr);
+		blocks[i].stealth_cap = get_id(std::string("CaptionStealth") + istr);
+		blocks[i].stealth_level = get_id(std::string("LevelStealth") + istr);
+		blocks[i].stealth_down = get_id(std::string("DownStealth") + istr);
+		blocks[i].stealth_up = get_id(std::string("UpStealth") + istr);
 
 		blocks[i].bevel_t = get_id(
-			string("BevelTop") + istr, false
+			std::string("BevelTop") + istr, false
 		);
 		blocks[i].bevel_b = get_id(
-			string("BevelBottom") + istr, false
+			std::string("BevelBottom") + istr, false
 		);
 		blocks[i].bevel_r = get_id(
-			string("BevelRight") + istr, false
+			std::string("BevelRight") + istr, false
 		);
 		blocks[i].bevel_l = get_id(
-			string("BevelLeft") + istr, false
+			std::string("BevelLeft") + istr, false
 		);
-		blocks[i].newsplash	= get_id(string("NewSplash") + istr);
+		blocks[i].newsplash	= get_id(std::string("NewSplash") + istr);
 	}
 }
 
@@ -452,7 +452,7 @@ void cBuildingManagement::process()
  *	catch a selection change event for the listbox
  */
 	if(g_InterfaceEvents.CheckListbox(listbox_id)) {
-		string s;
+	    std::string s;
 		sFacilityList fax;
 /*
  *		update the selection variable

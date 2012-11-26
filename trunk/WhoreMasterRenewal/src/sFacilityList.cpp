@@ -25,16 +25,16 @@
 #include "FileList.h"
 #include "CLog.h"
 
-vector<sFacility *> *sFacilityList::list = 0;
+std::vector<sFacility *> *sFacilityList::list = 0;
 
-static string g_filename;
+static std::string g_filename;
 
 sFacilityList::sFacilityList()
 {
 	if(list) {
 		return;
 	}
-	list = new vector<sFacility *>;
+	list = new std::vector<sFacility *>;
 /*
  *	build a list of XML room definition files
  */
@@ -47,7 +47,7 @@ sFacilityList::sFacilityList()
 /*
  *		get the file name
  */
-		string file = fl[i].full();
+	    std::string file = fl[i].full();
 		g_filename = file;
 /*
  *		try and load it
@@ -67,7 +67,7 @@ sFacilityList::sFacilityList()
 }
 
 
-bool sFacilityList::load_xml(string filename)
+bool sFacilityList::load_xml(std::string filename)
 {
 	CLog log;
 
@@ -76,7 +76,7 @@ bool sFacilityList::load_xml(string filename)
 		log.ss()<< "sFacilityList::load_xml: load failure for file '"
 			<< filename
 			<< "'"
-			<< endl
+			<< std::endl
 		;
 		log.ss()<< "Error: line "
 			<< doc.ErrorRow()

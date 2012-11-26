@@ -84,11 +84,11 @@ bool cSlider::CreateSlider(int ID, int x, int y, int width, int min, int max, in
 void cSlider::LoadInitial()
 {  // load static class-wide shared base images into memory; only called once by first slider created
 	DirPath dp = ImagePath("Slider");
-	string disabled = string(dp.c_str()) + "ButtonDisabled.png";
-	string off = string(dp.c_str()) + "ButtonOff.png";
-	string on = string(dp.c_str()) + "ButtonOn.png";
-	string bg = string(dp.c_str()) + "Rail.png";
-	string bgd = string(dp.c_str()) + "RailDisabled.png";
+    std::string disabled = std::string(dp.c_str()) + "ButtonDisabled.png";
+    std::string off = std::string(dp.c_str()) + "ButtonOff.png";
+    std::string on = std::string(dp.c_str()) + "ButtonOn.png";
+    std::string bg = std::string(dp.c_str()) + "Rail.png";
+    std::string bgd = std::string(dp.c_str()) + "RailDisabled.png";
 	SDL_Surface* TmpImg;
 	TmpImg = IMG_Load(bg.c_str());
 	m_ImgRailDefault = SDL_DisplayFormatAlpha(TmpImg);
@@ -290,7 +290,7 @@ void cSlider::Draw()
 	}
 }
 
-void cSlider::LogSliderError(string description)
+void cSlider::LogSliderError(std::string description)
 {
 	CLog l;
 	l.ss() << description << " - " << SDL_GetError();

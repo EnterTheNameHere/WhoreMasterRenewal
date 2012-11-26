@@ -74,7 +74,7 @@ private:
 	sGirl *get_prev_girl();
 	sGirl *get_next_girl();
 	sGirl *remove_selected_girl();
-	bool do_take_gold(sGirl *girl, string &message);
+	bool do_take_gold(sGirl *girl, std::string &message);
 	void take_gold(sGirl *girl);
 public:
 	cScreenGirlDetails()

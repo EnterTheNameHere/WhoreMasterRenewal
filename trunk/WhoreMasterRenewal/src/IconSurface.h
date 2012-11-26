@@ -28,17 +28,17 @@
 
 class IconSurface : public CSurface {
 public:
-	IconSurface(string name)
+	IconSurface(std::string name)
 	: CSurface(ImagePath(name + ".png"))
 	{
 	}
-	IconSurface(string name, const char *pt, const char *ext = ".jpg")
+	IconSurface(std::string name, const char *pt, const char *ext = ".jpg")
 	: CSurface()
 	//: CSurface(ImagePath((name + pt) + ext).c_str())
 	{
 		CLog log;
 
-		string full = "";
+		std::string full = "";
 		full += name;
 		full += pt;
 		full += ext;
@@ -62,11 +62,11 @@ public:
 
 class ButtonSurface : public CSurface {
 public:
-	ButtonSurface (string name)
+	ButtonSurface (std::string name)
 	: CSurface(ButtonPath(name + ".png"))
 	{
 	}
-	ButtonSurface (string name, const char *pt, const char *ext = ".jpg")
+	ButtonSurface (std::string name, const char *pt, const char *ext = ".jpg")
 	: CSurface(ButtonPath((name + pt) + ext).c_str())
 	{
 	}
@@ -74,11 +74,11 @@ public:
 
 class ImageSurface : public CSurface {
 public:
-	ImageSurface (string name)
+	ImageSurface (std::string name)
 	: CSurface(ImagePath(name + ".png"))
 	{
 	}
-	ImageSurface (string name, const char *pt, const char *ext = ".jpg")
+	ImageSurface (std::string name, const char *pt, const char *ext = ".jpg")
 	: CSurface(ImagePath((name + pt) + ext).c_str())
 	{
 	}

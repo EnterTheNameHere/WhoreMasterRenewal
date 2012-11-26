@@ -111,8 +111,8 @@ void cGirlTorture::DoTorture()
 	m_Fight	= false;
 	m_Player = g_Brothels.GetPlayer();
 
-	string sGirlName	= m_Girl->m_Realname;
-	string sMsg			= "";
+    std::string sGirlName	= m_Girl->m_Realname;
+    std::string sMsg			= "";
 	CLog	l;
 	cConfig cfg;
 	bool bDebug			= cfg.debug.log_torture();
@@ -408,8 +408,8 @@ bool cGirlTorture::IsGirlInjured(unsigned int unModifier)
  *		Now check for injury first
  *		Use usigned int so can't pass negative chance
  */
-	string	sMsg;
-	string	sGirlName	= m_Girl->m_Realname;
+    std::string sMsg;
+    std::string sGirlName	= m_Girl->m_Realname;
 	int		nMod		= static_cast<int>(unModifier); 
 
 	// Sanity check, Can't get injured
@@ -602,7 +602,7 @@ void cGirlTorture::UpdateTraits()
 	}
 }
 
-void cGirlTorture::add_trait(string trait, int pc)
+void cGirlTorture::add_trait(std::string trait, int pc)
 {
 	if (m_Girl->has_trait(trait))
 		return;
@@ -617,7 +617,7 @@ void cGirlTorture::add_trait(string trait, int pc)
 	if (!g_Dice.percent(pc))
 		return;
 
-	string sMsg = m_Girl->m_Realname + " has gained trait \"" + trait + "\" from being tortured.";
+    std::string sMsg = m_Girl->m_Realname + " has gained trait \"" + trait + "\" from being tortured.";
 
 	if (m_TorturedByPlayer)
 	{
@@ -631,7 +631,7 @@ void cGirlTorture::add_trait(string trait, int pc)
 	m_Girl->add_trait(trait);
 }
 
-inline void cGirlTorture::MakeEvent(string sMsg)
+inline void cGirlTorture::MakeEvent(std::string sMsg)
 {
 	m_Girl->m_Events.AddMessage( sMsg, IMGTYPE_BDSM, EVENT_WARNING);
 	m_Torturer->m_Events.AddMessage( sMsg, IMGTYPE_PROFILE, EVENT_DUNGEON);

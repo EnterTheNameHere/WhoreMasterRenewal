@@ -65,14 +65,14 @@ TrainableGirl::TrainableGirl(sGirl *girl)
 	m_girl = girl;
 }
 
-string TrainableGirl::update_random(int size)
+std::string TrainableGirl::update_random(int size)
 {
 	u_int index = g_Dice.random(stats.size());
 	stats[index].upd(size);
 	return stats[index].name();
 }
 
-IdealAttr::IdealAttr(vector<TrainableGirl> set, string name, int attr_idx)
+IdealAttr::IdealAttr(std::vector<TrainableGirl> set, std::string name, int attr_idx)
 : cTrainable(0, name, attr_idx, cTrainable::Stat)
 {
 	m_value		= 0;
@@ -115,7 +115,7 @@ IdealAttr::IdealAttr(vector<TrainableGirl> set, string name, int attr_idx)
 	}
 }
 
-IdealGirl::IdealGirl(vector<TrainableGirl> set)
+IdealGirl::IdealGirl(std::vector<TrainableGirl> set)
 {
 	TrainableGirl &girl_zero = set[0];
 /*
@@ -163,12 +163,12 @@ static bool sort_IdealAttr(const IdealAttr& a1, const IdealAttr& a2)
  *
  * Easy!
  */
-vector<int> IdealGirl::training_indices()
+std::vector<int> IdealGirl::training_indices()
 {
 /*
  *	to start: copy the vector
  */
- 	vector<IdealAttr> copyvec(stats.begin(), stats.end());
+ 	std::vector<IdealAttr> copyvec(stats.begin(), stats.end());
 /*
  *	now: sort it
  */
@@ -180,7 +180,7 @@ vector<int> IdealGirl::training_indices()
  *	easy to change if I need to make the number of
  *	atrributes trained into a config variable
  */
- 	vector<int> indices;
+ 	std::vector<int> indices;
 /*
  *	and we use it to store the attribute indices
  *	of the top three elements (or less if there are less)

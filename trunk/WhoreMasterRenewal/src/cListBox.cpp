@@ -553,9 +553,9 @@ void cListBox::CreateListbox(int ID, int x, int y, int width, int height, int Bo
 		SDL_FillRect( m_HeaderBackground, &dest_rect, SDL_MapRGB(m_HeaderBackground->format, g_ListBoxHeaderBackgroundR, g_ListBoxHeaderBackgroundG, g_ListBoxHeaderBackgroundB) );
 
 		DirPath dp = ImagePath("ListboxSort");
-		string Asc = string(dp.c_str()) + "Asc.png";
-		string Desc = string(dp.c_str()) + "Desc.png";
-		string None = string(dp.c_str()) + "None.png";
+	    std::string Asc = std::string(dp.c_str()) + "Asc.png";
+	    std::string Desc = std::string(dp.c_str()) + "Desc.png";
+	    std::string None = std::string(dp.c_str()) + "None.png";
 		if(m_HeaderSortAsc == 0)
 			m_HeaderSortAsc = IMG_Load(Asc.c_str());
 		if(m_HeaderSortDesc == 0)
@@ -812,7 +812,7 @@ int cListBox::GetSelected()
 	return -1;
 }
 
-string cListBox::GetSelectedText()
+std::string cListBox::GetSelectedText()
 {
 	if(m_LastSelected == 0)
 		return "";
@@ -848,7 +848,7 @@ bool cListBox::IsSelected()
 	return false;
 }
 
-void cListBox::GetSortedIDList(vector<int> *id_vec, int *vec_pos)
+void cListBox::GetSortedIDList(std::vector<int> *id_vec, int *vec_pos)
 {
 	id_vec->clear();
 
@@ -864,19 +864,19 @@ void cListBox::GetSortedIDList(vector<int> *id_vec, int *vec_pos)
 	}
 }
 
-void cListBox::SetElementText(int ID, string data)
+void cListBox::SetElementText(int ID, std::string data)
 {
-	string datarray[] = {data};
+    std::string datarray[] = {data};
 	SetElementText(ID, datarray, 1);
 }
 
-void cListBox::AddElement(int ID, string data, int color)
+void cListBox::AddElement(int ID, std::string data, int color)
 {
-	string datarray[] = {data};
+    std::string datarray[] = {data};
 	AddElement(ID, datarray, 1, color);
 }
 
-void cListBox::SetElementText(int ID, string data[], int columns)
+void cListBox::SetElementText(int ID, std::string data[], int columns)
 {
 	cListItem* current = m_Items;
 	while(current)
@@ -892,7 +892,7 @@ void cListBox::SetElementText(int ID, string data[], int columns)
 	ReSortList();
 }
 
-void cListBox::SetElementColumnText(int ID, string data, int column)
+void cListBox::SetElementColumnText(int ID, std::string data, int column)
 {
 	cListItem* current = m_Items;
 	while(current)
@@ -920,7 +920,7 @@ void cListBox::SetElementTextColor(int ID, SDL_Color* text_color)
 		current = current->m_Next;
 	}
 }
-void cListBox::AddElement(int ID, string data[], int columns, int color)
+void cListBox::AddElement(int ID, std::string data[], int columns, int color)
 {
 	cListItem* newItem = new cListItem();
 	for (int i=0; i<columns; i++)
@@ -938,7 +938,7 @@ void cListBox::AddElement(int ID, string data[], int columns, int color)
 	}
 
 	// for the purposes of allowing restoration of the default sort, store the count of this list item
-	stringstream ss;
+	std::stringstream ss;
 	ss << m_NumElements;
 	newItem->m_Data[LISTBOX_COLUMNS] = ss.str();
 
@@ -946,7 +946,7 @@ void cListBox::AddElement(int ID, string data[], int columns, int color)
 	ReSortList();
 }
 
-void cListBox::DefineColumns(string name[], string header[], int offset[], bool skip[], int columns)
+void cListBox::DefineColumns(std::string name[], std::string header[], int offset[], bool skip[], int columns)
 {
 	m_ColumnCount = columns;
 	for (int i=0; i<m_ColumnCount; i++)
@@ -978,7 +978,7 @@ void cListBox::DefineColumns(string name[], string header[], int offset[], bool 
 	}
 }
 
-void cListBox::SetColumnSort(string column_name[], int columns)
+void cListBox::SetColumnSort(std::string column_name[], int columns)
 {
 	for (int i=0; i<columns; i++)
 	{
@@ -1115,7 +1115,7 @@ void cListBox::UnSortList()
 	SortByColumn(m_SortedColumn, m_SortedDescending);
 }
 
-void cListBox::SortByColumn(string ColumnName, bool Descending)
+void cListBox::SortByColumn(std::string ColumnName, bool Descending)
 {
 	if (m_Items  == 0)  // any items in list?
 		return;
@@ -1241,7 +1241,7 @@ cListItem* cListBox::BubbleSortList(cListItem *head, int count, int col_id, bool
 	return head;
 }
 
-void cListBox::GetColumnNames(vector<string>& columnNames)
+void cListBox::GetColumnNames(std::vector<std::string>& columnNames)
 {
 	columnNames.clear();
 	for (int x = 0; x < m_ColumnCount; ++x)

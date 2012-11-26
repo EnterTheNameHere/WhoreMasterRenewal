@@ -25,8 +25,6 @@
 
 #include "Constants.h"
 
-using namespace std;
-
 #if 0
 // Event types moved to Constants.h
 const int	EVENT_DAYSHIFT		= 0;
@@ -47,13 +45,13 @@ class CEvent
 public:
 	unsigned char	m_Event;				// type of event
 	unsigned char	m_MessageType;			// Image Type of message
-	string			m_Message;
+	std::string			m_Message;
 
 	//string		name;					//	name of who this event applies to, usually girl name
 	//int			imageType;
 	//int			imageNum;
 
-	string			TitleText();			//	Default listbox Text
+	std::string			TitleText();			//	Default listbox Text
 	unsigned int	ListboxColour();		//	Default Listbox Colour
 	unsigned int	m_Ordinal;				//  Used for sort order
 	bool			IsUrgent();
@@ -74,7 +72,7 @@ public:
 	void			Free();
 	void			Clear() {Free();}
 //	void			DisplayMessages();		// No definition
-	void			AddMessage(string message, int nImgType, int nEvent);
+	void			AddMessage(std::string message, int nImgType, int nEvent);
 
 	// need to undefine the stupid windows header macro GetMessage
     #ifdef GetMessage
@@ -90,7 +88,7 @@ public:
 
 
 private:
-	vector<CEvent>	events;
+	std::vector<CEvent>	events;
 	bool			m_bSorted;				// flag to only allow sort once
 	unsigned int	MakeOrdinal(int nEvent);
 };

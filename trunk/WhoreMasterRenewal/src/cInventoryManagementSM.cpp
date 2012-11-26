@@ -391,7 +391,7 @@ void cInventoryManagementSM::handle_events()
 			g_ItemManagement.SetSelectedItemInList(g_interfaceid.LIST_ITMOWNERSL, leftOwner);
 		else if(selection != -1)
 		{
-			stringstream ss;
+			std::stringstream ss;
 			leftOwner = selection;
 
 			if(leftOwner == 0)	// player items
@@ -405,7 +405,7 @@ void cInventoryManagementSM::handle_events()
 						   << g_Brothels.m_NumItem[i]
 						   << ")"
 						;
-						string it = ss.str();
+					    std::string it = ss.str();
 
 						if(filter == 0)
 							g_ItemManagement.AddToListBox(g_interfaceid.LIST_ITMITEMSL, i, it);
@@ -486,7 +486,7 @@ void cInventoryManagementSM::handle_events()
 	else if(g_InterfaceEvents.CheckEvent(EVENT_SELECTIONCHANGE, g_interfaceid.LIST_ITMOWNERSR))
 	{
 		// good enough place as any to update the cost shown on the screen
-		string temp = "PLAYER GOLD: ";
+	    std::string temp = "PLAYER GOLD: ";
 		temp += g_Gold.sval();
 		g_ItemManagement.EditTextItem(temp, g_interfaceid.TEXT_ITMPLAYERGOLD);
 
@@ -504,7 +504,7 @@ void cInventoryManagementSM::handle_events()
 				{
 					if(g_Brothels.m_Inventory[i])
 					{
-						string it = g_Brothels.m_Inventory[i]->m_Name;
+					    std::string it = g_Brothels.m_Inventory[i]->m_Name;
 						it += " (";
 						it += toString(g_Brothels.m_NumItem[i]);
 						it += ")";
@@ -588,7 +588,7 @@ void cInventoryManagementSM::handle_events()
 		int selection = g_ItemManagement.GetLastSelectedItemFromList(g_interfaceid.LIST_ITMITEMSL);
 		if(selection != -1)
 		{
-			string temp = "Cost: ";
+		    std::string temp = "Cost: ";
 			if(leftOwner == 0)
 			{
 				temp += toString(g_Brothels.m_Inventory[selection]->m_Cost);
@@ -658,7 +658,7 @@ void cInventoryManagementSM::handle_events()
 		int selection = g_ItemManagement.GetLastSelectedItemFromList(g_interfaceid.LIST_ITMITEMSR);
 		if(selection != -1)
 		{
-			string temp = "Cost: ";
+		    std::string temp = "Cost: ";
 			if(rightOwner == 0)
 			{
 				temp += toString(g_Brothels.m_Inventory[selection]->m_Cost);
@@ -807,7 +807,7 @@ void cInventoryManagementSM::handle_events()
 
 void cInventoryManagementSM::init()
 {
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	g_ItemManagement.EditTextItem(brothel, g_interfaceid.TEXT_CURRENTBROTHEL);
 
@@ -984,7 +984,7 @@ void cInventoryManagementSM::take_from_girl(sGirl *girl, int index)
  */
 string cInventoryManagementSM::nice_item_message(sGirl *girl, sInventoryItem *item)
 {
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	if she's obedient enough, she won't let her personal
  *	feelings get in the way

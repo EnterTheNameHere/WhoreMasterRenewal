@@ -36,9 +36,9 @@
  */
 class cScriptManagerInner {
 	cGameScript		m_Script;
-	queue<cLuaScript *>	lq;
+	std::queue<cLuaScript *>	lq;
 public:
-	void Load(string filename, sGirl *girl);
+	void Load(std::string filename, sGirl *girl);
 	void Release() {
 		cLuaScript *lpt;
 /*
@@ -106,9 +106,9 @@ public:
 		if(!instance) instance = new cScriptManagerInner();
 	}
 	void Load(ScriptPath &dp, sGirl *girl) {
-		instance->Load(string(dp.c_str()), girl);
+		instance->Load(std::string(dp.c_str()), girl);
 	}
-	void Load(string filename, sGirl *girl) {
+	void Load(std::string filename, sGirl *girl) {
 		instance->Load(filename, girl);
 	}
 	void Release() {

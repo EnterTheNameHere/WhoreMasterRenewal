@@ -41,7 +41,7 @@ cButton::~cButton()
 	m_OnImage = 0;
 }
 
-bool cButton::CreateButton(string OffImage, string DisabledImage, string OnImage, int ID, int x, int y, int width, int height, bool transparency,bool cached)
+bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int ID, int x, int y, int width, int height, bool transparency,bool cached)
 {
 	if(OffImage != "")
 	{

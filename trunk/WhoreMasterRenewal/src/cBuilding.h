@@ -31,13 +31,11 @@
 #define TIXML_USE_STL
 #include "tinyxml.h"
 
-using namespace std;
-
 class cBuilding
 {
 	int	m_capacity;
 	int	m_free;
-	typedef	vector<sFacility*> vFacilities;
+	typedef	std::vector<sFacility*> vFacilities;
 	vFacilities	m_facilities;
 	vFacilities	*m_reversion;
 public:
@@ -99,8 +97,8 @@ public:
 		m_reversion = 0;
 	}
 
-	ofstream &save(ofstream &ofs, string building_name);
-	ifstream &load(ifstream &ifs);
+	std::ofstream &save(std::ofstream &ofs, std::string building_name);
+	std::ifstream &load(std::ifstream &ifs);
 /*
  *	is the list free of changes that may need to be reverted?
  */

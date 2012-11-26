@@ -23,7 +23,6 @@
 #include "SDLStuff.h"
 #include "CTimer.h"
 #include <string>
-using namespace std;
 
 class CGraphics
 {
@@ -31,7 +30,7 @@ public:
 	CGraphics();
 	~CGraphics();
 
-	bool InitGraphics(string caption, int Width, int Height, int BPP);
+	bool InitGraphics(std::string caption, int Width, int Height, int BPP);
 	void Free();
 	bool End();		// End Drawing Stuff
 	void Begin();	// begins drawing stuff

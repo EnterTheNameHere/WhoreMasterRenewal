@@ -42,8 +42,6 @@
 
 #include "main.h"
 
-using namespace std;
-
 extern cMessageQue g_MessageQue;
 extern cBrothelManager g_Brothels;
 extern cTraits g_Traits;
@@ -63,9 +61,9 @@ extern cGangManager g_Gangs;
  * first: static members need declaring
  */
 bool sGirl::m_maps_setup = false;
-map<string,unsigned int> sGirl::stat_lookup;
-map<string,unsigned int> sGirl::skill_lookup;
-map<string,unsigned int> sGirl::status_lookup;
+std::map<std::string,unsigned int> sGirl::stat_lookup;
+std::map<std::string,unsigned int> sGirl::skill_lookup;
+std::map<std::string,unsigned int> sGirl::status_lookup;
 
 const char *sGirl::stat_names[] =
 {
@@ -145,7 +143,7 @@ void sGirl::setup_maps()
 		//if(m_maps_setup)
 		//	return;	// only need to do this once
 
-		g_LogFile.os() << "[sGirl::setup_maps] Setting up Stats, Skills and Status codes."<< endl;
+		g_LogFile.os() << "[sGirl::setup_maps] Setting up Stats, Skills and Status codes."<< std::endl;
 
 		m_maps_setup = true;
 		stat_lookup["Charisma"]		= STAT_CHARISMA;
@@ -197,7 +195,7 @@ void sGirl::setup_maps()
 
 }
 
-int sGirl::lookup_skill_code(string s)
+int sGirl::lookup_skill_code(std::string s)
 {
 /*
  *	be useful to be able to log unrecognised
@@ -205,13 +203,13 @@ int sGirl::lookup_skill_code(string s)
  */
 	if(skill_lookup.find(s) == skill_lookup.end()) {
 		g_LogFile.os() << "[sGirl::lookup_skill_code] Error: unknown Skill: " <<
-			s << endl;
+			s << std::endl;
 		return -1;
 	}
 	return skill_lookup[s];
 }
 
-int sGirl::lookup_status_code(string s)
+int sGirl::lookup_status_code(std::string s)
 {
 /*
  *	be useful to be able to log unrecognised
@@ -219,13 +217,13 @@ int sGirl::lookup_status_code(string s)
  */
 	if(status_lookup.find(s) == status_lookup.end()) {
 		g_LogFile.os() << "[sGirl::lookup_status_code] Error: unknown Status: " <<
-			s << endl;
+			s << std::endl;
 		return -1;
 	}
 	return status_lookup[s];
 }
 
-int sGirl::lookup_stat_code(string s)
+int sGirl::lookup_stat_code(std::string s)
 {
 /*
  *	be useful to be able to log unrecognised
@@ -233,7 +231,7 @@ int sGirl::lookup_stat_code(string s)
  */
 	if(stat_lookup.find(s) == stat_lookup.end()) {
 		g_LogFile.os() << "[sGirl::lookup_stat_code] Error: unknown Stat: " <<
-			s << endl;
+			s << std::endl;
 		return -1;
 	}
 	return stat_lookup[s];
@@ -362,7 +360,7 @@ bool cGirls::DisobeyCheck(sGirl* girl, int action, sBrothel* brothel)
 
 #if 1	// WD use best stat as many girls have only one stat high
 
-		diff = max(girl->combat(), girl->magic()) - 50;
+		diff = std::max(girl->combat(), girl->magic()) - 50;
 		diff /= 3;
 #else
 		diff = girl->combat() - 50;
@@ -1035,7 +1033,7 @@ sRandomGirl* cGirls::random_girl_at(u_int n)
  *		is it too late to rewrite this using vector?
  */
  		if(current == 0) {
-			g_LogFile.os() << "broken chain in cGirls::random_girl_at"<< endl;
+			g_LogFile.os() << "broken chain in cGirls::random_girl_at"<< std::endl;
 			return 0;
 		}
 	}
@@ -1100,10 +1098,10 @@ sGirl* cGirls::CreateRandomGirl(int age, bool addToGGirls, bool slave, bool unde
 	newGirl->m_Name = new char[current->m_Name.length()+1];	// name
 	strcpy(newGirl->m_Name, current->m_Name.c_str());
 
-	g_LogFile.os() << "getting money for " << newGirl->m_Name << endl;
-	g_LogFile.os() << "template is " << current->m_Name << endl;
-	g_LogFile.os() << "min money " << current->m_MinMoney << endl;
-	g_LogFile.os() << "max money " << current->m_MaxMoney << endl;
+	g_LogFile.os() << "getting money for " << newGirl->m_Name << std::endl;
+	g_LogFile.os() << "template is " << current->m_Name << std::endl;
+	g_LogFile.os() << "min money " << current->m_MinMoney << std::endl;
+	g_LogFile.os() << "max money " << current->m_MaxMoney << std::endl;
 
 	newGirl->m_Money = (g_Dice%(current->m_MaxMoney-current->m_MinMoney))+current->m_MinMoney;	// money
 
@@ -1142,7 +1140,7 @@ sGirl* cGirls::CreateRandomGirl(int age, bool addToGGirls, bool slave, bool unde
 		}
 		else
 		{
-			string message = "cGirls::CreateRandomGirl: ERROR: Trait '";
+		    std::string message = "cGirls::CreateRandomGirl: ERROR: Trait '";
 			message += current->m_Traits[i]->m_Name;
 			message += "' from girl template ";
 			message += current->m_Name;
@@ -1234,7 +1232,7 @@ sGirl* cGirls::CreateRandomGirl(int age, bool addToGGirls, bool slave, bool unde
  *
  *	So I'm assuming non-unique names are ok
  */
-	string name;
+    std::string name;
 	for(int i = 0; i < 5; i++) {
 		name = names.random();
 		if(NameExists(buffer)) {
@@ -1295,7 +1293,7 @@ sGirl* cGirls::CreateRandomGirl(int age, bool addToGGirls, bool slave, bool unde
 	return newGirl;
 }
 
-bool cGirls::NameExists(string name)
+bool cGirls::NameExists(std::string name)
 {
 	sGirl* current = m_Parent;
 
@@ -1323,7 +1321,7 @@ bool cGirls::NameExists(string name)
 
 void cGirls::LevelUp(sGirl* girl)
 {
-	stringstream ss;
+	std::stringstream ss;
 
 	// MYR: Changed from 20.  Nothing appears to be level-dependant (beyond sell price) so
 	//      this shouldn't affect anything (I hope. Feel free to revert if this breaks
@@ -1559,10 +1557,10 @@ int cGirls::GetSlaveGirl(int from)
 	return girlnum;
 }
 
-vector<sGirl *>  cGirls::get_girls(GirlPredicate* pred)
+std::vector<sGirl *>  cGirls::get_girls(GirlPredicate* pred)
 {
 	sGirl *girl;
-	vector<sGirl *> v;
+	std::vector<sGirl *> v;
 
 	for(girl = m_Parent; girl; girl = girl->m_Next) {
 		if(pred->test(girl)) {
@@ -1572,9 +1570,9 @@ vector<sGirl *>  cGirls::get_girls(GirlPredicate* pred)
 	return v;
 }
 
-string cGirls::GetGirlMood(sGirl* girl)
+std::string cGirls::GetGirlMood(sGirl* girl)
 {
-	string ret = "Her Feelings: ";
+    std::string ret = "Her Feelings: ";
 	int variable = 0;
 
 	int HateLove = GetStat(girl, STAT_PCLOVE) - GetStat(girl, STAT_PCHATE);
@@ -1640,11 +1638,11 @@ string cGirls::GetGirlMood(sGirl* girl)
 	return ret;
 }
 
-string cGirls::GetMoreDetailsString(sGirl* girl)
+std::string cGirls::GetMoreDetailsString(sGirl* girl)
 {
 	if(girl == 0)
-		return string("");
-	string data = "Fetish Categories: ";
+		return std::string("");
+    std::string data = "Fetish Categories: ";
 
 	if(CheckGirlType(girl, FETISH_BIGBOOBS))
 		data += " |Big Boobs| ";
@@ -1674,7 +1672,7 @@ string cGirls::GetMoreDetailsString(sGirl* girl)
 		data += " |Freaky| ";
 	data += "\n\n";
 
-	string jobs[]={
+    std::string jobs[]={
 		"combat",
 		"working as a whore",
 		"doing miscellaneous tasks",  // general
@@ -1688,8 +1686,8 @@ string cGirls::GetMoreDetailsString(sGirl* girl)
 		"torturing people",
 		"caring for beasts"
 	};
-	string base="She";
-	string text;
+    std::string base="She";
+    std::string text;
 	unsigned char count = 0;
 	for(int i=0;i<NUM_ACTIONTYPES;++i)
 	{
@@ -1743,7 +1741,7 @@ string cGirls::GetMoreDetailsString(sGirl* girl)
 		data+="At the moment, she is indifferent to all tasks.\n\n";
 
 	data += "\nOther Stats\n\n";
-	stringstream ss;
+	std::stringstream ss;
 	ss << "Charisma: " << GetStat(girl, STAT_CHARISMA) << "\n";
 	ss << "Beauty: " << GetStat(girl, STAT_BEAUTY) << "\n";
 	ss << "Libido: " << GetStat(girl, STAT_LIBIDO) << "\n";
@@ -1759,16 +1757,16 @@ string cGirls::GetMoreDetailsString(sGirl* girl)
 	return data;
 }
 
-string cGirls::GetDetailsString(sGirl* girl, bool purchase)
+std::string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 {
 	cConfig cfg;
 	cTariff tariff;
-	stringstream ss;
+	std::stringstream ss;
 	char buffer[100];
 
 	if(girl == 0)
-		return string("");
-	string data = "Looks: ";
+		return std::string("");
+    std::string data = "Looks: ";
 	int variable = ((GetStat(girl, STAT_BEAUTY)+GetStat(girl, STAT_CHARISMA))/2);
 	data += toString(variable);
 	data += "%\n";
@@ -1806,8 +1804,8 @@ string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 	int to_go = cfg.pregnancy.weeks_pregnant() - girl->m_WeeksPreg;
 	if(girl->m_States&(1<<STATUS_PREGNANT))
 	{
-		//cout << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << endl;
-		//cout << "to go            : " << to_go << endl;
+		//std::cout << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << std::endl;
+		//std::cout << "to go            : " << to_go << std::endl;
 
 		data += "Is pregnant, due: ";
 		data += toString(to_go);
@@ -1815,8 +1813,8 @@ string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 	}
 	if(girl->m_States&(1<<STATUS_PREGNANT_BY_PLAYER))
 	{
-		//cout << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << endl;
-		//cout << "to go (player's) : " << to_go << endl;
+		//std::cout << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << std::endl;
+		//std::cout << "to go (player's) : " << to_go << std::endl;
 
 		data += "Is pregnant with your child, due: ";
 		data += toString(to_go);
@@ -1972,7 +1970,7 @@ sGirl* cGirls::GetRandomGirl(bool slave, bool catacomb)
 	}
 
 	GirlPredicate_GRG pred(slave, catacomb);
-	vector<sGirl *> girls = get_girls(&pred);
+	std::vector<sGirl *> girls = get_girls(&pred);
 
 	if(girls.size() == 0) {
 		return 0;
@@ -2544,11 +2542,11 @@ void cGirls::UpdateTempSkill(sGirl* girl, int skill, int amount)
 
 // This load
 
-void cGirls::LoadGirlLegacy(sGirl* current, ifstream& ifs)
+void cGirls::LoadGirlLegacy(sGirl* current, std::ifstream& ifs)
 {
 	cConfig cfg;
 	int temp = 0;
-	stringstream ss;
+	std::stringstream ss;
 	char buffer[4000];
 
 	// load the name
@@ -2811,7 +2809,8 @@ bool sGirl::LoadGirlXML(TiXmlHandle hGirl)
 	}
 	else
 	{
-		m_Name = "";
+	    // HACK
+		m_Name = (char*)&"";
 	}
 
 	if (pGirl->Attribute("Realname"))
@@ -3124,7 +3123,7 @@ void sGirl::load_from_xml(TiXmlElement *el)
 	}
 	else {
 		g_LogFile.os() << "Error: can't find name when loading girl."
-		     << "XML = " << (*el) << endl;
+		     << "XML = " << (*el) << std::endl;
 		return;
 	}
 
@@ -3142,14 +3141,14 @@ void sGirl::load_from_xml(TiXmlElement *el)
 		const char *stat_name = sGirl::stat_names[i];
 		pt = el->Attribute(stat_name, &ival);
 
-		ostream& os = g_LogFile.os();
+		std::ostream& os = g_LogFile.os();
 		if(pt == 0) {
-			os << "Error: Can't find stat '" << stat_name << "' for girl '" << m_Realname << "'" << endl;
+			os << "Error: Can't find stat '" << stat_name << "' for girl '" << m_Realname << "'" << std::endl;
 			continue;
 		}
 		m_Stats[i] = ival;
 		os << "Debug: Girl='" << m_Realname << "'; Stat='" << stat_name << "'; Value='" << pt << "'; Ival = "
-		   << int(m_Stats[i]) << "'" << endl;
+		   << int(m_Stats[i]) << "'" << std::endl;
 	}
 
 	// "fix" underage girls, determine virgin status
@@ -3226,7 +3225,7 @@ void sRandomGirl::load_from_xml(TiXmlElement *el)
 	if(pt)
 		m_Name = pt;
 
-	g_LogFile.os() << "Loading " << pt << endl;
+	g_LogFile.os() << "Loading " << pt << std::endl;
 	if((pt = el->Attribute("Desc")))
 		m_Desc = pt;
 
@@ -3294,12 +3293,12 @@ void sRandomGirl::load_from_xml(TiXmlElement *el)
 /*
  *		None of the above? Better ask for help then.
  */
- 		g_LogFile.os() << "Unexpected tag: " << child->ValueStr() << endl;
-		g_LogFile.os() << "	don't know what do to, ignoring" << endl;
+ 		g_LogFile.os() << "Unexpected tag: " << child->ValueStr() << std::endl;
+		g_LogFile.os() << "	don't know what do to, ignoring" << std::endl;
 	}
 }
 
-void cGirls::LoadRandomGirl(string filename)
+void cGirls::LoadRandomGirl(std::string filename)
 {
 /*
  *	before we go any further: files that end in "x" are
@@ -3310,23 +3309,23 @@ void cGirls::LoadRandomGirl(string filename)
  *	now decide how we want to really load the file
  */
 	if(c == 'x') {
-		cout << "loading " << filename << " as XML" << endl;
+		std::cout << "loading " << filename << " as XML" << std::endl;
 		LoadRandomGirlXML(filename);
 	}
 	else {
-		cout << "loading " << filename << " as Legacy" << endl;
+		std::cout << "loading " << filename << " as Legacy" << std::endl;
 		LoadRandomGirlLegacy(filename);
 	}
 }
 
-void cGirls::LoadRandomGirlXML(string filename)
+void cGirls::LoadRandomGirlXML(std::string filename)
 {
 	TiXmlDocument doc(filename);
 
 	if(!doc.LoadFile()) {
-		g_LogFile.os() << "can't load random XML girls " << filename << endl;
+		g_LogFile.os() << "can't load random XML girls " << filename << std::endl;
 		g_LogFile.os()	<< "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol()
-			<< ": " << doc.ErrorDesc() << endl;
+			<< ": " << doc.ErrorDesc() << std::endl;
 		return;
 	}
 /*
@@ -3349,9 +3348,9 @@ void cGirls::LoadRandomGirlXML(string filename)
 	}
 }
 
-void cGirls::LoadRandomGirlLegacy(string filename)
+void cGirls::LoadRandomGirlLegacy(std::string filename)
 {
-	ifstream in;
+	std::ifstream in;
 	in.open(filename.c_str());
 	char buffer[500];
 	sRandomGirl* newGirl = 0;
@@ -3434,7 +3433,7 @@ void cGirls::LoadRandomGirlLegacy(string filename)
 			in.getline(buffer, sizeof(buffer), '\n');
 			if(g_Traits.GetTrait(buffer) == 0)	// test a trait exists
 			{
-				string message = "ERROR: Trait ";
+			    std::string message = "ERROR: Trait ";
 				message += buffer;
 				message += " from girl template ";
 				message += newGirl->m_Name;
@@ -3458,7 +3457,7 @@ void cGirls::LoadRandomGirlLegacy(string filename)
 	in.close();
 }
 
-void cGirls::LoadGirlsDecider(string filename)
+void cGirls::LoadGirlsDecider(std::string filename)
 {
 /*
  *	before we go any further: files that end in "x" are
@@ -3469,16 +3468,16 @@ void cGirls::LoadGirlsDecider(string filename)
  *	now decide how we want to really load the file
  */
 	if(c == 'x') {
-		cout << "loading " << filename << " as XML" << endl;
+		std::cout << "loading " << filename << " as XML" << std::endl;
 		LoadGirlsXML(filename);
 	}
 	else {
-		cout << "loading " << filename << " as legacy" << endl;
+		std::cout << "loading " << filename << " as legacy" << std::endl;
 		LoadGirlsLegacy(filename);
 	}
 }
 
-void cGirls::LoadGirlsXML(string filename)
+void cGirls::LoadGirlsXML(std::string filename)
 {
 	cConfig cfg;
 	if(cfg.debug.log_girls()) {
@@ -3488,9 +3487,9 @@ void cGirls::LoadGirlsXML(string filename)
 
 	TiXmlDocument doc(filename);
 	if(!doc.LoadFile()) {
-		g_LogFile.ss() << "can't load XML girls " << filename << endl;
+		g_LogFile.ss() << "can't load XML girls " << filename << std::endl;
 		g_LogFile.ss()	<< "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol()
-			<< ": " << doc.ErrorDesc() << endl;
+			<< ": " << doc.ErrorDesc() << std::endl;
 		g_LogFile.ssend();
 		return;
 	}
@@ -3508,7 +3507,7 @@ void cGirls::LoadGirlsXML(string filename)
  */
 		girl->load_from_xml(el);
 		if(cfg.debug.log_girls()) {
-			g_LogFile.ss() << *girl << endl;
+			g_LogFile.ss() << *girl << std::endl;
 			g_LogFile.ssend();
 		}
 /*
@@ -3548,9 +3547,9 @@ void cGirls::LoadGirlsXML(string filename)
 	}
 }
 
-void cGirls::LoadGirlsLegacy(string filename)
+void cGirls::LoadGirlsLegacy(std::string filename)
 {
-	ifstream in;
+	std::ifstream in;
 	in.open(filename.c_str());
 	char buffer[500];
 	sGirl* newGirl = 0;
@@ -3584,7 +3583,7 @@ void cGirls::LoadGirlsLegacy(string filename)
 			in.getline(buffer, sizeof(buffer), '\n');
 			if(g_Traits.GetTrait(buffer) == 0)	// test a trait exists
 			{
-				string message = "ERROR in cGirls::LoadGirls: Trait '";
+			    std::string message = "ERROR in cGirls::LoadGirls: Trait '";
 				message += buffer;
 				message += "' from girl template ";
 				message += newGirl->m_Name;
@@ -3735,7 +3734,7 @@ bool cGirls::LoadGirlsXML(TiXmlHandle hGirls)
 	return true;
 }
 
-void cGirls::LoadGirlsLegacy(ifstream& ifs)
+void cGirls::LoadGirlsLegacy(std::ifstream& ifs)
 {
 	sGirl* current = 0;
 	int temp;
@@ -3816,7 +3815,7 @@ void sRandomGirl::process_stat_xml(TiXmlElement *el)
 	else
 	{
 		g_LogFile.os() << "can't find 'Name' attribute - can't process stat"
-		     << endl;
+		     << std::endl;
 		return;		// do as much as we can without crashing
 	}
 	if((pt = el->Attribute("Min", &ival))) {
@@ -3841,7 +3840,7 @@ void sRandomGirl::process_skill_xml(TiXmlElement *el)
 	}
 	else {
 		g_LogFile.os() << "can't find 'Name' attribute - can't process skill"
-		     << endl;
+		     << std::endl;
 		return;		// do as much as we can without crashing
 	}
 
@@ -3859,18 +3858,18 @@ void sRandomGirl::process_cash_xml(TiXmlElement *el)
 	const char *pt;
 
 	if((pt = el->Attribute("Min", &ival))) {
-		g_LogFile.os() << "	min money = " << ival << endl;
+		g_LogFile.os() << "	min money = " << ival << std::endl;
 		m_MinMoney = ival;
 	}
 	if((pt = el->Attribute("Max", &ival))) {
-		g_LogFile.os() << "	max money = " << ival << endl;
+		g_LogFile.os() << "	max money = " << ival << std::endl;
 		m_MaxMoney = ival;
 	}
 }
 
 // ----- Equipment & inventory
 
-int cGirls::HasItem(sGirl* girl, string name)
+int cGirls::HasItem(sGirl* girl, std::string name)
 {
 	for(int i=0; i<40; i++)
 	{
@@ -4938,7 +4937,7 @@ void cGirls::UnapplyTraits(sGirl* girl, sTrait* trait)
 // If a girl enjoys a job enough, she has a chance of gaining traits associated with it
 // (Made a FN out of code appearing in WorkExploreCatacombs etc...)
 
-bool cGirls::PossiblyGainNewTrait(sGirl* girl, string Trait, int Threshold, int ActionType, string Message, bool DayNight)
+bool cGirls::PossiblyGainNewTrait(sGirl* girl, std::string Trait, int Threshold, int ActionType, std::string Message, bool DayNight)
 {
 	if(girl->m_Enjoyment[ActionType] > Threshold && !girl->has_trait(Trait))
 	{
@@ -5499,7 +5498,7 @@ void cGirls::ApplyTraits(sGirl* girl, sTrait* trait, bool rememberflag)
 	}
 }
 
-bool cGirls::HasRememberedTrait(sGirl* girl, string trait)
+bool cGirls::HasRememberedTrait(sGirl* girl, std::string trait)
 {
 	for(int i=0; i<MAXNUM_TRAITS*2; i++)
 	{
@@ -5512,7 +5511,7 @@ bool cGirls::HasRememberedTrait(sGirl* girl, string trait)
 	return false;
 }
 
-bool cGirls::HasTrait(sGirl* girl, string trait)
+bool cGirls::HasTrait(sGirl* girl, std::string trait)
 {
 	for(int i=0; i<MAXNUM_TRAITS; i++)
 	{
@@ -5525,7 +5524,7 @@ bool cGirls::HasTrait(sGirl* girl, string trait)
 	return false;
 }
 
-void cGirls::RemoveRememberedTrait(sGirl* girl, string name)
+void cGirls::RemoveRememberedTrait(sGirl* girl, std::string name)
 {
 	sTrait* trait = g_Traits.GetTrait(name);
 	for(int i=0; i<MAXNUM_TRAITS*2; i++)	// remove the traits
@@ -5564,7 +5563,7 @@ void cGirls::RemoveAllRememberedTraits(sGirl* girl)
 	girl->m_NumRememTraits = 0;
 }
 
-bool cGirls::RemoveTrait(sGirl* girl, string name, bool addrememberlist, bool force)
+bool cGirls::RemoveTrait(sGirl* girl, std::string name, bool addrememberlist, bool force)
 {
 	/*
 	 *	WD: Added logic for remembered trait
@@ -5642,7 +5641,7 @@ bool cGirls::RemoveTrait(sGirl* girl, string name, bool addrememberlist, bool fo
 	return false;
 }
 
-void cGirls::AddRememberedTrait(sGirl* girl, string name)
+void cGirls::AddRememberedTrait(sGirl* girl, std::string name)
 {
 	for(int i=0; i<MAXNUM_TRAITS*2; i++)	// add the traits
 	{
@@ -5655,7 +5654,7 @@ void cGirls::AddRememberedTrait(sGirl* girl, string name)
 	}
 }
 
-bool cGirls::AddTrait(sGirl* girl, string name, bool temp, bool removeitem, bool inrememberlist)
+bool cGirls::AddTrait(sGirl* girl, std::string name, bool temp, bool removeitem, bool inrememberlist)
 {
 	/*
 	 *	WD: Added logic for remembered trait
@@ -5803,7 +5802,7 @@ void cGirls::updateHappyTraits(sGirl* girl)
 		girl->happiness(-5);
 		if(girl->happiness() <= 0)
 		{
-			string msg = girl->m_Realname + " has killed herself since she was unhappy and depressed.";
+		    std::string msg = girl->m_Realname + " has killed herself since she was unhappy and depressed.";
 			girl->m_Events.AddMessage(msg, IMGTYPE_DEATH, EVENT_DANGER);
 			g_MessageQue.AddToQue(msg, 1);
 			//g_Girls.SetStat(girl, STAT_HEALTH, 0);
@@ -5813,7 +5812,7 @@ void cGirls::updateHappyTraits(sGirl* girl)
 
 // ----- Sex
 
-void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool group, string& message, u_int& SexType)
+void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool group, std::string& message, u_int& SexType)
 {
 	bool good = false;
 	bool contraception = false;
@@ -5969,7 +5968,7 @@ void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool grou
 	}
 
 	// WD:	customer HAPPINESS changes complete now cap the stat to 100
-	customer->m_Stats[STAT_HAPPINESS] = min(100, (int)customer->m_Stats[STAT_HAPPINESS]);
+	customer->m_Stats[STAT_HAPPINESS] = std::min(100, (int)customer->m_Stats[STAT_HAPPINESS]);
 
 	if(SexType == SKILL_GROUP)
 		message += "\nThe customers ";
@@ -6182,7 +6181,7 @@ void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool grou
 	{
 		if((g_Dice%100)+1 == 1 && !contraception)
 		{
-			string mess = "";
+		    std::string mess = "";
 			mess += girl->m_Realname;
 			mess += " has caught the disease AIDS! She will likely die, but a rare cure can sometimes be found in the shop.";
 			girl->m_Events.AddMessage(mess, IMGTYPE_PROFILE, EVENT_DANGER);
@@ -6196,7 +6195,7 @@ void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool grou
 	{
 		if((g_Dice%100)+1 <= 1 && !contraception)
 		{
-			string mess = "";
+		    std::string mess = "";
 			mess += girl->m_Realname;
 			mess += " has caught the disease Chlamydia! A cure can sometimes be found in the shop.";
 			girl->m_Events.AddMessage(mess, IMGTYPE_PROFILE, EVENT_DANGER);
@@ -6210,7 +6209,7 @@ void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool grou
 	{
 		if((g_Dice%100)+1 <= 1 && !contraception)
 		{
-			string mess = "";
+		    std::string mess = "";
 			mess += girl->m_Realname;
 			mess += " has caught the disease Syphilis! This can be deadly, but a cure can sometimes be found in the shop.";
 			girl->m_Events.AddMessage(mess, IMGTYPE_PROFILE, EVENT_DANGER);
@@ -6219,10 +6218,10 @@ void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool grou
 	}
 }
 
-string cGirls::GetRandomSexString()
+std::string cGirls::GetRandomSexString()
 {
 	int roll1 = 0, roll2 = 0, roll3 = 0, random = 0;
-	string OutStr;
+    std::string OutStr;
 
 
 	// MYR: Can't resist a little cheeky chaos
@@ -6927,10 +6926,10 @@ string cGirls::GetRandomSexString()
 	return OutStr;
 }
 
-string cGirls::GetRandomGroupString()
+std::string cGirls::GetRandomGroupString()
 {
 	int roll1 = 0, roll2 = 0, roll3 = 0, random = 0;
-	string OutStr;
+    std::string OutStr;
 	char buffer[10];
 
 	// Part 1
@@ -7443,10 +7442,10 @@ string cGirls::GetRandomGroupString()
 	return OutStr;
 }
 
-string cGirls::GetRandomBDSMString()
+std::string cGirls::GetRandomBDSMString()
 {
 	int roll2 = 0, roll3 = 0, random = 0;
-	string OutStr;
+    std::string OutStr;
 	char buffer[10];
 
 	OutStr += " was ";
@@ -7921,11 +7920,11 @@ string cGirls::GetRandomBDSMString()
 	return OutStr;
 }
 
-string cGirls::GetRandomBeastString()
+std::string cGirls::GetRandomBeastString()
 {
 	int roll1 = 0, roll2 = 0, roll3 = 0, random = 0;
 	char buffer[10];
-	string OutStr;
+    std::string OutStr;
 	bool NeedAnd = false;
 
 	OutStr += " was ";
@@ -8613,10 +8612,10 @@ string cGirls::GetRandomBeastString()
 	return OutStr;
 }
 
-string cGirls::GetRandomLesString()
+std::string cGirls::GetRandomLesString()
 {
 	int roll1 = 0, roll2 = 0, roll3 = 0, random = 0, plus = 0;
-	string OutStr;
+    std::string OutStr;
 	char buffer[10];
 
 	OutStr += " ";
@@ -9458,10 +9457,10 @@ string cGirls::GetRandomLesString()
 
 // MYR: Burned out before anal. Someone else feeling creative?
 
-string cGirls::GetRandomAnalString()
+std::string cGirls::GetRandomAnalString()
 {
 	int roll1 = 0, roll2 = 0, roll3 = 0;
-	string OutStr;
+    std::string OutStr;
 
 	OutStr += " ";
 
@@ -9771,7 +9770,7 @@ Uint8 cGirls::girl_fights_girl(sGirl* a, sGirl* b)
 void sGirl::fight_own_gang(bool &girl_wins)
 {
 	girl_wins = false;
-	vector<sGang*> v = g_Gangs.gangs_on_mission(MISS_GUARDING);
+	std::vector<sGang*> v = g_Gangs.gangs_on_mission(MISS_GUARDING);
 /*
  *	we'll take goons from the top gang in the list
  */
@@ -9842,7 +9841,7 @@ void sGirl::fight_own_gang(bool &girl_wins)
 	}
 }
 
-void sGirl::win_vs_own_gang(vector<sGang*> &v, int max_goons, bool &girl_wins)
+void sGirl::win_vs_own_gang(std::vector<sGang*> &v, int max_goons, bool &girl_wins)
 {
 	sGang *gang = v[0];
 	girl_wins = true;
@@ -9891,7 +9890,7 @@ void sGirl::win_vs_own_gang(vector<sGang*> &v, int max_goons, bool &girl_wins)
 	}
 }
 
-void sGirl::lose_vs_own_gang( vector<sGang*> &v, int max_goons, int girl_stats, int gang_stats, bool &girl_wins)
+void sGirl::lose_vs_own_gang( std::vector<sGang*> &v, int max_goons, int girl_stats, int gang_stats, bool &girl_wins)
 {
 	sGang *gang = v[0];
 	girl_wins = false;
@@ -9942,7 +9941,7 @@ bool cGirls::GirlInjured(sGirl* girl, unsigned int unModifier)
  *		Use usigned int so can't pass negative chance
  */
 //	bool injured = false;
-	string message;
+    std::string message;
 	int nMod	= static_cast<int>(unModifier);
 
 	// Sanity check, Can't get injured
@@ -10250,7 +10249,7 @@ void cGirls::updateSTD(sGirl* girl)
 
 	if(girl->health() <= 0)
 	{
-		string msg = girl->m_Realname + " has died from STD's.";
+	    std::string msg = girl->m_Realname + " has died from STD's.";
 		girl->m_Events.AddMessage(msg, IMGTYPE_DEATH, EVENT_DANGER);
 		//g_MessageQue.AddToQue(msg, 1);
 	}
@@ -10349,19 +10348,19 @@ void cGirls::updateGirlTurnStats(sGirl* girl)
  * random and otherwise.
  *
  * This looks big and complex, but it's just printing out the random
- * girl data from the load. It's so I can say cout << *rgirl << endl;
+ * girl data from the load. It's so I can say std::cout << *rgirl << std::endl;
  * and get a something sensible printed
  */
 
-ostream& operator<<(ostream &os, sRandomGirl &g)
+std::ostream& operator<<(std::ostream &os, sRandomGirl &g)
 {
-	os << g.m_Name << endl;
-	os << g.m_Desc << endl;
-	os << "Human? " << (g.m_Human == 0 ? "Yes" : "No") << endl;
+	os << g.m_Name << std::endl;
+	os << g.m_Desc << std::endl;
+	os << "Human? " << (g.m_Human == 0 ? "Yes" : "No") << std::endl;
 	os << "Catacomb Dweller? "
 	   << (g.m_Catacomb == 0 ? "No" : "Yes")
-	   << endl;
-	os << "Money: Min = " << g.m_MinMoney << ". Max = " << g.m_MaxMoney << endl;
+	   << std::endl;
+	os << "Money: Min = " << g.m_MinMoney << ". Max = " << g.m_MaxMoney << std::endl;
 /*
  *	loop through stats
  *	setw sets a field width for the next operation,
@@ -10369,13 +10368,13 @@ ostream& operator<<(ostream &os, sRandomGirl &g)
  */
 	for(unsigned int i = 0; i < sGirl::max_stats; i++)
 	{
-		os << setw(14) << left << sGirl::stat_names[i]
+		os << std::setw(14) << std::left << sGirl::stat_names[i]
 		   << ": Min = " << int(g.m_MinStats[i])
-		   << endl
+		   << std::endl
 		;
-		os << setw(14) << ""
+		os << std::setw(14) << ""
 		   << ": Max = " << int(g.m_MaxStats[i])
-		   << endl
+		   << std::endl
 		;
 	}
 /*
@@ -10383,13 +10382,13 @@ ostream& operator<<(ostream &os, sRandomGirl &g)
  */
 	for(unsigned int i = 0; i < sGirl::max_skills; i++)
 	{
-		os << setw(14) << left << sGirl::skill_names[i]
+		os << std::setw(14) << std::left << sGirl::skill_names[i]
 		   << ": Min = " << int(g.m_MinSkills[i])
-		   << endl
+		   << std::endl
 		;
-		os << setw(14) << ""
+		os << std::setw(14) << ""
 		   << ": Max = " << int(g.m_MaxSkills[i])
-		   << endl
+		   << std::endl
 		;
 	}
 /*
@@ -10397,13 +10396,13 @@ ostream& operator<<(ostream &os, sRandomGirl &g)
  */
 	for(int i = 0; i < g.m_NumTraits; i++)
 	{
-		string name = g.m_Traits[i]->m_Name;
+	    std::string name = g.m_Traits[i]->m_Name;
 		int percent = int(g.m_TraitChance[i]);
 		os << "Trait: "
-		   << setw(14) << left << name
+		   << std::setw(14) << std::left << name
 		   << ": " << percent
 		   << "%"
-		   << endl
+		   << std::endl
 		;
 	}
 /*
@@ -10417,35 +10416,35 @@ ostream& operator<<(ostream &os, sRandomGirl &g)
  * another stream operator, this time for sGirl
  */
 
-ostream& operator<<(ostream& os, sGirl &g)
+std::ostream& operator<<(std::ostream& os, sGirl &g)
 {
-	os << g.m_Realname << endl;
-	os << g.m_Desc << endl;
-	os << endl;
+	os << g.m_Realname << std::endl;
+	os << g.m_Desc << std::endl;
+	os << std::endl;
 
 	for(int i = 0; i < NUM_STATS; i++) {
 		os.width(20);
-		os.flags(ios::left);
+		os.flags(std::ios::left);
 		os << g.stat_names[i]
 		   << "\t: "
 		   << int(g.m_Stats[i])
-		   << endl
+		   << std::endl
 		;
 	}
-	os << endl;
+	os << std::endl;
 
 	for(u_int i = 0; i < NUM_SKILLS; i++) {
 		os.width(20);
-		os.flags(ios::left);
+		os.flags(std::ios::left);
 		os << g.skill_names[i]
 		   << "\t: "
 		   << int(g.m_Skills[i])
-		   << endl
+		   << std::endl
 		;
 	}
-	os << endl;
+	os << std::endl;
 
-	os << endl;
+	os << std::endl;
 	return os;
 }
 
@@ -10642,7 +10641,7 @@ bool sGirl::calc_insemination(cPlayer *player, bool good, double factor)
 
 bool cGirls::CalcPregnancy(sGirl* girl, int chance, int type, unsigned char stats[NUM_STATS], unsigned char skills[NUM_SKILLS])
 {
-	string text="she has";
+    std::string text="she has";
 /*
  *	for reasons I do not understand, but nevertheless think
  *	are kind of cool, virgins have a +10 to their pregnancy
@@ -10774,11 +10773,11 @@ int cGirls::calc_abnormal_pc(sGirl *mom, sGirl *sprog, bool is_players)
 	return 5;
 }
 
-bool cGirls::child_is_grown(sGirl* mom, sChild *child, string& summary, bool PlayerControlled)
+bool cGirls::child_is_grown(sGirl* mom, sChild *child, std::string& summary, bool PlayerControlled)
 {
 	cConfig cfg;
 	cTariff tariff;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	bump the age - if it's still not grown, go home
  */
@@ -10913,7 +10912,7 @@ bool cGirls::child_is_grown(sGirl* mom, sChild *child, string& summary, bool Pla
 void cGirls::UncontrolledPregnancies()
 {
 	sGirl* current = m_Parent;
-	string summary;
+    std::string summary;
 	while(current)
 	{
 		HandleChildren(current, summary, false);
@@ -10921,7 +10920,7 @@ void cGirls::UncontrolledPregnancies()
 	}
 }
 
-void cGirls::HandleChildren(sGirl* girl, string& summary, bool PlayerControlled)
+void cGirls::HandleChildren(sGirl* girl, std::string& summary, bool PlayerControlled)
 {
 	sChild* child;
 	girl->m_JustGaveBirth = false;
@@ -10975,11 +10974,11 @@ void cGirls::HandleChildren(sGirl* girl, string& summary, bool PlayerControlled)
 	}
 }
 
-bool cGirls::child_is_due(sGirl* girl, sChild *child, string& summary, bool PlayerControlled)
+bool cGirls::child_is_due(sGirl* girl, sChild *child, std::string& summary, bool PlayerControlled)
 {
 	cConfig cfg;
 	cTariff tariff;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	clock on the count and see if she's due
  *	if not, return false (meaning "do not remove this child yet)
@@ -11189,7 +11188,7 @@ bool cGirls::InheritTrait(sTrait* trait)
 }
 
 #if 0
-void cGirls::HandleChildren(sGirl* girl, string summary)
+void cGirls::HandleChildren(sGirl* girl, std::string summary)
 {
 	cConfig cfg;
 	if(girl->m_PregCooldown > 0)
@@ -11208,7 +11207,7 @@ void cGirls::HandleChildren(sGirl* girl, string summary)
 					girl->m_PregCooldown = cfg.pregnancy.cool_down();
 					if(girl->m_States & (1<<STATUS_INSEMINATED))
 						g_Girls.AddTrait(girl, "MILF");
-					string message = "";
+				    std::string message = "";
 					if(girl->m_States&(1<<STATUS_PREGNANT) || girl->m_States&(1<<STATUS_PREGNANT_BY_PLAYER))
 					{
 						summary += "Gave birth. ";
@@ -11279,9 +11278,9 @@ void cGirls::LoadGirlImages(sGirl* girl)
 	girl->m_GirlImages = g_Girls.GetImgManager()->LoadList(girl->m_Name);
 }
 
-bool cImageList::AddImage(string filename, string path, string file)
+bool cImageList::AddImage(std::string filename, std::string path, std::string file)
 {
-	//ifstream in;
+	//std::ifstream in;
 	//in.open(filename.c_str());
 	//if(!in)
 	//{
@@ -11295,7 +11294,7 @@ bool cImageList::AddImage(string filename, string path, string file)
 
 	if(filename[filename.size()-1] == 'i')
 	{
-		string name = path;
+	    std::string name = path;
 		name += "\\ani\\";
 		name += file;
 		name.erase(name.size()-4, 4);
@@ -11309,7 +11308,7 @@ bool cImageList::AddImage(string filename, string path, string file)
 		newImage->m_Surface->LoadImage(name);
 		newImage->m_AniSurface = new cAnimatedSurface();
 		int numFrames, speed, aniwidth, aniheight;
-		ifstream input;
+		std::ifstream input;
 		input.open(filename.c_str());
 		if(!input)
 		{
@@ -11540,7 +11539,7 @@ int cImageList::DrawImage(int x, int y, int width, int height, bool random, int 
 	return ImageNum;
 }
 
-string cImageList::GetName(int i)
+std::string cImageList::GetName(int i)
 {
 	int count = 0;
 	cImage* current = m_Images;
@@ -11555,10 +11554,10 @@ string cImageList::GetName(int i)
 	if(current)
 		return current->m_Surface->GetFilename();
 
-	return string("");
+	return std::string("");
 }
 
-cAImgList* cImgageListManager::ListExists(string name)
+cAImgList* cImgageListManager::ListExists(std::string name)
 {
 	cAImgList* current = m_First;
 	while(current)
@@ -11570,7 +11569,7 @@ cAImgList* cImgageListManager::ListExists(string name)
 	return current;
 }
 
-cAImgList* cImgageListManager::LoadList(string name)
+cAImgList* cImgageListManager::LoadList(std::string name)
 {
 	cAImgList* current = ListExists(name);
 	if(current)
@@ -11585,8 +11584,8 @@ cAImgList* cImgageListManager::LoadList(string name)
 
 	DirPath imagedir;
 	imagedir<<"Resources"<< "Characters"<<name;
-	string numeric="123456789";
-	string pic_types[]={"Anal*.jp*g","BDSM*.jp*g","Sex*.jp*g","Beast*.jp*g","Group*.jp*g","Les*.jp*g","Preg*.jp*g","Death*.jp*g","Profile*.jp*g","PregAnal*.jp*g","PregBDSM*.jp*g","PregSex*.jp*g","pregbeast*.jp*g","preggroup*.jp*g","pregles*.jp*g"};
+    std::string numeric="123456789";
+    std::string pic_types[]={"Anal*.jp*g","BDSM*.jp*g","Sex*.jp*g","Beast*.jp*g","Group*.jp*g","Les*.jp*g","Preg*.jp*g","Death*.jp*g","Profile*.jp*g","PregAnal*.jp*g","PregBDSM*.jp*g","PregSex*.jp*g","pregbeast*.jp*g","preggroup*.jp*g","pregles*.jp*g"};
 	int i=0;
 
 	do {
@@ -11624,7 +11623,7 @@ cAImgList* cImgageListManager::LoadList(string name)
 	}while(i<15);
 
 	// Yes this is just a hack to load animations (my bad ;) - Necro
-	string pic_types2[]={"Anal*.ani","BDSM*.ani","Sex*.ani","Beast*.ani","Group*.ani","Les*.ani","Preg*.ani","Death*.ani","Profile*.ani","PregAnal*.ani","PregBDSM*.ani","PregSex*.ani","pregbeast*.ani","preggroup*.ani","pregles*.ani"};
+    std::string pic_types2[]={"Anal*.ani","BDSM*.ani","Sex*.ani","Beast*.ani","Group*.ani","Les*.ani","Preg*.ani","Death*.ani","Profile*.ani","PregAnal*.ani","PregBDSM*.ani","PregSex*.ani","pregbeast*.ani","preggroup*.ani","pregles*.ani"};
 	i=0;
 	do {
 		bool to_add=true;
@@ -12131,7 +12130,7 @@ int cGirls::DrawGirl(sGirl* girl, int x, int y, int width, int height, int ImgTy
 	return -1;
 }
 
-void sGirl::OutputGirlRow(string* Data, const vector<string>& columnNames)
+void sGirl::OutputGirlRow(std::string* Data, const std::vector<std::string>& columnNames)
 {
 	for (unsigned int x = 0; x < columnNames.size(); ++x)
 	{
@@ -12140,10 +12139,10 @@ void sGirl::OutputGirlRow(string* Data, const vector<string>& columnNames)
 	}
 }
 
-void sGirl::OutputGirlDetailString(string& Data, const string& detailName)
+void sGirl::OutputGirlDetailString(std::string& Data, const std::string& detailName)
 {
 	//given a statistic name, set a string to a value that represents that statistic
-	static stringstream ss;
+	static std::stringstream ss;
 	ss.str("");
 
 	if (detailName == "Name")
@@ -12261,9 +12260,9 @@ void sGirl::OutputGirlDetailString(string& Data, const string& detailName)
 			ss << g_Brothels.m_JobManager.JobName[m_NightJob];
 		}
 	}
-	else if (detailName.find("STAT_") != string::npos)
+	else if (detailName.find("STAT_") != std::string::npos)
 	{
-		string stat = detailName;
+	    std::string stat = detailName;
 		stat.replace(0, 5, "");
 		int code = sGirl::lookup_stat_code(stat);
 		if (code != -1)
@@ -12275,9 +12274,9 @@ void sGirl::OutputGirlDetailString(string& Data, const string& detailName)
 			ss << "Error";
 		}
 	}
-	else if (detailName.find("SKILL_") != string::npos)
+	else if (detailName.find("SKILL_") != std::string::npos)
 	{
-		string skill = detailName;
+	    std::string skill = detailName;
 		skill.replace(0, 6, "");
 		int code = sGirl::lookup_skill_code(skill);
 		if (code != -1)
@@ -12289,9 +12288,9 @@ void sGirl::OutputGirlDetailString(string& Data, const string& detailName)
 			ss << "Error";
 		}
 	}
-	else if (detailName.find("STATUS_") != string::npos)
+	else if (detailName.find("STATUS_") != std::string::npos)
 	{
-		string status = detailName;
+	    std::string status = detailName;
 		status.replace(0, 7, "");
 		int code = lookup_status_code(status);
 		if (code != -1)

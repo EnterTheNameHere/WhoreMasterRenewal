@@ -20,11 +20,11 @@
 #include "CLog.h"
 #include "XmlUtil.h"
 
-ofstream &cBuilding::save(ofstream &ofs, string name)
+std::ofstream &cBuilding::save(std::ofstream &ofs, std::string name)
 {
 	CLog log;
-	string s;
-	stringstream ss;
+    std::string s;
+	std::stringstream ss;
 /*
  *	we're going to build an XML structure in memory
  *	and then splurt it down the profferred ostream.
@@ -89,7 +89,7 @@ ofstream &cBuilding::save(ofstream &ofs, string name)
 	return ofs;
 }
 
-ifstream &cBuilding::load(ifstream &ifs)
+std::ifstream &cBuilding::load(std::ifstream &ifs)
 {
 	CLog log;
 	TiXmlDocument doc;
@@ -99,7 +99,7 @@ ifstream &cBuilding::load(ifstream &ifs)
  */
 	ifs >> doc;
 	if(doc.Error()) {
-		log.ss() << "error loading building data from XML: " << endl;
+		log.ss() << "error loading building data from XML: " << std::endl;
 		log.ss()<< "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol() << ": " << doc.ErrorDesc();
 		log.ssend();
 		return ifs;

@@ -54,7 +54,7 @@ void cChoiceManager::CreateChoiceBoxResize(int ID, int numChoices)
 {
 	cChoice* newChoice = new cChoice();
 	newChoice->m_NumChoices = numChoices;
-	newChoice->m_Choices = new string[numChoices];
+	newChoice->m_Choices = new std::string[numChoices];
 	newChoice->m_ID = ID;
 
 	if(m_Parent)
@@ -90,7 +90,7 @@ void cChoiceManager::BuildChoiceBox(int ID, int MaxStrLen)
 		}
 		
 		int MaxWidth = 0, MaxHeight = 0;
-		string temp = "";
+	    std::string temp = "";
 		for(int i=0; i<MaxStrLen-1; i+=2)
 			temp += "oW";
 		m_Font->GetSize(temp, MaxWidth, MaxHeight);
@@ -179,7 +179,7 @@ void cChoiceManager::CreateChoiceBox(int x, int y, int width, int height, int ID
 		newChoice->m_YPos = y; 
 		newChoice->m_Width = width; 
 		newChoice->m_Height = height;
-		newChoice->m_Choices = new string[numChoices];
+		newChoice->m_Choices = new std::string[numChoices];
 		newChoice->m_ID = ID;
 
 		newChoice->m_Border = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, 0,0,0,0);
@@ -205,7 +205,7 @@ void cChoiceManager::CreateChoiceBox(int x, int y, int width, int height, int ID
 		newChoice = new cChoice();
 
 		int MaxWidth = 0, MaxHeight = 0;
-		string temp = "W";
+	    std::string temp = "W";
 		for(int i=0; i<MaxStrLen-1; i++)
 			temp += "W";
 		m_Font->GetSize(temp, MaxWidth, MaxHeight);
@@ -230,7 +230,7 @@ void cChoiceManager::CreateChoiceBox(int x, int y, int width, int height, int ID
 		newChoice->m_CurrChoice = -1;
 		newChoice->m_Width = MaxWidth; 
 		newChoice->m_Height = newHeight;
-		newChoice->m_Choices = new string[numChoices];
+		newChoice->m_Choices = new std::string[numChoices];
 		newChoice->m_ID = ID;
 
 		if(newChoice->m_ScrollDisabled)
@@ -279,7 +279,7 @@ void cChoiceManager::CreateChoiceBox(int x, int y, int width, int height, int ID
 	current->m_Next = newChoice;
 }
 
-void cChoiceManager::AddChoice(int ID, string text, int choiceID)
+void cChoiceManager::AddChoice(int ID, std::string text, int choiceID)
 {
 	cChoice* current = m_Parent;
 	while(current)

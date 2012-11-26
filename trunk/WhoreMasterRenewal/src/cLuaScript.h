@@ -34,11 +34,9 @@ extern "C" {
 #include "CLog.h"
 #include "DirPath.h"
 
-using namespace std;
-
 int get_from_table(lua_State *L, int table, const char *key, bool &dest);
 int get_from_table(lua_State *L, int table, const char *key, int &dest);
-bool get_from_table(lua_State *L, int table, const char *key, string &dest);
+bool get_from_table(lua_State *L, int table, const char *key, std::string &dest);
 
 
 class cInterfaceWindowXML;
@@ -73,7 +71,7 @@ struct sGirl;
 
 class cLuaScript {
 	cLuaState	l;
-	string		m_file;
+    std::string 	m_file;
 	bool		running;
 	CLog		log;
 /*
@@ -87,7 +85,7 @@ class cLuaScript {
  */
 	sGirl		*girl;
 
-	string slurp(string path);
+    std::string slurp(std::string path);
 	void get_param_table();
 	bool get_from_space(const char *func);
 public:
@@ -101,12 +99,12 @@ public:
 
 	void set_param(const char *name, void *pointer);
 
-	bool load(string filename, sGirl *girl);
+	bool load(std::string filename, sGirl *girl);
 
 	bool run(const char *func = "script");
 	bool process(cInterfaceWindowXML *window);
 	bool refresh(cInterfaceWindowXML *window);
-	bool call_handler(cInterfaceWindowXML *window, string handler_name);
+	bool call_handler(cInterfaceWindowXML *window, std::string handler_name);
 	int get_ref(const char *name);
 	bool run_by_ref(int ref);
 	void set_wm_girl(sGirl *girl);

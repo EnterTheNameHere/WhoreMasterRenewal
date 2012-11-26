@@ -24,7 +24,7 @@
 extern CLog g_LogFile;
 struct SDL_Color;
 
-Uint8 cColor::convertFromHex(string hex)
+Uint8 cColor::convertFromHex(std::string hex)
 {
 	Uint8 value = 0;
     
@@ -71,7 +71,7 @@ Uint8 cColor::convertFromHex(string hex)
 					break;
                     
 				default:
-					g_LogFile.ss() << "Error, invalid character '" << hex[a] << "' in hex number" << endl;
+					g_LogFile.ss() << "Error, invalid character '" << hex[a] << "' in hex number" << std::endl;
 					g_LogFile.ssend();
 					break;
 			}
@@ -81,7 +81,7 @@ Uint8 cColor::convertFromHex(string hex)
 	return value;
 }
 
-void cColor::HexToSDLColor(string HexColor, SDL_Color* SDLColor)
+void cColor::HexToSDLColor(std::string HexColor, SDL_Color* SDLColor)
 {
 	int offset = (HexColor.substr(0, 1) == "#") ? 1 : 0;
 
@@ -91,14 +91,14 @@ void cColor::HexToSDLColor(string HexColor, SDL_Color* SDLColor)
 		SDLColor->r = 0;
 		SDLColor->g = 0;
 		SDLColor->b = 0;
-		g_LogFile.ss() << "Error, provided string '" << HexColor << "' is not a valid RGB hex value" << endl;
+		g_LogFile.ss() << "Error, provided string '" << HexColor << "' is not a valid RGB hex value" << std::endl;
 		g_LogFile.ssend();
 		return;
 	}
 
-	string redString = HexColor.substr(0+offset, 2);
-	string greenString = HexColor.substr(2+offset, 2);
-	string blueString = HexColor.substr(4+offset, 2);
+    std::string redString = HexColor.substr(0+offset, 2);
+    std::string greenString = HexColor.substr(2+offset, 2);
+    std::string blueString = HexColor.substr(4+offset, 2);
 
 	SDLColor->r = convertFromHex(redString);
 	SDLColor->g = convertFromHex(greenString);

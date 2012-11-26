@@ -58,7 +58,7 @@ private:
 	bool GirlDead(sGirl *dgirl);
 	void RefreshSelectedJobType();
 	void RefreshJobList();
-	void GetSelectedGirls(vector<int> *girl_array);
+	void GetSelectedGirls(std::vector<int> *girl_array);
 	void ViewSelectedGirl();
 public:
 	cScreenGirlManagement()

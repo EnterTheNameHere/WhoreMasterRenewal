@@ -62,7 +62,7 @@ CSurface::CSurface(SDL_Surface* inputsurface)
 }
 
 
-CSurface::CSurface(string filename)
+CSurface::CSurface(std::string filename)
 {
 	m_Temp = 0;
 	m_Surface = 0;
@@ -121,7 +121,7 @@ void CSurface::Register(bool loaded)
 		rmanager.AddResource(this, IMAGE_RESOURCE);
 }
 
-bool CSurface::LoadImage(string filename, bool load)
+bool CSurface::LoadImage(std::string filename, bool load)
 {
 	m_Filename = filename;
 	if(load == false)

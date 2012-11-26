@@ -82,7 +82,7 @@ bool XmlUtil::get_att(
 /*
  *      convert to a string, and then squash that to lower case
  */
-	string s = pt;
+    std::string s = pt;
 	for(u_int i = 0; i < s.length(); i++)
 	{
 		s[i] = tolower(s[i]);
@@ -110,7 +110,7 @@ bool XmlUtil::get_att(
 }
 
 bool XmlUtil::get_att(
-	TiXmlElement *el, const char *name, string &s, bool optional
+	TiXmlElement *el, const char *name, std::string &s, bool optional
 )
 {
 	CLog l;

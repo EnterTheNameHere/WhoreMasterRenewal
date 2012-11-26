@@ -22,7 +22,6 @@
 
 #include <string>
 #include <vector>
-using namespace std;
 
 struct sGirl;
 struct sBrothel;
@@ -35,7 +34,7 @@ struct sFilm
 	//int total_girls;
 	//int total_cost;
 	float quality_multiplyer;
-	vector<int> scene_quality;
+	std::vector<int> scene_quality;
 	char time;
 	int final_quality;
 	bool sex_acts_flags[5];
@@ -44,7 +43,7 @@ struct sFilm
 
 struct sJobs
 {
-	string m_Name;
+    std::string m_Name;
 	bool m_FreeGirlAble;
 	bool m_SlaveAble;
 	short m_MinPositions;
@@ -54,21 +53,21 @@ struct sJobs
 	char m_Upkeep;
 	char m_GirlPay;
 	int m_ActionID;
-	string m_LikeWork;
-	string m_HateWork;
+    std::string m_LikeWork;
+    std::string m_HateWork;
 	//string m_BrothelStatToUpdate;
 	int m_DependantSkill;
 	sJobs(void){}
 	void setup(
-		string name,
+	    std::string name,
 		int min=0, int max=-1,
 		bool slave=true,
 		bool free=true,
 		char girlpay=0,
 		char up=0,
 		int id=0,
-		string like="",
-		string hate="",
+	    std::string like="",
+	    std::string hate="",
 		//string brothel_stat="",
 		int skill=0
 	)
@@ -91,37 +90,37 @@ struct sJobs
 //mainly a list of functions
 class cJobManager
 {
-	vector<sFilm *> film_list;
+	std::vector<sFilm *> film_list;
 public:
-	static vector<sJobs> job_list;
+	static std::vector<sJobs> job_list;
 	void setup_job_list();
-	bool generic_job(sGirl * girl,int job_num,sBrothel *,string &,int);
+	bool generic_job(sGirl * girl,int job_num,sBrothel *,std::string &,int);
 	void WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight);
-	void WorkTraining(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkHall(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkShow(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkCleaning(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkMatron(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkSecurity(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkAdvertising(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkTorturer(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
+	void WorkTraining(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
+	bool WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
+	bool WorkHall(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
+	bool WorkShow(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
+	bool WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
+	bool WorkCleaning(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
+	bool WorkMatron(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
+	bool WorkSecurity(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
+	bool WorkAdvertising(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
+	bool WorkTorturer(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary);
 	void customer_rape(sGirl*);
 	bool gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_night);
 	bool girl_fights_rape(sGirl*, int);
-	int guard_coverage(vector<sGang*> *v=0);
+	int guard_coverage(std::vector<sGang*> *v=0);
 	bool work_related_violence(sGirl*, int, bool);
 	bool explore_catacombs(sGirl *);
-	bool beast_capture(sGirl * girl,sBrothel * brothel,string& summary,int);
-	bool work_show(sGirl * girl,sBrothel * brothel,string& summary,char job_id,int DayNight);
+	bool beast_capture(sGirl * girl,sBrothel * brothel,std::string& summary,int);
+	bool work_show(sGirl * girl,sBrothel * brothel,std::string& summary,char job_id,int DayNight);
 	void update_film(sBrothel *);
 	long make_money_films();
 
 	//helpers
-	string get_job_name(int id){return job_list[id].m_Name;}
-	vector<sGirl*> girls_on_job(sBrothel *brothel, u_int job_wanted, int day_or_night);
-	sGirl **get_training_set(vector<sGirl*> &v);
+    std::string get_job_name(int id){return job_list[id].m_Name;}
+	std::vector<sGirl*> girls_on_job(sBrothel *brothel, u_int job_wanted, int day_or_night);
+	sGirl **get_training_set(std::vector<sGirl*> &v);
 	void do_training(sBrothel* brothel, int DayNight);
 	void do_training_set(sGirl **girls, int day_night);
 	void do_solo_training(sGirl *girl, int day_night);

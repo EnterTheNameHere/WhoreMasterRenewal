@@ -22,8 +22,6 @@
 
 #include <string>
 
-using namespace std;
-
 extern bool g_EnterKey;
 
 typedef void (*Funker)();
@@ -31,15 +29,15 @@ typedef void (*Funker)();
 class cGetStringTransport_Base
 {
 public:
-	virtual	void	assign(string s) =0;
+	virtual	void	assign(std::string s) =0;
 };
 
 class cGetStringTransport : public cGetStringTransport_Base
 {
-	string&	m_dest;
+	std::string&	m_dest;
 public:
-	cGetStringTransport(string &dest) : m_dest(dest) { }
-	void	assign(string s)  {
+	cGetStringTransport(std::string &dest) : m_dest(dest) { }
+	void	assign(std::string s)  {
 		m_dest = s;
 	}
 	cGetStringTransport& operator=(const cGetStringTransport& other)
@@ -57,7 +55,7 @@ class cGetStringTransport_Func : public cGetStringTransport_Base
 	Funker funky;
 public:
 	cGetStringTransport_Func(Funker munky) : funky(munky) { }
-virtual	void	assign(string s)  {
+virtual	void	assign(std::string s)  {
 		funky();
 	}
 };
@@ -73,7 +71,7 @@ public:
 	}
 	void process();
 	void submit();
-	void set_dest(string& dest) {
+	void set_dest(std::string& dest) {
 		trans = new cGetStringTransport(dest);
 	}
 	void set_handler(Funker funk) {
@@ -101,7 +99,7 @@ public:
 	void process() {
 		instance->process();
 	}
-	void set_dest(string& dest) {
+	void set_dest(std::string& dest) {
 		instance->set_dest(dest);
 	}
 	void set_handler(Funker funk) {

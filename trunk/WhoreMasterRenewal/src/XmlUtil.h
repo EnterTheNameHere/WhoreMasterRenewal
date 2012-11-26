@@ -22,26 +22,24 @@
 
 #include <string>
 
-using namespace std;
-
 class TiXmlElement;
 
 typedef unsigned int u_int;
 
 class XmlUtil {
-	string m_context;
+    std::string m_context;
 public:
-	XmlUtil(string context) {
+	XmlUtil(std::string context) {
 		m_context = context;
 	}
 
-	string&	context()		{ return m_context; }
-	void	context(string s)	{ m_context = s; }
+	std::string&	context()		{ return m_context; }
+	void	context(std::string s)	{ m_context = s; }
 
 	bool get_att(
 		TiXmlElement *el,
 		const char *name,
-		string &s,
+	    std::string &s,
 		bool optional=false
 	);
 	bool get_att(

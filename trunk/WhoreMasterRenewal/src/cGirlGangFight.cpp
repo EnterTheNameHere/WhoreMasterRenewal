@@ -32,7 +32,7 @@ cGirlGangFight::cGirlGangFight(sGirl *girl)
  *	ok, she fights. Find all the gangs on guard duty
  */
 	m_girl_wins = false;
-	vector<sGang*> v = g_Gangs.gangs_on_mission(MISS_GUARDING);
+	std::vector<sGang*> v = g_Gangs.gangs_on_mission(MISS_GUARDING);
 /*
  *	no gang, so girl wins. PC combat is outside this class ATM
  */

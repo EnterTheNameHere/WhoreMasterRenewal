@@ -285,7 +285,7 @@ void cBrothelManager::check_raid()
 /*
  *	OK, the raid is on. Start formatting a message
  */
-	stringstream ss;
+	std::stringstream ss;
 	ss << "The local authorities perform a bust on your operations: ";
 /*
  *	if we make our influence check, the guard captain will be under
@@ -444,7 +444,7 @@ bool cBrothelManager::CheckScripts()
 			if(!girl->m_Triggers.GetNextQueItem()) {
 				continue;
 			}
-			string fileloc = base.c_str();
+		    std::string fileloc = base.c_str();
 			fileloc += girl->m_Name;
 			girl->m_Triggers.ProcessNextQueItem(fileloc);
 			return true;
@@ -576,11 +576,11 @@ void cBrothelManager::RemoveGirl(int brothelID, sGirl* girl, bool deleteGirl)
 }
 
 // ----- Load save create destroy
-void cBrothelManager::LoadDataLegacy(ifstream& ifs)
+void cBrothelManager::LoadDataLegacy(std::ifstream& ifs)
 {
 	Free();
 	int temp;
-	string message = "";
+    std::string message = "";
 
 	// load the player
 	//         ...................................................
@@ -818,7 +818,7 @@ bool cBrothelManager::LoadDataXML(TiXmlHandle hBrothelManager)
 		return false;
 	}
 
-	string message = "";
+    std::string message = "";
 
 	// load the player
 	//         ...................................................
@@ -1060,7 +1060,7 @@ TiXmlElement* cBrothelManager::SaveDataXML(TiXmlElement* pRoot)
 {
 	TiXmlElement* pBrothelManager = new TiXmlElement("Brothel_Manager");
 	pRoot->LinkEndChild(pBrothelManager);
-	string message;
+    std::string message;
 
 	// save the Player
 	//         ...................................................
@@ -1136,7 +1136,7 @@ TiXmlElement* cBrothelManager::SaveDataXML(TiXmlElement* pRoot)
 	pBrothelManager->SetAttribute("KeepPotionsStocked", m_KeepPotionsStocked);
 
 	// save alcohol restock
-//	ofs<<m_KeepAlcStocked<<endl;
+//	ofs<<m_KeepAlcStocked<<std::endl;
 
 	// save brothels
 	TiXmlElement* pBrothels = new TiXmlElement("Brothels");
@@ -1322,9 +1322,9 @@ void cBrothelManager::check_rivals()
 	g_MessageQue.AddToQue(new_rival_text(), 2);
 }
 
-string cBrothelManager::new_rival_text()
+std::string cBrothelManager::new_rival_text()
 {
-	stringstream ss;
+	std::stringstream ss;
 
 	enum {
 		Slaver		= 0,
@@ -1345,8 +1345,8 @@ string cBrothelManager::new_rival_text()
  *	let's put the gender specific terms in
  *	variables. Might make the code cleaner
  */
-	string man, boy, He, he, him, his, sorcerer, gladiator;
-	string fellow, patriarch;
+    std::string man, boy, He, he, him, his, sorcerer, gladiator;
+    std::string fellow, patriarch;
 	if(male) {
 		He  = "He";
 		he  = "he";
@@ -1634,7 +1634,7 @@ void cBrothelManager::peace_breaks_out()
 /*
  *	let's have a bit of chat to mark the event
  */
-	string s = ""
+    std::string s = ""
 		"The last of your father's killers has been "
 		"brought before you for judgement. None "
 		"remain who would dare to oppose you. For all intents "
@@ -1662,7 +1662,7 @@ void cBrothelManager::peace_breaks_out()
 void cBrothelManager::UpdateBrothels()
 {
 	cTariff tariff;
-	stringstream ss;
+	std::stringstream ss;
 	sBrothel* current = m_Parent;
 
 	m_TortureDoneFlag = false;							//WD: Reset flag each day is set in WorkTorture()
@@ -1730,7 +1730,7 @@ void cBrothelManager::UpdateBrothels()
 		// get the misc customers
 		current->m_TotalCustomers += current->m_MiscCustomers;
 
-		string data = "";
+	    std::string data = "";
 		data += toString( (current->m_TotalCustomers+current->m_MiscCustomers) );
 		data += " customers visited the building.";
 
@@ -1750,7 +1750,7 @@ void cBrothelManager::UpdateBrothels()
 		// advertising costs are set independently for each brothel
 		current->m_Finance.advertising_costs(tariff.advertising_costs(current->m_AdvertisingBudget));
 
-		string data2 = "";
+	    std::string data2 = "";
 		data2 += "Your advertising budget for this brothel is ";
 		data2 += toString(current->m_AdvertisingBudget);
 		data2 += " gold.";
@@ -1854,7 +1854,7 @@ void cBrothelManager::UpdateBrothels()
 		int num = g_Dice%15;
 		if(num == 1)
 			gold -= INCOME_BUSINESS;
-		string message = "You gain ";
+	    std::string message = "You gain ";
 		message += toString(gold);
 		message += " gold from the ";
 		message += toString(g_Gangs.GetNumBusinessExtorted());
@@ -1882,7 +1882,7 @@ void cBrothelManager::UpdateBrothels()
 	}
 	else
 	{
-		stringstream ss;
+		std::stringstream ss;
 
 		ss << "you made a overall profit of "
 		   << totalProfit
@@ -1926,7 +1926,7 @@ void cBrothelManager::UpdateBrothels()
 void cBrothelManager::UpdateGirls(sBrothel* brothel, int DayNight)
 {
 	sGirl* current = brothel->m_Girls;
-	string summary, msg, girlName, MatronMsg, MatronWarningMsg;
+    std::string summary, msg, girlName, MatronMsg, MatronWarningMsg;
 	int totalGold;
 	bool refused;
 	sGirl* DeadGirl = 0;
@@ -2879,7 +2879,7 @@ void cBrothelManager::UsePlayersItems(sGirl* cur)
 
 }
 
-bool cBrothelManager::AutomaticItemUse(sGirl * girl, int InvNum, string message)
+bool cBrothelManager::AutomaticItemUse(sGirl * girl, int InvNum, std::string message)
 {
 	int EquipSlot = -1;
 
@@ -2904,7 +2904,7 @@ bool cBrothelManager::AutomaticItemUse(sGirl * girl, int InvNum, string message)
 		return false;
 }
 
-bool cBrothelManager::AutomaticSlotlessItemUse(sGirl * girl, int InvNum, string message)
+bool cBrothelManager::AutomaticSlotlessItemUse(sGirl * girl, int InvNum, std::string message)
 {
 	// Slotless items include manuals, stripper poles, free weights, etc...
 	int EquipSlot = -1;
@@ -2921,7 +2921,7 @@ bool cBrothelManager::AutomaticSlotlessItemUse(sGirl * girl, int InvNum, string 
 		return false;
 }
 
-bool cBrothelManager::AutomaticFoodItemUse(sGirl * girl, int InvNum, string message)
+bool cBrothelManager::AutomaticFoodItemUse(sGirl * girl, int InvNum, std::string message)
 {
 	int EquipSlot = -1;
 
@@ -3018,7 +3018,7 @@ void cBrothelManager::do_tax()
 		return;
 	}
 	g_Gold.tax(tax);
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	Let's report the laundering, at least.
  *	Otherwise, it just makes the tax rate wobble a bit
@@ -3124,7 +3124,7 @@ void cBrothelManager::SortInventory()
 //	qu_sort(0,299,m_Inventory);
 }
 
-int cBrothelManager::HasItem(string name, int countFrom)
+int cBrothelManager::HasItem(std::string name, int countFrom)
 {
 	// We look for an item in the range of countFrom to MAXNUM_INVENTORY.
 	// Either the index of the item or -1 is returned.
@@ -3353,7 +3353,7 @@ void cBrothelManager::CalculatePay(sBrothel* brothel, sGirl* girl, u_int Job)
 /*
  *	OK: she got caught. Tell the player
  */
-	string gmess = "Your Goons spotted ";
+    std::string gmess = "Your Goons spotted ";
 	gmess += girl->m_Realname;
 	gmess += " taking more gold then she reported.";
 	gang->m_Events.AddMessage(gmess, IMGTYPE_PROFILE,  EVENT_GANG);
@@ -3418,7 +3418,7 @@ void cBrothelManager::CreateNewObjective()
 	m_Objective = new sObjective();
 	if(m_Objective)
 	{
-		string message = "You have a new objective, you must ";
+	    std::string message = "You have a new objective, you must ";
 		bool done = false;
 		m_Objective->m_Difficulty = g_Year-1209;
 		m_Objective->m_SoFar = 0;
@@ -3634,7 +3634,7 @@ void cBrothelManager::PassObjective()
 {
 	if(m_Objective)
 	{
-		string message = "You have completed your objective and you get ";
+	    std::string message = "You have completed your objective and you get ";
 		switch(m_Objective->m_Reward)
 		{
 		case REWARD_GOLD:
@@ -3786,7 +3786,7 @@ void cBrothelManager::AddCustomObjective(int limit, int diff, int objective, int
 // ----- Stats
 
 //mod, damn it, I am trying to do python code in c++
-int &cBrothelManager::stat_lookup(string stat_name,int brothel_id)
+int &cBrothelManager::stat_lookup(std::string stat_name,int brothel_id)
 {
 	if(stat_name=="filth")
 		return this->GetBrothel(brothel_id)->m_Filthiness;
@@ -3842,8 +3842,8 @@ void cBrothelManager::updateGirlTurnBrothelStats(sGirl* girl)
 //#define WDTEST // debuging
 #undef WDTEST
 
-	string msg;
-	string girlName	= girl->m_Realname;
+    std::string msg;
+    std::string girlName	= girl->m_Realname;
 	int statHouse	= girl->house();
 	int bonus		= (60 - statHouse) / 30;
 
@@ -3856,7 +3856,7 @@ void cBrothelManager::updateGirlTurnBrothelStats(sGirl* girl)
 
 #ifdef WDTEST // debuging
 
-	string sum = "Start\n";
+    std::string sum = "Start\n";
 	sum	+= "   h=";
 	sum	+= toString(girl->happiness());
 	sum	+= "   o=";
@@ -4013,7 +4013,7 @@ int cBrothelManager::GetGirlPos(int brothelID, sGirl* girl)
 	return -1;
 }
 
-sGirl* cBrothelManager::GetGirlByName(int brothelID, string name)
+sGirl* cBrothelManager::GetGirlByName(int brothelID, std::string name)
 {
 	// Get the proper brothel
 	sBrothel* current = m_Parent;
@@ -4058,7 +4058,7 @@ int cBrothelManager::GetGirlsCurrentBrothel(sGirl* girl)
 	return -1;
 }
 
-vector<sGirl*> cBrothelManager::GirlsOnJob(int BrothelID, int JobID, bool day)
+std::vector<sGirl*> cBrothelManager::GirlsOnJob(int BrothelID, int JobID, bool day)
 {
 	// Used by new security code
 	sBrothel* current = m_Parent;
@@ -4069,7 +4069,7 @@ vector<sGirl*> cBrothelManager::GirlsOnJob(int BrothelID, int JobID, bool day)
 		current = current->m_Next;
 	}
 
-	vector<sGirl*> GirlsOnJob;
+	std::vector<sGirl*> GirlsOnJob;
 
 	sGirl* curr = current->m_Girls;
 	while(curr)
@@ -4125,9 +4125,9 @@ int cBrothelManager::GetTotalNumGirls(bool monster)
 	return total;
 }
 
-string cBrothelManager::GetGirlString(int brothelID, int girlNum)
+std::string cBrothelManager::GetGirlString(int brothelID, int girlNum)
 {
-	string data = "";
+    std::string data = "";
 	sBrothel* current = m_Parent;
 
 	while(current)
@@ -4150,7 +4150,7 @@ string cBrothelManager::GetGirlString(int brothelID, int girlNum)
 			currentGirl = currentGirl->m_Next;
 		}
 //need to change into string lookup
-		string dayjob = "Resting";
+	    std::string dayjob = "Resting";
 		switch((int)currentGirl->m_DayJob)
 		{
 		case JOB_WHORESTREETS:
@@ -4170,7 +4170,7 @@ string cBrothelManager::GetGirlString(int brothelID, int girlNum)
 			break;
 		}
 
-		string nightjob = "Resting";
+	    std::string nightjob = "Resting";
 		switch((int)currentGirl->m_NightJob)
 		{
 		case JOB_WHORESTREETS:
@@ -4200,7 +4200,7 @@ string cBrothelManager::GetGirlString(int brothelID, int girlNum)
 	return data;
 }
 
-string cBrothelManager::GetName(int brothelID)
+std::string cBrothelManager::GetName(int brothelID)
 {
 	sBrothel* current = m_Parent;
 	while(current)
@@ -4215,9 +4215,9 @@ string cBrothelManager::GetName(int brothelID)
 	return "cBrothelManager::GetName - Something went wrong";
 }
 
-string cBrothelManager::GetBrothelString(int brothelID)
+std::string cBrothelManager::GetBrothelString(int brothelID)
 {
-	stringstream ss;
+	std::stringstream ss;
 	sBrothel* brothel = GetBrothel(brothelID);
 /*
  *	if we can't find the brothel, go home
@@ -4242,22 +4242,22 @@ string cBrothelManager::GetBrothelString(int brothelID)
 /*
  *	format the summary into one big string, and return it
  */
-	ss << "Customer Happiness: "	<< happiness_text(brothel) << endl;
+	ss << "Customer Happiness: "	<< happiness_text(brothel) << std::endl;
 	ss << "Fame: "			<< fame_text(brothel);
 	ss << "Rooms (available/total): "
 	   << int(brothel->m_NumRooms) - int(brothel->m_NumGirls)
 	   << "/"
 	   << int(brothel->m_NumRooms)
-	   << endl;
-	//ss << "Strip Bar: "		<< has_bar		<< endl;
-	//ss << "Gambling Hall: "	<< has_hall		<< endl;
-	ss << "This brothel's Profit: "	<< profit		<< endl;
-	ss << "Your Gold: "		<< g_Gold.ival()	<< endl;
-	//ss << "Gambling Pool: "		<< m_GamblingHallPool	<< endl;
-	ss << "Disposition: "		<< disposition_text()	<< endl;
-	ss << "Suspicion: "		<< suss_text()		<< endl	;
-	ss << "Filthiness: " <<  brothel->m_Filthiness << endl;
-	ss << "Beasts Owned: " <<  g_Brothels.GetNumBeasts() << endl;
+	   << std::endl;
+	//ss << "Strip Bar: "		<< has_bar		<< std::endl;
+	//ss << "Gambling Hall: "	<< has_hall		<< std::endl;
+	ss << "This brothel's Profit: "	<< profit		<< std::endl;
+	ss << "Your Gold: "		<< g_Gold.ival()	<< std::endl;
+	//ss << "Gambling Pool: "		<< m_GamblingHallPool	<< std::endl;
+	ss << "Disposition: "		<< disposition_text()	<< std::endl;
+	ss << "Suspicion: "		<< suss_text()		<< std::endl	;
+	ss << "Filthiness: " <<  brothel->m_Filthiness << std::endl;
+	ss << "Beasts Owned: " <<  g_Brothels.GetNumBeasts() << std::endl;
 	return ss.str();
 //add cleanliness and check gh and bh
 }
@@ -4274,7 +4274,7 @@ sBrothel* cBrothelManager::GetBrothel(int brothelID)
 /*
  *	brothel not found at least deserves a log message
  */
-	stringstream ss;
+	std::stringstream ss;
 	ss << "Brothel " << brothelID << " not found in list!";
 	g_LogFile.write(ss.str());
 	return 0;
@@ -4351,9 +4351,9 @@ int cBrothelManager::GetNumGirlsOnJob(int brothelID, int jobID, bool day)
 	return count;
 }
 
-void cBrothelManager::SetName(int brothelID, string name)
+void cBrothelManager::SetName(int brothelID, std::string name)
 {
-	string data = "";
+    std::string data = "";
 	sBrothel* current = m_Parent;
 	while(current)
 	{
@@ -4369,7 +4369,7 @@ void cBrothelManager::SetName(int brothelID, string name)
 }
 
 // ----- Status texts
-string cBrothelManager::disposition_text()
+std::string cBrothelManager::disposition_text()
 {
 	if(m_Player.disposition() >= 80)	return "Benevolent";
 	if(m_Player.disposition() >= 50)	return "Nice";
@@ -4380,7 +4380,7 @@ string cBrothelManager::disposition_text()
 						return "Evil";
 }
 
-string cBrothelManager::fame_text(sBrothel* brothel)
+std::string cBrothelManager::fame_text(sBrothel* brothel)
 {
 	if(brothel->m_Fame >= 90)	return	"World Renowned\n";
 	if(brothel->m_Fame >= 80)	return	"Famous\n";
@@ -4391,7 +4391,7 @@ string cBrothelManager::fame_text(sBrothel* brothel)
 					return	"Unknown\n";
 }
 
-string cBrothelManager::suss_text()
+std::string cBrothelManager::suss_text()
 {
 	//WD:	Should be Susipicion not Disposition
 	if(m_Player.suspicion() >= 80)	return "Town Scum";
@@ -4411,7 +4411,7 @@ string cBrothelManager::suss_text()
 	//					return "Town Hero";
 }
 
-string cBrothelManager::happiness_text(sBrothel* brothel)
+std::string cBrothelManager::happiness_text(sBrothel* brothel)
 {
 	if(brothel->m_Happiness >= 80)		return "High";
 	if(brothel->m_Happiness < 40)		return "Low";
@@ -4666,7 +4666,7 @@ void cBrothelManager::sort(sBrothel* brothel)
 	brothel->m_Girls = girl_sort(brothel->m_Girls, &brothel->m_LastGirl);
 }
 
-bool cBrothelManager::NameExists(string name)
+bool cBrothelManager::NameExists(std::string name)
 {
 	sBrothel* current = m_Parent;
 	while(current)
@@ -4764,7 +4764,7 @@ bool cBrothelManager::runaway_check(sBrothel *brothel, sGirl *girl)
 		SetGirlStat(girl, STAT_TIREDNESS, 0);
 		SetGirlStat(girl, STAT_HEALTH, 100);
 		girl->m_RunAway = 6;
-		string smess = "";
+	    std::string smess = "";
 		smess += girl->m_Realname;
 		smess += " has run away,";
 		smess += "  Send your goons after her to attempt recapture.\nShe will escape for good after 6 weeks";
@@ -4814,7 +4814,7 @@ bool cBrothelManager::runaway_check(sBrothel *brothel, sGirl *girl)
 }
 
 // ----- Drugs & addiction
-void cBrothelManager::check_druggy_girl(stringstream& ss)
+void cBrothelManager::check_druggy_girl(std::stringstream& ss)
 {
 	if(g_Dice.percent(90))
 		return;
@@ -5100,7 +5100,7 @@ int cBrothelManager::bar_update(sbrothel* brothel)
 //*
 // *	format the message
 // *
-//	stringstream ss;
+//	std::stringstream ss;
 //	ss << "A brawl breaks out in your bar located at "
 //	   << brothel->m_Name
 //	   << ". It costs you "				  << gold

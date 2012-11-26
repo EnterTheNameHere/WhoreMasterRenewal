@@ -22,7 +22,7 @@
 extern CLog g_LogFile;
 
 
-void cWindowManager::push(string window_name)
+void cWindowManager::push(std::string window_name)
 {
 /*
  *	check the screen exists

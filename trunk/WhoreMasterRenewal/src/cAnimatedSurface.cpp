@@ -124,11 +124,11 @@ bool CAnimatedSprite::Draw(int x, int y, int width, int height, unsigned int cur
 	return m_Animations[m_CurrAnimation].DrawFrame(x,y,width,height,currentTime);
 }
 
-bool CAnimatedSprite::LoadAnimations(string imgFilename, string animationData)
+bool CAnimatedSprite::LoadAnimations(std::string imgFilename, std::string animationData)
 {
 	int NumAnims;
 	int numFrames, speed, xPos, yPos, width, height;
-	ifstream ifile(animationData.c_str());
+	std::ifstream ifile(animationData.c_str());
 
 	if(ifile == 0)
 		return false;

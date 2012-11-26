@@ -40,9 +40,9 @@ extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGold g_Gold;
 
-bool cJobManager::WorkSecurity(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkSecurity(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
-	string message = "";
+    std::string message = "";
 	if(Preprocessing(ACTION_WORKSECURITY, girl, brothel, DayNight, summary, message))
 		return true;
 
@@ -168,7 +168,7 @@ bool cJobManager::WorkSecurity(sGirl* girl, sBrothel* brothel, int DayNight, str
 
 	brothel->m_SecurityLevel += SecLev;
 
-	stringstream sstemp;
+	std::stringstream sstemp;
     sstemp << "Patrolling the building. Security level up by " << SecLev << ".";
 	girl->m_Events.AddMessage(sstemp.str(), IMGTYPE_PROFILE, DayNight);
 

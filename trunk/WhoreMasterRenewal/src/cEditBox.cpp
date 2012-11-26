@@ -134,7 +134,7 @@ void cEditBox::ClearText()
 
 void cEditBox::UpdateText(char key, bool upper)
 {
-	string text = m_Text->GetText();
+    std::string text = m_Text->GetText();
 	if(key == '-')
 	{
 		if(text.length() > 0)

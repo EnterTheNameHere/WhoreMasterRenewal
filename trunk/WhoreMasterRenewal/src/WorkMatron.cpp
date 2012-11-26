@@ -40,13 +40,13 @@ extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGold g_Gold;
 
-bool cJobManager::WorkMatron(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkMatron(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	cTariff tariff;
 	if(DayNight == 1)
 		return false;
 
-	string message = "";
+    std::string message = "";
 	if(Preprocessing(ACTION_WORKMATRON, girl, brothel, DayNight, summary, message))
 		return true;
 

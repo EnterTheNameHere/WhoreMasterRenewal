@@ -21,7 +21,6 @@
 #pragma once
 
 #include <string>
-using namespace std;
 #include "CSurface.h"
 #include "cInterfaceObject.h"
 #include "cInterfaceEvent.h"
@@ -40,7 +39,7 @@ public:
 	}
 	~cButton();
 
-	bool CreateButton(string OffImage, string DisabledImage, string OnImage, int ID, int x, int y, int width, int height, bool transparency = false,bool cached=false);
+	bool CreateButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int ID, int x, int y, int width, int height, bool transparency = false,bool cached=false);
 	bool IsOver(int x, int y);
 	bool ButtonClicked(int x, int y);
 	void SetDisabled(bool disable)

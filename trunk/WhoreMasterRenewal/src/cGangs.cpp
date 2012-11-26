@@ -59,7 +59,7 @@ static cDungeon* m_Dungeon = g_Brothels.GetDungeon();
 cGangManager::cGangManager()
 {
 	m_NumGangNames = 0;
-	ifstream in;
+	std::ifstream in;
 	// WD: Typecast to resolve ambiguous call in VS 2010
 	DirPath dp = DirPath() <<	"Resources" << "Data" << "HiredGangNames.txt";
 	in.open(dp.c_str());
@@ -103,11 +103,11 @@ void cGangManager::Free()
 	m_KeepHealStocked = m_KeepNetsStocked = false;
 }
 
-void cGangManager::LoadGangsLegacy(ifstream& ifs)
+void cGangManager::LoadGangsLegacy(std::ifstream& ifs)
 {
 	Free();
 	int temp;
-	string message = "";
+    std::string message = "";
 
 	// load goons and goon missions
 	if (ifs.peek()=='\n') ifs.ignore(1,'\n');
@@ -485,7 +485,7 @@ void cGangManager::AddNewGang(bool boosted)
 
 	char buffer[256];
 	bool done = false;
-	ifstream in;
+	std::ifstream in;
 	// WD: Typecast to resolve ambiguous call in VS 2010
 	DirPath dp = DirPath() <<	"Resources" << "Data" << "HiredGangNames.txt";
 	in.open(dp.c_str());
@@ -752,9 +752,9 @@ sGang* cGangManager::GetTempWeakGang()
 	return newGang;
 }
 
-sGang *cGangManager::random_gang(vector<sGang*>& v)
+sGang *cGangManager::random_gang(std::vector<sGang*>& v)
 {
-	vector<sGang*> list;
+	std::vector<sGang*> list;
 /*
  *	we're going to make a table that has one
  *	row for each gang member, and each row will
@@ -785,7 +785,7 @@ sGang *cGangManager::random_gang(vector<sGang*>& v)
 
 void cGangManager::BoostGangCombatSkills(sGang* gang, int count)
 {  // simple function to increase a gang's combat skills a bit
-	vector<unsigned char*> possible_skills;
+	std::vector<unsigned char*> possible_skills;
 	possible_skills.push_back(&gang->m_Skills[SKILL_COMBAT]);
 	possible_skills.push_back(&gang->m_Skills[SKILL_MAGIC]);
 	possible_skills.push_back(&gang->m_Stats[STAT_AGILITY]);
@@ -794,7 +794,7 @@ void cGangManager::BoostGangCombatSkills(sGang* gang, int count)
 	possible_skills.clear();
 }
 
-void cGangManager::BoostGangRandomSkill(vector<unsigned char*>* possible_skills, int count, int boost_count)
+void cGangManager::BoostGangRandomSkill(std::vector<unsigned char*>* possible_skills, int count, int boost_count)
 {
 /*
  *	Which of the passed skills/stats will be raised this time?
@@ -808,7 +808,7 @@ void cGangManager::BoostGangRandomSkill(vector<unsigned char*>* possible_skills,
 	{
 		unsigned char *affect_skill = 0;
 		int total_chance = 0;
-		vector<int> chance;
+		std::vector<int> chance;
 
 		for(int i = 0; i < (int)possible_skills->size(); i++)
 		{  // figure chances for each skill/stat; more likely to choose those they're better at
@@ -1646,7 +1646,7 @@ void cGangManager::UpdateGangs()
 	cConfig cfg;
 	sGang* gang;
 	cTariff tariff;
-	stringstream ss;
+	std::stringstream ss;
 
 	// update goons combat status
 	int cost = 0;
@@ -1667,7 +1667,7 @@ void cGangManager::UpdateGangs()
 	{
 		if(1+g_Dice%100 <= remove_chance)
 		{
-			cout << "Culling recruitable gang: " << currentGang->m_Name << endl;
+			std::cout << "Culling recruitable gang: " << currentGang->m_Name << std::endl;
 			sGang* temp = currentGang->m_Next;
 			RemoveHireableGang(currentGang);
 			currentGang = temp;
@@ -1683,7 +1683,7 @@ void cGangManager::UpdateGangs()
 	{
 		if(m_NumHireableGangs >= cfg.gangs.max_recruit_list())
 			break;
-		cout << "Adding new recruitable gang." << endl;
+		std::cout << "Adding new recruitable gang." << std::endl;
 		AddNewGang(false);
 	}
 
@@ -1693,7 +1693,7 @@ void cGangManager::UpdateGangs()
 	{
 		if(currentGang->m_Num <= 0)
 		{
-			string message = "All of the men in gang ";
+		    std::string message = "All of the men in gang ";
 			message += currentGang->m_Name;
 			message += " have died.";
 			g_MessageQue.AddToQue(message, 1);
@@ -1739,7 +1739,7 @@ void cGangManager::UpdateGangs()
 
 		case MISS_EXTORTION:
 			{
-				string message = "This gang is capturing territory.";
+			    std::string message = "This gang is capturing territory.";
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 
 				message = "Gang: ";
@@ -1848,7 +1848,7 @@ void cGangManager::UpdateGangs()
 
 		case MISS_PETYTHEFT:
 			{
-				string message = "This gang is performing petty theft.";
+			    std::string message = "This gang is performing petty theft.";
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 
 				message = "Gang: ";
@@ -1978,7 +1978,7 @@ void cGangManager::UpdateGangs()
 
 		case MISS_GRANDTHEFT:
 			{
-				string message = "This gang is performing a grand theft.";
+			    std::string message = "This gang is performing a grand theft.";
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 
 				message = "Gang: ";
@@ -2104,7 +2104,7 @@ void cGangManager::UpdateGangs()
 
 		case MISS_KIDNAPP:
 			{
-				string message = "This gang is kidnapping girls.";
+			    std::string message = "This gang is kidnapping girls.";
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 
 				message = "Gang: ";
@@ -2193,7 +2193,7 @@ void cGangManager::UpdateGangs()
 
 		case MISS_TRAINING:
 			{
-				string message = "This gang is training.";
+			    std::string message = "This gang is training.";
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 
 				message = "Gang: ";
@@ -2209,7 +2209,7 @@ void cGangManager::UpdateGangs()
 				char old_const = currentGang->m_Stats[STAT_CONSTITUTION];
 				char old_char = currentGang->m_Stats[STAT_CHARISMA];
 
-				vector<unsigned char*> possible_skills;
+				std::vector<unsigned char*> possible_skills;
 				possible_skills.push_back(&currentGang->m_Skills[SKILL_COMBAT]);
 				possible_skills.push_back(&currentGang->m_Skills[SKILL_MAGIC]);
 				possible_skills.push_back(&currentGang->m_Stats[STAT_INTELLIGENCE]);
@@ -2225,7 +2225,7 @@ void cGangManager::UpdateGangs()
 				}
 				possible_skills.clear();
 
-				stringstream ss;
+				std::stringstream ss;
 				ss.str("");
 				if(currentGang->m_Skills[SKILL_COMBAT] > old_combat)
 					ss << "\n+" << (currentGang->m_Skills[SKILL_COMBAT] - old_combat) << " Combat";
@@ -2264,7 +2264,7 @@ void cGangManager::UpdateGangs()
 
 		case MISS_RECRUIT:
 			{
-				string message = "This gang is recruiting.";
+			    std::string message = "This gang is recruiting.";
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 
 				if(currentGang->m_Num<15)
@@ -2278,7 +2278,7 @@ void cGangManager::UpdateGangs()
 
 		case MISS_CATACOMBS:
 			{
-				string message = "This gang is exploring the catacombs.";
+			    std::string message = "This gang is exploring the catacombs.";
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 
 				message = "Gang: ";
@@ -2499,7 +2499,7 @@ void cGangManager::UpdateGangs()
 
 		if(currentGang->m_Num <= 5 && currentGang->m_MissionID != MISS_RECRUIT)
 		{
-			string message = "Gang: ";
+		    std::string message = "Gang: ";
 			message += currentGang->m_Name;
 			message += ", were also put on recruit mission due to low numbers";
 			currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_WARNING);
@@ -2511,7 +2511,7 @@ void cGangManager::UpdateGangs()
 		{
 			if(currentGang->m_AutoRecruit)
 			{
-				string message = "Gang: ";
+			    std::string message = "Gang: ";
 				message += currentGang->m_Name;
 				message += ", were placed back on their previous mission now that their numbers are back to normal.";
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_WARNING);
@@ -2520,7 +2520,7 @@ void cGangManager::UpdateGangs()
 			}
 			else
 			{
-				string message = "Gang: ";
+			    std::string message = "Gang: ";
 				message += currentGang->m_Name;
 				message += ", were placed on guard duty from recruitment as their numbers are full.";
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_WARNING);
@@ -2589,9 +2589,9 @@ sGang* cGangManager::GetGangOnMission(u_int missID)
 /*
  * Get a vector with all the gangs doing MISS_FOO
  */
-vector<sGang*> cGangManager::gangs_on_mission(u_int mission_id)
+std::vector<sGang*> cGangManager::gangs_on_mission(u_int mission_id)
 {
-	vector<sGang*> v;
+	std::vector<sGang*> v;
 /*
  *	loop through the gangs
  */
@@ -2622,7 +2622,7 @@ int cGangManager::chance_to_catch(sGirl* girl)
 /*
  *	get a vector containing all the spying gangs
  */
-	vector<sGang*> gvec = gangs_on_mission(MISS_SPYGIRLS);
+	std::vector<sGang*> gvec = gangs_on_mission(MISS_SPYGIRLS);
 /*
  *	bit of debug chatter
  */
@@ -2659,7 +2659,7 @@ int cGangManager::chance_to_catch(sGirl* girl)
 
 void cGangManager::sabotage_mission(sGang* gang)
 {
-	stringstream ss;
+	std::stringstream ss;
 	sGang* rival_gang = 0;
 	gang->m_Events.AddMessage("This gang is attacking rivals.", IMGTYPE_PROFILE, EVENT_GANG);
 
@@ -2721,7 +2721,7 @@ void cGangManager::sabotage_mission(sGang* gang)
 			return;
 		} // if GangBrawl = false
 		else // GangBrawl = true
-		ss << "Your men win." << endl;
+		ss << "Your men win." << std::endl;
 /*
  *	clean up the rival gang
  */
@@ -2834,7 +2834,7 @@ void cGangManager::sabotage_mission(sGang* gang)
 
 	if (VictoryPoints >= 2)
 	{
-	    stringstream ssVic;
+	    std::stringstream ssVic;
 		ssVic << "You have dealt " << rival->m_Name << " a fatal blow.  Their criminal organization crumbles to nothing before you.";
 		m_Rivals->RemoveRival(rival);
 		gang->m_Events.AddMessage(ssVic.str(), IMGTYPE_PROFILE, EVENT_WARNING);
@@ -2845,7 +2845,7 @@ void cGangManager::sabotage_mission(sGang* gang)
 bool cGangManager::recapture_mission(sGang* gang)
 {
 	// check if any girls are run away
-	stringstream ss;
+	std::stringstream ss;
 
 	gang->m_Events.AddMessage("This gang is looking for escaped girls.", IMGTYPE_PROFILE, EVENT_GANG);
 

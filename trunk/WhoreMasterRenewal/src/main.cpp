@@ -494,7 +494,7 @@ bool Init()
 /*
  *	build the caption string
  */
-	stringstream ss;
+	std::stringstream ss;
 	ss << "Whore Master v"
 	   << g_MajorVersion
 	   << "."
@@ -686,11 +686,11 @@ public:
 
 }
 
-using namespace WhoreMasterRenewal;
+namespace wmr = WhoreMasterRenewal;
 
 static int average( lua_State* L )
 {
-    luaD_DumpStack( L );
+    wmr::luaD_DumpStack( L );
     
     int n = lua_gettop( L );
     double sum = 0;
@@ -709,7 +709,7 @@ static int average( lua_State* L )
     lua_pushnumber( L, sum / n );
     lua_pushnumber( L, sum );
     
-    luaD_DumpStack( L );
+    wmr::luaD_DumpStack( L );
     
     return 2;
 }
@@ -722,7 +722,7 @@ int main( int argc, char* argv[] )
     {
         
     }
-    catch( exception& ex )
+    catch( std::exception& ex )
     {
         std::clog << "Exception caught:\nException type: \"" << typeid(ex).name() << "\"\n" << ex.what();
     }

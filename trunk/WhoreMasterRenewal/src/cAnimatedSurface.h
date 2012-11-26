@@ -24,7 +24,6 @@
 #include <string>
 #include <iostream>
 #include <fstream>
-using namespace std;
 
 class CSurface;
 
@@ -70,7 +69,7 @@ public:
 
 	void Free();
 
-	bool LoadAnimations(string imgFilename, string animationData);
+	bool LoadAnimations(std::string imgFilename, std::string animationData);
 	bool Draw(int x, int y, int width, int height, unsigned int currentTime);
 	void SetAnimation(int animation) {m_CurrAnimation = animation;}
 

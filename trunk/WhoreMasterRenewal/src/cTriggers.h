@@ -28,7 +28,6 @@
 #include "tinyxml.h"
 
 struct sGirl;
-using namespace std;
 
 // girl specific triggers
 const int TRIGGER_RANDOM = 0;	// May trigger each week
@@ -48,7 +47,7 @@ const int TRIGGER_PLAYERMONEY = 12;	// triggers when players money hits a value
 class cTrigger
 {
 public:
-	string m_Script;			// the scripts filename
+	std::string m_Script;			// the scripts filename
 	unsigned char m_Type;		// the type of trigger
 	unsigned char m_Triggered;	// 1 means this trigger has triggered already
 	unsigned char m_Chance;		// Percent chance of occuring
@@ -82,7 +81,7 @@ public:
  */
 	int global_flag()	{ return m_Values[0]; }
 	int global_flag(int n)	{ return m_Values[0] = n; }
-	int global_flag(string s) {
+	int global_flag(std::string s) {
 		if(s == "NoPay") {
 			return m_Values[0] = FLAG_CUSTNOPAY;
 		}
@@ -104,7 +103,7 @@ public:
 	int where(int n)	{
 		return m_Values[0] = n;
 	}
-	int where(string s) {
+	int where(std::string s) {
 		if(s == "Town" || s == "Dungeon") {
 			return where(0);
 		}
@@ -156,10 +155,10 @@ public:
 	~cTriggerList() {Free();}
 
 	void Free();
-	void LoadList(string filename);
+	void LoadList(std::string filename);
 	TiXmlElement* SaveTriggersXML(TiXmlElement* pRoot);
 	bool LoadTriggersXML(TiXmlHandle hTriggers);
-	void LoadTriggersLegacy(ifstream& ifs);
+	void LoadTriggersLegacy(std::ifstream& ifs);
 
 	void AddTrigger(cTrigger* trigger);
 
@@ -170,7 +169,7 @@ public:
 	cTrigger* CheckForScript(int Type, bool trigger, int values[2]);
 
 	void ProcessTriggers();	// function that process the triggers in the list and adds them to the que if the conditions are met
-	void ProcessNextQueItem(string fileloc);
+	void ProcessNextQueItem(std::string fileloc);
 
 	// set script targets
 	void SetGirlTarget(sGirl* girl){m_GirlTarget = girl;}
@@ -186,7 +185,7 @@ private:
 	//int m_NumQued;
 	//cTriggerQue* m_StartQue;
 	//cTriggerQue* m_EndQue;
-	queue<cTriggerQue *> m_TriggerQueue;//mod
+	std::queue<cTriggerQue *> m_TriggerQueue;//mod
 
 
 	// script targets (things that the script will affect with certain commands)

@@ -39,7 +39,7 @@ extern cBrothelManager g_Brothels;
 extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 
-bool cJobManager::WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	/* WD:	Added missing SEX_ACTION filter
 	 *
@@ -47,7 +47,7 @@ bool cJobManager::WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, string& 
 	 *		Fixed income - need to decrement loop counter
 	 *		when customer is rejected
 	 */
-	string message = "";
+    std::string message = "";
 	int tex = g_Dice%4;
 
 	if(Preprocessing(ACTION_WORKBAR, girl, brothel, DayNight, summary, message))	// they refuse to have work in the bar
@@ -78,7 +78,7 @@ bool cJobManager::WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, string& 
 		u_int n = 0;
 		int num = (g_Dice%2)+1;
 		girl->m_Pay += g_Girls.GetStat(girl, STAT_ASKPRICE)*num;
-		stringstream sstemp;
+		std::stringstream sstemp;
 		sstemp << "She worked as a whore and fucked " << num << " customers.";
 		message += sstemp.str();
 		for(int i=0; i<num; i++)

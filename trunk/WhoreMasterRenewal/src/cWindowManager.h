@@ -53,7 +53,7 @@ typedef void (*process_funcxml)(cInterfaceWindow *);
 
 class cWindowManager
 {
-	map<string,cInterfaceWindowXML *> windows;
+	std::map<std::string,cInterfaceWindowXML *> windows;
 public:
 	cWindowManager()
 	{
@@ -67,7 +67,7 @@ public:
 		m_Parent = 0;
 	}
 
-	void add_window(string name, cInterfaceWindowXML *win) {
+	void add_window(std::string name, cInterfaceWindowXML *win) {
 		windows[name] = win;
 	}
 
@@ -77,7 +77,7 @@ public:
  *	Studio seems to handle some Push methods in special ways
  *	(Alternatively, it's broken, depending on your POV)
  */
-	void push(string window_name);
+	void push(std::string window_name);
 	void Push(process_func Process, cInterfaceWindow* Interface);
 	void push(process_funcxml Process,cInterfaceWindow * Interface);
 

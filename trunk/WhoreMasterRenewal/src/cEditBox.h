@@ -21,7 +21,6 @@
 #pragma once
 
 #include <string>
-using namespace std;
 #include "CSurface.h"
 #include "cInterfaceObject.h"
 #include "cInterfaceEvent.h"
@@ -37,7 +36,7 @@ public:
 	bool IsOver(int x, int y);
 	bool OnClicked(int x, int y);
 	void ClearText();
-	string GetText() {return m_Text->GetText();}
+    std::string GetText() {return m_Text->GetText();}
 
 	void UpdateText(char key, bool upper);
 

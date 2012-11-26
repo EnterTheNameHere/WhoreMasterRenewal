@@ -28,8 +28,6 @@
 #include <string>
 #include <cctype>
 
-using namespace std;
-
 typedef unsigned int u_int;
 
 extern CLog g_LogFile;
@@ -256,41 +254,41 @@ void cInterfaceWindow::Draw()
 void cInterfaceWindow::AddButton(const char *img_name, int & ID,  int x, int y, int width, int height, bool transparency, bool scale,bool cached)
 {
 	DirPath dp = ButtonPath(img_name);
-	string on = string(dp.c_str()) + "On.png";
-	string off = string(dp.c_str()) + "Off.png";
-	string disabled;
-	disabled = string(dp.c_str()) + "Disabled.png";
+    std::string on = std::string(dp.c_str()) + "On.png";
+    std::string off = std::string(dp.c_str()) + "Off.png";
+    std::string disabled;
+	disabled = std::string(dp.c_str()) + "Disabled.png";
 	AddButton(off, disabled, on, ID, x, y, width, height, transparency, scale,cached);
 }
 
 void cInterfaceWindow::AddButtonND(const char *img_name, int & ID,  int x, int y, int width, int height, bool transparency, bool scale,bool cached)
 {
 	DirPath dp = ButtonPath(img_name);
-	string on = string(dp.c_str()) + "On.png";
-	string off = string(dp.c_str()) + "Off.png";
-	string disabled;
+    std::string on = std::string(dp.c_str()) + "On.png";
+    std::string off = std::string(dp.c_str()) + "Off.png";
+    std::string disabled;
 	AddButton(off, disabled, on, ID, x, y, width, height, transparency, scale, cached);
 }
 
-void cInterfaceWindow::AddButton(string image_name, int & ID,  int x, int y, int width, int height, bool transparency, bool scale,bool cached)
+void cInterfaceWindow::AddButton(std::string image_name, int & ID,  int x, int y, int width, int height, bool transparency, bool scale,bool cached)
 {
 	DirPath dp = ButtonPath(image_name);
-	string on = string(dp.c_str()) + "On.png";
-	string off = string(dp.c_str()) + "Off.png";
-	string disabled = string(dp.c_str()) + "Disabled.png";
+    std::string on = std::string(dp.c_str()) + "On.png";
+    std::string off = std::string(dp.c_str()) + "Off.png";
+    std::string disabled = std::string(dp.c_str()) + "Disabled.png";
 	AddButton(off, disabled, on, ID, x, y, width, height, transparency, scale,cached);
 }
 
-void cInterfaceWindow::AddButtonND(string image_name, int & ID,  int x, int y, int width, int height, bool transparency, bool scale,bool cached)
+void cInterfaceWindow::AddButtonND(std::string image_name, int & ID,  int x, int y, int width, int height, bool transparency, bool scale,bool cached)
 {
 	DirPath dp = ButtonPath(image_name);
-	string on = string(dp.c_str()) + "On.png";
-	string off = string(dp.c_str()) + "Off.png";
-	string disabled = "";
+    std::string on = std::string(dp.c_str()) + "On.png";
+    std::string off = std::string(dp.c_str()) + "Off.png";
+    std::string disabled = "";
 	AddButton(off, disabled, on, ID, x, y, width, height, transparency, scale,cached);
 }
 
-void cInterfaceWindow::AddButton(string OffImage, string DisabledImage, string OnImage, int & ID,  int x, int y, int width, int height, bool transparency, bool scale,bool cached)
+void cInterfaceWindow::AddButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int & ID,  int x, int y, int width, int height, bool transparency, bool scale,bool cached)
 {
 	if(scale)
 	{
@@ -340,11 +338,11 @@ void cInterfaceWindow::HideImage(int id, bool hide)
 {
 	if(id == -1) return;
 	if(hide) {
-		//cout << "hiding image ID " << id << endl;
+		//std::cout << "hiding image ID " << id << std::endl;
 		m_Images[id]->hide();
 	}
 	else {
-		//cout << "unhiding image ID " << id << endl;
+		//std::cout << "unhiding image ID " << id << std::endl;
 		m_Images[id]->unhide();
 	}
 }
@@ -360,7 +358,7 @@ void cInterfaceWindow::HideButton(int id, bool hide)
 	}
 }
 
-void cInterfaceWindow::AddImage(int & id, string filename, int x, int y, int width, int height, bool statImage, int R, int G, int B)
+void cInterfaceWindow::AddImage(int & id, std::string filename, int x, int y, int width, int height, bool statImage, int R, int G, int B)
 {
 	width = (int)((float)width*m_xRatio);
 	height = (int)((float)height*m_yRatio);
@@ -434,12 +432,12 @@ void cInterfaceWindow::CreateWindow(int x, int y, int width, int height, int Bor
 	SDL_FillRect(m_Background,0,SDL_MapRGB(m_Background->format,g_WindowBackgroundR,g_WindowBackgroundG,g_WindowBackgroundB));
 }
 
-void cInterfaceWindow::SetBackgroundImage(string file)
+void cInterfaceWindow::SetBackgroundImage(std::string file)
 {
 	m_BackgroundSurface = new CSurface(file);
 }
 
-string cInterfaceWindow::GetEditBoxText(int ID)
+std::string cInterfaceWindow::GetEditBoxText(int ID)
 {
 	return m_EditBoxes[ID]->GetText();
 }
@@ -533,7 +531,7 @@ int cInterfaceWindow::SliderValue(int ID, int value)
 }
 
 
-void cInterfaceWindow::AddCheckbox(int & ID, int x, int y, int width, int height, string text, int size)
+void cInterfaceWindow::AddCheckbox(int & ID, int x, int y, int width, int height, std::string text, int size)
 {
 	width = (int)((float)width*m_xRatio);
 	height = (int)((float)height*m_yRatio);
@@ -549,7 +547,7 @@ void cInterfaceWindow::AddCheckbox(int & ID, int x, int y, int width, int height
 	m_CheckBoxes.push_back(newCheckBox);
 }
 
-void cInterfaceWindow::AddTextItem(int & ID, int x, int y, int width, int height, string text, int size, bool auto_scrollbar, bool force_scrollbar)
+void cInterfaceWindow::AddTextItem(int & ID, int x, int y, int width, int height, std::string text, int size, bool auto_scrollbar, bool force_scrollbar)
 {
 	width = (int)((float)width*m_xRatio);
 	height = (int)((float)height*m_yRatio);
@@ -576,7 +574,7 @@ void cInterfaceWindow::HideText(int id, bool hide)
 	}
 }
 
-void cInterfaceWindow::EditTextItem(string text, int ID)
+void cInterfaceWindow::EditTextItem(std::string text, int ID)
 {
 	if(ID == -1) return;
 
@@ -639,8 +637,8 @@ void cInterfaceWindow::AddListBox(int & ID, int x, int y, int width, int height,
 	DirPath up,down;
 	up = ButtonPath("Up");
 	down = ButtonPath("Down");
-	string ups=up.c_str();
-	string downs=down.c_str();
+    std::string ups=up.c_str();
+    std::string downs=down.c_str();
 
 	// if showing headers and allowing header clicks to sort list, offset scrollbar and scroll up button
 	int header_offset = (ShowHeaders && HeaderSort) ? 21 : 0;
@@ -670,23 +668,23 @@ void cInterfaceWindow::ScrollListBoxUp(int ID)
 	m_ListBoxes[ID]->ScrollUp();
 }
 
-void cInterfaceWindow::SetSelectedItemText(int listBoxID, int itemID, string data)
+void cInterfaceWindow::SetSelectedItemText(int listBoxID, int itemID, std::string data)
 {
 	m_ListBoxes[listBoxID]->SetElementText(itemID, data);
 }
 
-void cInterfaceWindow::AddToListBox(int listBoxID, int dataID, string data, int color)
+void cInterfaceWindow::AddToListBox(int listBoxID, int dataID, std::string data, int color)
 {
-	string datarray[] = {data};
+    std::string datarray[] = {data};
 	AddToListBox(listBoxID, dataID, datarray, 1, color);
 }
 
-void cInterfaceWindow::SetSelectedItemText(int listBoxID, int itemID, string data[], int columns)
+void cInterfaceWindow::SetSelectedItemText(int listBoxID, int itemID, std::string data[], int columns)
 {
 	m_ListBoxes[listBoxID]->SetElementText(itemID, data, columns);
 }
 
-void cInterfaceWindow::SetSelectedItemColumnText(int listBoxID, int itemID, string data, int column)
+void cInterfaceWindow::SetSelectedItemColumnText(int listBoxID, int itemID, std::string data, int column)
 {
 	m_ListBoxes[listBoxID]->SetElementColumnText(itemID, data, column);
 }
@@ -696,12 +694,12 @@ void cInterfaceWindow::SetSelectedItemTextColor(int listBoxID, int itemID, SDL_C
 	m_ListBoxes[listBoxID]->SetElementTextColor(itemID, text_color);
 }
 
-void cInterfaceWindow::FillSortedIDList(int listBoxID, vector<int> *id_vec, int *vec_pos)
+void cInterfaceWindow::FillSortedIDList(int listBoxID, std::vector<int> *id_vec, int *vec_pos)
 {
 	m_ListBoxes[listBoxID]->GetSortedIDList(id_vec, vec_pos);
 }
 
-void cInterfaceWindow::AddToListBox(int listBoxID, int dataID, string data[], int columns, int color)
+void cInterfaceWindow::AddToListBox(int listBoxID, int dataID, std::string data[], int columns, int color)
 {
 	m_ListBoxes[listBoxID]->AddElement(dataID, data, columns, color);
 
@@ -709,24 +707,24 @@ void cInterfaceWindow::AddToListBox(int listBoxID, int dataID, string data[], in
 	m_ScrollBars[m_ListBoxes[listBoxID]->m_ScrollDragID]->m_ItemsTotal = m_ListBoxes[listBoxID]->m_NumElements;
 }
 
-void cInterfaceWindow::SortColumns(int listBoxID, string column_name[], int columns)
+void cInterfaceWindow::SortColumns(int listBoxID, std::string column_name[], int columns)
 {
 	m_ListBoxes[listBoxID]->SetColumnSort(column_name, columns);
 }
 
-void cInterfaceWindow::DefineColumns(int listBoxID, string name[], string header[], int offset[], bool skip[], int columns)
+void cInterfaceWindow::DefineColumns(int listBoxID, std::string name[], std::string header[], int offset[], bool skip[], int columns)
 {
 	m_ListBoxes[listBoxID]->DefineColumns(name, header, offset, skip, columns);
 }
 
-void cInterfaceWindow::SortListItems(int listBoxID, string column_name, bool Desc)
+void cInterfaceWindow::SortListItems(int listBoxID, std::string column_name, bool Desc)
 {
 	m_ListBoxes[listBoxID]->SortByColumn(column_name, Desc);
 }
 
-string cInterfaceWindow::HeaderClicked(int listBoxID)
+std::string cInterfaceWindow::HeaderClicked(int listBoxID)
 {
-	string clicked = m_ListBoxes[listBoxID]->m_HeaderClicked;
+    std::string clicked = m_ListBoxes[listBoxID]->m_HeaderClicked;
 	m_ListBoxes[listBoxID]->m_HeaderClicked = "";
 	return clicked;
 }
@@ -746,7 +744,7 @@ int cInterfaceWindow::GetSelectedItemFromList(int listBoxID)
 	return m_ListBoxes[listBoxID]->GetSelected();
 }
 
-string cInterfaceWindow::GetSelectedTextFromList(int listBoxID)
+std::string cInterfaceWindow::GetSelectedTextFromList(int listBoxID)
 {
 	return m_ListBoxes[listBoxID]->GetSelectedText();
 }
@@ -827,7 +825,7 @@ void cInterfaceWindowXML::load()
 		g_LogFile.ss()
 			<< "cInterfaceWindowXML: "
 			<< "Can't load screen definition from '"
-			<< m_filename << "'" << endl
+			<< m_filename << "'" << std::endl
 		;
 		g_LogFile.ss()
 			<< "Error: line "
@@ -836,7 +834,7 @@ void cInterfaceWindowXML::load()
 			<< doc.ErrorCol()
 			<< ": "
 			<< doc.ErrorDesc()
-			<< endl
+			<< std::endl
 		;
 		g_LogFile.ssend();
 		return;
@@ -852,7 +850,7 @@ void cInterfaceWindowXML::load()
 		el ;
 		el = el->NextSiblingElement()
 	) {
-		string tag = el->ValueStr();
+	    std::string tag = el->ValueStr();
 /*
  *		now, depending on the tag name...
  */
@@ -908,7 +906,7 @@ void cInterfaceWindowXML::load()
 
 void cInterfaceWindowXML::read_text_item(TiXmlElement *el)
 {
-	string name, text;
+    std::string name, text;
 	XmlUtil xu(m_filename);
 	int id, x, y, w, h, font_size;
 	bool auto_scrollbar = true, force_scrollbar = false;
@@ -936,7 +934,7 @@ void cInterfaceWindowXML::define_widget(TiXmlElement *base_el)
 {
 	CLog l;
 	TiXmlElement *el;
-	string widget_name;
+    std::string widget_name;
 	XmlUtil xu(m_filename);
 /*
  *	first get the widget name
@@ -959,7 +957,7 @@ void cInterfaceWindowXML::define_widget(TiXmlElement *base_el)
 		el ;
 		el = el->NextSiblingElement()
 	) {
-		string tag = el->ValueStr();
+	    std::string tag = el->ValueStr();
 
 		l.ss() << "define widget: '" << tag << "'";
 		l.ssend();
@@ -1007,12 +1005,12 @@ void cInterfaceWindowXML::define_widget(TiXmlElement *base_el)
 	}
 }
 
-void cInterfaceWindowXML::place_widget(TiXmlElement *el, string suffix)
+void cInterfaceWindowXML::place_widget(TiXmlElement *el, std::string suffix)
 {
 	CLog l;
 	int x, y;
-	stringstream ss;
-	string seq, name;
+	std::stringstream ss;
+    std::string seq, name;
 	bool cache;
 	XmlUtil xu(m_filename);
 /*
@@ -1036,7 +1034,7 @@ void cInterfaceWindowXML::place_widget(TiXmlElement *el, string suffix)
 	add_widget(name, x, y, seq);
 }
 
-void cInterfaceWindowXML::add_widget(string widget_name,int x,int y,string seq)
+void cInterfaceWindowXML::add_widget(std::string widget_name,int x,int y,std::string seq)
 {
 	int id;
 	CLog l;
@@ -1055,8 +1053,8 @@ void cInterfaceWindowXML::add_widget(string widget_name,int x,int y,string seq)
  */
 	for(int i = 0; i < widget->size(); i++) {
 		sXmlWidgetPart &xw = (*widget)[i];
-		string tag = xw.type;
-		string name = xw.name + seq;
+	    std::string tag = xw.type;
+	    std::string name = xw.name + seq;
 /*
  *		the OO way to do this is to subclass
  *		sXmlWidgetPart and have each class have its own
@@ -1090,7 +1088,7 @@ void cInterfaceWindowXML::add_widget(string widget_name,int x,int y,string seq)
 		int full_y = y + xw.y;
 
 		if(tag == "Button") {
-			cout << "adding button: " << xw.off << endl;
+			std::cout << "adding button: " << xw.off << std::endl;
 			AddButton(
 				ButtonPath(xw.off),
 				ButtonPath(xw.disabled),
@@ -1105,7 +1103,7 @@ void cInterfaceWindowXML::add_widget(string widget_name,int x,int y,string seq)
 			HideButton(id, xw.hide);
 		}
 		else if(tag == "Image") {
-			cout << "adding image: " << xw.file << endl;
+			std::cout << "adding image: " << xw.file << std::endl;
 			DirPath dp = ImagePath(xw.file);
 			AddImage(id, dp,
 				full_x, full_y, xw.w, xw.h, xw.stat,
@@ -1172,7 +1170,7 @@ void cInterfaceWindowXML::read_window_definition(TiXmlElement *el)
 
 void cInterfaceWindowXML::read_listbox_definition(TiXmlElement *el)
 {
-	string name;
+    std::string name;
 	XmlUtil xu(m_filename);
 	bool events = true, multi = false, show_headers = false, header_div = true, header_sort = true;
 	int id, x, y, w, h, border_size = 1;
@@ -1196,13 +1194,13 @@ void cInterfaceWindowXML::read_listbox_definition(TiXmlElement *el)
 	CLog l;
 	TiXmlElement *sub_el;
 	int column_count = 0, column_offset[LISTBOX_COLUMNS];
-	string column_name[LISTBOX_COLUMNS], column_header[LISTBOX_COLUMNS];
+    std::string column_name[LISTBOX_COLUMNS], column_header[LISTBOX_COLUMNS];
 	bool column_skip[LISTBOX_COLUMNS];
 	for(sub_el = el->FirstChildElement();
 		sub_el;
 		sub_el = sub_el->NextSiblingElement()
 	) {
-		string tag = sub_el->ValueStr();
+	    std::string tag = sub_el->ValueStr();
 
 		l.ss() << "define listbox element: '" << tag << "'";
 		l.ssend();
@@ -1249,7 +1247,7 @@ void cInterfaceWindowXML::widget_listbox_item(TiXmlElement *el, cXmlWidget &wid)
 
 void cInterfaceWindowXML::read_checkbox_definition(TiXmlElement *el)
 {
-	string name, text;
+    std::string name, text;
 	XmlUtil xu(m_filename);
 	int id, x, y, w, h, font_size;
 
@@ -1304,7 +1302,7 @@ void cInterfaceWindowXML::read_image_definition(TiXmlElement *el)
 	bool stat = false, hide = false;
 	int id, x, y, w, h;
 	int r = 0, g = 0, b = 0;
-	string name, file = "blank.png";
+    std::string name, file = "blank.png";
 
 	xu.get_att(el, "Name",	name);
 	xu.get_att(el, "File",	file, Optional);
@@ -1329,7 +1327,7 @@ void cInterfaceWindowXML::read_button_definition(TiXmlElement *el)
 {
 	int id, x, y, w, h;
 	XmlUtil xu(m_filename);
-	string scale, alpha, name, on, off, disabled, base = "";
+    std::string scale, alpha, name, on, off, disabled, base = "";
 /*
  *	get the button name - we'll use this to match up
  *	interface IDs
@@ -1394,7 +1392,7 @@ void cInterfaceWindowXML::read_slider_definition(TiXmlElement *el)
 	bool disable = false, hide = false, liveUpdate = true;
 	int id, x, y, w;
 	int min = 0, max = 100, value = 0, increment = 5;
-	string name;
+    std::string name;
 
 	xu.get_att(el, "Name",	name);
 	xu.get_att(el, "XPos",	x);
@@ -1537,7 +1535,7 @@ void cInterfaceWindowXML::widget_image_item(TiXmlElement *el, cXmlWidget &wid)
 	wid.add(xw);
 }
 
-void cInterfaceWindowXML::register_id(int id, string name)
+void cInterfaceWindowXML::register_id(int id, std::string name)
 {
 	CLog l;
 
@@ -1553,7 +1551,7 @@ void cInterfaceWindowXML::register_id(int id, string name)
 }
 
 
-int cInterfaceWindowXML::get_id(string s, bool essential)
+int cInterfaceWindowXML::get_id(std::string s, bool essential)
 {
 	if(name_to_id.find(s) != name_to_id.end()) {
 		return name_to_id[s];
@@ -1570,7 +1568,7 @@ int cInterfaceWindowXML::get_id(string s, bool essential)
 	return -1;
 }
 
-cXmlWidget* cInterfaceWindowXML::new_widget(string name)
+cXmlWidget* cInterfaceWindowXML::new_widget(std::string name)
 {
 	cXmlWidget *wid = new cXmlWidget();
 
@@ -1578,9 +1576,9 @@ cXmlWidget* cInterfaceWindowXML::new_widget(string name)
 	return wid;
 }
 
-cXmlWidget* cInterfaceWindowXML::find_widget(string name)
+cXmlWidget* cInterfaceWindowXML::find_widget(std::string name)
 {
-	map<string,cXmlWidget*>::iterator it;
+	std::map<std::string,cXmlWidget*>::iterator it;
 
 	it = widgets.find(name);
 	if(it == widgets.end()) {

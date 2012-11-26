@@ -20,19 +20,19 @@
 
 cScriptManagerInner *cScriptManager::instance = 0;
 
-static bool ends_with(string s, string suff)
+static bool ends_with(std::string s, std::string suff)
 {
 	int s_siz = s.size();
 	int suff_siz = suff.size();
 	if(suff_siz > s_siz) {
 		return false;
 	}
-	string end = s.substr(s_siz - suff_siz, suff_siz);
+    std::string end = s.substr(s_siz - suff_siz, suff_siz);
 	return end == suff;
 }
 
 
-void cScriptManagerInner::Load(string filename, sGirl *girl)
+void cScriptManagerInner::Load(std::string filename, sGirl *girl)
 {
 /*
  *	so - if it doesn't end with ".lua" we assume it's a GameScript

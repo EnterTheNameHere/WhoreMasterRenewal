@@ -22,19 +22,17 @@
 #include "CLog.h"
 #include "cRng.h"
 
-using namespace std;
-
 extern cRng g_Dice;
 extern CLog g_LogFile;
 
-cNameList::cNameList(string file) 
+cNameList::cNameList(std::string file) 
 {
 	load(file);
 }
 
-void cNameList::load(string file) 
+void cNameList::load(std::string file) 
 {
-	ifstream in;
+	std::ifstream in;
 	char buff[1024];
 	bool first = true;
 /*
@@ -71,7 +69,7 @@ void cNameList::load(string file)
 			first = false;
 			continue;
 		}
-		string s = buff;
+	    std::string s = buff;
 /*
  *		just for linux (although will do no harm on windows)
  *		we need to check for a carriage return char at the
@@ -100,7 +98,7 @@ void cNameList::load(string file)
 	}
 }
 
-string cNameList::random()
+std::string cNameList::random()
 {
 	u_int size = names.size();
 /*

@@ -23,8 +23,6 @@
 #include <math.h>
 #include "cTariff.h"
 
-using namespace std;
-
 /*
  * I don't generally see the point of using chars over ints
  * for stat values - most PCs have more than enough memory to make the
@@ -95,7 +93,7 @@ struct sBoundedVar
  *		Curr	= "3"
  *	/>
  */
-	TiXmlElement	*to_xml(string name);
+	TiXmlElement	*to_xml(std::string name);
 	bool		from_xml(TiXmlElement *el);
 };
 
@@ -147,7 +145,7 @@ struct sBoundedVar_Provides : public sBoundedVar
 
 	void init(sFacility *fac);
 
-	TiXmlElement	*to_xml(string name);
+	TiXmlElement	*to_xml(std::string name);
 	bool		from_xml(TiXmlElement *el);
 
 	void up() {
@@ -232,9 +230,9 @@ struct sBoundedVar_Provides : public sBoundedVar
 
 struct sFacility
 {
-	string		m_type_name;
-	string		m_instance_name;
-	string		m_desc;
+    std::string 	m_type_name;
+    std::string 	m_instance_name;
+    std::string 	m_desc;
 	int		m_space_taken;
 	int		m_slots;
 	int		m_base_price;
@@ -270,15 +268,15 @@ struct sFacility
 		m_base_price	= 0;
 	}
 
-	string	name()		{
+	std::string  name()		{
 		if(m_instance_name != "") {
 			return m_instance_name;
 		}
 		return m_type_name;
 	}
 
-	string	desc()		{ return m_desc; }
-	string	type()		{ return m_type_name; }
+    std::string desc()		{ return m_desc; }
+    std::string type()		{ return m_type_name; }
 	int	space_taken()	{ return m_space_taken; }
 	int	slots()		{ return m_slots; }
 	int	price()		{ return tariff.buy_facility(m_base_price); }

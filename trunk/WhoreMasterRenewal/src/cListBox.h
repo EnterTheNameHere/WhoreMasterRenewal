@@ -26,8 +26,6 @@
 #include "DirPath.h"
 #include "Constants.h"
 
-using namespace std;
-
 #if 0
 // Listbox Constants moved to Constants.h
 const unsigned int LISTBOX_BLUE = 0;
@@ -51,7 +49,7 @@ public:
 
 	int m_Color;
 	bool m_Selected;
-	string m_Data[LISTBOX_COLUMNS+1];	// the text to display, up to LISTBOX_COLUMNS number of columns (+1 is used for "original sort" slot)
+    std::string m_Data[LISTBOX_COLUMNS+1];	// the text to display, up to LISTBOX_COLUMNS number of columns (+1 is used for "original sort" slot)
 	int m_ID;	// the id for the item
 	SDL_Color* m_TextColor;
 	cListItem* m_Next;	// pointer to the next object in the list
@@ -70,8 +68,8 @@ public:
 
 	void Draw();
 
-	void AddElement(int ID, string data, int color = LISTBOX_BLUE);
-	void SetElementText(int ID, string data);
+	void AddElement(int ID, std::string data, int color = LISTBOX_BLUE);
+	void SetElementText(int ID, std::string data);
 //	void RemoveElement(int ID);
 
 	void ClearList();
@@ -86,7 +84,7 @@ public:
 	int m_ScrollChange;  // scrollbar changes will update this value
 
 	int GetSelected();	// returns the id for the first selected element
-	string GetSelectedText();
+    std::string GetSelectedText();
 	int GetAfterSelected();	// returns the id for the element after the last selected element
 	int GetNextSelected(int from, int& pos);	// returns the id for the next selected element and sets pos to its position
 	int GetLastSelected();	// gets the last item selected
@@ -94,8 +92,8 @@ public:
 	void SetSelected(int ID, bool ev = true, bool deselect_others = true);	// sets the selected item
 	int GetSize() {return m_NumElements;};
 	bool IsMultiSelect() {return m_MultiSelect;}
-	void GetSortedIDList(vector<int> *id_vec, int *vec_pos);  // fills up a vector with the list of item IDs, sorted
-	void GetColumnNames(vector<string>& columnNames);
+	void GetSortedIDList(std::vector<int> *id_vec, int *vec_pos);  // fills up a vector with the list of item IDs, sorted
+	void GetColumnNames(std::vector<std::string>& columnNames);
 
 
 	int m_ID;
@@ -115,18 +113,18 @@ public:
 	int m_ColumnOffset[LISTBOX_COLUMNS];	// x offset for each column
 	bool m_ShowHeaders;						// whether to show column headers
 	bool m_HeaderDividers;					// whether to show dividers between column headers
-	string m_Header[LISTBOX_COLUMNS];		// text of column headers
-	string m_ColumnName[LISTBOX_COLUMNS];	// reference names of columns, for sorting
+    std::string m_Header[LISTBOX_COLUMNS];		// text of column headers
+    std::string m_ColumnName[LISTBOX_COLUMNS];	// reference names of columns, for sorting
 	int m_ColumnSort[LISTBOX_COLUMNS];		// reference table used for custom sort of columns
 	bool m_SkipColumn[LISTBOX_COLUMNS];		// used to skip a column which would normally be shown
 
-	string m_HeaderClicked;					// set to m_ColumnName value of a header that has just been clicked; otherwise empty
+    std::string m_HeaderClicked;					// set to m_ColumnName value of a header that has just been clicked; otherwise empty
 
-	void DefineColumns(string name[], string header[], int offset[], bool skip[], int columns);  // define column layout
-	void SetColumnSort(string column_name[], int columns);	// Update column sorting based on expected default order
-	void AddElement(int ID, string data[], int columns, int color = LISTBOX_BLUE);
-	void SetElementText(int ID, string data[], int columns);
-	void SetElementColumnText(int ID, string data, int column);
+	void DefineColumns(std::string name[], std::string header[], int offset[], bool skip[], int columns);  // define column layout
+	void SetColumnSort(std::string column_name[], int columns);	// Update column sorting based on expected default order
+	void AddElement(int ID, std::string data[], int columns, int color = LISTBOX_BLUE);
+	void SetElementText(int ID, std::string data[], int columns);
+	void SetElementColumnText(int ID, std::string data, int column);
 	void SetElementTextColor(int ID, SDL_Color* text_color);
 
 	SDL_Surface* m_HeaderBackground;		// the background and border for the multi-column header box
@@ -139,13 +137,13 @@ public:
 
 	//sorting of list, normally based on header clicks
 	bool m_HeaderClicksSort;				// whether clicks on column headers should sort data accordingly
-	string m_SortedColumn;					// m_ColumnName of column which sort is currently based on
+    std::string m_SortedColumn;					// m_ColumnName of column which sort is currently based on
 	bool m_SortedDescending;				// descending or ascending sort
-	void SortByColumn(string ColumnName, bool Descending = false);  // re-sort list items based on specified column
+	void SortByColumn(std::string ColumnName, bool Descending = false);  // re-sort list items based on specified column
 	void ReSortList();						// re-sort list again, if needed
 	void UnSortList();						// un-sort list back to the order the elements were originally added in
 	cListItem* BubbleSortList(cListItem *head, int count, int col_id, bool Descending);
-	bool StrCmpIn(const string &left, const string &right);
+	bool StrCmpIn(const std::string &left, const std::string &right);
 
 	// Double-click detection
 	bool DoubleClicked();

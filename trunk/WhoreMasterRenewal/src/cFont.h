@@ -22,7 +22,6 @@
 
 #include <SDL_ttf.h>
 #include <string>
-using namespace std;
 
 class cFont
 {
@@ -40,10 +39,10 @@ public:
     #endif
 	bool DrawText(int x, int y, SDL_Surface* destination = 0, bool multi = false);	// draws the text surface to the screen
 	bool DrawMultilineText(int x, int y, int linesToSkip = 0, int offsetY = 0, SDL_Surface* destination = 0);	// draws the text surface to the screen
-	bool LoadFont(string font, int size);
-	void SetText(string text);
-	string GetText() {return m_Text;}
-	void GetSize(string text, int &width, int &height){TTF_SizeText(m_Font, text.c_str(), &width, &height);}
+	bool LoadFont(std::string font, int size);
+	void SetText(std::string text);
+	std::string GetText() {return m_Text;}
+	void GetSize(std::string text, int &width, int &height){TTF_SizeText(m_Font, text.c_str(), &width, &height);}
 	int GetWidth();
 	int GetHeight();
 	void SetMultiline(bool multi, int width, int height){m_IsMultiline=multi;m_Width = width;m_Height=height;}
@@ -61,7 +60,7 @@ private:
 	SDL_Color m_TextColor;
 	SDL_Surface* m_Message;	// for storing a single line message
 	SDL_Surface* m_MultilineMessage;	// for storing multiline messages
-	string m_Text;
+	std::string m_Text;
 	bool m_NewText;	// variable for keeping track of if it needs to be updated
 	bool m_IsMultiline;
 	int m_Width;
@@ -70,9 +69,9 @@ private:
 	unsigned int m_NumLines;	// stores the total number of lines in the box
 
 	// These functions are used internally to draw text to a surface
-	void RenderText(string text = "", bool multi = false);
-	void RenderMultilineText(string text);	// function that renders multiline text to the internal surface
-	string UpdateLineEndings(string text);  // added function to fix line endings ("/n"=>"/r/n") for Windows
+	void RenderText(std::string text = "", bool multi = false);
+	void RenderMultilineText(std::string text);	// function that renders multiline text to the internal surface
+	std::string UpdateLineEndings(std::string text);  // added function to fix line endings ("/n"=>"/r/n") for Windows
 };
 
 #endif // CFONT_H_INCLUDED_1531

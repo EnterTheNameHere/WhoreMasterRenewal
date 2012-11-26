@@ -40,7 +40,7 @@ void cScriptUtils::add_girl_to_brothel(sGirl *girl)
 			how to fix it, so I'm explicitly setting the percentage to 60 here */
 	girl->m_Stats[STAT_HOUSE] = 60;
 
-	string text = girl->m_Realname;
+    std::string text = girl->m_Realname;
 /*
  *	OK: how rebellious is this floozy?
  */

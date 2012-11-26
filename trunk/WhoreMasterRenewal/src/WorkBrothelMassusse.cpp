@@ -39,9 +39,9 @@ extern cBrothelManager g_Brothels;
 extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 
-bool cJobManager::WorkBrothelMasseuse(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkBrothelMasseuse(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
-	string message = "";
+    std::string message = "";
 	if(Preprocessing(ACTION_SEX, girl, brothel, DayNight, summary, message))
 		return true;
 

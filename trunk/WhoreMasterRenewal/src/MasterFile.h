@@ -32,19 +32,19 @@
 class MasterFile
 {
 private:
-	typedef map<string,int> FileFlags;
+	typedef std::map<std::string,int> FileFlags;
 	FileFlags files;
 
 public:
-	void LoadLegacy(string filename)
+	void LoadLegacy(std::string filename)
 	{
 		files.clear();
-		ifstream ifs;
+		std::ifstream ifs;
 		char buffer[1024];	// power of 2 makes better use of memory
 /*
  *		format the path for the master file.
  */
-		string mfile = filename + ".mast";
+	    std::string mfile = filename + ".mast";
 		DirPath mastfile = DirPath() << "Saves" << mfile;
 		filename = mastfile.c_str();
 /*
@@ -70,18 +70,18 @@ public:
  */
 			ifs.getline(buffer, sizeof(buffer)-1, '\n');
 
-			if (string(buffer).empty() == false)
+			if (std::string(buffer).empty() == false)
 			{
 /*
  *				add the file to the map
  */
-				files[string(buffer)] = 1;
+				files[std::string(buffer)] = 1;
 			}
 		}
 		ifs.close();
 	}
 
-	bool	exists(string name)
+	bool	exists(std::string name)
 	{
 		return(files.find(name) != files.end());
 	}
@@ -91,7 +91,7 @@ public:
 		return files.size();
 	}
 
-	void	add(string str)
+	void	add(std::string str)
 	{
 		files[str] = 1;
 	}

@@ -40,12 +40,12 @@ extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGold g_Gold;
 
-bool cJobManager::WorkTorturer(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkTorturer(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	if(DayNight == SHIFT_NIGHT)  // Do this only once a day
 		return false;
 
-	string message = "";
+    std::string message = "";
 	if(Preprocessing(ACTION_WORKTORTURER, girl, brothel, DayNight, summary, message))
 		return true;
 

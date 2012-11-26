@@ -22,8 +22,6 @@
 
 #include <string>
 
-using namespace std;
-
 struct	sGirl;
 struct	sDungeonGirl;
 class	cPlayer;
@@ -37,7 +35,7 @@ class cGirlTorture {
 	sGirl			*m_Torturer;
 	sDungeonGirl	*m_DungeonGirl;
 	cDungeon		*m_Dungeon;
-	string			m_Message;
+    std::string 		m_Message;
 	bool			m_Fight;
 	bool			m_TorturedByPlayer;
 
@@ -46,9 +44,9 @@ class cGirlTorture {
 	void			AddTextTorturerGirl();
 	void			UpdateStats();
 	void			UpdateTraits();
-	void			add_trait(string trait, int pc);
+	void			add_trait(std::string trait, int pc);
 	bool			IsGirlInjured(unsigned int unModifier);		// Based on cGirls::GirlInjured() 
-	void			MakeEvent(string sMsg);
+	void			MakeEvent(std::string sMsg);
 	void			DoTorture();
 
 public:

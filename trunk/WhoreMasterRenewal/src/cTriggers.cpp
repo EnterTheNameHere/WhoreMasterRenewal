@@ -22,12 +22,11 @@
 #include "GameFlags.h"
 #include "cGirls.h"
 #include "cGold.h"
-using namespace std;
 
 extern cGirls g_Girls;
 extern cGold g_Gold;
 extern cRng g_Dice;
-static map<string,int> trigger_types;
+static std::map<std::string,int> trigger_types;
 
 void cTriggerList::AddTrigger(cTrigger* trigger)
 {
@@ -43,7 +42,7 @@ void cTriggerList::AddTrigger(cTrigger* trigger)
 	m_NumTriggers++;
 }
 
-void cTriggerList::LoadTriggersLegacy(ifstream& ifs)
+void cTriggerList::LoadTriggersLegacy(std::ifstream& ifs)
 {
 	int temp;
 	int numTriggersToLoad = 0;
@@ -760,7 +759,7 @@ void cTriggerList::Free()
 	//end mod
 }
 
-void cTriggerList::ProcessNextQueItem(string fileloc)
+void cTriggerList::ProcessNextQueItem(std::string fileloc)
 {
 	//mod
 	cTriggerQue * top=m_TriggerQueue.front();
@@ -774,7 +773,7 @@ void cTriggerList::ProcessNextQueItem(string fileloc)
 	if(top->m_Trigger->m_Script != "") {
 		cScriptManager sm;
 
-		string file = fileloc;
+	    std::string file = fileloc;
 		file += top->m_Trigger->m_Script;
 		sm.Load(file, m_GirlTarget);
 	}
@@ -800,7 +799,7 @@ static void init_trigger_types()
 	trigger_types["PlayerMoney"]= TRIGGER_PLAYERMONEY;
 }
 
-static int lookup_type_code(string s)
+static int lookup_type_code(std::string s)
 {
 /*
  *	be useful to be able to log unrecognised
@@ -817,7 +816,7 @@ static int lookup_type_code(string s)
 int cTrigger::get_type_from_xml(TiXmlElement *el)
 {
 	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	find the type attribute
  *	let's be nice and allow them to miss the leading captial
@@ -853,7 +852,7 @@ int cTrigger::get_type_from_xml(TiXmlElement *el)
 
 int cTrigger::get_chance_from_xml(TiXmlElement *el)
 {
-	stringstream ss;
+	std::stringstream ss;
  	const char *pt = el->Attribute("Chance");
 /*
  *	"not found" is not an error here
@@ -866,16 +865,16 @@ int cTrigger::get_chance_from_xml(TiXmlElement *el)
  *	if we do have a string, we may need to
  *	trim away a trailing "%"
  */
- 	string s = pt;
+     std::string s = pt;
 	size_t siz = s.find("%");
-	if(siz != string::npos) {
+	if(siz != std::string::npos) {
 		s.erase(siz, 1);
 	}
 /*
  *	now, we should have a string with a number in it
  */
  	int pc = 0;
-	istringstream iss(s);
+	std::istringstream iss(s);
 	if(iss >> pc) {
 		return pc;
 	}
@@ -895,7 +894,7 @@ int cTrigger::get_chance_from_xml(TiXmlElement *el)
 
 bool cTrigger::get_once_from_xml(TiXmlElement *el)
 {
-	stringstream ss;
+	std::stringstream ss;
  	const char *pt = el->Attribute("OnceOnly");
 /*
  *	"not found" is not an error here
@@ -907,7 +906,7 @@ bool cTrigger::get_once_from_xml(TiXmlElement *el)
 /*
  *	we now expect "True" or "False"
  */
-	string s = pt;
+    std::string s = pt;
  	if(s == "True" || s == "true") {
 		return true;
 	}
@@ -930,7 +929,7 @@ int cTrigger::load_skill_from_xml(TiXmlElement *el)
 {
 	int ival;
  	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	get the attribute value
  */
@@ -980,7 +979,7 @@ int cTrigger::load_stat_from_xml(TiXmlElement *el)
 {
 	int ival;
  	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	get the attribute value
  */
@@ -1029,7 +1028,7 @@ int cTrigger::load_stat_from_xml(TiXmlElement *el)
 int cTrigger::load_status_from_xml(TiXmlElement *el)
 {
  	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	get the attribute value
  */
@@ -1071,7 +1070,7 @@ int cTrigger::load_status_from_xml(TiXmlElement *el)
 		);
 		return -1;
 	}
-	string s = pt;
+    std::string s = pt;
  	if(s == "True" || s == "true") {
 		this->has(true);
 		return 0;
@@ -1091,9 +1090,9 @@ int cTrigger::load_status_from_xml(TiXmlElement *el)
 
 int cTrigger::load_money_from_xml(TiXmlElement *el)
 {
-	string s;
+    std::string s;
  	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	get the "Who" attribute value
  *
@@ -1109,10 +1108,10 @@ int cTrigger::load_money_from_xml(TiXmlElement *el)
 			"Money trigger: Assuming 'Girl'."
 		);
 	}
-	else if(string(pt) == "Player") {
+	else if(std::string(pt) == "Player") {
 		m_Type = lookup_type_code("PlayerMoney");
 	}
-	else if(string(pt) != "Girl") {
+	else if(std::string(pt) != "Girl") {
 		ss << "Error: Malformed 'Who' attribute '"
 		   << pt
 		   << "' specified for 'Money' trigger: "
@@ -1166,9 +1165,9 @@ int cTrigger::load_money_from_xml(TiXmlElement *el)
 
 void cTrigger::load_meet_from_xml(TiXmlElement *el)
 {
-	string s;
+    std::string s;
  	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	get the "Where" attribute value
  */
@@ -1200,9 +1199,9 @@ void cTrigger::load_meet_from_xml(TiXmlElement *el)
 
 void cTrigger::load_talk_from_xml(TiXmlElement *el)
 {
-	string s;
+    std::string s;
  	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	get the "Where" attribute value
  */
@@ -1235,9 +1234,9 @@ void cTrigger::load_talk_from_xml(TiXmlElement *el)
 int cTrigger::load_weeks_from_xml(TiXmlElement *el)
 {
 	int ival;
-	string s;
+    std::string s;
  	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	get the "Threshold" attribute value
  */
@@ -1258,9 +1257,9 @@ int cTrigger::load_weeks_from_xml(TiXmlElement *el)
 
 int cTrigger::load_flag_from_xml(TiXmlElement *el)
 {
-	string s;
+    std::string s;
  	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	get the "Flag" attribute value
  */
@@ -1292,7 +1291,7 @@ int cTrigger::load_flag_from_xml(TiXmlElement *el)
 int cTrigger::load_from_xml(TiXmlElement *el)
 {
 	const char *pt;
-	stringstream ss;
+	std::stringstream ss;
 /*
  *	make sure the maps are intialised
  */
@@ -1375,23 +1374,23 @@ int cTrigger::load_from_xml(TiXmlElement *el)
 	return 0;
 }
 
-void cTriggerList::LoadList(string filename)
+void cTriggerList::LoadList(std::string filename)
 {
 	TiXmlDocument doc(filename);
 	if(!doc.LoadFile()) {
 		if(!doc.ErrorRow() && !doc.ErrorCol())
 		{
-			cout << "Warning: Girl has no script trigger file: " << filename << endl;
+			std::cout << "Warning: Girl has no script trigger file: " << filename << std::endl;
 			return;
 		}
-		cerr << "Error: Can't load script trigger list " << filename << endl;
-		cerr << "Line "
+		std::cerr << "Error: Can't load script trigger list " << filename << std::endl;
+		std::cerr << "Line "
 			<< doc.ErrorRow()
 			<< ", col "
 			<< doc.ErrorCol()
 			<< ": "
 			<< doc.ErrorDesc()
-			<< endl
+			<< std::endl
 		;
 		return;
 	}

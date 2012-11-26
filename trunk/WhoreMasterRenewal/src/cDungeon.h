@@ -29,8 +29,6 @@
 
 #include "cGirls.h"
 
-using namespace std;
-
 class cGirlTorture;
 
 // Keeps track of customers in the dungeon
@@ -50,7 +48,7 @@ typedef struct sDungeonCust
 	sDungeonCust*	m_Next;
 	sDungeonCust*	m_Prev;
 	int				m_Health;
-	void OutputCustDetailString(string& Data, const string& detailName);
+	void OutputCustDetailString(std::string& Data, const std::string& detailName);
 }sDungeonCust;
 
 // Keeps track of girls in the dungeon
@@ -67,7 +65,7 @@ typedef struct sDungeonGirl
 	sGirl*			m_Girl;
 	sDungeonGirl*	m_Next;
 	sDungeonGirl*	m_Prev;
-	void OutputGirlDetailString(string& Data, const string& detailName);
+	void OutputGirlDetailString(std::string& Data, const std::string& detailName);
 }sDungeonGirl;
 
 
@@ -93,13 +91,13 @@ public:
 	void Free();
 	TiXmlElement* SaveDungeonDataXML(TiXmlElement* pRoot);	// saves dungeon data
 	bool LoadDungeonDataXML(TiXmlHandle hDungeon);
-	void LoadDungeonDataLegacy(ifstream& ifs);	// loads dungeon data
+	void LoadDungeonDataLegacy(std::ifstream& ifs);	// loads dungeon data
 	void AddGirl(sGirl* girl, int reason);
 	void AddCust(int reason, int numDaughters, bool hasWife);
-	void OutputGirlRow(int i, string* Data, const vector<string>& columnNames);
-	void OutputCustRow(int i, string* Data, const vector<string>& columnNames);
+	void OutputGirlRow(int i, std::string* Data, const std::vector<std::string>& columnNames);
+	void OutputCustRow(int i, std::string* Data, const std::vector<std::string>& columnNames);
 	sDungeonGirl* GetGirl(int i);
-	sDungeonGirl* GetGirlByName(string name);
+	sDungeonGirl* GetGirlByName(std::string name);
 	sDungeonCust* GetCust(int i);
 	int GetDungeonPos(sGirl* girl);
 	sGirl* RemoveGirl(sGirl* girl);
@@ -119,7 +117,7 @@ public:
 
 
 	// WD:	Torturer tortures dungeon girl.
-	//void doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, string& summary);	{ cGirlTorture::cGirlTorture(d_girl, t_girl) }
+	//void doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, std::string& summary);	{ cGirlTorture::cGirlTorture(d_girl, t_girl) }
 
 	void PlaceDungeonGirl(sDungeonGirl* newGirl);
 	void PlaceDungeonCustomer(sDungeonCust* newCust);

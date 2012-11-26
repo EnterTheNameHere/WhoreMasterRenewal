@@ -25,7 +25,6 @@
 #include "cBrothel.h"
 #include "cMessageBox.h"
 #include "cCustomers.h"
-using namespace std;
 
 extern cGirls g_Girls;
 extern cTraits g_Traits;
@@ -56,7 +55,7 @@ const char *sEffect::girl_status_name(unsigned int id)
 	     << " too large (max is "
 	     << sGirl::max_statuses
 	     << ")"
-	     << endl;
+	     << std::endl;
 	return "";
 }
 
@@ -69,7 +68,7 @@ const char *sEffect::skill_name(unsigned int id)
 	     << " too large (max is "
 	     << sGirl::max_skills
 	     << ")"
-	     << endl;
+	     << std::endl;
 	return "";
 }
 
@@ -82,12 +81,12 @@ const char *sEffect::stat_name(unsigned int id)
 	     << " too large (max is "
 	     << sGirl::max_stats
 	     << ")"
-	     << endl;
+	     << std::endl;
 	return "";
 }
 
 
-bool sEffect::set_skill(string s)
+bool sEffect::set_skill(std::string s)
 	{
 
 		int nID	= sGirl::lookup_skill_code(s);
@@ -95,14 +94,14 @@ bool sEffect::set_skill(string s)
 		if (nID == -1)		// ERROR
 		{
 			g_LogFile.os() << "[sEffect::set_skill] Error: unknown Skill: " << s <<
-				". Skill ID: " << nID << endl;
+				". Skill ID: " << nID << std::endl;
 			return false;
 		}
 		m_EffectID = nID;
 		return true;
 	}
 
-	bool sEffect::set_girl_status(string s)
+	bool sEffect::set_girl_status(std::string s)
 	{
 
 		int nID	= sGirl::lookup_status_code(s);
@@ -110,13 +109,13 @@ bool sEffect::set_skill(string s)
 		if (nID == -1)		// ERROR
 		{
 			g_LogFile.os() << "[sEffect::lookup_status_code] Error: unknown Status: " << s <<
-				". Skill ID: " << nID << endl;
+				". Skill ID: " << nID << std::endl;
 			return false;
 		}
 		m_EffectID = nID;
 		return true;
 	}
-	bool sEffect::set_stat(string s)
+	bool sEffect::set_stat(std::string s)
 	{
 
 		int nID	= sGirl::lookup_stat_code(s);
@@ -124,7 +123,7 @@ bool sEffect::set_skill(string s)
 		if (nID == -1)		// ERROR
 		{
 			g_LogFile.os() << "[sEffect::set_stat] Error: unknown Stat: " << s <<
-				". Skill ID: " << nID << endl;
+				". Skill ID: " << nID << std::endl;
 			return false;
 		}
 		m_EffectID = nID;
@@ -202,7 +201,7 @@ static void do_effects(TiXmlElement *parent, sInventoryItem *item)
 			case sEffect::Stat:
 				if(ept->set_stat(pt) == false) {
 					g_LogFile.os() << "effect type code == " << ept->m_Affects;
-					g_LogFile.os() << " stat lookup failed for " << item->m_Name << endl;
+					g_LogFile.os() << " stat lookup failed for " << item->m_Name << std::endl;
 
 				}
 				break;
@@ -213,7 +212,7 @@ static void do_effects(TiXmlElement *parent, sInventoryItem *item)
 				ept->set_skill(pt);
 				break;
 			default:
-				g_LogFile.os() << " can't handle effect type " << ept->m_Affects << endl;
+				g_LogFile.os() << " can't handle effect type " << ept->m_Affects << std::endl;
 			}
 		}
 
@@ -233,7 +232,7 @@ void cInventory::AddItem(sInventoryItem* item)
 void cInventory::remove_trait(sGirl* girl, int num, int index)
 {
 	u_int item_type = girl->m_Inventory[num]->m_Type;
-	string trait_name = girl->m_Inventory[num]->m_Effects[index].m_Trait;
+    std::string trait_name = girl->m_Inventory[num]->m_Effects[index].m_Trait;
 
 	/*
 	 *	WD:	New logic for remembering traits
@@ -396,7 +395,7 @@ void cInventory::CalculateCost(sInventoryItem* newItem)
 		newItem->m_Cost = 10;
 }
 
-ostream& operator << (ostream& os, sEffect::What &w)
+std::ostream& operator << (std::ostream& os, sEffect::What &w)
 {
 	switch(w) {
 	case sEffect::Skill:		return os << "Skill";
@@ -405,7 +404,7 @@ ostream& operator << (ostream& os, sEffect::What &w)
 	case sEffect::GirlStatus:	return os << "GirlStatus";
 	case sEffect::Trait:		return os << "Trait";
 	default:
-		g_LogFile.os() << "error: unexpected 'what' value: " << int(w) << endl;
+		g_LogFile.os() << "error: unexpected 'what' value: " << int(w) << std::endl;
 		return os << "Error(" << int(w) << ")";
 	}
 }
@@ -438,7 +437,7 @@ sInventoryItem* cInventory::BuyShopItem(int num)
 	return item;
 }
 
-int cInventory::CheckShopItem(string name)
+int cInventory::CheckShopItem(std::string name)
 {
 	int num = -1;
 	for(int i=0; i<NUM_SHOPITEMS; i++)
@@ -564,28 +563,28 @@ sInventoryItem* cInventory::GetRandomItem()
 	//g_LogFile.os() << "cInventory::GetRandomItem: "
 	//     << "items.size == "
 	//     << items.size()
-	//     << endl
+	//     << std::endl
 	//;
 	if(items.size() == 0) {
-		//g_LogFile.os() << "	returning null" << endl;
+		//g_LogFile.os() << "	returning null" << std::endl;
 		return 0;
 	}
 
 	if(items.size() == 1) {
 		ipt = items[0];
-		//g_LogFile.os() << "	returning 0x" << hex << int(ipt) << endl;
+		//g_LogFile.os() << "	returning 0x" << hex << int(ipt) << std::endl;
 		return items[0];
 	}
 
 	int index = g_Dice%(items.size()-1);	// fixed crash with going outside vector size - necro
-	//g_LogFile.os() << "	returning item at index " << index << endl;
+	//g_LogFile.os() << "	returning item at index " << index << std::endl;
 	ipt = items[index];
-	//g_LogFile.os() << "	returning 0x" << hex << int(ipt) << dec << endl;
+	//g_LogFile.os() << "	returning 0x" << hex << int(ipt) << dec << std::endl;
 
 	return ipt;
 }
 
-sInventoryItem* cInventory::GetItem(string name)
+sInventoryItem* cInventory::GetItem(std::string name)
 {
 	sInventoryItem* item;
 
@@ -1012,7 +1011,7 @@ static sInventoryItem* handle_element(TiXmlElement *el)
 	if ((pt = el->Attribute("Desc")))
 		item->m_Desc = pt;
 	else
-		cout << "no desc attribute found" << endl;
+		std::cout << "no desc attribute found" << std::endl;
 
 	if((pt = el->Attribute("Type")))
 		item->set_type(pt);
@@ -1037,7 +1036,7 @@ static sInventoryItem* handle_element(TiXmlElement *el)
 		item->set_rarity(pt);
 
 	if((pt = el->Attribute("Infinite")))
-		item->m_Infinite = (string(pt) == "true");
+		item->m_Infinite = (std::string(pt) == "true");
 	else
 		item->m_Infinite = false;
 
@@ -1045,15 +1044,15 @@ static sInventoryItem* handle_element(TiXmlElement *el)
 	return item;
 }
 
-bool cInventory::LoadItemsXML(string filename)
+bool cInventory::LoadItemsXML(std::string filename)
 {
 	cConfig cfg;
 
 	TiXmlDocument doc(filename);
 	if(!doc.LoadFile()) {
-		g_LogFile.os()	<< "can't load item file " << filename << endl;
+		g_LogFile.os()	<< "can't load item file " << filename << std::endl;
         g_LogFile.os()    << "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol()
-			<< ": " << doc.ErrorDesc() << endl;
+			<< ": " << doc.ErrorDesc() << std::endl;
 		return false;
 	}
 
@@ -1064,22 +1063,22 @@ bool cInventory::LoadItemsXML(string filename)
 	for(el = root_el->FirstChildElement(); el; el = el->NextSiblingElement()) {
 		sInventoryItem* item = handle_element(el);
 		if(log_flag)
-			g_LogFile.os() << *item << endl;
+			g_LogFile.os() << *item << std::endl;
 		items.push_back(item);
 	}
 	return true;
 }
 
-void cInventory::LoadItems(string filename)
+void cInventory::LoadItems(std::string filename)
 {
-	string msg = "Loading items from ";
+    std::string msg = "Loading items from ";
 	msg += filename;
 	g_LogFile.write(msg);
-	g_LogFile.os() << "loading items from '" << filename << "'" << endl;
-	ifstream in;
+	g_LogFile.os() << "loading items from '" << filename << "'" << std::endl;
+	std::ifstream in;
 	in.open(filename.c_str());
 	if(!in.good())
-		g_LogFile.os() << "LoadItems: stream not good after open" << endl;
+		g_LogFile.os() << "LoadItems: stream not good after open" << std::endl;
 
 	char buffer[1000];
 	sInventoryItem* newItem = 0;
@@ -1091,7 +1090,7 @@ void cInventory::LoadItems(string filename)
 
 		if (in.peek()=='\n') in.ignore(1,'\n');
 		in.getline(buffer, sizeof(buffer), '\n');		// get the name
-		g_LogFile.os() << "LoadItems: " << buffer << endl;
+		g_LogFile.os() << "LoadItems: " << buffer << std::endl;
 		if(buffer[0] == 0)
 			break;
 

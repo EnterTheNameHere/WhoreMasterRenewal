@@ -119,7 +119,7 @@ void cCustomers::GenerateCustomers(sBrothel * brothel, int DayNight)
 {
 	Free();	// Free any existing customers
 
-	stringstream ss;
+	std::stringstream ss;
 	ss.str("");
 /*
  *	no girls, no customers

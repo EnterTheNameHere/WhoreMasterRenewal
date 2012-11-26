@@ -21,7 +21,6 @@
 #pragma once
 
 #include <string>
-using namespace std;
 #include "CSurface.h"
 #include "cInterfaceObject.h"
 #include "cInterfaceEvent.h"
@@ -56,7 +55,7 @@ private:
 	static SDL_Surface* m_ImgButtonOn;
 	static SDL_Surface* m_ImgButtonDisabled;
 
-	void LogSliderError(string description);
+	void LogSliderError(std::string description);
 
 public:
 	cSlider();

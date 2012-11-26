@@ -38,7 +38,7 @@ extern	cInterfaceEventManager	g_InterfaceEvents;
 extern bool g_WalkAround;
 extern bool g_Cheats;
 extern	bool	eventrunning;
-extern string g_ReturnText;
+extern std::string g_ReturnText;
 extern cGangManager g_Gangs;
 extern bool g_AllTogle;
 
@@ -141,7 +141,7 @@ void cScreenTown::init()
 	HideButton(brothel4_id, (g_Brothels.GetBrothel(3)==0));
 	HideButton(brothel5_id, (g_Brothels.GetBrothel(4)==0));
 
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, curbrothel_id);
 }
@@ -255,7 +255,7 @@ void cScreenTown::process()
 	}
 }
 
-string cScreenTown::walk_no_luck()
+std::string cScreenTown::walk_no_luck()
 {
 	if(m_first_walk) {
 		m_first_walk = false;
@@ -357,14 +357,14 @@ void cScreenTown::do_walk()
  *
  *	once scripts are stable
  */
-	string message = "You go out searching around town for any new girls, ";
+    std::string message = "You go out searching around town for any new girls, ";
 	message += "and you notice a potential new girl and walk up to her.";
 	g_MessageQue.AddToQue(message, 2);
 	int v[2] = {0,-1};
 	cTrigger* trig = 0;
 
 	DirPath dp;
-	string filename;
+    std::string filename;
 	cScriptManager sm;
 /*
  *	is there a girl specific talk script?
@@ -392,8 +392,8 @@ void cScreenTown::check_brothel(int BrothelNum)
 	if(g_Brothels.GetNumBrothels() == BrothelNum)
 	{	// player doesn't own this brothel... can he buy it?
 		static_brothel_data *bck = brothel_data + BrothelNum;
-		locale syslocale("");
-		stringstream ss;
+		std::locale syslocale("");
+		std::stringstream ss;
 		ss.imbue(syslocale);
 
 		if(!g_Gold.afford(bck->price) || g_Gangs.GetNumBusinessExtorted() < bck->business)

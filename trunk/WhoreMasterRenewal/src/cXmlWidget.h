@@ -27,11 +27,11 @@ public:
 	int x, y, w, h, r, g, b;
 	int fontsize, bordersize;
 	bool stat, alpha, scale, hidden, events, multi, hide, cache;
-	string base, on, off, disabled, type, name, text, file, seq;
+    std::string base, on, off, disabled, type, name, text, file, seq;
 };
 
 class cXmlWidget {
-	vector<sXmlWidgetPart> list;
+	std::vector<sXmlWidgetPart> list;
 public:
 	cXmlWidget() {}
 	int size() {	return int(list.size()); }

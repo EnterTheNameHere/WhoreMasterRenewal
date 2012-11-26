@@ -61,7 +61,7 @@ void cScreenMayor::init()
 	g_InitWin = false;
 
 ////////////////////
-	string data = "Influence Details\n";
+    std::string data = "Influence Details\n";
 
 	if(SetBribe)
 	{

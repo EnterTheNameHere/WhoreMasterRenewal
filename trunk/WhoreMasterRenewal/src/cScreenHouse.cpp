@@ -39,7 +39,7 @@ extern void GetInt();
 extern cInterfaceWindow g_GetInt;
 
 
-static string fmt_objective(stringstream &ss, string desc, int limit, int sofar=-1)
+static std::string fmt_objective(std::stringstream &ss, std::string desc, int limit, int sofar=-1)
 {
 	ss << desc;
 	if(limit != -1) {
@@ -71,8 +71,8 @@ void cScreenHouse::init()
 	Focused();
 	g_InitWin = false;
 
-	locale syslocale("");
-	stringstream ss;
+	std::locale syslocale("");
+	std::stringstream ss;
 	ss.imbue(syslocale);
 
 	ss << "CURRENT OBJECTIVE: ";

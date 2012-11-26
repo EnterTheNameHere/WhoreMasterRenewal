@@ -29,8 +29,6 @@
 #define TIXML_USE_STL
 #include "tinyxml.h"
 
-using namespace std;
-
 extern CLog g_LogFile;
 
 struct sBrothel;
@@ -61,8 +59,8 @@ class cGoldBase
 // --- Whores ---                              --- Sales ---
 // Brothel  Street   Movie     Bar  Casino   Items  Monster Loc'Biz   Raids P.Theft G.Theft C'combs  Reward Intr'st    Misc
 //  123456 1234567 1234567 1234567 1234567 1234567  1234567 1234567 1234567 1234567 1234567 1234567 1234567 1234567 1234567
-		string str(int brothel_no=-1) {
-			stringstream ss;
+	    std::string str(int brothel_no=-1) {
+			std::stringstream ss;
 			ss <<	"  --- Whores ---                              --- Sales ---";
 			ss <<	"# Brothel  Street   Movie     Bar  Casino   Items  "
 				"Monster Loc'Biz   Raids P.Theft G.Theft C'combs  "
@@ -74,23 +72,23 @@ class cGoldBase
 			else {
 				ss << "  ";
 			}
-			ss << setw(7) << brothel_work << " ";
-			ss << setw(7) << street_work	<< " ";
-			ss << setw(7) << movie_income	<< " ";
-			ss << setw(7) << bar_income	<< " ";
-			ss << setw(7) << gambling_profits	<< " ";
-			ss << setw(7) << item_sales	<< " ";
-			ss << setw(7) << slave_sales	<< " ";
-			ss << setw(7) << creature_sales	<< " ";
-			ss << setw(7) << extortion	<< " ";
-			ss << setw(7) << plunder	<< " ";
-			ss << setw(7) << petty_theft	<< " ";
-			ss << setw(7) << grand_theft	<< " ";
-			ss << setw(7) << catacomb_loot	<< " ";
-			ss << setw(7) << objective_reward	<< " ";
-			ss << setw(7) << bank_interest	<< " ";
-			ss << setw(7) << misc		<< " ";
-			ss << endl;
+			ss << std::setw(7) << brothel_work << " ";
+			ss << std::setw(7) << street_work	<< " ";
+			ss << std::setw(7) << movie_income	<< " ";
+			ss << std::setw(7) << bar_income	<< " ";
+			ss << std::setw(7) << gambling_profits	<< " ";
+			ss << std::setw(7) << item_sales	<< " ";
+			ss << std::setw(7) << slave_sales	<< " ";
+			ss << std::setw(7) << creature_sales	<< " ";
+			ss << std::setw(7) << extortion	<< " ";
+			ss << std::setw(7) << plunder	<< " ";
+			ss << std::setw(7) << petty_theft	<< " ";
+			ss << std::setw(7) << grand_theft	<< " ";
+			ss << std::setw(7) << catacomb_loot	<< " ";
+			ss << std::setw(7) << objective_reward	<< " ";
+			ss << std::setw(7) << bank_interest	<< " ";
+			ss << std::setw(7) << misc		<< " ";
+			ss << std::endl;
 			return ss.str();
 		}
 	} detail_in;
@@ -164,19 +162,19 @@ public:
  *	If I expand the variables tracked here, I'll mod the stream
  *	operators accodingly.
  */
-friend	istream &operator>>(istream& is, cGoldBase &g);
+friend	std::istream &operator>>(std::istream& is, cGoldBase &g);
 /*
  *	save and load methods
  */
 	TiXmlElement* saveGoldXML(TiXmlElement* pRoot);
 	bool loadGoldXML(TiXmlHandle hGold);
-	void loadGoldLegacy(istream &is) {
+	void loadGoldLegacy(std::istream &is) {
 		is >> (*this);
 	}
 /*
  *	type conversion methods
  */
-	string	sval();
+	std::string	sval();
 	int	ival();
 
 	void	reset();
@@ -273,7 +271,7 @@ friend	istream &operator>>(istream& is, cGoldBase &g);
 
 class cGold : public cGoldBase
 {
-	map<int, cGoldBase *> brothels;
+	std::map<int, cGoldBase *> brothels;
 	cGoldBase *find_brothel_account(int id) {
 		cGoldBase *ac_pt = brothels[id];
 		if(ac_pt == 0) {

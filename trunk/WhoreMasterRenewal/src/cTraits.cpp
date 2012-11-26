@@ -37,9 +37,9 @@ void cTraits::Free()
 	m_ParentTrait = m_LastTrait = 0;
 }
 
-void cTraits::LoadTraits(string filename)
+void cTraits::LoadTraits(std::string filename)
 {
-	ifstream in;
+	std::ifstream in;
 	in.open(filename.c_str());
 	char *pt, buffer[500];
 	sTrait* newTrait = 0;
@@ -79,9 +79,9 @@ void cTraits::LoadTraits(string filename)
 	in.close();
 }
 
-void cTraits::SaveTraits(string filename)
+void cTraits::SaveTraits(std::string filename)
 {
-	ofstream out;
+	std::ofstream out;
 	sTrait* current = m_ParentTrait;
 
 	out.open(filename.c_str());
@@ -107,7 +107,7 @@ void cTraits::AddTrait(sTrait* trait)
 	m_NumTraits++;
 }
 
-void cTraits::RemoveTrait(string name)
+void cTraits::RemoveTrait(std::string name)
 {
 	if(m_ParentTrait == 0)
 		return;
@@ -141,7 +141,7 @@ void cTraits::RemoveTrait(string name)
 	current = last = 0;
 }
 
-sTrait* cTraits::GetTrait(string name)
+sTrait* cTraits::GetTrait(std::string name)
 {
 	if(m_ParentTrait == 0)
 		return 0;
@@ -152,19 +152,19 @@ sTrait* cTraits::GetTrait(string name)
  *	changed the way the loop works to make it easier to include
  *	debug print statements
  */
-	// g_LogFile.os() << "Looking up trait '" << name << "'" << endl;
+	// g_LogFile.os() << "Looking up trait '" << name << "'" << std::endl;
 	for(current = m_ParentTrait; current; current = current->m_Next) {
 		/*
 		g_LogFile.os()	<< "	testing '"
 			<< current->m_Name
 			<<"'"
-			<< endl;
+			<< std::endl;
 		*/
 		if(name == current->m_Name) {
-			//g_LogFile.os() << "		gotit!" << endl;
+			//g_LogFile.os() << "		gotit!" << std::endl;
 			return current;
 		}
-		//g_LogFile.os() << "		nope!" << endl;
+		//g_LogFile.os() << "		nope!" << std::endl;
 	}
 	// END MOD
 	return 0;

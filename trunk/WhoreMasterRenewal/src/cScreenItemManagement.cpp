@@ -16,7 +16,7 @@ extern cBrothelManager g_Brothels;
 extern cInventory g_InvManager;
 extern cWindowManager g_WinManager;
 extern bool g_AllTogle;
-extern string g_ReturnText;
+extern std::string g_ReturnText;
 
 extern sGirl *selected_girl;
 
@@ -32,8 +32,8 @@ static int leftItem = -2;
 static int rightItem = -2;
 static int sel_next_l = -1;
 static int sel_next_r = -1;
-static string sel_name_l = "";
-static string sel_name_r = "";
+static std::string sel_name_l = "";
+static std::string sel_name_r = "";
 
 static SDL_Color* RarityColor[7];
 
@@ -74,7 +74,7 @@ void cScreenItemManagement::init()
 
 ////////////////////
 
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, curbrothel_id);
 
@@ -214,7 +214,7 @@ void cScreenItemManagement::check_events()
 
 		if(selection != -1)
 		{
-			string temp = "Cost: ";
+		    std::string temp = "Cost: ";
 			if(leftOwner == 0)
 			{
 				temp = "Value: ";
@@ -286,7 +286,7 @@ void cScreenItemManagement::check_events()
 
 		if(selection != -1)
 		{
-			string temp = "Cost: ";
+		    std::string temp = "Cost: ";
 			if(rightOwner == 0)
 			{
 				temp = "Value: ";
@@ -436,7 +436,7 @@ void cScreenItemManagement::check_events()
 void cScreenItemManagement::refresh_item_list(Side which_list)
 {
 	// good enough place as any to update the cost shown on the screen
-	string temp = "PLAYER GOLD: ";
+    std::string temp = "PLAYER GOLD: ";
 	temp += g_Gold.sval();
 	EditTextItem(temp, gold_id);
 
@@ -444,7 +444,7 @@ void cScreenItemManagement::refresh_item_list(Side which_list)
 //	rightOwner = GetSelectedItemFromList(owners_r_id);
 
 	int item_list, owner_list, *sel_pos, *owner, *other_owner;
-	string *sel_name;
+    std::string *sel_name;
 	if(which_list == Left)
 	{
 		item_list = items_l_id;
@@ -479,7 +479,7 @@ void cScreenItemManagement::refresh_item_list(Side which_list)
 				int ItemColor = -1;
 				if(g_Brothels.m_Inventory[i])
 				{
-					string it = g_Brothels.m_Inventory[i]->m_Name;
+				    std::string it = g_Brothels.m_Inventory[i]->m_Name;
 					if(*sel_name == it)  // if we just transferred this item here, might want to select it
 						*sel_pos = i;
 					it += " (";
@@ -594,7 +594,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 		return;
 
 	int source_list, source_owner_list, source_owner, target_owner_list, target_owner;
-	string *item_name;
+    std::string *item_name;
 	if(transfer_from == Left)
 	{
 		source_list = items_l_id;

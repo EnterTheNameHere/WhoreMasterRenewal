@@ -74,10 +74,10 @@ void cScreenSlaveMarket::init()
 	DisableButton(buy_slave_id, true);
 	selection=-1;
 
-	g_LogFile.os() << "setting up slave market: genGirls = " << g_GenGirls << endl;
+	g_LogFile.os() << "setting up slave market: genGirls = " << g_GenGirls << std::endl;
 
 	ImageNum = -1;
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, cur_brothel_id);
 
@@ -188,7 +188,7 @@ void cScreenSlaveMarket::init()
 	else
 		g_GenGirls = true;
 
-	string message = "Slave Market, ";
+    std::string message = "Slave Market, ";
 	message += g_Gold.sval();
 	message += " gold";
 	EditTextItem(message, header_id);
@@ -230,7 +230,7 @@ void cScreenSlaveMarket::init()
  */
 	sGirl* g = MarketSlaveGirls[tmp];
 	if(g == 0) {
-		g_LogFile.os() << "error: null pointer for cursor entry in market" << endl;
+		g_LogFile.os() << "error: null pointer for cursor entry in market" << std::endl;
 		return;
 	}
 /*
@@ -281,7 +281,7 @@ void cScreenSlaveMarket::process()
 /*
  *	handle arrow keys
  */
-	//g_LogFile.os() << "... checking arrows" << endl;
+	//g_LogFile.os() << "... checking arrows" << std::endl;
  	if(check_keys())
 		return;
 
@@ -290,12 +290,12 @@ void cScreenSlaveMarket::process()
  */
 	init();
 
-	//g_LogFile.os() << "Slave Market called" << endl;
+	//g_LogFile.os() << "Slave Market called" << std::endl;
 
 /*
  *	check to see if there's a button event needing handling
  */
-	//g_LogFile.os() << "... checking buttons" << endl;
+	//g_LogFile.os() << "... checking buttons" << std::endl;
 	check_events();
 
 /*
@@ -324,7 +324,7 @@ void cScreenSlaveMarket::process()
 		g_LogFile.os() << "... no girl at index "
 		               << index
 			       << "- returning "
-			       << endl
+			       << std::endl
 		;
 		return;
 	}
@@ -442,7 +442,7 @@ bool cScreenSlaveMarket::change_selected_girl()
 		g_LogFile.ssend();
 		return true;
 	}
-	string detail;
+    std::string detail;
 
 	if(DetailLevel == 0)
 		detail = g_Girls.GetDetailsString(girl,true);
@@ -493,7 +493,7 @@ bool cScreenSlaveMarket::change_selected_girl()
  *	except that g_Girls.GetImageSurface sets the image number.
  *	I had to make image_num() supply a reference so it would compile
  */
-// 	g_LogFile.os() << "... setting image: " << ImageNum << endl;
+// 	g_LogFile.os() << "... setting image: " << ImageNum << std::endl;
 
 	SetImage(slave_image_id, g_Girls.GetImageSurface(girl, IMGTYPE_PROFILE, true, ImageNum));
 	if(g_Girls.IsAnimatedSurface(girl, IMGTYPE_PROFILE, ImageNum))
@@ -537,15 +537,15 @@ bool cScreenSlaveMarket::check_events()
 		){
 			girl = MarketSlaveGirls[selection];
 			int cost = tariff.slave_buy_price(girl);
-			cout << "Selection = " << selection
+			std::cout << "Selection = " << selection
 			     << ", girl = " << girl->m_Realname
-			     << endl
+			     << std::endl
 			;
 /*
  *			can the player afford this particular playmate?
  */
 			if(g_Gold.slave_cost(cost) == false) {
-				string text = "You don't have enough money to purchase ";
+				std::string text = "You don't have enough money to purchase ";
 				text += girl->m_Realname;
 				g_MessageQue.AddToQue(text, 0);
 				break;
@@ -554,21 +554,21 @@ bool cScreenSlaveMarket::check_events()
 			sBrothel* brothel = g_Brothels.GetBrothel(g_CurrBrothel);
 			if(g_Girls.GetRebelValue(girl, false) >= 35)
 			{
-				string text = girl->m_Realname;
+			    std::string text = girl->m_Realname;
 				text += " has been sent to your dungeon, as she is rebellious and poorly trained.";
 				g_MessageQue.AddToQue(text, 0);
 				g_Brothels.GetDungeon()->AddGirl(girl, DUNGEON_NEWSLAVE);
 			}
 			else if((brothel->m_NumRooms - brothel->m_NumGirls) == 0)
 			{
-				string text = girl->m_Realname;
+			    std::string text = girl->m_Realname;
 				text += " has been sent to your dungeon, since your current brothel is full.";
 				g_MessageQue.AddToQue(text, 0);
 				g_Brothels.GetDungeon()->AddGirl(girl, DUNGEON_NEWSLAVE);
 			}
 			else
 			{
-				string text = girl->m_Realname;
+			    std::string text = girl->m_Realname;
 				text += " has been sent to your current brothel.";
 				g_MessageQue.AddToQue(text, 0);
 				g_Brothels.AddGirl(g_CurrBrothel, girl);

@@ -20,7 +20,7 @@
 #include "fstream"
 #include "CLog.h"
 #include "DirPath.h"
-using namespace std;
+
 extern CLog g_LogFile;
 
 int g_ScreenWidth = 800, g_ScreenHeight = 600;
@@ -71,12 +71,12 @@ bool CGraphics::End()
 	return true;
 }
 
-bool CGraphics::InitGraphics(string caption, int Width, int Height, int BPP)
+bool CGraphics::InitGraphics(std::string caption, int Width, int Height, int BPP)
 {
 	if(Width == 0 || Height == 0)
 	{
 		char buffer[1000];
-		ifstream incol;
+		std::ifstream incol;
 		// WD: Typecast to resolve ambiguous call in VS 2010
 		DirPath dp = DirPath() << "ScreenMode.txt";
 		g_LogFile.write("Reading Screen Mode");

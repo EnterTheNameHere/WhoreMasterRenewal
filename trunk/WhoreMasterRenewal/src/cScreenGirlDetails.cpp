@@ -38,7 +38,7 @@ extern	int	g_TalkCount;
 extern bool g_AllTogle;
 extern cGangManager g_Gangs;
 extern bool g_Cheats;
-extern string g_ReturnText;
+extern std::string g_ReturnText;
 extern	bool	eventrunning;
 
 extern	bool	g_LeftArrow;
@@ -47,7 +47,7 @@ extern	bool	g_UpArrow;
 extern	bool	g_DownArrow;
 
 static cTariff tariff;
-static stringstream ss;
+static std::stringstream ss;
 
 static int ImageNum = -1;
 static int DetailLevel = 0;
@@ -60,7 +60,7 @@ static int DayNight = 0;
 static bool SetJob = true;
 
 extern sGirl *selected_girl;
-extern vector<int> cycle_girls;
+extern std::vector<int> cycle_girls;
 extern int cycle_pos;
 
 bool cScreenGirlDetails::ids_set = false;
@@ -145,7 +145,7 @@ void cScreenGirlDetails::init()
 
 	EditTextItem(selected_girl->m_Realname, girlname_id);
 
-	string detail = (DetailLevel == 0) ? g_Girls.GetDetailsString(selected_girl) : g_Girls.GetMoreDetailsString(selected_girl);
+    std::string detail = (DetailLevel == 0) ? g_Girls.GetDetailsString(selected_girl) : g_Girls.GetMoreDetailsString(selected_girl);
 	EditTextItem(detail, girldesc_id);
 
 	if(selected_girl)
@@ -272,7 +272,7 @@ void cScreenGirlDetails::check_events()
 		// Rebelliousness might have changed, so update details
 		if(DetailLevel == 0)
 		{
-			string detail = g_Girls.GetDetailsString(selected_girl);
+		    std::string detail = g_Girls.GetDetailsString(selected_girl);
 			EditTextItem(detail, girldesc_id);
 		}
 
@@ -414,7 +414,7 @@ void cScreenGirlDetails::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(senddungeon_id))
 	{
-		string message;
+	    std::string message;
 		g_Brothels.GetGirlPos(g_CurrBrothel, selected_girl);
 
 		// does she decide to fight back
@@ -465,7 +465,7 @@ void cScreenGirlDetails::check_events()
 
 					g_Brothels.AddGirlToRunaways(temp);
 
-					string smess = "";
+				    std::string smess = "";
 					smess += temp->m_Realname;
 					smess += " has run away";
 					g_MessageQue.AddToQue(smess, 1);
@@ -624,7 +624,7 @@ void cScreenGirlDetails::RefreshJobList()
 	if (job_filter == -1)
 		return;
 
-	string text = "";
+    std::string text = "";
 	bool day = (DayNight == 0) ? true : false;
 
 	// populate Jobs listbox with jobs in the selected category
@@ -752,7 +752,7 @@ sGirl *cScreenGirlDetails::remove_selected_girl()
 /*
  * returns TRUE if the girl won
  */
-bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
+bool cScreenGirlDetails::do_take_gold(sGirl *girl, std::string &message)
 {
 	const int GIRL_LOSES = false;
 	const int GIRL_WINS = true;
@@ -857,7 +857,7 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
  */
 	g_Brothels.AddGirlToRunaways(temp);
 
-	string smess = "";
+    std::string smess = "";
 	smess += temp->m_Realname;
 	smess += " has run away";
 	g_MessageQue.AddToQue(smess, 1);
@@ -873,7 +873,7 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
 
 void cScreenGirlDetails::take_gold(sGirl *girl)
 {
-	string message;
+    std::string message;
 	bool girl_win = do_take_gold(girl, message);
 /*
  *	if the girl won, then we're pretty much sorted

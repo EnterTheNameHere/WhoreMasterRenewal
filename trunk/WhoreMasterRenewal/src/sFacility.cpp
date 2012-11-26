@@ -33,7 +33,7 @@ void sFacility::load_from_xml(TiXmlElement *base_el)
 	m_type_name = "Unknown";
 	u.get_att(base_el, "Name", m_type_name);
 	u.context(
-		string("Loading Facility Data for ") +
+		std::string("Loading Facility Data for ") +
 		m_type_name +
 		" from XML"
 	);
@@ -48,7 +48,7 @@ void sFacility::load_from_xml(TiXmlElement *base_el)
 		el ;
 		el = el->NextSiblingElement()
 	) {
-		string tag = el->ValueStr();
+	    std::string tag = el->ValueStr();
 
 		if(tag != "BoundedVar") {
 			l.ss()	<< "Warning: Unexpected tag '"
@@ -65,10 +65,10 @@ void sFacility::load_from_xml(TiXmlElement *base_el)
  *		the struct knows how to parse itself,
  *		but we need to find out which one it is
  */
-		string bvar_name;
+	    std::string bvar_name;
 		u.context(tag + " tag");
 		u.get_att(el,	"Name",	bvar_name);
-		l.ss() << "loading boundedvar " << bvar_name << endl;
+		l.ss() << "loading boundedvar " << bvar_name << std::endl;
 		l.ssend();
 
 		if(bvar_name == "Glitz") {
@@ -91,7 +91,7 @@ void sFacility::load_from_xml(TiXmlElement *base_el)
 
 }
 
-TiXmlElement *sBoundedVar::to_xml(string name)
+TiXmlElement *sBoundedVar::to_xml(std::string name)
 {
 	TiXmlElement *el = new TiXmlElement("BoundedVar");
 	el->SetAttribute("Name", name);

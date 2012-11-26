@@ -94,9 +94,9 @@ int cLuaMenuInner::get_int(const char *name, int def_val)
 /*
  * same again, but with a string value
  */
-string cLuaMenuInner::get_string(const char *name, const char *def_val)
+std::string cLuaMenuInner::get_string(const char *name, const char *def_val)
 {
-	string str = def_val;
+    std::string str = def_val;
 /*
  *	assuming the arg table is on top
  *	push the key name on top of that
@@ -126,7 +126,7 @@ string cLuaMenuInner::get_string(const char *name, const char *def_val)
 
 static void c_callback(int chosen);
 
-void cLuaMenuInner::whoops(string msg)
+void cLuaMenuInner::whoops(std::string msg)
 {
 	lua_pushstring(l, msg.c_str());
 	lua_error(l);	// never returns
@@ -246,7 +246,7 @@ str_vec cLuaMenuInner::traverse_caption_table()
  *		old key (or nil) and the value will be
  *		on top of that
  */
- 		string option_pt = lua_tostring(l, -1);
+ 	    std::string option_pt = lua_tostring(l, -1);
 		//log.ss() << "traverse: '" << option_pt << "'";
 		//log.ssend();
 
@@ -254,7 +254,7 @@ str_vec cLuaMenuInner::traverse_caption_table()
  *		we need some storage for the string
  *		the doesn't depend on the Lua stack
  */
- 		string *strpt = new string(" ");
+ 	    std::string *strpt = new std::string(" ");
 		(*strpt) += option_pt;
 		v.push_back(strpt);
 /*
@@ -512,7 +512,7 @@ void cLuaMenuInner::clicked(int option_number)
 		return;
 	}
 	CLog log;
-	string errstr = lua_tostring(l, -1);
+    std::string errstr = lua_tostring(l, -1);
 	lua_pop(l, 1);
 	log.ss()	<< "Script error in menu callback: "
 			<< errstr

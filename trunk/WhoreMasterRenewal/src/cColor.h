@@ -24,7 +24,6 @@
 #include <string>
 #include <SDL.h>
 #include "CLog.h"
-using namespace std;
 
 extern CLog g_LogFile;
 struct SDL_Color;
@@ -32,9 +31,9 @@ struct SDL_Color;
 class cColor
 {
 public:
-	Uint8 convertFromHex(string hex);
+	Uint8 convertFromHex(std::string hex);
 
-	void HexToSDLColor(string HexColor, SDL_Color* SDLColor);
+	void HexToSDLColor(std::string HexColor, SDL_Color* SDLColor);
 };
 
 #endif // CCOLOR_H_INCLUDED_1533

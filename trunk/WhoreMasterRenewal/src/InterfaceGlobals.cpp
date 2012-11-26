@@ -36,7 +36,7 @@
 #include "cScreenGirlManagement.h"
 #include "cScreenGirlDetails.h"
 #include "cScreenDungeon.h"
-using namespace std;
+
 extern sInterfaceIDs g_interfaceid;
 extern cWindowManager g_WinManager;
 
@@ -170,10 +170,10 @@ void ResetInterface()
 void LoadInterface()
 {
 	cTariff tariff;
-	stringstream ss;
+	std::stringstream ss;
 	int r=0, g=0, b=0;
 	int a=0, c=0, d=0, e=0;
-	ifstream incol;
+	std::ifstream incol;
 
 	// load 
 	// load interface colors

@@ -39,9 +39,9 @@ void WhoreMasterRenewalWindow::ResizeAllScreens( const sf::Vector2u& size )
 }
 
 // TODO: Handling missing screens - show error, leave current screen?
-void WhoreMasterRenewalWindow::ShowScreen( const string& screenName )
+void WhoreMasterRenewalWindow::ShowScreen( const std::string& screenName )
 {
-    //std::clog << "WhoreMasterRenewalWindow::ShowScreen( string screenName )\n";
+    //std::clog << "WhoreMasterRenewalWindow::ShowScreen( std::string screenName )\n";
 
     // Find and hide current Screen
 }

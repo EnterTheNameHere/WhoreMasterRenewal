@@ -48,7 +48,7 @@ cCheckBox::~cCheckBox()
 	m_Next = 0;
 }
 
-bool cCheckBox::CreateCheckBox(int id, int x, int y, int width, int height, string text, int fontsize)
+bool cCheckBox::CreateCheckBox(int id, int x, int y, int width, int height, std::string text, int fontsize)
 {
 	m_ID = id;
 

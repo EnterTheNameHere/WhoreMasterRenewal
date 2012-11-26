@@ -76,8 +76,8 @@ public:
 	bool check_keys();
 
 	int set_mission_desc(int mid);
-	string mission_desc(int mid);
-	string short_mission_desc(int mid);
+    std::string mission_desc(int mid);
+    std::string short_mission_desc(int mid);
 
 	// XML screen replacement for cSelector, for multi-select listboxes
 	int multi_first() {

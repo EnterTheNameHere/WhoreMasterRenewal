@@ -45,7 +45,7 @@ extern cInterfaceWindow g_GetString;
 
 void cScreenPrison::init()
 {
-	stringstream ss;
+	std::stringstream ss;
 
 	if(!g_InitWin) {
 		return;
@@ -67,7 +67,7 @@ void cScreenPrison::init()
 	while(pgirls)
 	{
 		//sGirls * girl = mg.girl;
-		string data = "";
+	    std::string data = "";
 		data += pgirls->m_Realname;
 		data += "  (release cost: ";
 
@@ -90,7 +90,7 @@ bool cScreenPrison::ids_set = false;
 
 void cScreenPrison::set_ids()
 {
-	stringstream ss;
+	std::stringstream ss;
 
 	ids_set		= true;
 	header_id	= get_id("ScreenHeader");
@@ -261,14 +261,14 @@ void cScreenPrison::release_button()
 	g_Brothels.RemoveGirlFromPrison(pgirls);
 	if((g_Brothels.GetBrothel(g_CurrBrothel)->m_NumRooms - g_Brothels.GetBrothel(g_CurrBrothel)->m_NumGirls) == 0)
 	{
-		string text = pgirls->m_Realname;
+	    std::string text = pgirls->m_Realname;
 		text += " has been sent to your dungeon, since current brothel is full.";
 		g_MessageQue.AddToQue(text, 0);
 		g_Brothels.GetDungeon()->AddGirl(pgirls, DUNGEON_NEWGIRL);
 	}
 	else
 	{
-		string text = pgirls->m_Realname;
+	    std::string text = pgirls->m_Realname;
 		text += " has been sent to your current brothel.";
 		g_MessageQue.AddToQue(text, 0);
 		g_Brothels.AddGirl(g_CurrBrothel, pgirls);

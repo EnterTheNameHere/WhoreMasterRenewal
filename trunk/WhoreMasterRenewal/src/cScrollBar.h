@@ -21,7 +21,6 @@
 #pragma once
 
 #include <string>
-using namespace std;
 #include "CSurface.h"
 #include "cInterfaceObject.h"
 #include "cInterfaceEvent.h"
@@ -52,7 +51,7 @@ class cScrollBar : public cInterfaceObject
 	SDL_Rect* m_RectTop;  // rectangle for top half of bar to be blitted
 	SDL_Rect* m_RectBottom;  // rectangle for bottom half of bar to be blitted
 
-	void LogScrollBarError(string description);
+	void LogScrollBarError(std::string description);
 
 public:
 	cScrollBar();

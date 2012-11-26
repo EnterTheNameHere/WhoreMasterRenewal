@@ -21,7 +21,7 @@
 
 namespace WhoreMasterRenewal
 {
-    Logger::Logger( const string& filename, bool append )
+    Logger::Logger( const std::string& filename, bool append )
     {
         //if( m_FirstRun )
         //{
@@ -32,9 +32,9 @@ namespace WhoreMasterRenewal
         //            m_FirstRun = false;
         //            
                     if( append )
-                        m_LogFileStream.open( filename, ios_base::out | ios_base::app );
+                        m_LogFileStream.open( filename, std::ios_base::out | std::ios_base::app );
                     else
-                        m_LogFileStream.open( filename, ios_base::out );
+                        m_LogFileStream.open( filename, std::ios_base::out );
                     
         //            if( !m_LogFileStream.is_open() )
         //            {
@@ -71,7 +71,7 @@ CLogInner::CLogInner()
 
 void CLogInner::init()
 {
-	cout << "CLogInner::init" << endl;
+	std::cout << "CLogInner::init" << std::endl;
 	if(setup) return;
 	setup = true;
 	m_ofile.open("gamelog.txt");
@@ -82,12 +82,12 @@ CLogInner::~CLogInner()
 	m_ofile.close();
 }
 
-void CLogInner::write(string text)
+void CLogInner::write(std::string text)
 {
-	m_ofile<<text<<endl;
+	m_ofile<<text<<std::endl;
 	m_ofile.flush();
 #ifdef LINUX
-	std::cout << text << endl;
+	std::cout << text << std::endl;
 #endif
 }
 

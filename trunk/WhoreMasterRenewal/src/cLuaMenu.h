@@ -29,9 +29,7 @@
 #include "sConfig.h"
 #include "CGraphics.h"
 
-using namespace std;
-
-typedef vector<string *> str_vec;
+typedef std::vector<std::string *> str_vec;
 
 class cLuaMenuInner
 {
@@ -49,14 +47,14 @@ class cLuaMenuInner
 	int		h, w;
 	int		maxw, maxh;
 	int		num_options;
-	string		font_file;
+    std::string 	font_file;
 	int		font_size;
-	vector<string*>	captions;
+	std::vector<std::string*>	captions;
 	int		lua_callback_ref;
 
 	int get_int(const char *name, int def_val);
-	string get_string(const char *name, const char *def_val);
-	void whoops(string msg);
+    std::string get_string(const char *name, const char *def_val);
+	void whoops(std::string msg);
 	int get_ref(const char *);
 	str_vec get_caption_strings();
 	str_vec traverse_caption_table();

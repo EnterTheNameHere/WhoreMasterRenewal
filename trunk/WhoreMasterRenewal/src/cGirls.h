@@ -36,8 +36,6 @@
 #include "cNameList.h"
 #include "cAnimatedSurface.h"
 
-using namespace std;
-
 // Prototypes
 class	cIndexedList;
 struct	sInventoryItem;
@@ -59,9 +57,9 @@ public:
 		unsigned char stats[NUM_STATS],
 		unsigned char skills[NUM_SKILLS]
 	)=0;
-//	virtual void AddTrait(sGirl* girl, string name, bool temp = false, bool removeitem = false, bool remember = false)=0;
-	virtual bool AddTrait(sGirl* girl, string name, bool temp = false, bool removeitem = false, bool remember = false)=0;
-	virtual bool HasTrait(sGirl* girl, string name)=0;
+//	virtual void AddTrait(sGirl* girl, std::string name, bool temp = false, bool removeitem = false, bool remember = false)=0;
+	virtual bool AddTrait(sGirl* girl, std::string name, bool temp = false, bool removeitem = false, bool remember = false)=0;
+	virtual bool HasTrait(sGirl* girl, std::string name)=0;
 	virtual void UpdateTempSkill(sGirl* girl, int skill, int amount)=0;	// updates a skill temporarily
 	virtual void UpdateTempStat(sGirl* girl, int stat, int amount)=0;
 };
@@ -71,8 +69,8 @@ extern cAbstractGirls *g_GirlsPtr;
 // structure to hold randomly generated girl information
 typedef struct sRandomGirl
 {
-	string m_Name;
-	string m_Desc;
+    std::string m_Name;
+    std::string m_Desc;
 
 	unsigned char m_Human;	                    // 0 means they are human otherwise they are not
 	unsigned char m_Catacomb;	                // 1 means they are a monster found in catacombs, 0 means wanderer
@@ -96,7 +94,7 @@ typedef struct sRandomGirl
  *	stream operator for debugging
  *	plus a shitload of XML loader funcs
  */
-	friend ostream& operator<<(ostream &os, sRandomGirl &g);
+	friend std::ostream& operator<<(std::ostream &os, sRandomGirl &g);
 /*
  *	one func to load the girl node,
  *	and then one each for each embedded node
@@ -191,12 +189,12 @@ public:
 		m_NumImages=0;
 	}
 
-	bool AddImage(string filename, string path = "", string file = "");
+	bool AddImage(std::string filename, std::string path = "", std::string file = "");
 	int DrawImage(int x, int y, int width, int height, bool random, int img);
 	CSurface* GetImageSurface(bool random, int& img);
 	cAnimatedSurface* GetAnimatedSurface(int& img);
 	bool IsAnimatedSurface(int& img);
-	string GetName(int i);
+	std::string GetName(int i);
 
 	int m_NumImages;
 	cImage* m_Images;
@@ -216,7 +214,7 @@ public:
 		m_Next=0;
 	}
 
-	string m_Name;	// name of the directory containing the images
+	std::string m_Name;	// name of the directory containing the images
 	cImageList m_Images[NUM_IMGTYPES];	// the images
 
 	cAImgList* m_Next;
@@ -231,8 +229,8 @@ public:
 
 	void Free() {if(m_First)delete m_First;m_Last=m_First=0;}
 
-	cAImgList* ListExists(string name);	// returns the list if the list is already loaded, returns 0 if it is not
-	cAImgList* LoadList(string name);	// loads a list if it doensn't already exist and returns a pointer to it. returns pointer to list if it does exist
+	cAImgList* ListExists(std::string name);	// returns the list if the list is already loaded, returns 0 if it is not
+	cAImgList* LoadList(std::string name);	// loads a list if it doensn't already exist and returns a pointer to it. returns pointer to list if it does exist
 
 private:
 	cAImgList* m_First;
@@ -248,7 +246,7 @@ typedef struct sChild
 	};
 	Gender m_Sex;
 
-	string boy_girl_str() {
+	std::string boy_girl_str() {
 		if(m_Sex == Boy)
 			return "boy";
 
@@ -290,8 +288,8 @@ public:
 	void add_child(sChild *);
 	sChild * remove_child(sChild *,sGirl *);
 	//void handle_childs();
-	//void save_data(ofstream);
-	//void write_data(ofstream);
+	//void save_data(std::ofstream);
+	//void write_data(std::ofstream);
 	//sChild * GenerateBornChild();//need to figure out what the player/customer base class is and if needed create one
 	//sChild * GenerateUnbornChild();
 
@@ -302,11 +300,11 @@ public:
 struct sGirl
 {
 	char* m_Name;								// The girls name
-	string m_Realname;							// this is the name displayed in text
+	std::string m_Realname;							// this is the name displayed in text
 /*
  *	MOD: changed from char* -- easier to change from lua -- doc
  */
-	string m_Desc;								// Short story about the girl
+	std::string m_Desc;								// Short story about the girl
 
 	unsigned char m_NumTraits;					// current number of traits they have
 	sTrait* m_Traits[MAXNUM_TRAITS];			// List of traits they have
@@ -467,7 +465,7 @@ struct sGirl
 		m_Prev = 0;
 	}
 
-	void dump(ostream &os);
+	void dump(std::ostream &os);
 
 /*
  *	MOD: docclox. attach the skill and stat names to the
@@ -493,14 +491,14 @@ struct sGirl
  * 	the maps the first time an sGirl is constructed
  */
 	static bool		m_maps_setup;
-	static map<string, unsigned int>	stat_lookup;
-	static map<string, unsigned int>	skill_lookup;
-	static map<string, unsigned int>	status_lookup;
+	static std::map<std::string, unsigned int>	stat_lookup;
+	static std::map<std::string, unsigned int>	skill_lookup;
+	static std::map<std::string, unsigned int>	status_lookup;
 	static void		setup_maps();
 
-	static int lookup_stat_code(string s);
-	static int lookup_skill_code(string s);
-	static int lookup_status_code(string s);
+	static int lookup_stat_code(std::string s);
+	static int lookup_skill_code(std::string s);
+	static int lookup_status_code(std::string s);
 /*
  *	Strictly speaking, methods don't belong in structs.
  *	I've always thought that more of a guideline than a hard and fast rule
@@ -512,7 +510,7 @@ struct sGirl
 /*
  *	stream operator - used for debug
  */
-	friend ostream& operator<<(ostream& os, sGirl &g);
+	friend std::ostream& operator<<(std::ostream& os, sGirl &g);
 /*
  *	it's a bit daft that we have to go through the global g_Girls
  *	every time we want a stat.
@@ -669,10 +667,10 @@ struct sGirl
  *	let's overload that...
  *	should be able to do the same using sCustomer as well...
  */
-	void add_trait(string trait, bool temp = true) {
+	void add_trait(std::string trait, bool temp = true) {
 		g_GirlsPtr->AddTrait(this, trait, temp);
 	}
-	bool has_trait(string trait) {
+	bool has_trait(std::string trait) {
 		return g_GirlsPtr->HasTrait(this, trait);
 	}
 	bool is_addict() {
@@ -713,17 +711,17 @@ struct sGirl
 	bool is_human()		{ return !is_monster(); }
 
 	void fight_own_gang(bool &girl_wins);
-	void win_vs_own_gang(vector<sGang*> &v, int max_goons, bool &girl_wins);
+	void win_vs_own_gang(std::vector<sGang*> &v, int max_goons, bool &girl_wins);
 	void lose_vs_own_gang(
-		vector<sGang*> &v,
+		std::vector<sGang*> &v,
 		int max_goons,
 		int girl_stats,
 		int gang_stats,
 		bool &girl_wins
 	);
 
-	void OutputGirlRow(string* Data, const vector<string>& columnNames);
-	void OutputGirlDetailString(string& Data, const string& detailName);
+	void OutputGirlRow(std::string* Data, const std::vector<std::string>& columnNames);
+	void OutputGirlDetailString(std::string& Data, const std::string& detailName);
 
 	// END MOD
 };
@@ -753,31 +751,31 @@ public:
  *	LoadGirlsXML loads the XML files
  *	LoadGirlsLegacy is the original load function. More or less.
  */
-	void LoadGirlsDecider(string filename);
-	void LoadGirlsXML(string filename);
-	void LoadGirlsLegacy(string filename);
+	void LoadGirlsDecider(std::string filename);
+	void LoadGirlsXML(std::string filename);
+	void LoadGirlsLegacy(std::string filename);
 /*
  *	SaveGirls doesn't seem to be the inverse of LoadGirls
  *	but rather writes girl data to the save file
  */
 	TiXmlElement* SaveGirlsXML(TiXmlElement* pRoot);	// Saves the girls to a file
 	bool LoadGirlsXML(TiXmlHandle hGirls);
-	void LoadGirlsLegacy(ifstream& ifs);
-	void LoadGirlLegacy(sGirl* current, ifstream& ifs);
+	void LoadGirlsLegacy(std::ifstream& ifs);
+	void LoadGirlLegacy(sGirl* current, std::ifstream& ifs);
 
 	void AddGirl(sGirl* girl);		// adds a girl to the list
 	void RemoveGirl(sGirl* girl, bool deleteGirl = false);	// Removes a girl from the list (only used with editor where all girls are available)
 
 	sGirl* GetGirl(int girl);	// gets the girl by count
 
-	void GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool group, string& message, u_int& SexType);	// does the logic for fucking
+	void GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool group, std::string& message, u_int& SexType);	// does the logic for fucking
 	// MYR: Millions of ways to say, [girl] does [act] to [customer]
-	string GetRandomGroupString();
-	string GetRandomSexString();
-	string GetRandomLesString();
-	string GetRandomBDSMString();
-	string GetRandomBeastString();
-	string GetRandomAnalString();
+	std::string GetRandomGroupString();
+	std::string GetRandomSexString();
+	std::string GetRandomLesString();
+	std::string GetRandomBDSMString();
+	std::string GetRandomBeastString();
+	std::string GetRandomAnalString();
 
 	// MYR: More functions for attack/defense/agility-style combat.
 	int GetCombatDamage(sGirl *girl, int CombatType);
@@ -789,7 +787,7 @@ public:
 	void LoadGirlImages(sGirl* girl);	// loads a girls images using her name to check that directory in the characters folder
 	void ApplyTraits(sGirl* girl, sTrait* trait = 0, bool rememberflag= false);	// applys the stat bonuses for traits to a girl
 	void UnapplyTraits(sGirl* girl, sTrait* trait = 0);	// unapplys a trait (or all traits) from a girl
-	bool PossiblyGainNewTrait(sGirl* girl, string Trait, int Threshold, int ActionType, string Message, bool DayNight);
+	bool PossiblyGainNewTrait(sGirl* girl, std::string Trait, int Threshold, int ActionType, std::string Message, bool DayNight);
 	//int UnapplyTraits(sGirl* girl, sTrait* trait = 0);	// unapplys a trait (or all traits) from a girl
 	void UpdateSkill(sGirl* girl, int skill, int amount);	// updates a skill
 	void UpdateEnjoyment(sGirl* girl, int whatSheEnjoys, int amount, bool wrapTo100 = false); //updates what she enjoys
@@ -797,8 +795,8 @@ public:
 	CSurface* GetImageSurface(sGirl* girl, int ImgType, bool random, int& img, bool gallery=false);	// draws a image of a girl
 	cAnimatedSurface* GetAnimatedSurface(sGirl* girl, int ImgType, int& img);
 	bool IsAnimatedSurface(sGirl* girl, int ImgType, int& img);
-	bool HasTrait(sGirl* girl, string trait);
-	bool HasRememberedTrait(sGirl* girl, string trait);
+	bool HasTrait(sGirl* girl, std::string trait);
+	bool HasRememberedTrait(sGirl* girl, std::string trait);
 	int GetNumSlaveGirls();
 	int GetNumCatacombGirls();
 	int GetSlaveGirl(int from);
@@ -824,16 +822,16 @@ public:
  *	The "-Legacy" version is the original
  *	The "-XML" version is the new one that loads from XML files
  */
-	void LoadRandomGirl(string filename);
-	void LoadRandomGirlXML(string filename);
-	void LoadRandomGirlLegacy(string filename);
+	void LoadRandomGirl(std::string filename);
+	void LoadRandomGirlXML(std::string filename);
+	void LoadRandomGirlLegacy(std::string filename);
 	// end mod
 
 	sGirl* CreateRandomGirl(int age, bool addToGGirls, bool slave = false, bool undead = false, bool NonHuman = false, bool childnaped = false);
 
 	sGirl* GetRandomGirl(bool slave = false, bool catacomb = false);
 
-	bool NameExists(string name);
+	bool NameExists(std::string name);
 
 	bool CheckInvSpace(sGirl* girl) {if(girl->m_NumInventory == 40)return false;return true;}
 	int AddInv(sGirl* girl, sInventoryItem* item);
@@ -843,10 +841,10 @@ public:
 	int GetNumItemType(sGirl* girl, int Type);
 	void SellInvItem(sGirl* girl, int num);
 	void UseItems(sGirl* girl);
-	int HasItem(sGirl* girl, string name);
-//	void RemoveTrait(sGirl* girl, string name, bool addrememberlist = false, bool force = false);
-	bool RemoveTrait(sGirl* girl, string name, bool addrememberlist = false, bool force = false);
-	void RemoveRememberedTrait(sGirl* girl, string name);
+	int HasItem(sGirl* girl, std::string name);
+//	void RemoveTrait(sGirl* girl, std::string name, bool addrememberlist = false, bool force = false);
+	bool RemoveTrait(sGirl* girl, std::string name, bool addrememberlist = false, bool force = false);
+	void RemoveRememberedTrait(sGirl* girl, std::string name);
 	void RemoveAllRememberedTraits(sGirl* girl);					// WD: Cleanup remembered traits on new girl creation
 	int GetNumItemEquiped(sGirl* girl, int Type);
 	bool IsItemEquipable(sGirl* girl, int num);
@@ -856,13 +854,13 @@ public:
 
 	bool DisobeyCheck(sGirl* girl, int action, sBrothel* brothel = 0);
 
-	string GetDetailsString(sGirl* girl, bool purchace = false);
-	string GetMoreDetailsString(sGirl* girl);
-	string GetGirlMood(sGirl* girl);
+	std::string GetDetailsString(sGirl* girl, bool purchace = false);
+	std::string GetMoreDetailsString(sGirl* girl);
+	std::string GetGirlMood(sGirl* girl);
 
-//	void AddTrait(sGirl* girl, string name, bool temp = false, bool removeitem = false, bool inrememberlist = false);
-	bool AddTrait(sGirl* girl, string name, bool temp = false, bool removeitem = false, bool inrememberlist = false);
-	void AddRememberedTrait(sGirl* girl, string name);
+//	void AddTrait(sGirl* girl, std::string name, bool temp = false, bool removeitem = false, bool inrememberlist = false);
+	bool AddTrait(sGirl* girl, std::string name, bool temp = false, bool removeitem = false, bool inrememberlist = false);
+	void AddRememberedTrait(sGirl* girl, std::string name);
 
 	cImgageListManager* GetImgManager() {return &m_ImgListManager;}
 
@@ -878,11 +876,11 @@ public:
 	bool CheckGirlType(sGirl* girl, int type);	// Checks if a girl has this fetish type
 
 	void do_abnormality(sGirl *sprog, int chance);
-	void HandleChild(sGirl* girl, sChild* child, string& summary);
-	void HandleChild_CheckIncest(sGirl* mum, sGirl *sprog, sChild* child, string& summary);
-	bool child_is_grown(sGirl* girl, sChild* child, string& summary, bool PlayerControlled = true);
-	bool child_is_due(sGirl* girl, sChild* child, string& summary, bool PlayerControlled = true);
-	void HandleChildren(sGirl* girl, string& summary, bool PlayerControlled = true);	// ages children and handles pregnancy
+	void HandleChild(sGirl* girl, sChild* child, std::string& summary);
+	void HandleChild_CheckIncest(sGirl* mum, sGirl *sprog, sChild* child, std::string& summary);
+	bool child_is_grown(sGirl* girl, sChild* child, std::string& summary, bool PlayerControlled = true);
+	bool child_is_due(sGirl* girl, sChild* child, std::string& summary, bool PlayerControlled = true);
+	void HandleChildren(sGirl* girl, std::string& summary, bool PlayerControlled = true);	// ages children and handles pregnancy
 	bool CalcPregnancy(sGirl* girl, int chance, int type, unsigned char stats[NUM_STATS], unsigned char skills[NUM_SKILLS]);	// checks if a girl gets pregnant
 	void UncontrolledPregnancies();	// ages children and handles pregnancy for all girls not controlled by player
 
@@ -906,7 +904,7 @@ public:
 	);
 	int calc_abnormal_pc(sGirl *mom, sGirl *sprog, bool is_players);
 
-	vector<sGirl *>  get_girls(GirlPredicate* pred);
+	std::vector<sGirl *>  get_girls(GirlPredicate* pred);
 
 	// end mod
 

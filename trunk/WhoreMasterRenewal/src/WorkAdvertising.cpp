@@ -40,9 +40,9 @@ extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGold g_Gold;
 
-bool cJobManager::WorkAdvertising(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkAdvertising(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
-	string message = "";
+    std::string message = "";
 	if(Preprocessing(ACTION_WORKADVERTISING, girl, brothel, DayNight, summary, message))
 		return true;
 
@@ -126,7 +126,7 @@ bool cJobManager::WorkAdvertising(sGirl* girl, sBrothel* brothel, int DayNight, 
 		girl->m_Events.AddMessage(message, IMGTYPE_PROFILE, DayNight);
 	}
 
-	stringstream ss;
+	std::stringstream ss;
 	ss.str("");
 	ss << "She managed to stretch the effectiveness of your advertising budget by about " << int(multiplier) << "%.";
 	ss << " You paid her 70 gold for her advertising efforts.";

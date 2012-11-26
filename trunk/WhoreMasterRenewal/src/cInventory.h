@@ -28,8 +28,6 @@
 
 #include "Constants.h"
 
-using namespace std;
-
 struct sGirl;
 
 struct sEffect
@@ -51,13 +49,13 @@ struct sEffect
  *	(more useful for debugging than game play
  *	but why take it out?)
  */
-	friend ostream& operator << (ostream& os, sEffect::What &w);
+	friend std::ostream& operator << (std::ostream& os, sEffect::What &w);
 /*
  *	and a function to go the other way
  *	we need this to turn the strings in the xml file
  *	into numbers
  */
-	void set_what(string s) {
+	void set_what(std::string s) {
 		if		(s == "Skill")		m_Affects = Skill;
 		else if	(s == "Stat")		m_Affects = Stat;
 		else if	(s == "Nothing")	m_Affects = Nothing;
@@ -65,11 +63,11 @@ struct sEffect
 		else if	(s == "Trait")		m_Affects = Trait;
 		else {
 			m_Affects = Nothing;
-			cerr << __FILE__ << " (" << __LINE__ << "): "
+			std::cerr << __FILE__ << " (" << __LINE__ << "): "
                 << "Error: Bad 'what' string for item effect: '"
 				<< s
 				<< "'"
-				<< endl;
+				<< std::endl;
 		}
 	}
 /*
@@ -108,7 +106,7 @@ struct sEffect
 		if(id < n_skills) {
 			return skills[id];
 		}
-		cerr __FILE__ << " (" << __LINE__ << "): " << "Error: skill id " << id << " too large (max is " << n_skills << ")" << endl;
+		std::cerr __FILE__ << " (" << __LINE__ << "): " << "Error: skill id " << id << " too large (max is " << n_skills << ")" << std::endl;
 		return "";
 	}
 	const char *stat_name(unsigned int id) {
@@ -124,7 +122,7 @@ struct sEffect
 		if(id < n_stats) {
 			return stats[id];
 		}
-		cerr __FILE__ << " (" << __LINE__ << "): " << "Error: stat id " << id << " too large (max is " << n_stats << ")" << endl;
+		std::cerr __FILE__ << " (" << __LINE__ << "): " << "Error: stat id " << id << " too large (max is " << n_stats << ")" << std::endl;
 		return 0;
 	}
 #endif
@@ -136,12 +134,12 @@ struct sEffect
  *	WD:	Change to use definition and code in sGirl::
  *		remove duplicated code
  */
-	bool set_skill(string s);
-	bool set_girl_status(string s);
-	bool set_stat(string s);
+	bool set_skill(std::string s);
+	bool set_girl_status(std::string s);
+	bool set_stat(std::string s);
 
 #if 0 // WD: use definition and code in sGirl:: to remove dup code
-	bool set_skill(string s)
+	bool set_skill(std::string s)
 	{
 
 		if(s == "Anal")			m_EffectID = 0;
@@ -155,12 +153,12 @@ struct sEffect
 		else if(s == "Strip")		m_EffectID = 8;
 		else if(s == "Combat")		m_EffectID = 9;
 		else {
-			cerr __FILE__ << " (" << __LINE__ << "): " << "unknown skill: " << s << endl;
+			std::cerr __FILE__ << " (" << __LINE__ << "): " << "unknown skill: " << s << std::endl;
 			return false;
 		}
 		return true;
 	}
-	bool set_girl_status(string s)
+	bool set_girl_status(std::string s)
 	{
 		if(s == "Poisoned")		m_EffectID = 1;
 		else if(s == "Badly Poisoned")	m_EffectID = 2;
@@ -173,14 +171,14 @@ struct sEffect
 		else if(s == "Controlled")	m_EffectID = 9;
 		else if(s == "Catacombs")	m_EffectID = 10;
 		else {
-			cerr __FILE__ << " (" << __LINE__ << "): " << "unknown girl status: " << s << endl;
+			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "unknown girl status: " << s << std::endl;
 			return false;
 		}
 		return true;
 	}
-	bool set_stat(string s)
+	bool set_stat(std::string s)
 	{
-		//cout << "looking up " << s << endl;
+		//std::cout << "looking up " << s << endl;
 		if(s == "Age")			m_EffectID = STAT_AGE;
 		else if(s == "Agility") 	m_EffectID = STAT_AGILITY;
 		else if(s == "AskPrice")	m_EffectID = STAT_ASKPRICE;
@@ -204,11 +202,11 @@ struct sEffect
 		else if(s == "Spirit") 		m_EffectID = STAT_SPIRIT;
 		else if(s == "Tiredness") 	m_EffectID = STAT_TIREDNESS;
 		else {
-			cerr __FILE__ << " (" << __LINE__ << "): "
+			std::cerr << __FILE__ << " (" << __LINE__ << "): "
 				<< "Error: unknown stat string '"
 				<< s
 				<< "'"
-				<< endl
+				<< std::endl
 			;
 			m_EffectID = STAT_CHARISMA;
 			return false;
@@ -229,12 +227,12 @@ struct sEffect
 /*
  *	name of the trait it adds
  */
-	string m_Trait;
+	std::string m_Trait;
 /*
  *	and a pretty printer for the class as a whole
  *	just a debug thing, really
  */
-	friend ostream& operator << (ostream& os, sEffect &eff) {
+	friend std::ostream& operator << (std::ostream& os, sEffect &eff) {
 		os << "Effect: " << eff.m_Affects << " ";
 		if(eff.m_Affects == Stat) {
 			os << eff.stat_name(eff.m_EffectID) ;
@@ -249,15 +247,15 @@ struct sEffect
 			os << eff.girl_status_name( eff.m_EffectID );
 		}
 		os << (eff.m_Amount > 0 ? " +" : " ") << eff.m_Amount;
-		return os << endl;
+		return os << std::endl;
 	}
 	// end mod
 };
 
 typedef struct sInventoryItem
 {
-	string m_Name;
-	string m_Desc;
+	std::string m_Name;
+	std::string m_Desc;
 /*
  *	item type: let's make an enum
  */
@@ -291,7 +289,7 @@ typedef struct sInventoryItem
 /*
  *	the number of effects this item has
  */
-	vector<sEffect> m_Effects;
+	std::vector<sEffect> m_Effects;
 /*
  *	how much the item is worth?
  */
@@ -328,7 +326,7 @@ typedef struct sInventoryItem
 	};
 	Rarity m_Rarity;
 
-	void set_rarity(string s)
+	void set_rarity(std::string s)
 	{
 		if(s == "Common") {
 			m_Rarity = Common;
@@ -358,16 +356,16 @@ typedef struct sInventoryItem
 			m_Rarity = ScriptOrReward;
 		}
 		else {
-			cerr << __FILE__ << " (" << __LINE__ << "): "
+			std::cerr << __FILE__ << " (" << __LINE__ << "): "
                 << "Error in set_rarity: unexpected value '"
 				<< s
 				<< "'"
-				<< endl;
+				<< std::endl;
 			m_Rarity = Shop05;	// what to do?
 		}
 	}
 
-	void set_special(string s)
+	void set_special(std::string s)
 	{
 		if(s == "None") {
 			m_Special = None;
@@ -379,17 +377,17 @@ typedef struct sInventoryItem
 			m_Special = Temporary;
 		}
 		else {
-			cerr << __FILE__ << " (" << __LINE__ << "): "
+			std::cerr << __FILE__ << " (" << __LINE__ << "): "
                 << "unexpected special string: '"
 				<< s
 				<< "'"
-				<< endl
+				<< std::endl
 			;
 			m_Special = None;
 		}
 	}
 
-	void set_type(string s)
+	void set_type(std::string s)
 	{
 		if(s == "Ring") {
 			m_Type = Ring;
@@ -425,12 +423,12 @@ typedef struct sInventoryItem
 			m_Type = Armband;
 		}
 		else {
-			cerr << __FILE__ << " (" << __LINE__ << "): " << "Error: unexpected item type: " << s << endl;
+			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "Error: unexpected item type: " << s << std::endl;
 			m_Type = Misc;
 		}
 	}
 
-	friend ostream& operator << (ostream& os, sInventoryItem::Special &spec) {
+	friend std::ostream& operator << (std::ostream& os, sInventoryItem::Special &spec) {
 		switch(spec) {
 		case None:
 			return os << "None";
@@ -439,12 +437,12 @@ typedef struct sInventoryItem
 		case Temporary:
 			return os << "Temporary";
 		default:
-			cerr << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected special value: " << int(spec) << endl;
+			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected special value: " << int(spec) << std::endl;
 			return os << "Error(" << int(spec) << ")";
 		}
 	}
 
-	friend ostream& operator << (ostream& os, sInventoryItem::Rarity &r) {
+	friend std::ostream& operator << (std::ostream& os, sInventoryItem::Rarity &r) {
 		switch(r) {
 		case Common:
 			return os << "Common";
@@ -465,12 +463,12 @@ typedef struct sInventoryItem
 		case ScriptOrReward:
 			return os << "Scripts or Reward";
 		default:
-			cerr << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected rarity value: " << int(r) << endl;
+			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected rarity value: " << int(r) << std::endl;
 			return os << "Error(" << int(r) << ")";
 		}
 	}
 
-	friend ostream& operator << (ostream& os, sInventoryItem::Type &typ) {
+	friend std::ostream& operator << (std::ostream& os, sInventoryItem::Type &typ) {
 		switch(typ) {
 		case Ring:
 			return os << "Ring";
@@ -495,22 +493,22 @@ typedef struct sInventoryItem
 		case Armband:
 			return os << "Armband";
 		default:
-			cerr << __FILE__ << " (" << __LINE__ << "): " << "Unexpected type value: " << int(typ) << endl;
+			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "Unexpected type value: " << int(typ) << std::endl;
 			return os << "Error";
 		}
-		cerr << __FILE__ << " (" << __LINE__ << "): " << "How the hell did I get here?" << endl;
+		std::cerr << __FILE__ << " (" << __LINE__ << "): " << "How the hell did I get here?" << std::endl;
 		return os;
 	}
 
-	friend ostream& operator << (ostream& os, sInventoryItem &it) {
-		os << "Item: " << it.m_Name << endl;
-		os << "Desc: " << it.m_Desc << endl;
-		os << "Type: " << it.m_Type << endl;
-		os << "Badness: " << int(it.m_Badness) << endl;
-		os << "Special: " << it.m_Special << endl;
-		os << "Cost: " << it.m_Cost << endl;
-		os << "Rarity: " << it.m_Rarity << endl;
-		os << "Infinite: " << (it.m_Infinite ? "True" : "False") << endl;
+	friend std::ostream& operator << (std::ostream& os, sInventoryItem &it) {
+		os << "Item: " << it.m_Name << std::endl;
+		os << "Desc: " << it.m_Desc << std::endl;
+		os << "Type: " << it.m_Type << std::endl;
+		os << "Badness: " << int(it.m_Badness) << std::endl;
+		os << "Special: " << it.m_Special << std::endl;
+		os << "Cost: " << it.m_Cost << std::endl;
+		os << "Rarity: " << it.m_Rarity << std::endl;
+		os << "Infinite: " << (it.m_Infinite ? "True" : "False") << std::endl;
 		for(unsigned int i = 0; i < it.m_Effects.size(); i++) {
 			sEffect &eff = it.m_Effects[i];
 
@@ -538,14 +536,14 @@ public:
 
 	void Free();
 
-	void LoadItems(string filename);
-	bool LoadItemsXML(string filename);
+	void LoadItems(std::string filename);
+	bool LoadItemsXML(std::string filename);
 	void UpdateShop();	// re-randomizes the shops inventory
-	sInventoryItem* GetItem(string name);
+	sInventoryItem* GetItem(std::string name);
 	sInventoryItem* GetShopItem(int num);
 	int GetRandomShopItem();
 	sInventoryItem* GetRandomItem();
-	int CheckShopItem(string name);	// checks if a item is in shop inventory, returns -1 if not and the id if it is
+	int CheckShopItem(std::string name);	// checks if a item is in shop inventory, returns -1 if not and the id if it is
 	sInventoryItem* BuyShopItem(int num);	// removes and returns the item from the shop
 	bool GirlBuyItem(sGirl* girl, int ShopItem, int MaxItems, bool AutoEquip);  // girl buys selected item if possible; returns true if bought
 
@@ -577,7 +575,7 @@ public:
 
 
 private:
-	vector<sInventoryItem *> items;  // Master list of items?
+	std::vector<sInventoryItem *> items;  // Master list of items?
 	int m_NumShopItems;	// number of items in the shop
 	sInventoryItem* m_ShopItems[NUM_SHOPITEMS];	// pointers to all items, the shop can only hold 30 random items
 };

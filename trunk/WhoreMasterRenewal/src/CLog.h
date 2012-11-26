@@ -28,9 +28,6 @@
 #include "SFML/System/Lock.hpp"
 #include "SFML/System/Mutex.hpp"
 
-using namespace std;
-
-
 namespace WhoreMasterRenewal
 {
     #define LOGGER_LOG_MESSAGE( text ) Logger() << text;
@@ -38,7 +35,7 @@ namespace WhoreMasterRenewal
     class Logger
     {
     public:
-        Logger( const string& filename = "GameLog.txt", bool append = true );
+        Logger( const std::string& filename = "GameLog.txt", bool append = true );
         ~Logger();
         
         template<typename T>
@@ -55,7 +52,7 @@ namespace WhoreMasterRenewal
             return *this;
         }
         
-        inline Logger& operator << ( string value )
+        inline Logger& operator << ( std::string value )
         {
             std::cout << value;
             if( m_LogFileStream.is_open() )
@@ -82,16 +79,16 @@ public:
 	~CLogInner();
 	void init();
 
-	void write(string text);
-	ofstream	&os()	{ return m_ofile; }
-	stringstream	&ss()	{ return m_ss; }
+	void write(std::string text);
+	std::ofstream	&os()	{ return m_ofile; }
+	std::stringstream	&ss()	{ return m_ss; }
 	void ssend() {
 		write(m_ss.str());
 		m_ss.str("");
 	}
 static	bool setup;
-	ofstream m_ofile;
-	stringstream m_ss;
+	std::ofstream m_ofile;
+	std::stringstream m_ss;
 };
 
 
@@ -110,16 +107,16 @@ public:
 		}
 		inner = 0;
 	}
-	void write(string text)
+	void write(std::string text)
 	{
 		if(!inner) inner = new CLogInner();
 		inner->write(text);
 	}
-	ofstream	&os()	{
+	std::ofstream	&os()	{
 		if(!inner) inner = new CLogInner();
 		return inner->m_ofile;
 	}
-	stringstream	&ss()	{
+	std::stringstream	&ss()	{
 		if(!inner) inner = new CLogInner();
 		return inner->m_ss;
 	}

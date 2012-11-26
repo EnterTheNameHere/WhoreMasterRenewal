@@ -40,8 +40,8 @@ public:
 	}
 	~cImageItem();
 
-	bool CreateImage(int id, string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
-	bool CreateAnimatedImage(int id, string filename, string dataFilename, int x, int y, int width, int height);
+	bool CreateImage(int id, std::string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
+	bool CreateAnimatedImage(int id, std::string filename, std::string dataFilename, int x, int y, int width, int height);
 
 	void Draw();
 

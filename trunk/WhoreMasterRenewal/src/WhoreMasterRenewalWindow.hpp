@@ -13,8 +13,6 @@
 namespace WhoreMasterRenewal
 {
 
-using std::string;
-
 class Screen
 {
 public:
@@ -42,13 +40,13 @@ public:
     void ResizeAllScreens( const sf::View& view );
     void ResizeAllScreens( const sf::Vector2u& size );
 
-    void ShowScreen( const string& screenName );
+    void ShowScreen( const std::string& screenName );
 
 private:
     sf::RenderWindow m_RenderWindow;
     
-    std::map<string, Screen> m_Screens = {};
-    string m_CurrentScreenName = "MainMenu";
+    std::map<std::string, Screen> m_Screens = {};
+    std::string m_CurrentScreenName = "MainMenu";
     
     ConsoleWindow m_Console = { ConsoleWindow() };
 

@@ -71,15 +71,15 @@ public:
 	// MOD: added a couple of overloads for the cases where we
 	// can deduce the image names from the stem&
 	void AddButton(const char *image_name, int & ID,  int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
-	void AddButton(string image, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
+	void AddButton(std::string image, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
 /*
  *	the ND version stands for "No Disabled" meaning that it supplies
  *	an empty string in place a disabled icon
  */
-	void AddButtonND(string image, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
+	void AddButtonND(std::string image, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
 	void AddButtonND(const char *image, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
 	// END MOD
-	void AddButton(string OffImage, string DisabledImage, string OnImage, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
+	void AddButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
 	void AddScrollBar(int & ID, int x, int y, int width, int height, int visibleitems);
 
 	void HideButton(int id, bool hide);
@@ -92,17 +92,17 @@ public:
 	void HideImage(int id, bool hide);
 	void HideImage(int id) { HideImage(id, true); }
 	void UnhideImage(int id) { HideImage(id, false); }
-	void AddImage(int & id, string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
+	void AddImage(int & id, std::string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
 	void SetImage(int id, CSurface* image);
 	void SetImage(int id, cAnimatedSurface* image);
 
 	void AddEditBox(int & ID, int x, int y, int width, int height, int BorderSize);
 
-	void EditTextItem(string text, int ID);
+	void EditTextItem(std::string text, int ID);
 	void HideText(int id, bool hide);
 	void HideText(int id) { HideText(id, true); }
 	void UnhideText(int id) { HideText(id, false); }
-	void AddTextItem(int & ID, int x, int y, int width, int height, string text, int size = 16, bool auto_scrollbar = true, bool force_scrollbar = false);
+	void AddTextItem(int & ID, int x, int y, int width, int height, std::string text, int size = 16, bool auto_scrollbar = true, bool force_scrollbar = false);
 	void AddTextItemScrollBar(int id);
 
 	void AddSlider(int & ID, int x, int y, int width, int min = 0, int max = 100, int increment = 5, int value = 0, bool live_update = true);
@@ -114,7 +114,7 @@ public:
 	int SliderValue(int ID, int value);  // set slider value, get result (might be different than requested due to out-of-bounds or whatever)
 
 	void DisableCheckBox(int ID, bool disable);
-	void AddCheckbox(int & ID, int x, int y, int width, int height, string text, int size = 16);
+	void AddCheckbox(int & ID, int x, int y, int width, int height, std::string text, int size = 16);
 	bool IsCheckboxOn(int ID);
 	void SetCheckBox(int ID, bool on);
 
@@ -122,50 +122,50 @@ public:
 	void ScrollListBoxDown(int ID);
 	int GetListBoxSize(int ID);
 	void ScrollListBoxUp(int ID);
-	void AddToListBox(int listBoxID, int dataID, string data, int color = LISTBOX_BLUE);
+	void AddToListBox(int listBoxID, int dataID, std::string data, int color = LISTBOX_BLUE);
 //	void RemoveFromListBox(int listBoxID, int dataID);
 	int GetSelectedItemFromList(int listBoxID);
-	string GetSelectedTextFromList(int listBoxID); // MYR: For new message summary display in InterfaceProcesses.cpp
+    std::string GetSelectedTextFromList(int listBoxID); // MYR: For new message summary display in InterfaceProcesses.cpp
 	int GetLastSelectedItemFromList(int listBoxID);
 	int GetNextSelectedItemFromList(int listBoxID, int from, int& pos);
 	int GetAfterSelectedItemFromList(int listBoxID);
 	void SetSelectedItemInList(int listBoxID, int itemID, bool ev = true, bool DeselectOthers = true);
-	void SetSelectedItemText(int listBoxID, int itemID, string data);
+	void SetSelectedItemText(int listBoxID, int itemID, std::string data);
 	void ClearListBox(int ID);
 	void SetListBoxPosition(int ID, int pos = 0);
 	int ArrowDownListBox(int ID);
 	int ArrowUpListBox(int ID);
 	bool IsMultiSelected(int ID);	// returns true if list has more than one item selected
-	void AddToListBox(int listBoxID, int dataID, string data[], int columns, int color = LISTBOX_BLUE);
-	void SetSelectedItemText(int listBoxID, int itemID, string data[], int columns);
-	void SetSelectedItemColumnText(int listBoxID, int itemID, string data, int column);
-	void SortColumns(int listBoxID, string column_name[], int columns);
-	void DefineColumns(int listBoxID, string name[], string header[], int offset[], bool skip[], int columns);
-	void SortListItems(int listBoxID, string column_name, bool Desc = false);
-	string HeaderClicked(int listBoxID);
+	void AddToListBox(int listBoxID, int dataID, std::string data[], int columns, int color = LISTBOX_BLUE);
+	void SetSelectedItemText(int listBoxID, int itemID, std::string data[], int columns);
+	void SetSelectedItemColumnText(int listBoxID, int itemID, std::string data, int column);
+	void SortColumns(int listBoxID, std::string column_name[], int columns);
+	void DefineColumns(int listBoxID, std::string name[], std::string header[], int offset[], bool skip[], int columns);
+	void SortListItems(int listBoxID, std::string column_name, bool Desc = false);
+    std::string HeaderClicked(int listBoxID);
 	bool ListDoubleClicked(int listBoxID);
 	void SetSelectedItemTextColor(int listBoxID, int itemID, SDL_Color* text_color);
-	void FillSortedIDList(int listBoxID, vector<int> *id_vec, int *vec_pos);
+	void FillSortedIDList(int listBoxID, std::vector<int> *id_vec, int *vec_pos);
 
 	void Focused();
 
-	void SetBackgroundImage(string file);
+	void SetBackgroundImage(std::string file);
 	void UpdateEditBoxes(char key, bool upper = false);
 
-	string GetEditBoxText(int ID);
+    std::string GetEditBoxText(int ID);
 
 	bool HasEditBox() {return !m_EditBoxes.empty();}
 
 protected:
-	vector<cButton*> m_Buttons;	// buttons
-	vector<cImageItem*> m_Images; // Images
-	vector<cListBox*> m_ListBoxes;	// List boxes
-	vector<cScrollBar*> m_ScrollBars;	// Scroll bars
+	std::vector<cButton*> m_Buttons;	// buttons
+	std::vector<cImageItem*> m_Images; // Images
+	std::vector<cListBox*> m_ListBoxes;	// List boxes
+	std::vector<cScrollBar*> m_ScrollBars;	// Scroll bars
 	// check boxes
-	vector<cEditBox*> m_EditBoxes; // Edit boxes;
-	vector<cTextItem*> m_TextItems; // Text Items
-	vector<cCheckBox* >m_CheckBoxes;	// check boxes
-	vector<cSlider*>m_Sliders;	// Sliders
+	std::vector<cEditBox*> m_EditBoxes; // Edit boxes;
+	std::vector<cTextItem*> m_TextItems; // Text Items
+	std::vector<cCheckBox* >m_CheckBoxes;	// check boxes
+	std::vector<cSlider*>m_Sliders;	// Sliders
 
 	// the windows properties
 	CSurface* m_BackgroundSurface;
@@ -179,11 +179,11 @@ protected:
 class cInterfaceWindowXML : public cInterfaceWindow
 {
 protected:
-	string	m_filename;
-	map<string,int>		name_to_id;
-	map<int,string>		id_to_name;
+    std::string m_filename;
+	std::map<std::string,int>		name_to_id;
+	std::map<int,std::string>		id_to_name;
 
-	map<string,cXmlWidget*>	widgets;
+	std::map<std::string,cXmlWidget*>	widgets;
 public:
 	enum AttributeNecessity {
 		Mandatory	= 0,
@@ -204,7 +204,7 @@ virtual	void process()=0;
 /*
  *	populates the maps so we can get the IDs from strings
  */
-	void register_id(int id, string name);
+	void register_id(int id, std::string name);
 /*
  *	XML reading stuff
  */
@@ -216,7 +216,7 @@ virtual	void process()=0;
 	void read_checkbox_definition(TiXmlElement *el);
 	void read_slider_definition(TiXmlElement *el);
 	void define_widget(TiXmlElement *el);
-	void place_widget(TiXmlElement *el, string suffix="");
+	void place_widget(TiXmlElement *el, std::string suffix="");
 	void widget_text_item(TiXmlElement *el, cXmlWidget &vw);
 	void widget_button_item(TiXmlElement *el, cXmlWidget &vw);
 	void widget_listbox_item(TiXmlElement *el, cXmlWidget &vw);
@@ -224,11 +224,11 @@ virtual	void process()=0;
 	void widget_widget(TiXmlElement *el, cXmlWidget &vw);
 	void widget_image_item(TiXmlElement *el, cXmlWidget &vw);
 	void widget_slider_item(TiXmlElement *el, cXmlWidget &vw);
-	int get_id(string name, bool essential=false);
+	int get_id(std::string name, bool essential=false);
 
-	cXmlWidget* new_widget(string name);
-	cXmlWidget* find_widget(string name);
-	void add_widget(string widget_name,int x,int y,string seq);
+	cXmlWidget* new_widget(std::string name);
+	cXmlWidget* find_widget(std::string name);
+	void add_widget(std::string widget_name,int x,int y,std::string seq);
 };
 
 class cSelector

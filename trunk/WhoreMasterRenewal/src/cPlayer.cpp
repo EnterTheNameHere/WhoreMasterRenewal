@@ -59,7 +59,7 @@ TiXmlElement* cPlayer::SavePlayerXML(TiXmlElement* pRoot)
 	return pPlayer;
 }
 
-void cPlayer::LoadPlayerLegacy(ifstream& ifs)
+void cPlayer::LoadPlayerLegacy(std::ifstream& ifs)
 {
 	int nTemp;
 

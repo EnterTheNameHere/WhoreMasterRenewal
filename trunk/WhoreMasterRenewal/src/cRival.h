@@ -25,7 +25,6 @@
 
 #define TIXML_USE_STL
 #include "tinyxml.h"
-using namespace std;
 
 class cRival
 {
@@ -43,7 +42,7 @@ public:
 	int m_BusinessesExtort;
 	long m_BribeRate;
 	int m_Influence;	// based on the bribe rate this is the percentage of influence you have
-	string m_Name;
+    std::string m_Name;
 
 	cRival* m_Next;
 	cRival* m_Prev;
@@ -60,12 +59,12 @@ public:
 	void Update(int& NumPlayerBussiness);
 	cRival* GetRandomRival();
 	cRival* GetRivals() {return m_Rivals;}
-	cRival* GetRival(string name);
+	cRival* GetRival(std::string name);
 	cRival* GetRival(int number);
 
 	TiXmlElement* SaveRivalsXML(TiXmlElement* pRoot);
 	bool LoadRivalsXML(TiXmlHandle hRivalManager);
-	void LoadRivalsLegacy(ifstream& ifs);
+	void LoadRivalsLegacy(std::ifstream& ifs);
 
 	void CreateRival(long bribeRate, int extort, long gold, int bars, int gambHalls, int Girls, int brothels, int goons);
 	void AddRival(cRival* rival);
@@ -76,11 +75,11 @@ public:
 
 	int GetNumRivals() {return m_NumRivals;}
 
-	bool NameExists(string name);
+	bool NameExists(std::string name);
 
 	bool player_safe() { return m_PlayerSafe; }
 	cRival* get_influential_rival();
-	void rivals_plunder_pc_gold(cRival* rival, string& message);
+	void rivals_plunder_pc_gold(cRival* rival, std::string& message);
 
 private:
 	int m_NumRivals;

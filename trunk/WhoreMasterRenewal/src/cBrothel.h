@@ -34,8 +34,6 @@
 #define TIXML_USE_STL
 #include "tinyxml.h"
 
-using namespace std;
-
 extern  cGirls  g_Girls;
 extern  CLog    g_LogFile;
 
@@ -66,7 +64,7 @@ typedef struct sBrothel
 	~sBrothel();						// destructor
 
 	int m_id;
-	string m_Name;
+    std::string m_Name;
 	unsigned short	m_Happiness;		// av. % happy customers last week
 	unsigned short	m_TotalCustomers;	// the total number of customers for the last week
 	unsigned short	m_MiscCustomers;	// customers used for temp purposes but must still be taken into account
@@ -158,9 +156,9 @@ public:
 	void UpdateGirls(sBrothel* brothel, int DayNight);
 	// MYR: Start of my automation functions
 	void UsePlayersItems(sGirl* cur);
-    bool AutomaticItemUse(sGirl * girl, int InvNum, string message);
-	bool AutomaticSlotlessItemUse(sGirl * girl, int InvNum, string message);
-	bool AutomaticFoodItemUse(sGirl * girl, int InvNum, string message);
+    bool AutomaticItemUse(sGirl * girl, int InvNum, std::string message);
+	bool AutomaticSlotlessItemUse(sGirl * girl, int InvNum, std::string message);
+	bool AutomaticFoodItemUse(sGirl * girl, int InvNum, std::string message);
 	bool RemoveItemFromInventoryByNumber(int Pos); // support fn
 	// End of automation functions
 	void UpdateAllGirlsStat(sBrothel* brothel, int stat, int amount);
@@ -168,11 +166,11 @@ public:
 
 	sGirl* GetPrison()				{ return m_Prison; }
 		//mod needed for convenience
-	int  &stat_lookup(string stat_name,int brothel_id=-1);
+	int  &stat_lookup(std::string stat_name,int brothel_id=-1);
 	// jobs moving to their own class
 
 	int GetGirlsCurrentBrothel(sGirl* girl); // Used by new security guard code
-	vector<sGirl*> GirlsOnJob(int BrothelID, int JobID, bool day); // Also used by new security code
+	std::vector<sGirl*> GirlsOnJob(int BrothelID, int JobID, bool day); // Also used by new security code
 
 	bool UseAntiPreg(bool use);
 	void AddAntiPreg(int amount);
@@ -191,22 +189,22 @@ public:
 	void	sort(sBrothel* brothel);		// sorts the list of girls
 	void	SortInventory();
 
-	void	SetName(int brothelID, string name);
-	string	GetName(int brothelID);
+	void	SetName(int brothelID, std::string name);
+    std::string GetName(int brothelID);
 
 	bool CheckBarStaff(sBrothel* brothel, int numGirls);	// returns true if the bar is staffed
 	bool CheckGambStaff(sBrothel* brothel, int numGirls);	// as above but for gambling hall
 
 	bool	FightsBack(sGirl* girl);
 	int		GetNumGirls(int brothelID);
-	string	GetGirlString(int brothelID, int girlNum);
+    std::string GetGirlString(int brothelID, int girlNum);
 	int		GetNumGirlsOnJob(int brothelID, int jobID, bool day);
 
-	string GetBrothelString(int brothelID);
+    std::string GetBrothelString(int brothelID);
 
 	sGirl* GetGirl(int brothelID, int num);
 	int    GetGirlPos(int brothelID, sGirl* girl);
-	sGirl* GetGirlByName(int brothelID, string name); // MYR: Used by new end of turn code in InerfaceProcesses::TurnSummary
+	sGirl* GetGirlByName(int brothelID, std::string name); // MYR: Used by new end of turn code in InerfaceProcesses::TurnSummary
 
 	sBrothel*	GetBrothel(int brothelID);
 	int			GetNumBrothels()			{ return m_NumBrothels; }
@@ -225,7 +223,7 @@ public:
 	cPlayer*	GetPlayer()				{ return &m_Player; }
 	cDungeon*	GetDungeon()			{ return &m_Dungeon; }
 
-	int HasItem(string name, int countFrom = -1);
+	int HasItem(std::string name, int countFrom = -1);
 
 	// Some public members for ease of use
 	//ADB needs to be int because player might have more than 256, look, MAXNUM_INVENTORY == 300!
@@ -258,22 +256,22 @@ public:
 
 	TiXmlElement* SaveDataXML(TiXmlElement* pRoot);
 	bool LoadDataXML(TiXmlHandle hBrothelManager);
-	void LoadDataLegacy(ifstream& ifs);
+	void LoadDataLegacy(std::ifstream& ifs);
 
-	bool NameExists(string name);
+	bool NameExists(std::string name);
 
 	bool AddItemToInventory(sInventoryItem* item);
 
-	void check_druggy_girl(stringstream& ss);
+	void check_druggy_girl(std::stringstream& ss);
 	void check_raid();
 	void do_tax();
 	void check_rivals();
-	string new_rival_text();
+    std::string new_rival_text();
 	void do_food_and_digs(sBrothel* brothel, sGirl* girl);
-	string disposition_text();
-	string fame_text(sBrothel* brothel);
-	string suss_text();
-	string happiness_text(sBrothel* brothel);
+    std::string disposition_text();
+    std::string fame_text(sBrothel* brothel);
+    std::string suss_text();
+    std::string happiness_text(sBrothel* brothel);
 	double calc_pilfering(sGirl *girl);
 	void peace_breaks_out();
 

@@ -24,7 +24,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-using namespace std;
 
 #include <stdio.h>
 #include <time.h>
@@ -45,11 +44,11 @@ using namespace std;
 #include "cScrollBar.h"
 
 
-template<typename T> string toString( T value )
+template<typename T> std::string toString( T value )
 {
     std::stringstream str;
     str << value;
-    string result;
+    std::string result;
     str >> result;
     return result;
 }

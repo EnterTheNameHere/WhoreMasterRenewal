@@ -96,11 +96,11 @@ bool cScrollBar::CreateScrollBar(int ID, int x, int y, int width, int height, in
 void cScrollBar::LoadInitial()
 {  // load static class-wide shared base images into memory; only called once by first scrollbar created
 	DirPath dp = ImagePath("Scroll");
-	string disabled = string(dp.c_str()) + "LongDisabled.png";
-	string off = string(dp.c_str()) + "LongOff.png";
-	string on = string(dp.c_str()) + "LongOn.png";
-	string bg = string(dp.c_str()) + "LongBackground.png";
-	string notches = string(dp.c_str()) + "Notches.png";
+    std::string disabled = std::string(dp.c_str()) + "LongDisabled.png";
+    std::string off = std::string(dp.c_str()) + "LongOff.png";
+    std::string on = std::string(dp.c_str()) + "LongOn.png";
+    std::string bg = std::string(dp.c_str()) + "LongBackground.png";
+    std::string notches = std::string(dp.c_str()) + "Notches.png";
 	m_ImgBarBG = IMG_Load(bg.c_str());
 	SDL_Surface* TmpImg;
 	TmpImg = IMG_Load(disabled.c_str());
@@ -116,12 +116,12 @@ void cScrollBar::LoadInitial()
 	m_ImgNotches = SDL_DisplayFormatAlpha(TmpImg);
 	SDL_FreeSurface(TmpImg);
 	m_NotchOffset = int(((double)m_ImgNotches->h / 2));
-	string updisabled = string(dp.c_str()) + "UpDisabled.png";
-	string upoff = string(dp.c_str()) + "UpOff.png";
-	string upon = string(dp.c_str()) + "UpOn.png";
-	string downdisabled = string(dp.c_str()) + "DownDisabled.png";
-	string downoff = string(dp.c_str()) + "DownOff.png";
-	string downon = string(dp.c_str()) + "DownOn.png";
+    std::string updisabled = std::string(dp.c_str()) + "UpDisabled.png";
+    std::string upoff = std::string(dp.c_str()) + "UpOff.png";
+    std::string upon = std::string(dp.c_str()) + "UpOn.png";
+    std::string downdisabled = std::string(dp.c_str()) + "DownDisabled.png";
+    std::string downoff = std::string(dp.c_str()) + "DownOff.png";
+    std::string downon = std::string(dp.c_str()) + "DownOn.png";
 	TmpImg = IMG_Load(updisabled.c_str());
 	m_ImgButtonUpDisabled = SDL_DisplayFormatAlpha(TmpImg);
 	SDL_FreeSurface(TmpImg);
@@ -389,7 +389,7 @@ void cScrollBar::Draw()
 	}
 }
 
-void cScrollBar::LogScrollBarError(string description)
+void cScrollBar::LogScrollBarError(std::string description)
 {
 	CLog l;
 	l.ss() << description << " - " << SDL_GetError();

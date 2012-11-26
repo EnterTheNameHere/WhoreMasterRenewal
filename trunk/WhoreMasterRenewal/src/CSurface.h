@@ -25,13 +25,12 @@
 #include <SDL_rotozoom.h>
 #include <string>
 #include <vector>
-using namespace std;
 
 class CSurface : public CResource
 {
 public:
 	CSurface();
-	CSurface(string filename);
+	CSurface(std::string filename);
 	CSurface(SDL_Surface* inputsurface);
 	~CSurface();
 
@@ -44,14 +43,14 @@ public:
 	#ifdef LoadImage
 	#undef LoadImage
 	#endif
-	bool LoadImage(string filename, bool load = true);	// the value load tells the class to actually load the image or just save the filename for the resource manager and only load on use
+	bool LoadImage(std::string filename, bool load = true);	// the value load tells the class to actually load the image or just save the filename for the resource manager and only load on use
 	bool LoadSurface(SDL_Surface* inputsurface);  //for when we have an SDL surface in memory to use instead of loading from disk
 	void SetColorKey(unsigned char r, unsigned char g, unsigned char b);
 	void SetAlpha(bool UseAlpha);
 	bool DrawSurface(int x, int y, SDL_Surface* destination = 0, SDL_Rect* clip = 0, bool resize = false, bool maintainRatio = true);
 	bool DrawSprite(int x, int y);
 	bool ResizeSprite(SDL_Surface* image, SDL_Rect* clip, bool maintainRatio = false);
-	string GetFilename() {return m_Filename;}
+	std::string GetFilename() {return m_Filename;}
 
 	SDL_Surface** GetSurface() {return &m_Surface;}
 	bool m_Cached;
@@ -62,7 +61,7 @@ private:
 	SDL_Surface* m_Temp;	// a temporary surface for resizing
 	SDL_Surface* m_Surface;
 	SDL_Surface* m_SpriteImage;	// used for resizing sprites
-	string m_Filename;	// this is the filename and location, used to reload an unloaded resource
+	std::string m_Filename;	// this is the filename and location, used to reload an unloaded resource
 	bool m_UseKey;
 	Uint32 m_ColorKey;
 	bool m_UseAlpha;

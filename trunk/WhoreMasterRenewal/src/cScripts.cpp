@@ -25,8 +25,6 @@
 #include "linux.h"
 #endif
 
-using namespace std;
-
 bool cActionTemplate::GetNextQuotedLine(char *Data, FILE *fp, long MaxSize)
 {
 	int c;
@@ -351,7 +349,7 @@ bool cActionTemplate::Load()
 	return true;
 }
 
-bool cScript::Load(string filename)
+bool cScript::Load(std::string filename)
 {
 	m_NumActions = 0;
 	if(m_ScriptParent)
@@ -420,7 +418,7 @@ bool SaveScriptFile(const char *Filename, sScript *ScriptRoot)
 	return true; // return a success!
 }
 
-sScript *LoadScriptFile(string Filename)
+sScript *LoadScriptFile(std::string Filename)
 {
 	FILE *fp;
 	long i, j, Num;

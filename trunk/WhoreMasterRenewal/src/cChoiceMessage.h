@@ -23,7 +23,6 @@
 #include "CSurface.h"
 #include "cFont.h"
 #include <string>
-using namespace std;
 
 typedef void (*menu_callback_type)(int);
 
@@ -60,7 +59,7 @@ public:
 
 
 	int m_NumChoices;	// The number of choices available
-	string* m_Choices;	// array of choices available
+	std::string* m_Choices;	// array of choices available
 	int m_CurrChoice;	// The choice selected at present
 	int m_ID;	// the id for this particular box
 	cChoice* m_Next;	// the next choice box in the list
@@ -98,7 +97,7 @@ public:
 	void CreateChoiceBox(int x, int y, int width, int height, int ID, int numChoices, int itemHeight, int MaxStrLen = 0);
 	void CreateChoiceBoxResize(int ID, int numChoices);
 	void BuildChoiceBox(int ID, int MaxStrLen);
-	void AddChoice(int ID, string text, int choiceID);
+	void AddChoice(int ID, std::string text, int choiceID);
 	void Draw();
 	int GetChoice(int ID);
 	void SetActive(int ID);

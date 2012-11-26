@@ -40,9 +40,9 @@ extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGold g_Gold;
 
-bool cJobManager::WorkCleaning(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkCleaning(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
-	string message = "";
+    std::string message = "";
 	if(Preprocessing(ACTION_WORKCLEANING, girl, brothel, DayNight, summary, message))
 		return true;
 
@@ -71,7 +71,7 @@ bool cJobManager::WorkCleaning(sGirl* girl, sBrothel* brothel, int DayNight, str
 	   CleanAmt = 50;
 
 	brothel->m_Filthiness -= CleanAmt;
-	stringstream sstemp;
+	std::stringstream sstemp;
     sstemp << "Cleanliness rating improved by " << CleanAmt;
 	girl->m_Events.AddMessage(sstemp.str(), IMGTYPE_PROFILE, DayNight);
 

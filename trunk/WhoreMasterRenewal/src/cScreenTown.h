@@ -82,7 +82,7 @@ public:
 	void selection_change();
 	bool check_keys();
 	void do_walk();
-	string walk_no_luck();
+    std::string walk_no_luck();
 
 };
 

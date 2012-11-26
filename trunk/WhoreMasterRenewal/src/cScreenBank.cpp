@@ -79,11 +79,11 @@ void cScreenBank::init()
 		GetWithdraw = false;
 	}
 
-	locale syslocale("");
-	stringstream ss;
+	std::locale syslocale("");
+	std::stringstream ss;
 	ss.imbue(syslocale);
 
-	ss << "Bank account: " << g_Brothels.GetBankMoney() << " gold" << endl;
+	ss << "Bank account: " << g_Brothels.GetBankMoney() << " gold" << std::endl;
 	ss << "On hand: " << g_Gold.ival() << " gold";
 
 	EditTextItem(ss.str(), details_id);

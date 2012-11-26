@@ -40,7 +40,7 @@ cImageItem::~cImageItem()
 	m_AnimatedImage = 0;
 }
 
-bool cImageItem::CreateImage(int id, string filename, int x, int y, int width, int height, bool statImage, int R, int G, int B)
+bool cImageItem::CreateImage(int id, std::string filename, int x, int y, int width, int height, bool statImage, int R, int G, int B)
 {
 	m_ID = id;
 	if(statImage)
@@ -64,7 +64,7 @@ bool cImageItem::CreateImage(int id, string filename, int x, int y, int width, i
 	return true;
 }
 
-bool cImageItem::CreateAnimatedImage(int id, string filename, string dataFilename, int x, int y, int width, int height)
+bool cImageItem::CreateAnimatedImage(int id, std::string filename, std::string dataFilename, int x, int y, int width, int height)
 {
 	m_ID = id;
 	SetPosition(x,y,width,height);
@@ -78,7 +78,7 @@ bool cImageItem::CreateAnimatedImage(int id, string filename, string dataFilenam
 		// load the animation
 		m_AnimatedImage = new cAnimatedSurface();
 		int numFrames, speed, aniwidth, aniheight;
-		ifstream input;
+		std::ifstream input;
 		input.open(dataFilename.c_str());
 		if(!input)
 		{

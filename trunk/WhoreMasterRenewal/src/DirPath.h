@@ -24,15 +24,13 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
-
 /*
  * little class to create pathnames in a cross platform way
  */
 class DirPath
 {
 protected:
-	string		path;
+	std::string		path;
 /*
  *	sep is the path element separator: "/" on unix and "\\"
  *	on windows. The #ifdef is hidden in the .cpp file
@@ -49,7 +47,7 @@ public:
 	DirPath(const char *top_dir = ".") {
 		path = top_dir;
 		size_t pos = path.find('\r');
-		if(pos != string::npos) {
+		if(pos != std::string::npos) {
 			path[pos] = 0;
 		}
 	}
@@ -66,7 +64,7 @@ public:
  *
  *	this is the string operator
  */
-	DirPath& operator << (string &s) {
+	DirPath& operator << (std::string &s) {
 		path += sep;
 		path += s;
 		return *this;
@@ -83,7 +81,7 @@ public:
  *	same operator, but overloaded on ostream
  *	so you can use << to print the path on debug messages
  */
-	ostream& operator << (ostream& os) {
+	std::ostream& operator << (std::ostream& os) {
 		return os << path;
 	}
 /*
@@ -96,7 +94,7 @@ public:
  *	even need to do that
  */
 	operator const char *()	{ return path.c_str(); }
-	operator string()	{ return path; }
+	operator std::string()	{ return path; }
 };
 
 /*
@@ -122,7 +120,7 @@ public:
 		over = dp.over;
 	}
 
-	ifstream &open(ifstream &ifs) {
+	std::ifstream &open(std::ifstream &ifs) {
 		ifs.open(over.c_str());
 		if(!ifs.good()) {
 			ifs.open(c_str());
@@ -130,7 +128,7 @@ public:
 		return ifs;
 	}
 
-	ofstream &open(ofstream &ofs) {
+	std::ofstream &open(std::ofstream &ofs) {
 		ofs.open(over.c_str());
 		if(!ofs.good()) {
 			ofs.open(c_str());
@@ -144,7 +142,7 @@ public:
  *
  *	this is the string operator
  */
-	DirPath& operator << (string &s) {
+	DirPath& operator << (std::string &s) {
 		over << s;
 		path += sep;
 		path += s;
@@ -165,7 +163,7 @@ public:
 
 class ImagePath : public DirPath {
 public:
-	ImagePath(string filename)
+	ImagePath(std::string filename)
 	: DirPath()
 	{
 		(*this) << "Resources" << "Images" << filename;
@@ -174,7 +172,7 @@ public:
 
 class ButtonPath : public DirPath {
 public:
-	ButtonPath(string filename)
+	ButtonPath(std::string filename)
 	: DirPath()
 	{
 		(*this) << "Resources" << "Buttons" << filename;
@@ -183,7 +181,7 @@ public:
 
 class ScriptPath : public DirPath {
 public:
-	ScriptPath(string filename)
+	ScriptPath(std::string filename)
 	: DirPath()
 	{
 		(*this) << "Resources" << "Scripts" << filename;

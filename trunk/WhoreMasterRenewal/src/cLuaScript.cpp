@@ -101,7 +101,7 @@ static void add_to_table(lua_State *L, int table, const char *key, int value)
 	lua_settable(L, table);
 }
 
-static void add_to_table(lua_State *L, int table, const char *key, string value)
+static void add_to_table(lua_State *L, int table, const char *key, std::string value)
 {
 	lua_pushstring(L, key);
 	lua_pushstring(L, value.c_str());
@@ -228,7 +228,7 @@ static int pop_window(lua_State *L)
 	return 0;
 }
 
-bool get_from_table(lua_State *L, int table, const char *key, string &dest)
+bool get_from_table(lua_State *L, int table, const char *key, std::string &dest)
 {
 	lua_pushstring(L, key);
 	lua_gettable(L, table);
@@ -300,7 +300,7 @@ int get_from_table(lua_State *L, int table, const char *key, bool &dest)
  */
 static int update_girl(lua_State *L)
 {
- 	string s;
+     std::string s;
 	const char *pt;
 	luaL_checktype(L, 1, LUA_TTABLE);
 /*
@@ -384,7 +384,7 @@ static int update_girl(lua_State *L)
 static int log_from_lua(lua_State *L)
 {
 	const char *msg = luaL_checkstring(L, 1);
-	string s = "Lua Script: ";
+    std::string s = "Lua Script: ";
 	CLog log;
 	log.write(s + msg);
 	return 0;
@@ -599,7 +599,7 @@ static int add_cust_to_brothel(lua_State *L)
 /*
  *	OK. parameters currently recognised are
  *
- *		string	: reason
+ *	    std::string : reason
  *		bool	: wife
  *		int	: daughters
  */
@@ -608,7 +608,7 @@ static int add_cust_to_brothel(lua_State *L)
 	if(lua_isnil(L, -1)) {
 		return luaL_error(L, "wm.add_cust_to_brothel: missing reason");
 	}
-	string reason = lua_tostring(L, -1);
+    std::string reason = lua_tostring(L, -1);
 	lua_pop(L, 1);
 /*
  *	this would be a good place to check that string
@@ -739,10 +739,10 @@ cLuaStateInner::set_param(const char *name, void *pt)
 
 cLuaStateInner *cLuaState::instance = 0;
 
-string cLuaScript::slurp(string path)
+std::string cLuaScript::slurp(std::string path)
 {
-	ifstream ifs(path.c_str(), ifstream::in);
-	stringstream sstr;
+	std::ifstream ifs(path.c_str(), std::ifstream::in);
+	std::stringstream sstr;
 	sstr << ifs.rdbuf();
 	return sstr.str();
 }
@@ -750,7 +750,7 @@ string cLuaScript::slurp(string path)
 void cLuaScript::log_error()
 {
 	CLog log;
-	string errstr = lua_tostring(l, -1);
+    std::string errstr = lua_tostring(l, -1);
 	lua_pop(l, 1);
 	log.ss()	<< "Script error in '"
 			<< m_file
@@ -786,7 +786,7 @@ int cLuaScript::get_ref(const char *name)
  	return ref;
 }
 
-bool cLuaScript::load(string filename, sGirl *a_girl)
+bool cLuaScript::load(std::string filename, sGirl *a_girl)
 {
 	int rc;
 	m_file = filename;
@@ -800,14 +800,14 @@ bool cLuaScript::load(string filename, sGirl *a_girl)
  *	There doesn't seem to be a better, cross platform way
  *	to do this
  */
-	ifstream ifs(m_file.c_str(), ifstream::in);
+	std::ifstream ifs(m_file.c_str(), std::ifstream::in);
 	bool ok = ifs.good();
 	ifs.close();
 	if(!ok) return false;
 /*
  *	So: slurp the file
  */
-	string prog = slurp(m_file);
+    std::string prog = slurp(m_file);
 /*
  *	load the string
  */

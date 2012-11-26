@@ -37,7 +37,7 @@ extern	bool	g_UpArrow;
 extern	bool	g_DownArrow;
 
 static cTariff tariff;
-static stringstream ss;
+static std::stringstream ss;
 
 static int lastNum = -1;
 static int ImageNum = -1;
@@ -54,7 +54,7 @@ static int DayNight = 0;	// 1 is night, 0 is day.
 static bool SetJob = false;
 
 extern sGirl *selected_girl;
-extern vector<int> cycle_girls;
+extern std::vector<int> cycle_girls;
 extern int cycle_pos;
 
 
@@ -98,7 +98,7 @@ void cScreenGirlManagement::init()
  *			then sort the array, then step backwards from the last in the array
  *			This is necessary since removing a girl changes the IDs of all after her
  */
-			vector<int> girl_array;
+			std::vector<int> girl_array;
 			GetSelectedGirls(&girl_array);  // get and sort array of girls
 
 			// OK, we have the array, now step through it backwards
@@ -134,7 +134,7 @@ void cScreenGirlManagement::init()
 	{
 		if(g_ChoiceManager.GetChoice(0) == 0)
 		{
-			vector<int> girl_array;
+			std::vector<int> girl_array;
 			GetSelectedGirls(&girl_array);  // get and sort array of girls
 
 			// OK, we have the array, now step through it backwards
@@ -166,7 +166,7 @@ void cScreenGirlManagement::init()
 	{
 		if(g_ChoiceManager.GetChoice(0) == 0)
 		{
-			vector<int> girl_array;
+			std::vector<int> girl_array;
 			GetSelectedGirls(&girl_array);  // get and sort array of girls
 
 			// OK, we have the array, now step through it backwards
@@ -209,7 +209,7 @@ void cScreenGirlManagement::init()
 
 	selection = GetSelectedItemFromList(girllist_id);
 
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, curbrothel_id);
 
@@ -228,10 +228,10 @@ void cScreenGirlManagement::init()
 	SetSelectedItemInList(jobtypelist_id, JOBFILTER_GENERAL);
 
 	//get a list of all the column names, so we can find which data goes in that column
-	vector<string> columnNames;
+	std::vector<std::string> columnNames;
 	m_ListBoxes[girllist_id]->GetColumnNames(columnNames);
 	int numColumns = columnNames.size();
-	string* Data = new string[numColumns];
+	std::string* Data = new std::string[numColumns];
 
 	// Add girls to list
 	for(int i=0; i<g_Brothels.GetNumGirls(g_CurrBrothel); i++)
@@ -314,7 +314,7 @@ void cScreenGirlManagement::update_image()
 		bool Rand = false;
 		if(lastNum != selection)
 		{
-			string text = selected_girl->m_Desc;
+		    std::string text = selected_girl->m_Desc;
 			text += "\n\n";
 			text += g_Girls.GetGirlMood(selected_girl);
 			EditTextItem(text, girldesc_id);
@@ -530,7 +530,7 @@ void cScreenGirlManagement::check_events()
 	{
 		if(selected_girl)
 		{
-			stringstream ss;
+			std::stringstream ss;
 
 			if(IsMultiSelected(girllist_id))
 			{  // multiple girls selected
@@ -621,7 +621,7 @@ void cScreenGirlManagement::RefreshJobList()
 	if (job_filter == -1)
 		return;
 
-	string text = "";
+    std::string text = "";
 	bool day = (DayNight == 0) ? true : false;
 
 	// populate Jobs listbox with jobs in the selected category
@@ -647,7 +647,7 @@ void cScreenGirlManagement::RefreshJobList()
 }
 
 
-void cScreenGirlManagement::GetSelectedGirls(vector<int> *girl_array)
+void cScreenGirlManagement::GetSelectedGirls(std::vector<int> *girl_array)
 {  // take passed vector and fill it with sorted list of selected girl IDs
 	int pos = 0;
 	int GSelection = GetNextSelectedItemFromList(girllist_id, 0, pos);

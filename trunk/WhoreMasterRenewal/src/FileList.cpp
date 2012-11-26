@@ -19,7 +19,7 @@
 #include "FileList.h"
 #include <map>
 
-static string clobber_extension(string s);
+static std::string clobber_extension(std::string s);
 
 #ifdef LINUX
 
@@ -32,9 +32,7 @@ static string clobber_extension(string s);
 #include <regex.h>
 #include <string.h>
 
-using namespace std;
-
-static string& gsub(string &str, const char *pat_pt, const char *repl_pt)
+static std::string& gsub(std::string &str, const char *pat_pt, const char *repl_pt)
 {
 	size_t pat_len = strlen(pat_pt);
 	size_t repl_len = strlen(repl_pt);
@@ -42,7 +40,7 @@ static string& gsub(string &str, const char *pat_pt, const char *repl_pt)
 	size_t siz = 0;
  	for(int i = 0 ; i < 10; i++) {
 		siz = str.find(pat_pt, siz);
-		if(siz == string::npos) {
+		if(siz == std::string::npos) {
 			break;
 		}
 		str.replace(siz, pat_len, repl_pt);
@@ -69,8 +67,8 @@ void FileList::scan(const char *pattern)
 	DIR		*dpt;
 	struct dirent	*dent;
 	const char	*base_path = folder.c_str();
-	string		s_bp(folder.c_str());
-	string		s_pat(pattern);
+    std::string 	s_bp(folder.c_str());
+    std::string 	s_pat(pattern);
 	s_pat += "$";
 /*
  *	clear the file vector
@@ -92,7 +90,7 @@ void FileList::scan(const char *pattern)
  *	open the directory. Print an error to the console if it fails
  */
 	if((dpt = opendir(base_path)) == NULL) {
-		cerr __FILE__ << " (" << __LINE__ << "): " << "Error(" << errno << ") opening " << base_path << endl;
+		std::cerr __FILE__ << " (" << __LINE__ << "): " << "Error(" << errno << ") opening " << base_path << std::endl;
 		return;
 	}
 /*
@@ -103,7 +101,7 @@ void FileList::scan(const char *pattern)
 			continue;
 		}
 		files.push_back(
-			FileListEntry(s_bp, string(dent->d_name))
+			FileListEntry(s_bp, std::string(dent->d_name))
 		);
 	}
 	closedir(dpt);
@@ -134,8 +132,8 @@ FileList::FileList(DirPath dp, const char *pattern)
 	HANDLE hFind;
 	DirPath loc=folder;
 	loc<<pattern;
-	string base=folder.c_str();
-	string filename;
+    std::string base=folder.c_str();
+    std::string filename;
 	hFind = FindFirstFileA(loc.c_str(), &FindFileData);
 
 	int i = 0;
@@ -162,7 +160,7 @@ XMLFileList::XMLFileList(DirPath dp, char const *pattern)
 
 void XMLFileList::scan(const char *pattern)
 {
-	map<string,FileListEntry> lookup;
+	std::map<std::string,FileListEntry> lookup;
 	FileList fl(folder, pattern);
 /*
  *	OK: do a scan with the non xml file name
@@ -170,27 +168,27 @@ void XMLFileList::scan(const char *pattern)
  *	minus extension
  */
 	for(int i = 0; i < fl.size(); i++) {
-		string str = fl[i].full();
-		string key = clobber_extension(str);
+	    std::string str = fl[i].full();
+	    std::string key = clobber_extension(str);
 		lookup[key] = fl[i];
-		//cout << "       adding " << str << endl;
-		//cout << "       under " << key << endl;
-		//cout << "       result " << lookup[key].full() << endl;
+		//std::cout << "       adding " << str << std::endl;
+		//std::cout << "       under " << key << std::endl;
+		//std::cout << "       result " << lookup[key].full() << std::endl;
 	}
 /*
  *	Repeat with "x" added to the end of the pattern.
  *	If an xml file shadows a non-XML version, the XML
  *	pathname will overwrite the non-XML one
  */
-	string newpat = pattern; newpat += "x";
+    std::string newpat = pattern; newpat += "x";
 	fl.scan(newpat.c_str());
 	for(int i = 0; i < fl.size(); i++) {
-		string str = fl[i].full();
-		string key = clobber_extension(str);
+	    std::string str = fl[i].full();
+	    std::string key = clobber_extension(str);
 		lookup[key] = fl[i];
-		//cout << "       adding " << str << endl;
-		//cout << "       under " << key << endl;
-		//cout << "       result " << lookup[key].full() << endl;
+		//std::cout << "       adding " << str << std::endl;
+		//std::cout << "       under " << key << std::endl;
+		//std::cout << "       result " << lookup[key].full() << std::endl;
 	}
 /*
  *	We now have a map of files with the desired extensions
@@ -199,25 +197,25 @@ void XMLFileList::scan(const char *pattern)
  *	now walk the map, and populate the vector
  */
 	files.clear();
-	for(map<string,FileListEntry>::const_iterator it = lookup.begin(); it != lookup.end(); ++it) {
+	for(std::map<std::string,FileListEntry>::const_iterator it = lookup.begin(); it != lookup.end(); ++it) {
 		files.push_back(it->second);
 	}
 }
 
-static string clobber_extension(string s)
+static std::string clobber_extension(std::string s)
 {
-	//cout << "clobber_extension: s = " << s << endl;
+	//std::cout << "clobber_extension: s = " << s << std::endl;
 	size_t pos = s.rfind(".");
 
-	//cout << "clobber_extension: pos = " << pos << endl;
-	string base = s.substr(0, pos);
+	//std::cout << "clobber_extension: pos = " << pos << std::endl;
+	std::string base = s.substr(0, pos);
 
-	//cout << "clobber_extension: s = " << s << endl;
-	//cout << "clobber_extension: base = " << base << endl;
+	//std::cout << "clobber_extension: s = " << s << std::endl;
+	//std::cout << "clobber_extension: base = " << base << std::endl;
 	return base;
 }
 
-vector<string> ImageFileList::file_extensions;
+std::vector<std::string> ImageFileList::file_extensions;
 
 void ImageFileList::scan(const char *base)
 {
@@ -229,7 +227,7 @@ void ImageFileList::scan(const char *base)
 /*
  *		build the pattern from the base plus extension
  */
-		string pat = base + file_extensions[i];
+	    std::string pat = base + file_extensions[i];
 /*
  *		get a FileList for the extension,
  */

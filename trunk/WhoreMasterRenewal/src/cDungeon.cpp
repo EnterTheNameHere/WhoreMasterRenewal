@@ -111,7 +111,7 @@ TiXmlElement* cDungeon::SaveDungeonDataXML(TiXmlElement* pRoot)// saves all the 
 	TiXmlElement* pDungeonGirls = new TiXmlElement("Dungeon_Girls");
 	pDungeon->LinkEndChild(pDungeonGirls);
 	sDungeonGirl* girl = m_Girls;
-	string message = "";
+    std::string message = "";
 	while(girl)
 	{
 		message = "Saving Dungeon Girl: ";
@@ -152,7 +152,7 @@ TiXmlElement* cDungeon::SaveDungeonDataXML(TiXmlElement* pRoot)// saves all the 
 	return pDungeon;
 }
 
-void cDungeon::LoadDungeonDataLegacy(ifstream& ifs)	// loads all the people (they are stored with the dungeon)
+void cDungeon::LoadDungeonDataLegacy(std::ifstream& ifs)	// loads all the people (they are stored with the dungeon)
 {
 	Free();
 	int temp;
@@ -161,7 +161,7 @@ void cDungeon::LoadDungeonDataLegacy(ifstream& ifs)	// loads all the people (the
 	ifs>>m_NumberDied>>m_NumGirls>>m_NumCusts;
 
 	// load girls
-	string message = "";
+    std::string message = "";
 	for(int i=0; i<m_NumGirls; i++)
 	{
 		sDungeonGirl* girl = new sDungeonGirl();
@@ -256,7 +256,7 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 
 	// load girls
 	m_NumGirls = 0;
-	string message = "";
+    std::string message = "";
 	TiXmlElement* pDungeonGirls = pDungeon->FirstChildElement("Dungeon_Girls");
 	if (pDungeonGirls)
 	{
@@ -469,7 +469,7 @@ void cDungeon::RemoveCust(sDungeonCust* cust)
 	m_NumCusts--;
 }
 
-void cDungeon::OutputGirlRow(int i, string* Data, const vector<string>& columnNames)
+void cDungeon::OutputGirlRow(int i, std::string* Data, const std::vector<std::string>& columnNames)
 {
 	sDungeonGirl* girl = m_Girls;
 	int tmp = 0;
@@ -490,10 +490,10 @@ void cDungeon::OutputGirlRow(int i, string* Data, const vector<string>& columnNa
 	}
 }
 
-void sDungeonGirl::OutputGirlDetailString(string& Data, const string& detailName)
+void sDungeonGirl::OutputGirlDetailString(std::string& Data, const std::string& detailName)
 {
 	//given a statistic name, set a string to a value that represents that statistic
-	static stringstream ss;
+	static std::stringstream ss;
 	ss.str("");
 	if (detailName == "Rebelliousness")
 	{
@@ -552,7 +552,7 @@ void sDungeonGirl::OutputGirlDetailString(string& Data, const string& detailName
 	Data = ss.str();
 }
 
-void cDungeon::OutputCustRow(int i, string* Data, const vector<string>& columnNames)
+void cDungeon::OutputCustRow(int i, std::string* Data, const std::vector<std::string>& columnNames)
 {
 	sDungeonCust* cust = m_Custs;
 	int tmp = 0;
@@ -573,10 +573,10 @@ void cDungeon::OutputCustRow(int i, string* Data, const vector<string>& columnNa
 	}
 }
 
-void sDungeonCust::OutputCustDetailString(string& Data, const string& detailName)
+void sDungeonCust::OutputCustDetailString(std::string& Data, const std::string& detailName)
 {
 	//given a statistic name, set a string to a value that represents that statistic
-	static stringstream ss;
+	static std::stringstream ss;
 	ss.str("");
 	if (detailName == "Name")
 	{
@@ -646,7 +646,7 @@ sDungeonGirl* cDungeon::GetGirl(int i)
 	return girl;
 }
 
-sDungeonGirl* cDungeon::GetGirlByName(string name)
+sDungeonGirl* cDungeon::GetGirlByName(std::string name)
 {
 	sDungeonGirl* currentGirl = m_Girls;
 	while(currentGirl)
@@ -694,7 +694,7 @@ void cDungeon::Update()
  *
  */
 	sGirl* TorturerGirlref = 0;
-	string msg, summary, girlName;
+    std::string msg, summary, girlName;
 
 	// Reser counters
 	m_NumGirlsTort = m_NumCustsTort = 0;
@@ -957,8 +957,8 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 #undef WDTEST
 
 	sGirl* girl = d_girl->m_Girl;
-	string msg;
-	string girlName	= girl->m_Realname;
+    std::string msg;
+    std::string girlName	= girl->m_Realname;
 
 	// Sanity check. Abort on dead girl
 	if (girl->health() <= 0)
@@ -968,7 +968,7 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 
 #ifdef WDTEST // debuging
 
-	string sum = "Start\n";
+    std::string sum = "Start\n";
 	sum	+= "   h=";
 	sum	+= toString(girl->happiness());
 	sum	+= "   o=";
@@ -1079,7 +1079,7 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 }
 
 #if 0		// WD	Moved to cGirlTorture class
-void cDungeon::doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, string& summary)
+void cDungeon::doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, std::string& summary)
 {
 /*
  *	WD:	Torturer tortures dungeon girl
@@ -1092,8 +1092,8 @@ void cDungeon::doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, string& summary)
  */
 
 	sGirl *girl		= d_girl->m_Girl;
-	string girlName = girl->m_Realname;
-	string msg		= "";
+    std::string girlName = girl->m_Realname;
+    std::string msg		= "";
 	int chance		= 0;
 	cConfig cfg;
 	int chance_div	=  cfg.initial.torture_mod();
