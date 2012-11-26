@@ -557,6 +557,24 @@ bool Init()
 namespace WhoreMasterRenewal
 {
 
+class Helper
+{
+public:
+    Helper() = delete;
+    Helper( const Helper& ) = delete;
+    Helper( Helper&& ) = delete;
+    Helper operator= ( const Helper& ) = delete;
+    Helper operator= ( Helper&& ) = delete;
+    virtual ~Helper();
+    
+    template<typename T>
+    static bool AreEqual( T value1, T value2, T precission = 0.00001 )
+    {
+        T difference = std::abs( value1 - value2 );
+        return ( difference <= precission );
+    }
+};
+
 class Condition
 {
     Condition() = delete;
@@ -598,7 +616,7 @@ public:
         }
     }
     */
-    
+    /*
     template<typename T>
     static void Equals( T value1, T value2, T precission = 0.001, typename std::enable_if< std::is_floating_point<T>::value, T >::type* = 0 )
     {
@@ -608,15 +626,62 @@ public:
             std::cout << "Warning: Assert.Equals expected \"" << value2 << "\" (precission=\"" << precission << "\"), but \"" << value1 << "\" was given.\n";
         }
     }
+    */
     
-    template<typename T, typename U>
-    static void Equals( T value1, U value2 )
+    template<typename T, class = typename std::enable_if<std::is_floating_point<T>::value>::type>
+    static void Equals( T value1, T value2, T precision = 0.00001 )
+    {
+        if( !Helper::AreEqual( value1, value2, precision ) )
+        {
+            std::cout << std::fixed << "Warning - Assert::Equals expected to be true:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\n|difference| = \"" << std::abs( value1 - value2 ) << "\"\nrequired precision = \"" << precision << "\"\nequals: false\n";
+        }
+    }
+    
+    template<typename T, class = typename std::enable_if<!std::is_floating_point<T>::value>::type>
+    static void Equals( T value1, T value2 )
     {
         if( value1 != value2 )
         {
-            std::cout << "Warning: Assert.Equals expected \"" << value2 << "\", but \"" << value1 << "\" was given.\n";
+            std::cout << "Warning - Assert::Equals expected to be true:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\nequals: false\n";
         }
     }
+    
+    static void Equals( std::string value1, std::string value2 )
+    {
+        if( value1 != value2 )
+        {
+            std::cout << "Warning - Assert::Equals expected to be true:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\nequals: false\n";
+        }
+    }
+        
+//    template<typename T>
+//    static void NotEquals( T value1, T value2, T precision = 0.00001 )
+//    {
+//        if( std::is_floating_point<T>::value )
+//        {
+//            if( Helper::AreEqual( value1, value2, precision ) )
+//            {
+//                std::cout << std::fixed << "Warning - Assert::NotEquals expected equals to be false:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\n|difference| = \"" << std::abs( value1 - value2 ) << "\"\nrequired precision = \"" << precision << "\"\nequals: true\n";
+//            }
+//        }
+//        else
+//        {
+//            if( value1 == value2 )
+//            {
+//                std::cout << "Warning - Assert::NotEquals expected equals to be false:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\nequals: true\n";
+//            }
+//        }
+//    }
+//    
+//    template<typename T, typename U>
+//    static void NotEquals( T value1, U value2 )
+//    {
+//        if( value1 != value2 )
+//        {
+//            std::cout << "Warning: Assert.NotEquals - both values are equal: value1 = \"" << value1 << "\", value2 = \"" << value2 << "\".\n";
+//        }
+//    }
+    
 };
 
 }
@@ -651,123 +716,18 @@ static int average( lua_State* L )
 
 int main( int argc, char* argv[] )
 {
+    std::cout << "Loading Whore Master: Renewal...\n";
+    
     try
     {
-        /*
-        std::clog << "main()\n";
         
-        WhoreMasterRenewalWindow window;
-        
-        std::clog << "main() : pre window.Run()\n";
-        
-        window.Run();
-        
-        std::clog << "main() : post window.Run()\n";
-        */
-        
-        
-        LuaRuntime lua( true );
-        
-        lua.RegisterFunction( "average", &average );
-        
-        lua.SetVariable( "answerToEverything", 42 );
-        lua.SetVariable( "temperature", 36.8 );
-        lua.SetVariable( "name", "EnterTheNameHere" );
-        lua.SetVariable( "running", true );
-        lua.SetVariable( "character.health", 100.0 );
-        
-        
-        lua.ExecuteString( "function add( first, second ) return first + second end" );
-        lua.ExecuteString( "temperature = temperature + 0.7" );
-        lua.ExecuteString( "character.health = character.health + answerToEverything" );
-        lua.ExecuteString( "name = name .. \" Galicia\"" );
-        lua.ExecuteString( "avg, sum = average( 10, 12, 17, 3 )" );
-        lua.ExecuteString( "running = false" );
-        lua.ExecuteString( "print( \"avg:\", avg ) print( \"sum:\", avg )" );
-        lua.ExecuteString( "print( \"avg:\", avg )" );
-        lua.ExecuteString( "print( \"sum:\", sum )" );
-        lua.ExecuteString( "result = add( 14.2, 2 )" );
-        
-        Assert::Equals( lua.GetVariable<int>( "notExisting" ), 0 );
-        Assert::Equals( lua.GetVariable<int>( "answerToEverything" ), 42 );
-        Assert::Equals( lua.GetVariable<bool>( "running" ), false );
-        Assert::Equals( lua.GetVariable<string>( "name" ), "EnterTheNameHere Galicia" );
-        Assert::Equals( lua.GetVariable<double>( "temperature" ), 37.5 );
-        Assert::Equals( lua.GetVariable<float>( "character.health" ), 100.0f );
-        Assert::Equals( lua.GetVariable<float>( "result" ), 16.2f );
-        Assert::Equals( lua.GetVariable<int>( "sum" ), lua.GetVariable<int>( "answerToEverything" ) );
-        Assert::Equals( lua.GetVariable<double>( "avg" ), 10.5 );
-        std::cout << "=== 34.5, 34.5 ===\n";
-        Assert::Equals( 34.5, 34.5 );
-        std::cout << "=== 34.6, 34.5 ===\n";
-        Assert::Equals( 34.6, 34.5 );
-        std::cout << "=== 34.5, -34.5 ===\n";
-        Assert::Equals( 34.5, -34.5 );
-        std::cout << "=== 34.5454, 34.5445 ===\n";
-        Assert::Equals( 34.5454, 34.5445 );
-        std::cout << "=== 34.5f, 34.5f ===\n";
-        Assert::Equals( 34.5f, 34.5f );
-        std::cout << "=== 34.6f, 34.5f ===\n";
-        Assert::Equals( 34.6f, 34.5f );
-        std::cout << "=== 34.5f, -34.5f ===\n";
-        Assert::Equals( 34.5f, -34.5f );
-        std::cout << "=== 34.5454f, 34.5445f ===\n";
-        Assert::Equals( 34.5454f, 34.5445f );
-        
-        /*
-        lua_State* L = luaL_newstate();
-        luaL_openlibs(L);
-        
-        lua_register( L, "average", average );
-        
-        if( luaL_dofile( L, "Resources/Scripts/TestScript.lua" ) )
-        {
-            std::cout << "Error while executing script:\n" << lua_tostring( L, -1 ) << "\n";
-        }
-        else
-        {
-            luaD_DumpStack( L );
-        
-            lua_getglobal( L, "add" );
-            lua_pushnumber( L, 3 );
-            lua_pushnumber( L, 4 );
-            
-            luaD_DumpStack( L );
-            
-            lua_call( L, 2, 1 );
-            
-            luaD_DumpStack( L );
-            
-            std::cout << "add( 3, 4 ) = " << lua_tonumber( L, -1 ) << "\n";
-            
-            lua_pop( L, -1 );
-            
-            luaD_DumpStack( L );
-            
-            lua_getglobal( L, "add" );
-            lua_pushnumber( L, 3.f );
-            lua_pushnumber( L, 15.33f );
-            
-            luaD_DumpStack( L );
-            
-            lua_call( L, 2, 1 );
-            
-            luaD_DumpStack( L );
-            
-            std::cout << "add( 3, 4 ) = " << lua_tonumber( L, -1 ) << "\n";
-            
-            lua_pop( L, -1 );
-            
-            luaD_DumpStack( L );
-        };
-        
-        lua_close(L);
-        
-        */
     }
     catch( exception& ex )
     {
         std::clog << "Exception caught:\nException type: \"" << typeid(ex).name() << "\"\n" << ex.what();
     }
+    
+    std::cout << "Whore Master: Renewal finished..." << std::endl;
+    
     return 0;
 }
