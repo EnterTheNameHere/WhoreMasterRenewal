@@ -59,6 +59,8 @@
 					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
 					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
 					<Add library="Dependencies\SDL\lib\libSDL.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketCore-d.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketDebugger-d.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-graphics-s-d.a" />
 					<Add library="glew" />
 					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
@@ -92,6 +94,8 @@
 					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
 					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
 					<Add library="Dependencies\SDL\lib\libSDL.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketCore.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketDebugger.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-graphics-s.a" />
 					<Add library="glew" />
 					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
@@ -110,12 +114,14 @@
 			<Add option='-isystem &quot;Dependencies\TinyXML\include&quot;' />
 			<Add option='-isystem &quot;Dependencies\SFML\include&quot;' />
 			<Add option='-isystem &quot;Dependencies\pugixml\include&quot;' />
+			<Add option='-isystem &quot;Dependencies\libRocket\include&quot;' />
 			<Add option="-DSFML_STATIC" />
 			<Add directory="Dependencies/SDL/include/SDL" />
 			<Add directory="Dependencies/lua/include" />
 			<Add directory="Dependencies/TinyXML/include" />
 			<Add directory="Dependencies/SFML/include" />
 			<Add directory="Dependencies/pugixml/include" />
+			<Add directory="Dependencies/libRocket/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-static-libstdc++" />
@@ -329,6 +335,12 @@
 		<Unit filename="src/cWindowManager.h" />
 		<Unit filename="src/cWorkCleaning.cpp" />
 		<Unit filename="src/cXmlWidget.h" />
+		<Unit filename="src/libRocketSFMLInterface/RenderInterfaceSFML.cpp" />
+		<Unit filename="src/libRocketSFMLInterface/RenderInterfaceSFML.h" />
+		<Unit filename="src/libRocketSFMLInterface/ShellFileInterface.cpp" />
+		<Unit filename="src/libRocketSFMLInterface/ShellFileInterface.h" />
+		<Unit filename="src/libRocketSFMLInterface/SystemInterfaceSFML.cpp" />
+		<Unit filename="src/libRocketSFMLInterface/SystemInterfaceSFML.h" />
 		<Unit filename="src/linux.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/main.h" />

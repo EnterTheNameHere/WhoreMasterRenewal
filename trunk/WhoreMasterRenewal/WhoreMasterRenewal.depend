@@ -2734,7 +2734,7 @@
 	"cGirls.h"
 	"cBrothel.h"
 
-1353956232 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.cpp
+1353956825 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.cpp
 	"cTariff.h"
 	"cGirls.h"
 	"cEvents.h"
@@ -5138,4 +5138,403 @@
 	<memory>
 	<iomanip>
 	<sstream>
+
+1352967076 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.cpp
+	<Rocket/Core/Core.h>
+	"RenderInterfaceSFML.h"
+	"ShellFileInterface.h"
+	<GL/gl.h>
+	<iostream>
+	<GL/glee.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\core.h
+	<Rocket/Core/Types.h>
+	<Rocket/Core/Math.h>
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Box.h>
+	<Rocket/Core/Context.h>
+	<Rocket/Core/ContextInstancer.h>
+	<Rocket/Core/Decorator.h>
+	<Rocket/Core/DecoratorInstancer.h>
+	<Rocket/Core/Element.h>
+	<Rocket/Core/ElementDocument.h>
+	<Rocket/Core/ElementInstancer.h>
+	<Rocket/Core/ElementInstancerGeneric.h>
+	<Rocket/Core/ElementReference.h>
+	<Rocket/Core/ElementScroll.h>
+	<Rocket/Core/ElementText.h>
+	<Rocket/Core/ElementUtilities.h>
+	<Rocket/Core/Event.h>
+	<Rocket/Core/EventInstancer.h>
+	<Rocket/Core/EventListener.h>
+	<Rocket/Core/EventListenerInstancer.h>
+	<Rocket/Core/Factory.h>
+	<Rocket/Core/FileInterface.h>
+	<Rocket/Core/Font.h>
+	<Rocket/Core/FontDatabase.h>
+	<Rocket/Core/FontEffect.h>
+	<Rocket/Core/FontGlyph.h>
+	<Rocket/Core/Geometry.h>
+	<Rocket/Core/GeometryUtilities.h>
+	<Rocket/Core/Input.h>
+	<Rocket/Core/Log.h>
+	<Rocket/Core/Plugin.h>
+	<Rocket/Core/Property.h>
+	<Rocket/Core/PropertyDefinition.h>
+	<Rocket/Core/PropertyDictionary.h>
+	<Rocket/Core/PropertyParser.h>
+	<Rocket/Core/PropertySpecification.h>
+	<Rocket/Core/RenderInterface.h>
+	<Rocket/Core/String.h>
+	<Rocket/Core/StyleSheet.h>
+	<Rocket/Core/StyleSheetKeywords.h>
+	<Rocket/Core/StyleSheetSpecification.h>
+	<Rocket/Core/SystemInterface.h>
+	<Rocket/Core/Texture.h>
+	<Rocket/Core/Types.h>
+	<Rocket/Core/Vertex.h>
+	<Rocket/Core/XMLNodeHandler.h>
+	<Rocket/Core/XMLParser.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\types.h
+	<Rocket/Core/Debug.h>
+	<float.h>
+	<limits.h>
+	<string>
+	<map>
+	<set>
+	<vector>
+	<Rocket/Core/Platform.h>
+	<inttypes.h>
+	<Rocket/Core/Colour.h>
+	<Rocket/Core/Vector2.h>
+	<Rocket/Core/String.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\debug.h
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\header.h
+	<Rocket/Core/Platform.h>
+
+1352315423 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\platform.h
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\colour.h
+	<Rocket/Core/Header.h>
+	"Colour.inl"
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\colour.inl
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\vector2.h
+	<Rocket/Core/Debug.h>
+	<Rocket/Core/Math.h>
+	<Rocket/Core/Vector2.inl>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\math.h
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\vector2.inl
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\string.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/StringBase.h>
+	<stdarg.h>
+	<string.h>
+	<vector>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringbase.h
+	<Rocket/Core/Debug.h>
+	<Rocket/Core/StringStorage.h>
+	<Rocket/Core/StringBase.inl>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringstorage.h
+	<stddef.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringbase.inl
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\box.h
+	<Rocket/Core/Types.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\context.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Types.h>
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/ElementReference.h>
+	<Rocket/Core/Input.h>
+	<Rocket/Core/String.h>
+	<Rocket/Core/ScriptInterface.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\referencecountable.h
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementreference.h
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\input.h
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\scriptinterface.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/Types.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\contextinstancer.h
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\decorator.h
+	<Rocket/Core/ReferenceCountable.h>
+	<vector>
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Texture.h>
+	<Rocket/Core/Types.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\texture.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Types.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\decoratorinstancer.h
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/Header.h>
+	<Rocket/Core/PropertyDictionary.h>
+	<Rocket/Core/PropertySpecification.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertydictionary.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Property.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\property.h
+	<Rocket/Core/Variant.h>
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\variant.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Types.h>
+	<Rocket/Core/TypeConverter.h>
+	<list>
+	<Rocket/Core/Variant.inl>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\typeconverter.h
+	<Rocket/Core/Types.h>
+	<Rocket/Core/Log.h>
+	<Rocket/Core/Stream.h>
+	<Rocket/Core/StringUtilities.h>
+	<typeinfo>
+	<stdlib.h>
+	<stdio.h>
+	<Rocket/Core/TypeConverter.inl>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\log.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Types.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stream.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/Types.h>
+	<Rocket/Core/URL.h>
+	<list>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\url.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/String.h>
+	<map>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringutilities.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Types.h>
+	<Rocket/Core/String.h>
+	<stdarg.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\typeconverter.inl
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\variant.inl
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertyspecification.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Element.h>
+	<Rocket/Core/PropertyDefinition.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\element.h
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/ScriptInterface.h>
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Box.h>
+	<Rocket/Core/Event.h>
+	<Rocket/Core/Property.h>
+	<Rocket/Core/Types.h>
+	<Rocket/Core/Element.inl>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\event.h
+	<Rocket/Core/Dictionary.h>
+	<Rocket/Core/ScriptInterface.h>
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\dictionary.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Variant.h>
+	<Rocket/Core/Dictionary.inl>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\dictionary.inl
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\element.inl
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertydefinition.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Property.h>
+	<Rocket/Core/PropertyParser.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertyparser.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Property.h>
+	<map>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementdocument.h
+	<Rocket/Core/Element.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementinstancer.h
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/XMLParser.h>
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\xmlparser.h
+	<stack>
+	<Rocket/Core/Header.h>
+	<Rocket/Core/BaseXMLParser.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\basexmlparser.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Types.h>
+	<Rocket/Core/Dictionary.h>
+	<set>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementinstancergeneric.h
+	<Rocket/Core/ElementInstancer.h>
+	<Rocket/Core/ElementInstancerGeneric.inl>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementinstancergeneric.inl
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementscroll.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/EventListener.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\eventlistener.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Event.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementtext.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Element.h>
+	<Rocket/Core/WString.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\wstring.h
+	<Rocket/Core/Types.h>
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementutilities.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Box.h>
+	<Rocket/Core/WString.h>
+	<Rocket/Core/Types.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\eventinstancer.h
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\eventlistenerinstancer.h
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/String.h>
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\factory.h
+	<Rocket/Core/XMLParser.h>
+	<Rocket/Core/Header.h>
+	<map>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fileinterface.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Types.h>
+	<Rocket/Core/ReferenceCountable.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\font.h
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fontdatabase.h
+	<Rocket/Core/StringUtilities.h>
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Font.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fonteffect.h
+	<Rocket/Core/FontGlyph.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fontglyph.h
+	<map>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\geometry.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Vertex.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\vertex.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Types.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\geometryutilities.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Types.h>
+	<Rocket/Core/Vertex.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\plugin.h
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\renderinterface.h
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/Header.h>
+	<Rocket/Core/Texture.h>
+	<Rocket/Core/Vertex.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stylesheet.h
+	<Rocket/Core/Dictionary.h>
+	<Rocket/Core/ReferenceCountable.h>
+	<set>
+	<Rocket/Core/PropertyDictionary.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stylesheetkeywords.h
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stylesheetspecification.h
+	<Rocket/Core/Header.h>
+	<Rocket/Core/PropertySpecification.h>
+	<Rocket/Core/Types.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\systeminterface.h
+	<Rocket/Core/Log.h>
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/String.h>
+	<Rocket/Core/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\xmlnodehandler.h
+	<Rocket/Core/ReferenceCountable.h>
+	<Rocket/Core/XMLParser.h>
+	<Rocket/Core/Header.h>
+
+1352637531 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.h
+	<Rocket/Core/RenderInterface.h>
+	<SFML/Graphics.hpp>
+
+1352870835 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.h
+	<Rocket/Core/String.h>
+	<Rocket/Core/FileInterface.h>
+	<sfml/Graphics.hpp>
+
+1352870842 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.cpp
+	"ShellFileInterface.h"
+	<stdio.h>
+	<Rocket/Core/Core.h>
+
+1352864308 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.cpp
+	<Rocket/Core.h>
+	"SystemInterfaceSFML.h"
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core.h
+	<Rocket/Core/Core.h>
+
+1352636798 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.h
+	<Rocket/Core/SystemInterface.h>
+	<Rocket/Core/Input.h>
+	<SFML/Graphics.hpp>
 
