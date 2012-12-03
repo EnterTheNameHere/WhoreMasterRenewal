@@ -20,6 +20,9 @@
 #include "cBrothel.h"
 extern cRng g_Dice;
 
+extern cCustomers g_Customers;
+cCustomers g_Customers;
+
 void cCustomers::Free()
 {
 	m_NumCustomers = 0;

@@ -21,6 +21,8 @@
 
 extern CLog g_LogFile;
 
+extern cWindowManager g_WinManager;
+cWindowManager g_WinManager;
 
 void cWindowManager::push(std::string window_name)
 {

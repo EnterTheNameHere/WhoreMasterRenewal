@@ -45,6 +45,8 @@ extern cCustomers       g_Customers;
 extern cGirls           g_Girls;
 extern cInventory       g_InvManager;
 extern cBrothelManager  g_Brothels;
+cBrothelManager g_Brothels;
+
 extern unsigned long    g_Year;
 extern unsigned long    g_Month;
 extern unsigned long    g_Day;

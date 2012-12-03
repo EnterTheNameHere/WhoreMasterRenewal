@@ -34,6 +34,9 @@ extern cBrothelManager g_Brothels;
 extern cMessageQue g_MessageQue;
 extern cRng g_Dice;
 
+extern cInventory g_InvManager;
+cInventory g_InvManager;
+
 // ----- Misc
 
 cInventory::~cInventory()

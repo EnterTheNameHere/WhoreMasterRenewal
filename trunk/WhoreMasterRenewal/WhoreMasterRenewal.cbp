@@ -196,6 +196,7 @@
 		<Unit filename="src/MasterFile.h" />
 		<Unit filename="src/Revision.h" />
 		<Unit filename="src/SDLStuff.h" />
+		<Unit filename="src/UnitTestHelper.hpp" />
 		<Unit filename="src/WhoreMasterRenewalWindow.cpp" />
 		<Unit filename="src/WhoreMasterRenewalWindow.hpp" />
 		<Unit filename="src/WorkAdvertising.cpp" />

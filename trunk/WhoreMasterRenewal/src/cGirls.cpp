@@ -55,6 +55,12 @@ extern bool g_GenGirls;
 extern cGold g_Gold;
 extern cGangManager g_Gangs;
 
+extern cGirls g_Girls;
+cGirls g_Girls;
+extern cAbstractGirls* g_GirlsPtr;
+cAbstractGirls* g_GirlsPtr = &g_Girls;
+
+
 /*
  * MOD: DocClox: Stuff for the XML loader code
  *

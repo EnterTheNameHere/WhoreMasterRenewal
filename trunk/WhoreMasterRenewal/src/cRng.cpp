@@ -19,6 +19,9 @@
 #include"cRng.h"
 #include"sConfig.h"
 
+extern cRng g_Dice;
+cRng g_Dice;
+
 /*
  * easier to use the method internally than an operator
  * (OK - I could use (*this) % foo, but that's messy...)

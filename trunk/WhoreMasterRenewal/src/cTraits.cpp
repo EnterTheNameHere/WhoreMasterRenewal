@@ -25,6 +25,9 @@
 #include "linux.h"
 #endif
 
+extern cTraits g_Traits;
+cTraits g_Traits;
+
 cTraits::~cTraits()
 {
 	Free();

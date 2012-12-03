@@ -39,6 +39,8 @@ extern cInventory g_InvManager;
 extern cInterfaceWindow g_BrothelManagement;
 extern bool g_Cheats;
 extern int g_CurrBrothel;
+int g_CurrBrothel = 0;
+
 extern int g_TalkCount;
 extern cRng g_Dice;
 extern cGold g_Gold;

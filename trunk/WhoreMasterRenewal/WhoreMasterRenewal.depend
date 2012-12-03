@@ -1610,7 +1610,7 @@
 	<cstdlib>
 	<ctime>
 
-1353948725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.h
+1354109179 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.h
 	"Constants.h"
 	<string>
 	<fstream>
@@ -1986,7 +1986,7 @@
 	"cFont.h"
 	<queue>
 
-1353956253 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinventory.cpp
+1354108415 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinventory.cpp
 	"tinyxml.h"
 	"cInventory.h"
 	<iostream>
@@ -1995,7 +1995,7 @@
 	"cMessageBox.h"
 	"cCustomers.h"
 
-1353954905 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cfont.cpp
+1354106844 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cfont.cpp
 	<iostream>
 	"cFont.h"
 	"CLog.h"
@@ -2120,7 +2120,7 @@
 	<vector>
 	"cInterfaceWindow.h"
 
-1353955325 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
+1354106482 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
 	"main.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2129,15 +2129,16 @@
 	"CSurface.h"
 	"cJobManager.h"
 	"Revision.h"
-	<stdlib.h>
-	<crtdbg.h>
 	"linux.h"
 	<signal.h>
 	<sstream>
 	"IconSurface.h"
 	<string>
-	"WhoreMasterRenewalWindow.hpp"
-	"LuaUtils.hpp"
+	<iostream>
+	<SFML/Graphics.hpp>
+	"libRocketSFMLInterface/RenderInterfaceSFML.h"
+	"libRocketSFMLInterface/SystemInterfaceSFML.h"
+	"libRocketSFMLInterface/ShellFileInterface.h"
 
 1353950345 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.h
 	"GameSystem.h"
@@ -2220,7 +2221,7 @@
 
 1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptutils.h
 
-1353953585 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbrothel.cpp
+1354107246 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbrothel.cpp
 	<sstream>
 	"linux.h"
 	"main.h"
@@ -2443,7 +2444,7 @@
 	<cstdlib>
 	"linux.h"
 
-1353954890 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.cpp
+1354106971 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.cpp
 	<iostream>
 	"CLog.h"
 
@@ -2456,7 +2457,7 @@
 	"cTrainable.h"
 	"Constants.h"
 
-1353955557 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgangs.cpp
+1354107488 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgangs.cpp
 	<sstream>
 	<algorithm>
 	"main.h"
@@ -2484,7 +2485,7 @@
 	"sConfig.h"
 	<sstream>
 
-1353951216 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cslider.cpp
+1354534920 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cslider.cpp
 	"cSlider.h"
 	"CResourceManager.h"
 	"DirPath.h"
@@ -2543,7 +2544,7 @@
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353956045 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfacewindow.cpp
+1354535486 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfacewindow.cpp
 	"cInterfaceWindow.h"
 	<time.h>
 	"DirPath.h"
@@ -2706,7 +2707,7 @@
 	"tinyxml.h"
 	"cColor.h"
 
-1353955625 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.cpp
+1354535388 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.cpp
 	"InterfaceProcesses.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2734,7 +2735,7 @@
 	"cGirls.h"
 	"cBrothel.h"
 
-1353956825 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.cpp
+1354108798 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.cpp
 	"cTariff.h"
 	"cGirls.h"
 	"cEvents.h"
@@ -2790,7 +2791,7 @@
 	"DirPath.h"
 	"cInterfaceWindow.h"
 
-1353952266 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccustomers.cpp
+1354109050 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccustomers.cpp
 	"cCustomers.h"
 	"cBrothel.h"
 
@@ -2814,7 +2815,7 @@
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crng.cpp
+1354107762 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crng.cpp
 	"cRng.h"
 	"sConfig.h"
 
@@ -2866,11 +2867,11 @@
 	"cGirls.h"
 	"cBrothel.h"
 
-1353950226 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cwindowmanager.cpp
+1354107687 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cwindowmanager.cpp
 	"cWindowManager.h"
 	"CLog.h"
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgamescript.cpp
+1354108493 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgamescript.cpp
 	"cGameScript.h"
 	"cMessageBox.h"
 	"cChoiceMessage.h"
@@ -2952,7 +2953,7 @@
 	"cAnimatedSurface.h"
 	"CLog.h"
 
-1353952445 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.cpp
+1354109187 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.cpp
 	<iostream>
 	"cTraits.h"
 	"stdio.h"
@@ -2968,7 +2969,7 @@
 1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gameflags.cpp
 	"GameFlags.h"
 
-1353952205 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceglobals.cpp
+1354535139 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceglobals.cpp
 	"InterfaceGlobals.h"
 	<iostream>
 	"DirPath.h"
@@ -3046,7 +3047,7 @@
 	"cGangs.h"
 	"cScriptManager.h"
 
-1353955865 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgold.cpp
+1354107381 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgold.cpp
 	"cGold.h"
 	"CLog.h"
 	"sConfig.h"
@@ -3067,13 +3068,13 @@
 	"cDungeon.h"
 	"cGirlGangFight.h"
 
-1353951185 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscrollbar.cpp
+1354534870 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscrollbar.cpp
 	"cScrollBar.h"
 	"CResourceManager.h"
 	"DirPath.h"
 	"main.h"
 
-1353949985 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgraphics.cpp
+1354107099 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgraphics.cpp
 	"CGraphics.h"
 	"fstream"
 	"CLog.h"
@@ -5139,7 +5140,7 @@
 	<iomanip>
 	<sstream>
 
-1352967076 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.cpp
+1354104615 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.cpp
 	<Rocket/Core/Core.h>
 	"RenderInterfaceSFML.h"
 	"ShellFileInterface.h"
@@ -5512,7 +5513,7 @@
 	<Rocket/Core/XMLParser.h>
 	<Rocket/Core/Header.h>
 
-1352637531 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.h
+1354104370 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.h
 	<Rocket/Core/RenderInterface.h>
 	<SFML/Graphics.hpp>
 
@@ -5526,14 +5527,15 @@
 	<stdio.h>
 	<Rocket/Core/Core.h>
 
-1352864308 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.cpp
+1354103979 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.cpp
+	<iostream>
 	<Rocket/Core.h>
 	"SystemInterfaceSFML.h"
 
 1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core.h
 	<Rocket/Core/Core.h>
 
-1352636798 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.h
+1354103995 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.h
 	<Rocket/Core/SystemInterface.h>
 	<Rocket/Core/Input.h>
 	<SFML/Graphics.hpp>

@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+ *//*
 #include "main.h"
 #include "InterfaceGlobals.h"
 #include "GameFlags.h"
@@ -27,11 +27,11 @@
 #ifndef LINUX
 	#ifdef _DEBUG
 // to enable leak detection uncomment the below and the first comment in main()
-/*		#ifndef _CRTDBG_MAP_ALLOC
-			#define _CRTDBG_MAP_ALLOC
-		#endif
-		#include <stdlib.h>
-		#include <crtdbg.h>*/
+//		#ifndef _CRTDBG_MAP_ALLOC
+//			#define _CRTDBG_MAP_ALLOC
+//		#endif
+//		#include <stdlib.h>
+//		#include <crtdbg.h>
 	#endif
 #else
 	#include "linux.h"
@@ -170,15 +170,15 @@ void handle_hotkeys()
 		case SDLK_m:	// mayors office screen
 			g_WinManager.PopToWindow(&g_BrothelManagement);
 			g_InitWin = true;
-/*
- *			this will make "m" go to brothel management
- *			you need "M" to go to the mayor screen now
- *			which is far less used, I think, and easy to get
- *			to from the town screen
- *
- *			we should consider some customisable keyboard mapping
- *			mechanism at some point
- */
+//
+//			this will make "m" go to brothel management
+//			you need "M" to go to the mayor screen now
+//			which is far less used, I think, and easy to get
+//			to from the town screen
+//
+//			we should consider some customisable keyboard mapping
+//			mechanism at some point
+//
 			if(g_ShiftDown) {
 				g_WinManager.push("Town");
 				g_WinManager.push("Mayor");
@@ -309,10 +309,10 @@ int main_old(int ac, char* av[])
 						mouseDown = true;
 					g_WinManager.UpdateMouseDown(vent.motion.x, vent.motion.y);
 				}
-/*
- *				horizontal mouse scroll events happen here,
- *				as do right and middle clicks.
- */
+//
+//				horizontal mouse scroll events happen here,
+//              as do right and middle clicks.
+//
 				else {
 					// do nothing ...
 				}
@@ -440,10 +440,10 @@ int main_old(int ac, char* av[])
 			rmanager.CullOld(g_Graphics.GetTicks());
 
 			g_Graphics.End();
-/*		}
-		else
-			SDL_Delay(1000);
-*/	}
+//		}
+//		else
+//			SDL_Delay(1000);
+//	}
 
 	Shutdown();
 	return 0;
@@ -491,9 +491,9 @@ void Shutdown()
 bool Init()
 {
 	g_LogFile.write("Initializing Graphics");
-/*
- *	build the caption string
- */
+//
+//	build the caption string
+//
 	std::stringstream ss;
 	ss << "Whore Master v"
 	   << g_MajorVersion
@@ -505,9 +505,9 @@ bool Init()
 	   << " BETA"
 	   << " Svn: " << svn_revision
 	;
-/*
- *	init the graphics, with the caption on the titlebar
- */
+//
+//  init the graphics, with the caption on the titlebar
+//
 	if(!g_Graphics.InitGraphics(ss.str(), 0,0,32))
 	{
 		g_LogFile.write("ERROR - Initializing Graphics");
@@ -533,10 +533,10 @@ bool Init()
 			delete g_BrothelImages[i];
 			g_BrothelImages[i] = 0;
 		}
-/*
- *		I think this should work - kept the old line below
- *		reference
- */
+//
+//      I think this should work - kept the old line below
+//      reference
+//
 		char buffer[32];
 		g_BrothelImages[i] = new ImageSurface("Brothel", toString(i).c_str());
 		//g_BrothelImages[i]->LoadImage(file,false);
@@ -547,172 +547,21 @@ bool Init()
 }
 
 // trivial change to test Revision.h
+*/
 
 
+#include <iostream>
 
-#include "WhoreMasterRenewalWindow.hpp"
+#include <SFML/Graphics.hpp>
 
-#include "LuaUtils.hpp"
+#include "libRocketSFMLInterface/RenderInterfaceSFML.h"
+#include "libRocketSFMLInterface/SystemInterfaceSFML.h"
+#include "libRocketSFMLInterface/ShellFileInterface.h"
 
-namespace WhoreMasterRenewal
-{
+//#include "WhoreMasterRenewalWindow.hpp"
+//#include "LuaUtils.hpp"
 
-class Helper
-{
-public:
-    Helper() = delete;
-    Helper( const Helper& ) = delete;
-    Helper( Helper&& ) = delete;
-    Helper operator= ( const Helper& ) = delete;
-    Helper operator= ( Helper&& ) = delete;
-    virtual ~Helper();
-    
-    template<typename T>
-    static bool AreEqual( T value1, T value2, T precission = 0.00001 )
-    {
-        T difference = std::abs( value1 - value2 );
-        return ( difference <= precission );
-    }
-};
-
-class Condition
-{
-    Condition() = delete;
-    Condition( const Condition& ) = delete;
-    Condition( const Condition&& ) = delete;
-    Condition& operator= ( const Condition& ) = delete;
-    virtual ~Condition();
-};
-
-class That : Condition
-{
-    That() = delete;
-    virtual ~That();
-    
-    bool Equals();
-};
-
-class Assert
-{
-public:
-    Assert() = delete;
-    Assert( const Assert& ) = delete;
-    Assert( const Assert&& ) = delete;
-    Assert& operator= ( const Assert& ) = delete;
-    ~Assert();
-    
-    template<typename T>
-    void That( T& value, Condition condition )
-    {
-        ;
-    }
-    /*
-    template<typename T, typename U>
-    static void Equals( T& value1, U& value2 )
-    {
-        if( value1 != value2 )
-        {
-            std::cout << "Warning: Assert.Equals expected \"" << value2 << "\", but \"" << value1 << "\" was given.\n";
-        }
-    }
-    */
-    /*
-    template<typename T>
-    static void Equals( T value1, T value2, T precission = 0.001, typename std::enable_if< std::is_floating_point<T>::value, T >::type* = 0 )
-    {
-        if( (value2 - precission) < value1 && (value2 + precission) > value1 )
-        {
-            std::cout << "Debug: " << (value2 - precission) << " < " << value1 << " < " << (value2 + precission) << "\n";
-            std::cout << "Warning: Assert.Equals expected \"" << value2 << "\" (precission=\"" << precission << "\"), but \"" << value1 << "\" was given.\n";
-        }
-    }
-    */
-    
-    template<typename T, class = typename std::enable_if<std::is_floating_point<T>::value>::type>
-    static void Equals( T value1, T value2, T precision = 0.00001 )
-    {
-        if( !Helper::AreEqual( value1, value2, precision ) )
-        {
-            std::cout << std::fixed << "Warning - Assert::Equals expected to be true:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\n|difference| = \"" << std::abs( value1 - value2 ) << "\"\nrequired precision = \"" << precision << "\"\nequals: false\n";
-        }
-    }
-    
-    template<typename T, class = typename std::enable_if<!std::is_floating_point<T>::value>::type>
-    static void Equals( T value1, T value2 )
-    {
-        if( value1 != value2 )
-        {
-            std::cout << "Warning - Assert::Equals expected to be true:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\nequals: false\n";
-        }
-    }
-    
-    static void Equals( std::string value1, std::string value2 )
-    {
-        if( value1 != value2 )
-        {
-            std::cout << "Warning - Assert::Equals expected to be true:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\nequals: false\n";
-        }
-    }
-        
-//    template<typename T>
-//    static void NotEquals( T value1, T value2, T precision = 0.00001 )
-//    {
-//        if( std::is_floating_point<T>::value )
-//        {
-//            if( Helper::AreEqual( value1, value2, precision ) )
-//            {
-//                std::cout << std::fixed << "Warning - Assert::NotEquals expected equals to be false:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\n|difference| = \"" << std::abs( value1 - value2 ) << "\"\nrequired precision = \"" << precision << "\"\nequals: true\n";
-//            }
-//        }
-//        else
-//        {
-//            if( value1 == value2 )
-//            {
-//                std::cout << "Warning - Assert::NotEquals expected equals to be false:\nvalue1 = \"" << value1 << "\"\nvalue2 = \"" << value2 << "\"\nequals: true\n";
-//            }
-//        }
-//    }
-//    
-//    template<typename T, typename U>
-//    static void NotEquals( T value1, U value2 )
-//    {
-//        if( value1 != value2 )
-//        {
-//            std::cout << "Warning: Assert.NotEquals - both values are equal: value1 = \"" << value1 << "\", value2 = \"" << value2 << "\".\n";
-//        }
-//    }
-    
-};
-
-}
-
-namespace wmr = WhoreMasterRenewal;
-
-static int average( lua_State* L )
-{
-    wmr::luaD_DumpStack( L );
-    
-    int n = lua_gettop( L );
-    double sum = 0;
-    
-    for( int i = 1; i <= n; i++ )
-    {
-        if( !lua_isnumber( L, i ) )
-        {
-            lua_pushstring( L, "Incorrect argument to 'average'" );
-            lua_error( L );
-        }
-        
-        sum += lua_tonumber( L, i );
-    }
-    
-    lua_pushnumber( L, sum / n );
-    lua_pushnumber( L, sum );
-    
-    wmr::luaD_DumpStack( L );
-    
-    return 2;
-}
+//namespace wmr = WhoreMasterRenewal;
 
 int main( int argc, char* argv[] )
 {

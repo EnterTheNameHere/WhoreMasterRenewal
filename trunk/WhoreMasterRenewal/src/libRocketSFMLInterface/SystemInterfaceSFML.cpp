@@ -24,10 +24,11 @@
  * THE SOFTWARE.
  *
  */
+#include <iostream>
 #include <Rocket/Core.h>
 #include "SystemInterfaceSFML.h"
 
-int RocketSFMLSystemInterface::GetKeyModifiers(sf::Window *Window)
+int RocketSFMLSystemInterface::GetKeyModifiers()
 {
 	int Modifiers = 0;
 
@@ -46,9 +47,9 @@ int RocketSFMLSystemInterface::GetKeyModifiers(sf::Window *Window)
 	return Modifiers;
 };
 
-Rocket::Core::Input::KeyIdentifier RocketSFMLSystemInterface::TranslateKey(sf::Keyboard::Key Key)
+Rocket::Core::Input::KeyIdentifier RocketSFMLSystemInterface::TranslateKey( sf::Keyboard::Key key )
 {
-	switch(Key)
+	switch( key )
 	{
 	case sf::Keyboard::Key::A:
 		return Rocket::Core::Input::KI_A;
@@ -299,6 +300,9 @@ Rocket::Core::Input::KeyIdentifier RocketSFMLSystemInterface::TranslateKey(sf::K
 	case sf::Keyboard::Key::Tab:
 		return Rocket::Core::Input::KI_TAB;
 		break;
+    default:
+        return Rocket::Core::Input::KI_UNKNOWN;
+        break;
 	};
 
 	return Rocket::Core::Input::KI_UNKNOWN;
@@ -309,33 +313,38 @@ float RocketSFMLSystemInterface::GetElapsedTime()
 	return timer.getElapsedTime().asMilliseconds();
 };
 
-bool RocketSFMLSystemInterface::LogMessage(Rocket::Core::Log::Type type, const Rocket::Core::String& message)
+bool RocketSFMLSystemInterface::LogMessage( Rocket::Core::Log::Type type, const Rocket::Core::String& message )
 {
-	std::string Type;
+	std::string typeOfMessagePrefix;
 
-	switch(type)
+	switch( type )
 	{
 	case Rocket::Core::Log::LT_ALWAYS:
-		Type = "[Always]";
+		typeOfMessagePrefix = "[Always]";
 		break;
 	case Rocket::Core::Log::LT_ERROR:
-		Type = "[Error]";
+		typeOfMessagePrefix = "[Error]";
 		break;
 	case Rocket::Core::Log::LT_ASSERT:
-		Type = "[Assert]";
+		typeOfMessagePrefix = "[Assert]";
 		break;
 	case Rocket::Core::Log::LT_WARNING:
-		Type = "[Warning]";
+		typeOfMessagePrefix = "[Warning]";
 		break;
 	case Rocket::Core::Log::LT_INFO:
-		Type = "[Info]";
+		typeOfMessagePrefix = "[Info]";
 		break;
 	case Rocket::Core::Log::LT_DEBUG:
-		Type = "[Debug]";
+		typeOfMessagePrefix = "[Debug]";
 		break;
+    default:
+        typeOfMessagePrefix = "[Unknown]";
+        break;
 	};
-
-	printf("%s - %s\n", Type.c_str(), message.CString());
-
+    
+    std::cout << typeOfMessagePrefix << " - " << message.CString() << "\n";
+    
+	//printf( "%s - %s\n", typeOfMessagePrefix.c_str(), message.CString() );
+    
 	return true;
 };

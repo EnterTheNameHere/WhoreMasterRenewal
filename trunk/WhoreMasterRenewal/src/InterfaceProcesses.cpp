@@ -44,6 +44,8 @@ bool g_InitWin = true;
 bool g_AllTogle = false;	// used on screens when wishing to apply something to all items
 long g_IntReturn;
 extern bool eventrunning;
+bool eventrunning = false;
+
 extern cRng g_Dice;
 bool g_WalkAround = false;	// for keeping track of weather have walked around town today
 int g_TalkCount = 10;
@@ -63,10 +65,17 @@ CSurface* g_BrothelImages[6] = {0,0,0,0,0,0};
 char buffer[1000];
 
 extern bool g_LeftArrow;
+bool g_LeftArrow = false;
 extern bool g_RightArrow;
+bool g_RightArrow = false;
 extern bool g_UpArrow;
+bool g_UpArrow = false;
 extern bool g_DownArrow;
+bool g_DownArrow = false;
 extern bool g_EnterKey;
+bool g_EnterKey = false;
+
+cTriggerList g_GlobalTriggers;
 
 //used to store what files we have loaded
 MasterFile loadedGirlsFiles;

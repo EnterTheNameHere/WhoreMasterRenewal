@@ -23,6 +23,9 @@
 
 extern CLog g_LogFile;
 
+extern cGold g_Gold;
+cGold g_Gold;
+
 /*
  * Two types of transaction here: instant and delayed.
  * Instant transactions show up in the gold total immediatly.

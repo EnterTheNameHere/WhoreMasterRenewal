@@ -23,6 +23,8 @@
 extern cInterfaceEventManager g_InterfaceEvents;
 extern CResourceManager rmanager;
 
+cScrollBar* g_DragScrollBar = nullptr;
+
 //these static vars defined in the header file need to be specified here
 SDL_Surface* cScrollBar::m_ImgBarBG=0;
 SDL_Surface* cScrollBar::m_ImgBarOn=0;

@@ -24,8 +24,8 @@
  * THE SOFTWARE.
  *
  */
-#ifndef SYSTEMINTEFACESFML_H
-#define SYSTEMINTEFACESFML_H
+#ifndef SYSTEMINTEFACESFML_H_INCLUDED_1247
+#define SYSTEMINTEFACESFML_H_INCLUDED_1247
 
 #include <Rocket/Core/SystemInterface.h>
 #include <Rocket/Core/Input.h>
@@ -35,12 +35,12 @@ class RocketSFMLSystemInterface : public Rocket::Core::SystemInterface
 {
 public:
 
-	Rocket::Core::Input::KeyIdentifier TranslateKey(sf::Keyboard::Key Key);
-	int GetKeyModifiers(sf::Window *Window);
+	Rocket::Core::Input::KeyIdentifier TranslateKey( sf::Keyboard::Key key );
+	int GetKeyModifiers();
 	float GetElapsedTime();
-	bool LogMessage(Rocket::Core::Log::Type type, const Rocket::Core::String& message);
+	bool LogMessage( Rocket::Core::Log::Type type, const Rocket::Core::String& message );
 
 private:
 	sf::Clock timer;
 };
-#endif
+#endif // SYSTEMINTERFACESFML_H_INCLUDED_1247

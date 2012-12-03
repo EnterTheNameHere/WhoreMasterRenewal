@@ -51,6 +51,9 @@ extern cGold g_Gold;
 
 extern char buffer[1000];
 
+extern cGangManager g_Gangs;
+cGangManager g_Gangs;
+
 static cPlayer* m_Player = g_Brothels.GetPlayer();
 static cRivalManager* m_Rivals = g_Brothels.GetRivalManager();
 static cDungeon* m_Dungeon = g_Brothels.GetDungeon();

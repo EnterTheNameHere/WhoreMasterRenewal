@@ -33,6 +33,7 @@ typedef unsigned int u_int;
 extern CLog g_LogFile;
 extern CGraphics g_Graphics;
 extern CResourceManager rmanager;
+CResourceManager rmanager;
 extern cInterfaceEventManager g_InterfaceEvents;
 
 extern unsigned char g_WindowBorderR, g_WindowBorderG, g_WindowBorderB;

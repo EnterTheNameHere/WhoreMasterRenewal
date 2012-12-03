@@ -38,6 +38,8 @@
 #include "cScreenDungeon.h"
 
 extern sInterfaceIDs g_interfaceid;
+sInterfaceIDs g_interfaceid;
+
 extern cWindowManager g_WinManager;
 
 cInterfaceEventManager g_InterfaceEvents;
@@ -111,6 +113,12 @@ unsigned char g_MessageBoxBackground2R = 0, g_MessageBoxBackground2G = 0, g_Mess
 unsigned char g_MessageBoxBackground3R = 0, g_MessageBoxBackground3G = 0, g_MessageBoxBackground3B = 0;
 unsigned char g_MessageBoxTextR = 0, g_MessageBoxTextG = 0, g_MessageBoxTextB = 0;
 
+unsigned long g_Year = 0;
+unsigned long g_Month = 0;
+unsigned long g_Day = 0;
+
+bool g_ShiftDown = false;
+bool g_CTRLDown = false;
 
 void FreeInterface()
 {

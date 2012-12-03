@@ -21,6 +21,9 @@
 #include "CLog.h"
 #include "DirPath.h"
 
+extern CGraphics g_Graphics;
+CGraphics g_Graphics;
+
 extern CLog g_LogFile;
 
 int g_ScreenWidth = 800, g_ScreenHeight = 600;
