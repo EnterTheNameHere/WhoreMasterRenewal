@@ -2120,7 +2120,7 @@
 	<vector>
 	"cInterfaceWindow.h"
 
-1354106482 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
+1355313673 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
 	"main.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2136,6 +2136,8 @@
 	<string>
 	<iostream>
 	<SFML/Graphics.hpp>
+	<Rocket/Core.h>
+	<Rocket/Debugger/Debugger.h>
 	"libRocketSFMLInterface/RenderInterfaceSFML.h"
 	"libRocketSFMLInterface/SystemInterfaceSFML.h"
 	"libRocketSFMLInterface/ShellFileInterface.h"
@@ -5140,7 +5142,7 @@
 	<iomanip>
 	<sstream>
 
-1354104615 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.cpp
+1355256716 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.cpp
 	<Rocket/Core/Core.h>
 	"RenderInterfaceSFML.h"
 	"ShellFileInterface.h"
@@ -5513,21 +5515,23 @@
 	<Rocket/Core/XMLParser.h>
 	<Rocket/Core/Header.h>
 
-1354104370 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.h
+1355256374 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.h
 	<Rocket/Core/RenderInterface.h>
 	<SFML/Graphics.hpp>
 
-1352870835 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.h
+1355255623 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.h
 	<Rocket/Core/String.h>
 	<Rocket/Core/FileInterface.h>
 	<sfml/Graphics.hpp>
 
-1352870842 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.cpp
+1355256785 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.cpp
 	"ShellFileInterface.h"
-	<stdio.h>
 	<Rocket/Core/Core.h>
+	<iostream>
+	<fstream>
+	<cstdio>
 
-1354103979 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.cpp
+1355259277 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.cpp
 	<iostream>
 	<Rocket/Core.h>
 	"SystemInterfaceSFML.h"
@@ -5535,8 +5539,15 @@
 1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core.h
 	<Rocket/Core/Core.h>
 
-1354103995 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.h
+1355257304 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.h
 	<Rocket/Core/SystemInterface.h>
 	<Rocket/Core/Input.h>
 	<SFML/Graphics.hpp>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\debugger\debugger.h
+	<Rocket/Core/Types.h>
+	<Rocket/Debugger/Header.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\debugger\header.h
+	<Rocket/Core/Platform.h>
 

@@ -553,6 +553,8 @@ bool Init()
 #include <iostream>
 
 #include <SFML/Graphics.hpp>
+#include <Rocket/Core.h>
+#include <Rocket/Debugger/Debugger.h>
 
 #include "libRocketSFMLInterface/RenderInterfaceSFML.h"
 #include "libRocketSFMLInterface/SystemInterfaceSFML.h"
@@ -569,7 +571,149 @@ int main( int argc, char* argv[] )
     
     try
     {
+        sf::VideoMode currentVideoMode = sf::VideoMode().getDesktopMode();
+        sf::RenderWindow sfWindow( currentVideoMode, "Whore Master: Renewal" );
         
+        RocketSFMLRenderer sfRenderInterface;
+        RocketSFMLSystemInterface sfSystemInterface;
+        ShellFileInterface fileInterface( "Resources/" );
+        
+        if( !sfWindow.isOpen() )
+        {
+            Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_ERROR, "Cannot create window..." );
+            std::cout.flush();
+            std::cerr.flush();
+            return 1;
+        }
+        
+        sfRenderInterface.SetWindow( &sfWindow );
+        
+        Rocket::Core::SetFileInterface( &fileInterface );
+        Rocket::Core::SetRenderInterface( &sfRenderInterface );
+        Rocket::Core::SetSystemInterface( &sfSystemInterface );
+        
+        if( !Rocket::Core::Initialise() )
+        {
+            Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_ERROR, "Cannot initialise libRocket framework..." );
+            std::cout.flush();
+            std::cerr.flush();
+            return 1;
+        }
+        
+        Rocket::Core::Context* context = Rocket::Core::CreateContext( "defaultContext",
+            Rocket::Core::Vector2i( sfWindow.getSize().x, sfWindow.getSize().y ) );
+        
+        if( !Rocket::Debugger::Initialise( context ) )
+        {
+            Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_ERROR, "Cannot initialise libRocket Debugger..." );
+            std::cout.flush();
+            std::cerr.flush();
+        }
+        
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/PT Sans Bold Italic.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/PT Sans Bold.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/PT Sans Italic.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/PT Sans.ttf" );
+        
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSans.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSans-Bold.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSans-Oblique.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSans-BoldOblique.ttf" );
+                
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSansMono.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSansMono-Bold.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSansMono-Oblique.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSansMono-BoldOblique.ttf" );
+                
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSerif.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSerif-Bold.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSerif-BoldItalic.ttf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/DejaVuSerif-Italic.ttf" );
+                
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/Delicious-Roman.otf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/Delicious-Bold.otf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/Delicious-BoldItalic.otf" );
+        Rocket::Core::FontDatabase::LoadFontFace( "Fonts/Delicious-Italic.otf" );
+        
+        Rocket::Core::ElementDocument *document = context->LoadDocument( "Interface/MainMenu.rml" );
+        
+        if( document )
+        {
+            document->Show();
+            document->RemoveReference();
+        }
+        
+        while( sfWindow.isOpen() )
+        {
+            static sf::Event event;
+            
+            sfWindow.clear();
+            context->Render();
+            sfWindow.display();
+            
+            while( sfWindow.pollEvent( event ) )
+            {
+                switch( event.type )
+                {
+                case sf::Event::EventType::Resized:
+                    sfRenderInterface.Resize();
+                    break;
+                    
+                case sf::Event::EventType::MouseMoved:
+                    context->ProcessMouseMove( event.mouseMove.x, event.mouseMove.y, sfSystemInterface.GetKeyModifiers() );
+                    break;
+                    
+                case sf::Event::EventType::MouseButtonPressed:
+                    context->ProcessMouseButtonDown( event.mouseButton.button, sfSystemInterface.GetKeyModifiers() );
+                    break;
+                    
+                case sf::Event::EventType::MouseButtonReleased:
+                    context->ProcessMouseButtonUp( event.mouseButton.button, sfSystemInterface.GetKeyModifiers() );
+                    break;
+                    
+                case sf::Event::EventType::MouseWheelMoved:
+                    context->ProcessMouseWheel( event.mouseWheel.delta * (-1), sfSystemInterface.GetKeyModifiers() );
+                    break;
+                    
+                case sf::Event::EventType::TextEntered:
+                    context->ProcessTextInput( static_cast<Rocket::Core::word>( event.text.unicode ) );
+                    break;
+                    
+                case sf::Event::EventType::KeyPressed:
+                    context->ProcessKeyDown( sfSystemInterface.TranslateKey( event.key.code ), sfSystemInterface.GetKeyModifiers() );
+                    break;
+                    
+                case sf::Event::EventType::KeyReleased:
+                    if( event.key.code == sf::Keyboard::Key::Tilde )
+                        Rocket::Debugger::SetVisible( !Rocket::Debugger::IsVisible() );
+                    
+                    context->ProcessKeyUp( sfSystemInterface.TranslateKey( event.key.code ), sfSystemInterface.GetKeyModifiers() );
+                    break;
+                    
+                case sf::Event::EventType::Closed:
+                    sfWindow.close();
+                    break;
+                
+                // following events not used
+                case sf::Event::EventType::Count:
+                case sf::Event::EventType::GainedFocus:
+                case sf::Event::EventType::JoystickButtonPressed:
+                case sf::Event::EventType::JoystickButtonReleased:
+                case sf::Event::EventType::JoystickConnected:
+                case sf::Event::EventType::JoystickDisconnected:
+                case sf::Event::EventType::JoystickMoved:
+                case sf::Event::EventType::LostFocus:
+                case sf::Event::EventType::MouseEntered:
+                case sf::Event::EventType::MouseLeft:
+                    break;
+                    
+                default:
+                    break;
+                }
+            }
+            
+            context->Update();
+        }
     }
     catch( std::exception& ex )
     {

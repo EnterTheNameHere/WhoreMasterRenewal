@@ -34,6 +34,13 @@ class RocketSFMLRenderer : public Rocket::Core::RenderInterface
 {
 public:
     RocketSFMLRenderer();
+    virtual ~RocketSFMLRenderer();
+    
+    // no copy or move
+    RocketSFMLRenderer( const RocketSFMLRenderer& ) = delete;
+    RocketSFMLRenderer& operator= ( const RocketSFMLRenderer& ) = delete;
+    RocketSFMLRenderer( RocketSFMLRenderer&& ) = delete;
+    RocketSFMLRenderer& operator= ( RocketSFMLRenderer& ) = delete;
     
     /// Sets the window
     void SetWindow( sf::RenderWindow* window );
@@ -68,7 +75,8 @@ public:
     virtual void ReleaseTexture( Rocket::Core::TextureHandle texture_handle );
     
 private:
-    sf::RenderWindow* m_Window;
+    /// RenderWindow we render to. Destruction of this object should be handled by its owner.
+    sf::RenderWindow* m_Window = {nullptr};
 };
 
 #endif

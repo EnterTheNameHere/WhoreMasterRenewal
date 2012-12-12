@@ -74,24 +74,28 @@ RocketSFMLRenderer::RocketSFMLRenderer()
 {
 }
 
+RocketSFMLRenderer::~RocketSFMLRenderer()
+{
+}
+
 void RocketSFMLRenderer::SetWindow( sf::RenderWindow* window )
 {
     m_Window = window;
     
     Resize();
-};
+}
 
 sf::RenderWindow* RocketSFMLRenderer::GetWindow()
 {
     return m_Window;
-};
+}
 
 void RocketSFMLRenderer::Resize()
 {
     m_Window->setActive( true );
     
     static sf::View view;
-    view.setSize( m_Window->getSize().x, m_Window->getSize().y );
+    view.setSize( static_cast<float>( m_Window->getSize().x ), static_cast<float>( m_Window->getSize().y ) );
     m_Window->setView( view );
     
     glMatrixMode( GL_PROJECTION );
@@ -100,7 +104,7 @@ void RocketSFMLRenderer::Resize()
     glMatrixMode( GL_MODELVIEW );
     
     glViewport( 0, 0, m_Window->getSize().x, m_Window->getSize().y );
-};
+}
 
 // Called by Rocket when it wants to render geometry that it does not wish to optimise.
 void RocketSFMLRenderer::RenderGeometry( Rocket::Core::Vertex* vertices, int num_vertices, int* indices, int num_indices, const Rocket::Core::TextureHandle textureHandle, const Rocket::Core::Vector2f& translation )
@@ -159,10 +163,10 @@ void RocketSFMLRenderer::RenderGeometry( Rocket::Core::Vertex* vertices, int num
 }
 
 // Called by Rocket when it wants to compile geometry it believes will be static for the forseeable future.
-Rocket::Core::CompiledGeometryHandle RocketSFMLRenderer::CompileGeometry( Rocket::Core::Vertex* vertices,
-        int num_vertices, int* indices,
-        int num_indices,
-        const Rocket::Core::TextureHandle texture )
+Rocket::Core::CompiledGeometryHandle RocketSFMLRenderer::CompileGeometry( Rocket::Core::Vertex* /*vertices*/,
+        int /*num_vertices*/, int* /*indices*/,
+        int /*num_indices*/,
+        const Rocket::Core::TextureHandle /*texture*/ )
 {
 //#ifdef ENABLE_GLEE
 //	m_Window->SetActive();
@@ -203,7 +207,7 @@ Rocket::Core::CompiledGeometryHandle RocketSFMLRenderer::CompileGeometry( Rocket
 }
 
 // Called by Rocket when it wants to render application-compiled geometry.
-void RocketSFMLRenderer::RenderCompiledGeometry( Rocket::Core::CompiledGeometryHandle geometry, const Rocket::Core::Vector2f& translation )
+void RocketSFMLRenderer::RenderCompiledGeometry( Rocket::Core::CompiledGeometryHandle /*geometry*/, const Rocket::Core::Vector2f& /*translation*/ )
 {
 #ifdef ENABLE_GLEE
     m_Window->SetActive();
@@ -255,7 +259,7 @@ void RocketSFMLRenderer::RenderCompiledGeometry( Rocket::Core::CompiledGeometryH
 }
 
 // Called by Rocket when it wants to release application-compiled geometry.
-void RocketSFMLRenderer::ReleaseCompiledGeometry( Rocket::Core::CompiledGeometryHandle geometry )
+void RocketSFMLRenderer::ReleaseCompiledGeometry( Rocket::Core::CompiledGeometryHandle /*geometry*/ )
 {
 #ifdef ENABLE_GLEE
     m_Window->setActive();
@@ -292,8 +296,10 @@ bool RocketSFMLRenderer::LoadTexture( Rocket::Core::TextureHandle& textureHandle
     
     m_Window->setActive();
     
-    ShellFileInterface* fileInterface = reinterpret_cast<ShellFileInterface*>( Rocket::Core::GetFileInterface() );
-    sf::Texture* sfTexture = fileInterface->LoadTextureFromFile( source );
+    sf::Texture* sfTexture = new sf::Texture();
+    
+    // TODO: Texture manager based loading from file/cache
+    sfTexture->loadFromFile( (Rocket::Core::String("Resources/") + source).CString() );
     /*
     if( !sfTexture->loadFromFile( source.CString() ) )
     {
