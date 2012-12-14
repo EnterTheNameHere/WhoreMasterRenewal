@@ -563,11 +563,13 @@ bool Init()
 //#include "WhoreMasterRenewalWindow.hpp"
 //#include "LuaUtils.hpp"
 
-//namespace wmr = WhoreMasterRenewal;
+#include "CLog.h"
 
-int main( int argc, char* argv[] )
+namespace wmr = WhoreMasterRenewal;
+
+int main( int /*argc*/, char** /*argv[]*/ )
 {
-    std::cout << "Loading Whore Master: Renewal...\n";
+    wmr::Logger() << "Loading Whore Master: Renewal...\n";
     
     try
     {
@@ -660,19 +662,19 @@ int main( int argc, char* argv[] )
                     break;
                     
                 case sf::Event::EventType::MouseMoved:
-                    context->ProcessMouseMove( event.mouseMove.x, event.mouseMove.y, sfSystemInterface.GetKeyModifiers() );
+                    context->ProcessMouseMove( event.mouseMove.x, event.mouseMove.y, sfSystemInterface.GetKeyModifiers( event ) );
                     break;
                     
                 case sf::Event::EventType::MouseButtonPressed:
-                    context->ProcessMouseButtonDown( event.mouseButton.button, sfSystemInterface.GetKeyModifiers() );
+                    context->ProcessMouseButtonDown( event.mouseButton.button, sfSystemInterface.GetKeyModifiers( event ) );
                     break;
                     
                 case sf::Event::EventType::MouseButtonReleased:
-                    context->ProcessMouseButtonUp( event.mouseButton.button, sfSystemInterface.GetKeyModifiers() );
+                    context->ProcessMouseButtonUp( event.mouseButton.button, sfSystemInterface.GetKeyModifiers( event ) );
                     break;
                     
                 case sf::Event::EventType::MouseWheelMoved:
-                    context->ProcessMouseWheel( event.mouseWheel.delta * (-1), sfSystemInterface.GetKeyModifiers() );
+                    context->ProcessMouseWheel( event.mouseWheel.delta * (-1), sfSystemInterface.GetKeyModifiers( event ) );
                     break;
                     
                 case sf::Event::EventType::TextEntered:
@@ -680,14 +682,14 @@ int main( int argc, char* argv[] )
                     break;
                     
                 case sf::Event::EventType::KeyPressed:
-                    context->ProcessKeyDown( sfSystemInterface.TranslateKey( event.key.code ), sfSystemInterface.GetKeyModifiers() );
+                    context->ProcessKeyDown( sfSystemInterface.TranslateKey( event.key.code ), sfSystemInterface.GetKeyModifiers( event ) );
                     break;
                     
                 case sf::Event::EventType::KeyReleased:
                     if( event.key.code == sf::Keyboard::Key::Tilde )
                         Rocket::Debugger::SetVisible( !Rocket::Debugger::IsVisible() );
                     
-                    context->ProcessKeyUp( sfSystemInterface.TranslateKey( event.key.code ), sfSystemInterface.GetKeyModifiers() );
+                    context->ProcessKeyUp( sfSystemInterface.TranslateKey( event.key.code ), sfSystemInterface.GetKeyModifiers( event ) );
                     break;
                     
                 case sf::Event::EventType::Closed:
@@ -717,10 +719,10 @@ int main( int argc, char* argv[] )
     }
     catch( std::exception& ex )
     {
-        std::clog << "Exception caught:\nException type: \"" << typeid(ex).name() << "\"\n" << ex.what();
+        wmr::Logger() << "Exception caught:\nException type: \"" << typeid(ex).name() << "\"\n" << ex.what() << "\n";
     }
     
-    std::cout << "Whore Master: Renewal finished..." << std::endl;
+    wmr::Logger() << "Whore Master: Renewal finished...\n";
     
     return 0;
 }

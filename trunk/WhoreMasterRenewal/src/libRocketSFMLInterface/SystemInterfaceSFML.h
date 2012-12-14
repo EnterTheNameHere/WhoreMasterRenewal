@@ -35,7 +35,7 @@ class RocketSFMLSystemInterface : public Rocket::Core::SystemInterface
 {
 public:
 	Rocket::Core::Input::KeyIdentifier TranslateKey( sf::Keyboard::Key key );
-	int GetKeyModifiers();
+	int GetKeyModifiers( sf::Event& event );
 	float GetElapsedTime();
 	bool LogMessage( Rocket::Core::Log::Type type, const Rocket::Core::String& message );
 

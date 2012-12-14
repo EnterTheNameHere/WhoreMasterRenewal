@@ -1644,7 +1644,7 @@
 	"CResourceManager.h"
 	"CTimer.h"
 
-1353949625 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.h
+1355485855 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.h
 	<iostream>
 	<fstream>
 	<sstream>
@@ -2120,7 +2120,7 @@
 	<vector>
 	"cInterfaceWindow.h"
 
-1355313673 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
+1355497575 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
 	"main.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2141,6 +2141,7 @@
 	"libRocketSFMLInterface/RenderInterfaceSFML.h"
 	"libRocketSFMLInterface/SystemInterfaceSFML.h"
 	"libRocketSFMLInterface/ShellFileInterface.h"
+	"CLog.h"
 
 1353950345 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.h
 	"GameSystem.h"
@@ -5531,7 +5532,7 @@
 	<fstream>
 	<cstdio>
 
-1355259277 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.cpp
+1355497547 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.cpp
 	<iostream>
 	<Rocket/Core.h>
 	"SystemInterfaceSFML.h"
@@ -5539,7 +5540,7 @@
 1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core.h
 	<Rocket/Core/Core.h>
 
-1355257304 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.h
+1355497532 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.h
 	<Rocket/Core/SystemInterface.h>
 	<Rocket/Core/Input.h>
 	<SFML/Graphics.hpp>

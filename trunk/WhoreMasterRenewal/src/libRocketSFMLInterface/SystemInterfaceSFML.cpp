@@ -28,21 +28,18 @@
 #include <Rocket/Core.h>
 #include "SystemInterfaceSFML.h"
 
-int RocketSFMLSystemInterface::GetKeyModifiers()
+int RocketSFMLSystemInterface::GetKeyModifiers( sf::Event& event )
 {
 	int Modifiers = 0;
 
-	if( sf::Keyboard::isKeyPressed( sf::Keyboard::LShift ) ||
-		sf::Keyboard::isKeyPressed( sf::Keyboard::RShift ))
-		Modifiers |= Rocket::Core::Input::KM_SHIFT;
+	if( event.key.shift )
+		Modifiers |= Rocket::Core::Input::KeyModifier::KM_SHIFT;
 
-	if( sf::Keyboard::isKeyPressed( sf::Keyboard::LControl ) ||
-		sf::Keyboard::isKeyPressed( sf::Keyboard::RControl ))
-		Modifiers |= Rocket::Core::Input::KM_CTRL;
+	if( event.key.control )
+		Modifiers |= Rocket::Core::Input::KeyModifier::KM_CTRL;
 
-	if( sf::Keyboard::isKeyPressed( sf::Keyboard::LAlt ) ||
-		sf::Keyboard::isKeyPressed( sf::Keyboard::RAlt ))
-		Modifiers |= Rocket::Core::Input::KM_ALT;
+	if( event.key.alt )
+		Modifiers |= Rocket::Core::Input::KeyModifier::KM_ALT;
 
 	return Modifiers;
 }
