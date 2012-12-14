@@ -105,7 +105,7 @@ public:
 		if(inner) {
 			delete inner;
 		}
-		inner = 0;
+		inner = nullptr;
 	}
 	void write(std::string text)
 	{
