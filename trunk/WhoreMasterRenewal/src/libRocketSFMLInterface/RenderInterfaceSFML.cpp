@@ -292,7 +292,7 @@ void RocketSFMLRenderer::SetScissorRegion( int x, int y, int width, int height )
 // Called by Rocket when a texture is required by the library.
 bool RocketSFMLRenderer::LoadTexture( Rocket::Core::TextureHandle& textureHandle, Rocket::Core::Vector2i& textureDimensions, const Rocket::Core::String& source )
 {
-    Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_INFO, "Loading new texture: textureHandle=\"%i\" source \"%s\" textureDimensions=\"%i;%i\"", textureHandle, source.CString(), textureDimensions.x, textureDimensions.y );
+    //Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_INFO, "Loading new texture: textureHandle=\"%i\" source \"%s\" textureDimensions=\"%i;%i\"", textureHandle, source.CString(), textureDimensions.x, textureDimensions.y );
     
     m_Window->setActive();
     
@@ -315,7 +315,7 @@ bool RocketSFMLRenderer::LoadTexture( Rocket::Core::TextureHandle& textureHandle
 // Called by Rocket when a texture is required to be built from an internally-generated sequence of pixels.
 bool RocketSFMLRenderer::GenerateTexture( Rocket::Core::TextureHandle& textureHandle, const Rocket::Core::byte* source, const Rocket::Core::Vector2i& sourceDimensions )
 {
-    Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_INFO, "Generating texture from existing: textureHandle=\"%i\" sourceDimensions=\"%i;%i\"", textureHandle, sourceDimensions.x, sourceDimensions.y );
+    //Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_INFO, "Generating texture from existing: textureHandle=\"%i\" sourceDimensions=\"%i;%i\"", textureHandle, sourceDimensions.x, sourceDimensions.y );
     
     m_Window->setActive();
     
@@ -338,7 +338,7 @@ bool RocketSFMLRenderer::GenerateTexture( Rocket::Core::TextureHandle& textureHa
 // Called by Rocket when a loaded texture is no longer required.
 void RocketSFMLRenderer::ReleaseTexture( Rocket::Core::TextureHandle textureHandle )
 {
-    Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_INFO, "Releasing texture: textureHandle=\"%i\"", textureHandle );
+    //Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_INFO, "Releasing texture: textureHandle=\"%i\"", textureHandle );
     
     m_Window->setActive();
     
