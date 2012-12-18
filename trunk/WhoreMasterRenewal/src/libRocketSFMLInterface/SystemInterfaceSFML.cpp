@@ -309,44 +309,76 @@ Rocket::Core::Input::KeyIdentifier RocketSFMLSystemInterface::TranslateKey( sf::
             
     // no equivalent found (yet)
     case sf::Keyboard::Key::LAlt:
-        std::cout << "No equivalent key: LAlt\n";
+        std::cout << "No equivalent Rocket key: LAlt\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::RAlt:
-        std::cout << "No equivalent key: RAlt\n";
+        std::cout << "No equivalent Rocket key: RAlt\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::LBracket:
-        std::cout << "No equivalent key: LBracket\n";
+        std::cout << "No equivalent Rocket key: LBracket\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::RBracket:
-        std::cout << "No equivalent key: RBracket\n";
+        std::cout << "No equivalent Rocket key: RBracket\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::SemiColon:
-        std::cout << "No equivalent key: SemiColon\n";
+        std::cout << "No equivalent Rocket key: SemiColon\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::Comma:
-        std::cout << "No equivalent key: Comma\n";
+        std::cout << "No equivalent Rocket key: Comma\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::Period:
-        std::cout << "No equivalent key: Period\n";
+        std::cout << "No equivalent Rocket key: Period\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::Quote:
-        std::cout << "No equivalent key: Quote\n";
+        std::cout << "No equivalent Rocket key: Quote\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::Slash:
-        std::cout << "No equivalent key: Slash\n";
+        std::cout << "No equivalent Rocket key: Slash\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::BackSlash:
-        std::cout << "No equivalent key: BackSlash\n";
+        std::cout << "No equivalent Rocket key: BackSlash\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::Tilde:
-        std::cout << "No equivalent key: Tilde\n";
+        std::cout << "No equivalent Rocket key: Tilde\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::Equal:
-        std::cout << "No equivalent key: Equal\n";
+        std::cout << "No equivalent Rocket key: Equal\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::Dash:
-        std::cout << "No equivalent key: Dash\n";
+        std::cout << "No equivalent Rocket key: Dash\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::PageUp:
-        std::cout << "No equivalent key: PageUp\n";
+        std::cout << "No equivalent Rocket key: PageUp\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     case sf::Keyboard::Key::PageDown:
-        std::cout << "No equivalent key: PageDown\n";
+        std::cout << "No equivalent Rocket key: PageDown\n";
         return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
         break;
     
     // unknown key
     case sf::Keyboard::Key::Unknown:
         std::cout << "Unknown key\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     // this value stores number of keys in sf key enumeration, so ignore
     case sf::Keyboard::Key::KeyCount:
         std::cout << "KeyCount\n";
+        return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
+        break;
     // report default case as Unknown key too
     default:
         std::cout << "default: keycode=" << key << "\n";
