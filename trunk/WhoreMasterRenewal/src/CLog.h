@@ -95,9 +95,9 @@ static	bool setup;
 class CLog
 {
 public:
-	CLog(bool a_glob = false) {
-		m_glob = a_glob;
-	}
+	CLog(bool a_glob = false)
+        : m_glob( a_glob )
+	{}
 	~CLog() {
 		if(!m_glob) {
 			return;
