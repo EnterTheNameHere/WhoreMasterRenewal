@@ -24,7 +24,8 @@ CLog g_LogFile( true );
 
 namespace WhoreMasterRenewal
 {
-    Logger::Logger( const std::string& filename, bool append )
+    Logger::Logger( const std::string& filename, bool append ) :
+        m_LogFileStream()
     {
         //if( m_FirstRun )
         //{
@@ -58,6 +59,174 @@ namespace WhoreMasterRenewal
         }
     }
     
+    Logger& Logger::operator << ( char value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( unsigned char value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( bool value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( short int value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( unsigned short int value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( int value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+            
+    Logger& Logger::operator << ( unsigned int value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( long int value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( unsigned long int value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( long long int value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( unsigned long long int value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( float value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( double value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( long double value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    
+    template<typename T>
+    Logger& Logger::operator << ( T& value )
+    {
+        //sf::Lock lock( m_Mutex );
+        {
+            std::cout << value;
+//               if( !m_FailedToOpenLogFile )
+            if( m_LogFileStream.is_open() )
+                m_LogFileStream << value;
+        }
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( std::string value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( const char* value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
+    Logger& Logger::operator << ( const unsigned char* value )
+    {
+        std::cout << value;
+        if( m_LogFileStream.is_open() )
+            m_LogFileStream << value;
+        
+        return *this;
+    }
+    
     //bool Logger::m_FailedToOpenLogFile = false;
     //bool Logger::m_FirstRun = true;
 }
@@ -65,7 +234,8 @@ namespace WhoreMasterRenewal
 
 bool CLogInner::setup = false;
 
-CLogInner::CLogInner()
+CLogInner::CLogInner() :
+    m_ofile(), m_ss()
 {
 	if(!setup) {
 		init();
@@ -94,4 +264,4 @@ void CLogInner::write(std::string text)
 #endif
 }
 
-CLogInner *CLog::inner = 0;
+CLogInner *CLog::inner = nullptr;

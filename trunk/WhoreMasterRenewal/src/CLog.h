@@ -38,28 +38,28 @@ namespace WhoreMasterRenewal
         Logger( const std::string& filename = "GameLog.txt", bool append = true );
         ~Logger();
         
-        template<typename T>
-        inline Logger& operator << ( T& value )
-        {
-            //sf::Lock lock( m_Mutex );
-            {
-                std::cout << value;
- //               if( !m_FailedToOpenLogFile )
-                if( m_LogFileStream.is_open() )
-                    m_LogFileStream << value;
-            }
-            
-            return *this;
-        }
+        Logger& operator << ( char value );
+        Logger& operator << ( unsigned char value );
+        Logger& operator << ( bool value );
+        Logger& operator << ( short int value );
+        Logger& operator << ( unsigned short int value );
+        Logger& operator << ( int value );
+        Logger& operator << ( unsigned int value );
+        Logger& operator << ( long int value );
+        Logger& operator << ( unsigned long int value );
+        Logger& operator << ( long long int value );
+        Logger& operator << ( unsigned long long int value );
+        Logger& operator << ( float value );
+        Logger& operator << ( double value );
+        Logger& operator << ( long double value );
         
-        inline Logger& operator << ( std::string value )
-        {
-            std::cout << value;
-            if( m_LogFileStream.is_open() )
-                m_LogFileStream << value;
-            
-            return *this;
-        }
+        template<typename T>
+        Logger& operator << ( T& value );
+        
+        Logger& operator << ( std::string value );
+        
+        Logger& operator << ( const char* value );
+        Logger& operator << ( const unsigned char* value );
         
     private:
         std::ofstream m_LogFileStream;
