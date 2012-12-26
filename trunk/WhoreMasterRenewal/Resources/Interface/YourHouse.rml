@@ -1,0 +1,11 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="YourHouse">
+        <div id="window">
+            <div id="contents">
+            </div>
+        </div>
+    </body>
+</rml>

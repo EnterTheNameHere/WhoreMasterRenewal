@@ -551,21 +551,333 @@ bool Init()
 
 
 #include <iostream>
+#include <iomanip>
+#include <sstream>
 
 #include <SFML/Graphics.hpp>
 #include <Rocket/Core.h>
+#include <Rocket/Controls.h>
 #include <Rocket/Debugger/Debugger.h>
 
 #include "libRocketSFMLInterface/RenderInterfaceSFML.h"
 #include "libRocketSFMLInterface/SystemInterfaceSFML.h"
 #include "libRocketSFMLInterface/ShellFileInterface.h"
 
+#include "../../../../../../../DeveloperTools/Cpp/libRocket/Source/Core/StyleSheetFactory.h"
+
 //#include "WhoreMasterRenewalWindow.hpp"
 //#include "LuaUtils.hpp"
 
 #include "CLog.h"
 
+#include <map>
+
 namespace wmr = WhoreMasterRenewal;
+
+Rocket::Core::Context* context = nullptr;
+
+namespace WhoreMasterRenewal
+{
+    class Helper
+    {
+    public:
+        static std::string DumpRocketEvent( Rocket::Core::Event& event )
+        {
+            std::stringstream debugText;
+            
+            debugText << event.GetTargetElement()->GetTagName().CString() <<
+                "[" << event.GetTargetElement()->GetId().CString() << "]: "
+                << event.GetType().CString() << "\nParameters: " << event.GetParameters()->Size() << "\n";
+            
+            Rocket::Core::Variant* val;
+            Rocket::Core::String key;
+            int pos = 0;
+            while( event.GetParameters()->Iterate( pos, key, val ) )
+            {
+                debugText << "[" << pos << "]" << key.CString() << ": ";
+                switch( val->GetType() )
+                {
+                case Rocket::Core::Variant::Type::BYTE:
+                    debugText << val->Get<Rocket::Core::byte>();
+                    break;
+                case Rocket::Core::Variant::Type::CHAR:
+                    debugText << val->Get<char>();
+                    break;
+                case Rocket::Core::Variant::Type::COLOURB:
+                    debugText << "RGBA=";
+                    debugText << val->Get<Rocket::Core::Colourb>().red << ";";
+                    debugText << val->Get<Rocket::Core::Colourb>().green << ";";
+                    debugText << val->Get<Rocket::Core::Colourb>().blue << ";";
+                    debugText << val->Get<Rocket::Core::Colourb>().alpha;
+                    break;
+                case Rocket::Core::Variant::Type::COLOURF:
+                    debugText << "RGBA=";
+                    debugText << val->Get<Rocket::Core::Colourf>().red << ";";
+                    debugText << val->Get<Rocket::Core::Colourf>().green << ";";
+                    debugText << val->Get<Rocket::Core::Colourf>().blue << ";";
+                    debugText << val->Get<Rocket::Core::Colourf>().alpha;
+                    break;
+                case Rocket::Core::Variant::Type::FLOAT:
+                    debugText << val->Get<float>();
+                    break;
+                case Rocket::Core::Variant::Type::INT:
+                    debugText << val->Get<int>();
+                    break;
+                case Rocket::Core::Variant::Type::NONE:
+                    debugText << "NONE";
+                    break;
+                case Rocket::Core::Variant::Type::SCRIPTINTERFACE:
+                    debugText << "SCRIPTINTERFACE";
+                    break;
+                case Rocket::Core::Variant::Type::STRING:
+                    debugText << val->Get<Rocket::Core::String>().CString();
+                    break;
+                case Rocket::Core::Variant::Type::VECTOR2:
+                    debugText << "VECTOR2"; // TODO:
+                    break;
+                case Rocket::Core::Variant::Type::VOIDPTR:
+                    debugText << "VOIDPTR";
+                    break;
+                case Rocket::Core::Variant::Type::WORD:
+                    debugText << val->Get<Rocket::Core::word>();
+                    break;
+                    
+                default:
+                    debugText << "Unknown";
+                    break;
+                }
+                
+                debugText << " ";
+            }
+            
+            debugText << "\n\n";
+            
+            return debugText.str();
+        }
+    };
+        
+    class EventHandler
+    {
+    public:
+        EventHandler() = default;
+        virtual ~EventHandler()
+        {}
+        
+        virtual void ProcessEvent( Rocket::Core::Event& event, const Rocket::Core::String& value ) = 0;
+    };
+
+    typedef std::map< Rocket::Core::String, EventHandler* > EventHandlerMap;
+    EventHandlerMap eventHandlers;
+    
+    static EventHandler* currentEventHandler = nullptr;
+    static std::string currentWindow = "";
+    
+    class ResizeEvent : public Rocket::Core::EventListener
+    {
+    public:
+        virtual ~ResizeEvent()
+        {}
+        
+        virtual void ProcessEvent( Rocket::Core::Event& event ) override
+        {
+            Logger() << Helper::DumpRocketEvent( event ).c_str();
+        }
+    };
+    
+    static ResizeEvent* resizeEvent = nullptr;
+    
+    class EventManager
+    {
+    public:
+        EventManager() = delete;
+        ~EventManager() = delete;
+        
+        static void Shutdown()
+        {
+            Logger() << "EventManager::Shutdown\n";
+            
+            for( EventHandlerMap::iterator i = eventHandlers.begin(); i != eventHandlers.end(); ++i )
+                delete (*i).second;
+            
+            eventHandlers.clear();
+            currentEventHandler = nullptr;
+            currentWindow = nullptr;
+        }
+        
+        static void RegisterEventHandler( const Rocket::Core::String& handlerName, EventHandler* handler )
+        {
+            Logger() << "EventManager::RegisterEventHandler (" << handlerName.CString() << ")\n";
+            
+            EventHandlerMap::iterator it = eventHandlers.find( handlerName );
+            if( it != eventHandlers.end() )
+                delete (*it).second;
+            
+            eventHandlers[handlerName] = handler;
+        }
+        
+        static void ProcessEvent( Rocket::Core::Event& event, const Rocket::Core::String& value )
+        {
+            Logger() << "EventManager::ProcessEvent (" << value.CString() << ")\n";
+            //Logger() << Helper::DumpRocketEvent( event );
+            
+            Rocket::Core::StringList commands;
+            Rocket::Core::StringUtilities::ExpandString( commands, value, ';' );
+            
+            for( size_t i = 0; i < commands.size(); i++ )
+            {
+                Rocket::Core::StringList values;
+                Rocket::Core::StringUtilities::ExpandString( values, commands[i], ' ' );
+                
+                if( values.empty() )
+                    return;
+                
+                if( values[0] == "goto" && values.size() > 1 )
+                {
+                    if( LoadWindow( values[1] ) )
+                        event.GetTargetElement()->GetOwnerDocument()->Close();
+                }
+                else if( values[0] == "load" && values.size() > 1 )
+                {
+                    LoadWindow( values[1] );
+                }
+                else if( values[0] == "close" )
+                {
+                    Rocket::Core::ElementDocument* targetDocument = nullptr;
+                    
+                    if( values.size() > 1 )
+                        targetDocument = context->GetDocument( values[1].CString() );
+                    else
+                        targetDocument = event.GetTargetElement()->GetOwnerDocument();
+                    
+                    if( targetDocument != nullptr )
+                        targetDocument->Close();
+                }
+                else if( values[0] == "unimplemented" )
+                {
+                    Rocket::Core::Log::Message( Rocket::Core::Log::Type::LT_WARNING, "Unimplemented" );
+                }
+                else if( values[0] == "exit" )
+                {
+                    
+                }
+                else
+                {
+                    if( currentEventHandler != nullptr )
+                        currentEventHandler->ProcessEvent( event, commands[i] );
+                }
+            }
+        }
+        
+        static bool LoadWindow( const Rocket::Core::String& windowName )
+        {
+            Logger() << "EventManager::LoadWindow (" << windowName.CString() << ")\n";
+            
+            EventHandler* oldEventHandler = currentEventHandler;
+            EventHandlerMap::iterator it = eventHandlers.find( windowName );
+            if( it != eventHandlers.end() )
+                currentEventHandler = (*it).second;
+            else
+                currentEventHandler = nullptr;
+            
+            if( resizeEvent == nullptr )
+                resizeEvent = new ResizeEvent();
+            
+            Rocket::Core::String documentPath = Rocket::Core::String("../../WhoreMasterRenewal/Resources/Interface/") + windowName + Rocket::Core::String(".rml");
+            Rocket::Core::ElementDocument* document = context->LoadDocument( documentPath );
+            if( document == nullptr )
+            {
+                currentEventHandler = oldEventHandler;
+                return false;
+            }
+            
+            document->AddEventListener( "resize", resizeEvent );
+            
+            Rocket::Core::Element* title = document->GetElementById("title");
+            if( title != nullptr )
+                title->SetInnerRML( document->GetTitle() );
+            document->Focus();
+            document->Show();
+            
+            Logger() << "Size: [" << document->GetClientHeight() << "," << document->GetClientWidth() << "].\n";
+            
+            currentWindow = windowName.CString();
+            
+            document->RemoveReference();
+            
+            int currentNumDocs = context->GetNumDocuments();
+            std::stringstream sstream;
+            sstream << "Current number of documents: " << currentNumDocs << "\n";
+            for( int i = 0; i < currentNumDocs; i++ )
+            {
+                sstream << "[" << context->GetDocument( i )->GetId().CString() << "] ";
+            }
+            sstream << "\n";
+            
+            Logger() << sstream.str().c_str();
+            
+            return true;
+        }
+        
+        static void ReloadWindow()
+        {
+            Logger() << "EventManager::ReloadWindow() currentWindow=\"" << currentWindow.c_str() << "\"\n";
+            
+            context->GetDocument( currentWindow.c_str() )->Close();
+            Rocket::Core::Factory::ClearStyleSheetCache();
+            LoadWindow( currentWindow.c_str() );
+        }
+    };
+    
+    class Event : public Rocket::Core::EventListener
+    {
+    public:
+        Event( const Rocket::Core::String& value )
+            : m_Value( value )
+        {
+            Logger() << "Event::const (" << value.CString() << ")\n";
+        }
+        virtual ~Event()
+        {}
+        
+        virtual void ProcessEvent( Rocket::Core::Event& event ) override
+        {
+            Logger() << "Event::ProcessEvent [m_Value=" << m_Value.CString() << "]\n";
+            EventManager::ProcessEvent( event, m_Value );
+        }
+        
+        virtual void OnDetach( Rocket::Core::Element* ) override
+        {
+            Logger() << "Event::OnDetach [m_Value=" << m_Value.CString() << "]\n";
+            delete this;
+        }
+        
+    private:
+        Rocket::Core::String m_Value;
+    };
+    
+    class EventListenerInstancerI : public Rocket::Core::EventListenerInstancer
+    {
+    public:
+        EventListenerInstancerI() : EventListenerInstancer()
+        {
+            Logger() << "EventListenerInstancer::const\n";
+        }
+        ~EventListenerInstancerI()
+        {}
+        
+        virtual Rocket::Core::EventListener* InstanceEventListener( const Rocket::Core::String& value ) override
+        {
+            Logger() << "EventListenerInstancer::InstanceEventListener (" << value.CString() << ")\n";
+            return new Event( value );
+        }
+        
+        virtual void Release() override
+        {
+            Logger() << "EventListenerInstancer::Release\n";
+            delete this;
+        }
+    };
+}
 
 int main( int /*argc*/, char** /*argv[]*/ )
 {
@@ -602,7 +914,9 @@ int main( int /*argc*/, char** /*argv[]*/ )
             return 1;
         }
         
-        Rocket::Core::Context* context = Rocket::Core::CreateContext( "defaultContext",
+        Rocket::Controls::Initialise();
+        
+        context = Rocket::Core::CreateContext( "defaultContext",
             Rocket::Core::Vector2i( sfWindow.getSize().x, sfWindow.getSize().y ) );
         
         if( !Rocket::Debugger::Initialise( context ) )
@@ -637,13 +951,55 @@ int main( int /*argc*/, char** /*argv[]*/ )
         Rocket::Core::FontDatabase::LoadFontFace( "Fonts/Delicious-BoldItalic.otf" );
         Rocket::Core::FontDatabase::LoadFontFace( "Fonts/Delicious-Italic.otf" );
         
-        Rocket::Core::ElementDocument *document = context->LoadDocument( "Interface/MainMenu.rml" );
+//        Rocket::Core::ElementDocument* document = context->LoadDocument( "Interface/MainMenu.rml" );
+//        wmr::DebugEventListener* listener = new wmr::DebugEventListener();
+//        
+//        if( document )
+//        {
+//            document->AddEventListener( "show", listener );
+//            document->AddEventListener( "hide", listener );
+//            document->AddEventListener( "resize", listener );
+//            document->AddEventListener( "scroll", listener );
+//            document->AddEventListener( "focus", listener );
+//            document->AddEventListener( "blur", listener );
+//            document->AddEventListener( "keydown", listener );
+//            document->AddEventListener( "keyup", listener );
+//            document->AddEventListener( "textinput", listener );
+//            document->AddEventListener( "click", listener );
+//            document->AddEventListener( "dblclick", listener );
+//            document->AddEventListener( "mouseover", listener );
+//            document->AddEventListener( "mouseout", listener );
+//            document->AddEventListener( "mousemove", listener );
+//            document->AddEventListener( "mouseup", listener );
+//            document->AddEventListener( "mousedown", listener );
+//            document->AddEventListener( "mousescroll", listener );
+//            document->AddEventListener( "dragstart", listener );
+//            document->AddEventListener( "dragend", listener );
+//            document->AddEventListener( "drag", listener );
+//            document->AddEventListener( "dragover", listener );
+//            document->AddEventListener( "dragout", listener );
+//            document->AddEventListener( "dragmove", listener );
+//            document->AddEventListener( "dragdrop", listener );
+//            document->AddEventListener( "submit", listener );
+//            document->AddEventListener( "change", listener );
+//            document->AddEventListener( "load", listener );
+//            document->AddEventListener( "unload", listener );
+//            document->AddEventListener( "handledrag", listener );
+//            document->AddEventListener( "columnadd", listener );
+//            document->AddEventListener( "rowupdate", listener );
+//            document->AddEventListener( "rowadd", listener );
+//            document->AddEventListener( "rowremove", listener );
+//            document->AddEventListener( "tabchange", listener );
+//            
+//            document->Show();
+//            document->RemoveReference();
+//        }
         
-        if( document )
-        {
-            document->Show();
-            document->RemoveReference();
-        }
+        wmr::EventListenerInstancerI* eventListenerInstancer = new wmr::EventListenerInstancerI();
+        Rocket::Core::Factory::RegisterEventListenerInstancer( eventListenerInstancer );
+        eventListenerInstancer->RemoveReference();
+               
+        wmr::EventManager::LoadWindow("MainMenu");
         
         while( sfWindow.isOpen() )
         {
@@ -688,6 +1044,8 @@ int main( int /*argc*/, char** /*argv[]*/ )
                 case sf::Event::EventType::KeyReleased:
                     if( event.key.code == sf::Keyboard::Key::Tilde )
                         Rocket::Debugger::SetVisible( !Rocket::Debugger::IsVisible() );
+                    if( event.key.code == sf::Keyboard::Key::R && event.key.control )
+                        wmr::EventManager::ReloadWindow();
                     
                     context->ProcessKeyUp( sfSystemInterface.TranslateKey( event.key.code ), sfSystemInterface.GetKeyModifiers( event ) );
                     break;
@@ -716,6 +1074,10 @@ int main( int /*argc*/, char** /*argv[]*/ )
             
             context->Update();
         }
+        context->RemoveReference();
+        
+        wmr::EventManager::Shutdown();
+        Rocket::Core::Shutdown();
     }
     catch( std::exception& ex )
     {

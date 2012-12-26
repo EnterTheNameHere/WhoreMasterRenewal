@@ -1,0 +1,21 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="NewGame">
+        <div id="window">
+            <div id="contents">
+                <form onsubmit="start_new_game; goto MainScreen">
+                    <div>
+                        <p>
+                            Enter Your Name:<br />
+                            <input type="text" name="Player Name" />
+                        </p>
+                    </div>
+                    <input type="submit">Start New Game</input><br />
+                    <button onclick="goto MainMenu">Back</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</rml>

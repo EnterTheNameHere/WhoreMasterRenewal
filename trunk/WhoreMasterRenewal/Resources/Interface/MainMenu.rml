@@ -1,24 +1,16 @@
 <rml>
     <head>
         <title>Whore Master: Renewal</title>
-        <link type="text/rcss" href="MainMenu.rcss" />
+        <link type="text/rcss" href="SharedStyle.rcss" />
     </head>
     <body id="MainMenu">
-        <div id="debug" style="position: absolute; top: -30; left: 0;"></div>
-        <div id="title_bar">
-            <handle move_target="#document">
-                <div id="icon">This is icon.</div>
-                <span id="title">Whore Master: Renewal</span>
-            </handle>
-        </div>
         <div id="window">
-            <div id="content">
-                <p>This is text with no font-family. <b>Bold text here</b>, <i>italic text here</i>, <u>underscored text here</u>, <b><i>bold and italic text</i></b>, <b><u>bold and underscored text</u></b>, <i><u>italic and underscored text</u></i>, <b><i><u>bold, italic and underscored</u></i></b>.</p>
-                <p style="font-family: PT Sans;">This is PT Sans text. <b>Bold text here</b>, <i>italic text here</i>, <u>underscored text here</u>, <b><i>bold and italic text</i></b>, <b><u>bold and underscored text</u></b>, <i><u>italic and underscored text</u></i>, <b><i><u>bold, italic and underscored</u></i></b>.</p>
-                <p style="font-family: DejaVu Sans;">This is DejaVuSans text. <b>Bold text here</b>, <i>italic text here</i>, <u>underscored text here</u>, <b><i>bold and italic text</i></b>, <b><u>bold and underscored text</u></b>, <i><u>italic and underscored text</u></i>, <b><i><u>bold, italic and underscored</u></i></b>.</p>
-                <p style="font-family: DejaVu Sans Mono;">This is DejaVuSansMono text. <b>Bold text here</b>, <i>italic text here</i>, <u>underscored text here</u>, <b><i>bold and italic text</i></b>, <b><u>bold and underscored text</u></b>, <i><u>italic and underscored text</u></i>, <b><i><u>bold, italic and underscored</u></i></b>.</p>
-                <p style="font-family: DejaVu Serif;">This is DejaVuSerif text. <b>Bold text here</b>, <i>italic text here</i>, <u>underscored text here</u>, <b><i>bold and italic text</i></b>, <b><u>bold and underscored text</u></b>, <i><u>italic and underscored text</u></i>, <b><i><u>bold, italic and underscored</u></i></b>.</p>
-                <p style="font-family: Delicious;">This is Delicious text. <b>Bold text here</b>, <i>italic text here</i>, <u>underscored text here</u>, <b><i>bold and italic text</i></b>, <b><u>bold and underscored text</u></b>, <i><u>italic and underscored text</u></i>, <b><i><u>bold, italic and underscored</u></i></b>.</p>
+            <div id="contents">
+                <div class="center">
+                    <button class="vertical" onclick="goto NewGame">New Game</button>
+                    <button class="vertical" onclick="goto LoadGame">Load Game</button>
+                    <button class="vertical" onclick="exit">Exit Game</button>
+                </div>
             </div>
         </div>
         <handle size_target="#document" style="position: absolute; width: 16px; height: 16px; bottom: 0px; right: 0px; background-color: #F1A5F1;" />
