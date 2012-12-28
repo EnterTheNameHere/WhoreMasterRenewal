@@ -23,7 +23,7 @@
                 </div>
                 <div>
                     <button onclick="goto MainMenu">Quit</button>
-                    <button>Save Game</button>
+                    <button onclick="unimplemented">Save Game</button>
                     <button onclick="goto TurnSummary">Turn Summary</button>
                     <button onclick="unimplemented; goto TurnSummary">Next Week >></button>
                 </div>

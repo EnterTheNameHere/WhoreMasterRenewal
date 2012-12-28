@@ -5,6 +5,27 @@
     <body id="GirlManagement">
         <div id="window">
             <div id="contents">
+                <img style="float: left; width: 360px; height: 420px;" src="../Characters/Dangerous Girl/Profile1.jpg" />
+                <div>Girl Description Placeholder</div>
+                <div>Current Brothel: name</div>
+                <div>
+                    <datagrid source="DebugGirlsList.girls">
+                        <col fields="name" width="20%">Girl Name</col>
+                        <col fields="age" width="10%">Age</col>
+                        <col fields="looks" width="10%">Looks</col>
+                        <col fields="health" width="10%">HP</col>
+                        <col fields="mood" width="10%">Mood</col>
+                        <col fields="tired" width="10%">Tired</col>
+                        <col fields="dayjob" width="10%">Day Job</col>
+                        <col fields="nightjob" width="10%">Night Job</col>
+                    </datagrid>
+                </div>
+                <button onclick="goto GirlDetails">Girl Details</button>
+                <button onclick="goto Transfer">Transfer Girls</button>
+                <button onclick="unimplemented">Free Slave</button>
+                <button onclick="unimplemented">Sell Slave</button>
+                <button onclick="unimplemented">Fire Girl</button>
+                <button onclick="goto MainScreen">Back</button>
             </div>
         </div>
     </body>

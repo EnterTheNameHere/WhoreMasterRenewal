@@ -5,6 +5,7 @@
     <body id="Bank">
         <div id="window">
             <div id="contents">
+                <button onclick="goto Town">Back</button>
             </div>
         </div>
     </body>

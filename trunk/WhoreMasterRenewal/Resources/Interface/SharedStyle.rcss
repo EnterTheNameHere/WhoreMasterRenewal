@@ -18,6 +18,30 @@ body
     /*margin: auto;*/
 }
 
+datagrid
+{
+    border-top: 1px yellow;
+    border-bottom: 1px yellow;
+    border-left: 1px yellow;
+    border-right: 1px yellow;
+}
+
+datagridheader
+{
+    border-top: 1px green;
+    border-bottom: 1px green;
+    border-left: 1px green;
+    border-right: 1px green;
+}
+
+datagridbody
+{
+    border-top: 1px blue;
+    border-bottom: 1px blue;
+    border-left: 1px blue;
+    border-right: 1px blue;
+}
+
 div
 {
     display: block;
@@ -43,11 +67,11 @@ p
     display: block;
     text-align: left;
     margin-bottom: 1em;
-    
-    border-top: 1px yellow;
-    border-bottom: 1px yellow;
-    border-left: 1px yellow;
-    border-right: 1px yellow;
+}
+
+datagrid
+{
+    display: block;
 }
 
 input

@@ -5,6 +5,7 @@
     <body id="Inventory">
         <div id="window">
             <div id="contents">
+                <button onclick="goto GirlDetails">Back</button>
             </div>
         </div>
     </body>

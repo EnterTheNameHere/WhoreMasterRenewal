@@ -134,7 +134,7 @@
 		</ExtraCommands>
 		<Unit filename="Resources/Interface/Bank.rml" />
 		<Unit filename="Resources/Interface/BrothelSetup.rml" />
-		<Unit filename="Resources/Interface/DungeonScreen.rml" />
+		<Unit filename="Resources/Interface/Dungeon.rml" />
 		<Unit filename="Resources/Interface/Gallery.rml" />
 		<Unit filename="Resources/Interface/GangManagement.rml" />
 		<Unit filename="Resources/Interface/GirlDetails.rml" />

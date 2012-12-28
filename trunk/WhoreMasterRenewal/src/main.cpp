@@ -558,6 +558,8 @@ bool Init()
 #include <Rocket/Core.h>
 #include <Rocket/Controls.h>
 #include <Rocket/Debugger/Debugger.h>
+#include <Rocket/Controls/DataSource.h>
+#include <Rocket/Core/Types.h>
 
 #include "libRocketSFMLInterface/RenderInterfaceSFML.h"
 #include "libRocketSFMLInterface/SystemInterfaceSFML.h"
@@ -571,6 +573,7 @@ bool Init()
 #include "CLog.h"
 
 #include <map>
+#include <vector>
 
 namespace wmr = WhoreMasterRenewal;
 
@@ -655,7 +658,208 @@ namespace WhoreMasterRenewal
             return debugText.str();
         }
     };
+    
+    class DebugGirl
+    {
+    public:
+        DebugGirl( std::string name, int age, int looks, int health, int mood, int tired, std::string dayJob, std::string nightJob )
+            : m_Name( name ), m_Age( age ), m_Looks( looks ), m_Health( health ), m_Mood( mood ), m_Tired( tired ), m_DayJob( dayJob ), m_NightJob( nightJob )
+        {}
+        virtual ~DebugGirl() = default;
         
+        std::string GetName()
+        {
+            return m_Name;
+        }
+        void SetName( std::string name )
+        {
+            m_Name = name;
+        }
+        
+        int GetAge()
+        {
+            return m_Age;
+        }
+        void SetAge( int age )
+        {
+            m_Age = age;
+        }
+        
+        int GetLooks()
+        {
+            return m_Looks;
+        }
+        void SetLooks( int looks )
+        {
+            m_Looks = looks;
+        }
+        
+        int GetHealth()
+        {
+            return m_Health;
+        }
+        void SetHealth( int health )
+        {
+            m_Health = health;
+        }
+        
+        int GetMood()
+        {
+            return m_Mood;
+        }
+        void SetMood( int mood )
+        {
+            m_Mood = mood;
+        }
+        
+        int GetTired()
+        {
+            return m_Tired;
+        }
+        void SetTired( int tired )
+        {
+            m_Tired = tired;
+        }
+        
+        std::string GetDayJob()
+        {
+            return m_DayJob;
+        }
+        void SetDayJob( std::string dayJob )
+        {
+            m_DayJob = dayJob;
+        }
+        
+        std::string GetNightJob()
+        {
+            return m_NightJob;
+        }
+        void SetNightJob( std::string nightJob )
+        {
+            m_NightJob = nightJob;
+        }
+        
+    private:
+        std::string m_Name = {""};
+        int m_Age = {0};
+        int m_Looks = {0};
+        int m_Health = {0};
+        int m_Mood = {0};
+        int m_Tired = {0};
+        
+        std::string m_DayJob = {"Free Time"};
+        std::string m_NightJob = {"Free Time"};
+    };
+    
+    class DebugGirlsList : public Rocket::Controls::DataSource
+    {
+    public:
+        static void Initialise()
+        {
+            Logger() << "DebugGirlsList::Initialise().\n";
+            
+            new DebugGirlsList();
+        }
+        
+        static void Shutdown()
+        {
+            Logger() << "DebugGirlsList::Shutdown().\n";
+            
+            delete m_Instance;
+        }
+        
+        virtual void GetRow( Rocket::Core::StringList& row, const Rocket::Core::String& table, int rowIndex, const Rocket::Core::StringList& columns ) override
+        {
+            Rocket::Core::String columnsList;
+            Rocket::Core::StringUtilities::JoinString( columnsList, columns, ',' );
+            Logger() << "DebugGirlsList::GetRow()\nTable = \"" << table.CString() << "\", row = " << rowIndex << "\n"
+                << "columns = [" << columnsList.CString() << "]\n";
+            
+            if( table == "girls" )
+            {
+                for( size_t i = 0; i < columns.size(); i++ )
+                {
+                    if( columns[i] == "name" )
+                    {
+                        row.push_back( Rocket::Core::String( m_Girls[rowIndex].GetName().c_str() ) );
+                    }
+                    else if( columns[i] == "age" )
+                    {
+                        row.push_back( Rocket::Core::String( 4, "%d", m_Girls[rowIndex].GetAge() ) );
+                    }
+                    else if( columns[i] == "looks" )
+                    {
+                        row.push_back( Rocket::Core::String( 4, "%d", m_Girls[rowIndex].GetLooks() ) );
+                    }
+                    else if( columns[i] == "health" )
+                    {
+                        row.push_back( Rocket::Core::String( 4, "%d", m_Girls[rowIndex].GetHealth() ) );
+                    }
+                    else if( columns[i] == "mood" )
+                    {
+                        row.push_back( Rocket::Core::String( 4, "%d", m_Girls[rowIndex].GetMood() ) );
+                    }
+                    else if( columns[i] == "tired" )
+                    {
+                        row.push_back( Rocket::Core::String( 4, "%d", m_Girls[rowIndex].GetTired() ) );
+                    }
+                    else if( columns[i] == "dayjob" )
+                    {
+                        row.push_back( Rocket::Core::String( m_Girls[rowIndex].GetDayJob().c_str() ) );
+                    }
+                    else if( columns[i] == "nightjob" )
+                    {
+                        row.push_back( Rocket::Core::String( m_Girls[rowIndex].GetNightJob().c_str() ) );
+                    }
+                }
+            }
+            
+            Rocket::Core::String rowValuesList;
+            Rocket::Core::StringUtilities::JoinString( rowValuesList, row, ',' );
+            
+            Logger() << "row values = [" << rowValuesList.CString() << "]\n";
+        }
+        
+        virtual int GetNumRows( const Rocket::Core::String& table ) override
+        {
+            Logger() << "DebugGirlsList::GetNumRows( " << table.CString() << " ).\n";
+            
+            if( table == "girls" )
+            {
+                return m_Girls.size();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        
+    private:
+        DebugGirlsList() : Rocket::Controls::DataSource( "DebugGirlsList" )
+        {
+            Logger() << "DebugGirlsList::const().\n";
+            
+            m_Instance = this;
+        }
+        
+        ~DebugGirlsList()
+        {
+            Logger() << "DebugGirlsList::destr().\n";
+            
+            m_Instance = nullptr;
+        }
+        
+        static DebugGirlsList* m_Instance;
+        
+        std::vector<DebugGirl> m_Girls = {
+            DebugGirl( "Soifon", 20, 10, 100, 100, 21, "Free Time", "Security" ),
+            DebugGirl( "Yoruichi Shihouin", 26, 31, 100, 100, 2, "Security", "Explore Catacombs" ),
+            DebugGirl( "Sheryl Nome", 17, 72, 100, 100, 0, "Advertising", "Waitress" )
+        };
+    };
+    
+    DebugGirlsList* DebugGirlsList::m_Instance = nullptr;
+    
     class EventHandler
     {
     public:
@@ -779,8 +983,8 @@ namespace WhoreMasterRenewal
             else
                 currentEventHandler = nullptr;
             
-            if( resizeEvent == nullptr )
-                resizeEvent = new ResizeEvent();
+            /*if( resizeEvent == nullptr )
+                resizeEvent = new ResizeEvent();*/
             
             Rocket::Core::String documentPath = Rocket::Core::String("../../WhoreMasterRenewal/Resources/Interface/") + windowName + Rocket::Core::String(".rml");
             Rocket::Core::ElementDocument* document = context->LoadDocument( documentPath );
@@ -790,7 +994,7 @@ namespace WhoreMasterRenewal
                 return false;
             }
             
-            document->AddEventListener( "resize", resizeEvent );
+            /*document->AddEventListener( "resize", resizeEvent );*/
             
             Rocket::Core::Element* title = document->GetElementById("title");
             if( title != nullptr )
@@ -998,7 +1202,9 @@ int main( int /*argc*/, char** /*argv[]*/ )
         wmr::EventListenerInstancerI* eventListenerInstancer = new wmr::EventListenerInstancerI();
         Rocket::Core::Factory::RegisterEventListenerInstancer( eventListenerInstancer );
         eventListenerInstancer->RemoveReference();
-               
+        
+        wmr::DebugGirlsList::Initialise();
+        
         wmr::EventManager::LoadWindow("MainMenu");
         
         while( sfWindow.isOpen() )
@@ -1076,6 +1282,7 @@ int main( int /*argc*/, char** /*argv[]*/ )
         }
         context->RemoveReference();
         
+        wmr::DebugGirlsList::Shutdown();
         wmr::EventManager::Shutdown();
         Rocket::Core::Shutdown();
     }

@@ -5,6 +5,7 @@
     <body id="GangManagement">
         <div id="window">
             <div id="contents">
+                <button onclick="goto MainScreen">Back</button>
             </div>
         </div>
     </body>

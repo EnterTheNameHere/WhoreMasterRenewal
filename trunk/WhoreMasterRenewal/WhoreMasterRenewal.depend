@@ -2120,7 +2120,7 @@
 	<vector>
 	"cInterfaceWindow.h"
 
-1356547145 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
+1356655210 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
 	"main.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2141,12 +2141,15 @@
 	<Rocket/Core.h>
 	<Rocket/Controls.h>
 	<Rocket/Debugger/Debugger.h>
+	<Rocket/Controls/DataSource.h>
+	<Rocket/Core/Types.h>
 	"libRocketSFMLInterface/RenderInterfaceSFML.h"
 	"libRocketSFMLInterface/SystemInterfaceSFML.h"
 	"libRocketSFMLInterface/ShellFileInterface.h"
 	"../../../../../../../DeveloperTools/Cpp/libRocket/Source/Core/StyleSheetFactory.h"
 	"CLog.h"
 	<map>
+	<vector>
 
 1353950345 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.h
 	"GameSystem.h"
@@ -5650,4 +5653,10 @@
 
 1354981888 d:\developertools\cpp\librocket\source\core\stylesheetfactory.h
 	<Rocket/Core/Types.h>
+
+1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\datasource.h
+	<Rocket/Controls/Header.h>
+	<Rocket/Core/String.h>
+	<list>
+	<map>
 
