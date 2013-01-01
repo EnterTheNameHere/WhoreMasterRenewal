@@ -751,6 +751,41 @@ namespace WhoreMasterRenewal
         std::string m_NightJob = {"Free Time"};
     };
     
+    class Job
+    {
+    public:
+        Job( std::string jobType, std::string jobName ) :
+            m_JobType( jobType ), m_JobName( jobName )
+        {}
+        
+        virtual ~Job()
+        {}
+        
+        std::string GetJobType()
+        {
+            return m_JobType;
+        }
+        
+        void SetJobType( std::string jobType )
+        {
+            m_JobType = jobType;
+        }
+        
+        std::string GetJobName()
+        {
+            return m_JobName;
+        }
+        
+        void SetJobName( std::string jobName )
+        {
+            m_JobName = jobName;
+        }
+        
+    private:
+        std::string m_JobType;
+        std::string m_JobName;
+    };
+    
     class DebugGirlsList : public Rocket::Controls::DataSource
     {
     public:
@@ -813,6 +848,30 @@ namespace WhoreMasterRenewal
                     }
                 }
             }
+            else if( table == "jobtypes" || table == "jobnames" )
+            {
+                for( size_t i = 0; i < columns.size(); i++ )
+                {
+                    if( columns[i] == "jobtype" )
+                    {
+                        row.push_back( Rocket::Core::String( m_JobTypes[rowIndex].c_str() ) );
+                    }
+                    else if( columns[i] == "jobname" )
+                    {
+                        row.push_back( Rocket::Core::String( m_JobNames[rowIndex].c_str() ) );
+                    }
+                }
+            }
+            else if( table == "traits" )
+            {
+                for( size_t i = 0; i < columns.size(); i++ )
+                {
+                    if( columns[i] == "traitname" )
+                    {
+                        row.push_back( Rocket::Core::String( m_Traits[rowIndex].c_str() ) );
+                    }
+                }
+            }
             
             Rocket::Core::String rowValuesList;
             Rocket::Core::StringUtilities::JoinString( rowValuesList, row, ',' );
@@ -827,6 +886,18 @@ namespace WhoreMasterRenewal
             if( table == "girls" )
             {
                 return m_Girls.size();
+            }
+            else if( table == "jobtypes" )
+            {
+                return m_JobTypes.size();
+            }
+            else if( table == "jobnames" )
+            {
+                return m_JobNames.size();
+            }
+            else if( table == "traits" )
+            {
+                return m_Traits.size();
             }
             else
             {
@@ -855,6 +926,67 @@ namespace WhoreMasterRenewal
             DebugGirl( "Soifon", 20, 10, 100, 100, 21, "Free Time", "Security" ),
             DebugGirl( "Yoruichi Shihouin", 26, 31, 100, 100, 2, "Security", "Explore Catacombs" ),
             DebugGirl( "Sheryl Nome", 17, 72, 100, 100, 0, "Advertising", "Waitress" )
+        };
+        
+        std::vector<Job> m_Jobs = {
+            Job( "General", "Free Time" ),
+            Job( "General", "Cleaning" ),
+            Job( "General", "Security" ),
+            Job( "General", "Advertising" ),
+            Job( "General", "Customer Service" ),
+            Job( "General", "Matron" ),
+            Job( "Brothel", "Whore in Brothel" ),
+            Job( "Brothel", "Whore on Streets" ),
+            Job( "Brothel", "Stripper in Brothel" ),
+            Job( "Brothel", "Masseure in Brothel" ),
+            Job( "Gambling Hall", "Whore for Gamblers" ),
+            Job( "Gambling Hall", "Game Dealer" ),
+            Job( "Gambling Hall", "Entertainer" ),
+            Job( "Gambling Hall", "XXX Entertainer" ),
+            Job( "Bar", "Barmaid" ),
+            Job( "Bar", "Waitress" ),
+            Job( "Bar", "Stripper in Bar" ),
+            Job( "Bar", "Whore in Bar" ),
+            Job( "Bar", "Singer" )
+        };
+        
+        std::vector<std::string> m_JobTypes = {
+            std::string( "General" ),
+            std::string( "Brothel" ),
+            std::string( "Gambling Hall" ),
+            std::string( "Bar" )
+        };
+        
+        std::vector<std::string> m_JobNames = {
+            "Free Time",
+            "Cleaning",
+            "Security",
+            "Advertising",
+            "Customer Service",
+            "Matron"
+        };
+        
+        std::vector<std::string> m_Traits =
+        {
+            "Aggresive",
+            "Assassin",
+            "Basic Magic",
+            "Fleet of Foot",
+            "Inhuman Lifespan",
+            "Iron Will",
+            "Lesbian",
+            "Merciless",
+            "Small Boobs",
+            "Strong",
+            "Tough",
+            "Tsundere",
+            "Normal Sex LV0",
+            "Anal Sex LV0",
+            "Oral Sex LV0",
+            "BDSM Sex LV0",
+            "Exhibitionist LV0",
+            "Lesbian LV0.1",
+            "Group Sex LV0"
         };
     };
     
@@ -1220,6 +1352,7 @@ int main( int /*argc*/, char** /*argv[]*/ )
                 switch( event.type )
                 {
                 case sf::Event::EventType::Resized:
+                    wmr::Logger() << "Resized Event: " << event.size.width << "x" << event.size.height << "\n";
                     sfRenderInterface.Resize();
                     break;
                     

@@ -5,6 +5,20 @@
     <body id="BrothelSetup">
         <div id="window">
             <div id="contents">
+                Current Brothel: name
+                Anti-Preg Potions: 2 gold each
+                <button>Buy 10</button><button>Buy 20</button>
+                Auto Buy <input type="checkbox" checked />
+                You have: 40
+                Add Rooms: 5000 gold
+                <button>Add 5 rooms</button>
+                Sex Restrictions:
+                Prohibit Anal <input type="checkbox" checked />
+                Prohibit BDSM <input type="checkbox" checked />
+                Prohibit Lesbian <input type="checkbox" checked />
+                Prohibit Oral Sex <input type="checkbox" checked />
+                Prohibit Group Sex <input type="checkbox" checked />
+                Prohibit Normal Sex <input type="checkbox" checked />
                 <button onclick="goto MainScreen">Back</button>
             </div>
         </div>

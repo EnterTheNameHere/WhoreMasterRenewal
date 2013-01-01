@@ -5,27 +5,44 @@
     <body id="GirlManagement">
         <div id="window">
             <div id="contents">
-                <img style="float: left; width: 360px; height: 420px;" src="../Characters/Dangerous Girl/Profile1.jpg" />
-                <div>Girl Description Placeholder</div>
-                <div>Current Brothel: name</div>
-                <div>
-                    <datagrid source="DebugGirlsList.girls">
-                        <col fields="name" width="20%">Girl Name</col>
-                        <col fields="age" width="10%">Age</col>
-                        <col fields="looks" width="10%">Looks</col>
-                        <col fields="health" width="10%">HP</col>
-                        <col fields="mood" width="10%">Mood</col>
-                        <col fields="tired" width="10%">Tired</col>
-                        <col fields="dayjob" width="10%">Day Job</col>
-                        <col fields="nightjob" width="10%">Night Job</col>
-                    </datagrid>
+                <div style="width: 400px; float: left; height: 100%;">
+                    <div style="text-align: left;"><img id="girlimage" src="../Characters/Dangerous Girl/Profile1.jpg" /></div>
+                    <div>Girl Description Placeholder</div>
                 </div>
-                <button onclick="goto GirlDetails">Girl Details</button>
-                <button onclick="goto Transfer">Transfer Girls</button>
-                <button onclick="unimplemented">Free Slave</button>
-                <button onclick="unimplemented">Sell Slave</button>
-                <button onclick="unimplemented">Fire Girl</button>
-                <button onclick="goto MainScreen">Back</button>
+                <div style="margin-left: 400px;">
+                    <div>Current Brothel: name</div>
+                    <datagrid source="DebugGirlsList.girls">
+                        <col fields="name" width="30%" style="text-align: left;">Girl Name</col>
+                        <col fields="age" width="6%">Age</col>
+                        <col fields="looks" width="6%">Looks</col>
+                        <col fields="health" width="6%">HP</col>
+                        <col fields="mood" width="6%">Mood</col>
+                        <col fields="tired" width="6%">Tired</col>
+                        <col fields="dayjob" width="20%">Day Job</col>
+                        <col fields="nightjob" width="20%">Night Job</col>
+                    </datagrid>
+                    <div>
+                        <div>
+                            <datagrid style="width: 160px; float: left;" source="DebugGirlsList.jobtypes">
+                                <col fields="jobtype">Job Type:</col>
+                            </datagrid>
+                            <datagrid style="width: 160px; margin-left: 160px;" source="DebugGirlsList.jobnames">
+                                <col fields="jobname">Job Name:</col>
+                            </datagrid>
+                            <div style="width: 0px; height: 0px; clear: left;" />
+                        </div>
+                        <div>Job description<br />placeholder</div>
+                        <div>
+                            <button onclick="goto GirlDetails">Girl Details</button><br />
+                            <button onclick="goto Transfer">Transfer Girls</button><br />
+                            <button onclick="unimplemented">Free Slave</button><br />
+                            <button onclick="unimplemented">Sell Slave</button><br />
+                            <button onclick="unimplemented">Fire Girl</button><br />
+                            <button onclick="goto MainScreen">Back</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="clear: left;"></div>
             </div>
         </div>
     </body>

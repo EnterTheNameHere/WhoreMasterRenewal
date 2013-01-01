@@ -5,6 +5,27 @@
     <body id="Inventory">
         <div id="window">
             <div id="contents">
+                Brothel name
+                <datagrid source="DebugGirlsList.girls">
+                    <col fields="name" style="text-align: left;">Owner</col>
+                </datagrid>
+                <datagrid source="DebugGirlsList.itemcategories">
+                    <col fields="categoryname" style="text-align: left;">Category</col>
+                </datagrid>
+                <datagrid source="DebugGirlsList.girls">
+                    <col fields="name" style="text-align: left;">Owner</col>
+                </datagrid>
+                Player Gold: 0000
+                <button class="half">&lt;-</button>Transfer Item(s)<button class="half">-&gt;</button>
+                <datagrid source="DebugGirlsList.inventory">
+                    <col fields="itemname">Inventory</col>
+                </datagrid>
+                Item description:
+                <datagrid source="DebugGirlsList.inventory">
+                    <col fields="itemname">Inventory</col>
+                </datagrid>
+                <button class="half">Equip/Use</button><button class="half">Equip/Use</button>
+                <button class="half">Unequip</button><button class="half">Unequip</button>
                 <button onclick="goto GirlDetails">Back</button>
             </div>
         </div>

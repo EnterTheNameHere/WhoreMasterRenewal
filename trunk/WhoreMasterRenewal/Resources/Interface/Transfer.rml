@@ -5,6 +5,20 @@
     <body id="Transfer">
         <div id="window">
             <div id="contents">
+                <datagrid style="width: 160px; float: left;" source="DebugGirlsList.brothels">
+                    <col fields="brothelname">Brothel:</col>
+                </datagrid>
+                <datagrid style="width: 160px; float: left;" source="DebugGirlsList.girls">
+                    <col fields="name">Girl:</col>
+                </datagrid>
+                <button>&lt;-</button>
+                <button>-&gt;</button>
+                <datagrid style="width: 160px; float: left;" source="DebugGirlsList.girls">
+                    <col fields="name">Girl:</col>
+                </datagrid>
+                <datagrid style="width: 160px; float: left;" source="DebugGirlsList.brothels">
+                    <col fields="brothelname">Brothel:</col>
+                </datagrid>
                 <button onclick="goto GirlManagement">Back</button>
             </div>
         </div>

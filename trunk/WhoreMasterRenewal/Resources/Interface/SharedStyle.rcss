@@ -17,7 +17,7 @@ body
     
     /*margin: auto;*/
 }
-
+/*
 datagrid
 {
     border-top: 1px yellow;
@@ -41,9 +41,14 @@ datagridbody
     border-left: 1px blue;
     border-right: 1px blue;
 }
-
+*/
 div
 {
+    border-top: 1px blue;
+    border-bottom: 1px blue;
+    border-left: 1px blue;
+    border-right: 1px blue;
+    
     display: block;
 }
 
@@ -69,9 +74,23 @@ p
     margin-bottom: 1em;
 }
 
+span
+{
+    border-top: 1px yellow;
+    border-bottom: 1px yellow;
+    border-left: 1px yellow;
+    border-right: 1px yellow;
+}
+
 datagrid
 {
     display: block;
+}
+
+img#girlimage
+{
+    width: 360px;
+    height: 420px;
 }
 
 input
@@ -345,9 +364,40 @@ input.checkbox:checked:active
 	icon-image-s: 467px 497px;
 	icon-image-t: 90px 120px;
 }
+/*
+input.range
+{
+    height: 27px;
+}
 
+input.range slidertrack
+{
+    background-decorator: tiled-vertical;
+    background-top-image: invader.png 74px 199px 96px 200px;
+    background-center-image: invader.png stretch 74px 200px 96px 201px;
+    background-bottom-image: invader.png 74px 202px 96px 203px;
+}
 
+input.range sliderbar
+{
+    background-decorator: tiled-vertical;
+    background-top-image: invader.png;
+    background-center-image: invader.png;
+    background-bottom-image: invader.png;
+}
 
+input.range sliderarrowdec
+{
+    icon-decorator: image;
+    icon-image: invader.png;
+}
+
+input.range sliderarrowinc
+{
+    icon-decorator: image;
+    icon-image: invader.png;
+}
+*/
 datagrid datagridheader
 {
 	width: auto;
@@ -368,8 +418,6 @@ datagrid datagridbody
 	margin-right: 3px;
 	padding: 0px 4px 4px 4px;
 }
-
-
 
 datagridexpand
 {
@@ -478,7 +526,7 @@ div#contents
     text-align: center;
 }
 
-scrollbarvertical
+scrollbarvertical, input.range
 {
     margin-top: -6px;
     margin-bottom: -6px;
@@ -486,7 +534,8 @@ scrollbarvertical
     width: 27px;
 }
 
-scrollbarvertical slidertrack
+scrollbarvertical slidertrack,
+input.range slidertrack
 {
     background-decorator: tiled-vertical;
     background-top-image: invader.tga 70px 199px 97px 201px;
@@ -494,7 +543,8 @@ scrollbarvertical slidertrack
     background-bottom-image: invader.tga 70px 203px 97px 204px;
 }
 
-scrollbarvertical sliderbar
+scrollbarvertical sliderbar,
+input.range sliderbar
 {
     margin-left: 4px;
     width: 23px;
@@ -506,14 +556,16 @@ scrollbarvertical sliderbar
     background-bottom-image: invader.tga 56px 176px 79px 198px;
 }
 
-scrollbarvertical sliderbar:hover
+scrollbarvertical sliderbar:hover,
+input.range sliderbar:hover
 {
     background-top-image-s: 80px 103px;
     background-center-image-s: 80px 103px;
     background-bottom-image-s: 80px 103px;
 }
 
-scrollbarvertical slidebar:active
+scrollbarvertical slidebar:active,
+input.range sliderbar:active
 {
     background-top-image-s: 104px 127px;
     background-center-image-s: 104px 127px;
@@ -521,32 +573,40 @@ scrollbarvertical slidebar:active
 }
 
 scrollbarvertical sliderarrowdec,
-scrollbarvertical sliderarrowinc
+scrollbarvertical sliderarrowinc,
+input.range sliderarrowdec,
+input.range sliderarrowinc
 {
     width: 27px;
     height: 24px;
 }
 
-scrollbarvertical sliderarrowdec
+scrollbarvertical sliderarrowdec,
+input.range sliderarrowdec
 {
     icon-decorator: image;
     icon-image: invader.tga 0px 152px 27px 176px;
 }
 
-scrollbarvertical sliderarrowinc
+scrollbarvertical sliderarrowinc,
+input.range sliderarrowinc
 {
     icon-decorator: image;
     icon-image: invader.tga 28px 152px 55px 176px;
 }
 
 scrollbarvertical sliderarrowdec:hover,
-scrollbarvertical sliderarrowinc:hover
+scrollbarvertical sliderarrowinc:hover,
+input.range sliderarrowdec:hover,
+input.range sliderarrowinc:hover
 {
     icon-image-t: 177px 201px;
 }
 
 scrollbarvertical sliderarrowdec:active,
-scrollbarvertical sliderarrowinc:active
+scrollbarvertical sliderarrowinc:active,
+input.range sliderarrowdec:active,
+input.range sliderarrowinc:active
 {
     icon-image-t: 202px 226px;
 }
