@@ -1,6 +1,8 @@
+bin
 obj
 Thumbs.db
-bin
+
 /trunk/WhoreMasterRenewal/WhoreMasterRenewal.layout
+/trunk/WhoreMasterRenewal/WhoreMasterRenewal.depend
 !/trunk/Docs/doxygen/WhoreMasterRenewal
 /trunk/Docs/*.*
