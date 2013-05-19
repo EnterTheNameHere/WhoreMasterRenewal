@@ -117,6 +117,7 @@
 			<Add option='-isystem &quot;Dependencies\pugixml\include&quot;' />
 			<Add option='-isystem &quot;Dependencies\libRocket\include&quot;' />
 			<Add option="-DSFML_STATIC" />
+			<Add option="-D_UNICODE" />
 			<Add directory="Dependencies/SDL/include/SDL" />
 			<Add directory="Dependencies/lua/include" />
 			<Add directory="Dependencies/TinyXML/include" />
@@ -132,6 +133,10 @@
 			<Add after='C:\WINDOWS\system32\cmd.exe /C &quot;&quot;D:\Git\bin\sh.exe&quot; &quot;--login&quot; &quot;../copyRequiredFilesToBin.sh&quot; &quot;saves&quot; &quot;onlyNew&quot; &quot;verbose&quot;&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="Docs&amp;Tools/DesignDocument/DesignDocument.txt">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Resources/Data/Attributes/Attributes.xml" />
 		<Unit filename="Resources/Interface/Bank.rml" />
 		<Unit filename="Resources/Interface/BrothelSetup.rml" />
 		<Unit filename="Resources/Interface/Dungeon.rml" />
@@ -164,6 +169,8 @@
 		<Unit filename="Resources/Scripts/TalkDetailsDefault.script" />
 		<Unit filename="Resources/Scripts/TalkDungeonDefault.script" />
 		<Unit filename="Resources/Scripts/TestScript.lua" />
+		<Unit filename="src/Attribute.cpp" />
+		<Unit filename="src/Attribute.hpp" />
 		<Unit filename="src/CGameObject.cpp" />
 		<Unit filename="src/CGameObject.h" />
 		<Unit filename="src/CGraphics.cpp" />
@@ -186,6 +193,7 @@
 		<Unit filename="src/GameFlags.cpp" />
 		<Unit filename="src/GameFlags.h" />
 		<Unit filename="src/GameSystem.h" />
+		<Unit filename="src/Girl.cpp" />
 		<Unit filename="src/Girl.hpp" />
 		<Unit filename="src/GraphicsSystem.h" />
 		<Unit filename="src/IconSurface.h" />
@@ -198,9 +206,8 @@
 		<Unit filename="src/MasterFile.h" />
 		<Unit filename="src/Revision.h" />
 		<Unit filename="src/SDLStuff.h" />
-		<Unit filename="src/UnitTestHelper.hpp" />
-		<Unit filename="src/WhoreMasterRenewalWindow.cpp" />
-		<Unit filename="src/WhoreMasterRenewalWindow.hpp" />
+		<Unit filename="src/WindowManager.cpp" />
+		<Unit filename="src/WindowManager.hpp" />
 		<Unit filename="src/WorkAdvertising.cpp" />
 		<Unit filename="src/WorkBar.cpp" />
 		<Unit filename="src/WorkBeastCapture.cpp" />

@@ -1566,7 +1566,7 @@
 	<assert.h>
 	<string.h>
 
-1353951786 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workstripper.cpp
+1353955386 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workstripper.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -1582,12 +1582,12 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353952086 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cjobmanager.h
+1353955686 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cjobmanager.h
 	<string>
 	<vector>
 	"cGirls.h"
 
-1353952025 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.h
+1353955625 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.h
 	<map>
 	<iostream>
 	<iomanip>
@@ -1603,48 +1603,48 @@
 	"cNameList.h"
 	"cAnimatedSurface.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\constants.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\constants.h
 	"cRng.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crng.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crng.h
 	<cstdlib>
 	<ctime>
 
-1354109179 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.h
+1354112779 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.h
 	"Constants.h"
 	<string>
 	<fstream>
 
-1353953825 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinventory.h
+1353957425 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinventory.h
 	<iostream>
 	<ostream>
 	<string>
 	<vector>
 	"Constants.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccustomers.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccustomers.h
 	"cGirls.h"
 
-1353949565 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cevents.h
+1353953165 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cevents.h
 	<string>
 	<vector>
 	"Constants.h"
 
-1353949685 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\csurface.h
+1353953285 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\csurface.h
 	"GameSystem.h"
 	"CResource.h"
 	<SDL_rotozoom.h>
 	<string>
 	<vector>
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gamesystem.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gamesystem.h
 	"CLog.h"
 	"SDLStuff.h"
 	"GraphicsSystem.h"
 	"CResourceManager.h"
 	"CTimer.h"
 
-1356552413 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.h
+1356556013 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.h
 	<iostream>
 	<fstream>
 	<sstream>
@@ -1653,12 +1653,12 @@
 	"SFML/System/Lock.hpp"
 	"SFML/System/Mutex.hpp"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sdlstuff.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sdlstuff.h
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_ttf.h>
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_audio.h"
@@ -1677,14 +1677,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_main.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_stdinc.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -1710,20 +1710,20 @@
 	<stdlib.h>
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_config.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_config.h
 	"SDL_platform.h"
 	<stdarg.h>
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_platform.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_platform.h
 
 1326114594 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_config_win32.h
 	"SDL_platform.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\begin_code.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\begin_code.h
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\close_code.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\close_code.h
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_audio.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -1733,24 +1733,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_error.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_endian.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_mutex.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_thread.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_mutex.h"
@@ -1758,24 +1758,24 @@
 	<process.h>
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_rwops.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_cdrom.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_cdrom.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_cpuinfo.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_events.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_active.h"
@@ -1786,106 +1786,106 @@
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_active.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_active.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_keyboard.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keysym.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_keysym.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_keysym.h
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_mouse.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_video.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_joystick.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_quit.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_loadso.h
-	"SDL_stdinc.h"
-	"SDL_error.h"
-	"begin_code.h"
-	"close_code.h"
-
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_timer.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_version.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_image.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_ttf.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_ttf.h
 	"SDL.h"
 	"begin_code.h"
 	"close_code.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\graphicssystem.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\graphicssystem.h
 	"cFont.h"
 	"CSurface.h"
 	"CGraphics.h"
 
-1353949625 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cfont.h
+1353953225 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cfont.h
 	<SDL_ttf.h>
 	<string>
 
-1353949685 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgraphics.h
+1353953285 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgraphics.h
 	"SDLStuff.h"
 	"CTimer.h"
 	<string>
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctimer.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctimer.h
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cresourcemanager.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cresourcemanager.h
 	"CResource.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cresource.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cresource.h
 	"CGraphics.h"
 
-1352991721 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_rotozoom.h
+1352995321 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sdl\include\sdl\sdl_rotozoom.h
 	<math.h>
 	"SDL.h"
 
-1353952805 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctriggers.h
+1353956405 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctriggers.h
 	<string>
 	<queue>
 	"GameFlags.h"
 	"tinyxml.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gameflags.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gameflags.h
 
 1305393898 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\tinyxml\src\tinyxml.h
 	<ctype.h>
@@ -1902,17 +1902,17 @@
 	<assert.h>
 	<string.h>
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cnamelist.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cnamelist.h
 	<vector>
 	<string>
 
-1353950525 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\canimatedsurface.h
+1353954125 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\canimatedsurface.h
 	"CSurface.h"
 	<string>
 	<iostream>
 	<fstream>
 
-1353952745 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbrothel.h
+1353956345 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbrothel.h
 	<string>
 	<vector>
 	"cGirls.h"
@@ -1924,12 +1924,12 @@
 	"cPlayer.h"
 	"tinyxml.h"
 
-1353952086 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crival.h
+1353955686 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crival.h
 	<string>
 	"cNameList.h"
 	"tinyxml.h"
 
-1353952685 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgold.h
+1353956285 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgold.h
 	<string>
 	<map>
 	<iomanip>
@@ -1937,7 +1937,7 @@
 	"CLog.h"
 	"tinyxml.h"
 
-1353952085 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbuilding.h
+1353955685 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbuilding.h
 	<iostream>
 	<ostream>
 	<fstream>
@@ -1947,46 +1947,46 @@
 	"sFacility.h"
 	"tinyxml.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctariff.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctariff.h
 	"CLog.h"
 	"cRng.h"
 	"sConfig.h"
 
-1353950076 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sconfig.h
+1353953676 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sconfig.h
 	<iostream>
 	<string>
 	<vector>
 
-1353952837 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacility.h
+1353956437 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacility.h
 	<math.h>
 	"cTariff.h"
 
-1353952865 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cdungeon.h
+1353956465 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cdungeon.h
 	<string>
 	<fstream>
 	"tinyxml.h"
 	"cGirls.h"
 
-1353952086 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cplayer.h
+1353955686 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cplayer.h
 	<fstream>
 	"Constants.h"
 	"tinyxml.h"
 
-1353952746 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctrainable.h
+1353956346 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctrainable.h
 	<vector>
 
-1353952087 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgangs.h
+1353955687 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgangs.h
 	"cGirls.h"
 	"cRival.h"
 	"cGold.h"
 	"cBrothel.h"
 	<vector>
 
-1353950765 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cmessagebox.h
+1353954365 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cmessagebox.h
 	"cFont.h"
 	<queue>
 
-1354108415 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinventory.cpp
+1354112015 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinventory.cpp
 	"tinyxml.h"
 	"cInventory.h"
 	<iostream>
@@ -1995,7 +1995,7 @@
 	"cMessageBox.h"
 	"cCustomers.h"
 
-1354106844 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cfont.cpp
+1354110444 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cfont.cpp
 	<iostream>
 	"cFont.h"
 	"CLog.h"
@@ -2003,7 +2003,7 @@
 	"sConfig.h"
 	<vector>
 
-1353951930 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingsetup.cpp
+1353955530 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingsetup.cpp
 	"main.h"
 	"cBrothel.h"
 	"cScreenBuildingSetup.h"
@@ -2011,17 +2011,17 @@
 	"cGold.h"
 	"cTariff.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingsetup.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingsetup.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353949985 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\dirpath.h
+1353953585 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\dirpath.h
 	<string>
 	<iostream>
 	<fstream>
 
-1353953165 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfacewindow.h
+1353956765 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfacewindow.h
 	"cButton.h"
 	"GameSystem.h"
 	"CSurface.h"
@@ -2038,63 +2038,63 @@
 	<vector>
 	<map>
 
-1353953299 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbutton.h
+1353956899 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbutton.h
 	<string>
 	"CSurface.h"
 	"cInterfaceObject.h"
 	"cInterfaceEvent.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfaceobject.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfaceobject.h
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfaceevent.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfaceevent.h
 
-1353950705 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ceditbox.h
+1353954305 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ceditbox.h
 	<string>
 	"CSurface.h"
 	"cInterfaceObject.h"
 	"cInterfaceEvent.h"
 	"cFont.h"
 
-1353950406 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cimageitem.h
+1353954006 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cimageitem.h
 	"CSurface.h"
 	"cAnimatedSurface.h"
 	"cInterfaceObject.h"
 
-1353950946 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctextitem.h
+1353954546 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctextitem.h
 	"cFont.h"
 	"cInterfaceObject.h"
 	"sConfig.h"
 	"cScrollBar.h"
 
-1353950225 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscrollbar.h
+1353953825 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscrollbar.h
 	<string>
 	"CSurface.h"
 	"cInterfaceObject.h"
 	"cInterfaceEvent.h"
 
-1353953225 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clistbox.h
+1353956825 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clistbox.h
 	"cInterfaceObject.h"
 	"cScrollBar.h"
 	"cFont.h"
 	"DirPath.h"
 	"Constants.h"
 
-1353950572 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccheckbox.h
+1353954172 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccheckbox.h
 	"CSurface.h"
 	"cInterfaceObject.h"
 	"cInterfaceEvent.h"
 	"cFont.h"
 
-1353950225 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cslider.h
+1353953825 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cslider.h
 	<string>
 	"CSurface.h"
 	"cInterfaceObject.h"
 	"cInterfaceEvent.h"
 
-1353951426 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cxmlwidget.h
+1353955026 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cxmlwidget.h
 	<vector>
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceglobals.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceglobals.h
 	"cInterfaceWindow.h"
 	"cInterfaceEvent.h"
 	"cMessageBox.h"
@@ -2102,25 +2102,25 @@
 	"cChoiceMessage.h"
 	"linux.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceids.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceids.h
 
-1353953066 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cchoicemessage.h
+1353956666 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cchoicemessage.h
 	"CSurface.h"
 	"cFont.h"
 	<string>
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\linux.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\linux.h
 	<limits.h>
 	<stdlib.h>
 	<string.h>
 	<stdio.h>
 
-1353953045 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cwindowmanager.h
+1353956645 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cwindowmanager.h
 	<stack>
 	<vector>
 	"cInterfaceWindow.h"
 
-1357028574 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
+1358340037 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.cpp
 	"main.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2151,7 +2151,7 @@
 	<map>
 	<vector>
 
-1353950345 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.h
+1353953945 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\main.h
 	"GameSystem.h"
 	<iostream>
 	<fstream>
@@ -2174,26 +2174,26 @@
 	"cGold.h"
 	"cScrollBar.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgamescript.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgamescript.h
 	"cScripts.h"
 	"cGirls.h"
 
-1353950225 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscripts.h
+1353953825 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscripts.h
 	<stdio.h>
 	<string>
 
-1353950345 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.h
+1353953945 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.h
 	<string>
 	"tinyxml.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\revision.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\revision.h
 
-1353950045 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\iconsurface.h
+1353953645 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\iconsurface.h
 	"linux.h"
 	"DirPath.h"
 	"CSurface.h"
 
-1353951930 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workfluffer.cpp
+1353955530 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workfluffer.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2209,7 +2209,7 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353950825 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenitemmanagement.cpp
+1353954425 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenitemmanagement.cpp
 	"main.h"
 	"cBrothel.h"
 	"cScreenItemManagement.h"
@@ -2219,20 +2219,20 @@
 	"InterfaceProcesses.h"
 	"sConfig.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenitemmanagement.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenitemmanagement.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353950886 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptutils.cpp
+1353954486 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptutils.cpp
 	"cScriptUtils.h"
 	"cGirls.h"
 	"cMessageBox.h"
 	"cBrothel.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptutils.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptutils.h
 
-1354107246 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbrothel.cpp
+1354110846 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbrothel.cpp
 	<sstream>
 	"linux.h"
 	"main.h"
@@ -2243,21 +2243,21 @@
 	"strnatcmp.h"
 	"XmlMisc.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\strnatcmp.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\strnatcmp.h
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlmisc.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlmisc.h
 	"tinyxml.h"
 	<string>
 	"cTraits.h"
 	"cInventory.h"
 
-1353951785 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cchoicemessage.cpp
+1353955385 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cchoicemessage.cpp
 	"cChoiceMessage.h"
 	"IconSurface.h"
 	"CGraphics.h"
 	"sConfig.h"
 
-1353952291 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workadvertising.cpp
+1353955891 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workadvertising.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2273,7 +2273,7 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353954663 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cdungeon.cpp
+1353958263 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cdungeon.cpp
 	<sstream>
 	"linux.h"
 	"main.h"
@@ -2284,15 +2284,15 @@
 	"strnatcmp.h"
 	"cGirlTorture.h"
 
-1353952745 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirltorture.h
+1353956345 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirltorture.h
 	<string>
 
-1353950826 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ceditbox.cpp
+1353954426 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ceditbox.cpp
 	"cEditBox.h"
 	"CGraphics.h"
 	"sConfig.h"
 
-1353954805 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenhouse.cpp
+1353958405 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenhouse.cpp
 	"cBrothel.h"
 	"cScreenHouse.h"
 	"cWindowManager.h"
@@ -2301,15 +2301,15 @@
 	"InterfaceGlobals.h"
 	"cGangs.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenhouse.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenhouse.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353954305 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgetstringscreenmanager.h
+1353957905 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgetstringscreenmanager.h
 	<string>
 
-1353951665 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\worktorturer.cpp
+1353955265 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\worktorturer.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2325,7 +2325,7 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353952266 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenprison.cpp
+1353955866 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenprison.cpp
 	"main.h"
 	"cBrothel.h"
 	"cScreenPrison.h"
@@ -2335,22 +2335,22 @@
 	"cGetStringScreenManager.h"
 	"linux.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenprison.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenprison.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353951365 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacilitylist.h
+1353954965 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacilitylist.h
 	<vector>
 	<string>
 	"sFacility.h"
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crenderque.cpp
+1352995325 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crenderque.cpp
 	"CRenderQue.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crenderque.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crenderque.h
 
-1353953633 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctriggers.cpp
+1353957233 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctriggers.cpp
 	"cTriggers.h"
 	<fstream>
 	"cScriptManager.h"
@@ -2358,14 +2358,14 @@
 	"cGirls.h"
 	"cGold.h"
 
-1353953633 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptmanager.h
+1353957233 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptmanager.h
 	"CLog.h"
 	"cGameScript.h"
 	"cLuaScript.h"
 	"DirPath.h"
 	<queue>
 
-1353952745 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluascript.h
+1353956345 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluascript.h
 	<string>
 	<iostream>
 	<fstream>
@@ -2395,17 +2395,17 @@
 	<stdio.h>
 	"lua.h"
 
-1353951426 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirlgangfight.cpp
+1353955026 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirlgangfight.cpp
 	"cGirlGangFight.h"
 	"cBrothel.h"
 	"cGangs.h"
 
-1353948425 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirlgangfight.h
+1353952025 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirlgangfight.h
 	<string>
 	<vector>
 	"CLog.h"
 
-1353955625 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crival.cpp
+1353959225 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crival.cpp
 	"cRival.h"
 	<stdlib.h>
 	<fstream>
@@ -2418,7 +2418,7 @@
 	"DirPath.h"
 	"cGangs.h"
 
-1353955502 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluascript.cpp
+1353959102 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluascript.cpp
 	"cLuaScript.h"
 	"cLuaMenu.h"
 	"cScriptUtils.h"
@@ -2434,7 +2434,7 @@
 	"cWindowManager.h"
 	"cScriptManager.h"
 
-1353953225 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluamenu.h
+1353956825 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluamenu.h
 	<string>
 	<vector>
 	"cChoiceMessage.h"
@@ -2443,23 +2443,23 @@
 	"sConfig.h"
 	"CGraphics.h"
 
-1353953165 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\filelist.h
+1353956765 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\filelist.h
 	<string>
 	<vector>
 	"DirPath.h"
 
-1353950275 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscripts.cpp
+1353953875 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscripts.cpp
 	"cScripts.h"
 	<string>
 	<cstring>
 	<cstdlib>
 	"linux.h"
 
-1356556954 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.cpp
+1356560554 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clog.cpp
 	<iostream>
 	"CLog.h"
 
-1353953465 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctrainable.cpp
+1353957065 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctrainable.cpp
 	<algorithm>
 	<math.h>
 	"cRng.h"
@@ -2468,7 +2468,7 @@
 	"cTrainable.h"
 	"Constants.h"
 
-1354107488 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgangs.cpp
+1354111088 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgangs.cpp
 	<sstream>
 	<algorithm>
 	"main.h"
@@ -2486,7 +2486,7 @@
 	"linux.h"
 	"DirPath.h"
 
-1353954761 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clistbox.cpp
+1353958361 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\clistbox.cpp
 	<algorithm>
 	"cListBox.h"
 	"CGraphics.h"
@@ -2496,13 +2496,13 @@
 	"sConfig.h"
 	<sstream>
 
-1354534920 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cslider.cpp
+1354538520 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cslider.cpp
 	"cSlider.h"
 	"CResourceManager.h"
 	"DirPath.h"
 	"main.h"
 
-1353952266 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cworkcleaning.cpp
+1353955866 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cworkcleaning.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2518,7 +2518,7 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353952206 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbar.cpp
+1353955806 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbar.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2534,14 +2534,14 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353952087 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cimageitem.cpp
+1353955687 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cimageitem.cpp
 	"cImageItem.h"
 	"CGraphics.h"
 
-1353950885 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptmanager.cpp
+1353954485 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscriptmanager.cpp
 	"cScriptManager.h"
 
-1353953878 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengangs.cpp
+1353957478 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengangs.cpp
 	"main.h"
 	"cBrothel.h"
 	"cScreenGangs.h"
@@ -2550,12 +2550,12 @@
 	"InterfaceProcesses.h"
 	"cGangs.h"
 
-1353951006 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengangs.h
+1353954606 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengangs.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1354535486 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfacewindow.cpp
+1354539086 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cinterfacewindow.cpp
 	"cInterfaceWindow.h"
 	<time.h>
 	"DirPath.h"
@@ -2565,10 +2565,10 @@
 	<string>
 	<cctype>
 
-1353952985 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlutil.h
+1353956585 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlutil.h
 	<string>
 
-1353955656 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workwhore.cpp
+1353959256 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workwhore.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2585,14 +2585,14 @@
 	"cMessageBox.h"
 	<algorithm>
 
-1353952506 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacilitylist.cpp
+1353956106 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacilitylist.cpp
 	"tinyxml.h"
 	"sFacilityList.h"
 	"DirPath.h"
 	"FileList.h"
 	"CLog.h"
 
-1353952985 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cjobmanager.cpp
+1353956585 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cjobmanager.cpp
 	<algorithm>
 	"cJobManager.h"
 	"cBrothel.h"
@@ -2609,14 +2609,14 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353955557 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cnamelist.cpp
+1353959157 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cnamelist.cpp
 	<fstream>
 	"Constants.h"
 	"cNameList.h"
 	"CLog.h"
 	"cRng.h"
 
-1353951930 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbeastcapture.cpp
+1353955530 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbeastcapture.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2632,7 +2632,7 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353951785 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workfreetime.cpp
+1353955385 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workfreetime.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2648,16 +2648,16 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353952445 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccolor.cpp
+1353956045 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccolor.cpp
 	"cColor.h"
 
-1353950274 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccolor.h
+1353953874 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccolor.h
 	<iostream>
 	<string>
 	<SDL.h>
 	"CLog.h"
 
-1353951786 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbeastcare.cpp
+1353955386 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbeastcare.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2673,7 +2673,7 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353955414 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreentown.cpp
+1353959014 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreentown.cpp
 	"cBrothel.h"
 	"cScreenTown.h"
 	"cWindowManager.h"
@@ -2687,12 +2687,12 @@
 	<sstream>
 	"cGangs.h"
 
-1353950766 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreentown.h
+1353954366 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreentown.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353950826 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenmayor.cpp
+1353954426 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenmayor.cpp
 	"main.h"
 	"cBrothel.h"
 	"cScreenMayor.h"
@@ -2702,12 +2702,12 @@
 	"InterfaceGlobals.h"
 	"linux.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenmayor.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenmayor.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353952506 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sconfig.cpp
+1353956106 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sconfig.cpp
 	<iostream>
 	<ostream>
 	<fstream>
@@ -2718,7 +2718,7 @@
 	"tinyxml.h"
 	"cColor.h"
 
-1354535388 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.cpp
+1354538988 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceprocesses.cpp
 	"InterfaceProcesses.h"
 	"InterfaceGlobals.h"
 	"GameFlags.h"
@@ -2733,20 +2733,20 @@
 	"FileList.h"
 	"MasterFile.h"
 
-1353953225 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\masterfile.h
+1353956825 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\masterfile.h
 	<map>
 	<iostream>
 	<istream>
 	<fstream>
 	"tinyxml.h"
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlmisc.cpp
+1352995325 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlmisc.cpp
 	"Constants.h"
 	"XmlMisc.h"
 	"cGirls.h"
 	"cBrothel.h"
 
-1354108798 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.cpp
+1354112398 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirls.cpp
 	"cTariff.h"
 	"cGirls.h"
 	"cEvents.h"
@@ -2766,15 +2766,15 @@
 	"FileList.h"
 	"main.h"
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cresourcemanager.cpp
+1352995325 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cresourcemanager.cpp
 	"CResourceManager.h"
 
-1353952445 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbuilding.cpp
+1353956045 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbuilding.cpp
 	"cBuilding.h"
 	"CLog.h"
 	"XmlUtil.h"
 
-1353951930 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workhall.cpp
+1353955530 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workhall.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2790,7 +2790,7 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353952291 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingmanagement.cpp
+1353955891 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingmanagement.cpp
 	"cBrothel.h"
 	"cScreenBuildingManagement.h"
 	"cWindowManager.h"
@@ -2798,15 +2798,15 @@
 	"sFacilityList.h"
 	"cGetStringScreenManager.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingmanagement.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbuildingmanagement.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 
-1354109050 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccustomers.cpp
+1354112650 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccustomers.cpp
 	"cCustomers.h"
 	"cBrothel.h"
 
-1353955985 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreendungeon.cpp
+1353959585 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreendungeon.cpp
 	<string>
 	<sstream>
 	<algorithm>
@@ -2821,16 +2821,16 @@
 	"cGirlGangFight.h"
 	"cGirlTorture.h"
 
-1353951366 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreendungeon.h
+1353954966 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreendungeon.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1354107762 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crng.cpp
+1354111362 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\crng.cpp
 	"cRng.h"
 	"sConfig.h"
 
-1353954405 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirlmanagement.cpp
+1353958005 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirlmanagement.cpp
 	<algorithm>
 	"cBrothel.h"
 	"cScreenGirlManagement.h"
@@ -2840,19 +2840,19 @@
 	"cJobManager.h"
 	"InterfaceProcesses.h"
 
-1353951305 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirlmanagement.h
+1353954905 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirlmanagement.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353954545 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cevents.cpp
+1353958145 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cevents.cpp
 	<algorithm>
 	<iostream>
 	<iterator>
 	"cEvents.h"
 	"cGirls.h"
 
-1353953765 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\filelist.cpp
+1353957365 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\filelist.cpp
 	"FileList.h"
 	<map>
 	<sys/types.h>
@@ -2867,22 +2867,22 @@
 	<windows.h>
 	"interfaceIDs.h"
 
-1353950766 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlutil.cpp
+1353954366 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\xmlutil.cpp
 	"XmlUtil.h"
 	"CLog.h"
 	"tinyxml.h"
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctariff.cpp
+1352995325 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctariff.cpp
 	"CLog.h"
 	"cTariff.h"
 	"cGirls.h"
 	"cBrothel.h"
 
-1354107687 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cwindowmanager.cpp
+1354111287 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cwindowmanager.cpp
 	"cWindowManager.h"
 	"CLog.h"
 
-1354108493 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgamescript.cpp
+1354112093 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgamescript.cpp
 	"cGameScript.h"
 	"cMessageBox.h"
 	"cChoiceMessage.h"
@@ -2896,7 +2896,7 @@
 	"cGirlGangFight.h"
 	"cGirlTorture.h"
 
-1353951786 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workmatron.cpp
+1353955386 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workmatron.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2912,19 +2912,19 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353950705 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\dirpath.cpp
+1353954305 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\dirpath.cpp
 	"DirPath.h"
 	"sConfig.h"
 
-1353950405 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbutton.cpp
+1353954005 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cbutton.cpp
 	"cButton.h"
 	"CResourceManager.h"
 
-1353954761 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluamenu.cpp
+1353958361 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cluamenu.cpp
 	"cLuaMenu.h"
 	"cChoiceMessage.h"
 
-1353955557 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenslavemarket.cpp
+1353959157 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenslavemarket.cpp
 	"cBrothel.h"
 	"cScreenSlaveMarket.h"
 	"cWindowManager.h"
@@ -2932,12 +2932,12 @@
 	"sFacilityList.h"
 	"cGetStringScreenManager.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenslavemarket.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenslavemarket.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353951930 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbrothelmassusse.cpp
+1353955530 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workbrothelmassusse.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -2953,34 +2953,34 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgameobject.cpp
+1352995325 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgameobject.cpp
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cmessagebox.cpp
+1352995325 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cmessagebox.cpp
 	"cMessageBox.h"
 	"CGraphics.h"
 	"sConfig.h"
 
-1353952086 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\canimatedsurface.cpp
+1353955686 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\canimatedsurface.cpp
 	"cAnimatedSurface.h"
 	"CLog.h"
 
-1354109187 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.cpp
+1354112787 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ctraits.cpp
 	<iostream>
 	"cTraits.h"
 	"stdio.h"
 	<cstring>
 	"linux.h"
 
-1353952087 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cplayer.cpp
+1353955687 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cplayer.cpp
 	"linux.h"
 	<cmath>
 	"cPlayer.h"
 	"XmlMisc.h"
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gameflags.cpp
+1352995325 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\gameflags.cpp
 	"GameFlags.h"
 
-1354535139 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceglobals.cpp
+1354538739 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\interfaceglobals.cpp
 	"InterfaceGlobals.h"
 	<iostream>
 	"DirPath.h"
@@ -3002,28 +3002,28 @@
 	"cScreenGirlDetails.h"
 	"cScreenDungeon.h"
 
-1352991725 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbank.h
+1352995325 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbank.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353950572 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirldetails.h
+1353954172 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirldetails.h
 	"DirPath.h"
 	"cInterfaceWindow.h"
 	"InterfaceGlobals.h"
 
-1353950466 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgetstringscreenmanager.cpp
+1353954066 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgetstringscreenmanager.cpp
 	"cGetStringScreenManager.h"
 	"InterfaceGlobals.h"
 	"main.h"
 
-1353952506 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacility.cpp
+1353956106 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\sfacility.cpp
 	"sFacility.h"
 	"XmlUtil.h"
 	"CLog.h"
 	"tinyxml.h"
 
-1353952291 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\worksecurity.cpp
+1353955891 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\worksecurity.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -3039,13 +3039,13 @@
 	"cGangs.h"
 	"cMessageBox.h"
 
-1353950406 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccheckbox.cpp
+1353954006 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\ccheckbox.cpp
 	"cCheckBox.h"
 	"DirPath.h"
 	"CGraphics.h"
 	"sConfig.h"
 
-1353951785 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirldetails.cpp
+1353955385 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreengirldetails.cpp
 	<algorithm>
 	"cBrothel.h"
 	"cScreenGirlDetails.h"
@@ -3058,20 +3058,20 @@
 	"cGangs.h"
 	"cScriptManager.h"
 
-1354107381 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgold.cpp
+1354110981 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgold.cpp
 	"cGold.h"
 	"CLog.h"
 	"sConfig.h"
 	<sstream>
 
-1352991725 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\strnatcmp.cpp
+1352995325 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\strnatcmp.cpp
 	<ctype.h>
 	<string.h>
 	<assert.h>
 	<stdio.h>
 	"strnatcmp.h"
 
-1353952746 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirltorture.cpp
+1353956346 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgirltorture.cpp
 	"cGirls.h"
 	"cGirlTorture.h"
 	"cMessageBox.h"
@@ -3079,26 +3079,26 @@
 	"cDungeon.h"
 	"cGirlGangFight.h"
 
-1354534870 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscrollbar.cpp
+1354538470 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscrollbar.cpp
 	"cScrollBar.h"
 	"CResourceManager.h"
 	"DirPath.h"
 	"main.h"
 
-1354107099 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgraphics.cpp
+1354110699 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cgraphics.cpp
 	"CGraphics.h"
 	"fstream"
 	"CLog.h"
 	"DirPath.h"
 
-1353949985 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\csurface.cpp
+1353953585 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\csurface.cpp
 	"CSurface.h"
 	"CLog.h"
 	"CGraphics.h"
 	"CResourceManager.h"
 	<SDL_image.h>
 
-1353955685 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbank.cpp
+1353959285 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\cscreenbank.cpp
 	"cBrothel.h"
 	"cScreenBank.h"
 	"cWindowManager.h"
@@ -3106,7 +3106,7 @@
 	"cGetStringScreenManager.h"
 	"InterfaceGlobals.h"
 
-1353953500 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workexplorecatacombs.cpp
+1353957100 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\workexplorecatacombs.cpp
 	"cJobManager.h"
 	"cBrothel.h"
 	"cCustomers.h"
@@ -3322,7 +3322,7 @@
 1324981414 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\tests\dependencies\igloo\core\defaultregistrationaliases.h
 	<igloo/core/registration.h>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window.hpp
 	<SFML/System.hpp>
 	<SFML/Window/Context.hpp>
 	<SFML/Window/ContextSettings.hpp>
@@ -3334,7 +3334,7 @@
 	<SFML/Window/Window.hpp>
 	<SFML/Window/WindowStyle.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system.hpp
 	<SFML/Config.hpp>
 	<SFML/System/Clock.hpp>
 	<SFML/System/Err.hpp>
@@ -3350,65 +3350,65 @@
 	<SFML/System/Vector2.hpp>
 	<SFML/System/Vector3.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\config.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\config.hpp
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\clock.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\clock.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\export.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\export.hpp
 	<SFML/Config.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\time.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\time.hpp
 	<SFML/System/Export.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\err.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\err.hpp
 	<SFML/System/Export.hpp>
 	<ostream>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\inputstream.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\inputstream.hpp
 	<SFML/Config.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\lock.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\lock.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\noncopyable.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\noncopyable.hpp
 	<SFML/System/Export.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\mutex.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\mutex.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\sleep.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\sleep.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/Time.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\string.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\string.hpp
 	<SFML/System/Export.hpp>
 	<locale>
 	<string>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\thread.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\thread.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 	<SFML/System/Thread.inl>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\thread.inl
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\thread.inl
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\threadlocal.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\threadlocal.hpp
 	<SFML/System/Export.hpp>
 	<SFML/System/NonCopyable.hpp>
 	<cstdlib>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\threadlocalptr.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\threadlocalptr.hpp
 	<SFML/System/ThreadLocal.hpp>
 	<SFML/System/ThreadLocalPtr.inl>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\threadlocalptr.inl
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\threadlocalptr.inl
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\utf.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\utf.hpp
 	<SFML/Config.hpp>
 	<algorithm>
 	<locale>
@@ -3416,53 +3416,53 @@
 	<cstdlib>
 	<SFML/System/Utf.inl>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\utf.inl
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\utf.inl
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\vector2.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\vector2.hpp
 	<SFML/System/Vector2.inl>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\vector2.inl
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\vector2.inl
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\vector3.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\vector3.hpp
 	<SFML/System/Vector3.inl>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\vector3.inl
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\system\vector3.inl
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\context.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\context.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/Window/GlResource.hpp>
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\export.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\export.hpp
 	<SFML/Config.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\glresource.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\glresource.hpp
 	<SFML/Window/Export.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\contextsettings.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\contextsettings.hpp
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\event.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\event.hpp
 	<SFML/Config.hpp>
 	<SFML/Window/Joystick.hpp>
 	<SFML/Window/Keyboard.hpp>
 	<SFML/Window/Mouse.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\joystick.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\joystick.hpp
 	<SFML/Window/Export.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\keyboard.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\keyboard.hpp
 	<SFML/Window/Export.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\mouse.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\mouse.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/System/Vector2.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\videomode.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\videomode.hpp
 	<SFML/Window/Export.hpp>
 	<vector>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\window.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\window.hpp
 	<SFML/Window/Export.hpp>
 	<SFML/Window/ContextSettings.hpp>
 	<SFML/Window/VideoMode.hpp>
@@ -3474,10 +3474,10 @@
 	<SFML/System/NonCopyable.hpp>
 	<string>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\windowhandle.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\windowhandle.hpp
 	<SFML/Config.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\windowstyle.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\window\windowstyle.hpp
 
 1342652125 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\cegui\include\cegui\cegui.h
 	"CEGUIAffector.h"
@@ -4536,17 +4536,17 @@
 	"CEGUISequentialLayoutContainer.h"
 	"../CEGUIWindowFactory.h"
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\renderwindow.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\renderwindow.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/Window.hpp>
 	<string>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\export.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\export.hpp
 	<SFML/Config.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rendertarget.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rendertarget.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
@@ -4558,49 +4558,49 @@
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/System/NonCopyable.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\color.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\color.hpp
 	<SFML/Graphics/Export.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rect.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rect.hpp
 	<SFML/System/Vector2.hpp>
 	<algorithm>
 	<SFML/Graphics/Rect.inl>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rect.inl
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rect.inl
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\view.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\view.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/Graphics/Transform.hpp>
 	<SFML/System/Vector2.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\transform.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\transform.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<SFML/System/Vector2.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\blendmode.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\blendmode.hpp
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\renderstates.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\renderstates.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/Transform.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\primitivetype.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\primitivetype.hpp
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\vertex.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\vertex.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/System/Vector2.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\image.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\image.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Color.hpp>
 	<SFML/Graphics/Rect.hpp>
 	<string>
 	<vector>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
 	<SFML/Graphics/BlendMode.hpp>
 	<SFML/Graphics/Color.hpp>
@@ -4623,7 +4623,7 @@
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/Graphics/View.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\font.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\font.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Glyph.hpp>
 	<SFML/Graphics/Texture.hpp>
@@ -4634,21 +4634,21 @@
 	<string>
 	<vector>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\glyph.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\glyph.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\texture.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\texture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Image.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rendertexture.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rendertexture.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Texture.hpp>
 	<SFML/Graphics/RenderTarget.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\shader.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\shader.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Transform.hpp>
 	<SFML/Graphics/Color.hpp>
@@ -4659,22 +4659,22 @@
 	<map>
 	<string>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\shape.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\shape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/VertexArray.hpp>
 	<SFML/System/Vector2.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\drawable.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\drawable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/RenderStates.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\transformable.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\transformable.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Transform.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\vertexarray.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\vertexarray.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/PrimitiveType.hpp>
@@ -4682,27 +4682,27 @@
 	<SFML/Graphics/Drawable.hpp>
 	<vector>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\circleshape.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\circleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rectangleshape.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\rectangleshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\convexshape.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\convexshape.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Shape.hpp>
 	<vector>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\sprite.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\sprite.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
 	<SFML/Graphics/Vertex.hpp>
 	<SFML/Graphics/Rect.hpp>
 
-1353001079 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\text.hpp
+1353004679 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfml\include\sfml\graphics\text.hpp
 	<SFML/Graphics/Export.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Graphics/Transformable.hpp>
@@ -5052,7 +5052,7 @@
 	<map>
 	<list>
 
-1353001081 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\tinyxml\include\tinyxml.h
+1353004681 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\tinyxml\include\tinyxml.h
 	<ctype.h>
 	<stdio.h>
 	<stdlib.h>
@@ -5063,25 +5063,25 @@
 	<sstream>
 	"tinystr.h"
 
-1353001081 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\tinyxml\include\tinystr.h
+1353004681 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\tinyxml\include\tinystr.h
 	<assert.h>
 	<string.h>
 
-1353001081 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\include\lua.h
+1353004681 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\include\lua.h
 	<stdarg.h>
 	<stddef.h>
 	"luaconf.h"
 
-1353001081 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\include\luaconf.h
+1353004681 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\include\luaconf.h
 	<limits.h>
 	<stddef.h>
 	<stdio.h>
 	<math.h>
 
-1353001081 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\include\lualib.h
+1353004681 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\include\lualib.h
 	"lua.h"
 
-1353001081 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\include\lauxlib.h
+1353004681 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\lua\include\lauxlib.h
 	<stddef.h>
 	<stdio.h>
 	"lua.h"
@@ -5105,7 +5105,7 @@
 	<android/log.h>
 	<assert.h>
 
-1335935950 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\pugixml\include\pugixml.hpp
+1353004681 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\pugixml\include\pugixml.hpp
 	"pugiconfig.hpp"
 	<stddef.h>
 	<exception>
@@ -5113,7 +5113,7 @@
 	<iosfwd>
 	<string>
 
-1335720148 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\pugixml\include\pugiconfig.hpp
+1353004681 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\pugixml\include\pugiconfig.hpp
 
 1342725719 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\sfgui\include\sfgui\engines\brew.hpp
 	<SFGUI/Config.hpp>
@@ -5151,7 +5151,7 @@
 	<iomanip>
 	<sstream>
 
-1356656265 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.cpp
+1357032562 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.cpp
 	<Rocket/Core/Core.h>
 	"RenderInterfaceSFML.h"
 	"ShellFileInterface.h"
@@ -5159,7 +5159,7 @@
 	<iostream>
 	<GL/glee.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\core.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\core.h
 	<Rocket/Core/Types.h>
 	<Rocket/Core/Math.h>
 	<Rocket/Core/Header.h>
@@ -5208,7 +5208,7 @@
 	<Rocket/Core/XMLNodeHandler.h>
 	<Rocket/Core/XMLParser.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\types.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\types.h
 	<Rocket/Core/Debug.h>
 	<float.h>
 	<limits.h>
@@ -5222,51 +5222,51 @@
 	<Rocket/Core/Vector2.h>
 	<Rocket/Core/String.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\debug.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\debug.h
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\header.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\header.h
 	<Rocket/Core/Platform.h>
 
-1352315423 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\platform.h
+1352319023 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\platform.h
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\colour.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\colour.h
 	<Rocket/Core/Header.h>
 	"Colour.inl"
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\colour.inl
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\colour.inl
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\vector2.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\vector2.h
 	<Rocket/Core/Debug.h>
 	<Rocket/Core/Math.h>
 	<Rocket/Core/Vector2.inl>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\math.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\math.h
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\vector2.inl
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\vector2.inl
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\string.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\string.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/StringBase.h>
 	<stdarg.h>
 	<string.h>
 	<vector>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringbase.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringbase.h
 	<Rocket/Core/Debug.h>
 	<Rocket/Core/StringStorage.h>
 	<Rocket/Core/StringBase.inl>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringstorage.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringstorage.h
 	<stddef.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringbase.inl
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringbase.inl
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\box.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\box.h
 	<Rocket/Core/Types.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\context.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\context.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Types.h>
 	<Rocket/Core/ReferenceCountable.h>
@@ -5275,55 +5275,55 @@
 	<Rocket/Core/String.h>
 	<Rocket/Core/ScriptInterface.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\referencecountable.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\referencecountable.h
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementreference.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementreference.h
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\input.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\input.h
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\scriptinterface.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\scriptinterface.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/Types.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\contextinstancer.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\contextinstancer.h
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\decorator.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\decorator.h
 	<Rocket/Core/ReferenceCountable.h>
 	<vector>
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Texture.h>
 	<Rocket/Core/Types.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\texture.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\texture.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Types.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\decoratorinstancer.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\decoratorinstancer.h
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/Header.h>
 	<Rocket/Core/PropertyDictionary.h>
 	<Rocket/Core/PropertySpecification.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertydictionary.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertydictionary.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Property.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\property.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\property.h
 	<Rocket/Core/Variant.h>
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\variant.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\variant.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Types.h>
 	<Rocket/Core/TypeConverter.h>
 	<list>
 	<Rocket/Core/Variant.inl>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\typeconverter.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\typeconverter.h
 	<Rocket/Core/Types.h>
 	<Rocket/Core/Log.h>
 	<Rocket/Core/Stream.h>
@@ -5333,38 +5333,38 @@
 	<stdio.h>
 	<Rocket/Core/TypeConverter.inl>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\log.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\log.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Types.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stream.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stream.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/Types.h>
 	<Rocket/Core/URL.h>
 	<list>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\url.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\url.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/String.h>
 	<map>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringutilities.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stringutilities.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Types.h>
 	<Rocket/Core/String.h>
 	<stdarg.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\typeconverter.inl
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\typeconverter.inl
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\variant.inl
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\variant.inl
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertyspecification.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertyspecification.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Element.h>
 	<Rocket/Core/PropertyDefinition.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\element.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\element.h
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/ScriptInterface.h>
 	<Rocket/Core/Header.h>
@@ -5374,196 +5374,196 @@
 	<Rocket/Core/Types.h>
 	<Rocket/Core/Element.inl>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\event.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\event.h
 	<Rocket/Core/Dictionary.h>
 	<Rocket/Core/ScriptInterface.h>
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\dictionary.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\dictionary.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Variant.h>
 	<Rocket/Core/Dictionary.inl>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\dictionary.inl
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\dictionary.inl
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\element.inl
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\element.inl
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertydefinition.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertydefinition.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Property.h>
 	<Rocket/Core/PropertyParser.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertyparser.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\propertyparser.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Property.h>
 	<map>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementdocument.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementdocument.h
 	<Rocket/Core/Element.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementinstancer.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementinstancer.h
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/XMLParser.h>
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\xmlparser.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\xmlparser.h
 	<stack>
 	<Rocket/Core/Header.h>
 	<Rocket/Core/BaseXMLParser.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\basexmlparser.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\basexmlparser.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Types.h>
 	<Rocket/Core/Dictionary.h>
 	<set>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementinstancergeneric.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementinstancergeneric.h
 	<Rocket/Core/ElementInstancer.h>
 	<Rocket/Core/ElementInstancerGeneric.inl>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementinstancergeneric.inl
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementinstancergeneric.inl
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementscroll.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementscroll.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/EventListener.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\eventlistener.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\eventlistener.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Event.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementtext.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementtext.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Element.h>
 	<Rocket/Core/WString.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\wstring.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\wstring.h
 	<Rocket/Core/Types.h>
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementutilities.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\elementutilities.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Box.h>
 	<Rocket/Core/WString.h>
 	<Rocket/Core/Types.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\eventinstancer.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\eventinstancer.h
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\eventlistenerinstancer.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\eventlistenerinstancer.h
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/String.h>
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\factory.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\factory.h
 	<Rocket/Core/XMLParser.h>
 	<Rocket/Core/Header.h>
 	<map>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fileinterface.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fileinterface.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Types.h>
 	<Rocket/Core/ReferenceCountable.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\font.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\font.h
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fontdatabase.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fontdatabase.h
 	<Rocket/Core/StringUtilities.h>
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Font.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fonteffect.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fonteffect.h
 	<Rocket/Core/FontGlyph.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fontglyph.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\fontglyph.h
 	<map>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\geometry.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\geometry.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Vertex.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\vertex.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\vertex.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Types.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\geometryutilities.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\geometryutilities.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Types.h>
 	<Rocket/Core/Vertex.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\plugin.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\plugin.h
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\renderinterface.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\renderinterface.h
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/Header.h>
 	<Rocket/Core/Texture.h>
 	<Rocket/Core/Vertex.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stylesheet.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stylesheet.h
 	<Rocket/Core/Dictionary.h>
 	<Rocket/Core/ReferenceCountable.h>
 	<set>
 	<Rocket/Core/PropertyDictionary.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stylesheetkeywords.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stylesheetkeywords.h
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stylesheetspecification.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\stylesheetspecification.h
 	<Rocket/Core/Header.h>
 	<Rocket/Core/PropertySpecification.h>
 	<Rocket/Core/Types.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\systeminterface.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\systeminterface.h
 	<Rocket/Core/Log.h>
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/String.h>
 	<Rocket/Core/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\xmlnodehandler.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core\xmlnodehandler.h
 	<Rocket/Core/ReferenceCountable.h>
 	<Rocket/Core/XMLParser.h>
 	<Rocket/Core/Header.h>
 
-1355256374 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.h
+1355259974 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\renderinterfacesfml.h
 	<Rocket/Core/RenderInterface.h>
 	<SFML/Graphics.hpp>
 
-1355255623 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.h
+1355259223 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.h
 	<Rocket/Core/String.h>
 	<Rocket/Core/FileInterface.h>
 	<sfml/Graphics.hpp>
 
-1356656275 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.cpp
+1356659875 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\shellfileinterface.cpp
 	"ShellFileInterface.h"
 	<Rocket/Core/Core.h>
 	<iostream>
 	<fstream>
 	<cstdio>
 
-1355672282 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.cpp
+1355675882 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.cpp
 	<iostream>
 	<Rocket/Core.h>
 	"SystemInterfaceSFML.h"
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\core.h
 	<Rocket/Core/Core.h>
 
-1355497532 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.h
+1355501132 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\librocketsfmlinterface\systeminterfacesfml.h
 	<Rocket/Core/SystemInterface.h>
 	<Rocket/Core/Input.h>
 	<SFML/Graphics.hpp>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\debugger\debugger.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\debugger\debugger.h
 	<Rocket/Core/Types.h>
 	<Rocket/Debugger/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\debugger\header.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\debugger\header.h
 	<Rocket/Core/Platform.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls.h
 	<Rocket/Controls/Controls.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\controls.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\controls.h
 	<Rocket/Controls/DataFormatter.h>
 	<Rocket/Controls/ElementDataGrid.h>
 	<Rocket/Controls/ElementDataGridCell.h>
@@ -5578,85 +5578,102 @@
 	<Rocket/Controls/ElementTabSet.h>
 	<Rocket/Controls/SelectOption.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\dataformatter.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\dataformatter.h
 	<Rocket/Core/ScriptInterface.h>
 	<Rocket/Core/String.h>
 	<Rocket/Controls/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\header.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\header.h
 	<Rocket/Core/Platform.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementdatagrid.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementdatagrid.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Controls/DataSourceListener.h>
 	<Rocket/Core/Element.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\datasourcelistener.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\datasourcelistener.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Core/String.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementdatagridcell.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementdatagridcell.h
 	<Rocket/Core/Element.h>
 	<Rocket/Core/EventListener.h>
 	<Rocket/Controls/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementdatagridexpandbutton.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementdatagridexpandbutton.h
 	<Rocket/Core/Element.h>
 	<Rocket/Controls/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementdatagridrow.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementdatagridrow.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Controls/DataSourceListener.h>
 	<Rocket/Controls/DataQuery.h>
 	<Rocket/Core/Element.h>
 	<queue>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\dataquery.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\dataquery.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Core/TypeConverter.h>
 	<Rocket/Core/Log.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementform.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementform.h
 	<Rocket/Core/Element.h>
 	<Rocket/Controls/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontrol.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontrol.h
 	<Rocket/Core/Element.h>
 	<Rocket/Controls/Header.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontroldataselect.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontroldataselect.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Controls/ElementFormControlSelect.h>
 	<Rocket/Controls/DataSourceListener.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontrolselect.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontrolselect.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Controls/ElementFormControl.h>
 	<Rocket/Controls/SelectOption.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\selectoption.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\selectoption.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Core/String.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontrolinput.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontrolinput.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Controls/ElementFormControl.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontroltextarea.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementformcontroltextarea.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Controls/ElementFormControl.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementtabset.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\elementtabset.h
 	<Rocket/Core/Element.h>
 	<Rocket/Core/EventListener.h>
 	<Rocket/Controls/Header.h>
 
-1354981888 d:\developertools\cpp\librocket\source\core\stylesheetfactory.h
+1354985488 d:\developertools\cpp\librocket\source\core\stylesheetfactory.h
 	<Rocket/Core/Types.h>
 
-1291146524 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\datasource.h
+1291150124 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\dependencies\librocket\include\rocket\controls\datasource.h
 	<Rocket/Controls/Header.h>
 	<Rocket/Core/String.h>
 	<list>
 	<map>
+
+1357168962 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\windowmanager.cpp
+	"WindowManager.hpp"
+
+1357315372 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\windowmanager.hpp
+	<SFML/Graphics.hpp>
+
+1357316152 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\girl.cpp
+
+1358339786 source:d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\attribute.cpp
+	"Attribute.hpp"
+
+1358339743 d:\developers\cpp\repositories\whoremasterrenewal\trunk\whoremasterrenewal\src\attribute.hpp
+	<string>
+	<map>
+	<pugixml.hpp>
+	"CLog.h"
 
