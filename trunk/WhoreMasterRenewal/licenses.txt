@@ -1,0 +1,94 @@
+
+Whore Master Renewal
+
+
+
+Based on Whore Master
+(c) 2009, 2010, The Pink Petal Development Team.
+The Pink Petal Devloment Team are defined as the game's coders who meet on http://pinkpetal.co.cc
+Released under GPL3
+All rights reserved
+
+
+
+Utilizes SDL 1.2
+(c) http://www.libsdl.org
+Released under LGPL 2.1 or newer
+All rights reserved
+
+Utilizes SDL_image
+(c) Sam Lantinga ( slouken <at> libsdl <dot> org )
+All rights reserved
+
+Utilises SDL_ttf
+(c) Sam Lantinga ( slouken <at> libsdl <dot> org )
+All rights reserved
+
+Utilises SDL_gfx
+(c) Andreas Schiffler ( aschiffler <at> ferzkopp <dot> net )
+All rights reserved
+
+
+
+Utilizes TinyXML-1
+(c) http://www.grinninglizard.com/tinyxml/
+All rights reserved
+
+Utilizes TinyXML-2
+(c) http://www.grinninglizard.com/tinyxml2/
+All rights reserved
+
+
+
+Utilizes Lua
+www.lua.org
+(c) Lua.org, PUC-Rio.
+All rights reserved
+
+Utilizes LuaClassBasedCall
+(c) 2011 Olivetti Engineering SA, CH 1400 Yverdon-les-Bains.  
+Original author: Patrick Rapin.
+All rights reserved
+
+
+
+Utilizes SFML
+(c) Laurent Gomila ( laurent <dot> gom <at> gmail <dot> com )
+All rights reserved
+
+Utilizes SFGUI
+(c) 2011 Stefan Schindler ( BoxBox.org )
+All rights reserved
+
+
+
+Portions of this software utilizes FreeType
+(c) www.freetype.org
+All rights reserved
+
+Portions of this software utilizes libpng
+(c) Glenn Randers-Pehrson and contributors
+All rights reserved
+
+Portions of this software utilizes libjpeg
+(c) Thomas G. Lane and Guido Vollbeding
+All rights reserved
+
+Portions of this software utilizes libtiff
+(c) Sam Leffler and Silicon Graphics, Inc.
+All rights reserved
+
+Portions of this software utilizes libwebp
+(c) Google Inc.
+All rights reserved
+
+Portions of this software utilizes zlib
+(c) 1995-2010 Jean-loup Gailly and Mark Adler
+( jloup <at> gzip <dot> org ) ( madler <at> alumni <dot> caltech <dot> edu )
+All rights reserved
+
+Portions of this software utilizes OpenAL-Soft
+All rights reserved
+
+Portions of this software utilizes libsndfile
+All rights reserved
