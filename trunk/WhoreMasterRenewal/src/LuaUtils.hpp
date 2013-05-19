@@ -26,13 +26,18 @@ void lua_pushvalue (lua_State *L, int index);
 void lua_getglobal (lua_State *L, const char *name);
 */
 
-namespace WhoreMasterRenewal
+namespace Lua
 {
 
 void luaD_DumpStack( lua_State* L );
 
 void luaD_DumpStack( lua_State* L )
 {
+    if( L == 0 )
+        L = nullptr;
+    if( L == nullptr )
+        return;
+    
     int length = lua_gettop( L );
     
     std::cout << char(0xC9) << std::setw(7) << std::setfill( char(0xCD) ) << "" << " Lua Stack Dump ";
@@ -269,7 +274,7 @@ public:
     {
         std::istringstream stream( code );
         
-        int status = lua_load( m_luaState, &WhoreMasterRenewal::LuaRuntime::ReaderFunction, &stream, "test", 0 );
+        int status = lua_load( m_luaState, &LuaRuntime::ReaderFunction, &stream, "test", 0 );
         
         if( status != LUA_OK )
         {
@@ -322,68 +327,7 @@ public:
     
     void Debug_DumpStack()
     {
-        int length = lua_gettop( m_luaState );
-        
-        std::cout << char(0xC9) << std::setw(7) << std::setfill( char(0xCD) ) << "" << " Lua Stack Dump ";
-        std::cout << std::setw(8) << std::setfill( char(0xCD) ) << "" << "\n";
-        std::cout << char(0xBA) << " Number of items in stack: " << length << "\n";
-        
-        for( int i = 1; i <= length; i++ )
-        {
-            std::cout << char(0xBA) << " [" << ((i<10)?"0":"") << i << "] ";
-            
-            int t = lua_type( m_luaState, i );
-            switch( t )
-            {
-            case LUA_TSTRING:
-                std::cout << "string:  '" << lua_tostring( m_luaState, i ) << "'\n";
-                break;
-                
-            case LUA_TBOOLEAN:
-                std::cout << "boolean: '" << lua_toboolean( m_luaState, i ) << "'\n";
-                break;
-                
-            case LUA_TNUMBER:
-                std::cout << "number:  '" << lua_tonumber( m_luaState, i ) << "'\n";
-                break;
-            
-            case LUA_TFUNCTION:
-                std::cout << "function\n";
-                break;
-                
-            case LUA_TNIL:
-                std::cout << "nil\n";
-                break;
-                
-            case LUA_TNONE:
-                std::cout << "none\n";
-                break;
-                
-            case LUA_TLIGHTUSERDATA:
-                std::cout << "ligth user data\n";
-                break;
-                
-            case LUA_TTABLE:
-                std::cout << "table\n";
-                break;
-                
-            case LUA_TTHREAD:
-                std::cout << "thread\n";
-                break;
-                
-            case LUA_TUSERDATA:
-                std::cout << "user data\n";
-                break;
-            
-            default:
-                std::cout << "unknown: '" << lua_typename( m_luaState, t ) << "'\n";
-                break;
-            }
-        }
-        
-        std::cout << char(0xC8);
-        std::cout << std::setw(31) << std::setfill( char(0xCD) ) << "";
-        std::cout << std::endl;
+        luaD_DumpStack( m_luaState );
     }
 
     
