@@ -63,6 +63,8 @@ struct sBoundedVar
 		m_max = max;
 		m_curr = def;
 	}
+	
+	virtual ~sBoundedVar() {}
 /*
  *	methods for adjuster buttons - simple increment with
  *	bounds checking

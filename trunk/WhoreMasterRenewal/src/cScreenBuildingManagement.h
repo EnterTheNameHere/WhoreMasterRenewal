@@ -86,7 +86,7 @@ public:
 		selection = 0;
 		screen = 0;
 	}
-	~cBuildingManagement() {}
+	virtual ~cBuildingManagement() {}
 
 	void init();
 	void process();

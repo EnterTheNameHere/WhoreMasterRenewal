@@ -155,6 +155,8 @@ protected:
 public:
 	cGoldBase();
 	cGoldBase(int initial);
+	
+	virtual ~cGoldBase() {}
 /*
  *	use these to save and load
  *	they save "value income upkeep" all on one line by itself

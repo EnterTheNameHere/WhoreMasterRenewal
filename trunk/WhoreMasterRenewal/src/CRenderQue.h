@@ -27,6 +27,8 @@ class CRenderObject
 {
 public:
 	CRenderObject() {m_Next = 0;}
+	virtual ~CRenderObject() {}
+	
 	virtual void Draw() {};
 
 	CRenderObject* m_Next;

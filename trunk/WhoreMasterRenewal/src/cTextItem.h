@@ -40,7 +40,7 @@ public:
 		m_ForceScrollBar = false;
 		m_ScrollChange = 0;
 	}
-	~cTextItem() { if(m_Next) delete m_Next; m_Next = 0; }
+	virtual ~cTextItem() { if(m_Next) delete m_Next; m_Next = 0; }
 
 	void CreateTextItem(int ID, int x, int y, int width, int height, std::string text, int size, bool auto_scrollbar = true, bool force_scrollbar = false)
 	{

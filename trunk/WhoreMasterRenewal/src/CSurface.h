@@ -32,7 +32,7 @@ public:
 	CSurface();
 	CSurface(std::string filename);
 	CSurface(SDL_Surface* inputsurface);
-	~CSurface();
+	virtual ~CSurface();
 
 	void Free();
 	void FreeResources();

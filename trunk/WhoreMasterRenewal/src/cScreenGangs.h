@@ -68,7 +68,7 @@ public:
 		;
 		m_filename = dp.c_str();
 	}
-	~cScreenGangs() {}
+	virtual ~cScreenGangs() {}
 
 	void init();
 	void process();

@@ -71,7 +71,7 @@ public:
 		sel_pos_l = -2;
 		sel_pos_r = -2;
 	}
-	~cScreenItemManagement() {}
+	virtual ~cScreenItemManagement() {}
 
 	void init();
 	void process();

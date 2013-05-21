@@ -48,6 +48,8 @@ struct  sGang;
 
 class cAbstractGirls {
 public:
+    virtual ~cAbstractGirls() {};
+    
 	virtual int GetStat(sGirl* girl, int stat)=0;
 	virtual int GetSkill(sGirl* girl, int skill)=0;
 	virtual void UpdateStat(sGirl* girl, int stat, int amount)=0;
@@ -728,6 +730,7 @@ struct sGirl
 
 class GirlPredicate {
 public:
+    virtual ~GirlPredicate() {}
 	virtual bool test(sGirl *) { return true; }
 };
 
@@ -736,7 +739,7 @@ class cGirls : public cAbstractGirls
 {
 public:
 	cGirls();
-	~cGirls();
+	virtual ~cGirls();
 
 	void Free();
 

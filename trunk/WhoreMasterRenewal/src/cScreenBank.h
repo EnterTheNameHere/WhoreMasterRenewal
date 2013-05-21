@@ -57,7 +57,7 @@ public:
 		GetDeposit = false;
 		GetWithdraw = false;
 	}
-	~cScreenBank() {}
+	virtual ~cScreenBank() {}
 
 	void init();
 	void process();

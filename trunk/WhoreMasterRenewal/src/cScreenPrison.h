@@ -58,7 +58,7 @@ public:
 		m_filename = dp.c_str();
 		selection = -1;
 	}
-	~cScreenPrison() {}
+	virtual ~cScreenPrison() {}
 
 	void init();
 	void process();

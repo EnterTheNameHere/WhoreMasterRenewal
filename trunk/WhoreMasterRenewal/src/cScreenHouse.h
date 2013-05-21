@@ -49,7 +49,7 @@ public:
 		;
 		m_filename = dp.c_str();
 	}
-	~cScreenHouse() {}
+	virtual ~cScreenHouse() {}
 
 	void init();
 	void process();

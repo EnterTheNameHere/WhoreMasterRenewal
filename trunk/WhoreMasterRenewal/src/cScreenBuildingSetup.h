@@ -71,7 +71,7 @@ public:
 		;
 		m_filename = dp.c_str();
 	}
-	~cScreenBuildingSetup() {}
+	virtual ~cScreenBuildingSetup() {}
 
 	void init();
 	void process();

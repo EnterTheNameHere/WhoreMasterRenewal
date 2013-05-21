@@ -65,7 +65,9 @@ public:
 		m_type	= t.m_type;
 		m_gain	= t.m_gain;
 	}
-
+    
+    virtual ~cTrainable() {}
+    
 	void operator=(const cTrainable& t)
 	{
 		m_girl	= t.m_girl;

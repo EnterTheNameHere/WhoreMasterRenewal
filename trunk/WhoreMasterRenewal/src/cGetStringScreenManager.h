@@ -29,6 +29,8 @@ typedef void (*Funker)();
 class cGetStringTransport_Base
 {
 public:
+    virtual ~cGetStringTransport_Base() {}
+    
 	virtual	void	assign(std::string s) =0;
 };
 
@@ -55,7 +57,7 @@ class cGetStringTransport_Func : public cGetStringTransport_Base
 	Funker funky;
 public:
 	cGetStringTransport_Func(Funker munky) : funky(munky) { }
-virtual	void	assign(std::string s)  {
+virtual	void	assign(std::string /*s*/)  {
 		funky();
 	}
 };

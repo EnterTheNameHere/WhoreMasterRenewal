@@ -101,7 +101,7 @@ public:
 		m_Leave = false;
 		m_GirlTarget = 0;
 	}
-	~cGameScript(){m_CurrPos = 0;if(m_ScriptParent) delete m_ScriptParent; m_ScriptParent = 0;}
+	virtual ~cGameScript(){m_CurrPos = 0;if(m_ScriptParent) delete m_ScriptParent; m_ScriptParent = 0;}
 
 	bool Prepare(sGirl* girlTarget)
 	{

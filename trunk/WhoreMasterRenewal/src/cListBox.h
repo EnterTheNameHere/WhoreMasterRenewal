@@ -45,7 +45,10 @@ class cListItem
 {
 public:
 	cListItem() {m_Next = 0;m_Color=0;m_TextColor=0;m_Selected = false;}
-	~cListItem() {if(m_Next) delete m_Next; m_Next = 0;}
+	~cListItem()
+	{
+	    if(m_Next) delete m_Next; m_Next = 0;
+    }
 
 	int m_Color;
 	bool m_Selected;
@@ -59,7 +62,7 @@ class cListBox : public cInterfaceObject
 {
 public:
 	cListBox();
-	~cListBox();
+	virtual ~cListBox();
 
 	bool IsOver(int x, int y);
 	void OnClicked(int x, int y, bool mouseWheelDown = false, bool mouseWheelUp = false);

@@ -53,7 +53,7 @@ public:
 		m_filename = dp.c_str();
 		SetBribe = false;
 	}
-	~cScreenMayor() {}
+	virtual ~cScreenMayor() {}
 
 	void init();
 	void process();

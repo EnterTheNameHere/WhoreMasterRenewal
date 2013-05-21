@@ -72,7 +72,7 @@ public:
 		m_filename = dp.c_str();
 	}
 
-	~cScreenDungeon() {}
+	virtual ~cScreenDungeon() {}
 
 	enum {
 		GirlLoses = 0,

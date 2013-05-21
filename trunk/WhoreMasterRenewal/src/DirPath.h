@@ -57,6 +57,8 @@ public:
 	DirPath(DirPath& dp) {
 		path = dp.path;
 	}
+	
+	virtual ~DirPath() {}
 /*
  *	to build the path we use the << operator
  *	since that lets us cope with char * and string
@@ -115,7 +117,9 @@ public:
 /*
  *	copy contstructor, probably not needed...
  */
-	DirPathR(DirPathR& dp) {
+	DirPathR( DirPathR& dp )
+        : DirPath( dp )
+	{
 		path = dp.path;
 		over = dp.over;
 	}

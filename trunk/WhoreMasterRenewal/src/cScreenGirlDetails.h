@@ -86,7 +86,7 @@ public:
 		;
 		m_filename = dp.c_str();
 	}
-	~cScreenGirlDetails() {}
+	virtual ~cScreenGirlDetails() {}
 
 	void init();
 	void process();

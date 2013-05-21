@@ -71,7 +71,7 @@ public:
 		GetName = false;
 		m_first_walk = true;
 	}
-	~cScreenTown() {}
+	virtual ~cScreenTown() {}
 
 	void init();
 	void process();

@@ -215,7 +215,7 @@ protected:
 
 public:
 	cScript() {m_ScriptParent=0;}; // Constructor
-	~cScript() {if(m_ScriptParent)delete m_ScriptParent; m_ScriptParent=0;}; // Destructor
+	virtual ~cScript() {if(m_ScriptParent)delete m_ScriptParent; m_ScriptParent=0;}; // Destructor
 
 	bool Load(std::string filename); // Load a script
 	bool Free(); // Free loaded script
@@ -223,7 +223,7 @@ public:
  *	no idea if this stub needs to return true or false
  *	picked one at random to silence a compiler warning
  */
-	bool Execute(char *Filename=NULL) { Filename; return true; }; // Execute script
+	bool Execute(char* /*Filename=NULL*/) { /*Filename*/; return true; }; // Execute script
 };
 
 // General Functions

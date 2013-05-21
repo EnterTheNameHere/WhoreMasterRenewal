@@ -39,7 +39,7 @@ public:
 		m_Prev = 0;
 		m_TimeUsed = g_Graphics.GetTicks();
 	}
-	~CResource() {Free(); m_Next = 0; m_Prev = 0;}
+	virtual ~CResource() {Free(); m_Next = 0; m_Prev = 0;}
 
 	CResource* m_Next;	// pointer to the next resource or null if end of list
 	CResource* m_Prev;	// Pointer to the previous resource or null if top of list

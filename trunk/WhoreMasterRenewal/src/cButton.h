@@ -37,7 +37,7 @@ public:
 		m_Disabled=false;
 		m_Hidden=false;
 	}
-	~cButton();
+	virtual ~cButton();
 
 	bool CreateButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int ID, int x, int y, int width, int height, bool transparency = false,bool cached=false);
 	bool IsOver(int x, int y);

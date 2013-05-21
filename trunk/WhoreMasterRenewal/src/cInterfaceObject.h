@@ -23,6 +23,8 @@
 class cInterfaceObject
 {
 public:
+    virtual ~cInterfaceObject() {}
+    
 	void SetPosition(int x, int y, int width, int height) {m_XPos = x; m_YPos = y; m_Width = width; m_Height = height;}
 	virtual void Draw() {};
 	int GetXPos() {return m_XPos;}

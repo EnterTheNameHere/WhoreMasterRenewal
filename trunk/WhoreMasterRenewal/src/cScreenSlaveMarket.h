@@ -67,7 +67,7 @@ public:
 		DetailLevel = 0;
 		sel_pos = 0;
 	}
-	~cScreenSlaveMarket() {}
+	virtual ~cScreenSlaveMarket() {}
 
 	void init();
 	void process();

@@ -70,7 +70,7 @@ public:
 		;
 		m_filename = dp.c_str();
 	}
-	~cScreenGirlManagement() {}
+	virtual ~cScreenGirlManagement() {}
 
 	void init();
 	void process();
