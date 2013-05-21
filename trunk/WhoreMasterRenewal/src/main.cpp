@@ -960,12 +960,17 @@ namespace WhoreMasterRenewal
         {
             Logger() << "EventManager::Shutdown\n";
             
-            for( EventHandlerMap::iterator i = eventHandlers.begin(); i != eventHandlers.end(); ++i )
-                delete (*i).second;
+            for( EventHandlerMap::iterator it = eventHandlers.begin(); it != eventHandlers.end(); ++it )
+            {
+                Logger() << "Deleting event handler \"" << (*it).first.CString() << "\".\n";
+                delete (*it).second;
+            }
             
             eventHandlers.clear();
             currentEventHandler = nullptr;
-            currentWindow = nullptr;
+            currentWindow = "";
+            
+            Logger() << "EventManager successfuly shut down.\n";
         }
         
         static void RegisterEventHandler( const Rocket::Core::String& handlerName, EventHandler* handler )
@@ -974,7 +979,10 @@ namespace WhoreMasterRenewal
             
             EventHandlerMap::iterator it = eventHandlers.find( handlerName );
             if( it != eventHandlers.end() )
+            {
+                Logger() << "Deleting event handler \"" << (*it).first.CString() << "\"\n";
                 delete (*it).second;
+            }
             
             eventHandlers[handlerName] = handler;
         }
@@ -1147,7 +1155,7 @@ int main( int argc, char* argv[] )
 {
     wmr::Logger() << "Loading Whore Master: Renewal...\n";
     
-    main_old( argc, argv );
+    //main_old( argc, argv );
     
     try
     {
