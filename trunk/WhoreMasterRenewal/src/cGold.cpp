@@ -333,7 +333,7 @@ void cGoldBase::rival_raids(double cost)
 	m_cash_out -= cost;
 }
 
-void cGoldBase::bank_interest(double income)
+void cGoldBase::bank_interest(double /*income*/)
 {
 	// do nothing for now - placeholder until accounting
 	// stuff is added
@@ -454,7 +454,7 @@ void cGold::week_end()
 	}
 	m_value += m_income;
 	m_value -= m_upkeep;
-	m_income = m_upkeep = m_income = m_cash_in = m_cash_out = 0;
+	m_income = m_upkeep = m_cash_in = m_cash_out = 0;
 
 	ss << "Week End Final : value    = " << m_value << std::endl;
 	ss << "               : income   = " << m_income << std::endl;
@@ -503,7 +503,7 @@ int cGold::total_earned()
  *
 
  */
-void cGold::gen_report(int month)
+void cGold::gen_report(int /*month*/)
 {
 }
 
