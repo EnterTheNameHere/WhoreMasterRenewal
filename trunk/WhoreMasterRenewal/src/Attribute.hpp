@@ -42,6 +42,8 @@ class AttributeXMLLoader
         if( doc.load_file( filePath.c_str() ).status != pugi::xml_parse_status::status_ok )
             Logger() << "Error: cannot load attributes from \"" << filePath << "\".\n";
         // TODO: Proper error handling
+        
+        return std::map<std::string, Attribute>();
     }
 };
 
