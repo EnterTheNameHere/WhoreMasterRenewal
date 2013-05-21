@@ -1143,9 +1143,11 @@ namespace WhoreMasterRenewal
     };
 }
 
-int main( int /*argc*/, char** /*argv[]*/ )
+int main( int argc, char* argv[] )
 {
     wmr::Logger() << "Loading Whore Master: Renewal...\n";
+    
+    main_old( argc, argv );
     
     try
     {
