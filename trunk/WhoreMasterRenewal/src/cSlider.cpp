@@ -20,10 +20,9 @@
 #include "CResourceManager.h"
 #include "DirPath.h"
 #include "main.h"
-extern CResourceManager rmanager;
-extern cSlider* g_DragSlider;
+#include "InterfaceGlobals.h"
 
-cSlider* g_DragSlider = nullptr;
+extern CResourceManager rmanager;
 
 //these static vars defined in the header file need to be specified here
 SDL_Surface* cSlider::m_ImgRailDefault=0;

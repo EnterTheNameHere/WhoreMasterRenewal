@@ -25,6 +25,7 @@
 #include "cInterfaceObject.h"
 #include "cInterfaceEvent.h"
 
+// Moved from main.cpp
 extern cInterfaceEventManager g_InterfaceEvents;
 
 class cSlider : public cInterfaceObject

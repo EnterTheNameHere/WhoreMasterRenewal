@@ -25,6 +25,15 @@
 #define TIXML_USE_STL
 #include "tinyxml.h"
 
+// Moved from main.cpp
+extern bool g_LeftArrow;
+extern bool g_RightArrow;
+extern bool g_UpArrow;
+extern bool g_DownArrow;
+extern bool g_EnterKey;
+extern bool g_InitWin;
+extern bool eventrunning;
+
 void MainMenu();
 void GetString();
 void GetInt();

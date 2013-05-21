@@ -20,14 +20,12 @@
 #include "fstream"
 #include "CLog.h"
 #include "DirPath.h"
+#include "InterfaceGlobals.h"
 
 extern CGraphics g_Graphics;
 CGraphics g_Graphics;
 
 extern CLog g_LogFile;
-
-int g_ScreenWidth = 800, g_ScreenHeight = 600;
-bool g_Fullscreen = false;
 
 CGraphics::CGraphics()
 {

@@ -43,7 +43,6 @@ std::string g_ReturnText = "";
 bool g_InitWin = true;
 bool g_AllTogle = false;	// used on screens when wishing to apply something to all items
 long g_IntReturn;
-extern bool eventrunning;
 bool eventrunning = false;
 
 extern cRng g_Dice;
@@ -58,21 +57,13 @@ sGirl* selected_girl;  // global pointer for the currently selected girl
 std::vector<int> cycle_girls;  // globally available sorted list of girl IDs for Girl Details screen to cycle through
 int cycle_pos;  //currently selected girl's position in the cycle_girls vector
 
-sGirl* MarketSlaveGirls[8] = {0,0,0,0,0,0,0,0};
-int MarketSlaveGirlsDel[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
-
-CSurface* g_BrothelImages[6] = {0,0,0,0,0,0};
 char buffer[1000];
 
-extern bool g_LeftArrow;
+
 bool g_LeftArrow = false;
-extern bool g_RightArrow;
 bool g_RightArrow = false;
-extern bool g_UpArrow;
 bool g_UpArrow = false;
-extern bool g_DownArrow;
 bool g_DownArrow = false;
-extern bool g_EnterKey;
 bool g_EnterKey = false;
 
 cTriggerList g_GlobalTriggers;

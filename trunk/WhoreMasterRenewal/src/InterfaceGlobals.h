@@ -25,6 +25,7 @@
 #include "cMessageBox.h"
 #include "InterfaceIDs.h"
 #include "cChoiceMessage.h"
+#include "cGirls.h"
 
 #ifdef LINUX
 #include "linux.h"
@@ -44,6 +45,20 @@ extern cInterfaceWindow g_TransferGirls;
 extern cMessageBox g_MessageBox;
 extern cChoiceManager g_ChoiceManager;
 extern cMessageQue g_MessageQue;
+
+// Moved from main.cpp
+extern bool g_ShiftDown;
+extern bool g_CTRLDown;
+extern int g_ScreenWidth;
+extern int g_ScreenHeight;
+extern bool g_Fullscreen;
+
+extern cSlider* g_DragSlider;
+extern CSurface* g_BackgroundImage;
+extern CSurface* g_BrothelImages[6];
+extern sGirl* MarketSlaveGirls[8];
+extern int MarketSlaveGirlsDel[8];
+
 
 void LoadInterface();	// Function for loading the interface
 void FreeInterface();

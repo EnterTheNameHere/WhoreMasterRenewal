@@ -15,15 +15,21 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *//*
+ */
+ 
+
 #include "main.h"
-#include "InterfaceGlobals.h"
 #include "GameFlags.h"
+#include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
 #include "sConfig.h"
 #include "CSurface.h"
 #include "cJobManager.h"
 #include "Revision.h"
+#include "cWindowManager.h"
+#include "cBrothel.h"
+#include "cGangs.h"
+
 #ifndef LINUX
 	#ifdef _DEBUG
 // to enable leak detection uncomment the below and the first comment in main()
@@ -42,90 +48,12 @@
 #include "IconSurface.h"
 #include <string>
 
-extern int g_ScreenWidth, g_ScreenHeight;
-extern bool g_Fullscreen;
-sInterfaceIDs g_interfaceid;
-
 // Function Defs
-
 void Shutdown();
 bool Init();
 
-int g_CurrBrothel = 0;
-unsigned int g_LastSeed = 0;		// for seeding the random number generater every 3 seconds (3000 ticks)
-bool eventrunning = false;
-bool newWeek = false;
-
-bool g_ShiftDown = false;
-bool g_CTRLDown = false;
-
-bool g_LeftArrow = false;
-bool g_RightArrow = false;
-bool g_UpArrow = false;
-bool g_DownArrow = false;
-
-bool g_EnterKey = false;
-
-cScrollBar* g_DragScrollBar = 0;  // if a scrollbar is being dragged, this points to it
-cSlider* g_DragSlider = 0;  // if a slider is being dragged, this points to it
-
-extern CSurface* g_BrothelImages[6];
-extern bool g_InitWin;
-extern sGirl* MarketSlaveGirls[8];
-extern int MarketSlaveGirlsDel[8];
-
-// SDL Graphics interface
-CGraphics g_Graphics;
-
-// Resource Manager
-CResourceManager rmanager;
-
 // Events
 SDL_Event vent;
-
-// logfile
-CLog g_LogFile(true);
-
-// Trait list
-cTraits g_Traits;
-
-// Girl manager
-cGirls g_Girls;
-cAbstractGirls *g_GirlsPtr = &g_Girls;
-
-// Brothel Manager
-cBrothelManager g_Brothels;
-
-// Gang Manager
-cGangManager g_Gangs;
-
-// Customer Manager
-cCustomers g_Customers;
-
-// the background image
-CSurface* g_BackgroundImage = 0;
-
-// The global trigger manager
-cTriggerList g_GlobalTriggers;
-
-// Holds the currently running script
-
-cWindowManager g_WinManager;
-
-// Keeping time in the game
-unsigned long g_Year;
-unsigned long g_Month;
-unsigned long g_Day;
-
-// the players gold
-cGold g_Gold;
-
-// Inventory manager
-cInventory g_InvManager;
-
-// TEmporary testing crap
-int IDS = 0;
-cRng g_Dice;
 
 void handle_hotkeys()
 {
@@ -443,7 +371,7 @@ int main_old(int ac, char* av[])
 //		}
 //		else
 //			SDL_Delay(1000);
-//	}
+	}
 
 	Shutdown();
 	return 0;
@@ -547,7 +475,7 @@ bool Init()
 }
 
 // trivial change to test Revision.h
-*/
+
 
 
 #include <iostream>

@@ -119,6 +119,14 @@ unsigned long g_Day = 0;
 
 bool g_ShiftDown = false;
 bool g_CTRLDown = false;
+int g_ScreenWidth = 800;
+int g_ScreenHeight = 600;
+bool g_Fullscreen = false;
+cSlider* g_DragSlider = nullptr;
+CSurface* g_BackgroundImage = 0;
+CSurface* g_BrothelImages[6] = {0,0,0,0,0,0};
+sGirl* MarketSlaveGirls[8] = {0,0,0,0,0,0,0,0};
+int MarketSlaveGirlsDel[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
 
 void FreeInterface()
 {
