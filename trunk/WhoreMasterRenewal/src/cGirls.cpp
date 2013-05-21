@@ -1046,7 +1046,7 @@ sRandomGirl* cGirls::random_girl_at(u_int n)
 	return current;		// and there we (hopefully) are
 }
 
-sGirl* cGirls::CreateRandomGirl(int age, bool addToGGirls, bool slave, bool undead, bool NonHuman, bool childnaped)
+sGirl* cGirls::CreateRandomGirl(int age, bool addToGGirls, bool slave, bool /*undead*/, bool NonHuman, bool childnaped)
 {
 	cConfig cfg;
 	sRandomGirl* current;
@@ -1402,6 +1402,7 @@ void cGirls::LevelUp(sGirl* girl)
 
 void cGirls::LevelUpStats(sGirl* girl)
 {
+    /*
 	int DiceSize = 0;
 
 	if(HasTrait(girl,"Quick Learner"))
@@ -1410,6 +1411,7 @@ void cGirls::LevelUpStats(sGirl* girl)
 		DiceSize = 2;
 	else
 		DiceSize = 3;
+    */
 
 	// level up stats (only first 8 advance in levelups)
     for(int i=0; i<8; i++)
@@ -1768,7 +1770,7 @@ std::string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 	cConfig cfg;
 	cTariff tariff;
 	std::stringstream ss;
-	char buffer[100];
+	/*char buffer[100];*/
 
 	if(girl == 0)
 		return std::string("");
@@ -2757,20 +2759,20 @@ void cGirls::LoadGirlLegacy(sGirl* current, std::ifstream& ifs)
 
 			// load their stats
 			if(ifs.peek()=='\n') ifs.ignore(1,'\n');
-			for(int i=0; i<NUM_STATS; i++)
+			for(int j=0; j<NUM_STATS; j++)
 			{
 				temp = 0;
 				ifs>>temp;
-				child->m_Stats[i] = temp;
+				child->m_Stats[j] = temp;
 			}
 
 			// load their skills
 			if(ifs.peek()=='\n') ifs.ignore(1,'\n');
-			for(u_int i=0; i<NUM_SKILLS; i++)
+			for(u_int j=0; j<NUM_SKILLS; j++)
 			{
 				temp = 0;
 				ifs>>temp;
-				child->m_Skills[i] = temp;
+				child->m_Skills[j] = temp;
 			}
 
 			current->m_Children.add_child(child);
@@ -4114,6 +4116,11 @@ void cGirls::UseItems(sGirl* girl)
 						g_Girls.SellInvItem(girl, nicerThan);
 				}
 				break;
+            default:
+                std::stringstream local_ss;
+                local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+                g_LogFile.write( local_ss.str() );
+                break;
 			}
 		}
 	}
@@ -4278,6 +4285,11 @@ bool cGirls::CanEquip(sGirl* girl, int num, bool force)
 		if(GetNumItemEquiped(girl, girl->m_Inventory[num]->m_Type) >= 2)
 			return false;
 		break;
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 
 	return true;
@@ -4301,6 +4313,12 @@ bool cGirls::IsItemEquipable(sGirl* girl, int num)
 	// this way gcc won't complain about the omission
 	case sInventoryItem::SmWeapon:
 		return false;
+	break;
+    default:
+            std::stringstream local_ss;
+            local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+            g_LogFile.write( local_ss.str() );
+            return false;
 	}
 	return false;
 }
@@ -4943,7 +4961,7 @@ void cGirls::UnapplyTraits(sGirl* girl, sTrait* trait)
 // If a girl enjoys a job enough, she has a chance of gaining traits associated with it
 // (Made a FN out of code appearing in WorkExploreCatacombs etc...)
 
-bool cGirls::PossiblyGainNewTrait(sGirl* girl, std::string Trait, int Threshold, int ActionType, std::string Message, bool DayNight)
+bool cGirls::PossiblyGainNewTrait(sGirl* girl, std::string Trait, int Threshold, int ActionType, std::string Message, bool /*DayNight*/)
 {
 	if(girl->m_Enjoyment[ActionType] > Threshold && !girl->has_trait(Trait))
 	{
@@ -5818,7 +5836,7 @@ void cGirls::updateHappyTraits(sGirl* girl)
 
 // ----- Sex
 
-void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool group, std::string& message, u_int& SexType)
+void cGirls::GirlFucks(sGirl* girl, int /*DayNight*/, sCustomer* customer, bool group, std::string& message, u_int& SexType)
 {
 	bool good = false;
 	bool contraception = false;
@@ -5971,6 +5989,11 @@ void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool grou
 			message += GetRandomLesString();
 			//" came many times with her female customer, soaking the room in their juices.";
 		break;
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 
 	// WD:	customer HAPPINESS changes complete now cap the stat to 100
@@ -6117,6 +6140,13 @@ void cGirls::GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool grou
  *		since there's more than one partner involved
  */
 		contraception = girl->calc_pregnancy(customer, good, 1.5);
+		break;
+		
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 
 	// lose virginity unless it was anal sex
@@ -6379,7 +6409,7 @@ std::string cGirls::GetRandomSexString()
 		OutStr += " and assumed position ";
 
 		random = g_Dice%9999 + 1;
-		char buffer[10];
+		/*char buffer[10];*/
 		OutStr += toString(random);
 
 		break;
@@ -6467,6 +6497,12 @@ std::string cGirls::GetRandomSexString()
 			OutStr += "encouraged him to take off her bra and panties with his teeth";
 
 		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion sex1
 
@@ -6649,7 +6685,7 @@ std::string cGirls::GetRandomSexString()
 		OutStr += "She called in ";
 
 		random = g_Dice%3 + 2;
-		char buffer[10];
+		/*char buffer[10];*/
 		OutStr += toString(random);
 
 		OutStr += " reinforcements to tame";
@@ -6660,7 +6696,14 @@ std::string cGirls::GetRandomSexString()
 		random = g_Dice%100 + 30;
 		OutStr += toString(random);
 
-		OutStr += " times with"; break;
+		OutStr += " times with";
+		break;
+		
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion sex2
 
@@ -6924,7 +6967,14 @@ std::string cGirls::GetRandomSexString()
 		OutStr += ".";
 		break;
 	case 20:
-		OutStr += "the number 69."; break;
+		OutStr += "the number 69.";
+		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion sex3
 
@@ -6936,7 +6986,7 @@ std::string cGirls::GetRandomGroupString()
 {
 	int roll1 = 0, roll2 = 0, roll3 = 0, random = 0;
     std::string OutStr;
-	char buffer[10];
+	/*char buffer[10];*/
 
 	// Part 1
 # pragma region group1
@@ -7063,6 +7113,12 @@ std::string cGirls::GetRandomGroupString()
 
 		OutStr += " around her";
 		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion group1
 
@@ -7213,6 +7269,12 @@ std::string cGirls::GetRandomGroupString()
 
 		OutStr += " by";
 		break;
+		
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion group2
 
@@ -7441,7 +7503,13 @@ std::string cGirls::GetRandomGroupString()
 			OutStr += " more from the extended extended family.)";
 		}
 		break;
-	}
+		
+	default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;	
+    }
 # pragma endregion group3
 
 	OutStr += "\n";
@@ -7452,7 +7520,7 @@ std::string cGirls::GetRandomBDSMString()
 {
 	int roll2 = 0, roll3 = 0, random = 0;
     std::string OutStr;
-	char buffer[10];
+	/*char buffer[10];*/
 
 	OutStr += " was ";
 
@@ -7696,6 +7764,12 @@ std::string cGirls::GetRandomBDSMString()
 
 		OutStr += " by";
 		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion bdsm2
 
@@ -7919,6 +7993,12 @@ std::string cGirls::GetRandomBDSMString()
 				OutStr += "His female companion and mechanical dog did lewd things to each other and watched.";
 		}
 		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion bdsm3
 
@@ -7929,7 +8009,7 @@ std::string cGirls::GetRandomBDSMString()
 std::string cGirls::GetRandomBeastString()
 {
 	int roll1 = 0, roll2 = 0, roll3 = 0, random = 0;
-	char buffer[10];
+	/*char buffer[10];*/
     std::string OutStr;
 	bool NeedAnd = false;
 
@@ -8135,6 +8215,12 @@ std::string cGirls::GetRandomBeastString()
 		else
 			OutStr += "spasmed";
 		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion beast1
 
@@ -8363,6 +8449,12 @@ std::string cGirls::GetRandomBeastString()
 
 		OutStr += " thundered through her from";
 		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion beast2
 
@@ -8611,6 +8703,12 @@ std::string cGirls::GetRandomBeastString()
 			OutStr += "bugbears.";
 
 		break;
+		
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion beast3
 
@@ -8622,7 +8720,7 @@ std::string cGirls::GetRandomLesString()
 {
 	int roll1 = 0, roll2 = 0, roll3 = 0, random = 0, plus = 0;
     std::string OutStr;
-	char buffer[10];
+	/*char buffer[10];*/
 
 	OutStr += " ";
 
@@ -8911,6 +9009,12 @@ std::string cGirls::GetRandomLesString()
 			OutStr += "The customer was vanquished";
 
 		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion les1
 
@@ -9228,6 +9332,12 @@ std::string cGirls::GetRandomLesString()
 
 		OutStr += "\nfrom ";
 		break;
+		
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion les2
 
@@ -9455,6 +9565,12 @@ std::string cGirls::GetRandomLesString()
 
 		OutStr += ".";
 		break;
+		
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 # pragma endregion les3
 	OutStr += "\n";
@@ -9485,6 +9601,11 @@ std::string cGirls::GetRandomAnalString()
 	case 8: OutStr += ""; break;
 	case 9: OutStr += ""; break;
 	case 10: OutStr += ""; break;
+	default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 #pragma endregion anal1
 
@@ -9505,6 +9626,11 @@ std::string cGirls::GetRandomAnalString()
 	case 8: OutStr += ""; break;
 	case 9: OutStr += ""; break;
 	case 10: OutStr += ""; break;
+	default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 #pragma endregion anal2
 
@@ -9525,6 +9651,11 @@ std::string cGirls::GetRandomAnalString()
 	case 8: OutStr += ""; break;
 	case 9: OutStr += ""; break;
 	case 10: OutStr += ""; break;
+	default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 #pragma endregion anal3
 
@@ -9605,19 +9736,19 @@ Uint8 cGirls::girl_fights_girl(sGirl* a, sGirl* b)
 	unsigned int attack = 0;
 	int dodge = a_dodge;
 	int attack_count = 0;
-	int winner = 0; // 1 for a, 2 for b
+	/*int winner = 0; // 1 for a, 2 for b*/
 	while(1)
 	{
 		if(g_Girls.GetStat(a, STAT_HEALTH) <= 20)
 		{
 			g_Girls.UpdateEnjoyment(a, ACTION_COMBAT, -1, true);
-			winner = 2;
+			/*winner = 2; set not used */
 			break;
 		}
 		else if(g_Girls.GetStat(b, STAT_HEALTH) <= 20)
 		{
 			g_Girls.UpdateEnjoyment(b, ACTION_COMBAT, -1, true);
-			winner = 1;
+			/*winner = 1; set not used */
 			break;
 		}
 
@@ -10183,10 +10314,12 @@ int cGirls::TakeCombatDamage(sGirl* girl, int amt)
 	}
 
 	girl->m_Stats[STAT_HEALTH] += value;
-
+    
+    /* unsigned char cannot be < 0
 	if (girl->m_Stats[STAT_HEALTH] < 0)  // Consistency?
 		girl->m_Stats[STAT_HEALTH] = 0;
-
+    */
+    
 	return girl->m_Stats[STAT_HEALTH];
 }
 
@@ -10698,7 +10831,12 @@ bool cGirls::CalcPregnancy(sGirl* girl, int chance, int type, unsigned char stat
 		case STATUS_PREGNANT_BY_PLAYER:
 			text+=" gotten pregnant with you.";
 			break;
-
+        
+        default:
+            std::stringstream local_ss;
+            local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+            g_LogFile.write( local_ss.str() );
+            break;
 	}
 	girl->m_Events.AddMessage(text, IMGTYPE_PREGNANT, EVENT_DANGER);
 
@@ -12130,6 +12268,11 @@ int cGirls::DrawGirl(sGirl* girl, int x, int y, int width, int height, int ImgTy
 			else
 				return girl->m_GirlImages->m_Images[IMGTYPE_SEX].DrawImage(x,y,width,height, random, img);
 			break;
+        default:
+            std::stringstream local_ss;
+            local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+            g_LogFile.write( local_ss.str() );
+            break;
 		}
 	}
 
