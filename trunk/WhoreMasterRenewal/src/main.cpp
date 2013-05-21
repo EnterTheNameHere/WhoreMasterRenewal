@@ -465,7 +465,7 @@ bool Init()
 //      I think this should work - kept the old line below
 //      reference
 //
-		char buffer[32];
+		/*char buffer[32];*/
 		g_BrothelImages[i] = new ImageSurface("Brothel", toString(i).c_str());
 		//g_BrothelImages[i]->LoadImage(file,false);
 	}
@@ -841,7 +841,7 @@ namespace WhoreMasterRenewal
             m_Instance = this;
         }
         
-        ~DebugGirlsList()
+        virtual ~DebugGirlsList()
         {
             Logger() << "DebugGirlsList::destr().\n";
             
@@ -948,7 +948,7 @@ namespace WhoreMasterRenewal
         }
     };
     
-    static ResizeEvent* resizeEvent = nullptr;
+    /*static ResizeEvent* resizeEvent = nullptr;*/
     
     class EventManager
     {
@@ -1134,7 +1134,7 @@ namespace WhoreMasterRenewal
         {
             Logger() << "EventListenerInstancer::const\n";
         }
-        ~EventListenerInstancerI()
+        virtual ~EventListenerInstancerI()
         {}
         
         virtual Rocket::Core::EventListener* InstanceEventListener( const Rocket::Core::String& value ) override
@@ -1151,7 +1151,7 @@ namespace WhoreMasterRenewal
     };
 }
 
-int main( int argc, char* argv[] )
+int main( int /*argc*/, char** /*argv[]*/ )
 {
     wmr::Logger() << "Loading Whore Master: Renewal...\n";
     
