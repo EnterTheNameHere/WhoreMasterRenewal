@@ -74,7 +74,7 @@ struct cRng
 /*
  *	constructor and destructor
  */
-	cRng(){srand((int)time(0));}
+	cRng(){srand( static_cast<int>( time(0) ) );}
 	~cRng(){}
 };
 
