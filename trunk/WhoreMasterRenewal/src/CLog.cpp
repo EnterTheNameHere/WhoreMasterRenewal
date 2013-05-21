@@ -19,7 +19,6 @@
 #include <iostream>
 #include "CLog.h"
 
-extern CLog g_LogFile;
 CLog g_LogFile( true );
 
 namespace WhoreMasterRenewal

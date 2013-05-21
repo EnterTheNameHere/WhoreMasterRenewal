@@ -91,7 +91,6 @@ static	bool setup;
 	std::stringstream m_ss;
 };
 
-
 class CLog
 {
 public:
@@ -128,5 +127,7 @@ private:
 	bool m_glob;
 static	CLogInner *inner;
 };
+
+extern CLog g_LogFile;
 
 #endif // CLOG_H_INCLUDED_1524
