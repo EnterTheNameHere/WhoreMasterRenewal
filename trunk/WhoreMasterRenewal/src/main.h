@@ -20,14 +20,14 @@
 #define MAIN_H_INCLUDED_1502
 #pragma once
 
-#include "GameSystem.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
-
 #include <stdio.h>
 #include <time.h>
-#include "main.h"
+#include <math.h>
+
+#include "GameSystem.h"
 #include "Constants.h"
 #include "cTraits.h"
 #include "cGirls.h"
@@ -35,7 +35,6 @@
 #include "cGangs.h"
 #include "cEvents.h"
 #include "cCustomers.h"
-#include "math.h"
 #include "cTriggers.h"
 #include "cGameScript.h"
 #include "cWindowManager.h"
@@ -54,11 +53,7 @@ template<typename T> std::string toString( T value )
 }
 
 int main_old( int, char* [] );
-
 void handle_hotkeys();
-
-
-class cScrollBar;
 
 // interface manager
 extern cWindowManager g_WinManager;
