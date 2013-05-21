@@ -147,7 +147,7 @@ struct sConfigData
 
 	sConfigData(const char *filename = "config.xml");
 
-	void	set_defaults();;
+	void	set_defaults();
 	void	get_income_factors(TiXmlElement *el);
 	void	get_expense_factors(TiXmlElement *el);
 	void	get_tax_factors(TiXmlElement *el);
