@@ -39,7 +39,7 @@ extern cBrothelManager g_Brothels;
 extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 
-bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, std::string& /*summary*/)
 {
 	//brothel->m_Filthiness++;
 	g_Girls.UpdateStat(girl, STAT_TIREDNESS, -20);
@@ -236,7 +236,7 @@ bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, std
 	return false;
 }
 
-bool cJobManager::AddictBuysDrugs(std::string Addiction, std::string Drug, sGirl* girl, sBrothel* brothel, int DayNight)
+bool cJobManager::AddictBuysDrugs(std::string /*Addiction*/, std::string Drug, sGirl* girl, sBrothel* brothel, int /*DayNight*/)
 {
 	int id = g_InvManager.CheckShopItem(Drug);
 	if(id == -1)

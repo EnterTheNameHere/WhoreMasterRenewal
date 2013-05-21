@@ -312,14 +312,14 @@ void cJobManager::free()
 
 // ----- Misc
 
-bool cJobManager::WorkVoid(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkVoid(sGirl* girl, sBrothel* /*brothel*/, int /*DayNight*/, std::string& summary)
 {
 	summary += "This job isn't implemented yet";
 	girl->m_Events.AddMessage("This job isn't implemented yet", IMGTYPE_PROFILE, EVENT_DEBUG);
 	return false;
 }
 
-bool cJobManager::Preprocessing(int action, sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary, std::string& message)
+bool cJobManager::Preprocessing(int action, sGirl* girl, sBrothel* brothel, int DayNight, std::string& /*summary*/, std::string& /*message*/)
 {
 	brothel->m_Filthiness++;
 	g_Girls.AddTiredness(girl);
@@ -432,7 +432,7 @@ void cJobManager::do_advertising(sBrothel* brothel)
 	}
 }
 
-int cJobManager::get_num_on_job(int job, int brothel_id, bool day_or_night)
+int cJobManager::get_num_on_job(int /*job*/, int /*brothel_id*/, bool /*day_or_night*/)
 {
 	return 0;
 }
@@ -1010,7 +1010,7 @@ bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_
 
 // true means she won
 
-bool cJobManager::girl_fights_rape(sGirl* girl, sGang *enemy_gang, int day_night)
+bool cJobManager::girl_fights_rape(sGirl* girl, sGang *enemy_gang, int /*day_night*/)
 {
 	int OrgNumMem = enemy_gang->m_Num;
 
@@ -1166,6 +1166,11 @@ std::string cJobManager::GetGirlAttackedString()
 	  case 19: ss << "tied up BDSM-style"; break;
 	  case 20: ss << "stretched out on the torture table"; break;
 	  case 21: ss << "tied up and hung from the rafters"; break;
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 
 	ss << " and ";
@@ -1193,6 +1198,11 @@ std::string cJobManager::GetGirlAttackedString()
 	  case 18: ss << "forced outside"; break;
 	  case 19: ss << "forced to walk on a knotted rope"; break;
 	  case 20: ss << "her skin was pierced by sharp things"; break;
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 
 	ss << " by ";
@@ -1221,6 +1231,11 @@ std::string cJobManager::GetGirlAttackedString()
 	  case 19: ss << "your mom (It runs in the family.)"; break;
 	  case 20: ss << "tentacles from the sewers."; break;
 	  case 21: ss << "a vengeful family member."; break;
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 
 	return ss.str();
@@ -1281,7 +1296,7 @@ void cJobManager::get_training_set(std::vector<sGirl*> &v, std::vector<sGirl*> &
 	}
 }
 
-bool cJobManager::WorkTraining(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkTraining(sGirl* /*girl*/, sBrothel* /*brothel*/, int /*DayNight*/, std::string& /*summary*/)
 {
 	// training is already handled in UpdateGirls
 	//do_training(brothel, DayNight);

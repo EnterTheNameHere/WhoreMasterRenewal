@@ -682,6 +682,13 @@ void cInventory::Equip(sGirl* girl, int num, bool force)
 						g_Girls.AddTrait(girl, girl->m_Inventory[num]->m_Effects[i].m_Trait, true);
 				}
 #endif
+                break;
+                
+			default:
+                std::stringstream local_ss;
+                local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+                g_LogFile.write( local_ss.str() );
+                break;
 			}
 		}
 		else	// m_Special == sInventoryItem::None
@@ -853,7 +860,7 @@ void cInventory::Unequip(sGirl* girl, int num)
 	g_Girls.CalculateGirlType(girl);
 }
 
-void cInventory::Equip(sGirl* girl, sInventoryItem* item, bool force)
+void cInventory::Equip(sGirl* girl, sInventoryItem* item, bool /*force*/)
 {
 	// this function is only used for global effects sInventoryItem::AffectsAll = 1
 	if(item->m_Special != sInventoryItem::AffectsAll)
@@ -997,6 +1004,13 @@ bool cInventory::ok_2_equip(sGirl *girl, int num, bool force)
 	case sInventoryItem::Makeup:
 	case sInventoryItem::Misc:
 		return true;
+		break;
+		
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 	return true;
 }

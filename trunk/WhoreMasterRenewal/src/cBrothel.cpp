@@ -4170,6 +4170,12 @@ std::string cBrothelManager::GetGirlString(int brothelID, int girlNum)
 		case JOB_TRAINING:
 			dayjob = "Training";
 			break;
+        
+        default:
+            std::stringstream local_ss;
+            local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+            g_LogFile.write( local_ss.str() );
+            break;
 		}
 
 	    std::string nightjob = "Resting";
@@ -4190,6 +4196,12 @@ std::string cBrothelManager::GetGirlString(int brothelID, int girlNum)
 		case JOB_TRAINING:
 			nightjob = "Training";
 			break;
+        
+        default:
+            std::stringstream local_ss;
+            local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+            g_LogFile.write( local_ss.str() );
+            break;
 		}
 
 		if(g_Girls.GetStat(currentGirl, STAT_AGE) == 100)

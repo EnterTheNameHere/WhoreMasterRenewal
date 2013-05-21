@@ -57,7 +57,7 @@ public:
 	bool			IsUrgent();
 	bool			IsDanger();
 	bool			IsWarning();
-	static bool		CmpEventPredicate(CEvent eFirst, CEvent eSecond)
+	static bool		CmpEventPredicate(CEvent eFirst, CEvent /*eSecond*/)
 					{
 						return eFirst.m_Ordinal < eFirst.m_Ordinal;
 					}

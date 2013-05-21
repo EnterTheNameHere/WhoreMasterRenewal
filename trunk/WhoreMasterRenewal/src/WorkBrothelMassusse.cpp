@@ -58,6 +58,7 @@ bool cJobManager::WorkBrothelMasseuse(sGirl* girl, sBrothel* brothel, int DayNig
 		GetMiscCustomer(brothel, cust);
 		g_Girls.GirlFucks(girl, DayNight, &cust, false,message,n);
 		brothel->m_Happiness += 100;
+		/*
 		int imageType = IMGTYPE_SEX;
 		if(n == SKILL_ANAL)
 			imageType = IMGTYPE_ANAL;
@@ -71,6 +72,7 @@ bool cJobManager::WorkBrothelMasseuse(sGirl* girl, sBrothel* brothel, int DayNig
 			imageType = IMGTYPE_GROUP;
 		else if(n == SKILL_LESBIAN)
 			imageType = IMGTYPE_LESBIAN;
+        */
 		g_Girls.UpdateTempStat(girl, STAT_LIBIDO, -4);
 
 		// work out the pay between the house and the girl

@@ -2492,6 +2492,11 @@ void cGangManager::UpdateGangs()
 
 				currentGang->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 			}break;
+        default:
+            std::stringstream local_ss;
+            local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+            g_LogFile.write( local_ss.str() );
+            break;
 		}
 
 		if(currentGang->m_Combat == false)

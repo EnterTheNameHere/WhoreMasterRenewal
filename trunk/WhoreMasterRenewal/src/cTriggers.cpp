@@ -649,7 +649,14 @@ void cTriggerList::ProcessTriggers()
 					else if(((g_Dice%100)+1) <= curr->m_Chance)
 						AddToQue(curr);
 				}
-			}break;
+			}
+			break;
+        
+        default:
+            std::stringstream local_ss;
+            local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+            g_LogFile.write( local_ss.str() );
+            break;
 		}
 
 		curr = curr->m_Next;
@@ -677,7 +684,7 @@ void cTriggerList::AddToQue(cTrigger* trigger)
 }
 
 
-void cTriggerList::RemoveFromQue(cTrigger* trigger)
+void cTriggerList::RemoveFromQue(cTrigger* /*trigger*/)
 {//mod
 	if(!m_TriggerQueue.empty())
 	{
@@ -1370,6 +1377,14 @@ int cTrigger::load_from_xml(TiXmlElement *el)
 		break;
 	case TRIGGER_SCRIPTRUN:
 		return -1;
+		break;
+    
+    default:
+        std::stringstream ss;
+        ss << "Switch default case unexpectedly hit.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( ss.str() );
+        return -1;
+        break;
 	}
 	return 0;
 }

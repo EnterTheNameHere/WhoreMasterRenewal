@@ -1006,7 +1006,7 @@ void cInterfaceWindowXML::define_widget(TiXmlElement *base_el)
 	}
 }
 
-void cInterfaceWindowXML::place_widget(TiXmlElement *el, std::string suffix)
+void cInterfaceWindowXML::place_widget(TiXmlElement *el, std::string /*suffix*/)
 {
 	CLog l;
 	int x, y;

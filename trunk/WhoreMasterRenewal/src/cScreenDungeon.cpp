@@ -1062,7 +1062,7 @@ int cScreenDungeon::process_events()
 
 void cScreenDungeon::process()
 {
-	static int selection = -1;
+	/*static int selection = -1; set but never used*/
 
 	// we need to make sure the ID variables are set
 	if(!ids_set)
@@ -1078,13 +1078,13 @@ void cScreenDungeon::process()
 
 	if(g_UpArrow)
 	{
-		selection = ArrowUpListBox(girllist_id);
+		/*selection = ArrowUpListBox(girllist_id); set but never used*/
 		g_UpArrow = false;
 		return;
 	}
 	else if(g_DownArrow)
 	{
-		selection = ArrowDownListBox(girllist_id);
+		/*selection = ArrowDownListBox(girllist_id); set but never used*/
 		g_DownArrow = false;
 		return;
 	}

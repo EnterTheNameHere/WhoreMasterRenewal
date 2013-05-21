@@ -20,6 +20,7 @@
 #include <string>
 #include <cstring>
 #include <cstdlib>
+#include "CLog.h"
 
 #ifdef LINUX
 #include "linux.h"
@@ -153,6 +154,12 @@ sScript *cActionTemplate::CreateScriptAction(long Type)
 		case _CHOICE:
 			Script->m_Entries[i].m_Selection = 0;
 			break;
+        
+        default:
+            std::stringstream local_ss;
+            local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+            g_LogFile.write( local_ss.str() );
+            break;
 		}
 	}
 	return Script;
@@ -200,12 +207,12 @@ sEntry *cActionTemplate::GetEntry(long ActionNum, long EntryNum)
 	return &current->m_Entries[EntryNum];
 }
 
-bool cActionTemplate::ExpandDefaultActionText(char *Buffer, sAction *Action)
+bool cActionTemplate::ExpandDefaultActionText(char* /*Buffer*/, sAction* /*Action*/)
 {
 	return true;
 }
 
-bool cActionTemplate::ExpandActionText(char *Buffer, sScript *Script)
+bool cActionTemplate::ExpandActionText(char* /*Buffer*/, sScript* /*Script*/)
 {
 	return true;
 }

@@ -308,6 +308,12 @@ std::string cScreenTown::walk_no_luck()
 		"a discreet eye on her.  It's like that everywhere "
 		"today. Maybe tomorrow will be better."
 		;
+		
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 /*
  *	I don't think this should happen, hence the overly dramatic prose

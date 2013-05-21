@@ -92,6 +92,11 @@ sScript *cGameScript::Process(sScript *Script)
 	case 38: return Script_AnalSexTarget(Script);
 	case 39: return Script_BDSMSexTarget(Script);
 	case 40: return Script_IfNotDisobey(Script);
+	default:
+	    std::stringstream ss;
+	    ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+	    g_LogFile.write( ss.str() );
+        return 0; // Error executing
 	}
 
 	return 0; // Error executing
@@ -287,6 +292,12 @@ sScript *cGameScript::Script_IfVar(sScript *Script)
 		else
 			Skipping = true;
 		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 	
 	// At this point, Skipping states if the script actions
@@ -983,6 +994,12 @@ sScript* cGameScript::Script_IfGirlFlag(sScript* Script)
 		else
 			Skipping = true;
 		break;
+    
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 	
 	// At this point, Skipping states if the script actions
@@ -1108,6 +1125,11 @@ sScript* cGameScript::Script_IfGirlStat(sScript* Script)
 		else
 			Skipping = true;
 		break;
+    default:
+        std::stringstream ss;
+	    ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+	    g_LogFile.write( ss.str() );
+	    break;
 	}
 	
 	// At this point, Skipping states if the script actions
@@ -1222,6 +1244,11 @@ sScript* cGameScript::Script_IfGirlSkill(sScript* Script)
 		else
 			Skipping = true;
 		break;
+    default:
+        std::stringstream ss;
+	    ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+	    g_LogFile.write( ss.str() );
+	    break;
 	}
 	
 	// At this point, Skipping states if the script actions

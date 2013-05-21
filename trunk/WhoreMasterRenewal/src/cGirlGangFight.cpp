@@ -168,7 +168,7 @@ void cGirlGangFight::lose_vs_own_gang(sGang* gang)
 	l.ssend();
 }
 
-int cGirlGangFight::use_potions(sGang *gang, int casualties)
+int cGirlGangFight::use_potions(sGang* /*gang*/, int casualties)
 {
 /*
  *	if there's zero casualties - nothing do to

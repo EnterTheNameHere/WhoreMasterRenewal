@@ -123,22 +123,24 @@ static void add_to_table(lua_State *L, int table, const char *key, void *value)
 	force	= { false | true },
  }
  */
-static int sex(lua_State *L)
-{
-	CLog log;
- 	int argtab = lua_gettop(L);
-/*
- *	make sure it exists and is in fact a table
- */
-	if(argtab == 0) {
-		log.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
-		log.ssend();
-		return 1;
-	}
-	luaL_checktype(L, argtab, LUA_TTABLE);
-
-	//get_from_table(L, argtab, "girl", girl);
-}
+// unused function
+//static int sex(lua_State *L)
+//{
+//	CLog local_log;
+// 	int argtab = lua_gettop(L);
+// /*
+//  *	make sure it exists and is in fact a table
+//  */
+//	if(argtab == 0) {
+//		local_log.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
+//		local_log.ssend();
+//		return 1;
+//	}
+//	luaL_checktype(L, argtab, LUA_TTABLE);
+//
+//	//get_from_table(L, argtab, "girl", girl);
+//	return 0;
+//}
 
 /*
  * usage is: dir1, dir2, dir3 ... dirN, pattern
@@ -198,7 +200,7 @@ static int get_files(lua_State *L)
 }
 
 
-static int menu_show(lua_State *L)
+static int menu_show(lua_State* /*L*/)
 {
 	cLuaMenu lmenu;
 
@@ -208,13 +210,13 @@ static int menu_show(lua_State *L)
 }
 
 
-static int get_sdl_ticks(lua_State *L)
+static int get_sdl_ticks(lua_State* L)
 {
 	lua_pushinteger(L, g_Graphics.GetTicks());
 	return 1;
 }
 
-static int pop_window(lua_State *L)
+static int pop_window(lua_State* /*L*/)
 {
 	CLog log;
 
@@ -390,7 +392,7 @@ static int log_from_lua(lua_State *L)
 	return 0;
 }
 
-static int game_over(lua_State *L)
+static int game_over(lua_State* /*L*/)
 {
 	cScriptManager sm;
 
@@ -947,7 +949,7 @@ void cLuaScript::set_wm_player()
  	lua_settable(l, wm);
 }
 
-bool cLuaScript::run(const char *func)
+bool cLuaScript::run(const char* /*func*/)
 {
 	bool ok;
 /*

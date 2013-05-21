@@ -136,7 +136,7 @@ FileList::FileList(DirPath dp, const char *pattern)
     std::string filename;
 	hFind = FindFirstFileA(loc.c_str(), &FindFileData);
 
-	int i = 0;
+	/*int i = 0;*/
 	while(hFind != INVALID_HANDLE_VALUE) {
 		 filename=FindFileData.cFileName;
 		 		 FileListEntry tempfile(base,filename);
