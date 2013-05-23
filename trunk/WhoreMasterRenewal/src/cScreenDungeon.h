@@ -29,6 +29,8 @@ struct sGang;
 class cPlayer;
 class cDungeon;
 
+extern int g_CurrBrothel;
+
 class cScreenDungeon : public cInterfaceWindowXML
 {
 	char	buffer[256];

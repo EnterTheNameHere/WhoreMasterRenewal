@@ -180,14 +180,15 @@ public:
 class cImageList
 {
 public:
-	cImageList() {m_NumImages=0;m_LastImages=m_Images=0;}
+	cImageList() {m_NumImages=0;m_LastImages=0;m_Images=0;}
 	~cImageList() {Free();}
 
 	void Free()
 	{
 		if(m_Images)
 			delete m_Images;
-		m_LastImages=m_Images=0;
+		m_LastImages=0;
+		m_Images=0;
 		m_NumImages=0;
 	}
 

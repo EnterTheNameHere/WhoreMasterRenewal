@@ -54,6 +54,7 @@ bool Init();
 
 // Events
 SDL_Event vent;
+extern CResourceManager rmanager;
 
 void handle_hotkeys()
 {
@@ -1151,11 +1152,11 @@ namespace WhoreMasterRenewal
     };
 }
 
-int main( int /*argc*/, char** /*argv[]*/ )
+int main( int argc, char* argv[] )
 {
     wmr::Logger() << "Loading Whore Master: Renewal...\n";
     
-    //main_old( argc, argv );
+    main_old( argc, argv );
     
     try
     {

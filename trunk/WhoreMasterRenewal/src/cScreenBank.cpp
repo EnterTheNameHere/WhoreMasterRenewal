@@ -27,7 +27,6 @@ extern bool g_InitWin;
 extern int g_CurrBrothel;
 extern cGold g_Gold;
 extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
 extern cInterfaceEventManager g_InterfaceEvents;
 extern long g_IntReturn;
 

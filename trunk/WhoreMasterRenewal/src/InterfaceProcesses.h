@@ -33,6 +33,7 @@ extern bool g_DownArrow;
 extern bool g_EnterKey;
 extern bool g_InitWin;
 extern bool eventrunning;
+extern int g_CurrBrothel;
 
 void MainMenu();
 void GetString();

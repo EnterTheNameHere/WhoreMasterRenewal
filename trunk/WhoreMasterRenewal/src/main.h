@@ -20,27 +20,26 @@
 #define MAIN_H_INCLUDED_1502
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <stdio.h>
-#include <time.h>
-#include <math.h>
+//#include <iostream>
+//#include <fstream>
+//#include <sstream>
+//#include <stdio.h>
+//#include <time.h>
+//#include <math.h>
 
-#include "GameSystem.h"
-#include "Constants.h"
-#include "cTraits.h"
-#include "cGirls.h"
+//#include "GameSystem.h"
+//#include "Constants.h"
+//#include "cTraits.h"
+//#include "cGirls.h"
 #include "cBrothel.h"
 #include "cGangs.h"
-#include "cEvents.h"
+//#include "cEvents.h"
 #include "cCustomers.h"
 #include "cTriggers.h"
-#include "cGameScript.h"
-#include "cWindowManager.h"
-#include "cRival.h"
+//#include "cGameScript.h"
+//#include "cRival.h"
 #include "cGold.h"
-#include "cScrollBar.h"
+//#include "cScrollBar.h"
 
 
 template<typename T> std::string toString( T value )
@@ -55,53 +54,50 @@ template<typename T> std::string toString( T value )
 int main_old( int, char* [] );
 void handle_hotkeys();
 
-// interface manager
-extern cWindowManager g_WinManager;
-
 // SDL Graphics interface
-extern CGraphics g_Graphics;
+//extern CGraphics g_Graphics;
 
 // Resource Manager
-extern CResourceManager rmanager;
+//extern CResourceManager rmanager;
 
 // Events
-extern SDL_Event vent;
+//extern SDL_Event vent;
 
 // logfile
-extern CLog g_LogFile;
+//extern CLog g_LogFile;
 
 // Trait list
-extern cTraits g_Traits;
+//extern cTraits g_Traits;
 
 // Girl manager
-extern cGirls g_Girls;
+//extern cGirls g_Girls;
 
 // Brothel Manager
-extern cBrothelManager g_Brothels;
+//extern cBrothelManager g_Brothels;
 
 // Gang Manager
-extern cGangManager g_Gangs;
+//extern cGangManager g_Gangs;
 
 // Customer Manager
-extern cCustomers g_Customers;
+//extern cCustomers g_Customers;
 
 // The global trigger manager
-extern cTriggerList g_GlobalTriggers;
+//extern cTriggerList g_GlobalTriggers;
 
 // Keeping time in the game
-extern unsigned long g_Year;
-extern unsigned long g_Month;
-extern unsigned long g_Day;
+//extern unsigned long g_Year;
+//extern unsigned long g_Month;
+//extern unsigned long g_Day;
 
 // the players gold
-extern cGold g_Gold;
+//extern cGold g_Gold;
 
 // Inventory manager
-extern cInventory g_InvManager;
+//extern cInventory g_InvManager;
 
-extern int g_CurrBrothel;
+//extern int g_CurrBrothel;
 
 // if a scrollbar is currently being dragged, this points to it
-extern cScrollBar* g_DragScrollBar;
+//extern cScrollBar* g_DragScrollBar;
 
 #endif // MAIN_H_INCLUDED_1502

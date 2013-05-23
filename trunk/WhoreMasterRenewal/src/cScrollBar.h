@@ -25,7 +25,8 @@
 #include "cInterfaceObject.h"
 #include "cInterfaceEvent.h"
 
-class CSurface;
+class cScrollBar;
+extern cScrollBar* g_DragScrollBar;
 
 class cScrollBar : public cInterfaceObject
 {

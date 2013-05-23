@@ -24,11 +24,11 @@
 #include "cScreenDungeon.h"
 #include "cScriptManager.h"
 #include "cBrothel.h"
-#include "main.h"
 #include "DirPath.h"
 #include "cTariff.h"
 #include "cGirlGangFight.h"
 #include "cGirlTorture.h"
+#include "main.h"
 
 extern sInterfaceIDs g_interfaceid;
 extern	bool	g_InitWin;

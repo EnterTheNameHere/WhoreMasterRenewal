@@ -18,7 +18,7 @@
  */
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
-#include "main.h"
+
 
 cGetStringScreenManager_Inner *cGetStringScreenManager::instance = 0;
 
