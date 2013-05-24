@@ -22,7 +22,7 @@
 #include "linux.h"
 #endif
 
-#include "main.h"
+#include "Helper.hpp"
 #include "cDungeon.h"
 #include "cBrothel.h"
 #include "cMessageBox.h"

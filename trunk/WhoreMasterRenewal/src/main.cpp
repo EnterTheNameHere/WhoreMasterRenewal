@@ -19,6 +19,7 @@
  
 
 #include "main.h"
+#include "Helper.hpp"
 #include "GameFlags.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
@@ -1157,7 +1158,7 @@ int main( int argc, char* argv[] )
     wmr::Logger() << "Loading Whore Master: Renewal...\n";
     
     main_old( argc, argv );
-    
+    /*
     try
     {
         sf::VideoMode currentVideoMode = sf::VideoMode().getDesktopMode();
@@ -1362,7 +1363,7 @@ int main( int argc, char* argv[] )
     {
         wmr::Logger() << "Exception caught:\nException type: \"" << typeid(ex).name() << "\"\n" << ex.what() << "\n";
     }
-    
+    */
     wmr::Logger() << "Whore Master: Renewal finished...\n";
     
     return 0;

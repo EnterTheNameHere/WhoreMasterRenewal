@@ -16,10 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+#include "cBrothel.h"
+#include "cGangs.h"
+ 
 #include "InterfaceProcesses.h"
 #include "InterfaceGlobals.h"
 #include "GameFlags.h"
-#include "main.h"
+#include "Helper.hpp"
 #include "cGetStringScreenManager.h"
 #include "cTariff.h"
 #include "cScriptManager.h"

@@ -40,7 +40,7 @@
 #include "DirPath.h"
 #include "FileList.h"
 
-#include "main.h"
+#include "Helper.hpp"
 
 extern cMessageQue g_MessageQue;
 extern cBrothelManager g_Brothels;

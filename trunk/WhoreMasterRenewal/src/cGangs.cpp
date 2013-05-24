@@ -19,7 +19,7 @@
 #include <sstream>
 #include <algorithm>
 
-#include "main.h"
+#include "Helper.hpp"
 #include "cGangs.h"
 #include "cBrothel.h"
 #include "cJobManager.h"

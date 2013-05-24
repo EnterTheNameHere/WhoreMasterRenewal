@@ -1,6 +1,6 @@
 
 
-#include "main.h"
+#include "Helper.hpp"
 #include "cBrothel.h"
 #include "cScreenItemManagement.h"
 #include "cWindowManager.h"
