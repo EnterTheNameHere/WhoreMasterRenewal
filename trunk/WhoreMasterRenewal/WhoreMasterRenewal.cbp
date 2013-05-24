@@ -189,6 +189,7 @@
 		<Unit filename="src/Girl.cpp" />
 		<Unit filename="src/Girl.hpp" />
 		<Unit filename="src/GraphicsSystem.h" />
+		<Unit filename="src/Helper.hpp" />
 		<Unit filename="src/IconSurface.h" />
 		<Unit filename="src/InterfaceGlobals.cpp" />
 		<Unit filename="src/InterfaceGlobals.h" />
