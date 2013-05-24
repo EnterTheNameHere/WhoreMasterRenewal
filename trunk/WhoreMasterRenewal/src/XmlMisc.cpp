@@ -194,7 +194,7 @@ TiXmlElement* SaveSkillsXML(TiXmlElement* pRoot,
 {
 	TiXmlElement* pSkills = new TiXmlElement("Skills");
 	pRoot->LinkEndChild(pSkills);
-	for(int i=0; i<NUM_SKILLS; i++)
+	for( unsigned int i = 0; i < NUM_SKILLS; ++i )
 	{
 		TiXmlElement* pSkill = new TiXmlElement(XMLifyString(sGirl::skill_names[i]));
 		pSkills->LinkEndChild(pSkill);
@@ -221,7 +221,7 @@ bool LoadSkillsXML(TiXmlHandle hSkills,
 	{
 		return false;
 	}
-	for(int i=0; i<NUM_SKILLS; i++)
+	for( unsigned int i = 0; i < NUM_SKILLS; ++i )
 	{
 		TiXmlElement* pSkill = pSkills->FirstChildElement(XMLifyString(sGirl::skill_names[i]));
 		if (pSkill)
@@ -246,7 +246,7 @@ TiXmlElement* SaveJobsXML(TiXmlElement* pRoot,
 {
 	TiXmlElement* pJobs = new TiXmlElement("Jobs");
 	pRoot->LinkEndChild(pJobs);
-	for(int i=0; i<NUMJOBTYPES; i++)
+	for( unsigned int i = 0; i < NUMJOBTYPES; ++i )
 	{
 		TiXmlElement* pJob = new TiXmlElement(XMLifyString(g_Brothels.m_JobManager.JobName[i]));
 		pJobs->LinkEndChild(pJob);

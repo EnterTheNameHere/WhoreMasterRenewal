@@ -20,9 +20,6 @@
 #define CONSTANTS_H_INCLUDED_1522
 #pragma once
 
-#include"cRng.h"
-
-
 typedef unsigned int u_int;
 
 // game version

@@ -22,6 +22,7 @@
 #include "GameFlags.h"
 #include "cGirls.h"
 #include "cGold.h"
+#include "cRng.h"
 
 extern cGirls g_Girls;
 extern cGold g_Gold;
