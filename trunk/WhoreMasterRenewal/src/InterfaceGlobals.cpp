@@ -16,8 +16,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "InterfaceGlobals.h"
-#include <iostream>
 #include "DirPath.h"
 #include "cBrothel.h"
 #include "Constants.h"
@@ -36,6 +36,12 @@
 #include "cScreenGirlManagement.h"
 #include "cScreenGirlDetails.h"
 #include "cScreenDungeon.h"
+#include "InterfaceIDs.h"
+#include "cMessageBox.h"
+#include "cChoiceMessage.h"
+#include "cInterfaceEvent.h"
+
+#include <iostream>
 
 extern sInterfaceIDs g_interfaceid;
 sInterfaceIDs g_interfaceid;

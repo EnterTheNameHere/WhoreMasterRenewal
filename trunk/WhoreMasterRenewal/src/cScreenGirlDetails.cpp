@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <algorithm>
-#include "cBrothel.h"
+
 #include "cScreenGirlDetails.h"
+#include "cBrothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cTariff.h"
@@ -27,6 +27,11 @@
 #include "cGetStringScreenManager.h"
 #include "cGangs.h"
 #include "cScriptManager.h"
+#include "cMessageBox.h"
+#include "cInterfaceEvent.h"
+#include "cTraits.h"
+
+#include <algorithm>
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;
@@ -53,10 +58,6 @@ static int ImageNum = -1;
 static int DetailLevel = 0;
 static int DayNight = 0;
 
-// need to undefine the stupid windows header macro SetJob
-#ifdef SetJob
-#undef SetJob
-#endif
 static bool SetJob = true;
 
 extern sGirl *selected_girl;

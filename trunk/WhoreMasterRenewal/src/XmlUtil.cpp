@@ -16,11 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "XmlUtil.h"
-#include "CLog.h"
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
+#include "XmlUtil.h"
+#include "XmlMisc.h"
+#include "CLog.h"
 
 bool XmlUtil::get_att(
 	TiXmlElement *el, const char *name, int &ipt, bool optional

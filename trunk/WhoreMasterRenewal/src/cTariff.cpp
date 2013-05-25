@@ -16,10 +16,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "CLog.h"
+ 
 #include "cTariff.h"
 #include "cGirls.h"
 #include "cBrothel.h"
+#include "CLog.h"
 
 extern	cGirls	g_Girls;
 extern	CLog	g_LogFile;

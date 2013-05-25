@@ -20,13 +20,11 @@
 #define CSCROLLBAR_H_INCLUDED_1512
 #pragma once
 
-#include <string>
 #include "CSurface.h"
 #include "cInterfaceObject.h"
 #include "cInterfaceEvent.h"
 
-class cScrollBar;
-extern cScrollBar* g_DragScrollBar;
+#include <string>
 
 class cScrollBar : public cInterfaceObject
 {

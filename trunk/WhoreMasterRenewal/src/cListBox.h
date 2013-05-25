@@ -20,24 +20,11 @@
 #define CLISTBOX_H_INCLUDED_1524
 #pragma once
 
-#include "cInterfaceObject.h"
-#include "cScrollBar.h"
-#include "cFont.h"
-#include "DirPath.h"
 #include "Constants.h"
+#include "cInterfaceObject.h"
+#include "cFont.h"
 
-#if 0
-// Listbox Constants moved to Constants.h
-const unsigned int LISTBOX_BLUE = 0;
-const unsigned int LISTBOX_RED = 1;
-//const unsigned int LISTBOX_DARKBLUE = 2;
-
-//how tall (in pixels) each list item is
-const int LISTBOX_ITEMHEIGHT = 20;
-
-//how many columns are allowed
-const unsigned int LISTBOX_COLUMNS = 15;
-#endif
+#include <vector>
 
 class cScrollBar;
 

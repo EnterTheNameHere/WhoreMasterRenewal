@@ -16,11 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cSlider.h"
+#include "CLog.h"
 #include "CResourceManager.h"
 #include "DirPath.h"
-#include "main.h"
 #include "InterfaceGlobals.h"
+
+#include <SDL_image.h>
 
 extern CResourceManager rmanager;
 

@@ -20,10 +20,10 @@
 #define CGIRLGANGFIGHT_H_INCLUDED_1529
 #pragma once
 
+#include "CLog.h"
+
 #include <string>
 #include <vector>
-
-#include "CLog.h"
 
 struct	sGirl;
 struct	sGang;

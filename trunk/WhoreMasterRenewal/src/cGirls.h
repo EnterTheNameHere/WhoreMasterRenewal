@@ -20,31 +20,29 @@
 #define CGIRL_H_INCLUDED_1528
 #pragma once
 
+#include "Constants.h"
+#include "cEvents.h"
+#include "cTriggers.h"
+#include "cNameList.h"
+
 #include <map>
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <fstream>
 
-#include "Constants.h"
-#include "cTraits.h"
-#include "cInventory.h"
-#include "cCustomers.h"
-#include "cEvents.h"
-#include "CSurface.h"
-#include "cTriggers.h"
-#include "cNameList.h"
-#include "cAnimatedSurface.h"
+class cIndexedList;
+class TiXmlElement;
+class cPlayer;
+class cAnimatedSurface;
+class CSurface;
+struct sCustomer;
+struct sGang;
+struct sInventoryItem;
+struct sBrothel;
+struct sTrait;
 
-// Prototypes
-class	cIndexedList;
-struct	sInventoryItem;
-struct	sBrothel;
-class	TiXmlElement;
-class   cPlayer;
-struct  sCustomer;
-struct  sGang;
-
+typedef uint8_t	Uint8; // Used by SDL
 
 class cAbstractGirls {
 public:
@@ -65,7 +63,7 @@ public:
 	virtual void UpdateTempSkill(sGirl* girl, int skill, int amount)=0;	// updates a skill temporarily
 	virtual void UpdateTempStat(sGirl* girl, int stat, int amount)=0;
 };
-extern cAbstractGirls *g_GirlsPtr;
+extern cAbstractGirls* g_GirlsPtr;
 
 
 // structure to hold randomly generated girl information
@@ -111,7 +109,7 @@ typedef struct sRandomGirl
 /*
  *	END MOD
  */
-	static sGirl *lookup;  // used to look up stat and skill IDs
+	static sGirl* lookup;  // used to look up stat and skill IDs
 	sRandomGirl()
 	{
 		m_Next=0;
@@ -153,23 +151,8 @@ typedef struct sRandomGirl
 class cImage
 {
 public:
-	cImage() {
-		m_Surface=0;
-		m_Next=0;
-		m_AniSurface=0;
-	}
-	~cImage()
-	{
-		if(m_Surface && !m_Surface->m_SaveSurface) {
-			delete m_Surface;
-		}
-		m_Surface=0;
-		if(m_AniSurface)
-			delete m_AniSurface;
-		m_AniSurface = 0;
-		//if(m_Next) delete m_Next;
-		m_Next=0;
-	}
+	cImage();
+	~cImage();
 
 	cImage* m_Next;
 	CSurface* m_Surface;
@@ -283,13 +266,13 @@ class cChildList
 {
 public:
 
-	sChild * m_FirstChild;
-	sChild * m_LastChild;
+	sChild* m_FirstChild;
+	sChild* m_LastChild;
 	int m_NumChildren;
 	cChildList(){m_FirstChild=0;m_LastChild=0;m_NumChildren=0;}
 	~cChildList(){if(m_FirstChild) delete m_FirstChild;}
-	void add_child(sChild *);
-	sChild * remove_child(sChild *,sGirl *);
+	void add_child(sChild*);
+	sChild* remove_child(sChild*,sGirl*);
 	//void handle_childs();
 	//void save_data(std::ofstream);
 	//void write_data(std::ofstream);
@@ -478,26 +461,26 @@ struct sGirl
  *
  *	Sun Nov 15 05:58:55 GMT 2009
  */
-	static const char	*stat_names[];
-	static const char	*skill_names[];
-	static const char	*status_names[];
+	static const char* stat_names[];
+	static const char* skill_names[];
+	static const char* status_names[];
 /*
  *	again, might as well make them part of the struct that uses them
  */
-	static const unsigned int	max_stats;
-	static const unsigned int	max_skills;
-	static const unsigned int	max_statuses;
+	static const unsigned int max_stats;
+	static const unsigned int max_skills;
+	static const unsigned int max_statuses;
 /*
  *	we need to be able to go the other way, too:
  *	from string to number. The maps map stat/skill names
  *	onto index numbers. The setup flag is so we can initialise
  * 	the maps the first time an sGirl is constructed
  */
-	static bool		m_maps_setup;
-	static std::map<std::string, unsigned int>	stat_lookup;
-	static std::map<std::string, unsigned int>	skill_lookup;
-	static std::map<std::string, unsigned int>	status_lookup;
-	static void		setup_maps();
+	static bool m_maps_setup;
+	static std::map<std::string, unsigned int> stat_lookup;
+	static std::map<std::string, unsigned int> skill_lookup;
+	static std::map<std::string, unsigned int> status_lookup;
+	static void setup_maps();
 
 	static int lookup_stat_code(std::string s);
 	static int lookup_skill_code(std::string s);
@@ -513,7 +496,7 @@ struct sGirl
 /*
  *	stream operator - used for debug
  */
-	friend std::ostream& operator<<(std::ostream& os, sGirl &g);
+	friend std::ostream& operator<<(std::ostream& os, sGirl& g);
 /*
  *	it's a bit daft that we have to go through the global g_Girls
  *	every time we want a stat.
@@ -525,7 +508,7 @@ struct sGirl
  *	but I'm not sure what else the cGirls method does.
  *	So this is safer, if a bit inefficient.
  */
- 	bool calc_pregnancy(int,cPlayer *);
+ 	bool calc_pregnancy(int,cPlayer*);
  	int get_stat(int stat_id) {
 		return g_GirlsPtr->GetStat(this, stat_id);
 	}
@@ -683,7 +666,7 @@ struct sGirl
 		;
 	}
 
-	sChild *next_child(sChild *child, bool remove=false) {
+	sChild* next_child(sChild* child, bool remove=false) {
 		if(!remove) {
 			return child->m_Next;
 		}
@@ -703,7 +686,7 @@ struct sGirl
 		}
 		return new_type;
 	}
-	sGirl *run_away();
+	sGirl* run_away();
 
 	bool is_slave() { return (m_States & (1<<STATUS_SLAVE)) !=0; }
 	bool is_free()	{ return !is_slave(); }
@@ -713,8 +696,8 @@ struct sGirl
 	bool is_monster()	{ return (m_States & (1<<STATUS_CATACOMBS)) !=0; }
 	bool is_human()		{ return !is_monster(); }
 
-	void fight_own_gang(bool &girl_wins);
-	void win_vs_own_gang(std::vector<sGang*> &v, int max_goons, bool &girl_wins);
+	void fight_own_gang(bool& girl_wins);
+	void win_vs_own_gang(std::vector<sGang*> &v, int max_goons, bool& girl_wins);
 	void lose_vs_own_gang(
 		std::vector<sGang*> &v,
 		int max_goons,

@@ -16,9 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
-
+#include "cInterfaceWindow.h"
+#include "cInterfaceEvent.h"
+#include "cInterfaceWindow.h"
+#include "cWindowManager.h"
+#include "cMessageBox.h"
+#include "InterfaceIDs.h"
 
 cGetStringScreenManager_Inner *cGetStringScreenManager::instance = 0;
 

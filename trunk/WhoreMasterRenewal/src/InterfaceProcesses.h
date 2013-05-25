@@ -20,10 +20,9 @@
 #define INTERFACEPROCESSES_H_INCLUDED_1504
 #pragma once
 
-#include <string>
+#include "XmlMisc.h"
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
+#include <string>
 
 // Moved from main.cpp
 extern bool g_LeftArrow;

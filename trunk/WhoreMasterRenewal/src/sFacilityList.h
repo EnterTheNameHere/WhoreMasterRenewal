@@ -20,9 +20,12 @@
 #define SFACILITYLIST_H_INCLUDED_1459
 #pragma once
 
+#include "Constants.h"
+
 #include <vector>
 #include <string>
-#include "sFacility.h"
+
+struct sFacility;
 
 class TiXmlElement;
 

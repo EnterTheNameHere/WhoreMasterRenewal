@@ -17,12 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "cEvents.h"
+#include "cGirls.h"
+
 #include <algorithm>
 #include <iostream>
 #include <iterator>
-
-#include "cEvents.h"
-#include "cGirls.h"
 
 std::string CEvent::TitleText()
 {
@@ -191,10 +191,6 @@ void cEvents::AddMessage(std::string message, int type, int eve)
 	events.push_back(newEvent);
 }
 
-// need to undefine the stupid windows headers macro GetMessage
-#ifdef GetMessage
-#undef GetMessage
-#endif
 CEvent cEvents::GetMessage(int id)
 {
 	return events.at(id);

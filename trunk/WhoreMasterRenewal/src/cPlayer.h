@@ -21,11 +21,12 @@
 #define CPLAYER_H_INCLUDED_1521
 #pragma once
 
-#include <fstream>
 #include "Constants.h"
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
+#include <fstream>
+
+class TiXmlElement;
+class TiXmlHandle;
 
 class cPlayer
 {

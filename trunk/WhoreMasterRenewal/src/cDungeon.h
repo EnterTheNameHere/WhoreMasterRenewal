@@ -20,16 +20,14 @@
 #define CDUNGEON_H_INCLUDED_1532
 #pragma once
 
-
 #include <string>
 #include <fstream>
+#include <vector>
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
-
-#include "cGirls.h"
-
+struct sGirl;
 class cGirlTorture;
+class TiXmlElement;
+class TiXmlHandle;
 
 // Keeps track of customers in the dungeon
 typedef struct sDungeonCust

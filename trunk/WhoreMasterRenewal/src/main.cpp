@@ -17,10 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
-
 #include "main.h"
+#include "Logger.hpp"
 #include "Helper.hpp"
-#include "GameFlags.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
 #include "sConfig.h"
@@ -28,26 +27,38 @@
 #include "cJobManager.h"
 #include "Revision.h"
 #include "cWindowManager.h"
+#include "cMessageBox.h"
+#include "cChoiceMessage.h"
 #include "cBrothel.h"
 #include "cGangs.h"
-
-#ifndef LINUX
-	#ifdef _DEBUG
-// to enable leak detection uncomment the below and the first comment in main()
-//		#ifndef _CRTDBG_MAP_ALLOC
-//			#define _CRTDBG_MAP_ALLOC
-//		#endif
-//		#include <stdlib.h>
-//		#include <crtdbg.h>
-	#endif
-#else
-	#include "linux.h"
-#endif
-#include <signal.h>
-#include <sstream>
-
+#include "CResourceManager.h"
 #include "IconSurface.h"
+#include "cSlider.h"
+#include "cScrollBar.h"
+#include "GameFlags.h"
+#include "cGirls.h"
+#include "cTraits.h"
+#include "cCustomers.h"
+#include "libRocketSFMLInterface/RenderInterfaceSFML.h"
+#include "libRocketSFMLInterface/SystemInterfaceSFML.h"
+#include "libRocketSFMLInterface/ShellFileInterface.h"
+
+#include "../../../../../../../DeveloperTools/Cpp/libRocket/Source/Core/StyleSheetFactory.h"
+
+#include <SFML/Graphics.hpp>
+#include <Rocket/Core.h>
+#include <Rocket/Controls.h>
+#include <Rocket/Debugger/Debugger.h>
+#include <Rocket/Controls/DataSource.h>
+#include <Rocket/Core/Types.h>
+
+#include <sstream>
 #include <string>
+#include <iostream>
+#include <iomanip>
+#include <map>
+#include <vector>
+#include <signal.h>
 
 // Function Defs
 void Shutdown();
@@ -476,34 +487,13 @@ bool Init()
 	return true;
 }
 
-// trivial change to test Revision.h
 
 
 
-#include <iostream>
-#include <iomanip>
-#include <sstream>
 
-#include <SFML/Graphics.hpp>
-#include <Rocket/Core.h>
-#include <Rocket/Controls.h>
-#include <Rocket/Debugger/Debugger.h>
-#include <Rocket/Controls/DataSource.h>
-#include <Rocket/Core/Types.h>
 
-#include "libRocketSFMLInterface/RenderInterfaceSFML.h"
-#include "libRocketSFMLInterface/SystemInterfaceSFML.h"
-#include "libRocketSFMLInterface/ShellFileInterface.h"
 
-#include "../../../../../../../DeveloperTools/Cpp/libRocket/Source/Core/StyleSheetFactory.h"
 
-//#include "WhoreMasterRenewalWindow.hpp"
-//#include "LuaUtils.hpp"
-
-#include "CLog.h"
-
-#include <map>
-#include <vector>
 
 namespace wmr = WhoreMasterRenewal;
 

@@ -16,21 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cRival.h"
-#include <stdlib.h>
-#include <fstream>
-#include <sstream>
-
-#ifdef LINUX
-#include "linux.h"
-#endif
-
 #include "cBrothel.h"
 #include "cMessageBox.h"
 #include "cGold.h"
 #include "GameFlags.h"
 #include "DirPath.h"
 #include "cGangs.h"
+#include "XmlMisc.h"
+
+#include <fstream>
+#include <sstream>
+#include <stdlib.h>
 
 extern cMessageQue g_MessageQue;
 extern cBrothelManager g_Brothels;

@@ -16,11 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "CGraphics.h"
-#include "fstream"
 #include "CLog.h"
 #include "DirPath.h"
 #include "InterfaceGlobals.h"
+
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+
+#include <fstream>
 
 extern CGraphics g_Graphics;
 CGraphics g_Graphics;

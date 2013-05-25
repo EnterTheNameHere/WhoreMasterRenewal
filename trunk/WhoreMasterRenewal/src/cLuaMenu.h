@@ -20,14 +20,14 @@
 #define CLUAMENU_H_INCLUDED_1523
 #pragma once
 
-#include <string>
-#include <vector>
-
 #include "cChoiceMessage.h"
 #include "cLuaScript.h"
 #include "CLog.h"
 #include "sConfig.h"
 #include "CGraphics.h"
+
+#include <string>
+#include <vector>
 
 typedef std::vector<std::string *> str_vec;
 

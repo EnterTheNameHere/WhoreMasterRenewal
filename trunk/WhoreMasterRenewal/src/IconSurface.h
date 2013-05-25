@@ -20,9 +20,7 @@
 #define ICONSURFACE_H_INCLUDED_1505
 #pragma once
 
-#ifdef LINUX
-#include "linux.h"
-#endif
+#include "CLog.h"
 #include "DirPath.h"
 #include "CSurface.h"
 
@@ -52,10 +50,6 @@ public:
 		;
 		log.ssend();
 
-		// Undefine the stupid LoadImage macro from windows headers
-        #ifdef LoadImage
-        #undef LoadImage
-        #endif
 		LoadImage(dp.c_str(), true);
 	}
 };

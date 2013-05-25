@@ -1,13 +1,15 @@
 
-
+#include "cScreenItemManagement.h"
 #include "Helper.hpp"
 #include "cBrothel.h"
-#include "cScreenItemManagement.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
 #include "sConfig.h"
+#include "cMessageBox.h"
+#include "cInterfaceEvent.h"
+#include "cGirls.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;

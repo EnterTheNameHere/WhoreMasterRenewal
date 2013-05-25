@@ -16,8 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cAnimatedSurface.h"
 #include "CLog.h"
+#include "CSurface.h"
 
 extern CLog g_LogFile;
 

@@ -30,7 +30,7 @@
 
 #include <Rocket/Core/String.h>
 #include <Rocket/Core/FileInterface.h>
-#include <sfml/Graphics.hpp>
+#include <SFML/Graphics.hpp>
 
 /**
 	Rocket file interface for the shell examples.

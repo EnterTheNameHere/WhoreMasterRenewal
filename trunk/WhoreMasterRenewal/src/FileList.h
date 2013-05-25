@@ -20,10 +20,10 @@
 #define FILELIST_H_INCLUDED_1507
 #pragma once
 
+#include "DirPath.h"
+
 #include <string>
 #include <vector>
-
-#include "DirPath.h"
 
 /*
  * Just a container class to hold the path, filename

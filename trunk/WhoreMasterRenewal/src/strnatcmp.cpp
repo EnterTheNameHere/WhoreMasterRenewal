@@ -53,13 +53,12 @@
  * negative chars in their default char type.
  */
 
+#include "strnatcmp.h"
+
 #include <ctype.h>
 #include <string.h>
 #include <assert.h>
 #include <stdio.h>
-
-#include "strnatcmp.h"
-
 
 /* These are defined as macros to make it easier to adapt this code to
  * different characters types or comparison functions. */

@@ -20,18 +20,18 @@
 #define CGOLD_H_INCLUDED_1528
 #pragma once
 
+#include "CLog.h"
+
 #include <string>
 #include <map>
 #include <iomanip>
 #include <math.h>
-#include "CLog.h"
-
-#define TIXML_USE_STL
-#include "tinyxml.h"
 
 extern CLog g_LogFile;
 
 struct sBrothel;
+class TiXmlElement;
+class TiXmlHandle;
 
 class cGoldBase
 {

@@ -20,11 +20,12 @@
 #define CEDITBOX_H_INCLUDED_1531
 #pragma once
 
-#include <string>
 #include "CSurface.h"
 #include "cInterfaceObject.h"
 #include "cInterfaceEvent.h"
 #include "cFont.h"
+
+#include <string>
 
 class cEditBox : public cInterfaceObject
 {

@@ -16,15 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cScripts.h"
+#include "CLog.h"
+
 #include <string>
 #include <cstring>
 #include <cstdlib>
-#include "CLog.h"
-
-#ifdef LINUX
-#include "linux.h"
-#endif
 
 bool cActionTemplate::GetNextQuotedLine(char *Data, FILE *fp, long MaxSize)
 {

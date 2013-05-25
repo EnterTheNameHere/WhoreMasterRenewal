@@ -16,8 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include"cRng.h"
-#include"sConfig.h"
+
+#include "cRng.h"
+#include "sConfig.h"
 
 extern cRng g_Dice;
 cRng g_Dice;

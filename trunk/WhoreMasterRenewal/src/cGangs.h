@@ -20,14 +20,15 @@
 #define CGANGS_H_INCLUDED_1530
 #pragma once
 
-#include "cGirls.h"
-#include "cRival.h"
 #include "cGold.h"
-#include "cBrothel.h"
+#include "Constants.h"
+#include "cEvents.h"
+
 #include <vector>
 
 extern CLog g_LogFile;
-extern cBrothelManager g_Brothels;
+
+struct sGirl;
 
 // A gang of street toughs
 typedef struct sGang

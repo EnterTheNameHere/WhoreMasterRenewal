@@ -20,10 +20,12 @@
 #define CCOLOR_H_INCLUDED_1533
 #pragma once
 
+#include "CLog.h"
+
+#include <SDL.h>
+
 #include <iostream>
 #include <string>
-#include <SDL.h>
-#include "CLog.h"
 
 extern CLog g_LogFile;
 struct SDL_Color;

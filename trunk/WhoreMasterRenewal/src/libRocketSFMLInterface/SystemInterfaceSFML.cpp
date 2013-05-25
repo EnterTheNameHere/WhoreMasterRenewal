@@ -24,9 +24,12 @@
  * THE SOFTWARE.
  *
  */
-#include <iostream>
-#include <Rocket/Core.h>
+
 #include "SystemInterfaceSFML.h"
+
+#include <Rocket/Core.h>
+
+#include <iostream>
 
 int RocketSFMLSystemInterface::GetKeyModifiers( sf::Event& event )
 {
@@ -381,7 +384,7 @@ Rocket::Core::Input::KeyIdentifier RocketSFMLSystemInterface::TranslateKey( sf::
         break;
     // report default case as Unknown key too
     default:
-        std::cout << "default: keycode=" << key << "\n";
+        std::cout << "default: keycode=" << static_cast<long int>(key) << "\n";
         return Rocket::Core::Input::KeyIdentifier::KI_UNKNOWN;
         break;
 	};

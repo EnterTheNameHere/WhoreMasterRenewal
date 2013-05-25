@@ -17,13 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
-
 #include "sFacilityList.h"
+#include "sFacility.h"
 #include "DirPath.h"
 #include "FileList.h"
 #include "CLog.h"
+#include "XmlMisc.h"
 
 std::vector<sFacility *> *sFacilityList::list = 0;
 

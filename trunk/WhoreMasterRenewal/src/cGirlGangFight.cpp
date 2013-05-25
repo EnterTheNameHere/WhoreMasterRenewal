@@ -1,6 +1,8 @@
+
 #include "cGirlGangFight.h"
 #include "cBrothel.h"
 #include "cGangs.h"
+#include "cGirls.h"
 
 extern cBrothelManager  g_Brothels;
 extern cGangManager     g_Gangs;

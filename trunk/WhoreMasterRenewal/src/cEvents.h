@@ -20,25 +20,10 @@
 #define CEVENTS_H_INCLUDED_1531
 #pragma once
 
-#include <string>
-#include <vector>
-
 #include "Constants.h"
 
-#if 0
-// Event types moved to Constants.h
-const int	EVENT_DAYSHIFT		= 0;
-const int	EVENT_NIGHTSHIFT	= 1;
-const int	EVENT_WARNING		= 2;
-const int	EVENT_DANGER		= 3;
-const int	EVENT_SUMMARY		= 4;
-const int	EVENT_DUNGEON		= 5;			// For torturer reports
-const int	EVENT_MATRON		= 6;			// For Matron reports
-const int	EVENT_GANG			= 7;
-const int	EVENT_BROTHEL		= 8;
-const int	EVENT_DEBUG			= 99;
-#endif
-
+#include <string>
+#include <vector>
 
 class CEvent
 {
@@ -74,10 +59,6 @@ public:
 //	void			DisplayMessages();		// No definition
 	void			AddMessage(std::string message, int nImgType, int nEvent);
 
-	// need to undefine the stupid windows header macro GetMessage
-    #ifdef GetMessage
-    #undef GetMessage
-    #endif
 	CEvent			GetMessage(int id);
 	int				GetNumEvents() 			{ return events.size(); }
 	bool			IsEmpty()				{ return events.empty() ; }

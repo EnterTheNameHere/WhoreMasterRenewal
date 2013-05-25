@@ -1,3 +1,4 @@
+
 #include "Attribute.hpp"
 
 namespace WhoreMasterRenewal
@@ -27,4 +28,4 @@ Attribute& Attribute::operator=(const Attribute& rhs)
     return *this;
 }
 
-}
+} // namespace

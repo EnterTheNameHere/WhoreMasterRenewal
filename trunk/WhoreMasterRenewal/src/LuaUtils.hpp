@@ -3,6 +3,7 @@
 #define LUAUTILS_HPP_INCLUDED_0702
 
 #include <lua.hpp>
+
 #include <memory>
 #include <iomanip>
 #include <sstream>

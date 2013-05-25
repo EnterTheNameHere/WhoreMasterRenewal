@@ -20,10 +20,9 @@
 #define CBUTTON_H_INCLUDED_1533
 #pragma once
 
-#include <string>
-#include "CSurface.h"
 #include "cInterfaceObject.h"
-#include "cInterfaceEvent.h"
+
+#include <string>
 
 class CSurface;
 

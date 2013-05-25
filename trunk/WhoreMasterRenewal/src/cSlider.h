@@ -20,10 +20,11 @@
 #define CSLIDER_H_INCLUDED_1511
 #pragma once
 
-#include <string>
 #include "CSurface.h"
 #include "cInterfaceObject.h"
 #include "cInterfaceEvent.h"
+
+#include <string>
 
 // Moved from main.cpp
 extern cInterfaceEventManager g_InterfaceEvents;

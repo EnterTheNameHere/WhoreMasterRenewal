@@ -16,12 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include "cScreenBuildingSetup.h"
 #include "Helper.hpp"
 #include "cBrothel.h"
-#include "cScreenBuildingSetup.h"
 #include "cWindowManager.h"
+#include "cMessageBox.h"
 #include "cGold.h"
 #include "cTariff.h"
+#include "cInterfaceEvent.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;

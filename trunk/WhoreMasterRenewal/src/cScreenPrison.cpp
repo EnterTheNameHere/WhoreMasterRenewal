@@ -16,17 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include "cScreenPrison.h"
 #include "Helper.hpp"
 #include "cBrothel.h"
-#include "cScreenPrison.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "sFacilityList.h"
 #include "cGetStringScreenManager.h"
-
-#ifdef LINUX
-#include "linux.h"
-#endif
+#include "cMessageBox.h"
+#include "cInterfaceEvent.h"
+#include "cGirls.h"
 
 extern	bool			g_InitWin;
 extern	int			g_CurrBrothel;

@@ -20,20 +20,15 @@
 #define CJOBMANAGER_H_INCLUDED_1525
 #pragma once
 
+#include "Constants.h"
+
 #include <string>
 #include <vector>
-#include "cGirls.h"
-//I need a better place for this
-#define FOREACH(x,y) for(u_int x=0;x<y.size();x++)
+
 struct sGirl;
 struct sBrothel;
 struct sGang;
-//struct sJobBase;
-//string sJobBase::m_Name;
-
-//class cJobManager;
-// typedef for the work fucntion
-//typedef bool (cJobManager::*WorkJobF)(sGirl*,sBrothel*,int,std::string&);
+struct sCustomer;
 
 struct sFilm
 {

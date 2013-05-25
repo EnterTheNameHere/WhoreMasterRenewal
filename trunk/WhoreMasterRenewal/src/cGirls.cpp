@@ -16,31 +16,28 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "cTariff.h"
+
 #include "cGirls.h"
+#include "cTariff.h"
 #include "cEvents.h"
 #include "math.h"
-#include <fstream>
 #include "cBrothel.h"
 #include "cMessageBox.h"
 #include "cGold.h"
-
-#define TIXML_USE_STL
-#include "tinyxml.h"
-
-#include "XmlMisc.h"
 #include "cGangs.h"
 #include "CGraphics.h"
-#include <algorithm>
-#include <limits.h>
-
-#ifdef LINUX
-#include "linux.h"
-#endif
 #include "DirPath.h"
 #include "FileList.h"
-
 #include "Helper.hpp"
+#include "XmlMisc.h"
+#include "cAnimatedSurface.h"
+#include "cTraits.h"
+#include "cCustomers.h"
+#include "CSurface.h"
+
+#include <fstream>
+#include <algorithm>
+#include <limits.h>
 
 extern cMessageQue g_MessageQue;
 extern cBrothelManager g_Brothels;
@@ -11445,10 +11442,6 @@ bool cImageList::AddImage(std::string filename, std::string path, std::string fi
 		name += ".jpg";
 		newImage->m_Surface = new CSurface();
 
-		// Undefine the stupid LoadImage macro from windows headers
-        #ifdef LoadImage
-        #undef LoadImage
-        #endif
 		newImage->m_Surface->LoadImage(name);
 		newImage->m_AniSurface = new cAnimatedSurface();
 		int numFrames, speed, aniwidth, aniheight;
@@ -12529,4 +12522,28 @@ void sGirl::OutputGirlDetailString(std::string& Data, const std::string& detailN
 		ss << "Not found";
 	}
 	Data = ss.str();
+}
+
+cImage::cImage()
+{
+    m_Surface=0;
+    m_Next=0;
+    m_AniSurface=0;
+}
+
+cImage::~cImage()
+{
+    if( m_Surface && !m_Surface->m_SaveSurface )
+    {
+        delete m_Surface;
+    }
+    
+    m_Surface=0;
+    
+    if( m_AniSurface )
+        delete m_AniSurface;
+    
+    m_AniSurface = 0;
+    //if(m_Next) delete m_Next;
+    m_Next=0;
 }

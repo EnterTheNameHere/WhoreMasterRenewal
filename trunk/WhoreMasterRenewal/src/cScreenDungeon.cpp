@@ -16,19 +16,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <string>
-#include <sstream>
-#include <algorithm>
+
+#include "cScreenDungeon.h"
 #include "InterfaceIDs.h"
 #include "InterfaceGlobals.h"
-#include "cScreenDungeon.h"
 #include "cScriptManager.h"
 #include "cBrothel.h"
 #include "DirPath.h"
 #include "cTariff.h"
 #include "cGirlGangFight.h"
 #include "cGirlTorture.h"
-#include "main.h"
+#include "cWindowManager.h"
+#include "cMessageBox.h"
+#include "cListBox.h"
+#include "cInterfaceEvent.h"
+
+#include <string>
+#include <sstream>
+#include <algorithm>
 
 extern sInterfaceIDs g_interfaceid;
 extern	bool	g_InitWin;

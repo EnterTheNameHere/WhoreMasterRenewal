@@ -16,18 +16,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <iostream>
+
 #include "cFont.h"
 #include "CLog.h"
 #include "CGraphics.h"
 #include "sConfig.h"
+
+#include <iostream>
 #include <vector>
-
-
-// need to undefine the stupid windows headers macro DrawText
-#ifdef DrawText
-#undef DrawText
-#endif
 
 extern CLog g_LogFile;
 extern CGraphics g_Graphics;
@@ -352,7 +348,7 @@ std::string cFont::UpdateLineEndings(std::string text)
 #ifndef LINUX
 	// for Windows, double "\n\n" newline characters were showing up as one newline and a boxy (bad) character...
 	// so, here's a cheap-ass workaround to add a "\r" carriage return in front of each "\n" for Windows
-	int pos = text.find("\n", 0);
+	auto pos = text.find("\n", 0);
 	while(pos != std::string::npos)
 	{
 		text.insert(pos, "\r");

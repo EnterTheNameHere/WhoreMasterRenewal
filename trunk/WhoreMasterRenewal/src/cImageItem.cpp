@@ -16,8 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cImageItem.h"
+#include "CLog.h"
 #include "CGraphics.h"
+#include "CSurface.h"
+#include "cAnimatedSurface.h"
 
 extern CGraphics g_Graphics;
 

@@ -20,8 +20,8 @@
 #define CSCRIPTS_H_INCLUDED_1512
 #pragma once
 
-#include <stdio.h>
 #include <string>
+#include <stdio.h>
 
 enum Types { _NONE = 0, _TEXT, _BOOL, _INT, _FLOAT, _CHOICE };
 //typedef unsigned char bool;

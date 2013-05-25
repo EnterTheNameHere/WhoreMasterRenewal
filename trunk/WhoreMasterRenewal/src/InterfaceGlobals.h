@@ -20,22 +20,24 @@
 #define INTERFACEGLOBALS_H_INCLUDED_1505
 #pragma once
 
-#include "cInterfaceWindow.h"
-#include "cWindowManager.h"
-#include "cInterfaceEvent.h"
-#include "cMessageBox.h"
-#include "InterfaceIDs.h"
-#include "cChoiceMessage.h"
-#include "cGirls.h"
-
-#ifdef LINUX
-#include "linux.h"
-#endif
-
 class cGold;
 class cBrothelManager;
 class cGangManager;
 class cCustomers;
+class cInventory;
+class cGirls;
+class cTraits;
+class cMessageBox;
+class cMessageQue;
+class cWindowManager;
+class cInterfaceEventManager;
+class cInterfaceWindow;
+class cChoiceManager;
+class cSlider;
+class CSurface;
+class cScrollBar;
+struct sGirl;
+struct sInterfaceIDs;
 
 // Globals
 extern cInterfaceEventManager g_InterfaceEvents;
@@ -59,6 +61,7 @@ extern cGirls g_Girls;
 extern cBrothelManager g_Brothels;
 extern cGangManager g_Gangs;
 extern cCustomers g_Customers;
+extern cScrollBar* g_DragScrollBar;
 
 // Moved from main.cpp
 extern bool g_ShiftDown;

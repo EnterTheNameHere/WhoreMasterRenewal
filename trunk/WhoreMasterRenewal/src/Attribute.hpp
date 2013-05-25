@@ -1,10 +1,11 @@
 #ifndef ATTRIBUTE_HPP_INCLUDED_1455
 #define ATTRIBUTE_HPP_INCLUDED_1455
 
+#include "Logger.hpp"
+
 #include <string>
 #include <map>
 #include <pugixml.hpp>
-#include "CLog.h"
 
 namespace WhoreMasterRenewal
 {

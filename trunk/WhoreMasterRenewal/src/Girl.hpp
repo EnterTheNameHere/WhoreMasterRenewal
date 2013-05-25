@@ -4,7 +4,7 @@
 
 namespace WhoreMasterRenewal
 {
-    
+
 class Girl
 {
 public:
@@ -17,7 +17,7 @@ public:
 private:
     
 }
-    
+
 } // namespace
 
 #endif // GIRL_HPP_INCLUDED_1616

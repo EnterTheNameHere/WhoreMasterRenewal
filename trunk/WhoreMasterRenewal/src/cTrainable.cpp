@@ -16,13 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <algorithm>
-#include <math.h>
+
 #include "cRng.h"
 #include "CLog.h"
 #include "cGirls.h"
 #include "cTrainable.h"
 #include "Constants.h"
+
+#include <algorithm>
+
+#include <math.h>
 
 extern	cRng	g_Dice;
 extern	CLog	g_LogFile;

@@ -16,17 +16,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cInterfaceWindow.h"
-#include <time.h>
 #include "DirPath.h"
 #include "CLog.h"
+#include "XmlMisc.h"
+#include "CResourceManager.h"
+#include "cButton.h"
+#include "cSlider.h"
+#include "cEditBox.h"
+#include "cImageItem.h"
+#include "cTextItem.h"
+#include "cListBox.h"
+#include "cScrollBar.h"
+#include "cCheckBox.h"
+#include "cXmlWidget.h"
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
-
-#include "XmlUtil.h"
 #include <string>
 #include <cctype>
+#include <time.h>
 
 typedef unsigned int u_int;
 

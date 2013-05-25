@@ -20,13 +20,12 @@
 #define CINVENTORY_H_INCLUDED_1525
 #pragma once
 
-// includes
+#include "Constants.h"
+
 #include <iostream>
 #include <ostream>
 #include <string>
 #include <vector>
-
-#include "Constants.h"
 
 struct sGirl;
 

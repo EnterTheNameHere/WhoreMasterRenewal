@@ -16,18 +16,23 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "cBrothel.h"
+
 #include "cScreenTown.h"
+#include "cBrothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "sFacilityList.h"
 #include "cGetStringScreenManager.h"
 #include "InterfaceProcesses.h"
 #include "cScriptManager.h"
+#include "cGangs.h"
+#include "cMessageBox.h"
+#include "cChoiceMessage.h"
+#include "cInterfaceEvent.h"
+
 #include <iostream>
 #include <locale>
 #include <sstream>
-#include "cGangs.h"
 
 extern	bool			g_InitWin;
 extern	int			g_CurrBrothel;

@@ -17,14 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef LINUX
-#include "linux.h"
-#endif
-
-// #include <fstream>
-#include <cmath>
 #include "cPlayer.h"
 #include "XmlMisc.h"
+
+#include <cmath>
 
 
 cPlayer::cPlayer()			// constructor

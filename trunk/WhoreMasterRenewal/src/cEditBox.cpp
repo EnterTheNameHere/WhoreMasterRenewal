@@ -16,14 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cEditBox.h"
 #include "CGraphics.h"
 #include "sConfig.h"
-
-// need to undefine the stupid windows headers macro DrawText
-#ifdef DrawText
-#undef DrawText
-#endif
 
 extern CGraphics g_Graphics;
 

@@ -20,8 +20,10 @@
 #define CGRAPHICS_H_INCLUDED_1527
 #pragma once
 
-#include "SDLStuff.h"
 #include "CTimer.h"
+
+#include <SDL.h>
+
 #include <string>
 
 class CGraphics

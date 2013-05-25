@@ -16,15 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#define TIXML_USE_STL
-#include "tinyxml.h"
 
 #include "cInventory.h"
-#include <iostream>
-#include <fstream>
 #include "cBrothel.h"
 #include "cMessageBox.h"
 #include "cCustomers.h"
+#include "XmlMisc.h"
+#include "cTraits.h"
+
+#include <iostream>
+#include <fstream>
 
 extern cGirls g_Girls;
 extern cTraits g_Traits;

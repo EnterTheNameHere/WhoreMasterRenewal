@@ -20,9 +20,10 @@
 #define CSURFACE_H_INCLUDED_1511
 #pragma once
 
-#include "GameSystem.h"
 #include "CResource.h"
+
 #include <SDL_rotozoom.h>
+
 #include <string>
 #include <vector>
 
@@ -39,10 +40,6 @@ public:
 	void Register(bool loaded);
 
 	void MakeColoredSurface(int width, int height, int red, int green, int blue, int BPP = 32);
-	// Undefine the stupid LoadImage macro from windows headers
-	#ifdef LoadImage
-	#undef LoadImage
-	#endif
 	bool LoadImage(std::string filename, bool load = true);	// the value load tells the class to actually load the image or just save the filename for the resource manager and only load on use
 	bool LoadSurface(SDL_Surface* inputsurface);  //for when we have an SDL surface in memory to use instead of loading from disk
 	void SetColorKey(unsigned char r, unsigned char g, unsigned char b);

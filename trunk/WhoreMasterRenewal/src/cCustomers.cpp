@@ -16,8 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cCustomers.h"
 #include "cBrothel.h"
+
 extern cRng g_Dice;
 
 extern cCustomers g_Customers;

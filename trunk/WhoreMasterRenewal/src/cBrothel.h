@@ -20,22 +20,28 @@
 #define CBROTHEL_H_INCLUDED_1533
 #pragma once
 
-#include <string>
-#include <vector>
-
-#include "cGirls.h"
 #include "cRival.h"
 #include "cGold.h"
 #include "cJobManager.h"
 #include "cBuilding.h"
 #include "cDungeon.h"		// WD:	cBrothel clean up move class to own file
 #include "cPlayer.h"		// WD:	cBrothel clean up move class to own file
+#include "cEvents.h"
+#include "cInventory.h"
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
+#include <string>
+#include <vector>
 
-extern  cGirls  g_Girls;
-extern  CLog    g_LogFile;
+class cBuilding;
+class cGirls;
+class cCustomers;
+class cEvents;
+class TiXmlElement;
+class TiXmlHandle;
+struct sGirl;
+
+extern cGirls g_Girls;
+extern CLog g_LogFile;
 
 // holds an objective and its data
 typedef struct sObjective

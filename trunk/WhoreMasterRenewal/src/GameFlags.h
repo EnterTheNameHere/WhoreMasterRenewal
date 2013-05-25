@@ -20,16 +20,7 @@
 #define GAMEFLAGS_H_INCLUDED_1506
 #pragma once
 
-
-// Constants
-const int NUM_GAMEFLAGS = 5;
-
-// the game flags
-const int FLAG_CUSTNOPAY = 0;
-const int FLAG_DUNGEONGIRLDIE = 1;
-const int FLAG_DUNGEONCUSTDIE = 2;
-const int FLAG_CUSTGAMBCHEAT = 3;
-const int FLAG_RIVALLOSE = 4;
+#include "Constants.h"
 
 // Externs
 extern unsigned int g_GameFlags[NUM_GAMEFLAGS][2];

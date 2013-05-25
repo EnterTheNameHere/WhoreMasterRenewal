@@ -26,10 +26,10 @@
  */
 
 #include "ShellFileInterface.h"
+
 #include <Rocket/Core/Core.h>
 
 #include <iostream>
-
 #include <fstream>
 #include <cstdio>
 

@@ -20,6 +20,8 @@
 #define CTIMER_H_INCLUDED_1510
 #pragma once
 
+#include <SDL.h>
+
 // Frame Rate for games
 const int FRAMES_PER_SECOND = 25;
 

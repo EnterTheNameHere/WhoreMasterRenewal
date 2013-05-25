@@ -16,9 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cGold.h"
 #include "CLog.h"
 #include "sConfig.h"
+#include "XmlMisc.h"
+
 #include <sstream>
 
 extern CLog g_LogFile;

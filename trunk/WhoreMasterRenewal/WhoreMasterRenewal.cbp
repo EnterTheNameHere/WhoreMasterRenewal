@@ -185,10 +185,8 @@
 		<Unit filename="src/FileList.h" />
 		<Unit filename="src/GameFlags.cpp" />
 		<Unit filename="src/GameFlags.h" />
-		<Unit filename="src/GameSystem.h" />
 		<Unit filename="src/Girl.cpp" />
 		<Unit filename="src/Girl.hpp" />
-		<Unit filename="src/GraphicsSystem.h" />
 		<Unit filename="src/Helper.hpp" />
 		<Unit filename="src/IconSurface.h" />
 		<Unit filename="src/InterfaceGlobals.cpp" />
@@ -196,10 +194,11 @@
 		<Unit filename="src/InterfaceIDs.h" />
 		<Unit filename="src/InterfaceProcesses.cpp" />
 		<Unit filename="src/InterfaceProcesses.h" />
+		<Unit filename="src/Logger.cpp" />
+		<Unit filename="src/Logger.hpp" />
 		<Unit filename="src/LuaUtils.hpp" />
 		<Unit filename="src/MasterFile.h" />
 		<Unit filename="src/Revision.h" />
-		<Unit filename="src/SDLStuff.h" />
 		<Unit filename="src/WindowManager.cpp" />
 		<Unit filename="src/WindowManager.hpp" />
 		<Unit filename="src/WorkAdvertising.cpp" />
@@ -345,7 +344,6 @@
 		<Unit filename="src/libRocketSFMLInterface/ShellFileInterface.h" />
 		<Unit filename="src/libRocketSFMLInterface/SystemInterfaceSFML.cpp" />
 		<Unit filename="src/libRocketSFMLInterface/SystemInterfaceSFML.h" />
-		<Unit filename="src/linux.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/main.h" />
 		<Unit filename="src/sConfig.cpp" />

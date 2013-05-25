@@ -20,8 +20,8 @@
 #define CMESSAGEBOX_H_INCLUDED_1522
 #pragma once
 
-// Includes
 #include "cFont.h"
+
 #include<queue>
 
 const int NUM_MESSBOXCOLOR = 4;
@@ -34,10 +34,6 @@ public:
 	cMessageBox() {m_Color=0;m_TextAdvance=false;m_Font = 0;m_Text = "";for(int i=0; i<NUM_MESSBOXCOLOR; i++)m_Background[i]=0;m_Border=0;m_Active=false;m_Advance=false;m_Position=0;}
 	~cMessageBox();
 
-    // need to undefine the stupid windows headers macro CreateWindow
-    #ifdef CreateWindow
-    #undef CreateWindow
-    #endif
 	void CreateWindow(int x = 32, int y = 416, int width = 736, int height = 160, int BorderSize = 1, int FontSize = 16, bool scale = true);
 	void ChangeFontSize(int FontSize = 16);
 	void Draw();

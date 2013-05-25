@@ -33,6 +33,17 @@ enum {
 	SHIFT_NIGHT	= 1
 };
 
+// Constants
+const int NUM_GAMEFLAGS = 5;
+
+// the game flags
+const int FLAG_CUSTNOPAY = 0;
+const int FLAG_DUNGEONGIRLDIE = 1;
+const int FLAG_DUNGEONCUSTDIE = 2;
+const int FLAG_CUSTGAMBCHEAT = 3;
+const int FLAG_RIVALLOSE = 4;
+
+
 // Editable Character Stats and skills (used for traits)
 const int          NUM_STATS            = 22;
 const unsigned int STAT_CHARISMA        = 0;

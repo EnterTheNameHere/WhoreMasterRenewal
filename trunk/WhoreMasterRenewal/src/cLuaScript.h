@@ -20,10 +20,8 @@
 #define CLUASCRIPT_H_INCLUDED_1523
 #pragma once
 
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <sstream>
+#include "CLog.h"
+#include "DirPath.h"
 
 extern "C" {
 #include "lua.h"
@@ -31,8 +29,10 @@ extern "C" {
 #include "lauxlib.h"
 }
 
-#include "CLog.h"
-#include "DirPath.h"
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 int get_from_table(lua_State *L, int table, const char *key, bool &dest);
 int get_from_table(lua_State *L, int table, const char *key, int &dest);
@@ -40,6 +40,7 @@ bool get_from_table(lua_State *L, int table, const char *key, std::string &dest)
 
 
 class cInterfaceWindowXML;
+struct sGirl;
 
 class cLuaStateInner {
 public:
@@ -66,8 +67,6 @@ public:
 		return instance->L;
 	}
 };
-
-struct sGirl;
 
 class cLuaScript {
 	cLuaState	l;

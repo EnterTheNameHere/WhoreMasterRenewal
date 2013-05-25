@@ -20,19 +20,10 @@
 #define CINTERFACEWINDOW_H_INCLUDED_1526
 #pragma once
 
-#include "cButton.h"
-#include "GameSystem.h"
 #include "CSurface.h"
 #include "cInterfaceObject.h"
-#include "cEditBox.h"
-#include "cImageItem.h"
-#include "cTextItem.h"
-#include "cListBox.h"
-#include "cScrollBar.h"
-#include "cCheckBox.h"
-#include "cSlider.h"
-#include "cXmlWidget.h"
-#include "DirPath.h"
+#include "Constants.h"
+
 #include <vector>
 #include <map>
 
@@ -45,7 +36,8 @@ class cListBox;
 class cCheckBox;
 class cScrollBar;
 class cSlider;
-
+class cAnimatedSurface;
+class cXmlWidget;
 class TiXmlElement;
 
 class cInterfaceWindow : public cInterfaceObject
@@ -56,10 +48,6 @@ public:
 
 	virtual void Free();
 
-    // need to undefine the stupid windows headers macro CreateWindow
-	#ifdef CreateWindow
-	#undef CreateWindow
-	#endif
 	void CreateWindow(int x, int y, int width, int height, int BorderSize);	// and color options latter
 	void UpdateWindow(int x, int y);
 	void MouseDown(int x, int y);

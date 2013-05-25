@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "cGirls.h"
 #include "cGirlTorture.h"
+#include "cGirls.h"
 #include "cMessageBox.h"
 #include "cBrothel.h"
 #include "cDungeon.h"

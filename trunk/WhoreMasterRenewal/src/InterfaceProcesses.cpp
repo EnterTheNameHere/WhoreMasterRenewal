@@ -16,31 +16,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
+#include "InterfaceProcesses.h"
 #include "cBrothel.h"
 #include "cGangs.h"
- 
-#include "InterfaceProcesses.h"
 #include "InterfaceGlobals.h"
-#include "GameFlags.h"
 #include "Helper.hpp"
 #include "cGetStringScreenManager.h"
 #include "cTariff.h"
 #include "cScriptManager.h"
+#include "cInterfaceWindow.h"
+#include "cWindowManager.h"
 #include "Revision.h"
-#undef bool
-
-#ifdef LINUX
-#include "linux.h"
-#else
-#include <windows.h>
-#endif
-#undef GetMessage
-
+#include "InterfaceIDs.h"
+#include "cInterfaceEvent.h"
+#include "cMessageBox.h"
+#include "cChoiceMessage.h"
 #include "DirPath.h"
-//#include "cDungeonScreenManager.h"
 #include "FileList.h"
 #include "MasterFile.h"
+#include "GameFlags.h"
+#include "cTraits.h"
+#include "cCustomers.h"
+
 extern sInterfaceIDs g_interfaceid;
 // globals used for the interface
 std::string g_ReturnText = "";

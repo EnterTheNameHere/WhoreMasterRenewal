@@ -20,11 +20,12 @@
 #define CRIVAL_H_INCLUDED_1520
 #pragma once
 
-#include <string>
 #include "cNameList.h"
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
+#include <string>
+
+class TiXmlElement;
+class TiXmlHandle;
 
 class cRival
 {

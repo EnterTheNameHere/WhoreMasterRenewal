@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
 #include "cBrothel.h"
 #include "cCustomers.h"
@@ -23,13 +24,15 @@
 #include "cInventory.h"
 #include "sConfig.h"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "GameFlags.h"
+
+#include <sstream>
 #include <algorithm>
 
 extern cRng g_Dice;

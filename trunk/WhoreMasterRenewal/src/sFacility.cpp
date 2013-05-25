@@ -16,13 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "sFacility.h"
-#include "XmlUtil.h"
+#include "XmlMisc.h"
 #include "CLog.h"
-
-
-#define TIXML_USE_STL
-#include "tinyxml.h"
 
 void sFacility::load_from_xml(TiXmlElement *base_el)
 {

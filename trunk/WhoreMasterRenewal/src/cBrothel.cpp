@@ -17,28 +17,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <sstream>
-
-#ifdef LINUX
-#include "linux.h"
-#endif
-
-#include "Helper.hpp"
 #include "cBrothel.h"
+#include "Helper.hpp"
 #include "cGangs.h"
 #include "DirPath.h"
 #include "cMessageBox.h"
 #include "strnatcmp.h"
 #include "XmlMisc.h"
+#include "cInventory.h"
+#include "cGirls.h"
+#include "cCustomers.h"
 
-//#include "cDungeon.h"
-//#include "cJobManager.h"
-//#include "cCustomers.h"
-//#include "cGirls.h"
-//#include "GameFlags.h"
-//#include "CGraphics.h"
-//#include "sConfig.h"
-//#include "cTariff.h"
+#include <sstream>
 
 extern cMessageQue      g_MessageQue;
 extern cCustomers       g_Customers;

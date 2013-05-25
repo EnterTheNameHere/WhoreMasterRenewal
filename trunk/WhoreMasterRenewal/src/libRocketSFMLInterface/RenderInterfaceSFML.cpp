@@ -25,9 +25,11 @@
  *
  */
 
-#include <Rocket/Core/Core.h>
 #include "RenderInterfaceSFML.h"
 #include "ShellFileInterface.h"
+
+#include <Rocket/Core/Core.h>
+
 #include <GL/gl.h>
 
 #include <iostream>

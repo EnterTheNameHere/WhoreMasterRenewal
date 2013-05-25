@@ -16,18 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include "sConfig.h"
+#include "DirPath.h"
+#include "CLog.h"
+#include "cColor.h"
+#include "XmlMisc.h"
+
 #include <iostream>
 #include <ostream>
 #include <fstream>
 #include <cctype>
-#include "sConfig.h"
-#include "DirPath.h"
-#include "CLog.h"
-
-#define TIXML_USE_STL
-#include "tinyxml.h"
-
-#include "cColor.h"
 
 extern CLog g_LogFile;
 static CLog &l = g_LogFile;

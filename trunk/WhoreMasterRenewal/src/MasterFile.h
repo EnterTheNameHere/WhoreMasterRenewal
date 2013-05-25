@@ -21,13 +21,12 @@
 #define MASTERFILE_H_INCLUDED_1501
 #pragma once
 
+#include "XmlMisc.h"
+
 #include <map>
 #include <iostream>
 #include <istream>
 #include <fstream>
-
-#define TIXML_USE_STL
-#include "tinyxml.h"
 
 class MasterFile
 {

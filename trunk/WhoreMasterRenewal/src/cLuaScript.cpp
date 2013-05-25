@@ -17,9 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
- #define LUA_COMPAT_MODULE
-
+#define LUA_COMPAT_MODULE
 
 #include "cLuaScript.h"
 #include "cLuaMenu.h"
@@ -30,12 +28,11 @@
 #include "cBrothel.h"
 #include "DirPath.h"
 #include "FileList.h"
-#include "SDLStuff.h"
 #include "sConfig.h"
 #include "cInterfaceWindow.h"
 #include "cWindowManager.h"
 #include "cScriptManager.h"
-
+#include "cTraits.h"
 
 
 extern CGraphics g_Graphics;
@@ -904,7 +901,7 @@ void cLuaScript::set_wm_girl(sGirl *girl)
  *	get the "wm" symbol on the stack to start with
  */
  	lua_getglobal(l, "wm");
-	assert(lua_isnil(l, -1) == 0);
+	//assert(lua_isnil(l, -1) == 0);
 	int wm = lua_gettop(l);
 	log.ss() << "cLuaScript::set_wm_girl: wm index at " << wm;
 	log.ssend();
@@ -941,8 +938,8 @@ void cLuaScript::set_wm_player()
  *	now format the sGirl data as a Lua table
  */
 	make_lua_player(l, player);
-	bool flag = !lua_isnil(l, -1);
-	assert(flag);
+	//bool flag = !lua_isnil(l, -1);
+	//assert(flag);
 /*
  *	last store the data in wm
  */

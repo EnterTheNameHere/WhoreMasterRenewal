@@ -16,14 +16,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <algorithm>
-#include "cBrothel.h"
+
 #include "cScreenGirlManagement.h"
+#include "cBrothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cTariff.h"
 #include "cJobManager.h"
+#include "cChoiceMessage.h"
+#include "cMessageBox.h"
 #include "InterfaceProcesses.h"
+#include "cInterfaceEvent.h"
+#include "cListBox.h"
+#include "cGirls.h"
+
+#include <algorithm>
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;
@@ -47,10 +54,6 @@ static bool SellGirl = false;
 static int selection = -1;
 static int DayNight = 0;	// 1 is night, 0 is day.
 
-// need to undefine the stupid windows header macro SetJob
-#ifdef SetJob
-#undef SetJob
-#endif
 static bool SetJob = false;
 
 extern sGirl *selected_girl;

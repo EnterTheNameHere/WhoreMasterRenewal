@@ -20,12 +20,15 @@
 #define XMLMISC_H_INCLUDED_1534
 #pragma once
 
+#include "XmlUtil.h"
+
 #define TIXML_USE_STL
 #include "tinyxml.h"
 
 #include <string>
-#include "cTraits.h"
-#include "cInventory.h"
+
+struct sTrait;
+struct sInventoryItem;
 
 std::string XMLifyString(const std::string& XMLName);
 std::string XMLifyString(const char* XMLName);

@@ -16,18 +16,144 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cTriggers.h"
-#include <fstream>
 #include "cScriptManager.h"
-#include "GameFlags.h"
 #include "cGirls.h"
 #include "cGold.h"
 #include "cRng.h"
+#include "GameFlags.h"
+#include "XmlMisc.h"
+
+#include <fstream>
 
 extern cGirls g_Girls;
 extern cGold g_Gold;
 extern cRng g_Dice;
 static std::map<std::string,int> trigger_types;
+
+cTrigger::cTrigger()
+{
+    m_Type = 0;
+    m_Triggered = 0;
+    m_Chance = 0;
+    m_Once = 0;
+    m_Next = 0;
+}
+
+cTrigger::~cTrigger()
+{
+    if( m_Next )
+        delete m_Next;
+    m_Next=0;
+}
+
+int cTrigger::global_flag(std::string s)
+{
+    if(s == "NoPay") {
+        return m_Values[0] = FLAG_CUSTNOPAY;
+    }
+    if(s == "GirlDies") {
+        return m_Values[0] = FLAG_DUNGEONGIRLDIE;
+    }
+    if(s == "CustomerDies") {
+        return m_Values[0] = FLAG_DUNGEONCUSTDIE;
+    }
+    if(s == "GamblingCheat") {
+        return m_Values[0] = FLAG_CUSTGAMBCHEAT;
+    }
+    if(s == "RivalLose") {
+        return m_Values[0] = FLAG_RIVALLOSE;
+    }
+    return -1;
+}
+
+int cTrigger::global_flag()
+{
+    return m_Values[0];
+}
+
+int cTrigger::global_flag(int n)
+{
+    return m_Values[0] = n;
+}
+
+int cTrigger::where()
+{
+    return m_Values[0];
+}
+
+int cTrigger::where(int n)
+{
+    return m_Values[0] = n;
+}
+
+int cTrigger::where(std::string s)
+{
+    if(s == "Town" || s == "Dungeon")
+    {
+        return where(0);
+    }
+    if(s == "Catacombs" || s == "Brothel")
+    {
+        return where(1);
+    }
+    if(s == "SlaveMarket")
+    {
+        return where(2);
+    }
+    return -1;
+}
+
+int cTrigger::status()
+{
+    return m_Values[0];
+}
+
+int cTrigger::status(int n)
+{
+    return m_Values[0] = n;
+}
+
+int cTrigger::stat()
+{
+    return m_Values[0];
+}
+
+int cTrigger::stat(int n)
+{
+    return m_Values[0] = n;
+}
+
+int cTrigger::skill()
+{
+    return m_Values[0];
+}
+
+int cTrigger::skill(int n)
+{
+    return m_Values[0] = n;
+}
+
+int cTrigger::has()
+{
+    return m_Values[1];
+}
+
+int cTrigger::has(int n)
+{
+    return m_Values[1] = n;
+}
+
+int cTrigger::threshold()
+{
+    return m_Values[1];
+}
+
+int cTrigger::threshold(int n)
+{
+    return m_Values[1] = n;
+}
 
 void cTriggerList::AddTrigger(cTrigger* trigger)
 {

@@ -20,7 +20,8 @@
 #define CANIMATEDSURFACE_H_INCLUDED_1533
 #pragma once
 
-#include "CSurface.h"
+#include <SDL.h>
+
 #include <string>
 #include <iostream>
 #include <fstream>

@@ -20,11 +20,11 @@
 #define CSCREENBUILDINGMANAGER_H_INCLUDED_1519
 #pragma once
 
-
 #include "DirPath.h"
 #include "cInterfaceWindow.h"
 
 class cBuilding;
+struct sBrothel;
 
 class cBuildingManagement : public cInterfaceWindowXML
 {

@@ -22,12 +22,11 @@
 
 #include <string>
 #include <queue>
-#include "GameFlags.h"
-
-#define TIXML_USE_STL
-#include "tinyxml.h"
 
 struct sGirl;
+class TiXmlElement;
+class TiXmlHandle;
+
 
 // girl specific triggers
 const int TRIGGER_RANDOM = 0;	// May trigger each week
@@ -56,85 +55,45 @@ public:
 
 	cTrigger* m_Next;
 
-	cTrigger() {m_Type=m_Triggered=m_Chance=m_Once=0;m_Next=0;}
-	~cTrigger() {if(m_Next)delete m_Next;m_Next=0;}
+	cTrigger();
+	~cTrigger();
 
-	TiXmlElement* SaveTriggerXML(TiXmlElement* pRoot);
-	bool LoadTriggerXML(TiXmlHandle hTrigger);
+	TiXmlElement* SaveTriggerXML(TiXmlElement*);
+	bool LoadTriggerXML(TiXmlHandle);
 
-	bool	get_once_from_xml(TiXmlElement*);
+	bool get_once_from_xml(TiXmlElement*);
 	int	get_type_from_xml(TiXmlElement*);
 	int	get_chance_from_xml(TiXmlElement*);
 	int	load_skill_from_xml(TiXmlElement*);
 	int	load_stat_from_xml(TiXmlElement*);
 	int	load_status_from_xml(TiXmlElement*);
-	int	load_from_xml(TiXmlElement *el);
-	int	load_money_from_xml(TiXmlElement *el);
-	void	load_meet_from_xml(TiXmlElement *el);
-	void	load_talk_from_xml(TiXmlElement *el);
-	int	load_weeks_from_xml(TiXmlElement *el);
-	int	load_flag_from_xml(TiXmlElement *el);
+	int	load_from_xml(TiXmlElement*);
+	int	load_money_from_xml(TiXmlElement*);
+	void load_meet_from_xml(TiXmlElement*);
+	void load_talk_from_xml(TiXmlElement*);
+	int load_weeks_from_xml(TiXmlElement*);
+	int	load_flag_from_xml(TiXmlElement*);
 
 /*
  *	some accessor funcs to make the meaning of the values
  *	array elements a little less opaque
  */
-	int global_flag()	{ return m_Values[0]; }
-	int global_flag(int n)	{ return m_Values[0] = n; }
-	int global_flag(std::string s) {
-		if(s == "NoPay") {
-			return m_Values[0] = FLAG_CUSTNOPAY;
-		}
-		if(s == "GirlDies") {
-			return m_Values[0] = FLAG_DUNGEONGIRLDIE;
-		}
-		if(s == "CustomerDies") {
-			return m_Values[0] = FLAG_DUNGEONCUSTDIE;
-		}
-		if(s == "GamblingCheat") {
-			return m_Values[0] = FLAG_CUSTGAMBCHEAT;
-		}
-		if(s == "RivalLose") {
-			return m_Values[0] = FLAG_RIVALLOSE;
-		}
-		return -1;
-	}
-	int where()		{ return m_Values[0]; }
-	int where(int n)	{
-		return m_Values[0] = n;
-	}
-	int where(std::string s) {
-		if(s == "Town" || s == "Dungeon") {
-			return where(0);
-		}
-		if(s == "Catacombs" || s == "Brothel") {
-			return where(1);
-		}
-		if(s == "SlaveMarket") {
-			return where(2);
-		}
-		return -1;
-	}
-	int status()		{ return m_Values[0]; }
-	int status(int n)	{
-		return m_Values[0] = n;
-	}
-	int stat()		{ return m_Values[0]; }
-	int stat(int n)	{
-		return m_Values[0] = n;
-	}
-	int skill()		{ return m_Values[0]; }
-	int skill(int n)	{
-		return m_Values[0] = n;
-	}
-	int has()		{ return m_Values[1]; }
-	int has(int n)	{
-		return m_Values[1] = n;
-	}
-	int threshold()		{ return m_Values[1]; }
-	int threshold(int n)	{
-		return m_Values[1] = n;
-	}
+	int global_flag();
+	int global_flag(int);
+	int global_flag(std::string);
+	int where();
+	int where(int);
+	int where(std::string);
+	int status();
+	int status(int);
+	int stat();
+	int stat(int);
+	int skill();
+	int skill(int);
+	int has();
+	int has(int);
+	int threshold();
+	int threshold(int);
 };
 
 class cTriggerQue

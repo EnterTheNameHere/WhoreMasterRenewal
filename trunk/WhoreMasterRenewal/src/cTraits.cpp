@@ -16,14 +16,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <iostream>
-#include "cTraits.h"
-#include "stdio.h"
-#include <cstring>
 
-#ifdef LINUX
-#include "linux.h"
-#endif
+#include "cTraits.h"
+
+#include <iostream>
+#include <cstring>
+#include <stdio.h>
 
 extern cTraits g_Traits;
 cTraits g_Traits;

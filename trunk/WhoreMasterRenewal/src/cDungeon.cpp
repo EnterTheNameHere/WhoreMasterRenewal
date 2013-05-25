@@ -16,19 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <sstream>
 
-#ifdef LINUX
-#include "linux.h"
-#endif
-
-#include "Helper.hpp"
 #include "cDungeon.h"
+#include "Helper.hpp"
 #include "cBrothel.h"
 #include "cMessageBox.h"
 #include "cGangs.h"
 #include "strnatcmp.h"
 #include "cGirlTorture.h"
+#include "GameFlags.h"
+#include "cGirls.h"
+#include "XmlMisc.h"
+
+#include <sstream>
 
 extern cMessageQue		g_MessageQue;
 extern cGirls			g_Girls;

@@ -16,15 +16,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <string>
-#include <sstream>
+
+#include "cInventoryManagementSM.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceIDs.h"
 #include "InterfaceGlobals.h"
 #include "cBrothel.h"
-#include "cInventoryManagementSM.h"
-#include "main.h"
 #include "DirPath.h"
+
+#include <string>
+#include <sstream>
 
 extern cInterfaceEventManager g_InterfaceEvents;
 extern sInterfaceIDs g_interfaceid;

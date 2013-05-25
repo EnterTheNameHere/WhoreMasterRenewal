@@ -16,13 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include "cScreenGangs.h"
 #include "Helper.hpp"
 #include "cBrothel.h"
-#include "cScreenGangs.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "InterfaceProcesses.h"
 #include "cGangs.h"
+#include "cInterfaceEvent.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;

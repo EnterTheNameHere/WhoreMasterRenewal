@@ -16,12 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "cBrothel.h"
+
 #include "cScreenSlaveMarket.h"
+#include "cBrothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "sFacilityList.h"
 #include "cGetStringScreenManager.h"
+#include "cMessageBox.h"
+#include "cInterfaceEvent.h"
+#include "cGirls.h"
+#include "cTraits.h"
 
 extern	bool			g_InitWin;
 extern	int			g_CurrBrothel;

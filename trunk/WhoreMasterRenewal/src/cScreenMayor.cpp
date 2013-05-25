@@ -16,17 +16,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#include "cScreenMayor.h"
 #include "Helper.hpp"
 #include "cBrothel.h"
-#include "cScreenMayor.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
-
-#ifdef LINUX
-#include "linux.h"
-#endif
+#include "cInterfaceEvent.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;

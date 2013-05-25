@@ -20,8 +20,11 @@
 #define SFACILITY_H_INCLUDED_1500
 #pragma once
 
-#include <math.h>
 #include "cTariff.h"
+
+#include <math.h>
+
+struct sFacility;
 
 /*
  * I don't generally see the point of using chars over ints
@@ -99,7 +102,7 @@ struct sBoundedVar
 	bool		from_xml(TiXmlElement *el);
 };
 
-struct sFacility;
+
 
 /*
  * this is a bit of a mess from a model-view-controller point of view

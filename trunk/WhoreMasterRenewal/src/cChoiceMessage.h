@@ -22,6 +22,7 @@
 
 #include "CSurface.h"
 #include "cFont.h"
+
 #include <string>
 
 typedef void (*menu_callback_type)(int);

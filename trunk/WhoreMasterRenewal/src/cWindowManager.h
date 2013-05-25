@@ -20,10 +20,10 @@
 #define CWINDOWMANAGER_H_INCLUDED_1508
 #pragma once
 
-#include<stack>
-#include<vector>
-
 #include "cInterfaceWindow.h"
+
+#include <stack>
+#include <vector>
 
 typedef struct sWindow
 {

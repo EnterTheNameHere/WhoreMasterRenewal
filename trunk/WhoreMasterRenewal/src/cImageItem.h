@@ -20,11 +20,13 @@
 #define CIMAGEITEM_H_INCLUDED_1527
 #pragma once
 
-#include "CSurface.h"
-#include "cAnimatedSurface.h"
 #include "cInterfaceObject.h"
 
+#include <string>
+
 class CSurface;
+class cAnimatedSurface;
+struct SDL_Surface;
 
 class cImageItem : public cInterfaceObject
 {
