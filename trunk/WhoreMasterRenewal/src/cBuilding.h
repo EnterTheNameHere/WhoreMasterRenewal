@@ -20,10 +20,6 @@
 #define CBUILDING_H_INCLUDED_1533
 #pragma once
 
-#include "cTariff.h"
-
-#include <iostream>
-#include <ostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -39,7 +35,7 @@ public:
 	int free_space();
 	int used_space();
     
-	bool add(sFacility*);
+	bool add( sFacility* );
 	sFacility* remove(int);
 	sFacility* item_at(int);
 	sFacility* operator[](int);
@@ -47,8 +43,8 @@ public:
 	void commit();
 	void revert();
 
-	std::ofstream &save(std::ofstream &ofs, std::string building_name);
-	std::ifstream &load(std::ifstream &ifs);
+	std::ofstream& save(std::ofstream& ofs, std::string building_name);
+	std::ifstream& load(std::ifstream& ifs);
 /*
  *	is the list free of changes that may need to be reverted?
  */

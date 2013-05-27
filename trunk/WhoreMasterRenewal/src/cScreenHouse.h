@@ -20,9 +20,7 @@
 #define CSCREENHOUSE_H_INCLUDED_1514
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
 
 class cScreenHouse : public cInterfaceWindowXML
 {
@@ -40,16 +38,8 @@ private:
 
 	void set_ids();
 public:
-	cScreenHouse()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "house_screen.xml"
-		;
-		m_filename = dp.c_str();
-	}
-	virtual ~cScreenHouse() {}
+	cScreenHouse();
+	virtual ~cScreenHouse();
 
 	void init();
 	void process();

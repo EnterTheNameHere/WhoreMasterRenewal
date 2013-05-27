@@ -18,8 +18,10 @@
  */
 
 #include "cScriptManager.h"
+#include "cLuaScript.h"
+#include "CLog.h"
 
-cScriptManagerInner *cScriptManager::instance = 0;
+cScriptManagerInner* cScriptManager::instance = 0;
 
 static bool ends_with(std::string s, std::string suff)
 {
@@ -33,7 +35,7 @@ static bool ends_with(std::string s, std::string suff)
 }
 
 
-void cScriptManagerInner::Load(std::string filename, sGirl *girl)
+void cScriptManagerInner::Load(std::string filename, sGirl* girl)
 {
 /*
  *	so - if it doesn't end with ".lua" we assume it's a GameScript
@@ -46,8 +48,107 @@ void cScriptManagerInner::Load(std::string filename, sGirl *girl)
 /*
  *	So we're in LuaLand. 
  */
- 	cLuaScript *lpt = new cLuaScript();
+ 	cLuaScript* lpt = new cLuaScript();
 	lpt->load(filename, girl);
 
 	lq.push(lpt);
 }
+
+void cScriptManagerInner::Release()
+{
+    cLuaScript* lpt;
+/*
+*		clear down the Lua script queue
+*/
+    while( !lq.empty() )
+    {
+        lpt = lq.front();
+        delete lpt;
+        lq.pop();
+    }
+    m_Script.Release();
+}
+
+bool cScriptManagerInner::IsActive()
+{
+    if( !lq.empty() )
+    {
+        return true;
+    }
+    return m_Script.IsActive();
+}
+
+void cScriptManagerInner::RunScript()
+{
+    cLuaScript* lpt;
+/*
+*		if there's nothing in the lua queue
+*		let m_Script do it's thing
+*/
+    if( lq.empty() )
+    {
+        m_Script.RunScript();
+        return;
+    }
+/*
+*		get the front of the lua queue
+*/
+    lpt = lq.front();
+/*
+*		let it run
+*/
+    bool rc = lpt->run();
+/*
+*		if it returned true, leave it there so it can
+*		get another time slice
+*/
+    CLog log;
+    if( rc )
+    {
+        log.ss() << "RunScript: lua returned true: "
+             << "script left on queue"
+             ;
+        log.ssend();
+        return;
+    }
+    log.ss() << "RunScript: lua returned false: "
+         << "deleting from queue";
+/*
+*		if it returned false, or nothing at all,
+*		remove it from the queue and delete it
+*/
+    delete lpt;
+    lq.pop();
+}
+
+cScriptManager::cScriptManager()
+{
+    if( !instance )
+        instance = new cScriptManagerInner();
+}
+
+void cScriptManager::Load( ScriptPath& dp, sGirl* girl )
+{
+    instance->Load( std::string( dp.c_str() ), girl );
+}
+
+void cScriptManager::Load( std::string filename, sGirl* girl )
+{
+    instance->Load( filename, girl );
+}
+
+void cScriptManager::Release()
+{
+    instance->Release();
+}
+
+bool cScriptManager::IsActive()
+{
+    return instance->IsActive();
+}
+
+void cScriptManager::RunScript()
+{
+    instance->RunScript();
+}
+

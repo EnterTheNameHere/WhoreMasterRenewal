@@ -24,58 +24,25 @@
 #include "DirPath.h"
 #include "CSurface.h"
 
-class IconSurface : public CSurface {
+class IconSurface : public CSurface
+{
 public:
-	IconSurface(std::string name)
-	: CSurface(ImagePath(name + ".png"))
-	{
-	}
-	IconSurface(std::string name, const char *pt, const char *ext = ".jpg")
-	: CSurface()
-	//: CSurface(ImagePath((name + pt) + ext).c_str())
-	{
-		CLog log;
-
-		std::string full = "";
-		full += name;
-		full += pt;
-		full += ext;
-		ImagePath dp(full);
-
-		log.ss() << "IconSurface::IconSurface\n"
-			 << "	name = " << name << "\n"
-			 << "	ext  = " << ext  << "\n"
-			 << "	full = " << full  << "\n"
-			 << "	dp   = " << dp.c_str()  << "\n"
-		;
-		log.ssend();
-
-		LoadImage(dp.c_str(), true);
-	}
+	IconSurface( std::string name );
+	IconSurface( std::string name, const char* pt, const char* ext = ".jpg" );
 };
 
-class ButtonSurface : public CSurface {
+class ButtonSurface : public CSurface
+{
 public:
-	ButtonSurface (std::string name)
-	: CSurface(ButtonPath(name + ".png"))
-	{
-	}
-	ButtonSurface (std::string name, const char *pt, const char *ext = ".jpg")
-	: CSurface(ButtonPath((name + pt) + ext).c_str())
-	{
-	}
+	ButtonSurface( std::string name);
+	ButtonSurface( std::string name, const char *pt, const char *ext = ".jpg" );
 };
 
-class ImageSurface : public CSurface {
+class ImageSurface : public CSurface
+{
 public:
-	ImageSurface (std::string name)
-	: CSurface(ImagePath(name + ".png"))
-	{
-	}
-	ImageSurface (std::string name, const char *pt, const char *ext = ".jpg")
-	: CSurface(ImagePath((name + pt) + ext).c_str())
-	{
-	}
+	ImageSurface( std::string name );
+	ImageSurface( std::string name, const char *pt, const char *ext = ".jpg" );
 };
 
 #endif // ICONSURFACE_H_INCLUDED_1505

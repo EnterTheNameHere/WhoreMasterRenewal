@@ -30,17 +30,17 @@
 #include "cGold.h"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "cGirls.h"
 
 #include <sstream>
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
 extern cCustomers g_Customers;
 extern cInventory g_InvManager;
 extern cBrothelManager g_Brothels;
 extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGold g_Gold;
+extern cGirls g_Girls;
 
 bool cJobManager::WorkFluffer(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {

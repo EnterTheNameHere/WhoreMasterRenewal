@@ -20,11 +20,11 @@
 #define CGRAPHICS_H_INCLUDED_1527
 #pragma once
 
-#include "CTimer.h"
-
-#include <SDL.h>
+#include "CTimer.h" // required CTimer
 
 #include <string>
+
+class SDL_Surface;
 
 class CGraphics
 {
@@ -34,15 +34,15 @@ public:
 
 	bool InitGraphics(std::string caption, int Width, int Height, int BPP);
 	void Free();
-	bool End();		// End Drawing Stuff
-	void Begin();	// begins drawing stuff
+	bool End();	// End Drawing Stuff
+	void Begin(); // begins drawing stuff
 
 	// Accessors
-	SDL_Surface* GetScreen() {return m_Screen;}
-	unsigned int GetTicks() {return m_CurrentTime;}
+	SDL_Surface* GetScreen();
+	unsigned int GetTicks();
 
-	int GetWidth() {return m_ScreenWidth;}
-	int GetHeight() {return m_ScreenHeight;}
+	int GetWidth();
+	int GetHeight();
 
 private:
 	// Screen

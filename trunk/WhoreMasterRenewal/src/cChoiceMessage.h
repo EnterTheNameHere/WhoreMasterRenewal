@@ -20,44 +20,23 @@
 #define CCHOICEMESSAGE_H_INCLUDED_1527
 #pragma once
 
-#include "CSurface.h"
-#include "cFont.h"
-
 #include <string>
+
+class cChoiceManager;
+extern cChoiceManager g_ChoiceManager;
+
+class cFont;
+class cChoice;
+class SDL_Surface;
+class CSurface;
 
 typedef void (*menu_callback_type)(int);
 
 class cChoice	// represents a list of text selections and the currently selected text
 {
 public:
-
-	cChoice() {m_Next=0;m_Choices=0; m_NumChoices=0;m_CurrChoice=-1;m_Background=m_Border=0;m_ElementSelectedBackground=m_ElementBackground=0;m_Position=0;m_HeaderBackground=0;m_ScrollDisabled=false;}
-	~cChoice()
-	{
-		if(m_Next)
-			delete m_Next;
-		m_Next = 0;
-		if(m_Choices)
-			delete [] m_Choices;
-		m_Choices = 0;
-		if(m_Background)
-			SDL_FreeSurface(m_Background);
-		m_Background = 0;
-		if(m_Border)
-			SDL_FreeSurface(m_Border);
-		m_Border = 0;
-		if(m_ElementBackground)
-			SDL_FreeSurface(m_ElementBackground);
-		m_ElementBackground = 0;
-		if(m_ElementSelectedBackground)
-			SDL_FreeSurface(m_ElementSelectedBackground);
-		m_ElementSelectedBackground = 0;
-		if(m_HeaderBackground)
-			SDL_FreeSurface(m_HeaderBackground);
-		m_HeaderBackground = 0;
-	}
-
-
+	cChoice();
+	~cChoice();
 
 	int m_NumChoices;	// The number of choices available
 	std::string* m_Choices;	// array of choices available
@@ -69,7 +48,10 @@ public:
 	SDL_Surface* m_ElementBackground;	// the background and border for the list elements
 	SDL_Surface* m_ElementSelectedBackground;	// the background and border for the list elements
 	SDL_Surface* m_HeaderBackground;
-	int m_XPos, m_YPos, m_Width, m_Height;
+	int m_XPos;
+	int m_YPos;
+	int m_Width;
+	int m_Height;
 
 	int m_NumDrawnElements;
 	int m_eWidth;

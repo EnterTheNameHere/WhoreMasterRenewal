@@ -31,10 +31,13 @@
 #include "cScrollBar.h"
 #include "cCheckBox.h"
 #include "cXmlWidget.h"
+#include "CGraphics.h"
+#include "CSurface.h"
+#include "cInterfaceEvent.h"
 
 #include <string>
 #include <cctype>
-#include <time.h>
+#include <ctime>
 
 typedef unsigned int u_int;
 
@@ -42,7 +45,6 @@ extern CLog g_LogFile;
 extern CGraphics g_Graphics;
 extern CResourceManager rmanager;
 CResourceManager rmanager;
-extern cInterfaceEventManager g_InterfaceEvents;
 
 extern unsigned char g_WindowBorderR, g_WindowBorderG, g_WindowBorderB;
 extern unsigned char g_WindowBackgroundR, g_WindowBackgroundG, g_WindowBackgroundB;

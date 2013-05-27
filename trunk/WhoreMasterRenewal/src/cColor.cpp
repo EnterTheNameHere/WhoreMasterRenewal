@@ -18,11 +18,13 @@
  */
 
 #include "cColor.h"
+#include "CLog.h"
 
-extern CLog g_LogFile;
-struct SDL_Color;
+#include <SDL.h>
 
-Uint8 cColor::convertFromHex(std::string hex)
+#include <string>
+
+Uint8 cColor::convertFromHex( std::string hex )
 {
 	Uint8 value = 0;
     
@@ -79,7 +81,7 @@ Uint8 cColor::convertFromHex(std::string hex)
 	return value;
 }
 
-void cColor::HexToSDLColor(std::string HexColor, SDL_Color* SDLColor)
+void cColor::HexToSDLColor( std::string HexColor, SDL_Color* SDLColor )
 {
 	int offset = (HexColor.substr(0, 1) == "#") ? 1 : 0;
 

@@ -4,7 +4,7 @@
 #define CRESOURCEMANAGER_H_INCLUDED_1520
 #pragma once
 
-#include "CResource.h"
+class CResource;
 
 // Constants
 const int MAX_RESOURCES = 30;	// The maximum amount of resources in a list, when it reaches this number one is removed from

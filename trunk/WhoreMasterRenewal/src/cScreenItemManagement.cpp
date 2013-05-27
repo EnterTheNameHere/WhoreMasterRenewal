@@ -10,6 +10,8 @@
 #include "cMessageBox.h"
 #include "cInterfaceEvent.h"
 #include "cGirls.h"
+#include "cInventory.h"
+#include "DirPath.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;
@@ -20,7 +22,7 @@ extern cWindowManager g_WinManager;
 extern bool g_AllTogle;
 extern std::string g_ReturnText;
 
-extern sGirl *selected_girl;
+extern sGirl* selected_girl;
 
 bool cScreenItemManagement::ids_set = false;
 
@@ -38,6 +40,23 @@ static std::string sel_name_l = "";
 static std::string sel_name_r = "";
 
 static SDL_Color* RarityColor[7];
+
+cScreenItemManagement::cScreenItemManagement()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "itemmanagement_screen.xml"
+    ;
+    m_filename = dp.c_str();
+    sel_pos_l = -2;
+    sel_pos_r = -2;
+}
+
+cScreenItemManagement::~cScreenItemManagement()
+{
+    
+}
 
 
 void cScreenItemManagement::set_ids()

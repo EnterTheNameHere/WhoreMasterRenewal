@@ -39,12 +39,15 @@
 #include "cGirls.h"
 #include "cTraits.h"
 #include "cCustomers.h"
+#include "cInventory.h"
+#include "CGraphics.h"
 #include "libRocketSFMLInterface/RenderInterfaceSFML.h"
 #include "libRocketSFMLInterface/SystemInterfaceSFML.h"
 #include "libRocketSFMLInterface/ShellFileInterface.h"
 
 #include "../../../../../../../DeveloperTools/Cpp/libRocket/Source/Core/StyleSheetFactory.h"
 
+#include <SDL.h>
 #include <SFML/Graphics.hpp>
 #include <Rocket/Core.h>
 #include <Rocket/Controls.h>
@@ -58,7 +61,7 @@
 #include <iomanip>
 #include <map>
 #include <vector>
-#include <signal.h>
+#include <csignal>
 
 // Function Defs
 void Shutdown();
@@ -67,6 +70,7 @@ bool Init();
 // Events
 SDL_Event vent;
 extern CResourceManager rmanager;
+extern CGraphics g_Graphics;
 
 void handle_hotkeys()
 {

@@ -20,22 +20,16 @@
 #define CCOLOR_H_INCLUDED_1533
 #pragma once
 
-#include "CLog.h"
-
-#include <SDL.h>
-
-#include <iostream>
 #include <string>
 
-extern CLog g_LogFile;
 struct SDL_Color;
+typedef uint8_t	Uint8; // Used by SDL
 
 class cColor
 {
 public:
-	Uint8 convertFromHex(std::string hex);
-
-	void HexToSDLColor(std::string HexColor, SDL_Color* SDLColor);
+	Uint8 convertFromHex( std::string hex );
+	void HexToSDLColor( std::string HexColor, SDL_Color* SDLColor );
 };
 
 #endif // CCOLOR_H_INCLUDED_1533

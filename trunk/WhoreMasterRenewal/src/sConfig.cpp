@@ -23,6 +23,8 @@
 #include "cColor.h"
 #include "XmlMisc.h"
 
+#include <SDL.h>
+
 #include <iostream>
 #include <ostream>
 #include <fstream>

@@ -20,11 +20,7 @@
 #define CSCREENSLAVEMARKET_H_INCLUDED_1513
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
-
-class cBuilding;
+#include "cInterfaceWindow.h" // required inheritance
 
 class cScreenSlaveMarket : public cInterfaceWindowXML
 {
@@ -54,20 +50,8 @@ private:
 
 	void set_ids();
 public:
-	cScreenSlaveMarket()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "slavemarket_screen.xml"
-		;
-		m_filename = dp.c_str();
-		selection = -1;
-		ImageNum = -1;
-		DetailLevel = 0;
-		sel_pos = 0;
-	}
-	virtual ~cScreenSlaveMarket() {}
+	cScreenSlaveMarket();
+	virtual ~cScreenSlaveMarket();
 
 	void init();
 	void process();

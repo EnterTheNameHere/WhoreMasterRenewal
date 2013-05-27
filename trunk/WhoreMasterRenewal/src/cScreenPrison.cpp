@@ -27,6 +27,7 @@
 #include "cMessageBox.h"
 #include "cInterfaceEvent.h"
 #include "cGirls.h"
+#include "DirPath.h"
 
 extern	bool			g_InitWin;
 extern	int			g_CurrBrothel;
@@ -42,6 +43,22 @@ extern	bool	g_DownArrow;
 
 extern void GetString();
 extern cInterfaceWindow g_GetString;
+
+cScreenPrison::cScreenPrison()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "prison_screen.xml"
+    ;
+    m_filename = dp.c_str();
+    selection = -1;
+}
+
+cScreenPrison::~cScreenPrison()
+{
+    
+}
 
 void cScreenPrison::init()
 {

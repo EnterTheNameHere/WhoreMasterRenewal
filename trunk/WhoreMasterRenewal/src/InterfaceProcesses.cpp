@@ -38,6 +38,14 @@
 #include "GameFlags.h"
 #include "cTraits.h"
 #include "cCustomers.h"
+#include "cInventory.h"
+#include "XmlMisc.h"
+#include "cTriggers.h"
+#include "cGirls.h"
+#include "CLog.h"
+#include "cRng.h"
+
+#include <SDL.h>
 
 extern sInterfaceIDs g_interfaceid;
 // globals used for the interface
@@ -47,7 +55,6 @@ bool g_AllTogle = false;	// used on screens when wishing to apply something to a
 long g_IntReturn;
 bool eventrunning = false;
 
-extern cRng g_Dice;
 bool g_WalkAround = false;	// for keeping track of weather have walked around town today
 int g_TalkCount = 10;
 bool g_GenGirls = false;

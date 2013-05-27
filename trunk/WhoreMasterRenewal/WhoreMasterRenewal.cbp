@@ -172,11 +172,13 @@
 		<Unit filename="src/CLog.h" />
 		<Unit filename="src/CRenderQue.cpp" />
 		<Unit filename="src/CRenderQue.h" />
+		<Unit filename="src/CResource.cpp" />
 		<Unit filename="src/CResource.h" />
 		<Unit filename="src/CResourceManager.cpp" />
 		<Unit filename="src/CResourceManager.h" />
 		<Unit filename="src/CSurface.cpp" />
 		<Unit filename="src/CSurface.h" />
+		<Unit filename="src/CTimer.cpp" />
 		<Unit filename="src/CTimer.h" />
 		<Unit filename="src/Constants.h" />
 		<Unit filename="src/DirPath.cpp" />
@@ -188,6 +190,7 @@
 		<Unit filename="src/Girl.cpp" />
 		<Unit filename="src/Girl.hpp" />
 		<Unit filename="src/Helper.hpp" />
+		<Unit filename="src/IconSurface.cpp" />
 		<Unit filename="src/IconSurface.h" />
 		<Unit filename="src/InterfaceGlobals.cpp" />
 		<Unit filename="src/InterfaceGlobals.h" />
@@ -197,6 +200,7 @@
 		<Unit filename="src/Logger.cpp" />
 		<Unit filename="src/Logger.hpp" />
 		<Unit filename="src/LuaUtils.hpp" />
+		<Unit filename="src/MasterFile.cpp" />
 		<Unit filename="src/MasterFile.h" />
 		<Unit filename="src/Revision.h" />
 		<Unit filename="src/WindowManager.cpp" />
@@ -260,6 +264,7 @@
 		<Unit filename="src/cImageItem.cpp" />
 		<Unit filename="src/cImageItem.h" />
 		<Unit filename="src/cInterfaceEvent.h" />
+		<Unit filename="src/cInterfaceObject.cpp" />
 		<Unit filename="src/cInterfaceObject.h" />
 		<Unit filename="src/cInterfaceWindow.cpp" />
 		<Unit filename="src/cInterfaceWindow.h" />
@@ -327,6 +332,7 @@
 		<Unit filename="src/cSlider.h" />
 		<Unit filename="src/cTariff.cpp" />
 		<Unit filename="src/cTariff.h" />
+		<Unit filename="src/cTextItem.cpp" />
 		<Unit filename="src/cTextItem.h" />
 		<Unit filename="src/cTrainable.cpp" />
 		<Unit filename="src/cTrainable.h" />

@@ -27,13 +27,14 @@
 #include "GameFlags.h"
 #include "cGirls.h"
 #include "XmlMisc.h"
+#include "cRng.h"
+#include "CLog.h"
 
 #include <sstream>
 
 extern cMessageQue		g_MessageQue;
 extern cGirls			g_Girls;
 extern cBrothelManager	g_Brothels;
-extern cRng				g_Dice;
 extern cGangManager		g_Gangs;
 extern char				buffer[1000];
 

@@ -3,9 +3,12 @@
 #include "cBrothel.h"
 #include "cGangs.h"
 #include "cGirls.h"
+#include "cRng.h"
+#include "CLog.h"
 
 extern cBrothelManager  g_Brothels;
 extern cGangManager     g_Gangs;
+
 
 cGirlGangFight::cGirlGangFight(sGirl *girl)
 {
@@ -48,11 +51,11 @@ cGirlGangFight::cGirlGangFight(sGirl *girl)
  *	more evenly for multi-select brandings and the like
  */
 	int index = g_Dice.in_range(0, v.size()-1);
-	l.ss() << "\ncGirlGangFight: random gang index = " << index;
-	l.ssend();
+	g_LogFile.ss() << "\ncGirlGangFight: random gang index = " << index;
+	g_LogFile.ssend();
 	sGang *gang = v[index];
-	l.ss() << "\ncGirlGangFight: gang = " << gang->m_Name;
-	l.ssend();
+	g_LogFile.ss() << "\ncGirlGangFight: gang = " << gang->m_Name;
+	g_LogFile.ssend();
 /*
  *	4 + 1 for each gang on guard duty
  *	that way there's a benefit to multiple gangs guarding
@@ -113,9 +116,9 @@ cGirlGangFight::cGirlGangFight(sGirl *girl)
  */
 	int pc = static_cast <int> (m_odds * 100.0);
 	int roll = g_Dice.in_range(0, 100);
- 	l.ss() << "GirlGangFight: %    = " << pc << "\n";
- 	l.ss() << "GirlGangFight: roll = " << roll;
-	l.ssend();
+ 	g_LogFile.ss() << "GirlGangFight: %    = " << pc << "\n";
+ 	g_LogFile.ss() << "GirlGangFight: roll = " << roll;
+	g_LogFile.ssend();
  	if(roll >= pc) {
 		lose_vs_own_gang(gang);
 		return;
@@ -130,8 +133,8 @@ cGirlGangFight::cGirlGangFight(sGirl *girl)
 
 void cGirlGangFight::lose_vs_own_gang(sGang* gang)
 {
- 	l.ss() << "GirlGangFight: girl loses";
-	l.ssend();
+ 	g_LogFile.ss() << "GirlGangFight: girl loses";
+	g_LogFile.ssend();
 	m_girl_wins = false;
 /*
  *	She's going to get hurt some. Moderating this, we have the fact that
@@ -166,8 +169,8 @@ void cGirlGangFight::lose_vs_own_gang(sGang* gang)
  */
 	int casualties = use_potions(gang, g_Dice.in_range(1,6) - 3);
 	gang->m_Num -= casualties;
-	l.ss() << "adjusted gang casualties = " << casualties;
-	l.ssend();
+	g_LogFile.ss() << "adjusted gang casualties = " << casualties;
+	g_LogFile.ssend();
 }
 
 int cGirlGangFight::use_potions(sGang* /*gang*/, int casualties)
@@ -201,8 +204,8 @@ int cGirlGangFight::use_potions(sGang* /*gang*/, int casualties)
 
 void cGirlGangFight::win_vs_own_gang(sGang* gang)
 {
- 	l.ss() << "GirlGangFight: girl wins";
-	l.ssend();
+ 	g_LogFile.ss() << "GirlGangFight: girl wins";
+	g_LogFile.ssend();
 	m_girl_wins = true;
 /*
  *	Give her some damage from the combat. She won, so don't kill her.

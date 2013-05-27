@@ -21,15 +21,18 @@
 #pragma once
 
 #include "Constants.h"
-#include "cEvents.h"
-#include "cTriggers.h"
-#include "cNameList.h"
+#include "cEvents.h" // required cEvents
+#include "cTriggers.h" // required cTriggerList
+#include "cNameList.h" // required cNameList
 
 #include <map>
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <fstream>
+
+class cGirls;
+extern cGirls g_Girls;
 
 class cIndexedList;
 class TiXmlElement;
@@ -94,7 +97,7 @@ typedef struct sRandomGirl
  *	stream operator for debugging
  *	plus a shitload of XML loader funcs
  */
-	friend std::ostream& operator<<(std::ostream &os, sRandomGirl &g);
+	friend std::ostream& operator<<(std::ostream& os, sRandomGirl& g);
 /*
  *	one func to load the girl node,
  *	and then one each for each embedded node
@@ -715,7 +718,7 @@ struct sGirl
 class GirlPredicate {
 public:
     virtual ~GirlPredicate() {}
-	virtual bool test(sGirl *) { return true; }
+	virtual bool test(sGirl*) { return true; }
 };
 
 // Keeps track of all the available (not used by player) girls in the game.
@@ -877,10 +880,10 @@ public:
 /*
  *	while I'm on, a few funcs to factor out some common code in DrawImages
  */
-	int num_images(sGirl *girl, int image_type) {
+	int num_images(sGirl* girl, int image_type) {
 		return girl->m_GirlImages->m_Images[image_type].m_NumImages;
 	}
-	int get_modified_image_type(sGirl *girl, int image_type, int preg_type);
+	int get_modified_image_type(sGirl* girl, int image_type, int preg_type);
 	int draw_with_default(
 		sGirl* girl,
 		int x, int y,
@@ -889,9 +892,9 @@ public:
 		bool random,
 		int img
 	);
-	int calc_abnormal_pc(sGirl *mom, sGirl *sprog, bool is_players);
+	int calc_abnormal_pc(sGirl* mom, sGirl* sprog, bool is_players);
 
-	std::vector<sGirl *>  get_girls(GirlPredicate* pred);
+	std::vector<sGirl*>  get_girls(GirlPredicate* pred);
 
 	// end mod
 

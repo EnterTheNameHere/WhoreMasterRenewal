@@ -34,10 +34,13 @@
 #include "cTraits.h"
 #include "cCustomers.h"
 #include "CSurface.h"
+#include "cInventory.h"
+#include "CLog.h"
+#include "cRng.h"
 
 #include <fstream>
 #include <algorithm>
-#include <limits.h>
+#include <climits>
 
 extern cMessageQue g_MessageQue;
 extern cBrothelManager g_Brothels;
@@ -47,7 +50,6 @@ extern cInventory g_InvManager;
 extern sGirl* MarketSlaveGirls[8];
 extern char buffer[1000];
 extern CGraphics g_Graphics;
-extern cRng g_Dice;
 extern bool g_GenGirls;
 extern cGold g_Gold;
 extern cGangManager g_Gangs;
@@ -146,7 +148,7 @@ void sGirl::setup_maps()
 		//if(m_maps_setup)
 		//	return;	// only need to do this once
 
-		g_LogFile.os() << "[sGirl::setup_maps] Setting up Stats, Skills and Status codes."<< std::endl;
+		g_LogFile.os() << "[sGirl::setup_maps] Setting up Stats, Skills and Status codes." << std::endl;
 
 		m_maps_setup = true;
 		stat_lookup["Charisma"]		= STAT_CHARISMA;
@@ -2815,7 +2817,7 @@ bool sGirl::LoadGirlXML(TiXmlHandle hGirl)
 	else
 	{
 	    // HACK
-		m_Name = (char*)&"";
+		m_Name = const_cast<char*>("");
 	}
 
 	if (pGirl->Attribute("Realname"))

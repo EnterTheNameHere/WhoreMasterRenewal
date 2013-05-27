@@ -21,7 +21,7 @@
 #define CGAMEOBJECT_H_INCLUDED_1530
 #pragma once
 
-#include "CRenderQue.h"
+#include "CRenderQue.h" // required inheritance
 
 class CGameObject : public CRenderObject
 {

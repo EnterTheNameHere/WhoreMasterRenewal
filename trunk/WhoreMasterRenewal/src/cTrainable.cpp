@@ -17,18 +17,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "cTrainable.h"
 #include "cRng.h"
 #include "CLog.h"
 #include "cGirls.h"
-#include "cTrainable.h"
 #include "Constants.h"
 
 #include <algorithm>
 
-#include <math.h>
+#include <cmath>
 
-extern	cRng	g_Dice;
-extern	CLog	g_LogFile;
 extern	cGirls	g_Girls;
 
 int cTrainable::value()

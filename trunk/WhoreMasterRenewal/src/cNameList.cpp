@@ -24,9 +24,6 @@
 
 #include <fstream>
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-
 cNameList::cNameList(std::string file) 
 {
 	load(file);

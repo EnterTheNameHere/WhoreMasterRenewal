@@ -29,6 +29,14 @@
 #include "cMessageBox.h"
 #include "cChoiceMessage.h"
 #include "cInterfaceEvent.h"
+#include "cGirls.h"
+#include "CLog.h"
+#include "cRng.h"
+#include "sConfig.h"
+#include "DirPath.h"
+#include "cChoiceMessage.h"
+#include "cMessageBox.h"
+#include "DirPath.h"
 
 #include <iostream>
 #include <locale>
@@ -50,6 +58,24 @@ extern bool g_AllTogle;
 extern cInterfaceWindow g_GetString;
 
 bool cScreenTown::ids_set = false;
+
+cScreenTown::cScreenTown()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "town_screen.xml"
+    ;
+    m_filename = dp.c_str();
+    BuyBrothel = -1;
+    GetName = false;
+    m_first_walk = true;
+}
+
+cScreenTown::~cScreenTown()
+{
+    
+}
 
 void cScreenTown::set_ids()
 {
@@ -345,7 +371,7 @@ void cScreenTown::do_walk()
 /*
  *	let's get a girl for the player to meet
  */
-	sGirl *girl = g_Girls.GetRandomGirl();
+	sGirl* girl = g_Girls.GetRandomGirl();
 /*
  *	if there's no girl, no meeting
  */

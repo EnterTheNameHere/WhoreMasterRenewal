@@ -21,7 +21,7 @@
 
 #include <iostream>
 #include <cstring>
-#include <stdio.h>
+#include <cstdio>
 
 extern cTraits g_Traits;
 cTraits g_Traits;

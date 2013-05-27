@@ -20,9 +20,7 @@
 #define CSCREENBANK_H_INCLUDED_1519
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
 
 class cScreenBank : public cInterfaceWindowXML
 {
@@ -46,18 +44,8 @@ private:
 
 	void set_ids();
 public:
-	cScreenBank()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "bank_screen.xml"
-		;
-		m_filename = dp.c_str();
-		GetDeposit = false;
-		GetWithdraw = false;
-	}
-	virtual ~cScreenBank() {}
+	cScreenBank();
+	virtual ~cScreenBank();
 
 	void init();
 	void process();

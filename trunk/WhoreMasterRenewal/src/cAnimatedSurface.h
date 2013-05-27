@@ -20,11 +20,9 @@
 #define CANIMATEDSURFACE_H_INCLUDED_1533
 #pragma once
 
-#include <SDL.h>
+#include <SDL.h> // Required SDL_Rect
 
 #include <string>
-#include <iostream>
-#include <fstream>
 
 class CSurface;
 

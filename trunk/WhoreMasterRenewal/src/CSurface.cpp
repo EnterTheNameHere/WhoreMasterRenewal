@@ -23,6 +23,7 @@
 #include "CResourceManager.h"
 
 #include <SDL_image.h>
+#include <SDL_rotozoom.h>
 
 extern CLog g_LogFile;
 extern CGraphics g_Graphics;

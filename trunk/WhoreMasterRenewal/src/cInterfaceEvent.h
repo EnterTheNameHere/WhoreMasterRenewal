@@ -20,6 +20,9 @@
 #define CINTERFACEEVENT_H_INCLUDED_1526
 #pragma once
 
+class cInterfaceEventManager;
+extern cInterfaceEventManager g_InterfaceEvents;
+
 const int EVENT_BUTTONCLICKED = 1;
 const int EVENT_SELECTIONCHANGE = 2;
 const int EVENT_CHECKBOXCLICKED = 3;

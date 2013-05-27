@@ -21,125 +21,25 @@
 #define MASTERFILE_H_INCLUDED_1501
 #pragma once
 
-#include "XmlMisc.h"
-
 #include <map>
-#include <iostream>
-#include <istream>
-#include <fstream>
+#include <string>
+
+class TiXmlHandle;
+class TiXmlElement;
 
 class MasterFile
 {
+public:
+	void LoadLegacy( std::string );
+	bool exists( std::string );
+	size_t size();
+	void add( std::string );
+	bool LoadXML( TiXmlHandle );
+	TiXmlElement* SaveXML( TiXmlElement* );
+
 private:
 	typedef std::map<std::string,int> FileFlags;
 	FileFlags files;
-
-public:
-	void LoadLegacy(std::string filename)
-	{
-		files.clear();
-		std::ifstream ifs;
-		char buffer[1024];	// power of 2 makes better use of memory
-/*
- *		format the path for the master file.
- */
-	    std::string mfile = filename + ".mast";
-		DirPath mastfile = DirPath() << "Saves" << mfile;
-		filename = mastfile.c_str();
-/*
- *		open the file
- */
-		ifs.open(mastfile.c_str());
-/*
- *		problem opening the file?
- */
-		if(!ifs.good())
-		{
-			ifs.close();
-			return;
-		}
-/*
- *		loop through the file, one line at a time
- */
-		while(ifs.good())
-		{
-/*
- *			Using "sizeof()" means that the size is right even if the
- *			buffer size is later changed.
- */
-			ifs.getline(buffer, sizeof(buffer)-1, '\n');
-
-			if (std::string(buffer).empty() == false)
-			{
-/*
- *				add the file to the map
- */
-				files[std::string(buffer)] = 1;
-			}
-		}
-		ifs.close();
-	}
-
-	bool	exists(std::string name)
-	{
-		return(files.find(name) != files.end());
-	}
-
-	size_t	size()
-	{
-		return files.size();
-	}
-
-	void	add(std::string str)
-	{
-		files[str] = 1;
-	}
-
-	bool LoadXML(TiXmlHandle hLoadedFiles)
-	{
-		files.clear();
-		TiXmlElement* pLoadedFiles = hLoadedFiles.ToElement();
-		if (pLoadedFiles == 0)
-		{
-			return false;
-		}
-
-		TiXmlElement* pGirlsFiles = pLoadedFiles->FirstChildElement("Girls_Files");
-		if (pGirlsFiles == 0)
-		{
-			return false;
-		}
-
-		for(TiXmlElement* pFile = pGirlsFiles->FirstChildElement("File");
-			pFile != 0;
-			pFile = pFile->NextSiblingElement("File"))
-		{
-			if (pFile->Attribute("Filename"))
-			{
-				add(pFile->Attribute("Filename"));
-			}
-		}
-
-		return true;
-	}
-
-	TiXmlElement* SaveXML(TiXmlElement* pRoot)
-	{
-		TiXmlElement* pLoadedFiles = new TiXmlElement("Loaded_Files");
-		pRoot->LinkEndChild(pLoadedFiles);
-
-		TiXmlElement* pGirlsFiles = new TiXmlElement("Girls_Files");
-		pLoadedFiles->LinkEndChild(pGirlsFiles);
-
-		FileFlags::const_iterator it;
-		for(it = files.begin(); it != files.end(); it++)
-		{
-			TiXmlElement* pFile = new TiXmlElement("File");
-			pGirlsFiles->LinkEndChild(pFile);
-			pFile->SetAttribute("Filename", it->first);
-		}
-		return pLoadedFiles;
-	}
 };
 
 #endif // MASTERFILE_H_INCLUDED_1501

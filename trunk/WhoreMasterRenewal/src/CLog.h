@@ -20,14 +20,12 @@
 #define CLOG_H_INCLUDED_1524
 #pragma once
 
-#include "SFML/System/Lock.hpp"
-#include "SFML/System/Mutex.hpp"
-
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <vector>
+
+class CLog;
+extern CLog g_LogFile;
 
 struct CLogInner
 {
@@ -36,14 +34,13 @@ public:
 	~CLogInner();
 	void init();
 
-	void write(std::string text);
-	std::ofstream	&os()	{ return m_ofile; }
-	std::stringstream	&ss()	{ return m_ss; }
-	void ssend() {
-		write(m_ss.str());
-		m_ss.str("");
-	}
-static	bool setup;
+	void write( std::string text );
+	std::ofstream& os();
+	std::stringstream& ss();
+	void ssend();
+    
+private:
+    static bool setup;
 	std::ofstream m_ofile;
 	std::stringstream m_ss;
 };
@@ -51,40 +48,17 @@ static	bool setup;
 class CLog
 {
 public:
-	CLog(bool a_glob = false)
-        : m_glob( a_glob )
-	{}
-	~CLog() {
-		if(!m_glob) {
-			return;
-		}
-		if(inner) {
-			delete inner;
-		}
-		inner = nullptr;
-	}
-	void write(std::string text)
-	{
-		if(!inner) inner = new CLogInner();
-		inner->write(text);
-	}
-	std::ofstream	&os()	{
-		if(!inner) inner = new CLogInner();
-		return inner->m_ofile;
-	}
-	std::stringstream	&ss()	{
-		if(!inner) inner = new CLogInner();
-		return inner->m_ss;
-	}
-	void		ssend()	{
-		if(!inner) inner = new CLogInner();
-		inner->ssend();
-	}
+	CLog( bool a_glob = false );
+	~CLog();
+	
+	void write( std::string text );
+	std::ofstream& os();
+	std::stringstream& ss();
+	void ssend();
+	
 private:
 	bool m_glob;
-static	CLogInner *inner;
+    static CLogInner* inner;
 };
-
-extern CLog g_LogFile;
 
 #endif // CLOG_H_INCLUDED_1524

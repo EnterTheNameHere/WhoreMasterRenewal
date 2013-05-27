@@ -20,9 +20,9 @@
 #define SFACILITY_H_INCLUDED_1500
 #pragma once
 
-#include "cTariff.h"
+#include "cTariff.h" // required cTariff
 
-#include <math.h>
+#include <cmath>
 
 struct sFacility;
 

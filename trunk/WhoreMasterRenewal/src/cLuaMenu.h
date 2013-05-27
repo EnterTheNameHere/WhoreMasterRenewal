@@ -20,16 +20,13 @@
 #define CLUAMENU_H_INCLUDED_1523
 #pragma once
 
-#include "cChoiceMessage.h"
-#include "cLuaScript.h"
-#include "CLog.h"
-#include "sConfig.h"
-#include "CGraphics.h"
+#include "cLuaScript.h" // required cLuaState
+#include "sConfig.h" // required cConfig
 
 #include <string>
 #include <vector>
 
-typedef std::vector<std::string *> str_vec;
+typedef std::vector<std::string*> str_vec;
 
 class cLuaMenuInner
 {
@@ -38,7 +35,6 @@ class cLuaMenuInner
  *	is cheap
  */
 	cLuaState	l;
-	CLog		log;
 	cConfig		cfg;
 /*
  *	parameters to the initial show method

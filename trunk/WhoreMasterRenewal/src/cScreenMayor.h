@@ -20,9 +20,7 @@
 #define CSCREENMAYOR_H_INCLUDED_1514
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
 
 class cScreenMayor : public cInterfaceWindowXML
 {
@@ -43,17 +41,8 @@ private:
 
 	void set_ids();
 public:
-	cScreenMayor()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "mayor_screen.xml"
-		;
-		m_filename = dp.c_str();
-		SetBribe = false;
-	}
-	virtual ~cScreenMayor() {}
+	cScreenMayor();
+	virtual ~cScreenMayor();
 
 	void init();
 	void process();

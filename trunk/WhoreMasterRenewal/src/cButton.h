@@ -20,7 +20,7 @@
 #define CBUTTON_H_INCLUDED_1533
 #pragma once
 
-#include "cInterfaceObject.h"
+#include "cInterfaceObject.h" // required inheritance
 
 #include <string>
 
@@ -28,7 +28,6 @@ class CSurface;
 
 class cButton : public cInterfaceObject
 {
-	bool m_Hidden;
 public:
 	cButton() {
 		m_CurrImage = m_OffImage = m_DisabledImage = m_OnImage = 0;
@@ -55,17 +54,19 @@ public:
 	void hide()	{ m_Hidden = true; }
 	void unhide()	{ m_Hidden = false; }
 	void toggle()	{ m_Hidden = !m_Hidden; }
-
-	CSurface* m_OffImage;
+	
+private:
+    int m_ID;
+    
+    CSurface* m_OffImage;
 	CSurface* m_DisabledImage;
 	CSurface* m_OnImage;
 	CSurface* m_CurrImage;
 
-	bool m_Disabled;
-
-	int m_ID;
-
 	cButton* m_Next;	// next button on the window
+	
+	bool m_Disabled;
+    bool m_Hidden;
 };
 
 

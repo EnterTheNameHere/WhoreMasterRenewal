@@ -20,11 +20,13 @@
 #define CSCROLLBAR_H_INCLUDED_1512
 #pragma once
 
-#include "CSurface.h"
-#include "cInterfaceObject.h"
-#include "cInterfaceEvent.h"
+#include "cInterfaceObject.h" // required inheritance
 
 #include <string>
+
+class SDL_Surface;
+class SDL_Rect;
+typedef uint8_t	Uint8; // Used by SDL
 
 class cScrollBar : public cInterfaceObject
 {
@@ -97,7 +99,7 @@ public:
 
 	int m_ID;
 
-	int *ParentPosition;  // pointer to callback value of parent with updated position
+	int* ParentPosition;  // pointer to callback value of parent with updated position
 };
 
 

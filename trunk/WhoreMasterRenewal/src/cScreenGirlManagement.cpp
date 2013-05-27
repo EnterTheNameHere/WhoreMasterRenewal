@@ -29,6 +29,7 @@
 #include "cInterfaceEvent.h"
 #include "cListBox.h"
 #include "cGirls.h"
+#include "DirPath.h"
 
 #include <algorithm>
 
@@ -62,6 +63,18 @@ extern int cycle_pos;
 
 
 bool cScreenGirlManagement::ids_set = false;
+
+cScreenGirlManagement::cScreenGirlManagement()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "girl_management_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+cScreenGirlManagement::~cScreenGirlManagement() {}
+
 
 void cScreenGirlManagement::set_ids()
 {

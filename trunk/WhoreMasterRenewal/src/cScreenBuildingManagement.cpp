@@ -25,6 +25,7 @@
 #include "cGetStringScreenManager.h"
 #include "cInterfaceEvent.h"
 #include "sFacility.h"
+#include "DirPath.h"
 
 extern	bool			g_InitWin;
 extern	int			g_CurrBrothel;
@@ -40,6 +41,23 @@ extern	bool	g_DownArrow;
 
 extern void GetString();
 extern cInterfaceWindow g_GetString;
+
+cBuildingManagement::cBuildingManagement()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "upgrade_screen.xml"
+    ;
+    m_filename = dp.c_str();
+    selection = 0;
+    screen = 0;
+}
+
+cBuildingManagement::~cBuildingManagement()
+{
+    
+}
 
 void cBuildingManagement::IDBlock::hide(cBuildingManagement *mgr)
 {

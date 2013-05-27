@@ -20,12 +20,14 @@
 #define CSURFACE_H_INCLUDED_1511
 #pragma once
 
-#include "CResource.h"
-
-#include <SDL_rotozoom.h>
+#include "CResource.h" // required inheritance
 
 #include <string>
 #include <vector>
+
+class SDL_Surface;
+class SDL_Rect;
+typedef uint32_t Uint32; // Used by SDL
 
 class CSurface : public CResource
 {

@@ -21,8 +21,10 @@
 #pragma once
 
 #include "Constants.h"
-#include "cInterfaceObject.h"
-#include "cFont.h"
+#include "cInterfaceObject.h" // required inheritance
+#include "cFont.h" // required cFont
+
+#include <SDL_video.h> // required SDL_Rect
 
 #include <vector>
 

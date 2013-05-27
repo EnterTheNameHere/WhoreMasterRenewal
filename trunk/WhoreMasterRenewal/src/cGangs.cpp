@@ -29,6 +29,9 @@
 #include "cTariff.h"
 #include "XmlMisc.h"
 #include "DirPath.h"
+#include "cInventory.h"
+#include "cRng.h"
+#include "CLog.h"
 
 #include <sstream>
 #include <algorithm>
@@ -42,7 +45,6 @@ extern unsigned long g_Year;
 extern unsigned long g_Month;
 extern unsigned long g_Day;
 extern CGraphics g_Graphics;
-extern cRng g_Dice;
 extern cGold g_Gold;
 
 extern char buffer[1000];

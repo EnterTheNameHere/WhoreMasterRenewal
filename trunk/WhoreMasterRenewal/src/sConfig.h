@@ -25,10 +25,8 @@
 #include <vector>
 
 class TiXmlElement;
-
-typedef unsigned int u_int;
-
 struct SDL_Color;
+typedef unsigned int u_int;
 
 struct sConfigData
 {

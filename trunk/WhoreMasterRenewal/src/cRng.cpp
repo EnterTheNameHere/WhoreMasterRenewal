@@ -20,50 +20,91 @@
 #include "cRng.h"
 #include "sConfig.h"
 
-extern cRng g_Dice;
+#include <cstdlib>
+#include <ctime>
+
 cRng g_Dice;
+
+cRng::cRng()
+{
+    srand( static_cast<int>( time(0) ) );
+}
+
+cRng::~cRng()
+{
+    
+}
 
 /*
  * easier to use the method internally than an operator
  * (OK - I could use (*this) % foo, but that's messy...)
  */
-int cRng::random(int n)
+int cRng::random( int n )
 {
-        float scaling_factor = rand() / float(RAND_MAX);
-        return  int(scaling_factor * n );
+    float scaling_factor = rand() / float(RAND_MAX);
+    return int( scaling_factor * n );
 }
 
+int cRng::operator %( int n )
+{
+    return random(n);
+}
 
+int cRng::operator +( int n )
+{
+    return random(100) + n;
+}
 
-int cRng::in_range(int min, int max, int range)
+bool cRng::percent( int n )
+{
+    return ( 1 + random(100) ) < n;
+}
+
+int cRng::d100()
+{
+    return random(100) + 1;
+}
+
+int cRng::in_range( int min, int max, int range )
 {
 	int diff = max - min;
 
-	if(diff == 0) return max;
-	if(diff < 0) return random(range);
-	return min + random(diff);
+	if( diff == 0 )
+        return max;
+	if( diff < 0 )
+        return random( range );
+	
+	return min + random( diff );
 }
 
-bool cRng::is_boy(int mod)
+bool cRng::is_boy( int mod )
 {
 	cConfig cfg;
 
 	int chance = 100 - cfg.pregnancy.chance_of_girl();
 	chance += mod;
-	if(chance > 100) chance = 100;
-	if(chance < 0) chance = 0;
-	return percent(chance);
+	
+	if( chance > 100 )
+        chance = 100;
+	if( chance < 0 )
+        chance = 0;
+    
+	return percent( chance );
 }
 
-bool cRng::is_girl(int mod)
+bool cRng::is_girl( int mod )
 {
 	cConfig cfg;
 
 	int chance = cfg.pregnancy.chance_of_girl();
 	chance += mod;
-	if(chance > 100) chance = 100;
-	if(chance < 0) chance = 0;
-	return percent(chance);
+	
+	if( chance > 100 )
+        chance = 100;
+	if( chance < 0 )
+        chance = 0;
+    
+	return percent( chance );
 }
 
 //end mod

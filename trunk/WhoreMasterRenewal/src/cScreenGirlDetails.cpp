@@ -30,6 +30,9 @@
 #include "cMessageBox.h"
 #include "cInterfaceEvent.h"
 #include "cTraits.h"
+#include "cGirls.h"
+#include "CLog.h"
+#include "DirPath.h"
 
 #include <algorithm>
 
@@ -65,6 +68,22 @@ extern std::vector<int> cycle_girls;
 extern int cycle_pos;
 
 bool cScreenGirlDetails::ids_set = false;
+
+cScreenGirlDetails::cScreenGirlDetails()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "girl_details_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+
+cScreenGirlDetails::~cScreenGirlDetails()
+{
+    
+}
+
 
 void cScreenGirlDetails::set_ids()
 {

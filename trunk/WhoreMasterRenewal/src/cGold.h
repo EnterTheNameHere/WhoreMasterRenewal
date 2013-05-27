@@ -20,14 +20,12 @@
 #define CGOLD_H_INCLUDED_1528
 #pragma once
 
-#include "CLog.h"
-
+#include <iostream>
+#include <sstream>
 #include <string>
 #include <map>
 #include <iomanip>
-#include <math.h>
-
-extern CLog g_LogFile;
+#include <cmath>
 
 struct sBrothel;
 class TiXmlElement;
@@ -37,7 +35,6 @@ class cGoldBase
 {
 	struct in {
 		double brothel_work;
-
 		double street_work;
 		double movie_income;
 		double bar_income;

@@ -40,6 +40,7 @@
 #include "cMessageBox.h"
 #include "cChoiceMessage.h"
 #include "cInterfaceEvent.h"
+#include "CLog.h"
 
 #include <iostream>
 

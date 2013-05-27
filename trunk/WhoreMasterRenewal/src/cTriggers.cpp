@@ -24,12 +24,12 @@
 #include "cRng.h"
 #include "GameFlags.h"
 #include "XmlMisc.h"
+#include "CLog.h"
 
 #include <fstream>
 
 extern cGirls g_Girls;
 extern cGold g_Gold;
-extern cRng g_Dice;
 static std::map<std::string,int> trigger_types;
 
 cTrigger::cTrigger()

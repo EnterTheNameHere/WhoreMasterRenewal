@@ -21,8 +21,6 @@
 #include "CLog.h"
 #include "CSurface.h"
 
-extern CLog g_LogFile;
-
 bool cAnimatedSurface::DrawFrame(int x, int y, int width, int height, unsigned int currentTime)	// Updates animation according to speed, and then draws it on the screen
 {
 	SDL_Rect temp = m_Frames;

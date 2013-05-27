@@ -25,6 +25,7 @@
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
 #include "cInterfaceEvent.h"
+#include "DirPath.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;
@@ -40,6 +41,22 @@ extern void GetInt();
 extern cInterfaceWindow g_GetInt;
 
 bool cScreenMayor::ids_set = false;
+
+cScreenMayor::cScreenMayor()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "mayor_screen.xml"
+    ;
+    m_filename = dp.c_str();
+    SetBribe = false;
+}
+cScreenMayor::~cScreenMayor()
+{
+    
+}
+
 
 void cScreenMayor::set_ids()
 {

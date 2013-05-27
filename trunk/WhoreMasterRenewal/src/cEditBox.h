@@ -20,12 +20,12 @@
 #define CEDITBOX_H_INCLUDED_1531
 #pragma once
 
-#include "CSurface.h"
-#include "cInterfaceObject.h"
-#include "cInterfaceEvent.h"
-#include "cFont.h"
+#include "cInterfaceObject.h" // required
 
 #include <string>
+
+class cFont;
+class SDL_Surface;
 
 class cEditBox : public cInterfaceObject
 {
@@ -37,7 +37,7 @@ public:
 	bool IsOver(int x, int y);
 	bool OnClicked(int x, int y);
 	void ClearText();
-    std::string GetText() {return m_Text->GetText();}
+    std::string GetText();
 
 	void UpdateText(char key, bool upper);
 

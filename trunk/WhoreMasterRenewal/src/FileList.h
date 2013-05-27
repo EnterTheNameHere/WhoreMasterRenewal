@@ -20,7 +20,7 @@
 #define FILELIST_H_INCLUDED_1507
 #pragma once
 
-#include "DirPath.h"
+#include "DirPath.h" // required DirPath
 
 #include <string>
 #include <vector>

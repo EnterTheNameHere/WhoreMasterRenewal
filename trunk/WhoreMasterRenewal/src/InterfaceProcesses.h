@@ -20,9 +20,9 @@
 #define INTERFACEPROCESSES_H_INCLUDED_1504
 #pragma once
 
-#include "XmlMisc.h"
-
 #include <string>
+
+class TiXmlHandle;
 
 // Moved from main.cpp
 extern bool g_LeftArrow;

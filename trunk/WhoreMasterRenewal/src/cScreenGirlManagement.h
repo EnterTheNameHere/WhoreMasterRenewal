@@ -20,9 +20,9 @@
 #define CSCREENGIRLMANAGEMENT_H_INCLUDED_1517
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
+
+struct sGirl;
 
 class cScreenGirlManagement : public cInterfaceWindowXML
 {
@@ -55,22 +55,14 @@ private:
 	int night_id;		// Night button
 
 	void set_ids();
-	bool GirlDead(sGirl *dgirl);
+	bool GirlDead(sGirl* dgirl);
 	void RefreshSelectedJobType();
 	void RefreshJobList();
 	void GetSelectedGirls(std::vector<int> *girl_array);
 	void ViewSelectedGirl();
 public:
-	cScreenGirlManagement()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "girl_management_screen.xml"
-		;
-		m_filename = dp.c_str();
-	}
-	virtual ~cScreenGirlManagement() {}
+	cScreenGirlManagement();
+	virtual ~cScreenGirlManagement();
 
 	void init();
 	void process();

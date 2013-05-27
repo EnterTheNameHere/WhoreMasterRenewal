@@ -21,11 +21,14 @@
 #include "CLog.h"
 #include "CResourceManager.h"
 #include "DirPath.h"
+#include "CGraphics.h"
+#include "cInterfaceEvent.h"
 
 #include <SDL_image.h>
 
 extern cInterfaceEventManager g_InterfaceEvents;
 extern CResourceManager rmanager;
+extern CGraphics g_Graphics;
 
 cScrollBar* g_DragScrollBar = nullptr;
 

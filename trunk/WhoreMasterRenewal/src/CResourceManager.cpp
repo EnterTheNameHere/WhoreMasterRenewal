@@ -18,6 +18,7 @@
  */
 
 #include "CResourceManager.h"
+#include "CResource.h"
 
 CResourceManager::CResourceManager()
 {

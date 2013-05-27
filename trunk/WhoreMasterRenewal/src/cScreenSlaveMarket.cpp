@@ -27,6 +27,11 @@
 #include "cInterfaceEvent.h"
 #include "cGirls.h"
 #include "cTraits.h"
+#include "CLog.h"
+#include "cRng.h"
+#include "sConfig.h"
+#include "cTariff.h"
+#include "DirPath.h"
 
 extern	bool			g_InitWin;
 extern	int			g_CurrBrothel;
@@ -48,6 +53,25 @@ extern void GetString();
 extern cInterfaceWindow g_GetString;
 
 bool cScreenSlaveMarket::ids_set = false;
+
+cScreenSlaveMarket::cScreenSlaveMarket()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "slavemarket_screen.xml"
+    ;
+    m_filename = dp.c_str();
+    selection = -1;
+    ImageNum = -1;
+    DetailLevel = 0;
+    sel_pos = 0;
+}
+
+cScreenSlaveMarket::~cScreenSlaveMarket()
+{
+    
+}
 
 void cScreenSlaveMarket::set_ids()
 {

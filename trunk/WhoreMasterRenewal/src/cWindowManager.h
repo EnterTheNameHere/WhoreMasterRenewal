@@ -20,10 +20,16 @@
 #define CWINDOWMANAGER_H_INCLUDED_1508
 #pragma once
 
-#include "cInterfaceWindow.h"
-
 #include <stack>
 #include <vector>
+#include <map>
+#include <string>
+
+class cWindowManager;
+extern cWindowManager g_WinManager;
+
+class cInterfaceWindow;
+class cInterfaceWindowXML;
 
 typedef struct sWindow
 {
@@ -33,19 +39,9 @@ typedef struct sWindow
 	bool xmlfunc;
 	sWindow* m_Next;
 
-	sWindow()
-	{
-		m_Next = 0;
-		m_Interface = 0;
-	}
+	sWindow();
 
-	~sWindow()
-	{
-		if(m_Next)
-			delete m_Next;
-		m_Next = 0;
-		m_Interface = 0;
-	}
+	~sWindow();
 }sWindow;
 
 typedef void (*process_func)();
@@ -55,21 +51,11 @@ class cWindowManager
 {
 	std::map<std::string,cInterfaceWindowXML *> windows;
 public:
-	cWindowManager()
-	{
-		m_Parent = 0;
-	}
+	cWindowManager();
 
-	~cWindowManager()
-	{
-		if(m_Parent)
-			delete m_Parent;
-		m_Parent = 0;
-	}
+	~cWindowManager();
 
-	void add_window(std::string name, cInterfaceWindowXML *win) {
-		windows[name] = win;
-	}
+	void add_window(std::string name, cInterfaceWindowXML *win);
 
 /*
  *	add the screen to the stac
@@ -82,67 +68,25 @@ public:
 	void push(process_funcxml Process,cInterfaceWindow * Interface);
 
 	// remove function from the stack
-	void Pop()
-	{
-		if(m_Parent != 0)
-		{
-			sWindow *InterfacePtr = m_Parent;
-			m_Parent = m_Parent->m_Next;
-			InterfacePtr->m_Next = 0;
-			delete InterfacePtr;
-			InterfacePtr = 0;
-		}
-	}
+	void Pop();
 
-	void PopToWindow(cInterfaceWindow* Interface)
-	{
-		if(m_Parent != 0)
-		{
-			while(m_Parent->m_Interface != Interface)
-				Pop();
-		}
-	}
+	void PopToWindow(cInterfaceWindow* Interface);
 
-	void UpdateCurrent()
-	{
-		if(!m_Parent) {
-			return;
-		}
-		if(m_Parent->xmlfunc)
-			m_Parent->XmlFunction(m_Parent->m_Interface);
-		else
-			m_Parent->Function();
-	}
+	void UpdateCurrent();
 
-	void UpdateMouseMovement(int x, int y)
-	{
-		if(m_Parent)
-			m_Parent->m_Interface->UpdateWindow(x, y);
-	}
+	void UpdateMouseMovement(int x, int y);
 
-	void UpdateMouseDown(int x, int y)
-	{
-		if(m_Parent)
-			m_Parent->m_Interface->MouseDown(x, y);
-	}
+	void UpdateMouseDown(int x, int y);
 
-	void UpdateMouseClick(int x, int y, bool mouseWheelDown = false, bool mouseWheelUp = false)
-	{
-		if(m_Parent)
-			m_Parent->m_Interface->Click(x, y, mouseWheelDown, mouseWheelUp);
-	}
+	void UpdateMouseClick(int x, int y, bool mouseWheelDown = false, bool mouseWheelUp = false);
 
-	void UpdateKeyInput(char key, bool upper = false)
-	{
-		if(m_Parent)
-			m_Parent->m_Interface->UpdateEditBoxes(key, upper);
-	}
+	void UpdateKeyInput(char key, bool upper = false);
 
-	bool HasEditBox() {if(!m_Parent)return false; return m_Parent->m_Interface->HasEditBox();}
+	bool HasEditBox();
 
-	cInterfaceWindow* GetWindow() {if(!m_Parent) return 0; return m_Parent->m_Interface;}
+	cInterfaceWindow* GetWindow();
 
-	void Draw() {if(m_Parent) m_Parent->m_Interface->Draw();}
+	void Draw();
 
 private:
 	sWindow* m_Parent;

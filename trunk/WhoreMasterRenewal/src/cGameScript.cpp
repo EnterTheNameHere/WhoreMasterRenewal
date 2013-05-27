@@ -29,6 +29,10 @@
 #include "cScriptUtils.h"
 #include "cGirlGangFight.h"
 #include "cGirlTorture.h"
+#include "cRng.h"
+#include "CLog.h"
+
+#include <cstring>
 
 extern bool g_InitWin;
 extern cWindowManager g_WinManager;
@@ -43,7 +47,6 @@ extern int g_CurrBrothel;
 int g_CurrBrothel = 0;
 
 extern int g_TalkCount;
-extern cRng g_Dice;
 extern cGold g_Gold;
 extern cGangManager g_Gangs;
 

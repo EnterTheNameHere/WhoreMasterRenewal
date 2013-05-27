@@ -20,7 +20,8 @@
 #define CFONT_H_INCLUDED_1531
 #pragma once
 
-#include <SDL_ttf.h>
+#include <SDL_ttf.h> // required SDL_Color
+
 #include <string>
 
 class cFont
@@ -37,19 +38,19 @@ public:
 	bool DrawMultilineText(int x, int y, int linesToSkip = 0, int offsetY = 0, SDL_Surface* destination = 0);	// draws the text surface to the screen
 	bool LoadFont(std::string font, int size);
 	void SetText(std::string text);
-	std::string GetText() {return m_Text;}
-	void GetSize(std::string text, int &width, int &height){TTF_SizeText(m_Font, text.c_str(), &width, &height);}
+	std::string GetText();
+	void GetSize(std::string text, int& width, int &height);
 	int GetWidth();
 	int GetHeight();
-	void SetMultiline(bool multi, int width, int height){m_IsMultiline=multi;m_Width = width;m_Height=height;}
+	void SetMultiline(bool multi, int width, int height);
 
-	int IsFontFixedWidth(){return TTF_FontFaceIsFixedWidth(m_Font);}
-	int GetFontHeight(){return TTF_FontHeight(m_Font);}	// returns the height in pixels of the font
-	int GetFontLineSkip(){return TTF_FontLineSkip(m_Font);}	// returns the number of pixels you should have between lines
-	void SetFontBold(bool Bold = true){TTF_SetFontStyle(m_Font, (Bold ? TTF_STYLE_BOLD : TTF_STYLE_NORMAL) );}
+	int IsFontFixedWidth();
+	int GetFontHeight();	// returns the height in pixels of the font
+	int GetFontLineSkip();	// returns the number of pixels you should have between lines
+	void SetFontBold(bool Bold = true);
 
-	int GetTotalNumberOfLines(){return m_NumLines;}
-	int GetLinesPerBox(){if(m_Lineskip>0)return (m_Height/m_Lineskip);else return m_Height/GetFontLineSkip();}
+	int GetTotalNumberOfLines();
+	int GetLinesPerBox();
 
 private:
 	TTF_Font* m_Font;

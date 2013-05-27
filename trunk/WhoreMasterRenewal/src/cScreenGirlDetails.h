@@ -20,9 +20,9 @@
 #define CSCREENGIRLDETAILS_H_INCLUDED_1518
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
+
+struct sGirl;
 
 class cScreenGirlDetails : public cInterfaceWindowXML
 {
@@ -67,7 +67,7 @@ private:
 	int traitdesc_id;	// Trait Description text
 
 	void set_ids();
-	bool GirlDead(sGirl *dgirl);
+	bool GirlDead(sGirl* dgirl);
 	void RefreshJobList();
 	void PrevGirl();
 	void NextGirl();
@@ -77,16 +77,8 @@ private:
 	bool do_take_gold(sGirl *girl, std::string &message);
 	void take_gold(sGirl *girl);
 public:
-	cScreenGirlDetails()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "girl_details_screen.xml"
-		;
-		m_filename = dp.c_str();
-	}
-	virtual ~cScreenGirlDetails() {}
+	cScreenGirlDetails();
+	virtual ~cScreenGirlDetails();
 
 	void init();
 	void process();

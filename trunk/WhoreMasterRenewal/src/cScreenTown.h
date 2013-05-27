@@ -20,11 +20,9 @@
 #define CSCREENTOWN_H_INCLUDED_1513
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
 
-class cBuilding;
+struct sGirl;
 
 class cScreenTown : public cInterfaceWindowXML
 {
@@ -59,19 +57,8 @@ private:
 	void set_ids();
 	void check_brothel(int BrothelNum);
 public:
-	cScreenTown()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "town_screen.xml"
-		;
-		m_filename = dp.c_str();
-		BuyBrothel = -1;
-		GetName = false;
-		m_first_walk = true;
-	}
-	virtual ~cScreenTown() {}
+	cScreenTown();
+	virtual ~cScreenTown();
 
 	void init();
 	void process();

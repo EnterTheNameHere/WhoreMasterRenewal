@@ -22,6 +22,8 @@
 #include "CSurface.h"
 #include "cInterfaceEvent.h"
 
+#include <SDL.h>
+
 extern cInterfaceEventManager g_InterfaceEvents;
 extern CResourceManager rmanager;
 

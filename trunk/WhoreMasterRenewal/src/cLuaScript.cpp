@@ -33,7 +33,8 @@
 #include "cWindowManager.h"
 #include "cScriptManager.h"
 #include "cTraits.h"
-
+#include "cGirls.h"
+#include "CGraphics.h"
 
 extern CGraphics g_Graphics;
 extern cChoiceManager g_ChoiceManager;
@@ -43,6 +44,7 @@ extern int g_CurrBrothel;
 extern cWindowManager g_WinManager;
 extern cInterfaceWindow g_BrothelManagement;
 extern bool g_InitWin;
+extern cGirls g_Girls;
 
 
 typedef int (*lua_func)(lua_State *L);

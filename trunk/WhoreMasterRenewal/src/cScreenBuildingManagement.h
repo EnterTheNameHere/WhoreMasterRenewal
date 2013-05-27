@@ -20,8 +20,7 @@
 #define CSCREENBUILDINGMANAGER_H_INCLUDED_1519
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
+#include "cInterfaceWindow.h" // required inheritance
 
 class cBuilding;
 struct sBrothel;
@@ -75,18 +74,8 @@ static	bool		ids_set;
 
 	void		set_ids();
 public:
-	cBuildingManagement()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "upgrade_screen.xml"
-		;
-		m_filename = dp.c_str();
-		selection = 0;
-		screen = 0;
-	}
-	virtual ~cBuildingManagement() {}
+	cBuildingManagement();
+	virtual ~cBuildingManagement();
 
 	void init();
 	void process();

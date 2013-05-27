@@ -20,9 +20,7 @@
 #define CSCREENITEMMANAGEMENT_H_INCLUDED_1514
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
 
 class cScreenItemManagement : public cInterfaceWindowXML
 {
@@ -60,18 +58,8 @@ private:
 
 	void set_ids();
 public:
-	cScreenItemManagement()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "itemmanagement_screen.xml"
-		;
-		m_filename = dp.c_str();
-		sel_pos_l = -2;
-		sel_pos_r = -2;
-	}
-	virtual ~cScreenItemManagement() {}
+	cScreenItemManagement();
+	virtual ~cScreenItemManagement();
 
 	void init();
 	void process();

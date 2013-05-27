@@ -20,9 +20,14 @@
 #define CMESSAGEBOX_H_INCLUDED_1522
 #pragma once
 
-#include "cFont.h"
+#include <queue>
+#include <string>
 
-#include<queue>
+class cMessageQue;
+extern cMessageQue g_MessageQue;
+
+class cFont;
+class SDL_Surface;
 
 const int NUM_MESSBOXCOLOR = 4;
 
@@ -31,16 +36,16 @@ const int NUM_MESSBOXCOLOR = 4;
 class cMessageBox
 {
 public:
-	cMessageBox() {m_Color=0;m_TextAdvance=false;m_Font = 0;m_Text = "";for(int i=0; i<NUM_MESSBOXCOLOR; i++)m_Background[i]=0;m_Border=0;m_Active=false;m_Advance=false;m_Position=0;}
+	cMessageBox();
 	~cMessageBox();
 
 	void CreateWindow(int x = 32, int y = 416, int width = 736, int height = 160, int BorderSize = 1, int FontSize = 16, bool scale = true);
 	void ChangeFontSize(int FontSize = 16);
 	void Draw();
 	void Advance();
-	void ResetWindow(std::string text, int color) {if(m_Font)m_Font->SetText(text);m_Text=text;m_Position=0;m_TextAdvance=false;m_Color = color;}
-	bool IsActive() {return m_Active;}
-	void SetActive(bool active) {m_Active = active;}
+	void ResetWindow(std::string text, int color);
+	bool IsActive();
+	void SetActive(bool active);
 
 private:
 	int m_XPos, m_YPos, m_Height, m_Width, m_BorderSize;
@@ -84,7 +89,7 @@ public:
 		if(text != "")
 		{
 			// Allocate a new process and push it on stack
-			sMessage *Ptr = new sMessage();
+			sMessage* Ptr = new sMessage();
 
 			if(m_Last)
 			{
@@ -109,7 +114,7 @@ public:
 	{
 		if(m_Mess)
 		{
-			sMessage *Ptr = m_Mess;
+			sMessage* Ptr = m_Mess;
 			m_Mess = m_Mess->m_Next;
 			Ptr->m_Next = 0;
 			if(m_Mess == 0)

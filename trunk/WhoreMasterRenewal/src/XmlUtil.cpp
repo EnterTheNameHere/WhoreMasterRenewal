@@ -21,9 +21,7 @@
 #include "XmlMisc.h"
 #include "CLog.h"
 
-bool XmlUtil::get_att(
-	TiXmlElement *el, const char *name, int &ipt, bool optional
-)
+bool XmlUtil::get_att( TiXmlElement* el, const char* name, int& ipt, bool optional )
 {
 	CLog l;
 	if(el->Attribute(name, &ipt) || optional) {
@@ -38,9 +36,7 @@ bool XmlUtil::get_att(
 	return false;
 }
 
-bool XmlUtil::get_att(
-	TiXmlElement *el, const char *name, double &dpt, bool optional
-)
+bool XmlUtil::get_att( TiXmlElement* el, const char* name, double& dpt, bool optional )
 {
 	CLog l;
 	if(el->Attribute(name, &dpt) || optional) {
@@ -55,12 +51,10 @@ bool XmlUtil::get_att(
 	return false;
 }
 
-bool XmlUtil::get_att(
-	TiXmlElement *el, const char *name, bool &bval, bool optional
-)
+bool XmlUtil::get_att( TiXmlElement* el, const char* name, bool& bval, bool optional )
 {
 	CLog l;
-	const char *pt;
+	const char* pt;
 
 	pt = el->Attribute(name);
 
@@ -82,7 +76,7 @@ bool XmlUtil::get_att(
  *      convert to a string, and then squash that to lower case
  */
     std::string s = pt;
-	for(u_int i = 0; i < s.length(); i++)
+	for(u_int i = 0; i < s.length(); ++i)
 	{
 		s[i] = tolower(s[i]);
 	}
@@ -108,12 +102,10 @@ bool XmlUtil::get_att(
 	return false;
 }
 
-bool XmlUtil::get_att(
-	TiXmlElement *el, const char *name, std::string &s, bool optional
-)
+bool XmlUtil::get_att( TiXmlElement* el, const char* name, std::string& s, bool optional )
 {
 	CLog l;
-	const char *pt;
+	const char* pt;
 
 	pt = el->Attribute(name);
 	if(pt) {
@@ -129,3 +121,17 @@ bool XmlUtil::get_att(
 	return false;
 }
 
+std::string& XmlUtil::context()
+{
+    return m_context;
+}
+
+void XmlUtil::context( std::string s )
+{
+    m_context = s;
+}
+
+XmlUtil::XmlUtil( std::string context )
+{
+    m_context = context;
+}

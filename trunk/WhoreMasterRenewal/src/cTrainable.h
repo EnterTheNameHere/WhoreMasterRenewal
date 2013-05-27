@@ -21,6 +21,7 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
 struct sGirl;
 
@@ -123,7 +124,7 @@ public:
 	cTrainable &operator[](int index) {
 		return stats[index];
 	}
-	u_int	size()	{ return stats.size(); }
+	unsigned int size()	{ return stats.size(); }
 /*
  *	this is useful for solo training
  */
@@ -163,7 +164,7 @@ public:
 	/*cTrainable*/ IdealAttr &operator[](int index) {
 		return stats[index];
 	}
-	u_int size()	{ return stats.size(); }
+	unsigned int size()	{ return stats.size(); }
 	std::vector<int> training_indices();
 };
 

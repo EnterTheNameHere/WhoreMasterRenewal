@@ -20,10 +20,8 @@
 #define CCHECKBOX_H_INCLUDED_1527
 #pragma once
 
-#include "CSurface.h"
-#include "cInterfaceObject.h"
-#include "cInterfaceEvent.h"
-#include "cFont.h"
+#include "cInterfaceObject.h" // required inheritance
+#include "cFont.h" // required cFont
 
 class CSurface;
 

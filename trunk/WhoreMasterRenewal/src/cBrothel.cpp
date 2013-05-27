@@ -27,6 +27,11 @@
 #include "cInventory.h"
 #include "cGirls.h"
 #include "cCustomers.h"
+#include "cInventory.h"
+#include "cRng.h"
+#include "CLog.h"
+#include "sConfig.h"
+#include "cTariff.h"
 
 #include <sstream>
 
@@ -40,7 +45,6 @@ cBrothelManager g_Brothels;
 extern unsigned long    g_Year;
 extern unsigned long    g_Month;
 extern unsigned long    g_Day;
-extern cRng             g_Dice;
 extern cGold            g_Gold;
 extern cGangManager     g_Gangs;
 extern char             buffer[1000];

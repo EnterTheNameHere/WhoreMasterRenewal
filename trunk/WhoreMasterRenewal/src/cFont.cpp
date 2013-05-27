@@ -357,3 +357,55 @@ std::string cFont::UpdateLineEndings(std::string text)
 #endif
 	return text;
 }
+
+void cFont::GetSize( std::string text, int& width, int& height )
+{
+    TTF_SizeText( m_Font, text.c_str(), &width, &height );
+}
+
+void cFont::SetMultiline( bool multi, int width, int height )
+{
+    m_IsMultiline = multi;
+    m_Width = width;
+    m_Height = height;
+}
+
+int cFont::IsFontFixedWidth()
+{
+    return TTF_FontFaceIsFixedWidth( m_Font );
+}
+
+// returns the height in pixels of the font
+int cFont::GetFontHeight()
+{
+    return TTF_FontHeight(m_Font);
+}
+
+// returns the number of pixels you should have between lines
+int cFont::GetFontLineSkip()
+{
+    return TTF_FontLineSkip(m_Font);
+}
+
+void cFont::SetFontBold( bool Bold )
+{
+    TTF_SetFontStyle( m_Font, (Bold ? TTF_STYLE_BOLD : TTF_STYLE_NORMAL) );
+}
+
+int cFont::GetTotalNumberOfLines()
+{
+    return m_NumLines;
+}
+
+int cFont::GetLinesPerBox()
+{
+    if( m_Lineskip > 0 )
+        return ( m_Height / m_Lineskip );
+    else
+        return m_Height / GetFontLineSkip();
+}
+
+std::string cFont::GetText()
+{
+    return m_Text;
+}

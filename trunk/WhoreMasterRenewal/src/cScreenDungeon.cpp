@@ -30,6 +30,9 @@
 #include "cMessageBox.h"
 #include "cListBox.h"
 #include "cInterfaceEvent.h"
+#include "cGirls.h"
+#include "cRng.h"
+#include "DirPath.h"
 
 #include <string>
 #include <sstream>
@@ -37,7 +40,6 @@
 
 extern sInterfaceIDs g_interfaceid;
 extern	bool	g_InitWin;
-extern	cRng	g_Dice;
 extern	int		g_TalkCount;
 extern	bool	g_Cheats;
 extern	bool	g_UpArrow;
@@ -55,6 +57,23 @@ extern int cycle_pos;
 static std::vector<int> select_girls;
 
 bool cScreenDungeon::ids_set = false;
+
+
+cScreenDungeon::cScreenDungeon()
+{
+    selection = -1;
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "dungeon_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+
+cScreenDungeon::~cScreenDungeon()
+{
+    
+}
 
 
 void cScreenDungeon::set_ids()

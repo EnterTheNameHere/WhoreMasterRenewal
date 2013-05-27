@@ -26,40 +26,21 @@ class TiXmlElement;
 
 typedef unsigned int u_int;
 
-class XmlUtil {
-    std::string m_context;
+class XmlUtil
+{
 public:
-	XmlUtil(std::string context) {
-		m_context = context;
-	}
+	XmlUtil(std::string context);
 
-	std::string&	context()		{ return m_context; }
-	void	context(std::string s)	{ m_context = s; }
+	std::string& context();
+	void context(std::string s);
 
-	bool get_att(
-		TiXmlElement *el,
-		const char *name,
-	    std::string &s,
-		bool optional=false
-	);
-	bool get_att(
-		TiXmlElement *el,
-		const char *name,
-		int &ival,
-		bool optional=false
-	);
-	bool get_att(
-		TiXmlElement *el,
-		const char *name,
-		double &dval,
-		bool optional=false
-	);
-	bool get_att(
-		TiXmlElement *el,
-		const char *name,
-		bool &bval,
-		bool optional=false
-	);
+	bool get_att( TiXmlElement* el, const char* name, std::string& s, bool optional = false	);
+	bool get_att( TiXmlElement* el, const char* name, int& ival, bool optional = false );
+	bool get_att( TiXmlElement* el, const char* name, double& dval, bool optional = false );
+	bool get_att( TiXmlElement* el, const char* name, bool& bval, bool optional = false );
+	
+private:
+    std::string m_context;
 };
 
 #endif // XMLUTIL_H_INCLUDED_1534

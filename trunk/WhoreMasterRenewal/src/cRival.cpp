@@ -25,15 +25,15 @@
 #include "DirPath.h"
 #include "cGangs.h"
 #include "XmlMisc.h"
+#include "CLog.h"
+#include "cRng.h"
 
 #include <fstream>
 #include <sstream>
-#include <stdlib.h>
+#include <cstdlib>
 
 extern cMessageQue g_MessageQue;
 extern cBrothelManager g_Brothels;
-extern CLog g_LogFile;
-extern cRng g_Dice;
 extern cGold g_Gold;
 extern cGangManager g_Gangs;
 

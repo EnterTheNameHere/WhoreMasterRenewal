@@ -20,8 +20,6 @@
 #define CGIRLGANGFIGHT_H_INCLUDED_1529
 #pragma once
 
-#include "CLog.h"
-
 #include <string>
 #include <vector>
 
@@ -30,22 +28,21 @@ struct	sGang;
 
 
 class cGirlGangFight {
-	sGirl	*m_girl;
-	CLog	l;
+	sGirl* m_girl;
 
-	int		m_girl_stats;
-	int		m_goon_stats;
-	int		m_max_goons;
-//	double	m_ratio;
-//	int		m_dead_goons;
+	int m_girl_stats;
+	int m_goon_stats;
+	int m_max_goons;
+//	double m_ratio;
+//	int m_dead_goons;
 
-	bool	m_girl_fights;
-	bool	m_girl_wins;
-	bool	m_player_wins;
-	bool	m_wipeout;
-	bool	m_unopposed;
+	bool m_girl_fights;
+	bool m_girl_wins;
+	bool m_player_wins;
+	bool m_wipeout;
+	bool m_unopposed;
 
-	double	m_odds;
+	double m_odds;
 
 	void lose_vs_own_gang(sGang* gang);
 	void win_vs_own_gang(sGang* gang);

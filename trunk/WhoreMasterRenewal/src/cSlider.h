@@ -20,14 +20,12 @@
 #define CSLIDER_H_INCLUDED_1511
 #pragma once
 
-#include "CSurface.h"
-#include "cInterfaceObject.h"
-#include "cInterfaceEvent.h"
+#include "cInterfaceObject.h" // required inheritance
 
 #include <string>
 
-// Moved from main.cpp
-extern cInterfaceEventManager g_InterfaceEvents;
+class SDL_Rect;
+class SDL_Surface;
 
 class cSlider : public cInterfaceObject
 {

@@ -22,9 +22,9 @@
 #include "cGirls.h"
 #include "cBrothel.h"
 #include "cTraits.h"
+#include "cInventory.h"
 
 extern cBrothelManager g_Brothels;
-extern CLog g_LogFile;
 extern cTraits g_Traits;
 extern cInventory g_InvManager;
 

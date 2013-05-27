@@ -25,6 +25,7 @@
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
 #include "cInterfaceEvent.h"
+#include "DirPath.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;
@@ -39,6 +40,23 @@ extern void GetInt();
 extern cInterfaceWindow g_GetInt;
 
 bool cScreenBank::ids_set = false;
+
+cScreenBank::cScreenBank()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "bank_screen.xml"
+    ;
+    m_filename = dp.c_str();
+    GetDeposit = false;
+    GetWithdraw = false;
+}
+
+cScreenBank::~cScreenBank()
+{
+    
+}
 
 void cScreenBank::set_ids()
 {

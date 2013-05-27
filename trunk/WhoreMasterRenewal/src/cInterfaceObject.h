@@ -23,18 +23,20 @@
 class cInterfaceObject
 {
 public:
-    virtual ~cInterfaceObject() {}
+    virtual ~cInterfaceObject();
     
-	void SetPosition(int x, int y, int width, int height) {m_XPos = x; m_YPos = y; m_Width = width; m_Height = height;}
-	virtual void Draw() {};
-	int GetXPos() {return m_XPos;}
-	int GetYPos() {return m_YPos;}
-	int GetWidth() {return m_Width;}
-	int GetHeight() {return m_Height;}
+	void SetPosition( int x, int y, int width, int height );
+	virtual void Draw();
+	int GetXPos();
+	int GetYPos();
+	int GetWidth();
+	int GetHeight();
 
 protected:
-	int m_XPos, m_YPos;
-	int m_Width, m_Height;
+	int m_XPos;
+	int m_YPos;
+	int m_Width;
+	int m_Height;
 };
 
 #endif // CINTERFACEOBJECT_H_INCLUDED_1526

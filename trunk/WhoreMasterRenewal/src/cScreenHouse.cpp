@@ -25,6 +25,8 @@
 #include "InterfaceGlobals.h"
 #include "cGangs.h"
 #include "cInterfaceEvent.h"
+#include "CLog.h"
+#include "DirPath.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;
@@ -39,7 +41,6 @@ extern void GetString();
 extern cInterfaceWindow g_GetString;
 extern void GetInt();
 extern cInterfaceWindow g_GetInt;
-
 
 static std::string fmt_objective(std::stringstream &ss, std::string desc, int limit, int sofar=-1)
 {
@@ -56,6 +57,20 @@ static std::string fmt_objective(std::stringstream &ss, std::string desc, int li
 
 
 bool cScreenHouse::ids_set = false;
+
+cScreenHouse::cScreenHouse()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "house_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+cScreenHouse::~cScreenHouse()
+{
+    
+}
 
 void cScreenHouse::set_ids()
 {

@@ -20,14 +20,10 @@
 #define CSCREENDUNGEON_H_INCLUDED_1518
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
 
 struct sGirl;
 struct sGang;
-class cPlayer;
-class cDungeon;
 
 extern int g_CurrBrothel;
 
@@ -63,18 +59,8 @@ class cScreenDungeon : public cInterfaceWindowXML
 
 	void set_ids();
 public:
-	cScreenDungeon()
-	{
-		selection = -1;
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "dungeon_screen.xml"
-		;
-		m_filename = dp.c_str();
-	}
-
-	virtual ~cScreenDungeon() {}
+	cScreenDungeon();
+	virtual ~cScreenDungeon();
 
 	enum {
 		GirlLoses = 0,

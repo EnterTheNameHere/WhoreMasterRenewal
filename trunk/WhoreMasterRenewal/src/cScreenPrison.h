@@ -20,11 +20,9 @@
 #define CSCREENPRISON_H_INCLUDED_1514
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
 
-class cBuilding;
+struct sGirl;
 
 class cScreenPrison : public cInterfaceWindowXML
 {
@@ -48,17 +46,8 @@ static	bool		ids_set;
 
 	void		set_ids();
 public:
-	cScreenPrison()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "prison_screen.xml"
-		;
-		m_filename = dp.c_str();
-		selection = -1;
-	}
-	virtual ~cScreenPrison() {}
+	cScreenPrison();
+	virtual ~cScreenPrison();
 
 	void init();
 	void process();

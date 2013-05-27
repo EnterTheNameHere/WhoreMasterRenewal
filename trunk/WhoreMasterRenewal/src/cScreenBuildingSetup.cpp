@@ -25,6 +25,7 @@
 #include "cGold.h"
 #include "cTariff.h"
 #include "cInterfaceEvent.h"
+#include "DirPath.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;
@@ -36,6 +37,21 @@ static cTariff tariff;
 static std::stringstream ss;
 
 bool cScreenBuildingSetup::ids_set = false;
+
+cScreenBuildingSetup::cScreenBuildingSetup()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "building_setup_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+cScreenBuildingSetup::~cScreenBuildingSetup()
+{
+    
+}
+
 
 void cScreenBuildingSetup::set_ids()
 {

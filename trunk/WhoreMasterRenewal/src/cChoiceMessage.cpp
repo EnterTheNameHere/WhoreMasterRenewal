@@ -21,6 +21,9 @@
 #include "IconSurface.h"
 #include "CGraphics.h"
 #include "sConfig.h"
+#include "cFont.h"
+#include "CSurface.h"
+
 
 extern CGraphics g_Graphics;
 
@@ -28,6 +31,45 @@ extern unsigned char g_ChoiceMessageTextR, g_ChoiceMessageTextG, g_ChoiceMessage
 extern unsigned char g_ChoiceMessageBorderR, g_ChoiceMessageBorderG, g_ChoiceMessageBorderB;
 extern unsigned char g_ChoiceMessageBackgroundR, g_ChoiceMessageBackgroundG, g_ChoiceMessageBackgroundB;
 extern unsigned char g_ChoiceMessageSelectedR, g_ChoiceMessageSelectedG, g_ChoiceMessageSelectedB;
+
+cChoice::cChoice()
+{
+    m_Next=0;
+    m_Choices=0;
+    m_NumChoices=0;
+    m_CurrChoice=-1;
+    m_Background=0;
+    m_Border=0;
+    m_ElementSelectedBackground=0;
+    m_ElementBackground=0;
+    m_Position=0;
+    m_HeaderBackground=0;
+    m_ScrollDisabled=false;
+}
+cChoice::~cChoice()
+{
+    if( m_Next )
+        delete m_Next;
+    m_Next = 0;
+    if( m_Choices )
+        delete [] m_Choices;
+    m_Choices = 0;
+    if( m_Background )
+        SDL_FreeSurface( m_Background );
+    m_Background = 0;
+    if( m_Border )
+        SDL_FreeSurface( m_Border );
+    m_Border = 0;
+    if( m_ElementBackground )
+        SDL_FreeSurface( m_ElementBackground );
+    m_ElementBackground = 0;
+    if( m_ElementSelectedBackground )
+        SDL_FreeSurface( m_ElementSelectedBackground );
+    m_ElementSelectedBackground = 0;
+    if( m_HeaderBackground )
+        SDL_FreeSurface( m_HeaderBackground );
+    m_HeaderBackground = 0;
+}
 
 void cChoiceManager::Free()
 {

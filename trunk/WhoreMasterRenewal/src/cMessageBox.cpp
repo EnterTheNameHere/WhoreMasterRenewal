@@ -20,6 +20,7 @@
 #include "cMessageBox.h"
 #include "CGraphics.h"
 #include "sConfig.h"
+#include "cFont.h"
 
 extern CGraphics g_Graphics;
 
@@ -146,4 +147,38 @@ void cMessageBox::ChangeFontSize(int FontSize)
 	m_Font->SetText("");
 	m_Font->SetColor(g_MessageBoxTextR,g_MessageBoxTextG,g_MessageBoxTextB);
 	m_Font->SetMultiline(true, m_Width, m_Height);
+}
+
+cMessageBox::cMessageBox()
+{
+    m_Color = 0;
+    m_TextAdvance = false;
+    m_Font = 0;
+    m_Text = "";
+    for( int i = 0; i < NUM_MESSBOXCOLOR; ++i )
+        m_Background[i] = 0;
+    m_Border = 0;
+    m_Active = false;
+    m_Advance = false;
+    m_Position = 0;
+}
+
+void cMessageBox::ResetWindow( std::string text, int color )
+{
+    if( m_Font )
+        m_Font->SetText( text );
+    m_Text = text;
+    m_Position = 0;
+    m_TextAdvance = false;
+    m_Color = color;
+}
+
+bool cMessageBox::IsActive()
+{
+    return m_Active;
+}
+
+void cMessageBox::SetActive( bool active )
+{
+    m_Active = active;
 }

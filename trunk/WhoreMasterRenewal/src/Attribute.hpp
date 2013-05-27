@@ -3,9 +3,10 @@
 
 #include "Logger.hpp"
 
+#include <pugixml.hpp>
+
 #include <string>
 #include <map>
-#include <pugixml.hpp>
 
 namespace WhoreMasterRenewal
 {

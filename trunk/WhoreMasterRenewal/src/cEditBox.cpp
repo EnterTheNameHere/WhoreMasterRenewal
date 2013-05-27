@@ -20,6 +20,9 @@
 #include "cEditBox.h"
 #include "CGraphics.h"
 #include "sConfig.h"
+#include "cFont.h"
+
+#include <SDL.h>
 
 extern CGraphics g_Graphics;
 
@@ -49,6 +52,11 @@ cEditBox::~cEditBox()
 	if(m_Next)
 		delete m_Next;
 	m_Next = 0;
+}
+
+std::string cEditBox::GetText()
+{
+    return m_Text->GetText();
 }
 
 void cEditBox::Draw()

@@ -23,17 +23,19 @@
 #include "cCustomers.h"
 #include "XmlMisc.h"
 #include "cTraits.h"
+#include "cGirls.h"
+#include "CLog.h"
+#include "cRng.h"
+#include "sConfig.h"
 
 #include <iostream>
 #include <fstream>
 
 extern cGirls g_Girls;
 extern cTraits g_Traits;
-extern CLog g_LogFile;
 extern cCustomers g_Customers;
 extern cBrothelManager g_Brothels;
 extern cMessageQue g_MessageQue;
-extern cRng g_Dice;
 
 extern cInventory g_InvManager;
 cInventory g_InvManager;

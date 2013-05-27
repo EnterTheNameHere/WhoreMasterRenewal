@@ -20,9 +20,7 @@
 #define CSCREENGANGS_H_INCLUDED_1518
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
 
 class cScreenGangs : public cInterfaceWindowXML
 {
@@ -59,16 +57,8 @@ private:
 
 	void hire_recruitable();
 public:
-	cScreenGangs()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "gangs_screen.xml"
-		;
-		m_filename = dp.c_str();
-	}
-	virtual ~cScreenGangs() {}
+	cScreenGangs();
+	virtual ~cScreenGangs();
 
 	void init();
 	void process();

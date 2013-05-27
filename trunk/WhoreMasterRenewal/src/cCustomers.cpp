@@ -19,8 +19,7 @@
 
 #include "cCustomers.h"
 #include "cBrothel.h"
-
-extern cRng g_Dice;
+#include "cRng.h"
 
 extern cCustomers g_Customers;
 cCustomers g_Customers;

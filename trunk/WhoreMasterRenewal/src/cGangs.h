@@ -20,15 +20,14 @@
 #define CGANGS_H_INCLUDED_1530
 #pragma once
 
-#include "cGold.h"
 #include "Constants.h"
-#include "cEvents.h"
+#include "cEvents.h" // required cEvents
 
 #include <vector>
 
-extern CLog g_LogFile;
-
 struct sGirl;
+class TiXmlElement;
+class TiXmlHandle;
 
 // A gang of street toughs
 typedef struct sGang

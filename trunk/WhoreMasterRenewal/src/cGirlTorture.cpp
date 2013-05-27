@@ -23,8 +23,10 @@
 #include "cBrothel.h"
 #include "cDungeon.h"
 #include "cGirlGangFight.h"
+#include "cRng.h"
+#include "sConfig.h"
+#include "CLog.h"
 
-extern	cRng			g_Dice;
 extern	cGirls			g_Girls;
 extern	cMessageQue		g_MessageQue;
 extern	cBrothelManager	g_Brothels;
@@ -113,17 +115,16 @@ void cGirlTorture::DoTorture()
 
     std::string sGirlName	= m_Girl->m_Realname;
     std::string sMsg			= "";
-	CLog	l;
 	cConfig cfg;
 	bool bDebug			= cfg.debug.log_torture();
 
 	if(bDebug)
 	{
 		if (m_TorturedByPlayer)
-			l.ss() << "\ncGirlTorture: Player is torturing " << sGirlName << ".";
+			g_LogFile.ss() << "\ncGirlTorture: Player is torturing " << sGirlName << ".";
 		else
-			l.ss() << "\ncGirlTorture: " << m_Torturer->m_Realname << " is torturing " << sGirlName << ".";
-		l.ssend();
+			g_LogFile.ss() << "\ncGirlTorture: " << m_Torturer->m_Realname << " is torturing " << sGirlName << ".";
+		g_LogFile.ssend();
 	}
 /*
  *	clear down the message and start with her name
@@ -294,8 +295,8 @@ void cGirlTorture::DoTorture()
 	
 	if(bDebug)
 	{
-		l.ss() << "cGirlTorture: " << sGirlName << " torture completed!\n";
-		l.ssend();
+		g_LogFile.ss() << "cGirlTorture: " << sGirlName << " torture completed!\n";
+		g_LogFile.ssend();
 	}
 
 }

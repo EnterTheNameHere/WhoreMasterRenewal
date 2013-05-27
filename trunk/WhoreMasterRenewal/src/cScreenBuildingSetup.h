@@ -20,9 +20,7 @@
 #define CSCREENBUILDINGSETUP_H_INCLUDED_1518
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "cInterfaceWindow.h" // required inheritance
 
 class cScreenBuildingSetup : public cInterfaceWindowXML
 {
@@ -62,16 +60,8 @@ private:
 
 	void set_ids();
 public:
-	cScreenBuildingSetup()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "building_setup_screen.xml"
-		;
-		m_filename = dp.c_str();
-	}
-	virtual ~cScreenBuildingSetup() {}
+	cScreenBuildingSetup();
+	virtual ~cScreenBuildingSetup();
 
 	void init();
 	void process();

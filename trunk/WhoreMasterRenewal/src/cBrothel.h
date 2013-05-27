@@ -20,17 +20,18 @@
 #define CBROTHEL_H_INCLUDED_1533
 #pragma once
 
-#include "cRival.h"
-#include "cGold.h"
-#include "cJobManager.h"
-#include "cBuilding.h"
-#include "cDungeon.h"		// WD:	cBrothel clean up move class to own file
-#include "cPlayer.h"		// WD:	cBrothel clean up move class to own file
-#include "cEvents.h"
-#include "cInventory.h"
+#include "cRival.h" // required cRivalManager
+#include "cGold.h" // required cGold
+#include "cJobManager.h" // required cJobManager
+#include "cBuilding.h" // required cBuilding
+#include "cDungeon.h" // required cDungeon
+#include "cPlayer.h" // required cPlayer
+#include "cEvents.h" // required cEvents
 
 #include <string>
 #include <vector>
+#include <sstream>
+#include <fstream>
 
 class cBuilding;
 class cGirls;
@@ -38,10 +39,8 @@ class cCustomers;
 class cEvents;
 class TiXmlElement;
 class TiXmlHandle;
+struct sInventoryItem;
 struct sGirl;
-
-extern cGirls g_Girls;
-extern CLog g_LogFile;
 
 // holds an objective and its data
 typedef struct sObjective
@@ -95,7 +94,7 @@ typedef struct sBrothel
 	// For keeping track of any shows currently being produced here
 	int				m_ShowTime;			// when reaches 0 then the show is ready
 	int				m_ShowQuality;		// Determined by the average fame and skill of the girls in the show
-	sFilm *			m_CurrFilm;
+	sFilm*			m_CurrFilm;
 	unsigned char	m_HasGambStaff;		// gambling hall or
 	unsigned char	m_HasBarStaff;		// Bar staff. Not as good as girls but consistent
 
@@ -172,7 +171,7 @@ public:
 
 	sGirl* GetPrison()				{ return m_Prison; }
 		//mod needed for convenience
-	int  &stat_lookup(std::string stat_name,int brothel_id=-1);
+	int& stat_lookup(std::string stat_name,int brothel_id=-1);
 	// jobs moving to their own class
 
 	int GetGirlsCurrentBrothel(sGirl* girl); // Used by new security guard code

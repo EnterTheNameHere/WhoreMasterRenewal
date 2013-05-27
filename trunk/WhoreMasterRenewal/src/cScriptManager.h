@@ -20,12 +20,13 @@
 #define CSCRIPTMANAGER_H_INCLUDED_1513
 #pragma once
 
-#include "CLog.h"
-#include "cGameScript.h"
-#include "cLuaScript.h"
-#include "DirPath.h"
+#include "cGameScript.h" // required cGameScript
 
 #include <queue>
+
+class cLuaScript;
+class ScriptPath;
+struct sGirl;
 
 /*
  * OK: I got into a bit of a mess the last time I tried this,
@@ -35,92 +36,31 @@
  * let's see if we can get everything going through the wrapper
  * before we add the lua stuff in
  */
-class cScriptManagerInner {
-	cGameScript		m_Script;
-	std::queue<cLuaScript *>	lq;
+class cScriptManagerInner
+{
 public:
-	void Load(std::string filename, sGirl *girl);
-	void Release() {
-		cLuaScript *lpt;
-/*
- *		clear down the Lua script queue
- */
-		while(!lq.empty()) {
-			lpt = lq.front();
-			delete lpt;
-			lq.pop();
-		}
-		m_Script.Release();
-	}
-	bool IsActive() {
-		if(!lq.empty()) {
-			return true;
-		}
-		return m_Script.IsActive();
-	}
-	void RunScript() {
-		cLuaScript *lpt;
-/*
- *		if there's nothing in the lua queue
- *		let m_Script do it's thing
- */
-		if(lq.empty()) {
-			m_Script.RunScript();
-			return;
-		}
-/*
- *		get the front of the lua queue
- */
-		lpt = lq.front();
-/*
- *		let it run
- */
-		bool rc = lpt->run();
-/*
- *		if it returned true, leave it there so it can
- *		get another time slice
- */
- 		CLog log;
-		if(rc) {
-			log.ss() << "RunScript: lua returned true: "
-				 << "script left on queue"
-				 ;
-			log.ssend();
-			return;
-		}
-		log.ss() << "RunScript: lua returned false: "
-			 << "deleting from queue"
-		;
-/*
- *		if it returned false, or nothing at all,
- *		remove it from the queue and delete it
- */
-		delete lpt;
-		lq.pop();
-	}
+	void Load(std::string filename, sGirl* girl);
+	void Release();
+	bool IsActive();
+	void RunScript();
+	
+private:
+    cGameScript m_Script;
+	std::queue<cLuaScript*> lq;
 };
 
-class cScriptManager {
-static	cScriptManagerInner *instance;
+class cScriptManager
+{
 public:
-	cScriptManager() {
-		if(!instance) instance = new cScriptManagerInner();
-	}
-	void Load(ScriptPath &dp, sGirl *girl) {
-		instance->Load(std::string(dp.c_str()), girl);
-	}
-	void Load(std::string filename, sGirl *girl) {
-		instance->Load(filename, girl);
-	}
-	void Release() {
-		instance->Release();
-	}
-	bool IsActive() {
-		return instance->IsActive();
-	}
-	void RunScript() {
-		instance->RunScript();
-	}
+	cScriptManager();
+	void Load(ScriptPath& dp, sGirl* girl);
+	void Load(std::string filename, sGirl* girl);
+	void Release();
+	bool IsActive();
+	void RunScript();
+
+private:
+    static cScriptManagerInner* instance;
 };
 
 #endif // CSCRIPTMANAGER_H_INCLUDED_1513

@@ -22,6 +22,7 @@
 #include "DirPath.h"
 #include "InterfaceGlobals.h"
 
+#include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
@@ -159,4 +160,24 @@ bool CGraphics::InitGraphics(std::string caption, int Width, int Height, int BPP
 	}
 
 	return true;
+}
+
+SDL_Surface* CGraphics::GetScreen()
+{
+    return m_Screen;
+}
+
+unsigned int CGraphics::GetTicks()
+{
+    return m_CurrentTime;
+}
+
+int CGraphics::GetWidth()
+{
+    return m_ScreenWidth;
+}
+
+int CGraphics::GetHeight()
+{
+    return m_ScreenHeight;
 }

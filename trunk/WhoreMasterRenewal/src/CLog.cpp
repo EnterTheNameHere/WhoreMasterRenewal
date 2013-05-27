@@ -21,14 +21,29 @@
 
 #include <iostream>
 
-CLog g_LogFile( true );
+CLog g_LogFile(true);
 
-bool CLogInner::setup = false;
-
-CLogInner::CLogInner() :
-    m_ofile(), m_ss()
+std::ofstream& CLogInner::os()
 {
-	if(!setup) {
+    return m_ofile;
+}
+
+std::stringstream& CLogInner::ss()
+{
+    return m_ss;
+}
+
+void CLogInner::ssend()
+{
+    write( m_ss.str() );
+    m_ss.str("");
+}
+
+CLogInner::CLogInner()
+    : m_ofile(), m_ss()
+{
+	if( !setup )
+    {
 		init();
 	}
 }
@@ -36,7 +51,8 @@ CLogInner::CLogInner() :
 void CLogInner::init()
 {
 	std::cout << "CLogInner::init" << std::endl;
-	if(setup) return;
+	if( setup )
+        return;
 	setup = true;
 	m_ofile.open("gamelog.txt");
 }
@@ -46,13 +62,58 @@ CLogInner::~CLogInner()
 	m_ofile.close();
 }
 
-void CLogInner::write(std::string text)
+void CLogInner::write( std::string text )
 {
-	m_ofile<<text<<std::endl;
+	m_ofile << text << std::endl;
 	m_ofile.flush();
-#ifdef LINUX
-	std::cout << text << std::endl;
-#endif
 }
 
+CLog::CLog( bool a_glob )
+    : m_glob( a_glob )
+{
+    
+}
+
+CLog::~CLog()
+{
+    if( !m_glob )
+    {
+        return;
+    }
+    if( inner )
+    {
+        delete inner;
+    }
+    inner = nullptr;
+}
+
+void CLog::write( std::string text )
+{
+    if( !inner )
+        inner = new CLogInner();
+    inner->write( text );
+}
+
+std::ofstream& CLog::os()
+{
+    if( !inner )
+        inner = new CLogInner();
+    return inner->os();
+}
+
+std::stringstream& CLog::ss()
+{
+    if( !inner )
+        inner = new CLogInner();
+    return inner->ss();
+}
+
+void CLog::ssend()
+{
+    if( !inner )
+        inner = new CLogInner();
+    inner->ssend();
+}
+
+bool CLogInner::setup = false;
 CLogInner *CLog::inner = nullptr;

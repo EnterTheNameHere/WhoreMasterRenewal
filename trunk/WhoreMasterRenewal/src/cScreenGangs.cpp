@@ -25,6 +25,9 @@
 #include "InterfaceProcesses.h"
 #include "cGangs.h"
 #include "cInterfaceEvent.h"
+#include "CLog.h"
+#include "cTariff.h"
+#include "DirPath.h"
 
 extern bool g_InitWin;
 extern int g_CurrBrothel;
@@ -45,6 +48,20 @@ static int selection = -1;
 static int sel_recruit = -1;
 
 bool cScreenGangs::ids_set = false;
+
+cScreenGangs::cScreenGangs()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "gangs_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+cScreenGangs::~cScreenGangs()
+{
+    
+}
 
 void cScreenGangs::set_ids()
 {

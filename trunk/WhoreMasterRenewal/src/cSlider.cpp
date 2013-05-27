@@ -22,10 +22,13 @@
 #include "CResourceManager.h"
 #include "DirPath.h"
 #include "InterfaceGlobals.h"
+#include "CGraphics.h"
+#include "cInterfaceEvent.h"
 
 #include <SDL_image.h>
 
 extern CResourceManager rmanager;
+extern CGraphics g_Graphics;
 
 //these static vars defined in the header file need to be specified here
 SDL_Surface* cSlider::m_ImgRailDefault=0;

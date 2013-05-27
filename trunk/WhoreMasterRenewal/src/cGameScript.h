@@ -20,8 +20,9 @@
 #define CGAMESCRIPT_H_INCLUDED_1530
 #pragma once
 
-#include "cScripts.h"
-#include "cGirls.h"
+#include "cScripts.h" // required inheritance
+
+struct sGirl;
 
 const int NUMVARS = 20;
 
@@ -29,55 +30,55 @@ class cGameScript : public cScript
 {
 private:
 	int m_Vars[NUMVARS]; // The scripts variables
-	sScript *m_CurrPos;	// the current position within the script
+	sScript* m_CurrPos;	// the current position within the script
 	bool m_Active;	// keeps track of weather a script is active
 	bool m_Leave;	// keeps track of pausing script to run game loop
 	int m_NestLevel;	// keeps track of what if block we are in
 
 	// The script function prototypes
-	sScript* Script_Dialog(sScript* Script);
-	sScript* Script_Init(sScript *Script);
-	sScript* Script_EndInit(sScript *Script);
-	sScript* Script_EndScript(sScript *Script);
-	sScript* Script_Restart(sScript* Script);
-	sScript* Script_ChoiceBox(sScript *Script);
-	sScript* Script_SetVar(sScript* Script);
-	sScript* Script_SetVarRandom(sScript *Script);
-	sScript* Script_IfVar(sScript* Script);
-	sScript* Script_Else(sScript* Script);
-	sScript* Script_EndIf(sScript* Script);
-	sScript* Script_ActivateChoice(sScript *Script);
-	sScript* Script_IfChoice(sScript *Script);
-	sScript* Script_SetPlayerSuspision(sScript *Script);
-	sScript* Script_SetPlayerDisposition(sScript *Script);
-	sScript* Script_ClearGlobalFlag(sScript *Script);
-	sScript* Script_AddCustToDungeon(sScript *Script);
-	sScript* Script_AddRandomGirlToDungeon(sScript *Script);
-	sScript* Script_SetGlobal(sScript *Script);
-	sScript* Script_SetGirlFlag(sScript *Script);
-	sScript* Script_AddRandomValueToGold(sScript *Script);
-	sScript* Script_AddManyRandomGirlsToDungeon(sScript *Script);
-	sScript* Script_AddTargetGirl(sScript *Script);
-	sScript* Script_AdjustTargetGirlStat(sScript *Script);
-	sScript* Script_PlayerRapeTargetGirl(sScript *Script);
-	sScript* Script_GivePlayerRandomSpecialItem(sScript *Script);
-	sScript* Script_IfPassSkillCheck(sScript *Script);
-	sScript* Script_IfPassStatCheck(sScript *Script);
-	sScript* Script_IfGirlFlag(sScript* Script);
-	sScript* Script_GameOver(sScript* Script);
-	sScript* Script_IfGirlStat(sScript* Script);
-	sScript* Script_IfGirlSkill(sScript* Script);
-	sScript* Script_IfHasTrait(sScript* Script);
-	sScript* Script_TortureTarget(sScript* Script);
-	sScript* Script_ScoldTarget(sScript* Script);
-	sScript* Script_NormalSexTarget(sScript* Script);
-	sScript* Script_BeastSexTarget(sScript* Script);
-	sScript* Script_AnalSexTarget(sScript* Script);
-	sScript* Script_BDSMSexTarget(sScript* Script);
-	sScript* Script_IfNotDisobey(sScript* Script);
+	sScript* Script_Dialog(sScript*);
+	sScript* Script_Init(sScript*);
+	sScript* Script_EndInit(sScript*);
+	sScript* Script_EndScript(sScript*);
+	sScript* Script_Restart(sScript*);
+	sScript* Script_ChoiceBox(sScript*);
+	sScript* Script_SetVar(sScript*);
+	sScript* Script_SetVarRandom(sScript*);
+	sScript* Script_IfVar(sScript*);
+	sScript* Script_Else(sScript*);
+	sScript* Script_EndIf(sScript*);
+	sScript* Script_ActivateChoice(sScript*);
+	sScript* Script_IfChoice(sScript*);
+	sScript* Script_SetPlayerSuspision(sScript*);
+	sScript* Script_SetPlayerDisposition(sScript*);
+	sScript* Script_ClearGlobalFlag(sScript*);
+	sScript* Script_AddCustToDungeon(sScript*);
+	sScript* Script_AddRandomGirlToDungeon(sScript*);
+	sScript* Script_SetGlobal(sScript*);
+	sScript* Script_SetGirlFlag(sScript*);
+	sScript* Script_AddRandomValueToGold(sScript*);
+	sScript* Script_AddManyRandomGirlsToDungeon(sScript*);
+	sScript* Script_AddTargetGirl(sScript*);
+	sScript* Script_AdjustTargetGirlStat(sScript*);
+	sScript* Script_PlayerRapeTargetGirl(sScript*);
+	sScript* Script_GivePlayerRandomSpecialItem(sScript*);
+	sScript* Script_IfPassSkillCheck(sScript*);
+	sScript* Script_IfPassStatCheck(sScript*);
+	sScript* Script_IfGirlFlag(sScript*);
+	sScript* Script_GameOver(sScript*);
+	sScript* Script_IfGirlStat(sScript*);
+	sScript* Script_IfGirlSkill(sScript*);
+	sScript* Script_IfHasTrait(sScript*);
+	sScript* Script_TortureTarget(sScript*);
+	sScript* Script_ScoldTarget(sScript*);
+	sScript* Script_NormalSexTarget(sScript*);
+	sScript* Script_BeastSexTarget(sScript*);
+	sScript* Script_AnalSexTarget(sScript*);
+	sScript* Script_BDSMSexTarget(sScript*);
+	sScript* Script_IfNotDisobey(sScript*);
 
 	// The overloaded process function
-	sScript *Process(sScript *Script);
+	sScript* Process(sScript* Script);
 
 	bool IsIfStatement(int type)
 	{

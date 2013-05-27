@@ -20,8 +20,6 @@
 #define CRENDERQUE_H_INCLUDED_1521
 #pragma once
 
-class CRenderObject;
-
 // An object that can be added to the render que, eg a character, or a game object.
 class CRenderObject
 {

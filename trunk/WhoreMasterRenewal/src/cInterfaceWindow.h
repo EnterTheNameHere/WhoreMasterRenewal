@@ -20,12 +20,16 @@
 #define CINTERFACEWINDOW_H_INCLUDED_1526
 #pragma once
 
-#include "CSurface.h"
-#include "cInterfaceObject.h"
 #include "Constants.h"
+#include "cInterfaceObject.h" // required inheritance
 
 #include <vector>
 #include <map>
+#include <string>
+
+class cInterfaceWindow;
+extern cInterfaceWindow g_Gallery;
+extern cInterfaceWindow g_TransferGirls;
 
 class cImageItem;
 class CSurface;
@@ -39,6 +43,8 @@ class cSlider;
 class cAnimatedSurface;
 class cXmlWidget;
 class TiXmlElement;
+class SDL_Color;
+class SDL_Surface;
 
 class cInterfaceWindow : public cInterfaceObject
 {
@@ -58,17 +64,17 @@ public:
 
 	// MOD: added a couple of overloads for the cases where we
 	// can deduce the image names from the stem&
-	void AddButton(const char *image_name, int & ID,  int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
-	void AddButton(std::string image, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
+	void AddButton(const char* image_name, int& ID,  int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
+	void AddButton(std::string image, int& ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
 /*
  *	the ND version stands for "No Disabled" meaning that it supplies
  *	an empty string in place a disabled icon
  */
-	void AddButtonND(std::string image, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
-	void AddButtonND(const char *image, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
+	void AddButtonND(std::string image, int& ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
+	void AddButtonND(const char* image, int& ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
 	// END MOD
-	void AddButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int & ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
-	void AddScrollBar(int & ID, int x, int y, int width, int height, int visibleitems);
+	void AddButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int& ID, int x, int y, int width, int height, bool transparency = false, bool scale = true,bool cached=false);
+	void AddScrollBar(int& ID, int x, int y, int width, int height, int visibleitems);
 
 	void HideButton(int id, bool hide);
 	void HideButton(int id) { HideButton(id, true); }
@@ -84,16 +90,16 @@ public:
 	void SetImage(int id, CSurface* image);
 	void SetImage(int id, cAnimatedSurface* image);
 
-	void AddEditBox(int & ID, int x, int y, int width, int height, int BorderSize);
+	void AddEditBox(int& ID, int x, int y, int width, int height, int BorderSize);
 
 	void EditTextItem(std::string text, int ID);
 	void HideText(int id, bool hide);
 	void HideText(int id) { HideText(id, true); }
 	void UnhideText(int id) { HideText(id, false); }
-	void AddTextItem(int & ID, int x, int y, int width, int height, std::string text, int size = 16, bool auto_scrollbar = true, bool force_scrollbar = false);
+	void AddTextItem(int& ID, int x, int y, int width, int height, std::string text, int size = 16, bool auto_scrollbar = true, bool force_scrollbar = false);
 	void AddTextItemScrollBar(int id);
 
-	void AddSlider(int & ID, int x, int y, int width, int min = 0, int max = 100, int increment = 5, int value = 0, bool live_update = true);
+	void AddSlider(int& ID, int x, int y, int width, int min = 0, int max = 100, int increment = 5, int value = 0, bool live_update = true);
 	void DisableSlider(int ID, bool disable = true);
 	void HideSlider(int ID, bool hide = true);
 	void SliderLiveUpdate(int ID, bool live_update = true);
@@ -102,11 +108,11 @@ public:
 	int SliderValue(int ID, int value);  // set slider value, get result (might be different than requested due to out-of-bounds or whatever)
 
 	void DisableCheckBox(int ID, bool disable);
-	void AddCheckbox(int & ID, int x, int y, int width, int height, std::string text, int size = 16);
+	void AddCheckbox(int& ID, int x, int y, int width, int height, std::string text, int size = 16);
 	bool IsCheckboxOn(int ID);
 	void SetCheckBox(int ID, bool on);
 
-	void AddListBox(int & ID, int x, int y, int width, int height, int BorderSize, bool enableEvents, bool MultiSelect = false, bool ShowHeaders = false, bool HeaderDiv = true, bool HeaderSort = true);
+	void AddListBox(int& ID, int x, int y, int width, int height, int BorderSize, bool enableEvents, bool MultiSelect = false, bool ShowHeaders = false, bool HeaderDiv = true, bool HeaderSort = true);
 	void ScrollListBoxDown(int ID);
 	int GetListBoxSize(int ID);
 	void ScrollListBoxUp(int ID);
@@ -133,7 +139,7 @@ public:
     std::string HeaderClicked(int listBoxID);
 	bool ListDoubleClicked(int listBoxID);
 	void SetSelectedItemTextColor(int listBoxID, int itemID, SDL_Color* text_color);
-	void FillSortedIDList(int listBoxID, std::vector<int> *id_vec, int *vec_pos);
+	void FillSortedIDList(int listBoxID, std::vector<int>* id_vec, int* vec_pos);
 
 	void Focused();
 
@@ -168,14 +174,14 @@ class cInterfaceWindowXML : public cInterfaceWindow
 {
 protected:
     std::string m_filename;
-	std::map<std::string,int>		name_to_id;
-	std::map<int,std::string>		id_to_name;
+	std::map<std::string,int> name_to_id;
+	std::map<int,std::string> id_to_name;
 
-	std::map<std::string,cXmlWidget*>	widgets;
+	std::map<std::string,cXmlWidget*> widgets;
 public:
 	enum AttributeNecessity {
-		Mandatory	= 0,
-		Optional 	= 1
+		Mandatory = 0,
+		Optional = 1
 	};
 	
 	cInterfaceWindowXML();
@@ -186,7 +192,7 @@ public:
  *	this has static linkage so we can pass it
  *	to the window manager's Push method
  */
-static	void handler_func(cInterfaceWindowXML *wpt);
+static	void handler_func(cInterfaceWindowXML* wpt);
 /*
  * 	the handler func just calls the virtual process
  *	method, which can process calls as it likes
@@ -199,22 +205,22 @@ virtual	void process()=0;
 /*
  *	XML reading stuff
  */
-	void read_text_item(TiXmlElement *el);
-	void read_window_definition(TiXmlElement *el);
-	void read_button_definition(TiXmlElement *el);
-	void read_image_definition(TiXmlElement *el);
-	void read_listbox_definition(TiXmlElement *el);
-	void read_checkbox_definition(TiXmlElement *el);
-	void read_slider_definition(TiXmlElement *el);
-	void define_widget(TiXmlElement *el);
-	void place_widget(TiXmlElement *el, std::string suffix="");
-	void widget_text_item(TiXmlElement *el, cXmlWidget &vw);
-	void widget_button_item(TiXmlElement *el, cXmlWidget &vw);
-	void widget_listbox_item(TiXmlElement *el, cXmlWidget &vw);
-	void widget_checkbox_item(TiXmlElement *el, cXmlWidget &vw);
-	void widget_widget(TiXmlElement *el, cXmlWidget &vw);
-	void widget_image_item(TiXmlElement *el, cXmlWidget &vw);
-	void widget_slider_item(TiXmlElement *el, cXmlWidget &vw);
+	void read_text_item(TiXmlElement*);
+	void read_window_definition(TiXmlElement*);
+	void read_button_definition(TiXmlElement*);
+	void read_image_definition(TiXmlElement*);
+	void read_listbox_definition(TiXmlElement*);
+	void read_checkbox_definition(TiXmlElement*);
+	void read_slider_definition(TiXmlElement*);
+	void define_widget(TiXmlElement*);
+	void place_widget(TiXmlElement*, std::string suffix = "");
+	void widget_text_item(TiXmlElement*, cXmlWidget&);
+	void widget_button_item(TiXmlElement*, cXmlWidget&);
+	void widget_listbox_item(TiXmlElement*, cXmlWidget&);
+	void widget_checkbox_item(TiXmlElement*, cXmlWidget&);
+	void widget_widget(TiXmlElement*, cXmlWidget&);
+	void widget_image_item(TiXmlElement*, cXmlWidget&);
+	void widget_slider_item(TiXmlElement*, cXmlWidget&);
 	int get_id(std::string name, bool essential=false);
 
 	cXmlWidget* new_widget(std::string name);
@@ -228,7 +234,7 @@ class cSelector
 	int pos;		// position variable
 	cInterfaceWindow &win;	// window reference
 public:
-	cSelector(cInterfaceWindow &a_win, int a_id)
+	cSelector(cInterfaceWindow& a_win, int a_id)
 	: win(a_win)
 	{
 		id = a_id;

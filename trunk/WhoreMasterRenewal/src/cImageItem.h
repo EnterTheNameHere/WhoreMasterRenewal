@@ -20,7 +20,7 @@
 #define CIMAGEITEM_H_INCLUDED_1527
 #pragma once
 
-#include "cInterfaceObject.h"
+#include "cInterfaceObject.h" // required inheritance
 
 #include <string>
 

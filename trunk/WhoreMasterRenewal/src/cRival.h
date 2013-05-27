@@ -20,7 +20,7 @@
 #define CRIVAL_H_INCLUDED_1520
 #pragma once
 
-#include "cNameList.h"
+#include "cNameList.h" // required cDoubleNameList
 
 #include <string>
 
