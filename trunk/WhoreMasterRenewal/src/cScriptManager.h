@@ -23,6 +23,7 @@
 #include "cGameScript.h" // required cGameScript
 
 #include <queue>
+#include <string>
 
 class cLuaScript;
 class ScriptPath;

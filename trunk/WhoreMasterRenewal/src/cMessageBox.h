@@ -20,7 +20,6 @@
 #define CMESSAGEBOX_H_INCLUDED_1522
 #pragma once
 
-#include <queue>
 #include <string>
 
 class cMessageQue;

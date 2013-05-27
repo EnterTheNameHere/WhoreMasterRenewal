@@ -24,7 +24,6 @@
 #include "Constants.h"
 
 #include <string>
-#include <fstream>
 
 // Represents a single trait
 typedef struct sTrait

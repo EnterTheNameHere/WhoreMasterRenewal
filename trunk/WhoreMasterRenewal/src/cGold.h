@@ -21,11 +21,11 @@
 #pragma once
 
 #include <iostream>
-#include <sstream>
 #include <string>
 #include <map>
-#include <iomanip>
-#include <cmath>
+
+class cGold;
+extern cGold g_Gold;
 
 struct sBrothel;
 class TiXmlElement;
@@ -56,38 +56,7 @@ class cGoldBase
 // --- Whores ---                              --- Sales ---
 // Brothel  Street   Movie     Bar  Casino   Items  Monster Loc'Biz   Raids P.Theft G.Theft C'combs  Reward Intr'st    Misc
 //  123456 1234567 1234567 1234567 1234567 1234567  1234567 1234567 1234567 1234567 1234567 1234567 1234567 1234567 1234567
-	    std::string str(int brothel_no=-1) {
-			std::stringstream ss;
-			ss <<	"  --- Whores ---                              --- Sales ---";
-			ss <<	"# Brothel  Street   Movie     Bar  Casino   Items  "
-				"Monster Loc'Biz   Raids P.Theft G.Theft C'combs  "
-				"Reward Intr'st    Misc"
-			;
-			if(brothel_no == -1) {
-				ss << brothel_no << " ";
-			}
-			else {
-				ss << "  ";
-			}
-			ss << std::setw(7) << brothel_work << " ";
-			ss << std::setw(7) << street_work	<< " ";
-			ss << std::setw(7) << movie_income	<< " ";
-			ss << std::setw(7) << bar_income	<< " ";
-			ss << std::setw(7) << gambling_profits	<< " ";
-			ss << std::setw(7) << item_sales	<< " ";
-			ss << std::setw(7) << slave_sales	<< " ";
-			ss << std::setw(7) << creature_sales	<< " ";
-			ss << std::setw(7) << extortion	<< " ";
-			ss << std::setw(7) << plunder	<< " ";
-			ss << std::setw(7) << petty_theft	<< " ";
-			ss << std::setw(7) << grand_theft	<< " ";
-			ss << std::setw(7) << catacomb_loot	<< " ";
-			ss << std::setw(7) << objective_reward	<< " ";
-			ss << std::setw(7) << bank_interest	<< " ";
-			ss << std::setw(7) << misc		<< " ";
-			ss << std::endl;
-			return ss.str();
-		}
+	    std::string str(int brothel_no=-1);
 	} detail_in;
 
 	struct out {
@@ -153,7 +122,7 @@ public:
 	cGoldBase();
 	cGoldBase(int initial);
 	
-	virtual ~cGoldBase() {}
+	virtual ~cGoldBase();
 /*
  *	use these to save and load
  *	they save "value income upkeep" all on one line by itself

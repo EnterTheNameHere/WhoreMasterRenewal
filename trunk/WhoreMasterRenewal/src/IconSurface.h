@@ -24,6 +24,8 @@
 #include "DirPath.h"
 #include "CSurface.h"
 
+#include <string>
+
 class IconSurface : public CSurface
 {
 public:

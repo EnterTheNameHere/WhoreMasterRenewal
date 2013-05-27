@@ -19,6 +19,7 @@
 
 #include "cTraits.h"
 
+#include <fstream>
 #include <iostream>
 #include <cstring>
 #include <cstdio>

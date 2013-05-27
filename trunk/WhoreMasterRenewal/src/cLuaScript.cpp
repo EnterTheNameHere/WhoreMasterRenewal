@@ -36,6 +36,9 @@
 #include "cGirls.h"
 #include "CGraphics.h"
 
+#include <iostream>
+#include <sstream>
+
 extern CGraphics g_Graphics;
 extern cChoiceManager g_ChoiceManager;
 extern cMessageQue g_MessageQue;

@@ -22,6 +22,7 @@
 
 #include <string>
 #include <queue>
+#include <fstream>
 
 struct sGirl;
 class TiXmlElement;

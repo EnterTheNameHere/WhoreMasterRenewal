@@ -24,6 +24,7 @@
 #include "cEvents.h" // required cEvents
 
 #include <vector>
+#include <string>
 
 struct sGirl;
 class TiXmlElement;

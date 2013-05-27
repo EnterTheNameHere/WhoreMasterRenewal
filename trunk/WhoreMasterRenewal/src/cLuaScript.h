@@ -30,9 +30,6 @@ extern "C" {
 }
 
 #include <string>
-#include <iostream>
-#include <fstream>
-#include <sstream>
 
 int get_from_table(lua_State *L, int table, const char *key, bool &dest);
 int get_from_table(lua_State *L, int table, const char *key, int &dest);

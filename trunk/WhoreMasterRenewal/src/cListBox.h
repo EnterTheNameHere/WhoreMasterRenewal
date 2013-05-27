@@ -27,6 +27,7 @@
 #include <SDL_video.h> // required SDL_Rect
 
 #include <vector>
+#include <string>
 
 class cScrollBar;
 

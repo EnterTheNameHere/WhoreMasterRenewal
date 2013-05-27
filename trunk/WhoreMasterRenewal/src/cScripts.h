@@ -21,7 +21,6 @@
 #pragma once
 
 #include <string>
-#include <cstdio>
 
 enum Types { _NONE = 0, _TEXT, _BOOL, _INT, _FLOAT, _CHOICE };
 //typedef unsigned char bool;

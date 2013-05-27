@@ -20,12 +20,8 @@
 #define CGIRLGANGFIGHT_H_INCLUDED_1529
 #pragma once
 
-#include <string>
-#include <vector>
-
 struct	sGirl;
 struct	sGang;
-
 
 class cGirlGangFight {
 	sGirl* m_girl;

@@ -4,7 +4,6 @@
 
 #include <lua.hpp>
 
-#include <memory>
 #include <iomanip>
 #include <sstream>
 

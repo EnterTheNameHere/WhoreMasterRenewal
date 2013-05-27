@@ -22,7 +22,8 @@
 
 #include "cInterfaceObject.h" // required inheritance
 #include "cFont.h" // required cFont
-#include "sConfig.h"
+
+#include <string>
 
 class cScrollBar;
 

@@ -23,7 +23,6 @@
 #include "CResource.h" // required inheritance
 
 #include <string>
-#include <vector>
 
 class SDL_Surface;
 class SDL_Rect;

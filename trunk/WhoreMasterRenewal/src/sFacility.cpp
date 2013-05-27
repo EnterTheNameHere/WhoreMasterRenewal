@@ -21,6 +21,319 @@
 #include "XmlMisc.h"
 #include "CLog.h"
 
+#include <cmath>
+
+/*
+ *	defaults are set up for facility adjusters
+ *	so range is 0-9, default to zero
+ */
+sBoundedVar::sBoundedVar()
+{
+    m_min = 0;
+    m_max = 9;
+    m_curr = 0;
+}
+
+/*
+ *	but we could create one with any range
+ */
+sBoundedVar::sBoundedVar( int min, int max, int def )
+{
+    m_min = min;
+    m_max = max;
+    m_curr = def;
+}
+
+sBoundedVar::~sBoundedVar()
+{
+    
+}
+
+/*
+ *	methods for adjuster buttons - simple increment with
+ *	bounds checking
+ */
+void sBoundedVar::up()
+{
+    if( m_curr < m_max )
+        m_curr++;
+}
+void sBoundedVar::down()
+{
+    if( m_curr > m_min )
+        m_curr--;
+}
+
+/*
+ *	operators = += -=
+ */
+int sBoundedVar::operator =( int val )
+{
+    m_curr = val;
+    return bound();
+}
+
+int sBoundedVar::operator +=( int val )
+{
+    m_curr += val;
+    return bound();
+}
+
+int sBoundedVar::operator -=( int val )
+{
+    m_curr -= val;
+    return bound();
+}
+
+int sBoundedVar::bound()
+{
+    if( m_curr < m_min )
+        m_curr = m_min;
+    if( m_curr > m_max )
+        m_curr = m_max;
+    return m_curr;
+}
+
+
+
+/*
+ *	we need to know how much extra space a bump would consume
+ */
+int sBoundedVar_Provides::space_needed()
+{
+/*
+ *		we always use a whole space
+ *		if we get 4 kennels per space, then we bump
+ *		in bundles of 4 slots and one space
+ */
+    if( m_slots_per_space >= 1 )
+    {
+        return 1;
+    }
+/*
+ *		otherwise we return the spaces needed for the
+ *		next whole slot. Fractional slots are dropped
+ */
+    return int( floor( (m_curr + 1) / m_slots_per_space ) ) - m_space;
+}
+
+/*
+ *	same exercise from a slot perspective
+ */
+int sBoundedVar_Provides::slots_needed()
+{
+    if(m_slots_per_space < 1)
+    {
+        return 1;
+    }
+    
+    return int( ceil( (m_space + 1) * m_slots_per_space ) ) - m_curr;
+}
+
+void sBoundedVar_Provides::up()
+{
+    int slot_inc = slots_needed();
+    if( m_curr + slot_inc > m_max )
+    {
+        return;
+    }
+    m_space += space_needed();
+    m_curr += slot_inc;
+}
+
+/*
+ *	this is a little complicated
+ *
+ *	if a slot takes more than one space
+ *	then we drop enough spaces to reduce the slot count
+ *	so if the facility is a 4 space apartment suite,
+ *	we drop by 4 spaces and one slot
+ *
+ *	on the other hand, if there are multiple slots per space
+ *	we want to drop a space, and reduce the slot count to the maximum
+ *	that fit in the new size. So if we get 4 kennels to the space,
+ *	we reduce by 1 space and 4 kennel slots.
+ */
+void sBoundedVar_Provides::down()
+{
+    if( m_curr <= m_min )
+    {
+        return;
+    }
+/*
+ *		The simplest case is if we get one slot per space
+ *		this probably collapses elegantly into one of the
+ *		other cases, but since I'm having trouble getting
+ *		my head around the problem, I'm going to invoke the KISS principle.
+ *		Keep It Simple, Stupid.
+ */
+    if( m_slots_per_space == 1.0 )
+    {
+        m_curr --;
+        m_space --;
+        return;
+    }
+/*
+ *		if the slots-per-space count is more than one
+ *		we can just drop a space and re-calculate
+ */
+    if( m_slots_per_space > 1.0 )
+    {
+        m_space --;
+/*
+ *			just because we get more than one
+ *			that doesn't mean we get a whole number
+ *			it might be a 3-for-two deal, for instance
+ *
+ *			so we use floor to drop any fractional slots
+ *			from the calculation
+ */
+        m_curr = int( floor(m_slots_per_space * m_space) );
+        return;
+    }
+/*
+ *		if we get here, we get less than one slot for a space
+ *		so we drop the slot count by one, and then re-calculate space
+ *		instead.
+ */
+    m_curr --;
+/*
+ *		again, we might not get a whole number - dorms use 6 slots
+ *		in 2 spaces, for instance. So make sure the space requirement
+ *		rounds UP
+ */
+    m_space = int( ceil(m_curr / m_slots_per_space) );
+}
+
+int sBoundedVar_Provides::bound()
+{
+    if(m_curr < m_min)
+        m_curr = m_min;
+    if(m_curr > m_max)
+        m_curr = m_max;
+/*
+*		we're setting the slot count here,
+*		so calculate the space based on that
+*/
+    m_space = int( ceil(m_curr / m_slots_per_space) );
+    return m_curr;
+}
+
+
+
+
+sFacility::sFacility()
+{
+    m_type_name = "";
+    m_instance_name = "";
+    m_desc = "";
+    m_space_taken = 0;
+    m_slots = 0;
+    m_base_price = 0;
+    new_flag = false;
+}
+
+sFacility::sFacility( const sFacility& f )
+{
+    m_base_price = f.m_base_price;
+    m_desc = f.m_desc;
+    m_instance_name	= f.m_instance_name;
+    m_slots = f.m_slots;
+    m_space_taken = f.m_space_taken;
+    m_type_name = f.m_type_name;
+    new_flag = f.new_flag;
+}
+
+void sFacility::commit()
+{
+    new_flag = false;
+    m_base_price = 0;
+}
+
+std::string sFacility::name()
+{
+    if(m_instance_name != "")
+    {
+        return m_instance_name;
+    }
+    return m_type_name;
+}
+
+std::string sFacility::desc()
+{
+    return m_desc;
+}
+
+std::string sFacility::type()
+{
+    return m_type_name;
+}
+
+int	sFacility::space_taken()
+{
+    return m_space_taken;
+}
+
+int	sFacility::slots()
+{
+    return m_slots;
+}
+
+int	sFacility::price()
+{
+    return tariff.buy_facility(m_base_price);
+}
+
+int	sFacility::glitz()
+{
+    return m_glitz.m_curr;
+}
+
+void sFacility::glitz_up()
+{
+    m_glitz.up();
+}
+
+void sFacility::glitz_down()
+{
+    m_glitz.down();
+}
+
+int	sFacility::secure()
+{
+    return m_secure.m_curr;
+}
+
+void sFacility::secure_up()
+{
+    m_secure.up();
+}
+
+void sFacility::secure_down()
+{
+    m_secure.down();
+}
+
+int	sFacility::stealth()
+{
+    return m_stealth.m_curr;
+}
+
+void sFacility::stealth_up()
+{
+    m_stealth.up();
+}
+
+void sFacility::stealth_down()
+{
+    m_stealth.down();
+}
+
+sFacility* sFacility::clone()
+{
+    return new sFacility(*this);
+}
+
 void sFacility::load_from_xml(TiXmlElement *base_el)
 {
 	CLog l;

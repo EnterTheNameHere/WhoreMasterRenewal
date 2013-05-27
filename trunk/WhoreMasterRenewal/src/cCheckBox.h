@@ -23,7 +23,10 @@
 #include "cInterfaceObject.h" // required inheritance
 #include "cFont.h" // required cFont
 
+#include <string>
+
 class CSurface;
+class SDL_Surface;
 
 class cCheckBox : public cInterfaceObject
 {

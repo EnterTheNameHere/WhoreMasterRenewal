@@ -20,9 +20,7 @@
 #define SCONFIG_H_INCLUDED_1500
 #pragma once
 
-#include <iostream>
 #include <string>
-#include <vector>
 
 class TiXmlElement;
 struct SDL_Color;

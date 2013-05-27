@@ -23,10 +23,10 @@
 #include "XmlMisc.h"
 
 #include <sstream>
+#include <iomanip>
+#include <cmath>
 
-extern CLog g_LogFile;
 
-extern cGold g_Gold;
 cGold g_Gold;
 
 /*
@@ -41,6 +41,49 @@ cGold g_Gold;
  * possibly driving you into debt. Instant expenditure can only happen
  * ifyou have the cash in hand.
  */
+
+//01234567890123456789012345678901234567890123456789012345678901234567890123456789
+// --- Whores ---                              --- Sales ---
+// Brothel  Street   Movie     Bar  Casino   Items  Monster Loc'Biz   Raids P.Theft G.Theft C'combs  Reward Intr'st    Misc
+//  123456 1234567 1234567 1234567 1234567 1234567  1234567 1234567 1234567 1234567 1234567 1234567 1234567 1234567 1234567
+std::string cGoldBase::in::str( int brothel_no )
+{
+    std::stringstream ss;
+    ss <<	"  --- Whores ---                              --- Sales ---";
+    ss <<	"# Brothel  Street   Movie     Bar  Casino   Items  "
+        "Monster Loc'Biz   Raids P.Theft G.Theft C'combs  "
+        "Reward Intr'st    Misc";
+    
+    if(brothel_no == -1)
+    {
+        ss << brothel_no << " ";
+    }
+    else
+    {
+        ss << "  ";
+    }
+    
+    ss << std::setw(7) << brothel_work << " ";
+    ss << std::setw(7) << street_work	<< " ";
+    ss << std::setw(7) << movie_income	<< " ";
+    ss << std::setw(7) << bar_income	<< " ";
+    ss << std::setw(7) << gambling_profits	<< " ";
+    ss << std::setw(7) << item_sales	<< " ";
+    ss << std::setw(7) << slave_sales	<< " ";
+    ss << std::setw(7) << creature_sales	<< " ";
+    ss << std::setw(7) << extortion	<< " ";
+    ss << std::setw(7) << plunder	<< " ";
+    ss << std::setw(7) << petty_theft	<< " ";
+    ss << std::setw(7) << grand_theft	<< " ";
+    ss << std::setw(7) << catacomb_loot	<< " ";
+    ss << std::setw(7) << objective_reward	<< " ";
+    ss << std::setw(7) << bank_interest	<< " ";
+    ss << std::setw(7) << misc		<< " ";
+    ss << std::endl;
+    
+    return ss.str();
+}
+
 
 cGoldBase::cGoldBase()
 {
@@ -60,6 +103,11 @@ cGoldBase::cGoldBase(int init_val)
 	m_income = 0;
 	m_cash_in = 0;
 	m_cash_out = 0;
+}
+
+cGoldBase::~cGoldBase()
+{
+    
 }
 
 void cGoldBase::reset()
