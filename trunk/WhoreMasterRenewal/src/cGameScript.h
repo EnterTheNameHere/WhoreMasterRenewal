@@ -28,6 +28,17 @@ const int NUMVARS = 20;
 
 class cGameScript : public cScript
 {
+public:
+	cGameScript();
+	virtual ~cGameScript();
+
+	bool Prepare(sGirl* girlTarget);
+
+	bool Release();
+
+	void RunScript();	// runs the currently loaded script
+	bool IsActive() {return m_Active;}
+    
 private:
 	int m_Vars[NUMVARS]; // The scripts variables
 	sScript* m_CurrPos;	// the current position within the script
@@ -80,79 +91,10 @@ private:
 	// The overloaded process function
 	sScript* Process(sScript* Script);
 
-	bool IsIfStatement(int type)
-	{
-		if(type == 40 || type == 9 || type == 13 || type == 27 || type == 28 || type == 29 || type == 31 || type == 32 || type == 33)
-			return true;
-		return false;
-	}
+	bool IsIfStatement(int type);
 
 	// script targets (things that the script will affect with certain commands)
 	sGirl* m_GirlTarget;	// if not 0 then the script is affecting a girl
-
-public:
-	cGameScript()
-	{
-		// Clear all internal flags to false
-		for(short i=0;i<NUMVARS;i++)
-			m_Vars[i] = 0;
-		m_CurrPos = 0;
-		m_ScriptParent = 0;
-		m_Active = false;
-		m_Leave = false;
-		m_GirlTarget = 0;
-	}
-	virtual ~cGameScript(){m_CurrPos = 0;if(m_ScriptParent) delete m_ScriptParent; m_ScriptParent = 0;}
-
-	bool Prepare(sGirl* girlTarget)
-	{
-		m_Active = true;
-		m_Leave = false;
-		m_NestLevel = 0;
-
-		m_GirlTarget = girlTarget;
-
-		for(short i=0;i<NUMVARS;i++)
-			m_Vars[i] = 0;
-
-		// run the init portion of the script if it exists
-		// MOD: docclox: 'twas crashing here with m_ScriptParent == 0
-		// Delta's declared an interest in this area, so I've 
-		// added the following test as a temp fix
-		//
-		// Which may not work at all, of course, since there's
-		// no reliable way to test it.
-		if(m_ScriptParent == 0) {
-			return true;
-		}
-		if(m_ScriptParent && m_ScriptParent->m_Type == 1)
-		{
-			sScript* Ptr = m_ScriptParent;
-			while(Ptr->m_Type != 2)
-			{
-				Ptr = Process(Ptr);
-			}
-			m_CurrPos = Ptr->m_Next;	// set the start of the script to the next entry after the init phase
-		}
-		else
-			m_CurrPos = m_ScriptParent;	// begin at the start of the file
-
-		return true;
-	}
-
-	bool Release()
-	{
-		m_Active = false;
-		m_CurrPos = 0;
-		if(m_ScriptParent)
-			delete m_ScriptParent;
-		m_ScriptParent = 0;
-		m_GirlTarget = 0;
-		return true;
-	}
-
-	void RunScript();	// runs the currently loaded script
-	bool IsActive() {return m_Active;}
 };
 
 #endif // CGAMESCRIPT_H_INCLUDED_1530

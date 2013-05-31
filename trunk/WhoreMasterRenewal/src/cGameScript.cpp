@@ -50,6 +50,85 @@ extern int g_TalkCount;
 extern cGold g_Gold;
 extern cGangManager g_Gangs;
 
+
+
+
+
+cGameScript::cGameScript()
+{
+    // Clear all internal flags to false
+    for( int i = 0; i < NUMVARS; ++i )
+        m_Vars[i] = 0;
+    m_CurrPos = nullptr;
+    m_ScriptParent = nullptr;
+    m_Active = false;
+    m_Leave = false;
+    m_GirlTarget = nullptr;
+}
+
+cGameScript::~cGameScript()
+{
+    m_CurrPos = nullptr;
+    if( m_ScriptParent )
+        delete m_ScriptParent;
+    m_ScriptParent = nullptr;
+}
+
+bool cGameScript::Prepare( sGirl* girlTarget )
+{
+    m_Active = true;
+    m_Leave = false;
+    m_NestLevel = 0;
+
+    m_GirlTarget = girlTarget;
+
+    for( int i = 0; i < NUMVARS; ++i )
+        m_Vars[i] = 0;
+
+    // run the init portion of the script if it exists
+    // MOD: docclox: 'twas crashing here with m_ScriptParent == 0
+    // Delta's declared an interest in this area, so I've 
+    // added the following test as a temp fix
+    //
+    // Which may not work at all, of course, since there's
+    // no reliable way to test it.
+    if( m_ScriptParent == nullptr )
+    {
+        return true;
+    }
+    if( m_ScriptParent && m_ScriptParent->m_Type == 1 )
+    {
+        sScript* Ptr = m_ScriptParent;
+        while( Ptr->m_Type != 2 )
+        {
+            Ptr = Process( Ptr );
+        }
+        m_CurrPos = Ptr->m_Next;	// set the start of the script to the next entry after the init phase
+    }
+    else
+        m_CurrPos = m_ScriptParent;	// begin at the start of the file
+
+    return true;
+}
+
+bool cGameScript::Release()
+{
+    m_Active = false;
+    m_CurrPos = nullptr;
+    if( m_ScriptParent )
+        delete m_ScriptParent;
+    m_ScriptParent = nullptr;
+    m_GirlTarget = nullptr;
+    return true;
+}
+
+bool cGameScript::IsIfStatement(int type)
+{
+    if(type == 40 || type == 9 || type == 13 || type == 27 || type == 28 || type == 29 || type == 31 || type == 32 || type == 33)
+        return true;
+    return false;
+}
+
 sScript *cGameScript::Process(sScript *Script)
 {
 	// Jump to function based on action type

@@ -20,10 +20,25 @@
 #define CGIRLGANGFIGHT_H_INCLUDED_1529
 #pragma once
 
-struct	sGirl;
-struct	sGang;
+struct sGirl;
+struct sGang;
 
-class cGirlGangFight {
+class cGirlGangFight
+{
+public:
+	cGirlGangFight( sGirl *girl );
+
+	bool girl_fights()	{ return m_girl_fights; }
+	bool girl_submits()	{ return !m_girl_fights; }
+	bool girl_won()		{ return m_girl_wins; }
+	bool girl_lost()	{ return !m_girl_wins; }
+	bool player_won()	{ return m_player_wins; }
+
+	bool wipeout()		{ return m_wipeout; }
+
+//	int dead_goons()	{ return m_dead_goons; }
+
+private:
 	sGirl* m_girl;
 
 	int m_girl_stats;
@@ -43,18 +58,6 @@ class cGirlGangFight {
 	void lose_vs_own_gang(sGang* gang);
 	void win_vs_own_gang(sGang* gang);
 	int use_potions(sGang *gang, int casualties);
-public:
-	cGirlGangFight(sGirl *girl);
-
-	bool girl_fights()	{ return m_girl_fights; }
-	bool girl_submits()	{ return !m_girl_fights; }
-	bool girl_won()		{ return m_girl_wins; }
-	bool girl_lost()	{ return !m_girl_wins; }
-	bool player_won()	{ return m_player_wins; }
-
-	bool wipeout()		{ return m_wipeout; }
-
-//	int dead_goons()	{ return m_dead_goons; }
 };
 
 #endif  // CGIRLGANGFIGHT_H_INCLUDED_1529

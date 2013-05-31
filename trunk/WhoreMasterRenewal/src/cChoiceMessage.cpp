@@ -71,6 +71,25 @@ cChoice::~cChoice()
     m_HeaderBackground = 0;
 }
 
+cChoiceManager::cChoiceManager()
+{
+    m_Parent = nullptr;
+    m_ActiveChoice = nullptr;
+    m_DownOn = nullptr;
+    m_UpOn = nullptr;
+    m_UpOff = nullptr;
+    m_DownOff = nullptr;
+    m_CurrUp = nullptr;
+    m_CurrDown = nullptr;
+    m_Font = nullptr;
+    m_callback = nullptr;
+}
+
+cChoiceManager::~cChoiceManager()
+{
+    Free();
+}
+
 void cChoiceManager::Free()
 {
 	if(m_Parent)

@@ -57,6 +57,29 @@ static cRivalManager* m_Rivals = g_Brothels.GetRivalManager();
 static cDungeon* m_Dungeon = g_Brothels.GetDungeon();
 
 
+
+sGang::sGang()
+{
+    m_Name = "Unnamed";
+    m_Num = 0;
+    m_Prev = nullptr;
+    m_Next = nullptr;
+    m_MissionID = MISS_GUARDING;
+    m_Combat = false;
+    m_LastMissID = -1;
+    m_AutoRecruit = false;
+}
+
+sGang::~sGang()
+{
+    if( m_Next )
+        delete m_Next;
+    m_Prev = nullptr;
+    m_Next = nullptr;
+}
+
+
+
 cGangManager::cGangManager()
 {
 	m_NumGangNames = 0;
@@ -78,6 +101,11 @@ cGangManager::cGangManager()
 
 	m_NumHealingPotions = m_NumNets = m_SwordLevel = 0;
 	m_KeepHealStocked = m_KeepNetsStocked = false;
+}
+
+cGangManager::~cGangManager()
+{
+    Free();
 }
 
 void cGangManager::Free()

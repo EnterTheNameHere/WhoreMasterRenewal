@@ -30,12 +30,12 @@ class CSurface;
 class cAnimatedSurface
 {
 public:
-	cAnimatedSurface() {m_Surface=0;m_SpriteSurface=0;}
-	~cAnimatedSurface() {m_Surface=0;if(m_SpriteSurface)SDL_FreeSurface(m_SpriteSurface);m_SpriteSurface=0;}
+	cAnimatedSurface();
+	~cAnimatedSurface();
 
-	void PlayOnce(bool playOnce) {m_PlayOnce = playOnce;}
+	void PlayOnce(bool playOnce);
 
-	void Stop() {m_LastTime=0;}
+	void Stop();
 
 	bool DrawFrame(int x, int y, int width, int height, unsigned int currentTime);	// Updates animation according to speed, and then draws it on the screen
 	void SetData(int xPos, int yPos, int numFrames, int speed, int width, int height, CSurface* surface);
@@ -63,14 +63,14 @@ private:
 class CAnimatedSprite
 {
 public:
-	CAnimatedSprite(){m_Animations=0; m_Image=0;m_CurrAnimation=0;}
+	CAnimatedSprite();
 	~CAnimatedSprite();
 
 	void Free();
 
 	bool LoadAnimations(std::string imgFilename, std::string animationData);
 	bool Draw(int x, int y, int width, int height, unsigned int currentTime);
-	void SetAnimation(int animation) {m_CurrAnimation = animation;}
+	void SetAnimation(int animation);
 
 private:
 	int m_CurrAnimation;

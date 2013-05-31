@@ -31,88 +31,64 @@ class cGetStringTransport_Base
 public:
     virtual ~cGetStringTransport_Base() {}
     
-	virtual	void	assign(std::string s) =0;
+	virtual	void assign( std::string s ) = 0;
 };
 
 class cGetStringTransport : public cGetStringTransport_Base
 {
-	std::string&	m_dest;
 public:
-	cGetStringTransport(std::string &dest) : m_dest(dest) { }
-	void	assign(std::string s)  {
-		m_dest = s;
-	}
-	cGetStringTransport& operator=(const cGetStringTransport& other)
-	{
-		if (this != &other)
-		{
-			m_dest = other.m_dest;
-		}
-		return *this;
-	}
+	cGetStringTransport( std::string& dest );
+	
+	void assign( std::string s );
+	
+	cGetStringTransport& operator =( const cGetStringTransport& other );
+	
+private:
+    std::string& m_dest;
 };
 
 class cGetStringTransport_Func : public cGetStringTransport_Base
 {
-	Funker funky;
 public:
-	cGetStringTransport_Func(Funker munky) : funky(munky) { }
-virtual	void	assign(std::string /*s*/)  {
-		funky();
-	}
+	cGetStringTransport_Func( Funker munky );
+    virtual	void assign( std::string /*s*/ );
+	
+private:
+    Funker funky;
 };
 
 class cGetStringScreenManager_Inner
 {
-	cGetStringTransport_Base *trans;
-	bool	m_empty_ok;
 public:
-	cGetStringScreenManager_Inner() {
-		trans = 0;
-		m_empty_ok = true;
-	}
+	cGetStringScreenManager_Inner();
+	~cGetStringScreenManager_Inner();
+	
 	void process();
 	void submit();
-	void set_dest(std::string& dest) {
-		trans = new cGetStringTransport(dest);
-	}
-	void set_handler(Funker funk) {
-		trans = new cGetStringTransport_Func(funk);
-	}
-	void empty_allowed(bool bval) {
-		m_empty_ok = bval;
-	}
-	bool empty_allowed() {
-		return m_empty_ok;
-	}
+	void set_dest( std::string& dest );
+	void set_handler( Funker funk );
+	void empty_allowed( bool bval );
+	bool empty_allowed();
+	
+private:
+    cGetStringTransport_Base* m_Trans;
+	bool m_empty_ok;
 };
 
 class cGetStringScreenManager
 {
-	static	cGetStringScreenManager_Inner *instance;
 public:
-	cGetStringScreenManager() {
-		if(instance) {
-			return;
-		}
-		g_EnterKey = false;
-		instance = new cGetStringScreenManager_Inner();
-	}
-	void process() {
-		instance->process();
-	}
-	void set_dest(std::string& dest) {
-		instance->set_dest(dest);
-	}
-	void set_handler(Funker funk) {
-		instance->set_handler(funk);
-	}
-	void empty_allowed(bool bval) {
-		instance->empty_allowed(bval);
-	}
-	bool empty_allowed() {
-		return instance->empty_allowed();;
-	}
+	cGetStringScreenManager();
+	~cGetStringScreenManager();
+	
+	void process();
+	void set_dest( std::string& dest );
+	void set_handler( Funker funk );
+	void empty_allowed( bool bval );
+	bool empty_allowed();
+	
+private:
+    static cGetStringScreenManager_Inner* instance;
 };
 
 

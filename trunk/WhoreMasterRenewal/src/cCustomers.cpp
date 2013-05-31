@@ -24,6 +24,36 @@
 extern cCustomers g_Customers;
 cCustomers g_Customers;
 
+sCustomer::sCustomer()
+{
+    m_Fetish = 0;
+    m_Next = nullptr;
+    m_Prev = nullptr;
+    m_Official = 0;
+}
+
+sCustomer::~sCustomer()
+{
+    if( m_Next )
+        delete m_Next;
+    m_Next = nullptr;
+    m_Prev = nullptr;
+}
+
+
+cCustomers::cCustomers()
+{
+    /*m_Parent=0;*/
+    m_NumCustomers = 0;
+    ChangeCustomerBase();
+    /*m_Last=0;*/
+}
+
+cCustomers::~cCustomers()
+{
+    Free();
+}
+
 void cCustomers::Free()
 {
 	m_NumCustomers = 0;

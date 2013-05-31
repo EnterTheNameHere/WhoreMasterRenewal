@@ -29,6 +29,16 @@ extern unsigned char g_CheckBoxBackgroundR, g_CheckBoxBackgroundG, g_CheckBoxBac
 extern CGraphics g_Graphics;
 extern cInterfaceEventManager g_InterfaceEvents;
 
+cCheckBox::cCheckBox()
+{
+    m_Image = nullptr;
+    m_Next = nullptr;
+    m_Border = nullptr;
+    m_Surface = nullptr;
+    m_StateOn = false;
+    m_Disabled = false;
+}
+
 cCheckBox::~cCheckBox()
 {
 	if(m_Surface)

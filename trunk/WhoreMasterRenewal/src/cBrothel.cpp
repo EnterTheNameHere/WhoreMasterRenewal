@@ -49,13 +49,23 @@ extern cGold            g_Gold;
 extern cGangManager     g_Gangs;
 extern char             buffer[1000];
 
-//extern CGraphics		g_Graphics;
-
 /*
  * mod - this is a bit big for an inline func
  * and we don't create so many of them that we
  * we need the speed - so taken out of the header
  */
+
+sMovie::sMovie()
+{
+    m_Next = nullptr;
+}
+
+sMovie::~sMovie()
+{
+    if( m_Next )
+        delete m_Next;
+    m_Next = nullptr;
+}
 
 // Prototypes
 sGirl* girl_sort(sGirl* girl, sGirl** lastgirl);
@@ -114,6 +124,11 @@ sBrothel::~sBrothel()			// destructor
 		delete m_Girls;
 	m_LastGirl				= 0;
 	m_Girls					= 0;
+}
+
+int sBrothel::free_rooms()
+{
+    return m_NumRooms - m_NumGirls;
 }
 
 // ----- Matron

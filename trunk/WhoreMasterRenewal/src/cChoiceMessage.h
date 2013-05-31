@@ -64,17 +64,9 @@ public:
 
 class cChoiceManager
 {
-	menu_callback_type m_callback;
 public:
-	cChoiceManager() {
-		m_Parent=0;
-		m_ActiveChoice=0;
-		m_DownOn=m_UpOn=m_UpOff=m_DownOff=0;
-		m_CurrUp=m_CurrDown=0;
-		m_Font=0;
-		m_callback = 0;
-	}
-	~cChoiceManager() {Free();}
+	cChoiceManager();
+	~cChoiceManager();
 
 	void Free();
 	void CreateChoiceBox(int x, int y, int width, int height, int ID, int numChoices, int itemHeight, int MaxStrLen = 0);
@@ -95,6 +87,8 @@ public:
 	bool find_active(int x, int y);
 
 private:
+    menu_callback_type m_callback;
+    
 	cChoice* m_Parent;
 	cChoice* m_ActiveChoice;
 

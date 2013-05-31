@@ -29,25 +29,13 @@ class CSurface;
 class cButton : public cInterfaceObject
 {
 public:
-	cButton() {
-		m_CurrImage = m_OffImage = m_DisabledImage = m_OnImage = 0;
-		m_Next=0;
-		m_Disabled=false;
-		m_Hidden=false;
-	}
+	cButton();
 	virtual ~cButton();
 
 	bool CreateButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int ID, int x, int y, int width, int height, bool transparency = false,bool cached=false);
 	bool IsOver(int x, int y);
 	bool ButtonClicked(int x, int y);
-	void SetDisabled(bool disable)
-	{
-		m_Disabled = disable;
-		if(disable)
-			m_CurrImage = m_DisabledImage;
-		else
-			m_CurrImage = m_OffImage;
-	}
+	void SetDisabled(bool disable);
 
 	virtual void Draw();
 

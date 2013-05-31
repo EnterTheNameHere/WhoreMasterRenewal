@@ -31,6 +31,16 @@ extern unsigned char g_EditBoxBackgroundR, g_EditBoxBackgroundG, g_EditBoxBackgr
 extern unsigned char g_EditBoxSelectedR, g_EditBoxSelectedG, g_EditBoxSelectedB;
 extern unsigned char g_EditBoxTextR, g_EditBoxTextG, g_EditBoxTextB;
 
+cEditBox::cEditBox()
+{
+    m_Next = nullptr;
+    m_FocusedBackground = nullptr;
+    m_Border = nullptr;
+    m_Background = nullptr;
+    m_Text = nullptr;
+    m_HasFocus = false;
+}
+
 cEditBox::~cEditBox()
 {
 	if(m_Background)

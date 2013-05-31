@@ -30,7 +30,7 @@ class SDL_Surface;
 class cEditBox : public cInterfaceObject
 {
 public:
-	cEditBox() {m_Next = 0;m_FocusedBackground=m_Border=m_Background=0;m_Text=0;m_HasFocus=false;}
+	cEditBox();
 	virtual ~cEditBox();
 
 	bool CreateEditBox(int ID, int x, int y, int width, int height, int BorderSize);

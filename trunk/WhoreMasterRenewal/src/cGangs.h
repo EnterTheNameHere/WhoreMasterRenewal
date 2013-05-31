@@ -33,6 +33,18 @@ class TiXmlHandle;
 // A gang of street toughs
 typedef struct sGang
 {
+public:
+    sGang();
+	~sGang();
+    
+    int magic()		{ return m_Skills[SKILL_MAGIC]; }
+	int combat()		{ return m_Skills[SKILL_COMBAT]; }
+	int intelligence()	{ return m_Stats[STAT_INTELLIGENCE]; }
+    
+    TiXmlElement* SaveGangXML(TiXmlElement* pRoot);
+	bool LoadGangXML(TiXmlHandle hGang);
+    
+
 	int m_Num;	// number in the gang
 	unsigned char m_Skills[NUM_SKILLS];	// skills of the gang
 	unsigned char m_Stats[NUM_STATS];	// stats of the gang
@@ -41,35 +53,11 @@ typedef struct sGang
 	bool m_AutoRecruit;	// true if auto recruiting
     std::string m_Name;
 	bool m_Combat;	// is true when gang has seen combat in the last week
-	cEvents m_Events;
-
+    cEvents m_Events;
+    
 	sGang* m_Next;
 	sGang* m_Prev;
-
-	TiXmlElement* SaveGangXML(TiXmlElement* pRoot);
-	bool LoadGangXML(TiXmlHandle hGang);
-
-	int magic()		{ return m_Skills[SKILL_MAGIC]; }
-	int combat()		{ return m_Skills[SKILL_COMBAT]; }
-	int intelligence()	{ return m_Stats[STAT_INTELLIGENCE]; }
-
-	sGang()
-	{
-		m_Name = "Unnamed";
-		m_Num = 0;
-		m_Prev = m_Next = 0;
-		m_MissionID = MISS_GUARDING;
-		m_Combat = false;
-		m_LastMissID = -1;
-		m_AutoRecruit = false;
-	}
-
-	~sGang()
-	{
-		if(m_Next)
-			delete m_Next;
-		m_Prev = m_Next = 0;
-	}
+	
 }sGang;
 
 /*
@@ -79,8 +67,7 @@ class cGangManager
 {
 public:
 	cGangManager();
-
-	~cGangManager() {Free();}
+	~cGangManager();
 
 	void Free();
 

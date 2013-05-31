@@ -31,7 +31,7 @@ class SDL_Surface;
 class cCheckBox : public cInterfaceObject
 {
 public:
-	cCheckBox() {m_Image = 0;m_Next=0;m_Border=m_Surface=0;m_StateOn=false;m_Disabled=false;}
+	cCheckBox();
 	virtual ~cCheckBox();
 
 	bool CreateCheckBox(int id, int x, int y, int width, int height, std::string text, int fontsize = 12);

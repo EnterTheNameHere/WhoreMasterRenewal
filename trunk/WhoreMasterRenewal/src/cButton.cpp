@@ -27,6 +27,18 @@
 extern cInterfaceEventManager g_InterfaceEvents;
 extern CResourceManager rmanager;
 
+
+cButton::cButton()
+{
+    m_CurrImage = nullptr;
+    m_OffImage = nullptr;
+    m_DisabledImage = nullptr;
+    m_OnImage = nullptr;
+    m_Next = nullptr;
+    m_Disabled = false;
+    m_Hidden = false;
+}
+
 cButton::~cButton()
 {
 	if(m_Next)
@@ -45,6 +57,15 @@ cButton::~cButton()
 	if(m_OnImage)
 		delete m_OnImage;
 	m_OnImage = 0;
+}
+
+void cButton::SetDisabled( bool disable )
+{
+    m_Disabled = disable;
+    if( disable )
+        m_CurrImage = m_DisabledImage;
+    else
+        m_CurrImage = m_OffImage;
 }
 
 bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int ID, int x, int y, int width, int height, bool transparency,bool cached)

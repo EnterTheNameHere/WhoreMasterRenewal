@@ -58,8 +58,8 @@ typedef struct sMovie
 {
 	long m_Quality;
 	sMovie* m_Next;
-	sMovie()		{ m_Next=0; }
-	~sMovie()		{ if(m_Next) delete m_Next; m_Next=0; }
+	sMovie();
+	~sMovie();
 }sMovie;
 
 // defines a single brothel
@@ -119,7 +119,7 @@ typedef struct sBrothel
 	int		m_SecurityLevel;
 
 	// mod docclox - convenience funcs
-	int free_rooms() { return m_NumRooms - m_NumGirls; }
+	int free_rooms();
 	bool matron_on_shift(int shift);
 	bool has_matron();
 	int matron_count();

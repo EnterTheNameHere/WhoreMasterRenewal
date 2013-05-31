@@ -14,6 +14,11 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-g" />
+					<Add option="-pedantic" />
+					<Add option="-Wall" />
+					<Add option="-Wextra" />
+					<Add option="-Wno-unknown-pragmas" />
 					<Add option="-Winit-self" />
 					<Add option="-Wredundant-decls" />
 					<Add option="-Wcast-align" />
@@ -24,10 +29,6 @@
 					<Add option="-Wmissing-include-dirs" />
 					<Add option="-Wswitch-default" />
 					<Add option="-Wmain" />
-					<Add option="-pedantic" />
-					<Add option="-Wextra" />
-					<Add option="-Wall" />
-					<Add option="-g" />
 					<Add option="-Wformat=2" />
 					<Add option="-Wunused-local-typedefs" />
 					<Add option="-Wuninitialized" />
@@ -39,7 +40,6 @@
 					<Add option="-Winvalid-pch" />
 					<Add option="-Wvector-operation-performance" />
 					<Add option="-Wsign-promo" />
-					<Add option="-Wno-unknown-pragmas" />
 				</Compiler>
 				<Linker>
 					<Add library="mingw32" />
@@ -366,13 +366,13 @@
 			<debugger />
 			<lib_finder disable_auto="1" />
 			<DoxyBlocks>
-				<comment_style block="5" line="2" />
-				<doxyfile_project output_directory="Docs" />
+				<comment_style block="0" line="2" />
+				<doxyfile_project />
 				<doxyfile_build extract_all="1" extract_private="1" extract_static="1" />
 				<doxyfile_warnings />
 				<doxyfile_output />
-				<doxyfile_dot class_diagrams="1" />
-				<general />
+				<doxyfile_dot class_diagrams="1" have_dot="1" />
+				<general use_at_in_tags="1" />
 			</DoxyBlocks>
 		</Extensions>
 	</Project>

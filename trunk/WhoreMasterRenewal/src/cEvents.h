@@ -51,8 +51,8 @@ public:
 class cEvents
 {
 public:
-	cEvents()		{ m_bSorted = false; }	// constructor
-	~cEvents()		{Free();}				// destructor
+	cEvents();
+	~cEvents();
 
 	void			Free();
 	void			Clear() {Free();}

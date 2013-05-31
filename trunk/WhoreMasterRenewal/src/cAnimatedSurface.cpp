@@ -21,6 +21,29 @@
 #include "CLog.h"
 #include "CSurface.h"
 
+cAnimatedSurface::cAnimatedSurface()
+{
+    m_Surface = nullptr;
+    m_SpriteSurface = nullptr;
+}
+cAnimatedSurface::~cAnimatedSurface()
+{
+    m_Surface = nullptr;
+    if( m_SpriteSurface )
+        SDL_FreeSurface( m_SpriteSurface );
+    m_SpriteSurface = nullptr;
+}
+
+void cAnimatedSurface::PlayOnce( bool playOnce )
+{
+    m_PlayOnce = playOnce;
+}
+
+void cAnimatedSurface::Stop()
+{
+    m_LastTime=0;
+}
+
 bool cAnimatedSurface::DrawFrame(int x, int y, int width, int height, unsigned int currentTime)	// Updates animation according to speed, and then draws it on the screen
 {
 	SDL_Rect temp = m_Frames;
@@ -101,9 +124,21 @@ void cAnimatedSurface::SetData(int xPos, int yPos, int numFrames, int speed, int
 	m_Surface = surface;
 }
 
+CAnimatedSprite::CAnimatedSprite()
+{
+    m_Animations = 0;
+    m_Image = 0;
+    m_CurrAnimation = 0;
+}
+
 CAnimatedSprite::~CAnimatedSprite()
 {
 	Free();
+}
+
+void CAnimatedSprite::SetAnimation( int animation )
+{
+    m_CurrAnimation = animation;
 }
 
 void CAnimatedSprite::Free()

@@ -48,21 +48,9 @@ typedef struct sCustomer
 	sCustomer* m_Next;
 	sCustomer* m_Prev;
 	
-	sCustomer()
-	{
-		m_Fetish = 0;
-		m_Next = 0;
-		m_Prev = 0;
-		m_Official = 0;
-	}
-
-	~sCustomer()
-	{
-		if(m_Next)
-			delete m_Next;
-		m_Next = 0;
-		m_Prev = 0;
-	}
+	sCustomer();
+	~sCustomer();
+	
 	int happiness() {
 		return m_Stats[STAT_HAPPINESS];
 	}
@@ -71,8 +59,8 @@ typedef struct sCustomer
 class cCustomers
 {
 public:
-	cCustomers() {/*m_Parent=0;*/m_NumCustomers=0;ChangeCustomerBase();/*m_Last=0;*/}
-	~cCustomers(){Free();}
+	cCustomers();
+	~cCustomers();
 
 	void Free();
 

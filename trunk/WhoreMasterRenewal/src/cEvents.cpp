@@ -144,6 +144,15 @@ bool CEvent::IsWarning()
 	return false;
 }
 
+cEvents::cEvents()
+{
+    m_bSorted = false;
+}
+
+cEvents::~cEvents()
+{
+    Free();
+}
 
 void cEvents::Free()
 {
