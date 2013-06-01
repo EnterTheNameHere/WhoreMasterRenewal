@@ -21,8 +21,10 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
-struct sXmlWidgetPart {
+struct sXmlWidgetPart
+{
 public:
 	int x, y, w, h, r, g, b;
 	int fontsize, bordersize;
@@ -33,15 +35,10 @@ public:
 class cXmlWidget {
 	std::vector<sXmlWidgetPart> list;
 public:
-	cXmlWidget() {}
-	int size() {	return int(list.size()); }
-	sXmlWidgetPart& operator[](int i) {
-		return list[i];
-	}
-	void add(sXmlWidgetPart &part)
-	{
-		list.push_back(part);
-	}
+	cXmlWidget();
+	int size();
+	sXmlWidgetPart& operator[](int i);
+	void add(sXmlWidgetPart &part);
 };
 
 #endif // CXMLWIDGET_H_INCLUDED_1508

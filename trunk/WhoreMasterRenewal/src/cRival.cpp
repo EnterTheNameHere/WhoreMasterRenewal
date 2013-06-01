@@ -41,6 +41,31 @@ extern unsigned long g_Year;
 extern unsigned long g_Month;
 extern unsigned long g_Day;
 
+cRival::cRival()
+{
+    m_Next = nullptr;
+    m_Prev = nullptr;
+    m_Name = "";
+    m_Influence = 0;
+    m_BribeRate = 0;
+    m_Gold = 5000;
+    m_NumBrothels = 1;
+    m_NumGangs = 3;
+    m_NumGirls = 8;
+    m_NumBars = 0;
+    m_NumGamblingHalls = 0;
+    m_BusinessesExtort = 0;
+}
+
+cRival::~cRival()
+{
+    if( m_Next )
+        delete m_Next;
+    
+    m_Next = 0;
+    m_Prev = 0;
+}
+
 cRivalManager::cRivalManager()
 {
 	m_Rivals=0;
@@ -60,6 +85,21 @@ cRivalManager::cRivalManager()
 		<< "RivalGangLastNames.txt"
 		;
 	names.load(first_names, last_names);
+}
+
+cRivalManager::~cRivalManager()
+{
+    Free();
+}
+
+void cRivalManager::Free()
+{
+    if( m_Rivals )
+        delete m_Rivals;
+    
+    m_Rivals = nullptr;
+    m_Last = nullptr;
+    m_NumRivals = 0;
 }
 
 static inline int max(int a, int b) { return((a > b) ? a : b); }

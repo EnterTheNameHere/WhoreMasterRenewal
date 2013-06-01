@@ -46,32 +46,10 @@ typedef struct sEntry	// represents a single entry in an action
 	};
 
 	// Structure constructor to clear to default values
-	sEntry()
-	{
-		m_Type = _NONE;
-		m_NumChoices = 0;
-		m_Choices = 0;
-		m_TypeID= 0;
-	}
+	sEntry();
 
 	// Structure destructor to clean up used resources
-	~sEntry()
-	{
-		// Special case for choice types
-		if((m_Type == _CHOICE) && m_Choices != 0)
-		{
-			if(m_NumChoices)
-			{
-				for(long i=0;i<m_NumChoices;i++)
-				{
-					delete [] m_Choices[i]; // Delete choice text
-					m_Choices[i] = 0;
-				}
-			}
-			delete [] m_Choices; // Delete choice array
-			m_Choices = 0;
-		}
-	}
+	~sEntry();
 }sEntry;
 
 // Structure that stores a single action and contains
@@ -84,20 +62,9 @@ typedef struct sAction
 	sEntry* m_Entries; // Array of entry structures
 	sAction* m_Next; // Next action in linked list
 
-	sAction()
-	{
-		m_ID = 0; // Set all data to defaults
-		m_Text[0] = 0;
-		m_NumEntries = 0;
-		m_Entries = 0;
-		m_Next = 0;
-	}
-
-	~sAction()
-	{
-		if(m_Entries) delete [] m_Entries; m_Entries = 0; // Free entries array
-		if(m_Next) delete m_Next; m_Next = 0; // Delete next in list
-	}
+	sAction();
+	~sAction();
+	
 } sAction;
 
 typedef struct sScriptEntry
@@ -116,20 +83,9 @@ typedef struct sScriptEntry
 	char* m_Text; // Text buffer
 	unsigned char m_Var;
 
-	sScriptEntry()
-	{
-		m_Type = _NONE; // Clear to default values
-		m_IOValue = 0;
-		m_Text = 0;
-		m_Var = 0;
-	}
-
-	~sScriptEntry()
-	{
-		if(m_Text)
-			delete [] m_Text;
-		m_Text = 0;
-	} // Delete text buffer
+	sScriptEntry();
+	~sScriptEntry();
+	
 } sScriptEntry;
 
 typedef struct sScript
@@ -140,42 +96,20 @@ typedef struct sScript
 	sScript* m_Prev; // Prev in linked list
 	sScript* m_Next; // Next in linked list
 
-	sScript()
-	{
-		m_Type = 0; // Clear to defaults
-		m_NumEntries = 0;
-		m_Entries = 0;
-		m_Prev = m_Next = 0;
-	}
-
-	~sScript()
-	{
-		if(m_Entries)
-			delete [] m_Entries;
-		m_Entries = 0; // Delete entry array
-		if(m_Next)
-			delete m_Next;
-		m_Prev = m_Next = 0; // Delete next in linked list
-	}
+	sScript();
+	~sScript();
+	
 } sScript;
 
 class cActionTemplate
 {
-private:
-	long m_NumActions; // # of actions in template
-	sAction* m_ActionParent; // list of template actions
-
-	// Functions for reading text (mainly used in actions)
-	bool GetNextQuotedLine(char* Data, FILE* fp, long MaxSize);
-	bool GetNextWord(char* Data, FILE* fp, long MaxSize);
-
 public:
-	cActionTemplate() {m_ActionParent=0;}
-	~cActionTemplate() {Free();}
+	cActionTemplate();
+	~cActionTemplate();
 
 	// Load and free the action templates
 	bool Load();
-	bool Free(){if(m_ActionParent) delete m_ActionParent;m_ActionParent=0;m_NumActions=0;return true;}
+	bool Free();
 
 	// Get # actions in template, action parent,
 	// and specific action structure.
@@ -195,6 +129,14 @@ public:
 
 	// Expand action text using selections
 	bool ExpandActionText(char* Buffer, sScript* Script);
+    
+private:
+	long m_NumActions; // # of actions in template
+	sAction* m_ActionParent; // list of template actions
+
+	// Functions for reading text (mainly used in actions)
+	bool GetNextQuotedLine(char* Data, FILE* fp, long MaxSize);
+	bool GetNextWord(char* Data, FILE* fp, long MaxSize);
 };
 
 // Class for processing scripts
@@ -213,8 +155,8 @@ protected:
 	virtual sScript* Process(sScript* Script) { return Script->m_Next; }
 
 public:
-	cScript() {m_ScriptParent=0;}; // Constructor
-	virtual ~cScript() {if(m_ScriptParent)delete m_ScriptParent; m_ScriptParent=0;}; // Destructor
+	cScript();
+	virtual ~cScript();
 
 	bool Load(std::string filename); // Load a script
 	bool Free(); // Free loaded script

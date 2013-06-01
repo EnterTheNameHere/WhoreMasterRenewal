@@ -70,13 +70,8 @@ public:
     std::string short_mission_desc(int mid);
 
 	// XML screen replacement for cSelector, for multi-select listboxes
-	int multi_first() {
-		sel_pos = 0;
-		return GetNextSelectedItemFromList(ganglist_id, 0, sel_pos);
-	}
-	int multi_next() {
-		return GetNextSelectedItemFromList(ganglist_id, sel_pos+1, sel_pos);
-	}
+	int multi_first();
+	int multi_next();
 };
 
 #endif // CSCREENGANGS_H_INCLUDED_1518

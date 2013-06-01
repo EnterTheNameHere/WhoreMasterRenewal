@@ -29,6 +29,54 @@
 
 extern	cGirls	g_Girls;
 
+cTrainable::cTrainable()
+{
+}
+
+cTrainable::cTrainable(sGirl *girl, std::string stat_name, int index, AType typ)
+{
+    m_girl	= girl;
+    m_index	= index;
+    m_name	= stat_name;
+    m_type	= typ;
+    m_gain	= 0;
+}
+
+cTrainable::cTrainable(const cTrainable& t)
+{
+    m_girl	= t.m_girl;
+    m_index	= t.m_index;
+    m_name	= t.m_name;
+    m_type	= t.m_type;
+    m_gain	= t.m_gain;
+}
+
+cTrainable::~cTrainable() {}
+
+cTrainable& cTrainable::operator =( const cTrainable& rhs )
+{
+    if( this == &rhs )
+        return *this;
+    
+    m_girl	= rhs.m_girl;
+    m_index	= rhs.m_index;
+    m_name	= rhs.m_name;
+    m_type	= rhs.m_type;
+    m_gain	= rhs.m_gain;
+    
+    return *this;
+}
+
+std::string cTrainable::name()
+{
+    return m_name;
+}
+
+int	cTrainable::gain()
+{
+    return m_gain;
+}
+
 int cTrainable::value()
 {
 	if(m_type == Stat) {
@@ -44,6 +92,17 @@ void cTrainable::upd(int increment)
 		g_Girls.UpdateStat(m_girl, m_index, increment);
 	}
 	g_Girls.UpdateSkill(m_girl, m_index, increment);
+}
+
+TrainableStat::TrainableStat(sGirl *girl, std::string stat_name, int index)
+	: cTrainable(girl, stat_name, index, cTrainable::Stat)
+{
+}
+
+
+TrainableSkill::TrainableSkill(sGirl *girl, std::string stat_name, int index)
+	: cTrainable(girl, stat_name, index, cTrainable::Skill)
+{
 }
 
 TrainableGirl::TrainableGirl(sGirl *girl)

@@ -30,66 +30,75 @@ class TiXmlHandle;
 class cRival
 {
 public:
-	cRival(){m_Next=m_Prev=0;m_Name="";m_Influence=0;m_BribeRate=0;m_Gold=5000;m_NumBrothels=1;m_NumGangs=3;m_NumGirls=8;m_NumBars=0;m_NumGamblingHalls=0;m_BusinessesExtort=0;}
-	~cRival(){if(m_Next)delete m_Next;m_Next=0;m_Prev=0;}
-
-	// variables
-	int m_NumGangs;
-	int m_NumBrothels;
-	int m_NumGirls;
-	int m_NumBars;
-	int m_NumGamblingHalls;
-	long m_Gold;
-	int m_BusinessesExtort;
-	long m_BribeRate;
-	int m_Influence;	// based on the bribe rate this is the percentage of influence you have
+    cRival();
+    ~cRival();
+    
+    // variables
+    int m_NumGangs;
+    int m_NumBrothels;
+    int m_NumGirls;
+    int m_NumBars;
+    int m_NumGamblingHalls;
+    long m_Gold;
+    int m_BusinessesExtort;
+    long m_BribeRate;
+    int m_Influence;    // based on the bribe rate this is the percentage of influence you have
     std::string m_Name;
-
-	cRival* m_Next;
-	cRival* m_Prev;
+    
+    cRival* m_Next;
+    cRival* m_Prev;
 };
 
 class cRivalManager
 {
 public:
-	cRivalManager();
-	~cRivalManager(){Free();}
-
-	void Free() {if(m_Rivals)delete m_Rivals;m_Rivals=0;m_Last=0;m_NumRivals=0;}
-
-	void Update(int& NumPlayerBussiness);
-	cRival* GetRandomRival();
-	cRival* GetRivals() {return m_Rivals;}
-	cRival* GetRival(std::string name);
-	cRival* GetRival(int number);
-
-	TiXmlElement* SaveRivalsXML(TiXmlElement* pRoot);
-	bool LoadRivalsXML(TiXmlHandle hRivalManager);
-	void LoadRivalsLegacy(std::ifstream& ifs);
-
-	void CreateRival(long bribeRate, int extort, long gold, int bars, int gambHalls, int Girls, int brothels, int goons);
-	void AddRival(cRival* rival);
-	void RemoveRival(cRival* rival);
-	void CreateRandomRival();
-
-	int GetNumBusinesses();
-
-	int GetNumRivals() {return m_NumRivals;}
-
-	bool NameExists(std::string name);
-
-	bool player_safe() { return m_PlayerSafe; }
-	cRival* get_influential_rival();
-	void rivals_plunder_pc_gold(cRival* rival, std::string& message);
-
+    cRivalManager();
+    ~cRivalManager();
+    
+    void Free();
+    
+    void Update( int& NumPlayerBussiness );
+    cRival* GetRandomRival();
+    cRival* GetRivals()
+    {
+        return m_Rivals;
+    }
+    cRival* GetRival( std::string name );
+    cRival* GetRival( int number );
+    
+    TiXmlElement* SaveRivalsXML( TiXmlElement* pRoot );
+    bool LoadRivalsXML( TiXmlHandle hRivalManager );
+    void LoadRivalsLegacy( std::ifstream& ifs );
+    
+    void CreateRival( long bribeRate, int extort, long gold, int bars, int gambHalls, int Girls, int brothels, int goons );
+    void AddRival( cRival* rival );
+    void RemoveRival( cRival* rival );
+    void CreateRandomRival();
+    
+    int GetNumBusinesses();
+    
+    int GetNumRivals()
+    {
+        return m_NumRivals;
+    }
+    
+    bool NameExists( std::string name );
+    
+    bool player_safe()
+    {
+        return m_PlayerSafe;
+    }
+    cRival* get_influential_rival();
+    void rivals_plunder_pc_gold( cRival* rival, std::string& message );
+    
 private:
-	int m_NumRivals;
-	cRival* m_Rivals;
-	cRival* m_Last;
-
-	bool m_PlayerSafe;
-
-	cDoubleNameList names;
+    int m_NumRivals;
+    cRival* m_Rivals;
+    cRival* m_Last;
+    
+    bool m_PlayerSafe;
+    
+    cDoubleNameList names;
 };
 
 #endif // CRIVAL_H_INCLUDED_1520

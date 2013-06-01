@@ -1564,8 +1564,8 @@ void cTriggerList::LoadList(std::string filename)
 	}
 }
 
-/*
+cTriggerQue::cTriggerQue() {m_Trigger=0;m_Next=m_Prev=0;}
+cTriggerQue::~cTriggerQue() {if(m_Next)delete m_Next;m_Prev=m_Next=0;m_Trigger=0;}
 
- *
-
- */
+cTriggerList::cTriggerList() {m_Triggers=0;m_CurrTrigger=0;m_Last=0;/*m_StartQue=m_EndQue=0;m_NumQued=0;*/m_NumTriggers=0;m_GirlTarget=0;}
+cTriggerList::~cTriggerList() {Free();}

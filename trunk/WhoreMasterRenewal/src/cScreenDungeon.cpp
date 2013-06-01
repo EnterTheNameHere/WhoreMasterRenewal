@@ -1143,3 +1143,14 @@ void cScreenDungeon::store_selected_girls()
 			break;
 	}
 }
+
+int cScreenDungeon::multi_first()
+{
+    sel_pos = 0;
+    return GetNextSelectedItemFromList( girllist_id, 0, sel_pos );
+}
+
+int cScreenDungeon::multi_next()
+{
+    return GetNextSelectedItemFromList( girllist_id, sel_pos + 1, sel_pos );
+}

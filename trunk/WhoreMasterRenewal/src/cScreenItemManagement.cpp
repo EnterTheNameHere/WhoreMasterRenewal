@@ -964,3 +964,25 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 	SetSelectedItemInList(source_owner_list, source_owner);
 	SetSelectedItemInList(target_owner_list, target_owner);
 }
+
+int cScreenItemManagement::multi_left_first()
+{
+    sel_pos_l = 0;
+    return GetNextSelectedItemFromList(items_l_id, 0, sel_pos_l);
+}
+
+int cScreenItemManagement::multi_left_next()
+{
+    return GetNextSelectedItemFromList(items_l_id, sel_pos_l+1, sel_pos_l);
+}
+
+int cScreenItemManagement::multi_right_first()
+{
+    sel_pos_r = 0;
+    return GetNextSelectedItemFromList(items_r_id, 0, sel_pos_r);
+}
+
+int cScreenItemManagement::multi_right_next()
+{
+    return GetNextSelectedItemFromList(items_r_id, sel_pos_r+1, sel_pos_r);
+}

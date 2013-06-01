@@ -33,33 +33,16 @@ typedef struct sTrait
 
 	sTrait* m_Next;		// the next trait in the list
 
-	sTrait()
-	{
-		m_Name = m_Desc = 0;
-		m_Next = 0;
-	}
-
-	~sTrait()
-	{
-		if(m_Name)
-			delete [] m_Name;
-		m_Name = 0;
-		
-		if(m_Desc)
-			delete [] m_Desc;
-		m_Desc = 0;
-
-		if(m_Next)
-			delete m_Next;
-		m_Next = 0;
-	}
+	sTrait();
+	~sTrait();
+	
 }sTrait;
 
 // Manages and loads the traits file
 class cTraits
 {
 public:
-	cTraits(){m_ParentTrait=0;m_LastTrait=0;m_NumTraits=0;}
+	cTraits();
 	~cTraits();
 
 	void Free();	// Delete all the loaded data

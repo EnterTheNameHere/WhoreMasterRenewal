@@ -64,6 +64,11 @@ FileList::FileList(DirPath dp, const char *pattern)
 	scan(pattern);
 }
 
+FileList::FileList( DirPath dp, const char* /*pattern*/, bool /*no_load*/ )
+{
+    folder = dp;
+}
+
 void FileList::scan(const char *pattern)
 {
 	DIR		*dpt;
@@ -127,7 +132,39 @@ FileList::FileList(DirPath dp, const char *pattern)
 
 }
 
- void FileList::scan(const char * pattern )
+FileList::FileList( DirPath dp, const char* /*pattern*/, bool /*no_load*/ )
+{
+    folder = dp;
+}
+
+FileList::~FileList() {}
+
+DirPath& FileList::folder_dp()
+{
+    return folder;
+}
+
+FileListEntry& FileList::operator[]( int index )
+{
+    return files[index];    // just pass it on to the vector
+}
+
+int FileList::size() const
+{
+    return files.size();
+}
+
+FileList& FileList::operator +=( FileList& l )
+{
+    for( int i = 0; i < l.size(); i++ )
+    {
+        files.push_back( l[i] );
+    }
+    
+    return *this;
+}
+
+void FileList::scan(const char * pattern )
 {
 	files.clear();
 	WIN32_FIND_DATAA FindFileData;
@@ -153,11 +190,55 @@ FileList::FileList(DirPath dp, const char *pattern)
 #endif
 
 
+FileListEntry::FileListEntry() {}
+
+FileListEntry::FileListEntry( const FileListEntry& fle )
+{
+    m_path = fle.m_path;
+    m_leaf = fle.m_leaf;
+    m_full = fle.m_full;
+}
+
+FileListEntry::FileListEntry( std::string a_path, std::string a_leaf )
+{
+    m_path = a_path;
+    m_leaf = a_leaf;
+#ifdef LINUX
+    m_full = m_path + "/" + m_leaf;
+#else
+    m_full = m_path + "\\" + m_leaf;
+#endif
+}
+
+std::string& FileListEntry::leaf()
+{
+    return m_leaf;
+}
+
+std::string& FileListEntry::path()
+{
+    return m_path;
+}
+
+std::string& FileListEntry::full()
+{
+    return m_full;
+}
+
 
 XMLFileList::XMLFileList(DirPath dp, char const *pattern)
 {
 	folder = dp;
 	scan(pattern);
+}
+
+FileListEntry& XMLFileList::operator[]( int index )
+{
+    return files[index];    // just pass it on to the vector
+}
+int XMLFileList::size()
+{
+    return files.size();
 }
 
 void XMLFileList::scan(const char *pattern)
@@ -218,6 +299,18 @@ static std::string clobber_extension(std::string s)
 }
 
 std::vector<std::string> ImageFileList::file_extensions;
+
+ImageFileList::ImageFileList( DirPath dp, const char* pattern )
+    : FileList( dp, 0, true )
+{
+    if( file_extensions.size() == 0 )
+    {
+        file_extensions.push_back( std::string( ".jp*g" ) );
+        file_extensions.push_back( ".gif" );
+    }
+    
+    scan( pattern );
+}
 
 void ImageFileList::scan(const char *base)
 {

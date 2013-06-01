@@ -19,6 +19,18 @@
 
 #include "CRenderQue.h"
 
+CRenderQue::CRenderQue()
+{
+    m_Parent = nullptr;
+    m_Last = nullptr;
+}
+
+CRenderQue::~CRenderQue()
+{
+    m_Parent = nullptr;
+    m_Last = nullptr;
+}
+
 void CRenderQue::DrawQue()
 {
 	CRenderObject* temp = m_Parent;

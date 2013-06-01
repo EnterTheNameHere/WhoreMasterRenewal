@@ -104,15 +104,15 @@ public:
 	cTriggerQue* m_Next;	// the next one in the que
 	cTriggerQue* m_Prev;	// the previous one in the que
 
-	cTriggerQue() {m_Trigger=0;m_Next=m_Prev=0;}
-	~cTriggerQue() {if(m_Next)delete m_Next;m_Prev=m_Next=0;m_Trigger=0;}
+	cTriggerQue();
+	~cTriggerQue();
 };
 
 class cTriggerList
 {
 public:
-	cTriggerList() {m_Triggers=0;m_CurrTrigger=0;m_Last=0;/*m_StartQue=m_EndQue=0;m_NumQued=0;*/m_NumTriggers=0;m_GirlTarget=0;}
-	~cTriggerList() {Free();}
+	cTriggerList();
+	~cTriggerList();
 
 	void Free();
 	void LoadList(std::string filename);

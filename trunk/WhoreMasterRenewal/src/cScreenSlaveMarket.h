@@ -63,14 +63,8 @@ public:
 	int &selected_item() { return selection; }
 	bool change_selected_girl();
 
-	int multi_slave_first() {
-		sel_pos = 0;
-		return GetNextSelectedItemFromList(slave_list_id, 0, sel_pos);
-	}
-
-	int multi_slave_next() {
-		return GetNextSelectedItemFromList(slave_list_id, sel_pos+1, sel_pos);
-	}
+	int multi_slave_first();
+	int multi_slave_next();
 };
 
 #endif // CSCREENSLAVEMARKET_H_INCLUDED_1513

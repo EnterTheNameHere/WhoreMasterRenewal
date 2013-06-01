@@ -46,47 +46,24 @@ public:
 /*
  *	constructor - nothing fancy here
  */
-	cTrainable()
-	{
-	}
-
-	cTrainable(sGirl *girl, std::string stat_name, int index, AType typ)
-	{
-		m_girl	= girl;
-		m_index	= index;
-		m_name	= stat_name;
-		m_type	= typ;
-		m_gain	= 0;
-	}
-	cTrainable(const cTrainable& t)
-	{
-		m_girl	= t.m_girl;
-		m_index	= t.m_index;
-		m_name	= t.m_name;
-		m_type	= t.m_type;
-		m_gain	= t.m_gain;
-	}
+	cTrainable();
+	cTrainable(sGirl *girl, std::string stat_name, int index, AType typ);
+	cTrainable(const cTrainable& t);
     
-    virtual ~cTrainable() {}
+    virtual ~cTrainable();
     
-	void operator=(const cTrainable& t)
-	{
-		m_girl	= t.m_girl;
-		m_index	= t.m_index;
-		m_name	= t.m_name;
-		m_type	= t.m_type;
-		m_gain	= t.m_gain;
-	}
+	cTrainable& operator =(const cTrainable& t);
 
-    std::string name()	{ return m_name; }
+    std::string name();
 /*
  *	lost the virtual here - don't need it
  */
 	int	value();
-	void	upd(int increment);
-	int	gain()		{ return m_gain; }
+	void upd(int increment);
+	int	gain();
+	
 protected:
-	sGirl	*m_girl;
+	sGirl* m_girl;
     std::string m_name;
 	int	m_index;
 	AType	m_type;
@@ -98,30 +75,28 @@ protected:
  *
  * now little more than syntactic sugar
  */
-class TrainableStat : public cTrainable {
+class TrainableStat : public cTrainable
+{
 public:
-	TrainableStat(sGirl *girl, std::string stat_name, int index)
-	: cTrainable(girl, stat_name, index, cTrainable::Stat)
-	{}
+	TrainableStat(sGirl *girl, std::string stat_name, int index);
 };
 
-class TrainableSkill : public cTrainable {
+class TrainableSkill : public cTrainable
+{
 public:
-	TrainableSkill(sGirl *girl, std::string stat_name, int index)
-	: cTrainable(girl, stat_name, index, cTrainable::Skill)
-	{}
+	TrainableSkill(sGirl *girl, std::string stat_name, int index);
 };
 
 /*
  * now we can write a wrapper for a girl where all her trainable bits
  * appear to be in one array, with a single access method
  */
-class TrainableGirl {
-	sGirl *m_girl;
-	std::vector<cTrainable> stats;
+class TrainableGirl
+{
 public:
 	TrainableGirl(sGirl *girl);
-	cTrainable &operator[](int index) {
+	cTrainable &operator[](int index)
+	{
 		return stats[index];
 	}
 	unsigned int size()	{ return stats.size(); }
@@ -130,6 +105,10 @@ public:
  */
     std::string update_random(int size=1);
 	sGirl*	girl() 	{ return m_girl; }
+	
+private:
+	sGirl *m_girl;
+	std::vector<cTrainable> stats;
 };
 
 /*

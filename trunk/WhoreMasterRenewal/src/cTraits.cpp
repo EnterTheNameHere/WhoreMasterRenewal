@@ -27,6 +27,29 @@
 extern cTraits g_Traits;
 cTraits g_Traits;
 
+sTrait::sTrait()
+{
+    m_Name = m_Desc = 0;
+    m_Next = 0;
+}
+
+sTrait::~sTrait()
+{
+    if(m_Name)
+        delete [] m_Name;
+    m_Name = 0;
+    
+    if(m_Desc)
+        delete [] m_Desc;
+    m_Desc = 0;
+
+    if(m_Next)
+        delete m_Next;
+    m_Next = 0;
+}
+
+cTraits::cTraits(){m_ParentTrait=0;m_LastTrait=0;m_NumTraits=0;}
+
 cTraits::~cTraits()
 {
 	Free();

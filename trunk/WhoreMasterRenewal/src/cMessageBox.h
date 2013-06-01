@@ -67,65 +67,27 @@ extern cMessageBox g_MessageBox;
 
 typedef struct sMessage
 {
+    sMessage();
+	~sMessage();
+    
     std::string m_Text;
 	int m_Color;
 	sMessage* m_Next;
-
-	sMessage() {m_Next=0;m_Color=0;m_Text="";}
-	~sMessage() {if(m_Next) delete m_Next; m_Next=0;}
 }sMessage;
 
 class cMessageQue
 {
 public:
-	cMessageQue() {m_Mess=0;m_Last=0;}
-	~cMessageQue() {Free();}
+	cMessageQue();
+	~cMessageQue();
 
-	void Free()	{if(m_Mess) delete m_Mess; m_Last=m_Mess=0;}
+	void Free();
 
-	void AddToQue(std::string text, int color)
-	{
-		if(text != "")
-		{
-			// Allocate a new process and push it on stack
-			sMessage* Ptr = new sMessage();
+	void AddToQue(std::string text, int color);
 
-			if(m_Last)
-			{
-				m_Last->m_Next = Ptr;
-				m_Last = Ptr;
-			}
-			else
-				m_Mess = m_Last = Ptr;
-			Ptr->m_Text = text;
-			Ptr->m_Color = color;
-		}
-	}
+	bool HasNext();
 
-	bool HasNext()
-	{
-		if(m_Mess)
-			return true;
-		return false;
-	}
-
-	void ActivateNext()
-	{
-		if(m_Mess)
-		{
-			sMessage* Ptr = m_Mess;
-			m_Mess = m_Mess->m_Next;
-			Ptr->m_Next = 0;
-			if(m_Mess == 0)
-				m_Last = 0;
-
-			g_MessageBox.ResetWindow(Ptr->m_Text, Ptr->m_Color);
-			g_MessageBox.SetActive(true);
-
-			delete Ptr;
-			Ptr = 0;
-		}
-	}
+	void ActivateNext();
 
 private:
 	sMessage* m_Mess;

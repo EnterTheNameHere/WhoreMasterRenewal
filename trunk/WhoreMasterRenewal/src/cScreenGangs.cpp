@@ -714,3 +714,14 @@ void cScreenGangs::hire_recruitable()
 	g_Gangs.HireGang(sel_recruit);
 	g_InitWin = true;
 }
+
+int cScreenGangs::multi_first()
+{
+    sel_pos = 0;
+    return GetNextSelectedItemFromList(ganglist_id, 0, sel_pos);
+}
+
+int cScreenGangs::multi_next()
+{
+    return GetNextSelectedItemFromList(ganglist_id, sel_pos+1, sel_pos);
+}

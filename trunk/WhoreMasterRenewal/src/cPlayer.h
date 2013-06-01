@@ -30,26 +30,6 @@ class TiXmlHandle;
 
 class cPlayer
 {
-private:
-	int Limit100(int nStat);								// Limit stats to -100 to 100
-	int	Scale200(int nStatMod, int nCurrentStatValue);		// Scale stat from 1 to nStatMod
-/*
- *	the suspicion level of the authorities.
- *	-100 means they are on players side
- *	+100 means they will probably raid his brothels
- */
-	int m_Suspicion;
-/*
- *	How good or evil the player is considered to be:
- *	-100 is evil while +100 is a saint
- */
-	int m_Disposition;
-/*
- *	how much the customers fear you:
- *	-100 is not at all while 100 means a lot
- */
-	int m_CustomerFear;
-
 public:
 	bool m_WinGame;
 	unsigned char m_Skills[NUM_SKILLS];
@@ -69,6 +49,26 @@ public:
 	int suspicion(int n);
 	int customerfear()		{ return m_CustomerFear; }
 	int customerfear(int n);
+
+private:
+	int Limit100(int nStat);								// Limit stats to -100 to 100
+	int	Scale200(int nStatMod, int nCurrentStatValue);		// Scale stat from 1 to nStatMod
+/*
+ *	the suspicion level of the authorities.
+ *	-100 means they are on players side
+ *	+100 means they will probably raid his brothels
+ */
+	int m_Suspicion;
+/*
+ *	How good or evil the player is considered to be:
+ *	-100 is evil while +100 is a saint
+ */
+	int m_Disposition;
+/*
+ *	how much the customers fear you:
+ *	-100 is not at all while 100 means a lot
+ */
+	int m_CustomerFear;
 };
 
 

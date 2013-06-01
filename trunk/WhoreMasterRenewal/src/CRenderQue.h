@@ -24,27 +24,30 @@
 class CRenderObject
 {
 public:
-	CRenderObject() {m_Next = 0;}
-	virtual ~CRenderObject() {}
-	
-	virtual void Draw() {};
-
-	CRenderObject* m_Next;
+    CRenderObject()
+    {
+        m_Next = nullptr;
+    }
+    virtual ~CRenderObject() {}
+    virtual void Draw() {};
+    
+    CRenderObject* m_Next;
 };
 
 class CRenderQue
 {
 public:
-	CRenderQue() {m_Parent = 0; m_Last = 0;}
-	~CRenderQue() {m_Parent = 0; m_Last = 0;}
-
-	void DrawQue();
-	void ClearQue();
-
-	void AddObject(CRenderObject* object);
+    CRenderQue();
+    ~CRenderQue();
+    
+    void DrawQue();
+    void ClearQue();
+    
+    void AddObject( CRenderObject* object );
+    
 private:
-	CRenderObject* m_Parent;
-	CRenderObject* m_Last;
+    CRenderObject* m_Parent;
+    CRenderObject* m_Last;
 };
 
 #endif // CRENDERQUE_H_INCLUDED_1521

@@ -23,35 +23,30 @@
 #include <vector>
 #include <string>
 
-class cNameList {
-	std::vector<std::string> names;
+class cNameList
+{
 public:
-	cNameList() {}
-	cNameList(std::string file);
-	std::string random();
-	void load(std::string file);
+    cNameList();
+    cNameList( std::string file );
+    
+    std::string random();
+    void load( std::string file );
+    
+private:
+    std::vector<std::string> names;
 };
 
-class cDoubleNameList {
-	cNameList m_first;
-	cNameList m_last;
+class cDoubleNameList
+{
 public:
-	cDoubleNameList() {}
-	cDoubleNameList(std::string first, std::string last)
-	: m_first(first), m_last(last)
-	{
-	}
-	void load(std::string first, std::string last) {
-		m_last.load(last);
-		m_first.load(first);
-	}
-	std::string random() {
-		std::string s = "";
-		s += m_first.random();
-		s += " ";
-		s += m_last.random();
-		return s;
-	}
+    cDoubleNameList();
+    cDoubleNameList( std::string first, std::string last );
+    void load( std::string first, std::string last );
+    std::string random();
+    
+private:
+    cNameList m_first;
+    cNameList m_last;
 };
 
 #endif // CNAMELIST_H_INCLUDED_1522

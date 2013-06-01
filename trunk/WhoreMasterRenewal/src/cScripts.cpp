@@ -24,6 +24,87 @@
 #include <cstring>
 #include <cstdlib>
 
+sEntry::sEntry()
+{
+    m_Type = _NONE;
+    m_NumChoices = 0;
+    m_Choices = 0;
+    m_TypeID= 0;
+}
+
+// Structure destructor to clean up used resources
+sEntry::~sEntry()
+{
+    // Special case for choice types
+    if((m_Type == _CHOICE) && m_Choices != 0)
+    {
+        if(m_NumChoices)
+        {
+            for(long i=0;i<m_NumChoices;i++)
+            {
+                delete [] m_Choices[i]; // Delete choice text
+                m_Choices[i] = 0;
+            }
+        }
+        delete [] m_Choices; // Delete choice array
+        m_Choices = 0;
+    }
+}
+
+sAction::sAction()
+{
+    m_ID = 0; // Set all data to defaults
+    m_Text[0] = 0;
+    m_NumEntries = 0;
+    m_Entries = 0;
+    m_Next = 0;
+}
+
+sAction::~sAction()
+{
+    if(m_Entries) delete [] m_Entries; m_Entries = 0; // Free entries array
+    if(m_Next) delete m_Next; m_Next = 0; // Delete next in list
+}
+
+sScriptEntry::sScriptEntry()
+{
+    m_Type = _NONE; // Clear to default values
+    m_IOValue = 0;
+    m_Text = 0;
+    m_Var = 0;
+}
+
+sScriptEntry::~sScriptEntry()
+{
+    if(m_Text)
+        delete [] m_Text;
+    m_Text = 0;
+}
+
+sScript::sScript()
+{
+    m_Type = 0; // Clear to defaults
+    m_NumEntries = 0;
+    m_Entries = 0;
+    m_Prev = m_Next = 0;
+}
+
+sScript::~sScript()
+{
+    if(m_Entries)
+        delete [] m_Entries;
+    m_Entries = 0; // Delete entry array
+    if(m_Next)
+        delete m_Next;
+    m_Prev = m_Next = 0; // Delete next in linked list
+}
+
+cActionTemplate::cActionTemplate() {m_ActionParent=0;}
+cActionTemplate::~cActionTemplate() {Free();}
+
+// Load and free the action templates
+bool cActionTemplate::Free(){if(m_ActionParent) delete m_ActionParent;m_ActionParent=0;m_NumActions=0;return true;}
+
 bool cActionTemplate::GetNextQuotedLine(char *Data, FILE *fp, long MaxSize)
 {
 	int c;
@@ -479,3 +560,6 @@ sScript *LoadScriptFile(std::string Filename)
 	fclose(fp);
 	return ScriptRoot;
 }
+
+cScript::cScript() {m_ScriptParent=0;} // Constructor
+cScript::~cScript() {if(m_ScriptParent)delete m_ScriptParent; m_ScriptParent=0;} // Destructor
