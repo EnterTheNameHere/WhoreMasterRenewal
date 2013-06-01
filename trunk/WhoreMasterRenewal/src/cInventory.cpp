@@ -1061,7 +1061,10 @@ static sInventoryItem* handle_element(TiXmlElement *el)
 	if ((pt = el->Attribute("Desc")))
 		item->m_Desc = pt;
 	else
-		std::cout << "no desc attribute found" << std::endl;
+    {
+		g_LogFile.ss() << "no desc attribute found" << std::endl;
+		g_LogFile.ssend();
+    }
 
 	if((pt = el->Attribute("Type")))
 		item->set_type(pt);
@@ -1238,11 +1241,12 @@ void sInventoryItem::set_rarity( std::string s )
         m_Rarity = ScriptOrReward;
     }
     else {
-        std::cerr << __FILE__ << " (" << __LINE__ << "): "
+        g_LogFile.ss() << __FILE__ << " (" << __LINE__ << "): "
             << "Error in set_rarity: unexpected value '"
             << s
             << "'"
             << std::endl;
+        g_LogFile.ssend();
         m_Rarity = Shop05;	// what to do?
     }
 }
@@ -1259,12 +1263,12 @@ void sInventoryItem::set_special( std::string s )
         m_Special = Temporary;
     }
     else {
-        std::cerr << __FILE__ << " (" << __LINE__ << "): "
+        g_LogFile.ss() << __FILE__ << " (" << __LINE__ << "): "
             << "unexpected special string: '"
             << s
             << "'"
-            << std::endl
-        ;
+            << std::endl;
+        g_LogFile.ssend();
         m_Special = None;
     }
 }
@@ -1305,7 +1309,124 @@ void sInventoryItem::set_type( std::string s )
         m_Type = Armband;
     }
     else {
-        std::cerr << __FILE__ << " (" << __LINE__ << "): " << "Error: unexpected item type: " << s << std::endl;
+        g_LogFile.ss() << __FILE__ << " (" << __LINE__ << "): " << "Error: unexpected item type: " << s << std::endl;
+        g_LogFile.ssend();
         m_Type = Misc;
     }
+}
+
+std::ostream& operator <<( std::ostream& os, sEffect &eff )
+{
+    os << "Effect: " << eff.m_Affects << " ";
+    if(eff.m_Affects == sEffect::What::Stat) {
+        os << eff.stat_name(eff.m_EffectID) ;
+    }
+    if(eff.m_Affects == sEffect::What::Skill) {
+        os << eff.skill_name(eff.m_EffectID) ;
+    }
+    if(eff.m_Affects == sEffect::What::Trait) {
+        os << "'" << eff.m_Trait << "'";
+    }
+    if(eff.m_Affects == sEffect::What::GirlStatus) {
+        os << eff.girl_status_name( eff.m_EffectID );
+    }
+    os << (eff.m_Amount > 0 ? " +" : " ") << eff.m_Amount;
+    return os << std::endl;
+}
+
+std::ostream& operator << (std::ostream& os, sInventoryItem::Special &spec)
+{
+    switch(spec) {
+    case sInventoryItem::Special::None:
+        return os << "None";
+    case sInventoryItem::Special::AffectsAll:
+        return os << "AffectsAll";
+    case sInventoryItem::Special::Temporary:
+        return os << "Temporary";
+    default:
+        g_LogFile.ss() << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected special value: " << int(spec) << std::endl;
+        g_LogFile.ssend();
+        return os << "Error(" << int(spec) << ")";
+    }
+}
+
+std::ostream& operator << (std::ostream& os, sInventoryItem::Rarity &r)
+{
+    switch(r) {
+    case sInventoryItem::Rarity::Common:
+        return os << "Common";
+    case sInventoryItem::Rarity::Shop50:
+        return os << "Shops, 50%";
+    case sInventoryItem::Rarity::Shop25:
+        return os << "Shops, 25%";
+    case sInventoryItem::Rarity::Shop05:
+        return os << "Shops, 05%";
+    case sInventoryItem::Rarity::Catacomb15:
+        return os << "Catacombs, 15%";
+    case sInventoryItem::Rarity::Catacomb05:
+        return os << "Catacombs, 05%";
+    case sInventoryItem::Rarity::Catacomb01:
+        return os << "Catacombs, 01%";
+    case sInventoryItem::Rarity::ScriptOnly:
+        return os << "Scripted Only";
+    case sInventoryItem::Rarity::ScriptOrReward:
+        return os << "Scripts or Reward";
+    default:
+        g_LogFile.ss() << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected rarity value: " << int(r) << std::endl;
+        g_LogFile.ssend();
+        return os << "Error(" << int(r) << ")";
+    }
+}
+
+std::ostream& operator << (std::ostream& os, sInventoryItem::Type &typ)
+{
+    switch(typ) {
+    case sInventoryItem::Type::Ring:
+        return os << "Ring";
+    case sInventoryItem::Type::Dress:
+        return os << "Dress";
+    case sInventoryItem::Type::Shoes:
+        return os << "Shoes";
+    case sInventoryItem::Type::Food:
+        return os << "Food";
+    case sInventoryItem::Type::Necklace:
+        return os << "Necklace";
+    case sInventoryItem::Type::Weapon:
+        return os << "Weapon";
+    case sInventoryItem::Type::SmWeapon:
+        return os << "Small Weapon";
+    case sInventoryItem::Type::Makeup:
+        return os << "Makeup";
+    case sInventoryItem::Type::Armor:
+        return os << "Armor";
+    case sInventoryItem::Type::Misc:
+        return os << "Misc";
+    case sInventoryItem::Type::Armband:
+        return os << "Armband";
+    default:
+        g_LogFile.ss() << __FILE__ << " (" << __LINE__ << "): " << "Unexpected type value: " << int(typ) << std::endl;
+        g_LogFile.ssend();
+        return os << "Error";
+    }
+    g_LogFile.ss() << __FILE__ << " (" << __LINE__ << "): " << "How the hell did I get here?" << std::endl;
+    g_LogFile.ssend();
+    return os;
+}
+
+std::ostream& operator << (std::ostream& os, sInventoryItem &it)
+{
+    os << "Item: " << it.m_Name << std::endl;
+    os << "Desc: " << it.m_Desc << std::endl;
+    os << "Type: " << it.m_Type << std::endl;
+    os << "Badness: " << int(it.m_Badness) << std::endl;
+    os << "Special: " << it.m_Special << std::endl;
+    os << "Cost: " << it.m_Cost << std::endl;
+    os << "Rarity: " << it.m_Rarity << std::endl;
+    os << "Infinite: " << (it.m_Infinite ? "True" : "False") << std::endl;
+    for(unsigned int i = 0; i < it.m_Effects.size(); i++) {
+        sEffect &eff = it.m_Effects[i];
+
+        os << eff;
+    }
+    return os;
 }

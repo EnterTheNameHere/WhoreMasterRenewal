@@ -69,8 +69,6 @@ void sBoundedVar::down()
  */
 sBoundedVar& sBoundedVar::operator =( int val )
 {
-    std::cout << "--------sBoundedVar::operator =()" << std::endl;
-    
     m_curr = val;
     bound();
     return *this;
@@ -78,8 +76,6 @@ sBoundedVar& sBoundedVar::operator =( int val )
 
 sBoundedVar& sBoundedVar::operator +=( int val )
 {
-    std::cout << "--------sBoundedVar::operator +=()" << std::endl;
-    
     m_curr += val;
     bound();
     return *this;
@@ -87,8 +83,6 @@ sBoundedVar& sBoundedVar::operator +=( int val )
 
 sBoundedVar& sBoundedVar::operator -=( int val )
 {
-    std::cout << "--------sBoundedVar::operator -=()" << std::endl;
-    
     m_curr -= val;
     bound();
     return *this;

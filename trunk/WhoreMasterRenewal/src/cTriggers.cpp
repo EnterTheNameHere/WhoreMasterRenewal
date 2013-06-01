@@ -1520,18 +1520,19 @@ void cTriggerList::LoadList(std::string filename)
 	if(!doc.LoadFile()) {
 		if(!doc.ErrorRow() && !doc.ErrorCol())
 		{
-			std::cout << "Warning: Girl has no script trigger file: " << filename << std::endl;
+			g_LogFile.ss() << "Warning: Girl has no script trigger file: " << filename << std::endl;
+			g_LogFile.ssend();
 			return;
 		}
-		std::cerr << "Error: Can't load script trigger list " << filename << std::endl;
-		std::cerr << "Line "
+		g_LogFile.ss() << "Error: Can't load script trigger list " << filename << std::endl;
+		g_LogFile.ss() << "Line "
 			<< doc.ErrorRow()
 			<< ", col "
 			<< doc.ErrorCol()
 			<< ": "
 			<< doc.ErrorDesc()
-			<< std::endl
-		;
+			<< std::endl;
+        g_LogFile.ssend();
 		return;
 	}
 /*

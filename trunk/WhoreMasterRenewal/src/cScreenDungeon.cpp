@@ -34,6 +34,7 @@
 #include "cGirls.h"
 #include "cRng.h"
 #include "DirPath.h"
+#include "CLog.h"
 
 #include <string>
 #include <sstream>
@@ -148,7 +149,8 @@ void cScreenDungeon::init()
 	DisableButton(brandslave_id);
 	DisableButton(torture_id);
 	DisableButton(sellslave_id);
-	std::cout << "::init: disabling torture" << std::endl;
+	g_LogFile.ss() << "::init: disabling torture" << std::endl;
+	g_LogFile.ssend();
 	DisableButton(viewdetails_id);
 /*
  *	only enable "release all girls" if there are girls to release
@@ -192,7 +194,8 @@ void cScreenDungeon::selection_change()
 		DisableButton(interact_id);
 		DisableButton(release_id);
 		DisableButton(torture_id);
-		std::cout << "selection = " << selection << " (-1) - disabling torture" << std::endl;
+		g_LogFile.ss() << "selection = " << selection << " (-1) - disabling torture" << std::endl;
+		g_LogFile.ssend();
 		DisableButton(viewdetails_id);
 		DisableButton(sellslave_id);
 		selection = -1;		// can this have changed?
@@ -203,7 +206,8 @@ void cScreenDungeon::selection_change()
  */
 	DisableButton(sellslave_id);
 	DisableButton(torture_id, !torture_possible());
-	std::cout << "selection = " << selection << " - enabling torture" << std::endl;
+	g_LogFile.ss() << "selection = " << selection << " - enabling torture" << std::endl;
+	g_LogFile.ssend();
 	DisableButton(interact_id, g_TalkCount == 0);
 	EnableButton(release_id);
 	DisableButton(brandslave_id);

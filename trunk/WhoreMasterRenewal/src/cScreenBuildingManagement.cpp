@@ -28,6 +28,7 @@
 #include "DirPath.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
+#include "CLog.h"
 
 cBuildingManagement::cBuildingManagement()
 {
@@ -51,7 +52,8 @@ void cBuildingManagement::IDBlock::hide(cBuildingManagement *mgr)
 	mgr->HideImage(shade);
 	mgr->HideText(desc);
 	mgr->HideText(type);
-	std::cout << "hiding rename button : " << rename << std::endl;
+	g_LogFile.ss() << "hiding rename button : " << rename << std::endl;
+	g_LogFile.ssend();
 	mgr->HideButton(rename);
 	mgr->HideText(unit);
 	mgr->HideText(space);
@@ -155,9 +157,10 @@ void cBuildingManagement::IDBlock::display(
 	mgr->EditTextItem("Glitz", glitz_cap);
 	ss << facility->glitz();
 	mgr->EditTextItem(ss.str(), glitz_level);
-	std::cout << "setting glitz_level (" << glitz_level << ") to "
+	g_LogFile.ss() << "setting glitz_level (" << glitz_level << ") to "
 		<< ss.str()
 		<< std::endl;
+    g_LogFile.ssend();
 	ss.str("");
 
 	mgr->EditTextItem("Secure", secure_cap);

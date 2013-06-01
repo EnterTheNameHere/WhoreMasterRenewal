@@ -1679,7 +1679,8 @@ void cGangManager::UpdateGangs()
 	{
 		if(1+g_Dice%100 <= remove_chance)
 		{
-			std::cout << "Culling recruitable gang: " << currentGang->m_Name << std::endl;
+			g_LogFile.ss() << "Culling recruitable gang: " << currentGang->m_Name << std::endl;
+			g_LogFile.ssend();
 			sGang* temp = currentGang->m_Next;
 			RemoveHireableGang(currentGang);
 			currentGang = temp;
@@ -1695,7 +1696,8 @@ void cGangManager::UpdateGangs()
 	{
 		if(m_NumHireableGangs >= cfg.gangs.max_recruit_list())
 			break;
-		std::cout << "Adding new recruitable gang." << std::endl;
+		g_LogFile.ss() << "Adding new recruitable gang." << std::endl;
+		g_LogFile.ssend();
 		AddNewGang(false);
 	}
 

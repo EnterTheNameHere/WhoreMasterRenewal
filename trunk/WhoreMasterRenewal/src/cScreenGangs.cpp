@@ -131,7 +131,8 @@ void cScreenGangs::init()
 	else
 		DisableButton(weaponup_id);
 	std::string s = ss.str();
-	std::cout << "weapon text = '" << s << "'" << std::endl;
+	g_LogFile.ss() << "weapon text = '" << s << "'" << std::endl;
+	g_LogFile.ssend();
 	EditTextItem(s, weaponlevel_id);
 
 	int *nets = g_Gangs.GetNets();
@@ -183,7 +184,8 @@ void cScreenGangs::init()
 /*
  *		loop through the gangs, populating the list box
  */
-	std::cout << "Setting gang mission descriptions" << std::endl;
+	g_LogFile.ss() << "Setting gang mission descriptions" << std::endl;
+	g_LogFile.ssend();
 	for(current = g_Gangs.GetGang(0); current; current = current->m_Next)
 	{
 /*
@@ -218,8 +220,9 @@ void cScreenGangs::init()
 		ss << (int)current->m_Stats[STAT_CHARISMA] << "%";
 		Data[8] = ss.str();
 
-//		std::cout << "Gang:\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
+//		g_LogFile.ss() << "Gang:\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
 //			<< "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << "\t" << Data[6] << std::endl;
+//      g_LogFile.ssend();
 
 /*
  *			add the box to the list; red highlight gangs that are low on numbers
@@ -235,7 +238,8 @@ void cScreenGangs::init()
 /*
  *		loop through the gangs, populating the list box
  */
-	std::cout << "Setting recruitable gang info" << std::endl;
+	g_LogFile.ss() << "Setting recruitable gang info" << std::endl;
+	g_LogFile.ssend();
 	for(current = g_Gangs.GetHireableGang(0); current; current = current->m_Next)
 	{
 /*
@@ -267,8 +271,9 @@ void cScreenGangs::init()
 		ss << (int)current->m_Stats[STAT_CHARISMA] << "%";
 		Data[7] = ss.str();
 
-//		std::cout << "Recruitable\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
+//		g_LogFile.ss() << "Recruitable\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
 //			<< "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << std::endl;
+//      g_LogFile.ssend();
 
 /*
  *			add the box to the list
@@ -430,16 +435,19 @@ void cScreenGangs::check_events()
 	    std::string ClickedHeader = HeaderClicked(recruitlist_id);
 		if(ClickedHeader != "")
 		{
-			std::cout << "User clicked \"" << ClickedHeader << "\" column header on Recruit listbox" << std::endl;
+			g_LogFile.ss() << "User clicked \"" << ClickedHeader << "\" column header on Recruit listbox" << std::endl;
+            g_LogFile.ssend();
 			return;
 		}
 
-		std::cout << "selected recruitable gang changed" << std::endl;
+		g_LogFile.ss() << "selected recruitable gang changed" << std::endl;
+		g_LogFile.ssend();
 		sel_recruit = GetLastSelectedItemFromList(recruitlist_id);
 
 		if(ListDoubleClicked(recruitlist_id))
 		{
-			std::cout << "User double-clicked recruitable gang! Hiring if possible." << std::endl;
+			g_LogFile.ss() << "User double-clicked recruitable gang! Hiring if possible." << std::endl;
+			g_LogFile.ssend();
 			hire_recruitable();
 			return;
 		}
@@ -453,11 +461,13 @@ void cScreenGangs::check_events()
 	    std::string ClickedHeader = HeaderClicked(ganglist_id);
 		if(ClickedHeader != "")
 		{
-			std::cout << "User clicked \"" << ClickedHeader << "\" column header on Gangs listbox" << std::endl;
+			g_LogFile.ss() << "User clicked \"" << ClickedHeader << "\" column header on Gangs listbox" << std::endl;
+			g_LogFile.ssend();
 			return;
 		}
 
-		std::cout << "selected gang changed" << std::endl;
+		g_LogFile.ss() << "selected gang changed" << std::endl;
+		g_LogFile.ssend();
 		selection = GetLastSelectedItemFromList(ganglist_id);
 		if(selection != -1)
 		{
@@ -493,14 +503,16 @@ void cScreenGangs::check_events()
  *			get the index into the missions list
  */
 		int mission_id =  GetLastSelectedItemFromList(missionlist_id);
-		std::cout << "selchange: mid = " << mission_id << std::endl;
+		g_LogFile.ss() << "selchange: mid = " << mission_id << std::endl;
+		g_LogFile.ssend();
 /*
  *			set the textfield with the long description and price
  *			for this mission
  */
 		set_mission_desc(mission_id);
 
-		std::cout << "selection change: rebuilding gang list box" << std::endl;
+		g_LogFile.ss() << "selection change: rebuilding gang list box" << std::endl;
+		g_LogFile.ssend();
 
 		for(int	selection = multi_first();
 			selection != -1;
@@ -567,10 +579,10 @@ void cScreenGangs::check_events()
 			ss << (int)gang->m_Stats[STAT_INTELLIGENCE] << "%";
 			Data[5] = ss.str();
 
-//		    std::cout << "Gang:\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
-//			<< "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << "\t" << Data[6] << std::endl;
-//
-//			std::cout << "        index " << mission_id << ": " << ss.str() << std::endl;
+//		    g_LogFile.ss() << "Gang:\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
+//			    << "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << "\t" << Data[6] << std::endl
+//              << "        index " << mission_id << ": " << ss.str() << std::endl;
+//          g_LogFile.ssend();
 /*
  *				and add it to the list
  */
@@ -653,7 +665,8 @@ std::string cScreenGangs::mission_desc(int mid)
 
 std::string cScreenGangs::short_mission_desc(int mid)
 {
-	std::cout << "short_mission_desc(" << mid << ")" << std::endl;
+	g_LogFile.ss() << "short_mission_desc(" << mid << ")" << std::endl;
+	g_LogFile.ssend();
 	switch(mid)
 	{
 	case MISS_GUARDING:	return "Guarding";

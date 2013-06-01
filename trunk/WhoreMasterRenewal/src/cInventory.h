@@ -105,25 +105,10 @@ struct sEffect
  *	and a pretty printer for the class as a whole
  *	just a debug thing, really
  */
-	friend std::ostream& operator << (std::ostream& os, sEffect &eff) {
-		os << "Effect: " << eff.m_Affects << " ";
-		if(eff.m_Affects == Stat) {
-			os << eff.stat_name(eff.m_EffectID) ;
-		}
-		if(eff.m_Affects == Skill) {
-			os << eff.skill_name(eff.m_EffectID) ;
-		}
-		if(eff.m_Affects == Trait) {
-			os << "'" << eff.m_Trait << "'";
-		}
-		if(eff.m_Affects == GirlStatus) {
-			os << eff.girl_status_name( eff.m_EffectID );
-		}
-		os << (eff.m_Amount > 0 ? " +" : " ") << eff.m_Amount;
-		return os << std::endl;
-	}
 	// end mod
 };
+
+std::ostream& operator << (std::ostream& os, sEffect &eff);
 
 typedef struct sInventoryItem
 {
@@ -202,96 +187,12 @@ typedef struct sInventoryItem
 	void set_rarity(std::string s);
 	void set_special(std::string s);
 	void set_type(std::string s);
-
-	friend std::ostream& operator << (std::ostream& os, sInventoryItem::Special &spec) {
-		switch(spec) {
-		case None:
-			return os << "None";
-		case AffectsAll:
-			return os << "AffectsAll";
-		case Temporary:
-			return os << "Temporary";
-		default:
-			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected special value: " << int(spec) << std::endl;
-			return os << "Error(" << int(spec) << ")";
-		}
-	}
-
-	friend std::ostream& operator << (std::ostream& os, sInventoryItem::Rarity &r) {
-		switch(r) {
-		case Common:
-			return os << "Common";
-		case Shop50:
-			return os << "Shops, 50%";
-		case Shop25:
-			return os << "Shops, 25%";
-		case Shop05:
-			return os << "Shops, 05%";
-		case Catacomb15:
-			return os << "Catacombs, 15%";
-		case Catacomb05:
-			return os << "Catacombs, 05%";
-		case Catacomb01:
-			return os << "Catacombs, 01%";
-		case ScriptOnly:
-			return os << "Scripted Only";
-		case ScriptOrReward:
-			return os << "Scripts or Reward";
-		default:
-			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "error: unexpected rarity value: " << int(r) << std::endl;
-			return os << "Error(" << int(r) << ")";
-		}
-	}
-
-	friend std::ostream& operator << (std::ostream& os, sInventoryItem::Type &typ) {
-		switch(typ) {
-		case Ring:
-			return os << "Ring";
-		case Dress:
-			return os << "Dress";
-		case Shoes:
-			return os << "Shoes";
-		case Food:
-			return os << "Food";
-		case Necklace:
-			return os << "Necklace";
-		case Weapon:
-			return os << "Weapon";
-		case SmWeapon:
-			return os << "Small Weapon";
-		case Makeup:
-			return os << "Makeup";
-		case Armor:
-			return os << "Armor";
-		case Misc:
-			return os << "Misc";
-		case Armband:
-			return os << "Armband";
-		default:
-			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "Unexpected type value: " << int(typ) << std::endl;
-			return os << "Error";
-		}
-		std::cerr << __FILE__ << " (" << __LINE__ << "): " << "How the hell did I get here?" << std::endl;
-		return os;
-	}
-
-	friend std::ostream& operator << (std::ostream& os, sInventoryItem &it) {
-		os << "Item: " << it.m_Name << std::endl;
-		os << "Desc: " << it.m_Desc << std::endl;
-		os << "Type: " << it.m_Type << std::endl;
-		os << "Badness: " << int(it.m_Badness) << std::endl;
-		os << "Special: " << it.m_Special << std::endl;
-		os << "Cost: " << it.m_Cost << std::endl;
-		os << "Rarity: " << it.m_Rarity << std::endl;
-		os << "Infinite: " << (it.m_Infinite ? "True" : "False") << std::endl;
-		for(unsigned int i = 0; i < it.m_Effects.size(); i++) {
-			sEffect &eff = it.m_Effects[i];
-
-			os << eff;
-		}
-		return os;
-	}
 } sInventoryItem;
+
+std::ostream& operator << (std::ostream& os, sInventoryItem::Special &spec);
+std::ostream& operator << (std::ostream& os, sInventoryItem::Rarity &r);
+std::ostream& operator << (std::ostream& os, sInventoryItem::Type &typ);
+std::ostream& operator << (std::ostream& os, sInventoryItem &it);
 
 int itemcompless(const sInventoryItem * ,const sInventoryItem *);
 int part(int first,int last,sInventoryItem * curr[]);

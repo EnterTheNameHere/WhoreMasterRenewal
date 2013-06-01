@@ -251,9 +251,10 @@ void XMLFileList::scan(const char *pattern)
 	    std::string str = fl[i].full();
 	    std::string key = clobber_extension(str);
 		lookup[key] = fl[i];
-		//std::cout << "       adding " << str << std::endl;
-		//std::cout << "       under " << key << std::endl;
-		//std::cout << "       result " << lookup[key].full() << std::endl;
+		//g_LogFile.ss() << "       adding " << str << std::endl
+		//              << "       under " << key << std::endl
+		//              << "       result " << lookup[key].full() << std::endl;
+		//g_LogFile.ssend();
 	}
 /*
  *	Repeat with "x" added to the end of the pattern.
@@ -266,9 +267,10 @@ void XMLFileList::scan(const char *pattern)
 	    std::string str = fl[i].full();
 	    std::string key = clobber_extension(str);
 		lookup[key] = fl[i];
-		//std::cout << "       adding " << str << std::endl;
-		//std::cout << "       under " << key << std::endl;
-		//std::cout << "       result " << lookup[key].full() << std::endl;
+		//g_LogFile.ss() << "       adding " << str << std::endl
+		//              << "       under " << key << std::endl
+		//              << "       result " << lookup[key].full() << std::endl;
+		//g_LogFile.ssend();
 	}
 /*
  *	We now have a map of files with the desired extensions
@@ -284,14 +286,15 @@ void XMLFileList::scan(const char *pattern)
 
 static std::string clobber_extension(std::string s)
 {
-	//std::cout << "clobber_extension: s = " << s << std::endl;
 	size_t pos = s.rfind(".");
-
-	//std::cout << "clobber_extension: pos = " << pos << std::endl;
+    //g_LogFile.ss() << "clobber_extension: s = " << s << std::endl
+	//              << "clobber_extension: pos = " << pos << std::endl;
+	//g_LogFile.ssend();
 	std::string base = s.substr(0, pos);
 
-	//std::cout << "clobber_extension: s = " << s << std::endl;
-	//std::cout << "clobber_extension: base = " << base << std::endl;
+	//g_LogFile.ss() << "clobber_extension: s = " << s << std::endl
+	//              << "clobber_extension: base = " << base << std::endl;
+	//g_LogFile.ssend();
 	return base;
 }
 

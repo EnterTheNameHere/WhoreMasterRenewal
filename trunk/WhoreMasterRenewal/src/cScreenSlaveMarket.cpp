@@ -552,10 +552,10 @@ bool cScreenSlaveMarket::check_events()
 		){
 			girl = MarketSlaveGirls[selection];
 			int cost = tariff.slave_buy_price(girl);
-			std::cout << "Selection = " << selection
+			g_LogFile.ss() << "Selection = " << selection
 			     << ", girl = " << girl->m_Realname
-			     << std::endl
-			;
+			     << std::endl;
+            g_LogFile.ssend();
 /*
  *			can the player afford this particular playmate?
  */

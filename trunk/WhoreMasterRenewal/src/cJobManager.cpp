@@ -927,8 +927,9 @@ bool cJobManager::gang_stops_rape(sGirl* girl, std::vector<sGang *> gangs_guardi
 			<< girl->m_Realname << ".";
 		girl_ss	<< "Customer attempt to rape her, but guards " << guarding_gang->m_Name << " killed them.";
 	}
-	std::cout << "gang ss=" << gang_ss.str() << std::endl;
-	std::cout << "girl ss=" << girl_ss.str() << std::endl;
+	g_LogFile.ss() << "gang ss=" << gang_ss.str() << std::endl
+                << "girl ss=" << girl_ss.str() << std::endl;
+    g_LogFile.ssend();
 
 	girl->m_Events.AddMessage(girl_ss.str(), IMGTYPE_DEATH, day_night);
 	guarding_gang->m_Events.AddMessage(gang_ss.str(), IMGTYPE_PROFILE, EVENT_GANG);
@@ -1007,8 +1008,9 @@ bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_
 			<<	girl->m_Realname;
 		girl_ss	<<	"Customer attempt to rape her but " << "the was killed by the guard.";
 	}
-	std::cout << "gang ss=" << gang_ss.str() << std::endl;
-	std::cout << "girl ss=" << girl_ss.str() << std::endl;
+	g_LogFile.ss() << "gang ss=" << gang_ss.str() << std::endl
+                << "girl ss=" << girl_ss.str() << std::endl;
+    g_LogFile.ssend();
 	gang->m_Events.AddMessage(gang_ss.str(), 0, 0);
 	girl->m_Events.AddMessage(girl_ss.str(), IMGTYPE_DEATH, day_night);
 	return true;

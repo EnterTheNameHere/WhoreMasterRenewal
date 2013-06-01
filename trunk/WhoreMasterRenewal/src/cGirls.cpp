@@ -1800,8 +1800,9 @@ std::string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 	int to_go = cfg.pregnancy.weeks_pregnant() - girl->m_WeeksPreg;
 	if(girl->m_States&(1<<STATUS_PREGNANT))
 	{
-		//std::cout << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << std::endl;
-		//std::cout << "to go            : " << to_go << std::endl;
+		//g_LogFile.ss() << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << std::endl;
+		//g_LogFile.ss() << "to go            : " << to_go << std::endl;
+		//g_LogFile.ssend();
 
 		data += "Is pregnant, due: ";
 		data += toString(to_go);
@@ -1809,8 +1810,9 @@ std::string cGirls::GetDetailsString(sGirl* girl, bool purchase)
 	}
 	if(girl->m_States&(1<<STATUS_PREGNANT_BY_PLAYER))
 	{
-		//std::cout << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << std::endl;
-		//std::cout << "to go (player's) : " << to_go << std::endl;
+		//g_LogFile.ss() << "config.weeks_preg: " << cfg.pregnancy.weeks_pregnant() << std::endl;
+		//g_LogFile.ss() << "to go (player's) : " << to_go << std::endl;
+		//g_LogFile.ssend();
 
 		data += "Is pregnant with your child, due: ";
 		data += toString(to_go);
@@ -3309,11 +3311,13 @@ void cGirls::LoadRandomGirl(std::string filename)
  *	now decide how we want to really load the file
  */
 	if(c == 'x') {
-		std::cout << "loading " << filename << " as XML" << std::endl;
+		g_LogFile.ss() << "loading " << filename << " as XML" << std::endl;
+		g_LogFile.ssend();
 		LoadRandomGirlXML(filename);
 	}
 	else {
-		std::cout << "loading " << filename << " as Legacy" << std::endl;
+		g_LogFile.ss() << "loading " << filename << " as Legacy" << std::endl;
+		g_LogFile.ssend();
 		LoadRandomGirlLegacy(filename);
 	}
 }
@@ -3469,11 +3473,13 @@ void cGirls::LoadGirlsDecider(std::string filename)
  *	now decide how we want to really load the file
  */
 	if(c == 'x') {
-		std::cout << "loading " << filename << " as XML" << std::endl;
+		g_LogFile.ss() << "loading " << filename << " as XML" << std::endl;
+		g_LogFile.ssend();
 		LoadGirlsXML(filename);
 	}
 	else {
-		std::cout << "loading " << filename << " as legacy" << std::endl;
+		g_LogFile.ss() << "loading " << filename << " as legacy" << std::endl;
+		g_LogFile.ssend();
 		LoadGirlsLegacy(filename);
 	}
 }
