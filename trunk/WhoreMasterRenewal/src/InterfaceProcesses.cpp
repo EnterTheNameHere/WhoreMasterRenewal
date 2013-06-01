@@ -459,12 +459,13 @@ void BrothelScreen()
 
 static std::string clobber_extension(std::string s)
 {
-	g_LogFile.os() << "clobber_extension: s = " << s << std::endl;
-	size_t pos = s.rfind(".");
-	g_LogFile.os() << "clobber_extension: pos = " << pos << std::endl;
+    size_t pos = s.rfind(".");
+	g_LogFile.ss() << "clobber_extension: s = " << s << std::endl
+                << "clobber_extension: pos = " << pos << std::endl;
     std::string base = s.substr(0, pos);
-	g_LogFile.os() << "clobber_extension: s = " << s << std::endl;
-	g_LogFile.os() << "clobber_extension: base = " << base << std::endl;
+	g_LogFile.ss() << "clobber_extension: s = " << s << std::endl
+                << "clobber_extension: base = " << base << std::endl;
+	g_LogFile.ssend();
 	return base;
 }
 
@@ -476,50 +477,59 @@ static void load_items_temp(FileList &fl)
 {
 	std::map<std::string,std::string> lookup;
 
-	g_LogFile.os() << "itemsx files:" << std::endl;
+	g_LogFile.ss() << "itemsx files:" << std::endl;
+	g_LogFile.ssend();
 	fl.scan("*.itemsx");
 	for(int i = 0; i < fl.size(); i++) {
 	    std::string str = fl[i].full();
 	    std::string key = clobber_extension(str);
 		lookup[key] = str;
-		g_LogFile.os() << "	adding " << str << std::endl;
-		g_LogFile.os() << "	under " << key << std::endl;
-		g_LogFile.os() << "	result " << lookup[key] << std::endl;
+		g_LogFile.ss() << "	adding " << str << std::endl
+                << "	under " << key << std::endl
+                << "	result " << lookup[key] << std::endl;
+		g_LogFile.ssend();
 	}
 
-	g_LogFile.os() << "items files:" << std::endl;
+	g_LogFile.ss() << "items files:" << std::endl;
+	g_LogFile.ssend();
 	fl.scan("*.items");
 	for(int i = 0; i < fl.size(); i++) {
 	    std::string str = fl[i].full();
 	    std::string key = clobber_extension(str);
-		g_LogFile.os() << "	checking " << lookup[key] << std::endl;
+		g_LogFile.ss() << "	checking " << lookup[key] << std::endl;
+		g_LogFile.ssend();
 		if(lookup[key] != "") {
 			continue;
 		}
 		lookup[key] = str;
-		g_LogFile.os() << "	adding " << str << std::endl;
-		g_LogFile.os() << "	under " << key << std::endl;
+		g_LogFile.ss() << "	adding " << str << std::endl
+                    << "	under " << key << std::endl;
+        g_LogFile.ssend();
 	}
 /*
  *	Iterate over the map and print out all key/value pairs.
  *	kudos: wikipedia
  */
-	g_LogFile.os() << "walking map..." << std::endl;
+	g_LogFile.ss() << "walking map..." << std::endl;
+	g_LogFile.ssend();
 	for(std::map<std::string,std::string>::const_iterator it = lookup.begin(); it != lookup.end(); ++it) {
 	    std::string full_path = it->second;
-		g_LogFile.os() <<	"\tkey = " << it->first << std::endl;
-		g_LogFile.os() <<	"\tpath = " << full_path << std::endl;
+		g_LogFile.ss() <<	"\tkey = " << it->first << std::endl
+                    <<	"\tpath = " << full_path << std::endl;
+        g_LogFile.ssend();
 /*
  *		does it end in ".items" or ".itemsx"?
  */
 		size_t len = full_path.length();
 		char c = full_path.at(len-1);
 		if(c == 'x') {
-			g_LogFile.os() << "\t\tloading xml" << std::endl;
+			g_LogFile.ss() << "\t\tloading xml" << std::endl;
+			g_LogFile.ssend();
 			g_InvManager.LoadItemsXML(full_path);
 		}
 		else {
-			g_LogFile.os() << "\t\tloading orig" << std::endl;
+			g_LogFile.ss() << "\t\tloading orig" << std::endl;
+			g_LogFile.ssend();
 			g_InvManager.LoadItems(full_path);
 		}
 	}

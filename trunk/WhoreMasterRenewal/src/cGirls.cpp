@@ -131,7 +131,8 @@ void sGirl::setup_maps()
 		//if(m_maps_setup)
 		//	return;	// only need to do this once
 
-		g_LogFile.os() << "[sGirl::setup_maps] Setting up Stats, Skills and Status codes." << std::endl;
+		g_LogFile.ss() << "[sGirl::setup_maps] Setting up Stats, Skills and Status codes." << std::endl;
+		g_LogFile.ssend();
 
 		m_maps_setup = true;
 		stat_lookup["Charisma"]		= STAT_CHARISMA;
@@ -190,8 +191,9 @@ int sGirl::lookup_skill_code(std::string s)
  *	type names here
  */
 	if(skill_lookup.find(s) == skill_lookup.end()) {
-		g_LogFile.os() << "[sGirl::lookup_skill_code] Error: unknown Skill: " <<
+		g_LogFile.ss() << "[sGirl::lookup_skill_code] Error: unknown Skill: " <<
 			s << std::endl;
+        g_LogFile.ssend();
 		return -1;
 	}
 	return skill_lookup[s];
@@ -204,8 +206,9 @@ int sGirl::lookup_status_code(std::string s)
  *	type names here
  */
 	if(status_lookup.find(s) == status_lookup.end()) {
-		g_LogFile.os() << "[sGirl::lookup_status_code] Error: unknown Status: " <<
+		g_LogFile.ss() << "[sGirl::lookup_status_code] Error: unknown Status: " <<
 			s << std::endl;
+        g_LogFile.ssend();
 		return -1;
 	}
 	return status_lookup[s];
@@ -218,8 +221,9 @@ int sGirl::lookup_stat_code(std::string s)
  *	type names here
  */
 	if(stat_lookup.find(s) == stat_lookup.end()) {
-		g_LogFile.os() << "[sGirl::lookup_stat_code] Error: unknown Stat: " <<
+		g_LogFile.ss() << "[sGirl::lookup_stat_code] Error: unknown Stat: " <<
 			s << std::endl;
+        g_LogFile.ssend();
 		return -1;
 	}
 	return stat_lookup[s];
@@ -1021,7 +1025,8 @@ sRandomGirl* cGirls::random_girl_at(u_int n)
  *		is it too late to rewrite this using vector?
  */
  		if(current == 0) {
-			g_LogFile.os() << "broken chain in cGirls::random_girl_at"<< std::endl;
+			g_LogFile.ss() << "broken chain in cGirls::random_girl_at"<< std::endl;
+			g_LogFile.ssend();
 			return 0;
 		}
 	}
@@ -1086,10 +1091,11 @@ sGirl* cGirls::CreateRandomGirl(int age, bool addToGGirls, bool slave, bool /*un
 	newGirl->m_Name = new char[current->m_Name.length()+1];	// name
 	strcpy(newGirl->m_Name, current->m_Name.c_str());
 
-	g_LogFile.os() << "getting money for " << newGirl->m_Name << std::endl;
-	g_LogFile.os() << "template is " << current->m_Name << std::endl;
-	g_LogFile.os() << "min money " << current->m_MinMoney << std::endl;
-	g_LogFile.os() << "max money " << current->m_MaxMoney << std::endl;
+	g_LogFile.ss() << "getting money for " << newGirl->m_Name << std::endl;
+	g_LogFile.ss() << "template is " << current->m_Name << std::endl;
+	g_LogFile.ss() << "min money " << current->m_MinMoney << std::endl;
+	g_LogFile.ss() << "max money " << current->m_MaxMoney << std::endl;
+	g_LogFile.ssend();
 
 	newGirl->m_Money = (g_Dice%(current->m_MaxMoney-current->m_MinMoney))+current->m_MinMoney;	// money
 
@@ -3112,8 +3118,9 @@ void sGirl::load_from_xml(TiXmlElement *el)
 		m_Realname = pt;
 	}
 	else {
-		g_LogFile.os() << "Error: can't find name when loading girl."
+		g_LogFile.ss() << "Error: can't find name when loading girl."
 		     << "XML = " << (*el) << std::endl;
+		g_LogFile.ssend();
 		return;
 	}
 
@@ -3131,14 +3138,15 @@ void sGirl::load_from_xml(TiXmlElement *el)
 		const char *stat_name = sGirl::stat_names[i];
 		pt = el->Attribute(stat_name, &ival);
 
-		std::ostream& os = g_LogFile.os();
 		if(pt == 0) {
-			os << "Error: Can't find stat '" << stat_name << "' for girl '" << m_Realname << "'" << std::endl;
+			g_LogFile.ss() << "Error: Can't find stat '" << stat_name << "' for girl '" << m_Realname << "'" << std::endl;
+			g_LogFile.ssend();
 			continue;
 		}
 		m_Stats[i] = ival;
-		os << "Debug: Girl='" << m_Realname << "'; Stat='" << stat_name << "'; Value='" << pt << "'; Ival = "
+		g_LogFile.ss() << "Debug: Girl='" << m_Realname << "'; Stat='" << stat_name << "'; Value='" << pt << "'; Ival = "
 		   << int(m_Stats[i]) << "'" << std::endl;
+        g_LogFile.ssend();
 	}
 
 	// "fix" underage girls, determine virgin status
@@ -3215,7 +3223,8 @@ void sRandomGirl::load_from_xml(TiXmlElement *el)
 	if(pt)
 		m_Name = pt;
 
-	g_LogFile.os() << "Loading " << pt << std::endl;
+	g_LogFile.ss() << "Loading " << pt << std::endl;
+	g_LogFile.ssend();
 	if((pt = el->Attribute("Desc")))
 		m_Desc = pt;
 
@@ -3283,8 +3292,9 @@ void sRandomGirl::load_from_xml(TiXmlElement *el)
 /*
  *		None of the above? Better ask for help then.
  */
- 		g_LogFile.os() << "Unexpected tag: " << child->ValueStr() << std::endl;
-		g_LogFile.os() << "	don't know what do to, ignoring" << std::endl;
+ 		g_LogFile.ss() << "Unexpected tag: " << child->ValueStr() << std::endl 
+                        << "	don't know what do to, ignoring" << std::endl;
+		g_LogFile.ssend();
 	}
 }
 
@@ -3313,9 +3323,10 @@ void cGirls::LoadRandomGirlXML(std::string filename)
 	TiXmlDocument doc(filename);
 
 	if(!doc.LoadFile()) {
-		g_LogFile.os() << "can't load random XML girls " << filename << std::endl;
-		g_LogFile.os()	<< "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol()
+		g_LogFile.ss() << "can't load random XML girls " << filename << std::endl;
+		g_LogFile.ss()	<< "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol()
 			<< ": " << doc.ErrorDesc() << std::endl;
+        g_LogFile.ssend();
 		return;
 	}
 /*
@@ -3804,8 +3815,9 @@ void sRandomGirl::process_stat_xml(TiXmlElement *el)
 	}
 	else
 	{
-		g_LogFile.os() << "can't find 'Name' attribute - can't process stat"
+		g_LogFile.ss() << "can't find 'Name' attribute - can't process stat"
 		     << std::endl;
+        g_LogFile.ssend();
 		return;		// do as much as we can without crashing
 	}
 	if((pt = el->Attribute("Min", &ival))) {
@@ -3829,8 +3841,9 @@ void sRandomGirl::process_skill_xml(TiXmlElement *el)
 		index = lookup->skill_lookup[pt];
 	}
 	else {
-		g_LogFile.os() << "can't find 'Name' attribute - can't process skill"
+		g_LogFile.ss() << "can't find 'Name' attribute - can't process skill"
 		     << std::endl;
+        g_LogFile.ssend();
 		return;		// do as much as we can without crashing
 	}
 
@@ -3848,11 +3861,13 @@ void sRandomGirl::process_cash_xml(TiXmlElement *el)
 	const char *pt;
 
 	if((pt = el->Attribute("Min", &ival))) {
-		g_LogFile.os() << "	min money = " << ival << std::endl;
+		g_LogFile.ss() << "	min money = " << ival << std::endl;
+		g_LogFile.ssend();
 		m_MinMoney = ival;
 	}
 	if((pt = el->Attribute("Max", &ival))) {
-		g_LogFile.os() << "	max money = " << ival << std::endl;
+		g_LogFile.ss() << "	max money = " << ival << std::endl;
+		g_LogFile.ssend();
 		m_MaxMoney = ival;
 	}
 }

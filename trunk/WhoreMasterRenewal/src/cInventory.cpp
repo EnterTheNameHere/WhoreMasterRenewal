@@ -78,11 +78,12 @@ const char* sEffect::girl_status_name(unsigned int id)
 	if(id < sGirl::max_statuses) {
 		return sGirl::status_names[id];
 	}
-	g_LogFile.os() << "[sEffect::girl_status_name] Error: girl status id " << id
+	g_LogFile.ss() << "[sEffect::girl_status_name] Error: girl status id " << id
 	     << " too large (max is "
 	     << sGirl::max_statuses
 	     << ")"
 	     << std::endl;
+    g_LogFile.ssend();
 	return "";
 }
 
@@ -91,11 +92,12 @@ const char* sEffect::skill_name(unsigned int id)
 	if(id < sGirl::max_skills) {
 		return sGirl::skill_names[id];
 	}
-	g_LogFile.os() << "[sEffect::skill_name] Error: skill id " << id
+	g_LogFile.ss() << "[sEffect::skill_name] Error: skill id " << id
 	     << " too large (max is "
 	     << sGirl::max_skills
 	     << ")"
 	     << std::endl;
+    g_LogFile.ssend();
 	return "";
 }
 
@@ -104,11 +106,12 @@ const char* sEffect::stat_name(unsigned int id)
 	if(id < sGirl::max_stats) {
 		return sGirl::stat_names[id];
 	}
-	g_LogFile.os() << "[sEffect::stat_name] Error: stat id " << id
+	g_LogFile.ss() << "[sEffect::stat_name] Error: stat id " << id
 	     << " too large (max is "
 	     << sGirl::max_stats
 	     << ")"
 	     << std::endl;
+    g_LogFile.ssend();
 	return "";
 }
 
@@ -120,8 +123,9 @@ bool sEffect::set_skill(std::string s)
 
     if (nID == -1)		// ERROR
     {
-        g_LogFile.os() << "[sEffect::set_skill] Error: unknown Skill: " << s <<
+        g_LogFile.ss() << "[sEffect::set_skill] Error: unknown Skill: " << s <<
             ". Skill ID: " << nID << std::endl;
+        g_LogFile.ssend();
         return false;
     }
     m_EffectID = nID;
@@ -135,8 +139,9 @@ bool sEffect::set_girl_status(std::string s)
 
     if (nID == -1)		// ERROR
     {
-        g_LogFile.os() << "[sEffect::lookup_status_code] Error: unknown Status: " << s <<
+        g_LogFile.ss() << "[sEffect::lookup_status_code] Error: unknown Status: " << s <<
             ". Skill ID: " << nID << std::endl;
+        g_LogFile.ssend();
         return false;
     }
     m_EffectID = nID;
@@ -149,8 +154,9 @@ bool sEffect::set_stat(std::string s)
 
     if (nID == -1)		// ERROR
     {
-        g_LogFile.os() << "[sEffect::set_stat] Error: unknown Stat: " << s <<
+        g_LogFile.ss() << "[sEffect::set_stat] Error: unknown Stat: " << s <<
             ". Skill ID: " << nID << std::endl;
+        g_LogFile.ssend();
         return false;
     }
     m_EffectID = nID;
@@ -227,8 +233,9 @@ static void do_effects(TiXmlElement *parent, sInventoryItem *item)
 				break;
 			case sEffect::Stat:
 				if(ept->set_stat(pt) == false) {
-					g_LogFile.os() << "effect type code == " << ept->m_Affects;
-					g_LogFile.os() << " stat lookup failed for " << item->m_Name << std::endl;
+					g_LogFile.ss() << "effect type code == " << ept->m_Affects;
+					g_LogFile.ss() << " stat lookup failed for " << item->m_Name << std::endl;
+					g_LogFile.ssend();
 
 				}
 				break;
@@ -239,7 +246,8 @@ static void do_effects(TiXmlElement *parent, sInventoryItem *item)
 				ept->set_skill(pt);
 				break;
 			default:
-				g_LogFile.os() << " can't handle effect type " << ept->m_Affects << std::endl;
+				g_LogFile.ss() << " can't handle effect type " << ept->m_Affects << std::endl;
+				g_LogFile.ssend();
 			}
 		}
 
@@ -431,7 +439,8 @@ std::ostream& operator << (std::ostream& os, sEffect::What &w)
 	case sEffect::GirlStatus:	return os << "GirlStatus";
 	case sEffect::Trait:		return os << "Trait";
 	default:
-		g_LogFile.os() << "error: unexpected 'what' value: " << int(w) << std::endl;
+		g_LogFile.ss() << "error: unexpected 'what' value: " << int(w) << std::endl;
+		g_LogFile.ssend();
 		return os << "Error(" << int(w) << ")";
 	}
 }
@@ -1091,9 +1100,10 @@ bool cInventory::LoadItemsXML(std::string filename)
 
 	TiXmlDocument doc(filename);
 	if(!doc.LoadFile()) {
-		g_LogFile.os()	<< "can't load item file " << filename << std::endl;
-        g_LogFile.os()    << "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol()
+		g_LogFile.ss()	<< "can't load item file " << filename << std::endl;
+        g_LogFile.ss()    << "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol()
 			<< ": " << doc.ErrorDesc() << std::endl;
+        g_LogFile.ssend();
 		return false;
 	}
 
@@ -1104,7 +1114,8 @@ bool cInventory::LoadItemsXML(std::string filename)
 	for(el = root_el->FirstChildElement(); el; el = el->NextSiblingElement()) {
 		sInventoryItem* item = handle_element(el);
 		if(log_flag)
-			g_LogFile.os() << *item << std::endl;
+			g_LogFile.ss() << *item << std::endl;
+        g_LogFile.ssend();
 		items.push_back(item);
 	}
 	return true;
@@ -1115,11 +1126,15 @@ void cInventory::LoadItems(std::string filename)
     std::string msg = "Loading items from ";
 	msg += filename;
 	g_LogFile.write(msg);
-	g_LogFile.os() << "loading items from '" << filename << "'" << std::endl;
+	g_LogFile.ss() << "loading items from '" << filename << "'" << std::endl;
+	g_LogFile.ssend();
 	std::ifstream in;
 	in.open(filename.c_str());
 	if(!in.good())
-		g_LogFile.os() << "LoadItems: stream not good after open" << std::endl;
+    {
+		g_LogFile.ss() << "LoadItems: stream not good after open" << std::endl;
+		g_LogFile.ssend();
+    }
 
 	char buffer[1000];
 	sInventoryItem* newItem = 0;
@@ -1131,7 +1146,8 @@ void cInventory::LoadItems(std::string filename)
 
 		if (in.peek()=='\n') in.ignore(1,'\n');
 		in.getline(buffer, sizeof(buffer), '\n');		// get the name
-		g_LogFile.os() << "LoadItems: " << buffer << std::endl;
+		g_LogFile.ss() << "LoadItems: " << buffer << std::endl;
+		g_LogFile.ssend();
 		if(buffer[0] == 0)
 			break;
 

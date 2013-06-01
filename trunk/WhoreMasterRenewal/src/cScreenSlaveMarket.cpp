@@ -86,8 +86,9 @@ void cScreenSlaveMarket::init()
 	DisableButton(buy_slave_id, true);
 	selection=-1;
 
-	g_LogFile.os() << "setting up slave market: genGirls = " << g_GenGirls << std::endl;
-
+	g_LogFile.ss() << "setting up slave market: genGirls = " << g_GenGirls << std::endl;
+    g_LogFile.ssend();
+    
 	ImageNum = -1;
     std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
@@ -242,7 +243,8 @@ void cScreenSlaveMarket::init()
  */
 	sGirl* g = MarketSlaveGirls[tmp];
 	if(g == 0) {
-		g_LogFile.os() << "error: null pointer for cursor entry in market" << std::endl;
+		g_LogFile.ss() << "error: null pointer for cursor entry in market" << std::endl;
+		g_LogFile.ssend();
 		return;
 	}
 /*
@@ -333,11 +335,12 @@ void cScreenSlaveMarket::process()
 	sGirl *girl;
 	girl = MarketSlaveGirls[index];
 	if(!girl) {
-		g_LogFile.os() << "... no girl at index "
+		g_LogFile.ss() << "... no girl at index "
 		               << index
 			       << "- returning "
 			       << std::endl
 		;
+		g_LogFile.ssend();
 		return;
 	}
 }
