@@ -266,7 +266,9 @@ bool CSurface::DrawSurface(int x, int y, SDL_Surface* destination, SDL_Rect* cli
  *	bit of a kludge to stop buttons with a missing 
  *	disabled image from spamming the log file 
  */
-	if(m_Filename == "./Resources/Buttons/") {
+	if( m_Filename == ".\\Resources\\Buttons\\" 
+        || m_Filename == "./Resources/Buttons/" )
+    {
 		return false;
 	}
 
