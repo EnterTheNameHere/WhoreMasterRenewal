@@ -532,3 +532,16 @@ void sConfigData::set_defaults()
 	debug.log_torture	= false;
 }
 
+cConfig::cConfig()
+{
+    if( !data )
+    {
+        data = new sConfigData();
+    }
+}
+
+void cConfig::reload( const char* filename )
+{
+    sConfigData* newd = new sConfigData(filename);
+    *data = *newd;
+}

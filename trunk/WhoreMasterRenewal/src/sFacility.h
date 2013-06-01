@@ -67,10 +67,10 @@ struct sBoundedVar
 /*
  *	operators = += -=
  */
-	int operator =( int val );
-	int operator +=( int val );
-	int operator -=( int val );
-	int bound();
+	sBoundedVar& operator =( int val );
+	sBoundedVar& operator +=( int val );
+	sBoundedVar& operator -=( int val );
+	void bound();
 /*
  *	rather than a save method, just return an XML element
  *	that can be linked into a larger tree

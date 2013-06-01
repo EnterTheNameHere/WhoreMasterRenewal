@@ -67,31 +67,39 @@ void sBoundedVar::down()
 /*
  *	operators = += -=
  */
-int sBoundedVar::operator =( int val )
+sBoundedVar& sBoundedVar::operator =( int val )
 {
+    std::cout << "--------sBoundedVar::operator =()" << std::endl;
+    
     m_curr = val;
-    return bound();
+    bound();
+    return *this;
 }
 
-int sBoundedVar::operator +=( int val )
+sBoundedVar& sBoundedVar::operator +=( int val )
 {
+    std::cout << "--------sBoundedVar::operator +=()" << std::endl;
+    
     m_curr += val;
-    return bound();
+    bound();
+    return *this;
 }
 
-int sBoundedVar::operator -=( int val )
+sBoundedVar& sBoundedVar::operator -=( int val )
 {
+    std::cout << "--------sBoundedVar::operator -=()" << std::endl;
+    
     m_curr -= val;
-    return bound();
+    bound();
+    return *this;
 }
 
-int sBoundedVar::bound()
+void sBoundedVar::bound()
 {
     if( m_curr < m_min )
         m_curr = m_min;
     if( m_curr > m_max )
         m_curr = m_max;
-    return m_curr;
 }
 
 
