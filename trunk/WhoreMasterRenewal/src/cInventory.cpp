@@ -42,6 +42,16 @@ cInventory g_InvManager;
 
 // ----- Misc
 
+
+cInventory::cInventory()
+{
+    for( int i = 0; i < NUM_SHOPITEMS; ++i )
+    {
+        m_ShopItems[i] = nullptr;
+    }
+    m_NumShopItems = 0;
+}
+
 cInventory::~cInventory()
 {
 	Free();
@@ -52,7 +62,30 @@ void cInventory::Free()
 	for(int i = 0; i < NUM_SHOPITEMS; i++) m_ShopItems[i] = 0;
 }
 
-const char *sEffect::girl_status_name(unsigned int id)
+void sEffect::set_what( std::string s )
+{
+    if( s == "Skill" )
+        m_Affects = Skill;
+    else if( s == "Stat" )
+        m_Affects = Stat;
+    else if( s == "Nothing" )
+        m_Affects = Nothing;
+    else if( s == "GirlStatus" )
+        m_Affects = GirlStatus;
+    else if( s == "Trait" )
+        m_Affects = Trait;
+    else
+    {
+        m_Affects = Nothing;
+        std::cerr << __FILE__ << " (" << __LINE__ << "): "
+            << "Error: Bad 'what' string for item effect: '"
+            << s
+            << "'"
+            << std::endl;
+    }
+}
+
+const char* sEffect::girl_status_name(unsigned int id)
 {
 	if(id < sGirl::max_statuses) {
 		return sGirl::status_names[id];
@@ -65,7 +98,7 @@ const char *sEffect::girl_status_name(unsigned int id)
 	return "";
 }
 
-const char *sEffect::skill_name(unsigned int id)
+const char* sEffect::skill_name(unsigned int id)
 {
 	if(id < sGirl::max_skills) {
 		return sGirl::skill_names[id];
@@ -78,7 +111,7 @@ const char *sEffect::skill_name(unsigned int id)
 	return "";
 }
 
-const char *sEffect::stat_name(unsigned int id)
+const char* sEffect::stat_name(unsigned int id)
 {
 	if(id < sGirl::max_stats) {
 		return sGirl::stat_names[id];
@@ -93,48 +126,48 @@ const char *sEffect::stat_name(unsigned int id)
 
 
 bool sEffect::set_skill(std::string s)
-	{
+{
 
-		int nID	= sGirl::lookup_skill_code(s);
+    int nID	= sGirl::lookup_skill_code(s);
 
-		if (nID == -1)		// ERROR
-		{
-			g_LogFile.os() << "[sEffect::set_skill] Error: unknown Skill: " << s <<
-				". Skill ID: " << nID << std::endl;
-			return false;
-		}
-		m_EffectID = nID;
-		return true;
-	}
+    if (nID == -1)		// ERROR
+    {
+        g_LogFile.os() << "[sEffect::set_skill] Error: unknown Skill: " << s <<
+            ". Skill ID: " << nID << std::endl;
+        return false;
+    }
+    m_EffectID = nID;
+    return true;
+}
 
-	bool sEffect::set_girl_status(std::string s)
-	{
+bool sEffect::set_girl_status(std::string s)
+{
 
-		int nID	= sGirl::lookup_status_code(s);
+    int nID	= sGirl::lookup_status_code(s);
 
-		if (nID == -1)		// ERROR
-		{
-			g_LogFile.os() << "[sEffect::lookup_status_code] Error: unknown Status: " << s <<
-				". Skill ID: " << nID << std::endl;
-			return false;
-		}
-		m_EffectID = nID;
-		return true;
-	}
-	bool sEffect::set_stat(std::string s)
-	{
+    if (nID == -1)		// ERROR
+    {
+        g_LogFile.os() << "[sEffect::lookup_status_code] Error: unknown Status: " << s <<
+            ". Skill ID: " << nID << std::endl;
+        return false;
+    }
+    m_EffectID = nID;
+    return true;
+}
+bool sEffect::set_stat(std::string s)
+{
 
-		int nID	= sGirl::lookup_stat_code(s);
+    int nID	= sGirl::lookup_stat_code(s);
 
-		if (nID == -1)		// ERROR
-		{
-			g_LogFile.os() << "[sEffect::set_stat] Error: unknown Stat: " << s <<
-				". Skill ID: " << nID << std::endl;
-			return false;
-		}
-		m_EffectID = nID;
-		return true;
-	}
+    if (nID == -1)		// ERROR
+    {
+        g_LogFile.os() << "[sEffect::set_stat] Error: unknown Stat: " << s <<
+            ". Skill ID: " << nID << std::endl;
+        return false;
+    }
+    m_EffectID = nID;
+    return true;
+}
 
 
 void cInventory::GivePlayerAllItems()
@@ -1171,9 +1204,104 @@ void cInventory::LoadItems(std::string filename)
 	in.close();
 }
 
+void sInventoryItem::set_rarity( std::string s )
+{
+    if(s == "Common") {
+        m_Rarity = Common;
+    }
+    else if(s == "Shop50") {
+        m_Rarity = Shop50;
+    }
+    else if(s == "Shop25") {
+        m_Rarity = Shop25;
+    }
+    else if(s == "Shop05") {
+        m_Rarity = Shop05;
+    }
+    else if(s == "Catacomb15") {
+        m_Rarity = Catacomb15;
+    }
+    else if(s == "Catacomb05") {
+        m_Rarity = Catacomb05;
+    }
+    else if(s == "Catacomb01") {
+        m_Rarity = Catacomb01;
+    }
+    else if(s == "ScriptOnly") {
+        m_Rarity = ScriptOnly;
+    }
+    else if(s == "ScriptOrReward") {
+        m_Rarity = ScriptOrReward;
+    }
+    else {
+        std::cerr << __FILE__ << " (" << __LINE__ << "): "
+            << "Error in set_rarity: unexpected value '"
+            << s
+            << "'"
+            << std::endl;
+        m_Rarity = Shop05;	// what to do?
+    }
+}
 
-/*
+void sInventoryItem::set_special( std::string s )
+{
+    if(s == "None") {
+        m_Special = None;
+    }
+    else if(s == "AffectsAll") {
+        m_Special = AffectsAll;
+    }
+    else if(s == "Temporary") {
+        m_Special = Temporary;
+    }
+    else {
+        std::cerr << __FILE__ << " (" << __LINE__ << "): "
+            << "unexpected special string: '"
+            << s
+            << "'"
+            << std::endl
+        ;
+        m_Special = None;
+    }
+}
 
-g++  -D LINUX -I /usr/include/SDL -g -Wall  -c -o cInventory.o cInventory.cpp
-
-*/
+void sInventoryItem::set_type( std::string s )
+{
+    if(s == "Ring") {
+        m_Type = Ring;
+    }
+    else if(s == "Dress") {
+        m_Type = Dress;
+    }
+    else if(s == "Shoes") {
+        m_Type = Shoes;
+    }
+    else if(s == "Food") {
+        m_Type = Food;
+    }
+    else if(s == "Necklace") {
+        m_Type = Necklace;
+    }
+    else if(s == "Weapon") {
+        m_Type = Weapon;
+    }
+    else if(s == "Small Weapon") {
+        m_Type = SmWeapon;
+    }
+    else if(s == "Makeup") {
+        m_Type = Makeup;
+    }
+    else if(s == "Armor") {
+        m_Type = Armor;
+    }
+    else if(s == "Misc") {
+        m_Type = Misc;
+    }
+    else if(s == "Armband") {
+        m_Type = Armband;
+    }
+    else {
+        std::cerr << __FILE__ << " (" << __LINE__ << "): " << "Error: unexpected item type: " << s << std::endl;
+        m_Type = Misc;
+    }
+}

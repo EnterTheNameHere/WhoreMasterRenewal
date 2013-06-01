@@ -43,54 +43,36 @@ struct sFilm
 
 struct sJobs
 {
+    sJobs();
+	~sJobs();
+	void setup( std::string name,
+                int min = 0,
+                int max = -1,
+                bool slave = true,
+                bool free = true,
+                char girlpay = 0,
+                char up = 0,
+                int id = 0,
+                std::string like = "",
+                std::string hate = "",
+                int skill = 0 );
+    
     std::string m_Name;
 	bool m_FreeGirlAble;
 	bool m_SlaveAble;
 	short m_MinPositions;
 	short m_MaxPositions;
-	// this looked like a comment that lost its // -- doc
-	//to much work atm
 	char m_Upkeep;
 	char m_GirlPay;
 	int m_ActionID;
     std::string m_LikeWork;
     std::string m_HateWork;
-	//string m_BrothelStatToUpdate;
 	int m_DependantSkill;
-	sJobs(void){}
-	void setup(
-	    std::string name,
-		int min=0, int max=-1,
-		bool slave=true,
-		bool free=true,
-		char girlpay=0,
-		char up=0,
-		int id=0,
-	    std::string like="",
-	    std::string hate="",
-		//string brothel_stat="",
-		int skill=0
-	)
-	{
-		m_Name=name;
-		m_LikeWork=like;
-		m_HateWork=hate;
-		//m_BrothelStatToUpdate=brothel_stat;
-		m_DependantSkill=skill;
-		m_FreeGirlAble=free;
-		m_SlaveAble=slave;
-		m_MinPositions=min;
-		m_MaxPositions=max;
-		m_Upkeep=up;
-		m_GirlPay=girlpay;
-		m_ActionID=id;
-	}
-	~sJobs(void);
 };
+
 //mainly a list of functions
 class cJobManager
 {
-	std::vector<sFilm *> film_list;
 public:
 	static std::vector<sJobs> job_list;
 	void setup_job_list();
@@ -124,6 +106,9 @@ public:
 	void do_training(sBrothel* brothel, int DayNight);
 	void do_training_set(sGirl **girls, int day_night);
 	void do_solo_training(sGirl *girl, int day_night);
+	
+private:
+	std::vector<sFilm *> film_list;
 };
 
 #endif // CJOBS_H_INCLUDED_1524

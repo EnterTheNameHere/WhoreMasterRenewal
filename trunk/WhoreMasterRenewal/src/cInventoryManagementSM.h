@@ -22,7 +22,15 @@
 
 class sGirl;
 
-class cInventoryManagementSM {
+class cInventoryManagementSM
+{
+public:
+	void init();
+	void handle_events();
+	void item_shift_r();
+	sGirl* get_girl_from_list(int owner_idx, int list_id);
+
+private:
 	int leftOwner;
 	int rightOwner;
 	int NumBrothelGirls;
@@ -30,20 +38,6 @@ class cInventoryManagementSM {
 	int filter;
 	int leftItem;
 	int rightItem;
-public:
-	cInventoryManagementSM() {
-		leftOwner	= 0;
-		rightOwner	= 1;
-		NumBrothelGirls	= 0;
-		NumDungeonGirls	= 0;
-		filter		= 0;
-		leftItem	= 0;
-		rightItem	= 0;
-	}
-	void init();
-	void handle_events();
-	void item_shift_r();
-	sGirl *get_girl_from_list(int owner_idx, int list_id);
 };
 
 #endif // CINVENTORYMANAGEMENTSM_H_INCLUDED_1525

@@ -22,39 +22,40 @@
 
 #include <string>
 
-struct	sGirl;
-struct	sDungeonGirl;
-class	cPlayer;
-class	cDungeon;
-class	CLog;
-class	cConfig;
+struct sGirl;
+struct sDungeonGirl;
+class cPlayer;
+class cDungeon;
+class CLog;
+class cConfig;
 
-class cGirlTorture {
-	cPlayer			*m_Player;
-	sGirl			*m_Girl;
-	sGirl			*m_Torturer;
-	sDungeonGirl	*m_DungeonGirl;
-	cDungeon		*m_Dungeon;
-    std::string 		m_Message;
-	bool			m_Fight;
-	bool			m_TorturedByPlayer;
-
-	bool			girl_escapes();
-	void			AddTextPlayer();
-	void			AddTextTorturerGirl();
-	void			UpdateStats();
-	void			UpdateTraits();
-	void			add_trait(std::string trait, int pc);
-	bool			IsGirlInjured(unsigned int unModifier);		// Based on cGirls::GirlInjured() 
-	void			MakeEvent(std::string sMsg);
-	void			DoTorture();
-
+class cGirlTorture
+{
 public:
-	~cGirlTorture();							// destructor
-	cGirlTorture(sGirl *pGirl);					// Torture Girl by player
-	cGirlTorture(sDungeonGirl *pGirl);			// Torture Dungeon girl by player
-	cGirlTorture(sDungeonGirl *pGirl, sGirl *pTourturer);	// Tortured by Torture job girl
+	~cGirlTorture();
+	cGirlTorture( sGirl* pGirl ); // Torture Girl by player
+	cGirlTorture( sDungeonGirl* pGirl ); // Torture Dungeon girl by player
+	cGirlTorture( sDungeonGirl* pGirl, sGirl* pTourturer );	// Tortured by Torture job girl
 
+private:
+	cPlayer* m_Player;
+	sGirl* m_Girl;
+	sGirl* m_Torturer;
+	sDungeonGirl* m_DungeonGirl;
+	cDungeon* m_Dungeon;
+    std::string m_Message;
+	bool m_Fight;
+	bool m_TorturedByPlayer;
+
+	bool girl_escapes();
+	void AddTextPlayer();
+	void AddTextTorturerGirl();
+	void UpdateStats();
+	void UpdateTraits();
+	void add_trait( std::string trait, int pc );
+	bool IsGirlInjured( unsigned int unModifier );		// Based on cGirls::GirlInjured() 
+	void MakeEvent( std::string sMsg );
+	void DoTorture();
 };
 
 #endif // CGIRLTORTURE_H_INCLUDED_1528

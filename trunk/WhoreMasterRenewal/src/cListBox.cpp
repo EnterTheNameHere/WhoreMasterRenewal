@@ -58,6 +58,21 @@ extern unsigned char g_ListBoxHeaderBorderR, g_ListBoxHeaderBorderG, g_ListBoxHe
 extern unsigned char g_ListBoxHeaderBorderHR, g_ListBoxHeaderBorderHG, g_ListBoxHeaderBorderHB;
 extern unsigned char g_ListBoxHeaderTextR, g_ListBoxHeaderTextG, g_ListBoxHeaderTextB;
 
+cListItem::cListItem()
+{
+    m_Next = nullptr;
+    m_Color = 0;
+    m_TextColor = nullptr;
+    m_Selected = false;
+}
+
+cListItem::~cListItem()
+{
+    if( m_Next )
+        delete m_Next;
+    m_Next = nullptr;
+}
+
 cListBox::cListBox()
 {
 	m_Items = 0;

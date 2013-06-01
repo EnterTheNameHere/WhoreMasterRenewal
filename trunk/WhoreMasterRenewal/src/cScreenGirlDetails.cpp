@@ -36,6 +36,10 @@
 
 #include <algorithm>
 
+
+extern cInterfaceWindow g_Gallery;
+
+
 extern bool g_InitWin;
 extern int g_CurrBrothel;
 extern cGold g_Gold;

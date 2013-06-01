@@ -32,6 +32,8 @@ struct sCustomer;
 
 struct sFilm
 {
+    sFilm();
+    
 	//int total_girls;
 	//int total_cost;
 	float quality_multiplyer;
@@ -40,18 +42,11 @@ struct sFilm
 	int final_quality;
 	bool sex_acts_flags[5];
 	int total_customers;
-	sFilm()
-	{
-		quality_multiplyer=0;
-	}
 };
 
 //mainly a list of functions
 class cJobManager
 {
-	std::vector<sFilm *> film_list;
-	// bah 2d array time for speed
-	std::vector< std::vector<u_int> > job_groups;
 public:
 	//static std::vector<sJobBase *> job_list; - Changed until it is working - necro
 	// using an array of function pointers
@@ -117,12 +112,12 @@ public:
 	static bool Preprocessing(int action, sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary, std::string& message);
 	static void GetMiscCustomer(sBrothel* brothel, sCustomer& cust);
 
-	bool work_show(sGirl * girl,sBrothel * brothel,std::string& summary,int DayNight);
-	void update_film(sBrothel *);
+	bool work_show(sGirl* girl,sBrothel* brothel,std::string& summary,int DayNight);
+	void update_film(sBrothel*);
 	long make_money_films();
-	void save_films(std::ofstream &ofs);
-	void load_films(std::ifstream &ifs);
-	bool apply_job(sGirl * girl,int job,int brothel_id,bool day_or_night,std::string & message);
+	void save_films(std::ofstream& ofs);
+	void load_films(std::ifstream& ifs);
+	bool apply_job(sGirl* girl,int job,int brothel_id,bool day_or_night,std::string& message);
 	int get_num_on_job(int job,int brothel_id,bool day_or_night);
 	static bool is_sex_type_allowed(unsigned int sex_type, sBrothel* brothel);
 	#ifndef _DEBUG
@@ -140,9 +135,14 @@ public:
 	static void do_training_set(std::vector<sGirl*> girls, int day_night);
 	static void do_solo_training(sGirl *girl, int DayNight);
 	static void do_advertising(sBrothel* brothel);
-	~cJobManager(){}
+	~cJobManager();
 
 	bool is_job_Paid_Player(u_int Job);						//	WD:	Test for all jobs paid by player
+    
+private:
+	std::vector<sFilm*> film_list;
+	// bah 2d array time for speed
+	std::vector< std::vector<u_int> > job_groups;
 };
 
 #endif // CJOBMANAGER_H_INCLUDED_1525

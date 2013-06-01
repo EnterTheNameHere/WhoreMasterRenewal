@@ -20,9 +20,6 @@
 #define CLUASCRIPT_H_INCLUDED_1523
 #pragma once
 
-#include "CLog.h"
-#include "DirPath.h"
-
 extern "C" {
 #include "lua.h"
 #include "lualib.h"
@@ -39,58 +36,43 @@ bool get_from_table(lua_State *L, int table, const char *key, std::string &dest)
 class cInterfaceWindowXML;
 struct sGirl;
 
-class cLuaStateInner {
+class cLuaStateInner
+{
 public:
-	lua_State       *L;
+	lua_State* L;
 
 	void set_lua_path();
-static  const std::string sandbox;
+    static const std::string sandbox;
+	
 	cLuaStateInner();
-	~cLuaStateInner() {
-		if(L) lua_close(L);
-	}
-	inline operator lua_State*() {
+	~cLuaStateInner();
+	
+	inline operator lua_State* ()
+	{
 		return L;
 	}
 };
 
-class cLuaState {
-	static cLuaStateInner *instance;
+class cLuaState
+{
 public:
-	cLuaState() {
-		if(!instance) instance = new cLuaStateInner();
-	}
-	inline operator lua_State*() {
+	cLuaState();
+	
+	inline operator lua_State* ()
+	{
 		return instance->L;
 	}
+	
+private:
+	static cLuaStateInner *instance;
 };
 
-class cLuaScript {
-	cLuaState	l;
-    std::string 	m_file;
-	bool		running;
-	CLog		log;
-/*
- *	these are going to hold lua references
- *	pointers to the script's init() and run() methods
- */
-	int		init_ref;
-	int		run_ref;
-/*
- *	the girl who is the subject (if any) of the event
- */
-	sGirl		*girl;
-
-    std::string slurp(std::string path);
-	void get_param_table();
-	bool get_from_space(const char *func);
+class cLuaScript
+{
 public:
-	cLuaScript() {
-		running = false;
-		girl	= 0;
-		init_ref= -1;
-		run_ref	= -1;
-	}
+	cLuaScript();
+	~cLuaScript();
+	
 	void log_error();
 
 	void set_param(const char *name, void *pointer);
@@ -105,8 +87,25 @@ public:
 	bool run_by_ref(int ref);
 	void set_wm_girl(sGirl *girl);
 	void set_wm_player();
+	
+private:
+	cLuaState l;
+    std::string m_file;
+	bool running;
+/*
+ *	these are going to hold lua references
+ *	pointers to the script's init() and run() methods
+ */
+	int init_ref;
+	int run_ref;
+/*
+ *	the girl who is the subject (if any) of the event
+ */
+	sGirl* girl;
 
-	~cLuaScript() {}
+    std::string slurp(std::string path);
+	void get_param_table();
+	bool get_from_space(const char *func);
 };
 
 #endif // CLUASCRIPT_H_INCLUDED_1523

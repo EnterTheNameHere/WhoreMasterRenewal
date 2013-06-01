@@ -163,7 +163,7 @@ struct sConfigData
 
 class cConfig
 {
-static	sConfigData	*data;
+static sConfigData *data;
 public:
 	cConfig() {
 		if(!data) {

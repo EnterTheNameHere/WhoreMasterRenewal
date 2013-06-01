@@ -55,21 +55,7 @@ struct sEffect
  *	we need this to turn the strings in the xml file
  *	into numbers
  */
-	void set_what(std::string s) {
-		if		(s == "Skill")		m_Affects = Skill;
-		else if	(s == "Stat")		m_Affects = Stat;
-		else if	(s == "Nothing")	m_Affects = Nothing;
-		else if	(s == "GirlStatus")	m_Affects = GirlStatus;
-		else if	(s == "Trait")		m_Affects = Trait;
-		else {
-			m_Affects = Nothing;
-			std::cerr << __FILE__ << " (" << __LINE__ << "): "
-                << "Error: Bad 'what' string for item effect: '"
-				<< s
-				<< "'"
-				<< std::endl;
-		}
-	}
+	void set_what( std::string s );
 /*
  *	can't make an enum for this since it can represent
  *	different quantites.
@@ -84,48 +70,9 @@ struct sEffect
  *	these should be (were until the merge) in sGirl. Will be again
  *	as soon as I sort the main mess out...
  */
-	const char *girl_status_name(unsigned int id);
-	const char *skill_name(unsigned int id);		// WD:	Use definition in sGirl::
-	const char *stat_name(unsigned int id);			// WD:	Use definition in sGirl::
-
-#if 0 // WD: use definition and code in sGirl:: to remove dup code
-	const char *skill_name(unsigned int id) {
-		const char *skills[] = {
-			"Anal",
-			"Magic",
-			"BDSM",
-			"NormalSex",
-			"Beastiality",
-			"Group",
-			"Lesbian",
-			"Service",
-			"Strip",
-			"Combat"
-		};
-		const size_t n_skills = (sizeof(skills) / sizeof(skills[0]));
-		if(id < n_skills) {
-			return skills[id];
-		}
-		std::cerr __FILE__ << " (" << __LINE__ << "): " << "Error: skill id " << id << " too large (max is " << n_skills << ")" << std::endl;
-		return "";
-	}
-	const char *stat_name(unsigned int id) {
-		const char *stats[] = {
-			"Charisma",	"Happiness",	"Libido",	"Constitution",
-			"Intelligence",	"Confidence",	"Mana",		"Agility",
-			"Fame",		"Level",	"AskPrice",	"House",
-			"Exp",		"Age",		"Obedience",	"Spirit",
-			"Beauty",	"Tiredness",	"Health",	"PCFear",
-			"PCLove",	"PCHate"
-		};
-		const size_t n_stats = (sizeof(stats) / sizeof(stats[0]));
-		if(id < n_stats) {
-			return stats[id];
-		}
-		std::cerr __FILE__ << " (" << __LINE__ << "): " << "Error: stat id " << id << " too large (max is " << n_stats << ")" << std::endl;
-		return 0;
-	}
-#endif
+	const char* girl_status_name(unsigned int id);
+	const char* skill_name(unsigned int id);		// WD:	Use definition in sGirl::
+	const char* stat_name(unsigned int id);			// WD:	Use definition in sGirl::
 
 /*
  *	and we need to go the other way,
@@ -137,83 +84,6 @@ struct sEffect
 	bool set_skill(std::string s);
 	bool set_girl_status(std::string s);
 	bool set_stat(std::string s);
-
-#if 0 // WD: use definition and code in sGirl:: to remove dup code
-	bool set_skill(std::string s)
-	{
-
-		if(s == "Anal")			m_EffectID = 0;
-		else if(s == "Magic")		m_EffectID = 1;
-		else if(s == "BDSM")		m_EffectID = 2;
-		else if(s == "NormalSex")	m_EffectID = 3;
-		else if(s == "Beastiality")	m_EffectID = 4;
-		else if(s == "Group")		m_EffectID = 5;
-		else if(s == "Lesbian")		m_EffectID = 6;
-		else if(s == "Service")		m_EffectID = 7;
-		else if(s == "Strip")		m_EffectID = 8;
-		else if(s == "Combat")		m_EffectID = 9;
-		else {
-			std::cerr __FILE__ << " (" << __LINE__ << "): " << "unknown skill: " << s << std::endl;
-			return false;
-		}
-		return true;
-	}
-	bool set_girl_status(std::string s)
-	{
-		if(s == "Poisoned")		m_EffectID = 1;
-		else if(s == "Badly Poisoned")	m_EffectID = 2;
-		else if(s == "Pregnant")	m_EffectID = 3;
-		else if(s == "Pregnant By Player") 	m_EffectID = 4;
-		else if(s == "Slave")		m_EffectID = 5;
-		else if(s == "Has Daughter")	m_EffectID = 6;
-		else if(s == "Has Son")		m_EffectID = 7;
-		else if(s == "Inseminated")	m_EffectID = 8;
-		else if(s == "Controlled")	m_EffectID = 9;
-		else if(s == "Catacombs")	m_EffectID = 10;
-		else {
-			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "unknown girl status: " << s << std::endl;
-			return false;
-		}
-		return true;
-	}
-	bool set_stat(std::string s)
-	{
-		//std::cout << "looking up " << s << endl;
-		if(s == "Age")			m_EffectID = STAT_AGE;
-		else if(s == "Agility") 	m_EffectID = STAT_AGILITY;
-		else if(s == "AskPrice")	m_EffectID = STAT_ASKPRICE;
-		else if(s == "Beauty")		m_EffectID = STAT_BEAUTY;
-		else if(s == "Charisma")	m_EffectID = STAT_CHARISMA;
-		else if(s == "Confidence") 	m_EffectID = STAT_CONFIDENCE;
-		else if(s == "Constitution") 	m_EffectID = STAT_CONSTITUTION;
-		else if(s == "Exp") 		m_EffectID = STAT_EXP;
-		else if(s == "Fame") 		m_EffectID = STAT_FAME;
-		else if(s == "Happiness") 	m_EffectID = STAT_HAPPINESS;
-		else if(s == "Health") 		m_EffectID = STAT_HEALTH;
-		else if(s == "House") 		m_EffectID = STAT_HOUSE;
-		else if(s == "Intelligence") 	m_EffectID = STAT_INTELLIGENCE;
-		else if(s == "Level") 		m_EffectID = STAT_LEVEL;
-		else if(s == "Libido") 		m_EffectID = STAT_LIBIDO;
-		else if(s == "Mana") 		m_EffectID = STAT_MANA;
-		else if(s == "Obedience") 	m_EffectID = STAT_OBEDIENCE;
-		else if(s == "PCFear") 		m_EffectID = STAT_PCFEAR;
-		else if(s == "PCHate") 		m_EffectID = STAT_PCHATE;
-		else if(s == "PCLove") 		m_EffectID = STAT_PCLOVE;
-		else if(s == "Spirit") 		m_EffectID = STAT_SPIRIT;
-		else if(s == "Tiredness") 	m_EffectID = STAT_TIREDNESS;
-		else {
-			std::cerr << __FILE__ << " (" << __LINE__ << "): "
-				<< "Error: unknown stat string '"
-				<< s
-				<< "'"
-				<< std::endl
-			;
-			m_EffectID = STAT_CHARISMA;
-			return false;
-		}
-		return true;
-	}
-#endif
 
 /*
  *	magnitude of the effect.
@@ -326,107 +196,9 @@ typedef struct sInventoryItem
 	};
 	Rarity m_Rarity;
 
-	void set_rarity(std::string s)
-	{
-		if(s == "Common") {
-			m_Rarity = Common;
-		}
-		else if(s == "Shop50") {
-			m_Rarity = Shop50;
-		}
-		else if(s == "Shop25") {
-			m_Rarity = Shop25;
-		}
-		else if(s == "Shop05") {
-			m_Rarity = Shop05;
-		}
-		else if(s == "Catacomb15") {
-			m_Rarity = Catacomb15;
-		}
-		else if(s == "Catacomb05") {
-			m_Rarity = Catacomb05;
-		}
-		else if(s == "Catacomb01") {
-			m_Rarity = Catacomb01;
-		}
-		else if(s == "ScriptOnly") {
-			m_Rarity = ScriptOnly;
-		}
-		else if(s == "ScriptOrReward") {
-			m_Rarity = ScriptOrReward;
-		}
-		else {
-			std::cerr << __FILE__ << " (" << __LINE__ << "): "
-                << "Error in set_rarity: unexpected value '"
-				<< s
-				<< "'"
-				<< std::endl;
-			m_Rarity = Shop05;	// what to do?
-		}
-	}
-
-	void set_special(std::string s)
-	{
-		if(s == "None") {
-			m_Special = None;
-		}
-		else if(s == "AffectsAll") {
-			m_Special = AffectsAll;
-		}
-		else if(s == "Temporary") {
-			m_Special = Temporary;
-		}
-		else {
-			std::cerr << __FILE__ << " (" << __LINE__ << "): "
-                << "unexpected special string: '"
-				<< s
-				<< "'"
-				<< std::endl
-			;
-			m_Special = None;
-		}
-	}
-
-	void set_type(std::string s)
-	{
-		if(s == "Ring") {
-			m_Type = Ring;
-		}
-		else if(s == "Dress") {
-			m_Type = Dress;
-		}
-		else if(s == "Shoes") {
-			m_Type = Shoes;
-		}
-		else if(s == "Food") {
-			m_Type = Food;
-		}
-		else if(s == "Necklace") {
-			m_Type = Necklace;
-		}
-		else if(s == "Weapon") {
-			m_Type = Weapon;
-		}
-		else if(s == "Small Weapon") {
-			m_Type = SmWeapon;
-		}
-		else if(s == "Makeup") {
-			m_Type = Makeup;
-		}
-		else if(s == "Armor") {
-			m_Type = Armor;
-		}
-		else if(s == "Misc") {
-			m_Type = Misc;
-		}
-		else if(s == "Armband") {
-			m_Type = Armband;
-		}
-		else {
-			std::cerr << __FILE__ << " (" << __LINE__ << "): " << "Error: unexpected item type: " << s << std::endl;
-			m_Type = Misc;
-		}
-	}
+	void set_rarity(std::string s);
+	void set_special(std::string s);
+	void set_type(std::string s);
 
 	friend std::ostream& operator << (std::ostream& os, sInventoryItem::Special &spec) {
 		switch(spec) {
@@ -526,12 +298,7 @@ void qu_sort(int,int,sInventoryItem * curr[]);
 class cInventory
 {
 public:
-	cInventory() {
-		for(int i = 0; i < NUM_SHOPITEMS; i++) {
-			m_ShopItems[i] = 0;
-		}
-		m_NumShopItems = 0;
-	}
+	cInventory();
 	~cInventory();
 
 	void Free();

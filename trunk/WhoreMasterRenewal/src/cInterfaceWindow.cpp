@@ -41,7 +41,6 @@
 
 typedef unsigned int u_int;
 
-extern CLog g_LogFile;
 extern CGraphics g_Graphics;
 extern CResourceManager rmanager;
 CResourceManager rmanager;
@@ -52,6 +51,13 @@ extern unsigned char g_WindowBackgroundR, g_WindowBackgroundG, g_WindowBackgroun
 extern int g_ScreenWidth, g_ScreenHeight;
 extern bool g_Fullscreen;
 extern bool g_InitWin;
+
+cInterfaceWindow::cInterfaceWindow()
+{
+    m_Background = nullptr;
+    m_Border = nullptr;
+    m_BackgroundSurface = nullptr;
+}
 
 cInterfaceWindow::~cInterfaceWindow()
 {
@@ -1598,8 +1604,30 @@ cXmlWidget* cInterfaceWindowXML::find_widget(std::string name)
 	return it->second;
 }
 
-/*
+cSelector::cSelector( cInterfaceWindow& a_win, int a_id )
+    : win( a_win )
+{
+    id = a_id;
+}
 
- *
+cSelector& cSelector::operator =( const cSelector& other )
+{
+    if( this != &other )
+    {
+        id = other.id;
+        pos = other.pos;
+        win = other.win;
+    }
+    return *this;
+}
 
- */
+int cSelector::first()
+{
+    pos = 0;
+    return win.GetNextSelectedItemFromList( id, 0, pos );
+}
+
+int cSelector::next()
+{
+    return win.GetNextSelectedItemFromList( id, pos + 1, pos );
+}

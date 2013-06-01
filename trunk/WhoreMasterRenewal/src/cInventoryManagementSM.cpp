@@ -36,7 +36,16 @@ extern	bool	g_UpArrow;
 extern	bool	g_DownArrow;
 extern	bool	eventrunning;
 
-
+cInventoryManagementSM::cInventoryManagementSM()
+{
+    leftOwner	= 0;
+    rightOwner	= 1;
+    NumBrothelGirls	= 0;
+    NumDungeonGirls	= 0;
+    filter		= 0;
+    leftItem	= 0;
+    rightItem	= 0;
+}
 
 void cInventoryManagementSM::upd_item_lists()
 {

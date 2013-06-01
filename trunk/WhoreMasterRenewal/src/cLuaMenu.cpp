@@ -22,6 +22,8 @@
 #include "cFont.h"
 #include "CLog.h"
 #include "CGraphics.h"
+#include "cLuaScript.h" // required cLuaState
+#include "sConfig.h" // required cConfig
 
 extern CGraphics g_Graphics;
 extern cChoiceManager g_ChoiceManager;
@@ -67,6 +69,8 @@ cLuaMenuInner *cLuaMenu::instance = 0;
 
 int cLuaMenuInner::get_int(const char *name, int def_val)
 {
+    cLuaState l;
+    
 	int rv = def_val;
 /*
  *	assuming the arg table is on top
@@ -100,6 +104,8 @@ int cLuaMenuInner::get_int(const char *name, int def_val)
  */
 std::string cLuaMenuInner::get_string(const char *name, const char *def_val)
 {
+    cLuaState l;
+    
     std::string str = def_val;
 /*
  *	assuming the arg table is on top
@@ -132,6 +138,8 @@ static void c_callback(int chosen);
 
 void cLuaMenuInner::whoops(std::string msg)
 {
+    cLuaState l;
+    
 	lua_pushstring(l, msg.c_str());
 	lua_error(l);	// never returns
 }
@@ -149,6 +157,8 @@ void cLuaMenuInner::whoops(std::string msg)
  */
 int cLuaMenuInner::get_ref(const char *name)
 {
+    cLuaState l;
+    
 /*
  *	assuming the arg table is on top
  *	push the key name on top of that
@@ -194,6 +204,8 @@ int cLuaMenuInner::get_ref(const char *name)
 
 str_vec cLuaMenuInner::get_caption_strings()
 {
+    cLuaState l;
+    
 	str_vec v;
 	int arg_table = lua_gettop(l);
 /*
@@ -226,6 +238,8 @@ str_vec cLuaMenuInner::get_caption_strings()
 
 str_vec cLuaMenuInner::traverse_caption_table()
 {
+    cLuaState l;
+    
 	str_vec v;
 	int choice_table = lua_gettop(l);
 /*
@@ -377,6 +391,8 @@ void cLuaMenuInner::write_captions()
 
 void cLuaMenuInner::show()
 {
+    cConfig cfg;
+    
 /*
  *	we have a shedload of args to decode
  *	these are all passed from Lua in a table
@@ -461,6 +477,8 @@ static void c_callback(int option_number)
  */
 void cLuaMenuInner::clicked(int option_number)
 {
+    cLuaState l;
+    
 	g_ChoiceManager.Free();
 	g_ChoiceManager.set_callback(0);
 /*
@@ -524,8 +542,18 @@ void cLuaMenuInner::clicked(int option_number)
 	g_LogFile.ssend();
 }
 
-/*
+void cLuaMenu::show()
+{
+    instance->show();
+}
 
- *
+void cLuaMenu::clicked( int option_number )
+{
+    instance->clicked( option_number );
+}
 
- */
+cLuaMenu::cLuaMenu()
+{
+    if( !instance )
+        instance = new cLuaMenuInner();
+}

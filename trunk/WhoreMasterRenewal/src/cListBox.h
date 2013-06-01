@@ -34,11 +34,8 @@ class cScrollBar;
 class cListItem
 {
 public:
-	cListItem() {m_Next = 0;m_Color=0;m_TextColor=0;m_Selected = false;}
-	~cListItem()
-	{
-	    if(m_Next) delete m_Next; m_Next = 0;
-    }
+	cListItem();
+	~cListItem();
 
 	int m_Color;
 	bool m_Selected;

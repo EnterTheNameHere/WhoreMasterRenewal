@@ -42,6 +42,16 @@ extern cGangManager g_Gangs;
 extern cMessageQue g_MessageQue;
 extern cGirls g_Girls;
 
+sFilm::sFilm()
+{
+    quality_multiplyer = 0;
+}
+
+cJobManager::~cJobManager()
+{
+    ;
+}
+
 void cJobManager::Setup()
 {
 	// much simplier then trying to get the sJob working with this (plus a smaller memory footprint...?maybe)

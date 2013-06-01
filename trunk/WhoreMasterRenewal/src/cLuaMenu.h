@@ -20,22 +20,24 @@
 #define CLUAMENU_H_INCLUDED_1523
 #pragma once
 
-#include "cLuaScript.h" // required cLuaState
-#include "sConfig.h" // required cConfig
-
 #include <string>
 #include <vector>
 
 typedef std::vector<std::string*> str_vec;
 
 class cLuaMenuInner
-{
+{	
+public:
+	void show();
+	void clicked(int option_number);
+	
+private:
 /*
  *	these are all singletons, so having them in the class
  *	is cheap
  */
-	cLuaState	l;
-	cConfig		cfg;
+	//cLuaState	l;
+	//cConfig cfg;
 /*
  *	parameters to the initial show method
  */
@@ -59,23 +61,18 @@ class cLuaMenuInner
 	int get_menu_x(int maxw);
 	int get_menu_y(int maxh);
 	void write_captions();
-public:
-	void show();
-	void clicked(int option_number);
 };
 
-class cLuaMenu {
-static	cLuaMenuInner *instance;
+class cLuaMenu
+{
 public:
-	void show() {
-		instance->show();
-	}
-	void clicked(int option_number) {
-		instance->clicked(option_number);
-	}
-	cLuaMenu() {
-		if(!instance) instance = new cLuaMenuInner();
-	}
+    cLuaMenu();
+    
+	void show();
+	void clicked( int option_number );
+
+private:
+    static cLuaMenuInner* instance;
 };
 
 #endif // CLUAMENU_H_INCLUDED_1523

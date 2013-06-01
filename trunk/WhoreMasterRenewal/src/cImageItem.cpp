@@ -25,23 +25,33 @@
 
 extern CGraphics g_Graphics;
 
+cImageItem::cImageItem()
+{
+    m_Image 	= nullptr;
+    m_Next		= nullptr;
+    m_Surface	= nullptr;
+    m_AnimatedImage = nullptr;
+    m_loaded	= false;
+    m_Hidden	= false;
+}
+
 cImageItem::~cImageItem()
 {
 	if(m_Next)
 		delete m_Next;
-	m_Next = 0;
+	m_Next = nullptr;
 	
 	if(m_Image && m_loaded)
 		delete m_Image;
-	m_Image = 0;
+	m_Image = nullptr;
 
 	if(m_Surface)
 		SDL_FreeSurface(m_Surface);
-	m_Surface = 0;
+	m_Surface = nullptr;
 
 	if(m_AnimatedImage && m_loaded)
 		delete m_AnimatedImage;
-	m_AnimatedImage = 0;
+	m_AnimatedImage = nullptr;
 }
 
 bool cImageItem::CreateImage(int id, std::string filename, int x, int y, int width, int height, bool statImage, int R, int G, int B)

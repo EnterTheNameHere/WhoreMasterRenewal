@@ -28,8 +28,6 @@
 #include <string>
 
 class cInterfaceWindow;
-extern cInterfaceWindow g_Gallery;
-extern cInterfaceWindow g_TransferGirls;
 
 class cImageItem;
 class CSurface;
@@ -49,7 +47,7 @@ class SDL_Surface;
 class cInterfaceWindow : public cInterfaceObject
 {
 public:
-	cInterfaceWindow() {m_Background=m_Border=0;m_BackgroundSurface=0;}
+	cInterfaceWindow();
 	virtual ~cInterfaceWindow();
 
 	virtual void Free();
@@ -230,35 +228,17 @@ virtual	void process()=0;
 
 class cSelector
 {
+public:
+	cSelector( cInterfaceWindow& a_win, int a_id );
+	cSelector& operator =( const cSelector& other );
+
+	int first();
+	int next();
+
+private:
 	int id;			// list ID
 	int pos;		// position variable
-	cInterfaceWindow &win;	// window reference
-public:
-	cSelector(cInterfaceWindow& a_win, int a_id)
-	: win(a_win)
-	{
-		id = a_id;
-	}
-
-	cSelector& operator=(const cSelector& other)
-	{
-		if (this != &other)
-		{
-			id = other.id;
-			pos = other.pos;
-			win = other.win;
-		}
-		return *this;
-	}
-
-	int first() {
-		pos = 0;
-		return win.GetNextSelectedItemFromList(id, 0, pos);
-	}
-
-	int next() {
-		return win.GetNextSelectedItemFromList(id, pos+1, pos);
-	}
+	cInterfaceWindow& win;	// window reference
 };
 
 #endif // CINTERFACEWINDOW_H_INCLUDED_1526

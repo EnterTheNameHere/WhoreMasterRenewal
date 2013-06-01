@@ -123,7 +123,7 @@
 			<Add option="-static-libstdc++" />
 		</Linker>
 		<ExtraCommands>
-			<Add after='C:\WINDOWS\system32\cmd.exe /C &quot;&quot;D:\Git\bin\sh.exe&quot; &quot;--login&quot; &quot;../copyRequiredFilesToBin.sh&quot; &quot;saves&quot; &quot;onlyNew&quot; &quot;verbose&quot;&quot;' />
+			<Add after='cmd.exe /C &quot;&quot;sh.exe&quot; &quot;--login&quot; &quot;../copyRequiredFilesToBin.sh&quot; &quot;saves&quot; &quot;onlyNew&quot; &quot;verbose&quot;&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
 		<Unit filename="Docs&amp;Tools/DesignDocument/DesignDocument.txt">
@@ -263,6 +263,7 @@
 		<Unit filename="src/cGold.h" />
 		<Unit filename="src/cImageItem.cpp" />
 		<Unit filename="src/cImageItem.h" />
+		<Unit filename="src/cInterfaceEvent.cpp" />
 		<Unit filename="src/cInterfaceEvent.h" />
 		<Unit filename="src/cInterfaceObject.cpp" />
 		<Unit filename="src/cInterfaceObject.h" />
@@ -277,6 +278,7 @@
 		<Unit filename="src/cInventoryManagementSM.h" />
 		<Unit filename="src/cJobManager.cpp" />
 		<Unit filename="src/cJobManager.h" />
+		<Unit filename="src/cJobs.cpp" />
 		<Unit filename="src/cJobs.h" />
 		<Unit filename="src/cListBox.cpp" />
 		<Unit filename="src/cListBox.h" />

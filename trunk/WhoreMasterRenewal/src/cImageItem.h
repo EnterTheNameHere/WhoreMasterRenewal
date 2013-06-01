@@ -32,14 +32,7 @@ class cImageItem : public cInterfaceObject
 {
 	bool m_Hidden;
 public:
-	cImageItem() {
-		m_Image 	= 0;
-		m_Next		= 0;
-		m_Surface	= 0;
-		m_AnimatedImage = 0;
-		m_loaded	= false;
-		m_Hidden	= false;
-	}
+	cImageItem();
 	virtual ~cImageItem();
 
 	bool CreateImage(int id, std::string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
