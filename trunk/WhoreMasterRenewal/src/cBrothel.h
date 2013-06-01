@@ -33,6 +33,10 @@
 #include <sstream>
 #include <fstream>
 
+class cBrothelManager;
+extern cBrothelManager g_Brothels;
+extern int g_CurrBrothel;
+
 class cBuilding;
 class cGirls;
 class cCustomers;

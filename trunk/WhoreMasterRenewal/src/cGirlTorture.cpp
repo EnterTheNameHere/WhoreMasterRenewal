@@ -26,13 +26,7 @@
 #include "cRng.h"
 #include "sConfig.h"
 #include "CLog.h"
-
-extern	cGirls			g_Girls;
-extern	cMessageQue		g_MessageQue;
-extern	cBrothelManager	g_Brothels;
-extern	bool			g_Cheats;
-extern	int				g_CurrBrothel;
-
+#include "InterfaceProcesses.h"
 
 /*
  * ideally, we'd keep a queue of message strings and 

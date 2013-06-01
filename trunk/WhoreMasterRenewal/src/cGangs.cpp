@@ -32,31 +32,14 @@
 #include "cInventory.h"
 #include "cRng.h"
 #include "CLog.h"
+#include "InterfaceProcesses.h"
 
 #include <sstream>
 #include <algorithm>
 
-extern cMessageQue g_MessageQue;
-extern cCustomers g_Customers;
-extern cGirls g_Girls;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern unsigned long g_Year;
-extern unsigned long g_Month;
-extern unsigned long g_Day;
-extern CGraphics g_Graphics;
-extern cGold g_Gold;
-
-extern char buffer[1000];
-
-extern cGangManager g_Gangs;
-cGangManager g_Gangs;
-
 static cPlayer* m_Player = g_Brothels.GetPlayer();
 static cRivalManager* m_Rivals = g_Brothels.GetRivalManager();
 static cDungeon* m_Dungeon = g_Brothels.GetDungeon();
-
-
 
 sGang::sGang()
 {

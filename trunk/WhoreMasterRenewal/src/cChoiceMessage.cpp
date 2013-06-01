@@ -23,14 +23,7 @@
 #include "sConfig.h"
 #include "cFont.h"
 #include "CSurface.h"
-
-
-extern CGraphics g_Graphics;
-
-extern unsigned char g_ChoiceMessageTextR, g_ChoiceMessageTextG, g_ChoiceMessageTextB;
-extern unsigned char g_ChoiceMessageBorderR, g_ChoiceMessageBorderG, g_ChoiceMessageBorderB;
-extern unsigned char g_ChoiceMessageBackgroundR, g_ChoiceMessageBackgroundG, g_ChoiceMessageBackgroundB;
-extern unsigned char g_ChoiceMessageSelectedR, g_ChoiceMessageSelectedG, g_ChoiceMessageSelectedB;
+#include "InterfaceGlobals.h"
 
 cChoice::cChoice()
 {

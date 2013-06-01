@@ -28,6 +28,15 @@
 #include <string>
 
 class cInterfaceWindow;
+extern cInterfaceWindow g_MainMenu;
+extern cInterfaceWindow g_GetString;
+extern cInterfaceWindow g_BrothelManagement;
+extern cInterfaceWindow g_ChangeJobs;
+extern cInterfaceWindow g_Turnsummary;
+extern cInterfaceWindow g_GetInt;
+extern cInterfaceWindow g_LoadGame;
+extern cInterfaceWindow g_Gallery;
+extern cInterfaceWindow g_TransferGirls;
 
 class cImageItem;
 class CSurface;

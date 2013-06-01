@@ -24,6 +24,7 @@
 #include "cTariff.h"
 #include "cJobManager.h"
 #include "InterfaceProcesses.h"
+#include "InterfaceGlobals.h"
 #include "cGetStringScreenManager.h"
 #include "cGangs.h"
 #include "cScriptManager.h"
@@ -36,40 +37,14 @@
 
 #include <algorithm>
 
-
-extern cInterfaceWindow g_Gallery;
-
-
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
-extern long g_IntReturn;
-extern	int	g_TalkCount;
-extern bool g_AllTogle;
-extern cGangManager g_Gangs;
-extern bool g_Cheats;
-extern std::string g_ReturnText;
-extern	bool	eventrunning;
-
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
-
 static cTariff tariff;
-static std::stringstream ss;
+static std::stringstream ss; /// @todo Get rid of this static variable
 
 static int ImageNum = -1;
 static int DetailLevel = 0;
 static int DayNight = 0;
 
 static bool SetJob = true;
-
-extern sGirl *selected_girl;
-extern std::vector<int> cycle_girls;
-extern int cycle_pos;
 
 bool cScreenGirlDetails::ids_set = false;
 

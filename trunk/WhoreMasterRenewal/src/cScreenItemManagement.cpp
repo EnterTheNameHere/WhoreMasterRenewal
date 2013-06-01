@@ -13,17 +13,6 @@
 #include "cInventory.h"
 #include "DirPath.h"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cInventory g_InvManager;
-extern cWindowManager g_WinManager;
-extern bool g_AllTogle;
-extern std::string g_ReturnText;
-
-extern sGirl* selected_girl;
-
 bool cScreenItemManagement::ids_set = false;
 
 static int leftOwner = 0;

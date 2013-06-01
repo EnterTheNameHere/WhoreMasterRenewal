@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenItemManagement;
+extern cScreenItemManagement g_ItemManagement;
+
 class cScreenItemManagement : public cInterfaceWindowXML
 {
 public:

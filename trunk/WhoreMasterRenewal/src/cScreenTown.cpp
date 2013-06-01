@@ -42,21 +42,6 @@
 #include <locale>
 #include <sstream>
 
-extern	bool			g_InitWin;
-extern	int			g_CurrBrothel;
-extern	cGold			g_Gold;
-extern	cBrothelManager		g_Brothels;
-extern	cWindowManager		g_WinManager;
-extern	cInterfaceEventManager	g_InterfaceEvents;
-extern bool g_WalkAround;
-extern bool g_Cheats;
-extern	bool	eventrunning;
-extern std::string g_ReturnText;
-extern cGangManager g_Gangs;
-extern bool g_AllTogle;
-
-extern cInterfaceWindow g_GetString;
-
 bool cScreenTown::ids_set = false;
 
 cScreenTown::cScreenTown()

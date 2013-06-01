@@ -30,10 +30,7 @@
 #include <fstream>
 #include <cctype>
 
-extern CLog g_LogFile;
-static CLog &l = g_LogFile;
-static cColor ColorConvert;
-sConfigData *cConfig::data ;
+sConfigData* cConfig::data;
 
 /*
  * changed this to take a filename so we can pass config files on the
@@ -44,12 +41,12 @@ sConfigData::sConfigData(const char *a_filename)
 {
 	DirPath dp = DirPath() << "Resources" << "Data" << a_filename;
     std::string filename = dp.c_str();
-	l.ss()
+	g_LogFile.ss()
 		<< "Loading configration variables from '"
 		<< filename
 		<< "'"
 	;
-	l.ssend();
+	g_LogFile.ssend();
 /*
  *	make sure we have something playable,
  *	even if the file doesn't load
@@ -60,26 +57,26 @@ sConfigData::sConfigData(const char *a_filename)
  */
 	TiXmlDocument doc(filename);
 	if(!doc.LoadFile()) {
-		l.ss()	<< "can't load " << filename << std::endl;
-		l.ss()	<< "Error: line "
+		g_LogFile.ss()	<< "can't load " << filename << std::endl;
+		g_LogFile.ss()	<< "Error: line "
 			<< doc.ErrorRow()
 			<< ", col "
 			<< doc.ErrorCol()
 			<< ": "
 			<< doc.ErrorDesc()
 		;
-		l.ssend();
+		g_LogFile.ssend();
 /*
  *		a bit of narrative for the players: makes it easier to tell
  *		if the config isn't being found
  */
-		l.ss()	<< "*** Game will run with default pricing factors."
+		g_LogFile.ss()	<< "*** Game will run with default pricing factors."
 			<< std::endl
 			<< "*** This may seem a little easy. To fix this"
 			<< std::endl
 			<< "*** get a config.xml file from pinkpetal.co.cc"
 		;
-		l.ssend();
+		g_LogFile.ssend();
 		return;
 	}
 /*
@@ -95,11 +92,11 @@ sConfigData::sConfigData(const char *a_filename)
 	) {
 	    std::string tag = el->ValueStr();
 		/*
-		l.ss()	<< "processing tag: '"
+		g_LogFile.ss()	<< "processing tag: '"
 		 	<< tag
 			<< "' ..."
 		;
-		l.ssend();
+		g_LogFile.ssend();
 		*/
 /*
  *		now, depending on the tag name...
@@ -182,11 +179,11 @@ sConfigData::sConfigData(const char *a_filename)
 			continue;
 		}
 
-		l.ss()	<< "Warning: config.xml: tag: '"
+		g_LogFile.ss()	<< "Warning: config.xml: tag: '"
 		 	<< tag
 			<< "' unexpected"
 		;
-		l.ssend();
+		g_LogFile.ssend();
 	}
 }
 
@@ -245,11 +242,11 @@ void sConfigData::get_att(TiXmlElement *el, const char *name, double *dpt)
         if(el->Attribute(name, dpt)) {
 		return;
 	}
-	l.ss()	<< "Warning: config.xml: No '"
+	g_LogFile.ss()	<< "Warning: config.xml: No '"
 		<< name
 		<< "' attribute: defaulting to "
 		<< *dpt;
-	l.ssend();
+	g_LogFile.ssend();
 }
 
 void sConfigData::get_att(TiXmlElement *el, const char *name, std::string &s)
@@ -261,11 +258,11 @@ void sConfigData::get_att(TiXmlElement *el, const char *name, std::string &s)
 		s = pt;
 		return;
 	}
-	l.ss()	<< "Warning: config.xml: No '"
+	g_LogFile.ss()	<< "Warning: config.xml: No '"
 		<< name
 		<< "' attribute: defaulting to "
 		<< s;
-	l.ssend();
+	g_LogFile.ssend();
 }
 
 void sConfigData::get_att(TiXmlElement *el, const char *name, int *ipt)
@@ -274,12 +271,12 @@ void sConfigData::get_att(TiXmlElement *el, const char *name, int *ipt)
 	if(el->Attribute(name, ipt)) {
 		return;
 	}
-	l.ss()	<< "Warning: config.xml: No '"
+	g_LogFile.ss()	<< "Warning: config.xml: No '"
 		<< name
 		<< "' attribute: defaulting to "
 		<< def_val
 	;
-	l.ssend();
+	g_LogFile.ssend();
 	*ipt = def_val;
 }
 
@@ -432,7 +429,7 @@ void sConfigData::get_item_data(TiXmlElement *el)
 		ss.str("");
 		ss << "RarityColor" << i;
 		get_att(el, ss.str().c_str(),	ColorIn);
-		ColorConvert.HexToSDLColor(ColorIn, items.rarity_color[i]);
+		cColor::HexToSDLColor(ColorIn, items.rarity_color[i]);
 	}
 }
 
@@ -509,13 +506,13 @@ void sConfigData::set_defaults()
 	{
 		items.rarity_color[i] = new SDL_Color();
 	}
-	ColorConvert.HexToSDLColor("000000", items.rarity_color[0]);
-	ColorConvert.HexToSDLColor("000050", items.rarity_color[1]);
-	ColorConvert.HexToSDLColor("0000A0", items.rarity_color[2]);
-	ColorConvert.HexToSDLColor("0000F0", items.rarity_color[3]);
-	ColorConvert.HexToSDLColor("004000", items.rarity_color[4]);
-	ColorConvert.HexToSDLColor("006000", items.rarity_color[5]);
-	ColorConvert.HexToSDLColor("006000", items.rarity_color[6]);
+	cColor::HexToSDLColor("000000", items.rarity_color[0]);
+	cColor::HexToSDLColor("000050", items.rarity_color[1]);
+	cColor::HexToSDLColor("0000A0", items.rarity_color[2]);
+	cColor::HexToSDLColor("0000F0", items.rarity_color[3]);
+	cColor::HexToSDLColor("004000", items.rarity_color[4]);
+	cColor::HexToSDLColor("006000", items.rarity_color[5]);
+	cColor::HexToSDLColor("006000", items.rarity_color[6]);
 /*
  *	not hugely sensible values
  *	but I want something I'm not using so I can test this

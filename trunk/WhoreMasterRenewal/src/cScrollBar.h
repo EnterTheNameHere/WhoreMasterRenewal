@@ -24,6 +24,9 @@
 
 #include <string>
 
+class cScrollBar;
+extern cScrollBar* g_DragScrollBar;
+
 class SDL_Surface;
 class SDL_Rect;
 typedef uint8_t	Uint8; // Used by SDL

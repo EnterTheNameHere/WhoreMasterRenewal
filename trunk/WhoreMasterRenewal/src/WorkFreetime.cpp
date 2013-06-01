@@ -34,13 +34,6 @@
 
 #include <sstream>
 
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGirls g_Girls;
-
 bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, std::string& /*summary*/)
 {
 	//brothel->m_Filthiness++;

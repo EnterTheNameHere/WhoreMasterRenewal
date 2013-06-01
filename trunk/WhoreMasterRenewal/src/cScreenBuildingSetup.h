@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenBuildingSetup;
+extern cScreenBuildingSetup g_BuildingSetupScreen;
+
 class cScreenBuildingSetup : public cInterfaceWindowXML
 {
 public:

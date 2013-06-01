@@ -27,15 +27,6 @@
 #include <string>
 #include <sstream>
 
-extern cInterfaceEventManager g_InterfaceEvents;
-extern sInterfaceIDs g_interfaceid;
-extern	bool	g_InitWin;
-extern	int	g_TalkCount;
-extern	bool	g_Cheats;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
-extern	bool	eventrunning;
-
 cInventoryManagementSM::cInventoryManagementSM()
 {
     leftOwner	= 0;

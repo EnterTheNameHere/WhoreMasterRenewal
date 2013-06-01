@@ -32,25 +32,8 @@
 #include "sConfig.h"
 #include "cTariff.h"
 #include "DirPath.h"
-
-extern	bool			g_InitWin;
-extern	int			g_CurrBrothel;
-extern	cGold			g_Gold;
-extern	cBrothelManager		g_Brothels;
-extern	cWindowManager		g_WinManager;
-extern	cInterfaceEventManager	g_InterfaceEvents;
-extern sGirl* MarketSlaveGirls[8];
-extern int MarketSlaveGirlsDel[8];
-extern bool g_GenGirls;
-extern bool g_Cheats;
-
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
-
-extern void GetString();
-extern cInterfaceWindow g_GetString;
+#include "InterfaceProcesses.h"
+#include "InterfaceGlobals.h"
 
 bool cScreenSlaveMarket::ids_set = false;
 

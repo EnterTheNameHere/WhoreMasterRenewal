@@ -24,9 +24,6 @@
 #include <cstring>
 #include <cstdio>
 
-extern cTraits g_Traits;
-cTraits g_Traits;
-
 sTrait::sTrait()
 {
     m_Name = m_Desc = 0;

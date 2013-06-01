@@ -4,6 +4,9 @@
 #define CRESOURCEMANAGER_H_INCLUDED_1520
 #pragma once
 
+class CResourceManager;
+extern CResourceManager rmanager;
+
 class CResource;
 
 // Constants

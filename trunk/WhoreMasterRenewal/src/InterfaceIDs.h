@@ -20,6 +20,9 @@
 #define INTERFACEIDS_H_INCLUDED_1504
 #pragma once
 
+struct sInterfaceIDs;
+extern sInterfaceIDs g_interfaceid;
+
 struct sInterfaceIDs
 {
 // Misc (Stuff that isn't interactive with so can all use the same ID)

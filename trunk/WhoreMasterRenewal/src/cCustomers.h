@@ -22,6 +22,9 @@
 
 #include "Constants.h"
 
+class cCustomers;
+extern cCustomers g_Customers;
+
 struct sBrothel;
 
 // customers are randomly generated

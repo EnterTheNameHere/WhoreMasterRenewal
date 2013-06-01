@@ -118,9 +118,6 @@ void FileList::scan(const char *pattern)
 #include"cInterfaceWindow.h"
 #include<windows.h>
 #include"interfaceIDs.h"
-extern cInterfaceWindow g_LoadGame;
-
-
 
 FileList::FileList(DirPath dp, const char *pattern)
 {

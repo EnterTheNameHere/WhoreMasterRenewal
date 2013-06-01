@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenDungeon;
+extern cScreenDungeon g_Dungeon;
+
 struct sGirl;
 struct sGang;
 

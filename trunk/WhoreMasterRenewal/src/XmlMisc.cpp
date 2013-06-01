@@ -24,10 +24,6 @@
 #include "cTraits.h"
 #include "cInventory.h"
 
-extern cBrothelManager g_Brothels;
-extern cTraits g_Traits;
-extern cInventory g_InvManager;
-
 const char* actionTypeNames[] = 
 {
 	"COMBAT",

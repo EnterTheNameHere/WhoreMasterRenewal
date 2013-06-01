@@ -26,6 +26,9 @@
 #include <vector>
 #include <string>
 
+class cGangManager;
+extern cGangManager g_Gangs;
+
 struct sGirl;
 class TiXmlElement;
 class TiXmlHandle;

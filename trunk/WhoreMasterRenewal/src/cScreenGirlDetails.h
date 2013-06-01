@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenGirlDetails;
+extern cScreenGirlDetails g_GirlDetails;
+
 struct sGirl;
 
 class cScreenGirlDetails : public cInterfaceWindowXML

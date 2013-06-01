@@ -19,6 +19,3 @@
 
 #include "GameFlags.h"
 
-// Globals
-unsigned int g_GameFlags[NUM_GAMEFLAGS][2];
-

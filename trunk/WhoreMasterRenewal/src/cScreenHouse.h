@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenHouse;
+extern cScreenHouse g_PlayersHouse;
+
 class cScreenHouse : public cInterfaceWindowXML
 {
 public:

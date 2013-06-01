@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenBank;
+extern cScreenBank g_BankScreen;
+
 class cScreenBank : public cInterfaceWindowXML
 {
 public:

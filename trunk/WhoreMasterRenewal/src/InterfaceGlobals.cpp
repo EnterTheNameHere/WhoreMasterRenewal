@@ -44,39 +44,6 @@
 
 #include <iostream>
 
-extern sInterfaceIDs g_interfaceid;
-sInterfaceIDs g_interfaceid;
-
-extern cWindowManager g_WinManager;
-
-cInterfaceEventManager g_InterfaceEvents;
-cInterfaceWindow g_MainMenu;
-cInterfaceWindow g_GetString;
-cInterfaceWindow g_BrothelManagement;
-cScreenGirlManagement g_GirlManagement;
-cScreenGangs g_GangManagement;
-cScreenGirlDetails g_GirlDetails;
-cInterfaceWindow g_ChangeJobs;
-cInterfaceWindow g_Turnsummary;
-cScreenDungeon g_Dungeon;
-cScreenSlaveMarket g_SlaveMarket;
-cScreenTown g_TownScreen;
-cInterfaceWindow g_Gallery;
-cScreenBuildingSetup g_BuildingSetupScreen;
-cInterfaceWindow g_GetInt;
-cInterfaceWindow g_LoadGame;
-cScreenMayor g_MayorsOfficeScreen;
-cScreenBank g_BankScreen;
-cScreenHouse g_PlayersHouse;
-cInterfaceWindow g_TransferGirls;
-cScreenItemManagement g_ItemManagement;
-cScreenPrison g_PrisonScreen;
-cBuildingManagement g_BuildingManagementScreen;
-
-cMessageBox g_MessageBox;
-cChoiceManager g_ChoiceManager;
-cMessageQue g_MessageQue;
-
 // interface colors
 unsigned char g_StaticImageR = 0, g_StaticImageG = 0, g_StaticImageB = 0;
 
@@ -129,11 +96,6 @@ bool g_CTRLDown = false;
 int g_ScreenWidth = 800;
 int g_ScreenHeight = 600;
 bool g_Fullscreen = false;
-cSlider* g_DragSlider = nullptr;
-CSurface* g_BackgroundImage = 0;
-CSurface* g_BrothelImages[6] = {0,0,0,0,0,0};
-sGirl* MarketSlaveGirls[8] = {0,0,0,0,0,0,0,0};
-int MarketSlaveGirlsDel[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
 
 void FreeInterface()
 {

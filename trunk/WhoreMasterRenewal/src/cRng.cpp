@@ -23,8 +23,6 @@
 #include <cstdlib>
 #include <ctime>
 
-cRng g_Dice;
-
 cRng::cRng()
 {
     srand( static_cast<int>( time(0) ) );

@@ -34,6 +34,8 @@
 #include "CGraphics.h"
 #include "CSurface.h"
 #include "cInterfaceEvent.h"
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
 #include <string>
 #include <cctype>
@@ -41,16 +43,15 @@
 
 typedef unsigned int u_int;
 
-extern CGraphics g_Graphics;
-extern CResourceManager rmanager;
-CResourceManager rmanager;
-
-extern unsigned char g_WindowBorderR, g_WindowBorderG, g_WindowBorderB;
-extern unsigned char g_WindowBackgroundR, g_WindowBackgroundG, g_WindowBackgroundB;
-
-extern int g_ScreenWidth, g_ScreenHeight;
-extern bool g_Fullscreen;
-extern bool g_InitWin;
+//extern CGraphics g_Graphics;
+//extern CResourceManager rmanager;
+//
+//extern unsigned char g_WindowBorderR, g_WindowBorderG, g_WindowBorderB;
+//extern unsigned char g_WindowBackgroundR, g_WindowBackgroundG, g_WindowBackgroundB;
+//
+//extern int g_ScreenWidth, g_ScreenHeight;
+//extern bool g_Fullscreen;
+//extern bool g_InitWin;
 
 cInterfaceWindow::cInterfaceWindow()
 {

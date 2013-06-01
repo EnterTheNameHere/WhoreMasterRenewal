@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenPrison;
+extern cScreenPrison g_PrisonScreen;
+
 struct sGirl;
 
 class cScreenPrison : public cInterfaceWindowXML

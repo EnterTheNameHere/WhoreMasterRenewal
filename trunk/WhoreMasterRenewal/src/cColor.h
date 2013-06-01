@@ -28,8 +28,8 @@ typedef uint8_t	Uint8; // Used by SDL
 class cColor
 {
 public:
-	Uint8 convertFromHex( std::string hex );
-	void HexToSDLColor( std::string HexColor, SDL_Color* SDLColor );
+	static Uint8 convertFromHex( std::string hex );
+	static void HexToSDLColor( std::string HexColor, SDL_Color* SDLColor );
 };
 
 #endif // CCOLOR_H_INCLUDED_1533

@@ -37,28 +37,11 @@
 #include "cInventory.h"
 #include "CLog.h"
 #include "cRng.h"
+#include "InterfaceProcesses.h"
 
 #include <fstream>
 #include <algorithm>
 #include <climits>
-
-extern cMessageQue g_MessageQue;
-extern cBrothelManager g_Brothels;
-extern cTraits g_Traits;
-extern cEvents g_Events;
-extern cInventory g_InvManager;
-extern sGirl* MarketSlaveGirls[8];
-extern char buffer[1000];
-extern CGraphics g_Graphics;
-extern bool g_GenGirls;
-extern cGold g_Gold;
-extern cGangManager g_Gangs;
-
-extern cGirls g_Girls;
-cGirls g_Girls;
-extern cAbstractGirls* g_GirlsPtr;
-cAbstractGirls* g_GirlsPtr = &g_Girls;
-
 
 /*
  * MOD: DocClox: Stuff for the XML loader code

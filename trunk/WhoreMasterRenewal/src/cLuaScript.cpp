@@ -35,20 +35,11 @@
 #include "cTraits.h"
 #include "cGirls.h"
 #include "CGraphics.h"
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
 #include <iostream>
 #include <sstream>
-
-extern CGraphics g_Graphics;
-extern cChoiceManager g_ChoiceManager;
-extern cMessageQue g_MessageQue;
-extern cBrothelManager g_Brothels;
-extern int g_CurrBrothel;
-extern cWindowManager g_WinManager;
-extern cInterfaceWindow g_BrothelManagement;
-extern bool g_InitWin;
-extern cGirls g_Girls;
-
 
 typedef int (*lua_func)(lua_State *L);
 

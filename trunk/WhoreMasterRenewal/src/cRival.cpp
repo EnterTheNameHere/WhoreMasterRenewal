@@ -27,19 +27,12 @@
 #include "XmlMisc.h"
 #include "CLog.h"
 #include "cRng.h"
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
-
-extern cMessageQue g_MessageQue;
-extern cBrothelManager g_Brothels;
-extern cGold g_Gold;
-extern cGangManager g_Gangs;
-
-extern unsigned long g_Year;
-extern unsigned long g_Month;
-extern unsigned long g_Day;
 
 cRival::cRival()
 {

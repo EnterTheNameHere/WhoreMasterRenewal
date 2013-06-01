@@ -25,16 +25,11 @@
 #include "cGold.h"
 #include "cTariff.h"
 #include "cInterfaceEvent.h"
+#include "InterfaceGlobals.h"
 #include "DirPath.h"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
-
+static std::stringstream ss; /// @todo Get rid of this static variable
 static cTariff tariff;
-static std::stringstream ss;
 
 bool cScreenBuildingSetup::ids_set = false;
 

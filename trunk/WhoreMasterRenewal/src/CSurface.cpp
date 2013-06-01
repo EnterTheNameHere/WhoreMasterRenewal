@@ -25,11 +25,6 @@
 #include <SDL_image.h>
 #include <SDL_rotozoom.h>
 
-extern CLog g_LogFile;
-extern CGraphics g_Graphics;
-extern CResourceManager rmanager;
-//extern sCachedSurfaces cache;
-
 CSurface::CSurface()
 {
 	m_Temp = 0;

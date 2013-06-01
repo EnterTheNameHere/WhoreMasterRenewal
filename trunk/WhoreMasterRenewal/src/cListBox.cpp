@@ -25,6 +25,8 @@
 #include "sConfig.h"
 #include "cFont.h"
 #include "DirPath.h"
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
 #include <SDL_image.h>
 #include <SDL_rotozoom.h>
@@ -35,28 +37,6 @@
 SDL_Surface* cListBox::m_HeaderSortAsc = 0;
 SDL_Surface* cListBox::m_HeaderSortDesc = 0;
 SDL_Surface* cListBox::m_HeaderUnSort = 0;
-
-extern CGraphics g_Graphics;
-extern cInterfaceEventManager g_InterfaceEvents;
-
-extern bool g_ShiftDown;
-extern bool g_CTRLDown;
-
-extern unsigned char g_ListBoxBorderR, g_ListBoxBorderG, g_ListBoxBorderB;
-extern unsigned char g_ListBoxBackgroundR, g_ListBoxBackgroundG, g_ListBoxBackgroundB;
-extern unsigned char g_ListBoxElementBackgroundR, g_ListBoxElementBackgroundG, g_ListBoxElementBackgroundB;
-extern unsigned char g_ListBoxS1ElementBackgroundR, g_ListBoxS1ElementBackgroundG, g_ListBoxS1ElementBackgroundB;
-extern unsigned char g_ListBoxS2ElementBackgroundR, g_ListBoxS2ElementBackgroundG, g_ListBoxS2ElementBackgroundB;
-extern unsigned char g_ListBoxSelectedElementR, g_ListBoxSelectedElementG, g_ListBoxSelectedElementB;
-extern unsigned char g_ListBoxSelectedS1ElementR, g_ListBoxSelectedS1ElementG, g_ListBoxSelectedS1ElementB;
-extern unsigned char g_ListBoxSelectedS2ElementR, g_ListBoxSelectedS2ElementG, g_ListBoxSelectedS2ElementB;
-extern unsigned char g_ListBoxElementBorderR, g_ListBoxElementBorderG, g_ListBoxElementBorderB;
-extern unsigned char g_ListBoxElementBorderHR, g_ListBoxElementBorderHG, g_ListBoxElementBorderHB;
-extern unsigned char g_ListBoxTextR, g_ListBoxTextG, g_ListBoxTextB;
-extern unsigned char g_ListBoxHeaderBackgroundR, g_ListBoxHeaderBackgroundG, g_ListBoxHeaderBackgroundB;
-extern unsigned char g_ListBoxHeaderBorderR, g_ListBoxHeaderBorderG, g_ListBoxHeaderBorderB;
-extern unsigned char g_ListBoxHeaderBorderHR, g_ListBoxHeaderBorderHG, g_ListBoxHeaderBorderHB;
-extern unsigned char g_ListBoxHeaderTextR, g_ListBoxHeaderTextG, g_ListBoxHeaderTextB;
 
 cListItem::cListItem()
 {

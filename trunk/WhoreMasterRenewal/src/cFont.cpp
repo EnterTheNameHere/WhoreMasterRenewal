@@ -25,9 +25,6 @@
 #include <iostream>
 #include <vector>
 
-extern CLog g_LogFile;
-extern CGraphics g_Graphics;
-
 float FontScale = 1.0f;
 
 cFont::cFont()

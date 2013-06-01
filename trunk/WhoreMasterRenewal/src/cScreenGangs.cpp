@@ -23,23 +23,12 @@
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "InterfaceProcesses.h"
+#include "InterfaceGlobals.h"
 #include "cGangs.h"
 #include "cInterfaceEvent.h"
 #include "CLog.h"
 #include "cTariff.h"
 #include "DirPath.h"
-
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cWindowManager g_WinManager;
-extern cInterfaceEventManager	g_InterfaceEvents;
-extern cGangManager g_Gangs;
-
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
 
 static cTariff tariff;
 static std::stringstream ss;

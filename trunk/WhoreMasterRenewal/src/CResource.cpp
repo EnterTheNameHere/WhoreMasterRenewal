@@ -2,8 +2,6 @@
 #include "CResource.h"
 #include "CGraphics.h"
 
-extern CGraphics g_Graphics;
-
 // registers the resource with the resource manager
 void CResource::Register()
 {

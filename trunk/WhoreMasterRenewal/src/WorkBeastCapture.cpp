@@ -34,14 +34,6 @@
 
 #include <sstream>
 
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGold g_Gold;
-extern cGirls g_Girls;
-
 bool cJobManager::WorkBeastCapture(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
     std::string message = "";

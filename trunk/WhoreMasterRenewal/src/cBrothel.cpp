@@ -32,22 +32,10 @@
 #include "CLog.h"
 #include "sConfig.h"
 #include "cTariff.h"
+#include "InterfaceProcesses.h"
+#include "InterfaceGlobals.h"
 
 #include <sstream>
-
-extern cMessageQue      g_MessageQue;
-extern cCustomers       g_Customers;
-extern cGirls           g_Girls;
-extern cInventory       g_InvManager;
-extern cBrothelManager  g_Brothels;
-cBrothelManager g_Brothels;
-
-extern unsigned long    g_Year;
-extern unsigned long    g_Month;
-extern unsigned long    g_Day;
-extern cGold            g_Gold;
-extern cGangManager     g_Gangs;
-extern char             buffer[1000];
 
 /*
  * mod - this is a bit big for an inline func

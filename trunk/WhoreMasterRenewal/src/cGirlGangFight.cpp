@@ -6,10 +6,6 @@
 #include "cRng.h"
 #include "CLog.h"
 
-extern cBrothelManager  g_Brothels;
-extern cGangManager     g_Gangs;
-
-
 cGirlGangFight::cGirlGangFight(sGirl *girl)
 {
 	m_girl	= girl;

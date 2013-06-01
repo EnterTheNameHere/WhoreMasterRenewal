@@ -27,8 +27,6 @@
 
 #include <cmath>
 
-extern	cGirls	g_Girls;
-
 cTrainable::cTrainable()
 {
 }

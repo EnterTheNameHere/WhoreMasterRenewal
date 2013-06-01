@@ -23,11 +23,7 @@
 #include "sConfig.h"
 #include "CSurface.h"
 #include "cInterfaceEvent.h"
-
-extern unsigned char g_CheckBoxBorderR, g_CheckBoxBorderG, g_CheckBoxBorderB;
-extern unsigned char g_CheckBoxBackgroundR, g_CheckBoxBackgroundG, g_CheckBoxBackgroundB;
-extern CGraphics g_Graphics;
-extern cInterfaceEventManager g_InterfaceEvents;
+#include "InterfaceGlobals.h"
 
 cCheckBox::cCheckBox()
 {

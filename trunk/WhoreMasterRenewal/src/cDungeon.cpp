@@ -29,14 +29,9 @@
 #include "XmlMisc.h"
 #include "cRng.h"
 #include "CLog.h"
+#include "InterfaceProcesses.h"
 
 #include <sstream>
-
-extern cMessageQue		g_MessageQue;
-extern cGirls			g_Girls;
-extern cBrothelManager	g_Brothels;
-extern cGangManager		g_Gangs;
-extern char				buffer[1000];
 
 // strut sDungeonCust
 sDungeonCust::sDungeonCust()		// constructor

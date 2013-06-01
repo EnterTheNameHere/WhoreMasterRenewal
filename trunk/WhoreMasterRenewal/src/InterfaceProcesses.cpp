@@ -47,35 +47,6 @@
 
 #include <SDL.h>
 
-extern sInterfaceIDs g_interfaceid;
-// globals used for the interface
-std::string g_ReturnText = "";
-bool g_InitWin = true;
-bool g_AllTogle = false;	// used on screens when wishing to apply something to all items
-long g_IntReturn;
-bool eventrunning = false;
-
-bool g_WalkAround = false;	// for keeping track of weather have walked around town today
-int g_TalkCount = 10;
-bool g_GenGirls = false;
-bool g_Cheats = false;
-
-extern int g_BrothelScreenImgX, g_BrothelScreenImgY, g_BrothelScreenImgW, g_BrothelScreenImgH;
-
-sGirl* selected_girl;  // global pointer for the currently selected girl
-std::vector<int> cycle_girls;  // globally available sorted list of girl IDs for Girl Details screen to cycle through
-int cycle_pos;  //currently selected girl's position in the cycle_girls vector
-
-char buffer[1000];
-
-
-bool g_LeftArrow = false;
-bool g_RightArrow = false;
-bool g_UpArrow = false;
-bool g_DownArrow = false;
-bool g_EnterKey = false;
-
-cTriggerList g_GlobalTriggers;
 
 //used to store what files we have loaded
 MasterFile loadedGirlsFiles;

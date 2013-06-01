@@ -22,11 +22,6 @@
 #include "cMessageBox.h"
 #include "cBrothel.h"
 
-extern cGirls g_Girls;
-extern cMessageQue g_MessageQue;
-extern cBrothelManager g_Brothels;
-extern int g_CurrBrothel;
-
 void cScriptUtils::add_girl_to_brothel(sGirl *girl)
 {
 /*

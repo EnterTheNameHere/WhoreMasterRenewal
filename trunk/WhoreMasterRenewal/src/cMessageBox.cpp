@@ -21,18 +21,8 @@
 #include "CGraphics.h"
 #include "sConfig.h"
 #include "cFont.h"
-
-extern CGraphics g_Graphics;
-
-extern unsigned char g_MessageBoxBorderR, g_MessageBoxBorderG, g_MessageBoxBorderB;
-extern unsigned char g_MessageBoxBackground0R, g_MessageBoxBackground0G, g_MessageBoxBackground0B;
-extern unsigned char g_MessageBoxBackground1R, g_MessageBoxBackground1G, g_MessageBoxBackground1B;
-extern unsigned char g_MessageBoxBackground2R, g_MessageBoxBackground2G, g_MessageBoxBackground2B;
-extern unsigned char g_MessageBoxBackground3R, g_MessageBoxBackground3G, g_MessageBoxBackground3B;
-extern unsigned char g_MessageBoxTextR, g_MessageBoxTextG, g_MessageBoxTextB;
-
-extern int g_ScreenWidth, g_ScreenHeight;
-extern bool g_Fullscreen;
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
 cMessageBox::~cMessageBox()
 {

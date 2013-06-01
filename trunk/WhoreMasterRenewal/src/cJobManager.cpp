@@ -31,16 +31,11 @@
 #include "cGangs.h"
 #include "cMessageBox.h"
 #include "cGirls.h"
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
 #include <algorithm>
 #include <sstream>
-
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGirls g_Girls;
 
 sFilm::sFilm()
 {

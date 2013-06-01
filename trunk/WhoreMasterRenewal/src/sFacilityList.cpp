@@ -26,8 +26,6 @@
 
 std::vector<sFacility *> *sFacilityList::list = 0;
 
-static std::string g_filename;
-
 sFacilityList::sFacilityList()
 {
 	if(list) {
@@ -47,7 +45,6 @@ sFacilityList::sFacilityList()
  *		get the file name
  */
 	    std::string file = fl[i].full();
-		g_filename = file;
 /*
  *		try and load it
  */

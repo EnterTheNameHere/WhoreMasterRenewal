@@ -25,6 +25,9 @@
 
 #include <string>
 
+class cTraits;
+extern cTraits g_Traits;
+
 // Represents a single trait
 typedef struct sTrait
 {

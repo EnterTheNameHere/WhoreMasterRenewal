@@ -41,6 +41,23 @@
 #include "cCustomers.h"
 #include "cInventory.h"
 #include "CGraphics.h"
+#include "cRng.h"
+#include "InterfaceIDs.h"
+#include "cInterfaceEvent.h"
+#include "cInterfaceWindow.h"
+#include "cScreenBank.h"
+#include "cScreenBuildingManagement.h"
+#include "cScreenBuildingSetup.h"
+#include "cScreenDungeon.h"
+#include "cScreenGangs.h"
+#include "cScreenGirlDetails.h"
+#include "cScreenGirlManagement.h"
+#include "cScreenHouse.h"
+#include "cScreenItemManagement.h"
+#include "cScreenMayor.h"
+#include "cScreenPrison.h"
+#include "cScreenSlaveMarket.h"
+#include "cScreenTown.h"
 #include "libRocketSFMLInterface/RenderInterfaceSFML.h"
 #include "libRocketSFMLInterface/SystemInterfaceSFML.h"
 #include "libRocketSFMLInterface/ShellFileInterface.h"
@@ -68,9 +85,77 @@ void Shutdown();
 bool Init();
 
 // Events
+CLog g_LogFile(true);
 SDL_Event vent;
-extern CResourceManager rmanager;
-extern CGraphics g_Graphics;
+cBrothelManager g_Brothels;
+cCustomers g_Customers;
+cGangManager g_Gangs;
+cGold g_Gold;
+CGraphics g_Graphics;
+CResourceManager rmanager;
+cInventory g_InvManager;
+cRng g_Dice;
+cTraits g_Traits;
+cWindowManager g_WinManager;
+sInterfaceIDs g_interfaceid;
+cInterfaceEventManager g_InterfaceEvents;
+cInterfaceWindow g_MainMenu;
+cInterfaceWindow g_GetString;
+cInterfaceWindow g_BrothelManagement;
+cInterfaceWindow g_ChangeJobs;
+cInterfaceWindow g_Turnsummary;
+cInterfaceWindow g_GetInt;
+cInterfaceWindow g_LoadGame;
+cInterfaceWindow g_Gallery;
+cInterfaceWindow g_TransferGirls;
+cScreenGirlManagement g_GirlManagement;
+cScreenGangs g_GangManagement;
+cScreenGirlDetails g_GirlDetails;
+cScreenDungeon g_Dungeon;
+cScreenSlaveMarket g_SlaveMarket;
+cScreenTown g_TownScreen;
+cScreenBuildingSetup g_BuildingSetupScreen;
+cScreenMayor g_MayorsOfficeScreen;
+cScreenBank g_BankScreen;
+cScreenHouse g_PlayersHouse;
+cScreenItemManagement g_ItemManagement;
+cScreenPrison g_PrisonScreen;
+cBuildingManagement g_BuildingManagementScreen;
+cMessageBox g_MessageBox;
+cChoiceManager g_ChoiceManager;
+cMessageQue g_MessageQue;
+cTriggerList g_GlobalTriggers;
+cGirls g_Girls;
+
+
+cAbstractGirls* g_GirlsPtr = &g_Girls;
+cScrollBar* g_DragScrollBar = nullptr;
+int g_CurrBrothel = 0;
+unsigned int g_GameFlags[NUM_GAMEFLAGS][2];
+bool g_Cheats = false;
+bool g_WalkAround = false;	// for keeping track of weather have walked around town today
+bool g_AllTogle = false;	// used on screens when wishing to apply something to all items
+std::string g_ReturnText = "";
+bool g_LeftArrow = false;
+bool g_RightArrow = false;
+bool g_UpArrow = false;
+bool g_DownArrow = false;
+bool g_EnterKey = false;
+bool g_InitWin = true;
+long g_IntReturn;
+bool eventrunning = false;
+int g_TalkCount = 10;
+bool g_GenGirls = false;
+sGirl* selected_girl;  // global pointer for the currently selected girl
+std::vector<int> cycle_girls;  // globally available sorted list of girl IDs for Girl Details screen to cycle through
+int cycle_pos;  //currently selected girl's position in the cycle_girls vector
+char buffer[1000];
+cSlider* g_DragSlider = nullptr;
+CSurface* g_BackgroundImage = nullptr;
+CSurface* g_BrothelImages[6] = {0,0,0,0,0,0};
+sGirl* MarketSlaveGirls[8] = {0,0,0,0,0,0,0,0};
+int MarketSlaveGirlsDel[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
+
 
 void handle_hotkeys()
 {

@@ -27,7 +27,6 @@
 #include <cmath>
 
 
-cGold g_Gold;
 
 /*
  * Two types of transaction here: instant and delayed.

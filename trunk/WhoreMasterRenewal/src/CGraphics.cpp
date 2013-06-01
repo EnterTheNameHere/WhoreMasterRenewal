@@ -29,9 +29,6 @@
 #include <fstream>
 
 extern CGraphics g_Graphics;
-CGraphics g_Graphics;
-
-extern CLog g_LogFile;
 
 CGraphics::CGraphics()
 {

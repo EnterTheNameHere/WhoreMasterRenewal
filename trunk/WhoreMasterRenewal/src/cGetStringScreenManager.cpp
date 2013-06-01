@@ -25,13 +25,9 @@
 #include "cWindowManager.h"
 #include "cMessageBox.h"
 #include "InterfaceIDs.h"
+#include "InterfaceProcesses.h"
 
 cGetStringScreenManager_Inner *cGetStringScreenManager::instance = 0;
-
-extern sInterfaceIDs g_interfaceid;
-extern bool g_InitWin ;
-extern bool g_NewGame ;
-extern std::string g_ReturnText;
 
 cGetStringTransport::cGetStringTransport( std::string& dest )
     : m_dest( dest )

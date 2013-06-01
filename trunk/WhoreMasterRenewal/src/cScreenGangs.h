@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenGangs;
+extern cScreenGangs g_GangManagement;
+
 class cScreenGangs : public cInterfaceWindowXML
 {
 public:

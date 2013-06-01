@@ -33,32 +33,42 @@ extern bool g_EnterKey;
 extern bool g_InitWin;
 extern bool eventrunning;
 extern int g_CurrBrothel;
+extern bool g_Cheats;
+extern bool g_WalkAround; // for keeping track of weather have walked around town today
+extern bool g_AllTogle; // used on screens when wishing to apply something to all items
+extern std::string g_ReturnText;
+extern bool g_InitWin;
+extern long g_IntReturn;
+extern bool eventrunning;
+extern int g_TalkCount;
+extern bool g_GenGirls;
+extern char buffer[1000];
 
-void MainMenu();
-void GetString();
-void GetInt();
-void NewGame();
-void BrothelScreen();
-void ChangeGirlJobs();
-void Turnsummary();
-void NextWeek();
-void GameEvents();
-void Gallery();
-void SaveGameXML(std::string filename);
-bool LoadGame(std::string directory, std::string filename);
-bool LoadGameXML(TiXmlHandle hDoc);
+extern void MainMenu();
+extern void GetString();
+extern void GetInt();
+extern void NewGame();
+extern void BrothelScreen();
+extern void ChangeGirlJobs();
+extern void Turnsummary();
+extern void NextWeek();
+extern void GameEvents();
+extern void Gallery();
+extern void SaveGameXML(std::string filename);
+extern bool LoadGame(std::string directory, std::string filename);
+extern bool LoadGameXML(TiXmlHandle hDoc);
 //This legacy loader, and others like it, will load the game from its old format
 //and the game will be saved in XML format thenafter.
 //No SaveGameLegacy is necessary, and all savegame format changes
 //should take place in SaveGameXML / LoadGameXML, which is extensible
 //Therefore, there is a one time conversion, but saves are not invalidated
-bool LoadGameLegacy(std::string directory, std::string filename);
-void LoadGameScreen();
+extern bool LoadGameLegacy(std::string directory, std::string filename);
+extern void LoadGameScreen();
 //the master file has been done away with! yay! It was only a stub anyways
 //all the info is now in the XML savegame
 //void SaveMasterFile(std::string filename);
-void LoadGameInfoFiles();
-void LoadGirlsFiles();
-void TransferGirls();
+extern void LoadGameInfoFiles();
+extern void LoadGirlsFiles();
+extern void TransferGirls();
 
 #endif // INTERFACEPROCESSES_H_INCLUDED_1504

@@ -26,21 +26,8 @@
 #include "cInterfaceEvent.h"
 #include "sFacility.h"
 #include "DirPath.h"
-
-extern	bool			g_InitWin;
-extern	int			g_CurrBrothel;
-extern	cGold			g_Gold;
-extern	cBrothelManager		g_Brothels;
-extern	cWindowManager		g_WinManager;
-extern	cInterfaceEventManager	g_InterfaceEvents;
-
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
-
-extern void GetString();
-extern cInterfaceWindow g_GetString;
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
 cBuildingManagement::cBuildingManagement()
 {

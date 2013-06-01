@@ -24,10 +24,6 @@
 
 #include <SDL.h>
 
-extern cInterfaceEventManager g_InterfaceEvents;
-extern CResourceManager rmanager;
-
-
 cButton::cButton()
 {
     m_CurrImage = nullptr;

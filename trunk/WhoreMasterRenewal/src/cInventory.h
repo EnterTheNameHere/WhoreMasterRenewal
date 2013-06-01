@@ -27,6 +27,9 @@
 #include <string>
 #include <vector>
 
+class cInventory;
+extern cInventory g_InvManager;
+
 struct sGirl;
 
 /// @todo Move code from header to source file, get rid of iostream dependence

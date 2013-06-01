@@ -36,13 +36,6 @@
 #include <sstream>
 #include <algorithm>
 
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGirls g_Girls;
-
 bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	// put that shit away, you'll scare off the customers!

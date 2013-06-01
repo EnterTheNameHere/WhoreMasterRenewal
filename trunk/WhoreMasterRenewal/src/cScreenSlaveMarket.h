@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenSlaveMarket;
+extern cScreenSlaveMarket g_SlaveMarket;
+
 class cScreenSlaveMarket : public cInterfaceWindowXML
 {
 public:

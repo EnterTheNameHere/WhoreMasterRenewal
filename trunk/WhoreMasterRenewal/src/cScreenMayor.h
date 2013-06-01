@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cScreenMayor;
+extern cScreenMayor g_MayorsOfficeScreen;
+
 class cScreenMayor : public cInterfaceWindowXML
 {
 public:

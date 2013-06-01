@@ -26,6 +26,7 @@
 #include "cChoiceMessage.h"
 #include "cMessageBox.h"
 #include "InterfaceProcesses.h"
+#include "InterfaceGlobals.h"
 #include "cInterfaceEvent.h"
 #include "cListBox.h"
 #include "cGirls.h"
@@ -33,23 +34,8 @@
 
 #include <algorithm>
 
-
-extern cInterfaceWindow g_TransferGirls;
-
-
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
-
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
-
 static cTariff tariff;
-static std::stringstream ss;
+static std::stringstream ss; /// @todo Get rid of this static variable
 
 static int lastNum = -1;
 static int ImageNum = -1;
@@ -60,11 +46,6 @@ static int selection = -1;
 static int DayNight = 0;	// 1 is night, 0 is day.
 
 static bool SetJob = false;
-
-extern sGirl *selected_girl;
-extern std::vector<int> cycle_girls;
-extern int cycle_pos;
-
 
 bool cScreenGirlManagement::ids_set = false;
 

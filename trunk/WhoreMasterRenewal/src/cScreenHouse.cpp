@@ -28,20 +28,6 @@
 #include "CLog.h"
 #include "DirPath.h"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
-extern cInterfaceEventManager g_InterfaceEvents;
-extern long g_IntReturn;
-extern cGangManager g_Gangs;
-
-extern void GetString();
-extern cInterfaceWindow g_GetString;
-extern void GetInt();
-extern cInterfaceWindow g_GetInt;
-
 static std::string fmt_objective(std::stringstream &ss, std::string desc, int limit, int sofar=-1)
 {
 	ss << desc;

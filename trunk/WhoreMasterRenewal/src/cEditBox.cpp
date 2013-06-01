@@ -21,15 +21,9 @@
 #include "CGraphics.h"
 #include "sConfig.h"
 #include "cFont.h"
+#include "InterfaceGlobals.h"
 
 #include <SDL.h>
-
-extern CGraphics g_Graphics;
-
-extern unsigned char g_EditBoxBorderR, g_EditBoxBorderG, g_EditBoxBorderB;
-extern unsigned char g_EditBoxBackgroundR, g_EditBoxBackgroundG, g_EditBoxBackgroundB;
-extern unsigned char g_EditBoxSelectedR, g_EditBoxSelectedG, g_EditBoxSelectedB;
-extern unsigned char g_EditBoxTextR, g_EditBoxTextG, g_EditBoxTextB;
 
 cEditBox::cEditBox()
 {

@@ -24,21 +24,9 @@
 #include "cGold.h"
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 #include "cInterfaceEvent.h"
 #include "DirPath.h"
-
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
-extern cInterfaceEventManager g_InterfaceEvents;
-extern long g_IntReturn;
-
-extern void GetString();
-extern cInterfaceWindow g_GetString;
-extern void GetInt();
-extern cInterfaceWindow g_GetInt;
 
 bool cScreenMayor::ids_set = false;
 

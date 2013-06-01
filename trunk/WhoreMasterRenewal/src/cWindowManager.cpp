@@ -21,8 +21,6 @@
 #include "CLog.h"
 #include "cInterfaceWindow.h"
 
-cWindowManager g_WinManager;
-
 sWindow::sWindow()
 {
     m_Next = 0;

@@ -24,6 +24,10 @@
 #include <queue>
 #include <fstream>
 
+class cTriggerList;
+extern cTriggerList g_GlobalTriggers;
+
+
 struct sGirl;
 class TiXmlElement;
 class TiXmlHandle;

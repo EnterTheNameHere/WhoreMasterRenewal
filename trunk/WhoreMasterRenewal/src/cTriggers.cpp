@@ -28,8 +28,6 @@
 
 #include <fstream>
 
-extern cGirls g_Girls;
-extern cGold g_Gold;
 static std::map<std::string,int> trigger_types;
 
 cTrigger::cTrigger()

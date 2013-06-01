@@ -21,9 +21,6 @@
 #include "cBrothel.h"
 #include "cRng.h"
 
-extern cCustomers g_Customers;
-cCustomers g_Customers;
-
 sCustomer::sCustomer()
 {
     m_Fetish = 0;

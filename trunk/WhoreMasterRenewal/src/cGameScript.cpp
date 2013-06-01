@@ -31,28 +31,10 @@
 #include "cGirlTorture.h"
 #include "cRng.h"
 #include "CLog.h"
+#include "InterfaceProcesses.h"
+#include "cInterfaceWindow.h"
 
 #include <cstring>
-
-extern bool g_InitWin;
-extern cWindowManager g_WinManager;
-extern cMessageQue g_MessageQue;
-extern cChoiceManager g_ChoiceManager;
-extern cBrothelManager g_Brothels;
-extern cGirls g_Girls;
-extern cInventory g_InvManager;
-extern cInterfaceWindow g_BrothelManagement;
-extern bool g_Cheats;
-extern int g_CurrBrothel;
-int g_CurrBrothel = 0;
-
-extern int g_TalkCount;
-extern cGold g_Gold;
-extern cGangManager g_Gangs;
-
-
-
-
 
 cGameScript::cGameScript()
 {

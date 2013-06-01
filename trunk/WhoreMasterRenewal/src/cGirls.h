@@ -33,6 +33,10 @@
 
 class cGirls;
 extern cGirls g_Girls;
+class cAbstractGirls;
+extern cAbstractGirls* g_GirlsPtr;
+class sGirl;
+extern sGirl* MarketSlaveGirls[8];
 
 class cIndexedList;
 class TiXmlElement;

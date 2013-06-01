@@ -21,8 +21,6 @@
 
 #include <iostream>
 
-CLog g_LogFile(true);
-
 std::ofstream& CLogInner::os()
 {
     return m_ofile;
@@ -50,22 +48,26 @@ CLogInner::CLogInner()
 
 void CLogInner::init()
 {
-	std::cout << "CLogInner::init" << std::endl;
 	if( setup )
         return;
+    
+    std::cout << "CLogInner::init" << std::endl;
 	setup = true;
 	m_ofile.open("gamelog.txt");
 }
 
 CLogInner::~CLogInner()
 {
+    write( "Finished Logging..." );
+    
 	m_ofile.close();
 }
 
 void CLogInner::write( std::string text )
 {
-	m_ofile << text << std::endl;
-	m_ofile.flush();
+    if( m_ofile.is_open() )
+        m_ofile << text << std::endl;
+	std::cout << text << std::endl;
 }
 
 CLog::CLog( bool a_glob )

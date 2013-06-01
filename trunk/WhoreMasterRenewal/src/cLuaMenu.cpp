@@ -24,9 +24,8 @@
 #include "CGraphics.h"
 #include "cLuaScript.h" // required cLuaState
 #include "sConfig.h" // required cConfig
-
-extern CGraphics g_Graphics;
-extern cChoiceManager g_ChoiceManager;
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
 /*
  * OK: this is a little bit complicated

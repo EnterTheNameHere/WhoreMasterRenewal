@@ -20,6 +20,7 @@
 #include "cScreenDungeon.h"
 #include "InterfaceIDs.h"
 #include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 #include "cScriptManager.h"
 #include "cBrothel.h"
 #include "DirPath.h"
@@ -38,21 +39,9 @@
 #include <sstream>
 #include <algorithm>
 
-extern sInterfaceIDs g_interfaceid;
-extern	bool	g_InitWin;
-extern	int		g_TalkCount;
-extern	bool	g_Cheats;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
-extern	bool	eventrunning;
-
 static cPlayer* player = g_Brothels.GetPlayer();
 static cDungeon* dungeon = g_Brothels.GetDungeon();
 static cTariff tariff;
-
-extern sGirl *selected_girl;
-extern std::vector<int> cycle_girls;
-extern int cycle_pos;
 
 static std::vector<int> select_girls;
 

@@ -31,18 +31,6 @@
 #include <iostream>
 #include <fstream>
 
-extern cGirls g_Girls;
-extern cTraits g_Traits;
-extern cCustomers g_Customers;
-extern cBrothelManager g_Brothels;
-extern cMessageQue g_MessageQue;
-
-extern cInventory g_InvManager;
-cInventory g_InvManager;
-
-// ----- Misc
-
-
 cInventory::cInventory()
 {
     for( int i = 0; i < NUM_SHOPITEMS; ++i )

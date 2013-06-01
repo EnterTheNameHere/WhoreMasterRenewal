@@ -23,8 +23,6 @@
 #include "CLog.h"
 #include "cRng.h"
 
-extern cGirls g_Girls;
-
 cTariff::cTariff()
 {
     

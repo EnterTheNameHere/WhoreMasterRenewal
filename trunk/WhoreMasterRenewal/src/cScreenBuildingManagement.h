@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+class cBuildingManagement;
+extern cBuildingManagement g_BuildingManagementScreen;
+
 class cBuilding;
 struct sBrothel;
 

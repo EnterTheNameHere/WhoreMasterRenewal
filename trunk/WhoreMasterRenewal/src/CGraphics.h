@@ -24,6 +24,9 @@
 
 #include <string>
 
+class CGraphics;
+extern CGraphics g_Graphics;
+
 class SDL_Surface;
 
 class CGraphics
