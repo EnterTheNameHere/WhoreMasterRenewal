@@ -1,8 +1,10 @@
-bin
-obj
+
 Thumbs.db
 
+/trunk/bin
+/trunk/WhoreMasterRenewal/obj
 /trunk/WhoreMasterRenewal/WhoreMasterRenewal.layout
 /trunk/WhoreMasterRenewal/WhoreMasterRenewal.depend
-/trunk/Docs/doxygen/warnings.txt
-/trunk/Docs/html
+/trunk/Docs
+!/trunk/Docs/doxygen/WhoreMasterRenewal
+!/trunk/Docs/index.html
