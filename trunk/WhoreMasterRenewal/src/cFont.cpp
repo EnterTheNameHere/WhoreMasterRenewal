@@ -150,6 +150,7 @@ void cFont::RenderText(std::string text, bool multi)
 {
 	if(m_NewText == false && m_Message != 0)
 		return;
+    
 	if(m_Font == 0)
 	{
 		g_LogFile.ss() << "Error rendering font string: " << text << std::endl;
@@ -159,14 +160,18 @@ void cFont::RenderText(std::string text, bool multi)
 
 	if(m_Message)
 		SDL_FreeSurface(m_Message);
+    
 	m_Message = 0;
 
-	if((m_Message != 0) && (text == ""))
+	if( ( text == "" ) && ( m_Text == "" ) )
 		return;
 
-	if(text == "")
+	if( text == "" )
 		text = m_Text;
-
+    
+    //g_LogFile.ss() << "Rendering text \"" << text << "\"\n";
+    //g_LogFile.ssend();
+    
 	cConfig cfg;
 	if(cfg.fonts.antialias())
 		m_Message = TTF_RenderText_Blended(m_Font, text.c_str(), m_TextColor);
@@ -175,7 +180,7 @@ void cFont::RenderText(std::string text, bool multi)
 
 	if (m_Message == 0)
 	{
-		g_LogFile.write("Error in RenderText m_Message. Text which was to be rendered: " + text);
+		g_LogFile.write("Error in RenderText m_Message. Text which was to be rendered: \"" + text + "\"");
 		g_LogFile.write(TTF_GetError());
 		return;
 	}
@@ -308,12 +313,13 @@ bool cFont::LoadFont(std::string font, int size)
 	m_Font = 0;
 
 	if(cfg.debug.log_fonts()) {
-		std::cout << "loading font: '"
-			  << font
-			  << "' at size "
-			  << size
-			  << std::endl
-		 ;
+		g_LogFile.ss()
+                << "loading font: '"
+                << font
+                << "' at size "
+                << size
+                << std::endl;
+        g_LogFile.ssend();
 	}
 	if((m_Font = TTF_OpenFont(font.c_str(), (int)(size*FontScale))) == 0) {
 		g_LogFile.write("Error in LoadFont for font file: " + font);
