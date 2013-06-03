@@ -1,8 +1,13 @@
-bin
-obj
+
 Thumbs.db
 
+/bin
+/WhoreMasterRenewal/obj
 /WhoreMasterRenewal/WhoreMasterRenewal.layout
 /WhoreMasterRenewal/WhoreMasterRenewal.depend
-/Docs/doxygen/warnings.txt
-/Docs/html
+/WhoreMasterRenewal/CppCheckResults.xml
+/WhoreMasterRenewal/cscope.out
+/WhoreMasterRenewal/WhoreMasterRenewal.cscope_file_list
+/Docs
+!/Docs/doxygen/WhoreMasterRenewal
+!/Docs/index.html
