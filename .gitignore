@@ -2,7 +2,7 @@ bin
 obj
 Thumbs.db
 
-/trunk/WhoreMasterRenewal/WhoreMasterRenewal.layout
-/trunk/WhoreMasterRenewal/WhoreMasterRenewal.depend
-/trunk/Docs/doxygen/warnings.txt
-/trunk/Docs/html
+/WhoreMasterRenewal/WhoreMasterRenewal.layout
+/WhoreMasterRenewal/WhoreMasterRenewal.depend
+/Docs/doxygen/warnings.txt
+/Docs/html
