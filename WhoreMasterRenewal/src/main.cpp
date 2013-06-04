@@ -1233,10 +1233,11 @@ int main( int argc, char* argv[] )
 {
     wmr::Logger() << "Loading Whore Master: Renewal...\n";
     
-    main_old( argc, argv );
-    /*
     try
     {
+        main_old( argc, argv );
+        
+        /*
         sf::VideoMode currentVideoMode = sf::VideoMode().getDesktopMode();
         sf::RenderWindow sfWindow( currentVideoMode, "Whore Master: Renewal" );
         
@@ -1434,12 +1435,13 @@ int main( int argc, char* argv[] )
         wmr::DebugGirlsList::Shutdown();
         wmr::EventManager::Shutdown();
         Rocket::Core::Shutdown();
+        */
     }
     catch( std::exception& ex )
     {
         wmr::Logger() << "Exception caught:\nException type: \"" << typeid(ex).name() << "\"\n" << ex.what() << "\n";
     }
-    */
+    
     wmr::Logger() << "Whore Master: Renewal finished...\n";
     
     return 0;
