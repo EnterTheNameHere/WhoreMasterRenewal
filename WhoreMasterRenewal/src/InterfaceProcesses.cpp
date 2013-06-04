@@ -225,7 +225,7 @@ void NewGame()
 
 	// Load all the data
 	LoadGameInfoFiles();
-	loadedGirlsFiles.LoadXML(TiXmlHandle(0));
+	loadedGirlsFiles.LoadXML(TiXmlHandle(nullptr));
 	LoadGirlsFiles();
 
 	g_Girls.LoadDefaultImages();	// load the default girl images
@@ -243,10 +243,10 @@ void NewGame()
 	g_Month = 1;
 	g_Day = 1;
 
-	selected_girl = 0;
+	selected_girl = nullptr;
 	for(int i=0; i<8; i++)
 	{
-		MarketSlaveGirls[i] = 0;
+		MarketSlaveGirls[i] = nullptr;
 		MarketSlaveGirlsDel[i] = -1;
 	}
 
@@ -327,7 +327,7 @@ void NewGame()
 		<< "Saves"
 		<< (g_Brothels.GetBrothel(0)->m_Name + ".gam").c_str()
 	;
-	sm.Load(ScriptPath("Intro.lua"), 0);
+	sm.Load(ScriptPath("Intro.lua"), nullptr);
 	SaveGameXML(text);
 }
 
@@ -348,7 +348,7 @@ void BrothelScreen()
 			g_interfaceid.TEXT_BMDETAILS
 		);
 		g_InitWin = false;
-		selected_girl = 0;
+		selected_girl = nullptr;
 	}
 
 	if(g_InterfaceEvents.GetNumEvents() != 0)
@@ -614,7 +614,7 @@ void ChangeGirlJobs()
 	sGirl *girl = selected_girl;
 
 	static int selection = -1;
-	if(girl == 0 && g_AllTogle == false)
+	if(girl == nullptr && g_AllTogle == false)
 	{
 		selection = -1;
 		g_WinManager.Pop();
@@ -714,7 +714,7 @@ void ChangeGirlJobs()
 	{
 		if(g_InterfaceEvents.CheckEvent(EVENT_BUTTONCLICKED, g_interfaceid.BUTTON_CJOK))
 		{
-			if(!g_AllTogle && girl != 0)
+			if(!g_AllTogle && girl != nullptr)
 			{
 				selection = g_ChangeJobs.GetSelectedItemFromList(g_interfaceid.LIST_CJDAYTIME);
 				if(selection != -1)
@@ -1087,7 +1087,7 @@ void Turnsummary()
 				    std::string selectedName = g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 					girl = selected_girl = g_Brothels.GetGirlByName(g_CurrBrothel, selectedName);
 
-					if(girl == 0)
+					if(girl == nullptr)
 						return;
 
 					// change the picture to profile (no event selected)
@@ -1195,7 +1195,7 @@ void Turnsummary()
 					// Get the gang
 					sGang* gang = g_Gangs.GetGang(selected);
 
-					if(gang == 0)
+					if(gang == nullptr)
 						return;
 
 #if 1
@@ -1265,7 +1265,7 @@ void Turnsummary()
 				    std::string selectedName		= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 					girl =	selected_girl	= g_Brothels.GetDungeon()->GetGirlByName(selectedName)->m_Girl;
 
-					if(girl == 0)
+					if(girl == nullptr)
 						return;
 
 					// change the picture to profile (no event selected)
@@ -1362,7 +1362,7 @@ void Turnsummary()
 					// if a girl is selected then
 					if((SelGirl = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)
 					{
-						sGirl* girl = 0;
+						sGirl* girl = nullptr;
 
 						// MYR
 					    std::string selectedName	= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
@@ -1436,7 +1436,7 @@ void Turnsummary()
 					    std::string selectedName	= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
 						sGirl* girl			= g_Brothels.GetDungeon()->GetGirlByName(selectedName)->m_Girl;
 
-						if(girl == 0)
+						if(girl == nullptr)
 							return;
 
 						// Set the event desc text
@@ -1519,7 +1519,7 @@ void Turnsummary()
 	{
 		Item = g_Turnsummary.ArrowUpListBox(g_interfaceid.LIST_TSITEM);
 		g_UpArrow = false;
-		selected_girl = 0;
+		selected_girl = nullptr;
 		g_InitWin = true;
 		return;
 	}
@@ -1527,7 +1527,7 @@ void Turnsummary()
 	{
 		Item = g_Turnsummary.ArrowDownListBox(g_interfaceid.LIST_TSITEM);
 		g_DownArrow = false;
-		selected_girl = 0;
+		selected_girl = nullptr;
 		g_InitWin = true;
 		return;
 	}
@@ -1582,7 +1582,7 @@ void Turnsummary()
 /*
  *	both cases need the selected girl data - so let's get that
  */
-	sGirl* selGirl = NULL;
+	sGirl* selGirl = nullptr;
 	if (category == 0)
 	{
 		// MYR
@@ -1596,10 +1596,10 @@ void Turnsummary()
 		if (pDungeon->GetNumGirls() > 0)
 		{
 			sDungeonGirl *selDGirl = pDungeon->GetGirl(GirlNum);
-			if(selDGirl != 0)
+			if(selDGirl != nullptr)
 				selGirl = selDGirl->m_Girl;
 			else
-				selGirl = 0;
+				selGirl = nullptr;
 		}
 	}
 /*
@@ -2404,7 +2404,7 @@ void GameEvents()
 		//if(g_Brothels.GetPlayer()->m_Disposition < -100)
 		//	g_Brothels.GetPlayer()->m_Disposition = -100;
 
-		g_Brothels.UpdateAllGirlsStat(0, STAT_PCFEAR, 2);
+		g_Brothels.UpdateAllGirlsStat(nullptr, STAT_PCFEAR, 2);
 
 		ClearGameFlag(FLAG_DUNGEONGIRLDIE);
 	}
@@ -2446,7 +2446,7 @@ void Gallery()
 
 	if(g_InitWin)
 	{
-		if(girl == 0)
+		if(girl == nullptr)
 		{
 			g_InitWin = true;
 			g_MessageQue.AddToQue("ERROR: No girl selected", 1);
@@ -2797,7 +2797,7 @@ bool LoadGameXML(TiXmlHandle hDoc)
 {
 	TiXmlHandle hRoot = hDoc.FirstChildElement("Root");
 	TiXmlElement* pRoot = hRoot.ToElement();
-	if (pRoot == 0)
+	if (pRoot == nullptr)
 	{
 		return false;
 	}
@@ -2875,10 +2875,10 @@ bool LoadGameXML(TiXmlHandle hDoc)
 		g_TalkCount = 10;
 	}
 
-	selected_girl = 0;
+	selected_girl = nullptr;
 	for(int i=0; i<8; i++)
 	{
-		MarketSlaveGirls[i] = 0;
+		MarketSlaveGirls[i] = nullptr;
 		MarketSlaveGirlsDel[i] = -1;
 	}
 
@@ -2968,10 +2968,10 @@ bool LoadGameLegacy(std::string directory, std::string filename)
 		g_TalkCount = 10;
 	}
 
-	selected_girl = 0;
+	selected_girl = nullptr;
 	for(int i=0; i<8; i++)
 	{
-		MarketSlaveGirls[i] = 0;
+		MarketSlaveGirls[i] = nullptr;
 		MarketSlaveGirlsDel[i] = -1;
 	}
 

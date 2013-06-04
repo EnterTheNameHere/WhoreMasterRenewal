@@ -152,7 +152,7 @@ void cScreenHouse::init()
 	;
 
 	EditTextItem(ss.str(), details_id);
-	obj = 0;
+	obj = nullptr;
 }
 
 void cScreenHouse::process()

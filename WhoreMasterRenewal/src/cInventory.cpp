@@ -47,7 +47,8 @@ cInventory::~cInventory()
 
 void cInventory::Free()
 {
-	for(int i = 0; i < NUM_SHOPITEMS; i++) m_ShopItems[i] = 0;
+	for(int i = 0; i < NUM_SHOPITEMS; i++)
+        m_ShopItems[i] = nullptr;
 }
 
 void sEffect::set_what( std::string s )
@@ -199,7 +200,7 @@ void cInventory::GivePlayerAllItems()
 
 		for(int j=0; j<MAXNUM_INVENTORY; j++)
 		{
-			if(g_Brothels.m_Inventory[j] == 0)
+			if(g_Brothels.m_Inventory[j] == nullptr)
 			{
 				g_Brothels.m_Inventory[j] = item;
 				g_Brothels.m_EquipedItems[j] = 0;
@@ -460,13 +461,13 @@ int cInventory::HappinessFromItem(sInventoryItem* item)
 sInventoryItem* cInventory::BuyShopItem(int num)
 {
 	if(num >= NUM_SHOPITEMS)
-		return 0;
+		return nullptr;
 
 	sInventoryItem* item = m_ShopItems[num];
 
 	if(item->m_Infinite == 0)
 	{
-		m_ShopItems[num] = 0;
+		m_ShopItems[num] = nullptr;
 		m_NumShopItems--;
 	}
 
@@ -493,7 +494,7 @@ void cInventory::UpdateShop()
 	for(int i=0; i<NUM_SHOPITEMS; i++)
 	{
 		sInventoryItem* item = GetRandomItem();
-		while(item == 0)
+		while(item == nullptr)
 			item = GetRandomItem();
 		if(item->m_Infinite == 1 && CheckShopItem(item->m_Name) != -1)
 		{
@@ -501,14 +502,14 @@ void cInventory::UpdateShop()
 			continue;
 		}
 
-		if(item == 0)
+		if(item == nullptr)
 			break;
 		if(item->m_Rarity == 4 || item->m_Rarity == 5)
 		{
 			while(item->m_Rarity == 4 || item->m_Rarity == 5)
 			{
 				item = GetRandomItem();
-				while(item == 0)
+				while(item == nullptr)
 					item = GetRandomItem();
 			}
 		}
@@ -570,7 +571,7 @@ sInventoryItem* cInventory::GetShopItem(int num)
 		UpdateShop();
 
 	if(num >= NUM_SHOPITEMS)
-		return 0;
+		return nullptr;
 
 	return m_ShopItems[num];
 }
@@ -582,7 +583,7 @@ int cInventory::GetRandomShopItem()
 
 	int num = g_Dice%NUM_SHOPITEMS;
 
-	while(m_ShopItems[num] == 0)
+	while(m_ShopItems[num] == nullptr)
 		num = g_Dice%NUM_SHOPITEMS;
 
 	if(num > NUM_SHOPITEMS-1)  // shouldn't be necessary, but once I got 40 back causing OOB elsewhere
@@ -603,7 +604,7 @@ sInventoryItem* cInventory::GetRandomItem()
 	//;
 	if(items.size() == 0) {
 		//g_LogFile.os() << "	returning null" << std::endl;
-		return 0;
+		return nullptr;
 	}
 
 	if(items.size() == 1) {
@@ -631,7 +632,7 @@ sInventoryItem* cInventory::GetItem(std::string name)
 		}
 	}
 
-	return 0;
+	return nullptr;
 }
 
 // ----- Equip unequip
@@ -813,7 +814,7 @@ void cInventory::Equip(sGirl* girl, int num, bool force)
 
 	if(girl->m_Inventory[num]->m_Type == INVFOOD || girl->m_Inventory[num]->m_Type == INVMAKEUP)	// if consumable then remove from inventory
 	{
-		girl->m_Inventory[num] = 0;
+		girl->m_Inventory[num] = nullptr;
 		girl->m_EquipedItems[num] = 0;
 		girl->m_NumInventory--;
 	}
@@ -960,7 +961,7 @@ bool cInventory::equip_limited_item_ok(sGirl* girl, int num, bool force, int lim
 /*
  *		if there's nothing in the slot, skip it
  */
-		if(girl->m_Inventory[i] == 0)
+		if(girl->m_Inventory[i] == nullptr)
 			continue;
 
 /*
@@ -1140,7 +1141,7 @@ void cInventory::LoadItems(std::string filename)
     }
 
 	char buffer[1000];
-	sInventoryItem* newItem = 0;
+	sInventoryItem* newItem = nullptr;
 	long tempData;
 
 	while(in.good())

@@ -25,7 +25,7 @@
 
 cRng::cRng()
 {
-    srand( static_cast<int>( time(0) ) );
+    srand( static_cast<int>( time(nullptr) ) );
 }
 
 cRng::~cRng()

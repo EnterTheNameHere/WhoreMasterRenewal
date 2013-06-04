@@ -187,7 +187,7 @@ void cScreenDungeon::selection_change()
  *	and we're done
  */
 	if(selection == -1) {
-		selected_girl = 0;
+		selected_girl = nullptr;
 		DisableButton(brandslave_id);
 		DisableButton(allowfood_id);
 		DisableButton(stopfood_id);
@@ -573,7 +573,7 @@ void cScreenDungeon::sell_slaves()
 		else
 		{  // random girls simply get removed from the game
 			delete girl;
-			girl = 0;
+			girl = nullptr;
 		}
 	}
 
@@ -964,7 +964,7 @@ void cScreenDungeon::talk()
 /*
  *	she's still alive. I guess we'll have to talk to her
  */
-	cTrigger* trig = 0;
+	cTrigger* trig = nullptr;
 /*
  *	is there a girl specific script for this interaction?
  */

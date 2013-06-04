@@ -60,7 +60,7 @@ bool cImageItem::CreateImage(int id, std::string filename, int x, int y, int wid
 	if(statImage)
 	{
 		m_Surface = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, 0,0,0,0);
-		SDL_FillRect(m_Surface,0,SDL_MapRGB(m_Surface->format,R,G,B));
+		SDL_FillRect(m_Surface,nullptr,SDL_MapRGB(m_Surface->format,R,G,B));
 	}
 	SetPosition(x,y,width,height);
 
@@ -73,7 +73,7 @@ bool cImageItem::CreateImage(int id, std::string filename, int x, int y, int wid
 	else
 		m_loaded = false;
 
-	m_Next = 0;
+	m_Next = nullptr;
 
 	return true;
 }
@@ -115,7 +115,7 @@ bool cImageItem::CreateAnimatedImage(int id, std::string filename, std::string d
 		return false;
 	}
 
-	m_Next = 0;
+	m_Next = nullptr;
 
 	return true;
 }
@@ -141,7 +141,7 @@ void cImageItem::Draw()
 		rect.w = m_Width;
 		rect.h = m_Height;
 
-		m_Image->DrawSurface(m_XPos,m_YPos, 0, &rect, true);
+		m_Image->DrawSurface(m_XPos,m_YPos, nullptr, &rect, true);
 	}
 	else if(m_Surface)
 	{
@@ -151,6 +151,6 @@ void cImageItem::Draw()
 		offset.y = m_YPos;
 
 		// blit to the screen
-		SDL_BlitSurface(m_Surface, 0, g_Graphics.GetScreen(), &offset);
+		SDL_BlitSurface(m_Surface, nullptr, g_Graphics.GetScreen(), &offset);
 	}
 }

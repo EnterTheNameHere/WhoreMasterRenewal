@@ -70,19 +70,19 @@ bool MasterFile::LoadXML( TiXmlHandle hLoadedFiles )
 {
     files.clear();
     TiXmlElement* pLoadedFiles = hLoadedFiles.ToElement();
-    if( pLoadedFiles == 0 )
+    if( pLoadedFiles == nullptr )
     {
         return false;
     }
 
     TiXmlElement* pGirlsFiles = pLoadedFiles->FirstChildElement("Girls_Files");
-    if( pGirlsFiles == 0 )
+    if( pGirlsFiles == nullptr )
     {
         return false;
     }
 
     for( TiXmlElement* pFile = pGirlsFiles->FirstChildElement("File");
-        pFile != 0;
+        pFile != nullptr;
         pFile = pFile->NextSiblingElement("File") )
     {
         if( pFile->Attribute("Filename") )

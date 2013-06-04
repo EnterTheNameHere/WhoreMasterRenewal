@@ -125,7 +125,7 @@ void cScreenItemManagement::init()
 	sGirl* temp = g_Brothels.GetGirl(g_CurrBrothel, 0);
 	while(temp)
 	{
-		if(temp == 0)
+		if(temp == nullptr)
 			break;
 		if(g_AllTogle && selected_girl == temp)
 			rightOwner = i;
@@ -141,7 +141,7 @@ void cScreenItemManagement::init()
 	sDungeonGirl* temp2 = g_Brothels.GetDungeon()->GetGirl(0);
 	while(temp2)
 	{
-		if(temp2 == 0)
+		if(temp2 == nullptr)
 			break;
 		if(g_AllTogle && selected_girl == temp2->m_Girl)
 			rightOwner = i;
@@ -257,7 +257,7 @@ void cScreenItemManagement::check_events()
 			}
 			else
 			{
-				sGirl* targetGirl = 0;
+				sGirl* targetGirl = nullptr;
 				if(leftOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 				else // dungeon girl
@@ -329,7 +329,7 @@ void cScreenItemManagement::check_events()
 			}
 			else
 			{
-				sGirl* targetGirl = 0;
+				sGirl* targetGirl = nullptr;
 				if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 				else // dungeon girl
@@ -369,7 +369,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(equip_l_id))
 	{
-		sGirl* targetGirl = 0;
+		sGirl* targetGirl = nullptr;
 		if(leftOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 		else // dungeon girl
@@ -387,7 +387,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(unequip_l_id))
 	{
-		sGirl* targetGirl = 0;
+		sGirl* targetGirl = nullptr;
 		if(leftOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 		else // dungeon girl
@@ -405,7 +405,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(equip_r_id))
 	{
-		sGirl* targetGirl = 0;
+		sGirl* targetGirl = nullptr;
 		if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 		else // dungeon girl
@@ -424,7 +424,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(unequip_r_id))
 	{
-		sGirl* targetGirl = 0;
+		sGirl* targetGirl = nullptr;
 		if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 		else // dungeon girl
@@ -536,7 +536,7 @@ void cScreenItemManagement::refresh_item_list(Side which_list)
 		}
 		else	// girl items
 		{
-			sGirl* targetGirl = 0;
+			sGirl* targetGirl = nullptr;
 			if(*owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				targetGirl = g_Brothels.GetGirl(g_CurrBrothel, *owner-2);
 			else // dungeon girl
@@ -628,7 +628,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 	rightItem = GetLastSelectedItemFromList(items_r_id);
 	if(target_owner == 1)	// target is shop
 	{
-		sGirl* targetGirl = 0;
+		sGirl* targetGirl = nullptr;
 		if(source_owner > 1)	// taking from a girl and selling to shop
 		{
 			if(source_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
@@ -659,7 +659,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 //				*item_name = targetGirl->m_Inventory[selection]->m_Name;  // note name of item, for selection tracking in target list
 
 				// remove the item
-				targetGirl->m_Inventory[selection] = 0;
+				targetGirl->m_Inventory[selection] = nullptr;
 				targetGirl->m_EquipedItems[selection] = 0;
 				targetGirl->m_NumInventory--;
 
@@ -681,7 +681,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 				g_Brothels.m_NumItem[selection]--;
 				if(g_Brothels.m_NumItem[selection] == 0)
 				{
-					g_Brothels.m_Inventory[selection] = 0;
+					g_Brothels.m_Inventory[selection] = nullptr;
 					g_Brothels.m_EquipedItems[selection] = 0;
 					g_Brothels.m_NumInventory--;
 				}
@@ -727,7 +727,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 		else	// taking from girl
 		{
 			// take items from girl and give to player
-			sGirl* targetGirl = 0;
+			sGirl* targetGirl = nullptr;
 			if(source_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				targetGirl = g_Brothels.GetGirl(g_CurrBrothel, GetSelectedItemFromList(source_owner_list)-2);
 			else	// dungeon girl
@@ -757,7 +757,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 				*item_name = targetGirl->m_Inventory[selection]->m_Name;  // note name of item, for selection tracking in target list
 
 				// remove the item from the girl
-				targetGirl->m_Inventory[selection] = 0;
+				targetGirl->m_Inventory[selection] = nullptr;
 				targetGirl->m_EquipedItems[selection] = 0;
 				targetGirl->m_NumInventory--;
 
@@ -767,7 +767,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 	}
 	else	// target is girl
 	{
-		sGirl* targetGirl = 0;
+		sGirl* targetGirl = nullptr;
 		if(target_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, GetSelectedItemFromList(target_owner_list)-2);
 		else // dungeon girl
@@ -816,7 +816,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 				g_Brothels.m_NumItem[selection]--;
 				if(g_Brothels.m_NumItem[selection] == 0)
 				{
-					g_Brothels.m_Inventory[selection] = 0;
+					g_Brothels.m_Inventory[selection] = nullptr;
 					g_Brothels.m_EquipedItems[selection] = 0;
 					g_Brothels.m_NumInventory--;
 				}
@@ -880,7 +880,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 		}
 		else	// player forcing a girl to give to another girl
 		{
-			sGirl* fromGirl = 0;
+			sGirl* fromGirl = nullptr;
 			if(source_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				fromGirl = g_Brothels.GetGirl(g_CurrBrothel, GetSelectedItemFromList(source_owner_list)-2);
 			else // dungeon girl
@@ -933,7 +933,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 				*item_name = fromGirl->m_Inventory[selection]->m_Name;  // note name of item, for selection tracking in target list
 
 				// remove the item from the girl
-				fromGirl->m_Inventory[selection] = 0;
+				fromGirl->m_Inventory[selection] = nullptr;
 				fromGirl->m_EquipedItems[selection] = 0;
 				fromGirl->m_NumInventory--;
 

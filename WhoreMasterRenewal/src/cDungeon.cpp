@@ -36,7 +36,8 @@
 // strut sDungeonCust
 sDungeonCust::sDungeonCust()		// constructor
 {
-	m_Prev=m_Next = 0;
+	m_Prev = nullptr;
+	m_Next = nullptr;
 	m_Weeks = 0;
 	m_Tort = false;
 	m_Feeding = true;
@@ -47,14 +48,15 @@ sDungeonCust::~sDungeonCust()		// destructor
 {
 	if (m_Next)
 		delete m_Next;
-	m_Next = 0;
+	m_Next = nullptr;
 }
 
 // strut sDungeonGirl
 sDungeonGirl::sDungeonGirl()		// constructor
 {
-	m_Girl = 0;
-	m_Prev=m_Next = 0;
+	m_Girl = nullptr;
+	m_Prev = nullptr;
+	m_Next = nullptr;
 	m_Weeks = 0;
 	m_Feeding = true;
 }
@@ -63,19 +65,22 @@ sDungeonGirl::~sDungeonGirl() 		// destructor
 {
     if (m_Girl)
         delete m_Girl;
-    m_Girl = 0;
+    m_Girl = nullptr;
     if (m_Next)
         delete m_Next;
-    m_Next = 0;
+    m_Next = nullptr;
 }
 
 // class cDungeon
 cDungeon::cDungeon()		// constructor
 {
-    m_LastDGirl = m_Girls = 0;
-    m_LastDCusts = m_Custs = 0;
+    m_LastDGirl = nullptr;
+    m_Girls = nullptr;
+    m_LastDCusts = nullptr;
+    m_Custs = nullptr;
     m_NumberDied = 0;
-    m_NumGirls = m_NumCusts = 0;
+    m_NumGirls = 0;
+    m_NumCusts = 0;
 }
 
 cDungeon::~cDungeon()		// destructor
@@ -87,12 +92,19 @@ void cDungeon::Free()
 {
     if (m_Girls)
         delete m_Girls;
-    m_LastDGirl = m_Girls = 0;
+    
+    m_LastDGirl = nullptr;
+    m_Girls = nullptr;
+    
     if (m_Custs)
         delete m_Custs;
-    m_LastDCusts = m_Custs = 0;
-    m_NumberDied=0;
-    m_NumGirls = m_NumCusts = 0;
+    
+    m_LastDCusts = nullptr;
+    m_Custs = nullptr;
+    
+    m_NumberDied = 0;
+    m_NumGirls = 0;
+    m_NumCusts = 0;
 }
 
 TiXmlElement* cDungeon::SaveDungeonDataXML(TiXmlElement* pRoot)// saves all the people (they are stored with the dungeon)
@@ -242,7 +254,7 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 {
 	Free();//everything should be init even if we failed to load an XML element
 	TiXmlElement* pDungeon = hDungeon.ToElement();
-	if (pDungeon == 0)
+	if (pDungeon == nullptr)
 	{
 		return false;
 	}
@@ -257,7 +269,7 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 	if (pDungeonGirls)
 	{
 		for(TiXmlElement* pGirl = pDungeonGirls->FirstChildElement("Girl");
-			pGirl != 0;
+			pGirl != nullptr;
 			pGirl = pGirl->NextSiblingElement("Girl"))// load each girl and add her
 		{
 			sDungeonGirl* girl = new sDungeonGirl();
@@ -295,7 +307,7 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 	if (pDungeonCustomers)
 	{
 		for(TiXmlElement* pCustomer = pDungeonCustomers->FirstChildElement("Customer");
-			pCustomer != 0;
+			pCustomer != nullptr;
 			pCustomer = pCustomer->NextSiblingElement("Customer"))
 		{
 			sDungeonCust* customer = new sDungeonCust();
@@ -386,7 +398,7 @@ void cDungeon::PlaceDungeonCustomer(sDungeonCust *newCust)
 
 int cDungeon::GetGirlPos(sGirl* girl)
 {
-	if (girl == 0 || m_Girls == 0)
+	if (girl == nullptr || m_Girls == nullptr)
 		return -1;
 
 	sDungeonGirl* current = m_Girls;
@@ -399,7 +411,7 @@ int cDungeon::GetGirlPos(sGirl* girl)
 		current = current->m_Next;
 	}
 
-	if (current == 0)
+	if (current == nullptr)
 		return -1;
 
 	return count;
@@ -418,7 +430,7 @@ sGirl* cDungeon::RemoveGirl(sGirl* girl)	// this returns the girl, it must be pl
 	if (current)
 		return RemoveGirl(current);
 
-	return 0;
+	return nullptr;
 }
 
 sGirl* cDungeon::RemoveGirl(sDungeonGirl* girl)	// this returns the girl, it must be placed somewhere or deleted
@@ -434,20 +446,21 @@ sGirl* cDungeon::RemoveGirl(sDungeonGirl* girl)	// this returns the girl, it mus
 		m_Girls = girl->m_Next;
 
 	sGirl* girlData = girl->m_Girl;
-	girl->m_Next = girl->m_Prev = 0;
-	girl->m_Girl = 0;
+	girl->m_Next = nullptr;
+	girl->m_Prev = nullptr;
+	girl->m_Girl = nullptr;
 
 	m_NumGirls--;
 
 	delete girl;
-	girl = 0;
+	girl = nullptr;
 
 	return girlData;
 }
 
 void cDungeon::RemoveCust(sDungeonCust* cust)
 {
-	if (cust == 0)
+	if (cust == nullptr)
 		return;
 
 	if (cust->m_Prev)
@@ -458,9 +471,10 @@ void cDungeon::RemoveCust(sDungeonCust* cust)
 		m_LastDCusts = cust->m_Prev;
 	if (cust == m_Custs)
 		m_Custs = cust->m_Next;
-	cust->m_Next = cust->m_Prev = 0;
+	cust->m_Next = nullptr;
+	cust->m_Prev = nullptr;
 	delete cust;
-	cust = 0;
+	cust = nullptr;
 
 	m_NumCusts--;
 }
@@ -628,7 +642,7 @@ void sDungeonCust::OutputCustDetailString(std::string& Data, const std::string& 
 sDungeonGirl* cDungeon::GetGirl(int i)
 {
 	if (i < 0)
-		return 0;
+		return nullptr;
 	sDungeonGirl* girl = m_Girls;
 	int tmp = 0;
 	while(girl)
@@ -651,7 +665,7 @@ sDungeonGirl* cDungeon::GetGirlByName(std::string name)
 			return currentGirl;
 		currentGirl = currentGirl->m_Next;
 	}
-	return 0;
+	return nullptr;
 }
 int cDungeon::GetDungeonPos(sGirl* girl)
 {
@@ -689,7 +703,7 @@ void cDungeon::Update()
  *	WD: GetNumGirlsOnJob() not testing if the girl worked
  *
  */
-	sGirl* TorturerGirlref = 0;
+	sGirl* TorturerGirlref = nullptr;
     std::string msg, summary, girlName;
 
 	// Reser counters

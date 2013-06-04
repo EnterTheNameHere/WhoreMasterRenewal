@@ -261,12 +261,13 @@ public:
 
 cGirls::cGirls()
 {
-    m_DefImages = 0;
-    m_Parent = 0;
-    m_Last = 0;
-    m_NumRandomGirls = m_NumGirls = 0;
-    m_RandomGirls = 0;
-    m_LastRandomGirls = 0;
+    m_DefImages = nullptr;
+    m_Parent = nullptr;
+    m_Last = nullptr;
+    m_NumRandomGirls = 0;
+    m_NumGirls = 0;
+    m_RandomGirls = nullptr;
+    m_LastRandomGirls = nullptr;
     names.load( DirPath() << "Resources" << "Data" << "RandomGirlNames.txt" );
 }
 
@@ -281,18 +282,19 @@ void cGirls::Free()
     if( m_Parent )
         delete m_Parent;
         
-    m_Parent = m_Last = 0;
+    m_Parent = nullptr;
+    m_Last = nullptr;
     m_NumGirls = 0;
     g_GenGirls = false;
     
     if( m_RandomGirls )
         delete m_RandomGirls;
         
-    m_RandomGirls = 0;
-    m_LastRandomGirls = 0;
+    m_RandomGirls = nullptr;
+    m_LastRandomGirls = nullptr;
     m_NumRandomGirls = 0;
     
-    m_DefImages = 0;
+    m_DefImages = nullptr;
 }
 
 // ----- Utility
@@ -1045,7 +1047,7 @@ sGirl* sGirl::run_away()
     m_RunAway = 6;      // player has 6 weeks to retreive
     m_NightJob = m_DayJob = JOB_RUNAWAY;
     g_Brothels.AddGirlToRunaways( this );
-    return 0;
+    return nullptr;
 }
 
 void cGirls::CalculateAskPrice( sGirl* girl, bool vari )
@@ -1099,7 +1101,7 @@ sRandomGirl* cGirls::random_girl_at( u_int n )
      */
     if( n >= m_NumRandomGirls )
     {
-        return 0;
+        return nullptr;
     }
     
     /*
@@ -1121,11 +1123,11 @@ sRandomGirl* cGirls::random_girl_at( u_int n )
          *
          *      is it too late to rewrite this using vector?
          */
-        if( current == 0 )
+        if( current == nullptr )
         {
             g_LogFile.ss() << "broken chain in cGirls::random_girl_at" << std::endl;
             g_LogFile.ssend();
-            return 0;
+            return nullptr;
         }
     }
     
@@ -1142,7 +1144,7 @@ sGirl* cGirls::CreateRandomGirl( int age, bool addToGGirls, bool slave, bool /*u
     
     if( m_NumRandomGirls == 0 )
     {
-        return 0;
+        return nullptr;
     }
     
     /*
@@ -1161,7 +1163,7 @@ sGirl* cGirls::CreateRandomGirl( int age, bool addToGGirls, bool slave, bool /*u
          *      if we couldn't find the girl (which should be impossible_
          *      we pick another number at random and see if that one works
          */
-        if( current == 0 )
+        if( current == nullptr )
         {
             random_girl_index = g_Dice % m_NumRandomGirls;
             continue;
@@ -1184,7 +1186,7 @@ sGirl* cGirls::CreateRandomGirl( int age, bool addToGGirls, bool slave, bool /*u
     
     if( !current )
     {
-        return 0;
+        return nullptr;
     }
     
     sGirl* newGirl = new sGirl();
@@ -1296,7 +1298,7 @@ sGirl* cGirls::CreateRandomGirl( int age, bool addToGGirls, bool slave, bool /*u
         newGirl->m_Stats[STAT_PCHATE] = 50;
     }
     
-    newGirl->m_Next = 0;
+    newGirl->m_Next = nullptr;
     
     // If the girl is a slave then she has a house percent of 100%
     if( newGirl->m_States & ( 1 << STATUS_SLAVE ) )
@@ -1537,7 +1539,7 @@ void cGirls::LevelUpStats( sGirl* girl )
 
 void cGirls::AddRandomGirl( sRandomGirl* girl )
 {
-    girl->m_Next = 0;
+    girl->m_Next = nullptr;
     
     if( m_RandomGirls )
         m_LastRandomGirls->m_Next = girl;
@@ -1550,7 +1552,8 @@ void cGirls::AddRandomGirl( sRandomGirl* girl )
 
 void cGirls::AddGirl( sGirl* girl )
 {
-    girl->m_Prev = girl->m_Next = 0;
+    girl->m_Prev = nullptr;
+    girl->m_Next = nullptr;
     
     if( m_Parent )
     {
@@ -1566,7 +1569,7 @@ void cGirls::AddGirl( sGirl* girl )
 
 void cGirls::RemoveGirl( sGirl* girl, bool deleteGirl )
 {
-    if( m_Parent == 0 )
+    if( m_Parent == nullptr )
         return;
         
     bool match = false;
@@ -1600,9 +1603,10 @@ void cGirls::RemoveGirl( sGirl* girl, bool deleteGirl )
             if( girl == m_Last )
                 m_Last = girl->m_Prev;
                 
-            girl->m_Next = girl->m_Prev = 0;
+            girl->m_Next = nullptr;
+            girl->m_Prev = nullptr;
             delete girl;
-            girl = 0;
+            girl = nullptr;
         }
         else
         {
@@ -1618,7 +1622,8 @@ void cGirls::RemoveGirl( sGirl* girl, bool deleteGirl )
             if( girl == m_Last )
                 m_Last = girl->m_Prev;
                 
-            girl->m_Next = girl->m_Prev = 0;
+            girl->m_Next = nullptr;
+            girl->m_Prev = nullptr;
         }
         
         m_NumGirls--;
@@ -1781,7 +1786,7 @@ std::string cGirls::GetGirlMood( sGirl* girl )
 
 std::string cGirls::GetMoreDetailsString( sGirl* girl )
 {
-    if( girl == 0 )
+    if( girl == nullptr )
         return std::string( "" );
         
     std::string data = "Fetish Categories: ";
@@ -1924,7 +1929,7 @@ std::string cGirls::GetDetailsString( sGirl* girl, bool purchase )
     std::stringstream ss;
     /*char buffer[100];*/
     
-    if( girl == 0 )
+    if( girl == nullptr )
         return std::string( "" );
         
     std::string data = "Looks: ";
@@ -2155,7 +2160,7 @@ sGirl* cGirls::GetRandomGirl( bool slave, bool catacomb )
     
     if( girls.size() == 0 )
     {
-        return 0;
+        return nullptr;
     }
     
     return girls[
@@ -2169,7 +2174,7 @@ sGirl* cGirls::GetGirl( int girl )
     sGirl* current = m_Parent;
     
     if( girl < 0 || ( unsigned int )girl >= m_NumGirls )
-        return 0;
+        return nullptr;
         
     while( current )
     {
@@ -2180,7 +2185,7 @@ sGirl* cGirls::GetGirl( int girl )
         current = current->m_Next;
     }
     
-    return 0;
+    return nullptr;
 }
 
 int cGirls::GetRebelValue( sGirl* girl, bool matron )
@@ -3064,7 +3069,7 @@ bool sGirl::LoadGirlXML( TiXmlHandle hGirl )
     //this is always called after creating a new girl, so let's not init sGirl again
     TiXmlElement* pGirl = hGirl.ToElement();
     
-    if( pGirl == 0 )
+    if( pGirl == nullptr )
     {
         return false;
     }
@@ -3222,7 +3227,7 @@ bool sGirl::LoadGirlXML( TiXmlHandle hGirl )
     if( pChildren )
     {
         for( TiXmlElement* pChild = pChildren->FirstChildElement( "Child" );
-                pChild != 0;
+                pChild != nullptr;
                 pChild = pChild->NextSiblingElement( "Child" ) )
         {
             sChild* child = new sChild();
@@ -3285,7 +3290,7 @@ TiXmlElement* sGirl::SaveGirlXML( TiXmlElement* pRoot )
     if( m_NumRememTraits > MAXNUM_TRAITS * 2 )
         g_LogFile.write( "---- ERROR - Saved more remembered traits then girls can have" );
         
-    SaveTraitsXML( pGirl, "Remembered_Traits", MAXNUM_TRAITS * 2, m_RememTraits, 0 );
+    SaveTraitsXML( pGirl, "Remembered_Traits", MAXNUM_TRAITS * 2, m_RememTraits, nullptr );
     
     // Save inventory items
     TiXmlElement* pInventory = new TiXmlElement( "Inventory" );
@@ -3377,8 +3382,8 @@ TiXmlElement* sGirl::SaveGirlXML( TiXmlElement* pRoot )
 
 cChildList::cChildList()
 {
-    m_FirstChild = 0;
-    m_LastChild = 0;
+    m_FirstChild = nullptr;
+    m_LastChild = nullptr;
     m_NumChildren = 0;
 }
 cChildList::~cChildList()
@@ -3390,7 +3395,7 @@ bool sChild::LoadChildXML( TiXmlHandle hChild )
 {
     TiXmlElement* pChild = hChild.ToElement();
     
-    if( pChild == 0 )
+    if( pChild == nullptr )
     {
         return false;
     }
@@ -3473,7 +3478,7 @@ void sGirl::load_from_xml( TiXmlElement* el )
         const char* stat_name = sGirl::stat_names[i];
         pt = el->Attribute( stat_name, &ival );
         
-        if( pt == 0 )
+        if( pt == nullptr )
         {
             g_LogFile.ss() << "Error: Can't find stat '" << stat_name << "' for girl '" << m_Realname << "'" << std::endl;
             g_LogFile.ssend();
@@ -3560,7 +3565,7 @@ void sGirl::load_from_xml( TiXmlElement* el )
 
 sRandomGirl::sRandomGirl()
 {
-    m_Next = 0;
+    m_Next = nullptr;
     
     //assigning defaults
     for( int i = 0; i < NUM_STATS; i++ )
@@ -3598,7 +3603,7 @@ sRandomGirl::~sRandomGirl()
 {
     if( m_Next )delete m_Next;
     
-    m_Next = 0;
+    m_Next = nullptr;
 }
 
 void sRandomGirl::load_from_xml( TiXmlElement* el )
@@ -3762,7 +3767,7 @@ void cGirls::LoadRandomGirlLegacy( std::string filename )
     std::ifstream in;
     in.open( filename.c_str() );
     char buffer[500];
-    sRandomGirl* newGirl = 0;
+    sRandomGirl* newGirl = nullptr;
     int tempData;
     
     while( in.good() )
@@ -3859,7 +3864,7 @@ void cGirls::LoadRandomGirlLegacy( std::string filename )
             
             in.getline( buffer, sizeof( buffer ), '\n' );
             
-            if( g_Traits.GetTrait( buffer ) == 0 ) // test a trait exists
+            if( g_Traits.GetTrait( buffer ) == nullptr ) // test a trait exists
             {
                 std::string message = "ERROR: Trait ";
                 message += buffer;
@@ -3999,7 +4004,7 @@ void cGirls::LoadGirlsLegacy( std::string filename )
     std::ifstream in;
     in.open( filename.c_str() );
     char buffer[500];
-    sGirl* newGirl = 0;
+    sGirl* newGirl = nullptr;
     int tempData;
     cConfig cfg;
     
@@ -4035,7 +4040,7 @@ void cGirls::LoadGirlsLegacy( std::string filename )
             
             in.getline( buffer, sizeof( buffer ), '\n' );
             
-            if( g_Traits.GetTrait( buffer ) == 0 ) // test a trait exists
+            if( g_Traits.GetTrait( buffer ) == nullptr ) // test a trait exists
             {
                 std::string message = "ERROR in cGirls::LoadGirls: Trait '";
                 message += buffer;
@@ -4158,7 +4163,7 @@ void cGirls::LoadGirlsLegacy( std::string filename )
             
         AddGirl( newGirl );
         CalculateGirlType( newGirl );
-        newGirl = 0;
+        newGirl = nullptr;
     }
     
     in.close();
@@ -4167,22 +4172,22 @@ void cGirls::LoadGirlsLegacy( std::string filename )
 bool cGirls::LoadGirlsXML( TiXmlHandle hGirls )
 {
     //cannot call free, it would free stuff we want to keep
-    m_Parent = 0;
-    m_Last = 0;
+    m_Parent = nullptr;
+    m_Last = nullptr;
     m_NumGirls = 0;
     
     TiXmlElement* pGirls = hGirls.ToElement();
     
-    if( pGirls == 0 )
+    if( pGirls == nullptr )
     {
         return false;
     }
     
     // load the number of girls
-    sGirl* current = 0;
+    sGirl* current = nullptr;
     
     for( TiXmlElement* pGirl = pGirls->FirstChildElement( "Girl" );
-            pGirl != 0;
+            pGirl != nullptr;
             pGirl = pGirl->NextSiblingElement( "Girl" ) ) // load each girl and add her
     {
         current = new sGirl();
@@ -4204,7 +4209,7 @@ bool cGirls::LoadGirlsXML( TiXmlHandle hGirls )
 
 void cGirls::LoadGirlsLegacy( std::ifstream& ifs )
 {
-    sGirl* current = 0;
+    sGirl* current = nullptr;
     int temp;
     
 #if 0  // should already be cleared before now, and doing again here wipes out any newly loaded girl packs (from LoadMasterFile)
@@ -4226,7 +4231,7 @@ void cGirls::LoadGirlsLegacy( std::ifstream& ifs )
         current = new sGirl();
         LoadGirlLegacy( current, ifs );
         AddGirl( current );
-        current = 0;
+        current = nullptr;
     }
 }
 
@@ -4402,7 +4407,7 @@ void cGirls::EquipCombat( sGirl* girl )
     
     for( int i = 0; i < 40; i++ )
     {
-        if( girl->m_Inventory[i] != 0 )
+        if( girl->m_Inventory[i] != nullptr )
         {
             if( girl->m_Inventory[i]->m_Type == INVWEAPON )
             {
@@ -4471,7 +4476,7 @@ void cGirls::UnequipCombat( sGirl* girl )
         
     for( int i = 0; i < 40; i++ )
     {
-        if( girl->m_Inventory[i] != 0 )
+        if( girl->m_Inventory[i] != nullptr )
         {
             sInventoryItem* curItem = girl->m_Inventory[i];
             
@@ -4597,7 +4602,7 @@ void cGirls::UseItems( sGirl* girl )
     // sell crapy items
     for( int i = 0; i < 40; i++ ) // use a food item if it is in stock, and remove any bad things if disobedient
     {
-        if( girl->m_Inventory[i] != 0 )
+        if( girl->m_Inventory[i] != nullptr )
         {
             int max = 0;
             
@@ -4661,7 +4666,7 @@ void cGirls::UseItems( sGirl* girl )
     {
         sInventoryItem* curItem = girl->m_Inventory[i];
         
-        if( curItem != 0 )
+        if( curItem != nullptr )
         {
             if( ( curItem->m_Type == INVFOOD || curItem->m_Type == INVMAKEUP ) && usedFoodCount < usedFood )
             {
@@ -4909,7 +4914,7 @@ bool cGirls::IsInvFull( sGirl* girl )
     {
         for( int i = 0; i < 40; i++ )
         {
-            if( girl->m_Inventory[i] == 0 )
+            if( girl->m_Inventory[i] == nullptr )
             {
                 full = false;
                 break;
@@ -4926,7 +4931,7 @@ int cGirls::AddInv( sGirl* girl, sInventoryItem* item )
     
     for( i = 0; i < 40; i++ )
     {
-        if( girl->m_Inventory[i] == 0 )
+        if( girl->m_Inventory[i] == nullptr )
         {
             girl->m_Inventory[i] = item;
             girl->m_NumInventory++;
@@ -4944,10 +4949,10 @@ int cGirls::AddInv( sGirl* girl, sInventoryItem* item )
 bool cGirls::RemoveInvByNumber( sGirl* girl, int Pos )
 {
     // Girl inventories don't stack items
-    if( girl->m_Inventory[Pos] != 0 )
+    if( girl->m_Inventory[Pos] != nullptr )
     {
         g_InvManager.Unequip( girl, Pos );
-        girl->m_Inventory[Pos] = 0;
+        girl->m_Inventory[Pos] = nullptr;
         girl->m_NumInventory--;
         return true;
     }
@@ -4960,7 +4965,7 @@ void cGirls::SellInvItem( sGirl* girl, int num )
     girl->m_Money += ( int )( ( float )girl->m_Inventory[num]->m_Cost * 0.5f );
     girl->m_NumInventory--;
     g_InvManager.Unequip( girl, num );
-    girl->m_Inventory[num] = 0;
+    girl->m_Inventory[num] = nullptr;
 }
 
 int cGirls::GetWorseItem( sGirl* girl, int type, int cost )
@@ -5050,14 +5055,14 @@ void cGirls::UnapplyTraits( sGirl* girl, sTrait* trait )
         
     for( int i = 0; i < girl->m_NumTraits || doOnce; i++ )
     {
-        sTrait* tr = 0;
+        sTrait* tr = nullptr;
         
         if( doOnce )
             tr = trait;
         else
             tr = girl->m_Traits[i];
             
-        if( tr == 0 )
+        if( tr == nullptr )
             continue;
             
             
@@ -5577,14 +5582,14 @@ void cGirls::ApplyTraits( sGirl* girl, sTrait* trait, bool rememberflag )
         
     for( int i = 0; i < girl->m_NumTraits || doOnce; i++ )
     {
-        sTrait* tr = 0;
+        sTrait* tr = nullptr;
         
         if( doOnce )
             tr = trait;
         else
             tr = girl->m_Traits[i];
             
-        if( tr == 0 )
+        if( tr == nullptr )
             continue;
             
         if( strcmp( tr->m_Name, "Big Boobs" ) == 0 )
@@ -6145,7 +6150,7 @@ void cGirls::RemoveRememberedTrait( sGirl* girl, std::string name )
             if( girl->m_RememTraits[i] == trait )
             {
                 girl->m_NumRememTraits--;
-                girl->m_RememTraits[i] = 0;
+                girl->m_RememTraits[i] = nullptr;
                 return;
             }
         }
@@ -6163,7 +6168,7 @@ void cGirls::RemoveAllRememberedTraits( sGirl* girl )
     for( int i = 0; i < MAXNUM_TRAITS * 2; i++ )
     {
         // WD:  This should be faster 121 writes instead of 120 reads and (120 + numTraits) writes
-        girl->m_RememTraits[i] = 0;
+        girl->m_RememTraits[i] = nullptr;
         
         //if(girl->m_RememTraits[i])
         //{
@@ -6249,7 +6254,7 @@ bool cGirls::RemoveTrait( sGirl* girl, std::string name, bool addrememberlist, b
                 if( girl->m_TempTrait[i] > 0 )
                     girl->m_TempTrait[i] = 0;
                     
-                girl->m_Traits[i] = 0;
+                girl->m_Traits[i] = nullptr;
                 return true;
             }
         }
@@ -6262,7 +6267,7 @@ void cGirls::AddRememberedTrait( sGirl* girl, std::string name )
 {
     for( int i = 0; i < MAXNUM_TRAITS * 2; i++ ) // add the traits
     {
-        if( girl->m_RememTraits[i] == 0 )
+        if( girl->m_RememTraits[i] == nullptr )
         {
             girl->m_NumRememTraits++;
             girl->m_RememTraits[i] = g_Traits.GetTrait( name );
@@ -6318,7 +6323,7 @@ bool cGirls::AddTrait( sGirl* girl, std::string name, bool temp, bool removeitem
     
     for( int i = 0; i < MAXNUM_TRAITS; i++ )        // add the trait
     {
-        if( girl->m_Traits[i] == 0 )
+        if( girl->m_Traits[i] == nullptr )
         {
             if( temp )
                 girl->m_TempTrait[i] = 20;
@@ -10370,7 +10375,7 @@ std::string cGirls::GetRandomLesString()
     
     // For case 2
     int BrothelNo = -1, NumGirlsInBroth = -1;
-    sGirl* TempGPtr = 0;
+    sGirl* TempGPtr = nullptr;
     
     roll3 = g_Dice % 6 + 1;
     
@@ -10421,7 +10426,7 @@ std::string cGirls::GetRandomLesString()
         
         BrothelNo = -1;        // MYR: Paranoia
         NumGirlsInBroth = -1;
-        TempGPtr = 0;
+        TempGPtr = nullptr;
         break;
         
     case 3:
@@ -10835,7 +10840,7 @@ Uint8 cGirls::girl_fights_girl( sGirl* a, sGirl* b )
     u_int a_attack = SKILL_COMBAT;  // determined later, defaults to combat
     u_int b_attack = SKILL_COMBAT;
     
-    if( a == 0 || b == 0 )
+    if( a == nullptr || b == nullptr )
         return 0;
         
     // first determine what skills they will fight with
@@ -11863,7 +11868,8 @@ sChild::sChild( bool is_players, Gender gender )
     m_Age       = 0;
     m_IsPlayers = is_players;
     m_Sex       = gender;
-    m_Next      = m_Prev = 0;
+    m_Next      = nullptr;
+    m_Prev      = nullptr;
     
     if( gender != None )
     {
@@ -11875,11 +11881,11 @@ sChild::sChild( bool is_players, Gender gender )
 
 sChild::~sChild()
 {
-    m_Prev = 0;
+    m_Prev = nullptr;
     
     if( m_Next )delete m_Next;
     
-    m_Next = 0;
+    m_Next = nullptr;
 }
 
 void cChildList::add_child( sChild* child )
@@ -11917,7 +11923,7 @@ sChild* cChildList::remove_child( sChild* child, sGirl* girl )
     if( child == girl->m_Children.m_LastChild )
         girl->m_Children.m_LastChild = child->m_Prev;
         
-    child->m_Next = 0;
+    child->m_Next = nullptr;
     delete child;
     return temp;
 }
@@ -11926,7 +11932,7 @@ sChild* cChildList::remove_child( sChild* child, sGirl* girl )
 sGirl::sGirl()
 {
     m_Stats[STAT_HOUSE] = 60;
-    m_GirlImages        = 0;
+    m_GirlImages        = nullptr;
     m_Tort              = false;
     m_JustGaveBirth     = false;
     m_Realname          = "";
@@ -11949,26 +11955,26 @@ sGirl::sGirl()
     for( int i = 0; i < 40; i++ )
     {
         m_EquipedItems[i]   = 0;
-        m_Inventory[i]      = 0;
+        m_Inventory[i]      = nullptr;
     }
     
     m_NumRememTraits = m_NumTraits = 0;
     
     for( int i = 0; i < MAXNUM_TRAITS; i++ )
     {
-        m_Traits[i]         = 0;
+        m_Traits[i]         = nullptr;
         m_TempTrait[i]      = 0;
     }
     
     for( int i = 0; i < MAXNUM_TRAITS * 2; i++ )
-        m_RememTraits[i]    = 0;
+        m_RememTraits[i]    = nullptr;
         
     for( int i = 0; i < NUM_GIRLFLAGS; i++ )
         m_Flags[i]          = 0;
         
-    m_Prev                  = 0;
-    m_Next                  = 0;
-    m_Name                  = 0;
+    m_Prev                  = nullptr;
+    m_Next                  = nullptr;
+    m_Name                  = nullptr;
     m_Desc                  = "";
     m_States                = 0;
     m_DayJob = m_NightJob   = 0;
@@ -12000,20 +12006,20 @@ sGirl::sGirl()
 
 sGirl::~sGirl()
 {
-    m_GirlImages = 0;
+    m_GirlImages = nullptr;
     
     if( m_Name )
         delete [] m_Name;
         
-    m_Name = 0;
+    m_Name = nullptr;
     
     m_Events.Free();
     
     if( m_Next )
         delete m_Next;
         
-    m_Next = 0;
-    m_Prev = 0;
+    m_Next = nullptr;
+    m_Prev = nullptr;
 }
 
 int sGirl::get_stat( int stat_id )
@@ -12609,7 +12615,7 @@ void cGirls::HandleChildren( sGirl* girl, std::string& summary, bool PlayerContr
      *
      *  but I guess this way offers better bugproofing
      */
-    if( girl->m_Children.m_FirstChild == 0 )
+    if( girl->m_Children.m_FirstChild == nullptr )
     {
         return;
     }
@@ -12982,7 +12988,7 @@ void cGirls::LoadGirlImages( sGirl* girl )
 
 cAImgList::cAImgList()
 {
-    m_Next = 0;
+    m_Next = nullptr;
 }
 
 cAImgList::~cAImgList()
@@ -12993,14 +12999,14 @@ cAImgList::~cAImgList()
     if( m_Next )
         delete m_Next;
         
-    m_Next = 0;
+    m_Next = nullptr;
 }
 
 cImageList::cImageList()
 {
     m_NumImages = 0;
-    m_LastImages = 0;
-    m_Images = 0;
+    m_LastImages = nullptr;
+    m_Images = nullptr;
 }
 cImageList::~cImageList()
 {
@@ -13012,8 +13018,8 @@ void cImageList::Free()
     if( m_Images )
         delete m_Images;
         
-    m_LastImages = 0;
-    m_Images = 0;
+    m_LastImages = nullptr;
+    m_Images = nullptr;
     m_NumImages = 0;
 }
 
@@ -13083,7 +13089,7 @@ CSurface* cImageList::GetImageSurface( bool random, int& img )
     if( !random )
     {
         if( img == -1 )
-            return 0;
+            return nullptr;
             
         ImageNum = img;
         cImage* current = m_Images;
@@ -13106,7 +13112,7 @@ CSurface* cImageList::GetImageSurface( bool random, int& img )
     else
     {
         if( m_NumImages == 0 )
-            return 0;
+            return nullptr;
         else if( m_NumImages == 1 )
         {
             img = 0;
@@ -13134,13 +13140,13 @@ CSurface* cImageList::GetImageSurface( bool random, int& img )
             else
             {
                 img = ImageNum;
-                return 0;
+                return nullptr;
             }
         }
     }
     
     img = ImageNum;
-    return 0;
+    return nullptr;
 }
 
 cAnimatedSurface* cImageList::GetAnimatedSurface( int& img )
@@ -13149,7 +13155,7 @@ cAnimatedSurface* cImageList::GetAnimatedSurface( int& img )
     int ImageNum = -1;
     
     if( img == -1 )
-        return 0;
+        return nullptr;
         
     ImageNum = img;
     cImage* current = m_Images;
@@ -13170,10 +13176,10 @@ cAnimatedSurface* cImageList::GetAnimatedSurface( int& img )
         if( current->m_AniSurface )
             return current->m_AniSurface;
         else
-            return 0;
+            return nullptr;
     }
     
-    return 0;
+    return nullptr;
 }
 
 bool cImageList::IsAnimatedSurface( int& img )
@@ -13250,7 +13256,7 @@ int cImageList::DrawImage( int x, int y, int width, int height, bool random, int
             if( current->m_AniSurface )
                 current->m_AniSurface->DrawFrame( x, y, rect.w, rect.h, g_Graphics.GetTicks() );
             else
-                current->m_Surface->DrawSurface( x, y, 0, &rect, true );
+                current->m_Surface->DrawSurface( x, y, nullptr, &rect, true );
         }
     }
     else
@@ -13259,7 +13265,7 @@ int cImageList::DrawImage( int x, int y, int width, int height, bool random, int
             return -1;
         else if( m_NumImages == 1 )
         {
-            m_Images->m_Surface->DrawSurface( x, y, 0, &rect, true );
+            m_Images->m_Surface->DrawSurface( x, y, nullptr, &rect, true );
             return 0;
         }
         else
@@ -13281,7 +13287,7 @@ int cImageList::DrawImage( int x, int y, int width, int height, bool random, int
                 if( current->m_AniSurface )
                     current->m_AniSurface->DrawFrame( x, y, rect.w, rect.h, g_Graphics.GetTicks() );
                 else
-                    current->m_Surface->DrawSurface( x, y, 0, &rect, true );
+                    current->m_Surface->DrawSurface( x, y, nullptr, &rect, true );
             }
             else
                 return -1;
@@ -13313,7 +13319,8 @@ std::string cImageList::GetName( int i )
 
 cImgageListManager::cImgageListManager()
 {
-    m_First = m_Last = 0;
+    m_First = nullptr;
+    m_Last = nullptr;
 }
 cImgageListManager::~cImgageListManager()
 {
@@ -13324,7 +13331,8 @@ void cImgageListManager::Free()
 {
     if( m_First )delete m_First;
     
-    m_Last = m_First = 0;
+    m_Last = nullptr;
+    m_First = nullptr;
 }
 
 cAImgList* cImgageListManager::ListExists( std::string name )
@@ -13351,7 +13359,7 @@ cAImgList* cImgageListManager::LoadList( std::string name )
         
     current = new cAImgList();
     current->m_Name = name;
-    current->m_Next = 0;
+    current->m_Next = nullptr;
     /* mod
     uses dir path and file list to construct the girl images
     */
@@ -13684,7 +13692,7 @@ CSurface* cGirls::GetImageSurface( sGirl* girl, int ImgType, bool random, int& i
         }
     }
     
-    return 0;
+    return nullptr;
 }
 
 cAnimatedSurface* cGirls::GetAnimatedSurface( sGirl* girl, int ImgType, int& img )
@@ -14243,9 +14251,9 @@ void sGirl::OutputGirlDetailString( std::string& Data, const std::string& detail
 
 cImage::cImage()
 {
-    m_Surface = 0;
-    m_Next = 0;
-    m_AniSurface = 0;
+    m_Surface = nullptr;
+    m_Next = nullptr;
+    m_AniSurface = nullptr;
 }
 
 cImage::~cImage()
@@ -14255,12 +14263,12 @@ cImage::~cImage()
         delete m_Surface;
     }
     
-    m_Surface = 0;
+    m_Surface = nullptr;
     
     if( m_AniSurface )
         delete m_AniSurface;
         
-    m_AniSurface = 0;
+    m_AniSurface = nullptr;
     //if(m_Next) delete m_Next;
-    m_Next = 0;
+    m_Next = nullptr;
 }

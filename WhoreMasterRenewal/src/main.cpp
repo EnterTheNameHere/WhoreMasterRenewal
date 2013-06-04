@@ -151,8 +151,8 @@ int cycle_pos;  //currently selected girl's position in the cycle_girls vector
 char buffer[1000];
 cSlider* g_DragSlider = nullptr;
 CSurface* g_BackgroundImage = nullptr;
-CSurface* g_BrothelImages[6] = {0,0,0,0,0,0};
-sGirl* MarketSlaveGirls[8] = {0,0,0,0,0,0,0,0};
+CSurface* g_BrothelImages[6] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+sGirl* MarketSlaveGirls[8] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 int MarketSlaveGirlsDel[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
 
 
@@ -302,15 +302,15 @@ int main_old(int ac, char* av[])
 			{
 				if(mouseDown == true)
 				{
-					if (g_DragScrollBar != 0)
+					if (g_DragScrollBar != nullptr)
 					{
 						g_DragScrollBar->SetTopValue(g_DragScrollBar->m_ItemTop);
-						g_DragScrollBar = 0;
+						g_DragScrollBar = nullptr;
 					}
-					else if(g_DragSlider != 0)
+					else if(g_DragSlider != nullptr)
 					{
 						g_DragSlider->EndDrag();
-						g_DragSlider = 0;
+						g_DragSlider = nullptr;
 					}
 					else if(g_MessageBox.IsActive())
 						g_MessageBox.Advance();
@@ -418,10 +418,10 @@ int main_old(int ac, char* av[])
 				if(!g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())
 				{
 					// if dragging a scrollbar, send movements to it exclusively until mouseup
-					if (g_DragScrollBar != 0)
+					if (g_DragScrollBar != nullptr)
 						g_DragScrollBar->DragMove(vent.motion.y);
 					// if dragging a slider, send movements to it exclusively until mouseup
-					else if(g_DragSlider != 0)
+					else if(g_DragSlider != nullptr)
 						g_DragSlider->DragMove(vent.motion.x);
 					// update interface
 					else
@@ -443,7 +443,7 @@ int main_old(int ac, char* av[])
 			clip.y = 0;
 			clip.w = g_ScreenWidth;
 			clip.h = g_ScreenHeight;
-			g_BackgroundImage->DrawSurface(clip.x,clip.y,0,&clip,true);
+			g_BackgroundImage->DrawSurface(clip.x,clip.y,nullptr,&clip,true);
 
 			// Draw the interface
 			g_WinManager.Draw();
@@ -490,7 +490,7 @@ void Shutdown()
 		if(g_BrothelImages[i])
 		{
 			delete g_BrothelImages[i];
-			g_BrothelImages[i] = 0;
+			g_BrothelImages[i] = nullptr;
 		}
 	}
 
@@ -498,7 +498,7 @@ void Shutdown()
 	{
 		if(MarketSlaveGirls[i] && MarketSlaveGirlsDel[i] == -1)
 			delete MarketSlaveGirls[i];
-		MarketSlaveGirls[i] = 0;
+		MarketSlaveGirls[i] = nullptr;
 	}
 
 	g_Brothels.Free();
@@ -558,7 +558,7 @@ bool Init()
 		if(g_BrothelImages[i])
 		{
 			delete g_BrothelImages[i];
-			g_BrothelImages[i] = 0;
+			g_BrothelImages[i] = nullptr;
 		}
 //
 //      I think this should work - kept the old line below

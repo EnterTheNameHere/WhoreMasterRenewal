@@ -423,7 +423,7 @@ bool cGoldBase::loadGoldXML(TiXmlHandle hGold)
 	reset();
 
 	TiXmlElement* pGold = hGold.ToElement();
-	if (pGold == 0)
+	if (pGold == nullptr)
 	{
 		return false;
 	}

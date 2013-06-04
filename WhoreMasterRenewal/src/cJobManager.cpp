@@ -720,7 +720,7 @@ int cJobManager::guard_coverage(std::vector<sGang*> *vpt)
 	int pc = 0;
 	std::vector<sGang*> v = g_Gangs.gangs_on_mission(MISS_GUARDING);
 
-	if(vpt != 0)
+	if(vpt != nullptr)
 		*vpt = v;
 
 	for(u_int i = 0; i < v.size(); i++) {
@@ -1369,7 +1369,7 @@ void cJobManager::do_training_set(std::vector<sGirl*> girls, int DayNight)
 	for(u_int i = 0; i < num_girls; i++)
 	{
 		girl = girls[i];
-		if(girl == 0)
+		if(girl == nullptr)
 			break;
 		set.push_back(TrainableGirl(girl));
 	}
@@ -1541,7 +1541,7 @@ void cJobManager::update_film(sBrothel * brothel)
 			brothel->m_CurrFilm->total_customers=cust_mult*brothel->m_CurrFilm->final_quality*10;
 			brothel->m_CurrFilm->final_quality/=brothel->m_CurrFilm->scene_quality.size();
 			film_list.push_back(brothel->m_CurrFilm);
-			brothel->m_CurrFilm=0;
+			brothel->m_CurrFilm = nullptr;
 		}
 	}
 }

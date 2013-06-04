@@ -301,7 +301,7 @@ static std::string clobber_extension(std::string s)
 std::vector<std::string> ImageFileList::file_extensions;
 
 ImageFileList::ImageFileList( DirPath dp, const char* pattern )
-    : FileList( dp, 0, true )
+    : FileList( dp, nullptr, true )
 {
     if( file_extensions.size() == 0 )
     {

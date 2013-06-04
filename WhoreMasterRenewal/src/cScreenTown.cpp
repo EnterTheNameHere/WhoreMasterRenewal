@@ -152,10 +152,10 @@ void cScreenTown::init()
  */
 	DisableButton(walk_id, g_WalkAround);
 
-	HideButton(brothel2_id, (g_Brothels.GetBrothel(1)==0));
-	HideButton(brothel3_id, (g_Brothels.GetBrothel(2)==0));
-	HideButton(brothel4_id, (g_Brothels.GetBrothel(3)==0));
-	HideButton(brothel5_id, (g_Brothels.GetBrothel(4)==0));
+	HideButton(brothel2_id, (g_Brothels.GetBrothel(1)==nullptr));
+	HideButton(brothel3_id, (g_Brothels.GetBrothel(2)==nullptr));
+	HideButton(brothel4_id, (g_Brothels.GetBrothel(3)==nullptr));
+	HideButton(brothel5_id, (g_Brothels.GetBrothel(4)==nullptr));
 
     std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
@@ -360,7 +360,7 @@ void cScreenTown::do_walk()
 /*
  *	if there's no girl, no meeting
  */
-	if(girl == 0) {
+	if(girl == nullptr) {
 		g_MessageQue.AddToQue(walk_no_luck(), 0);
 		return;
 	}
@@ -383,7 +383,7 @@ void cScreenTown::do_walk()
 	message += "and you notice a potential new girl and walk up to her.";
 	g_MessageQue.AddToQue(message, 2);
 	int v[2] = {0,-1};
-	cTrigger* trig = 0;
+	cTrigger* trig = nullptr;
 
 	DirPath dp;
     std::string filename;

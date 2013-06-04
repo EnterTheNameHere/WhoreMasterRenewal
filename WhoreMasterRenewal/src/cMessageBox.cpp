@@ -31,13 +31,13 @@ cMessageBox::~cMessageBox()
         if( m_Background[i] )
             SDL_FreeSurface( m_Background[i] );
             
-        m_Background[i] = 0;
+        m_Background[i] = nullptr;
     }
     
     if( m_Border )
         SDL_FreeSurface( m_Border );
         
-    m_Border = 0;
+    m_Border = nullptr;
     
     if( m_Font )
     {
@@ -45,7 +45,7 @@ cMessageBox::~cMessageBox()
         delete m_Font;
     }
     
-    m_Font = 0;
+    m_Font = nullptr;
 }
 
 void cMessageBox::CreateWindow( int x, int y, int width, int height, int BorderSize, int FontSize, bool scale )
@@ -72,19 +72,19 @@ void cMessageBox::CreateWindow( int x, int y, int width, int height, int BorderS
     m_Width = width;
     m_Height = height;
     m_Border = SDL_CreateRGBSurface( SDL_SWSURFACE, width, height, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_Border, 0, SDL_MapRGB( m_Border->format, g_MessageBoxBorderR, g_MessageBoxBorderG, g_MessageBoxBorderB ) );
+    SDL_FillRect( m_Border, nullptr, SDL_MapRGB( m_Border->format, g_MessageBoxBorderR, g_MessageBoxBorderG, g_MessageBoxBorderB ) );
     
     m_Background[0] = SDL_CreateRGBSurface( SDL_SWSURFACE, width - ( BorderSize * 2 ), height - ( BorderSize * 2 ), 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_Background[0], 0, SDL_MapRGB( m_Background[0]->format, g_MessageBoxBackground0R, g_MessageBoxBackground0G, g_MessageBoxBackground0B ) );
+    SDL_FillRect( m_Background[0], nullptr, SDL_MapRGB( m_Background[0]->format, g_MessageBoxBackground0R, g_MessageBoxBackground0G, g_MessageBoxBackground0B ) );
     
     m_Background[1] = SDL_CreateRGBSurface( SDL_SWSURFACE, width - ( BorderSize * 2 ), height - ( BorderSize * 2 ), 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_Background[1], 0, SDL_MapRGB( m_Background[1]->format, g_MessageBoxBackground1R, g_MessageBoxBackground1G, g_MessageBoxBackground1B ) );
+    SDL_FillRect( m_Background[1], nullptr, SDL_MapRGB( m_Background[1]->format, g_MessageBoxBackground1R, g_MessageBoxBackground1G, g_MessageBoxBackground1B ) );
     
     m_Background[2] = SDL_CreateRGBSurface( SDL_SWSURFACE, width - ( BorderSize * 2 ), height - ( BorderSize * 2 ), 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_Background[2], 0, SDL_MapRGB( m_Background[2]->format, g_MessageBoxBackground2R, g_MessageBoxBackground2G, g_MessageBoxBackground2B ) );
+    SDL_FillRect( m_Background[2], nullptr, SDL_MapRGB( m_Background[2]->format, g_MessageBoxBackground2R, g_MessageBoxBackground2G, g_MessageBoxBackground2B ) );
     
     m_Background[3] = SDL_CreateRGBSurface( SDL_SWSURFACE, width - ( BorderSize * 2 ), height - ( BorderSize * 2 ), 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_Background[3], 0, SDL_MapRGB( m_Background[3]->format, g_MessageBoxBackground3R, g_MessageBoxBackground3G, g_MessageBoxBackground3B ) );
+    SDL_FillRect( m_Background[3], nullptr, SDL_MapRGB( m_Background[3]->format, g_MessageBoxBackground3R, g_MessageBoxBackground3G, g_MessageBoxBackground3B ) );
     
     ChangeFontSize( FontSize );
 }
@@ -102,11 +102,11 @@ void cMessageBox::Draw()
         offset.y = m_YPos;
         
         // blit to the screen
-        SDL_BlitSurface( m_Border, 0, g_Graphics.GetScreen(), &offset );
+        SDL_BlitSurface( m_Border, nullptr, g_Graphics.GetScreen(), &offset );
         
         offset.x = m_XPos + m_BorderSize;
         offset.y = m_YPos + m_BorderSize;
-        SDL_BlitSurface( m_Background[m_Color], 0, g_Graphics.GetScreen(), &offset );
+        SDL_BlitSurface( m_Background[m_Color], nullptr, g_Graphics.GetScreen(), &offset );
     }
     
     if( m_Font ) // draw the text
@@ -137,7 +137,7 @@ void cMessageBox::ChangeFontSize( int FontSize )
         delete m_Font;
     }
     
-    m_Font = 0;
+    m_Font = nullptr;
     m_Font = new cFont();
     cConfig cfg;
     m_Font->LoadFont( cfg.fonts.normal(), FontSize );
@@ -150,13 +150,13 @@ cMessageBox::cMessageBox()
 {
     m_Color = 0;
     m_TextAdvance = false;
-    m_Font = 0;
+    m_Font = nullptr;
     m_Text = "";
     
     for( int i = 0; i < NUM_MESSBOXCOLOR; ++i )
-        m_Background[i] = 0;
+        m_Background[i] = nullptr;
         
-    m_Border = 0;
+    m_Border = nullptr;
     m_Active = false;
     m_Advance = false;
     m_Position = 0;
@@ -185,7 +185,7 @@ void cMessageBox::SetActive( bool active )
 
 sMessage::sMessage()
 {
-    m_Next = 0;
+    m_Next = nullptr;
     m_Color = 0;
     m_Text = "";
 }
@@ -194,13 +194,13 @@ sMessage::~sMessage()
 {
     if( m_Next ) delete m_Next;
     
-    m_Next = 0;
+    m_Next = nullptr;
 }
 
 cMessageQue::cMessageQue()
 {
-    m_Mess = 0;
-    m_Last = 0;
+    m_Mess = nullptr;
+    m_Last = nullptr;
 }
 cMessageQue::~cMessageQue()
 {
@@ -211,7 +211,8 @@ void cMessageQue::Free()
 {
     if( m_Mess ) delete m_Mess;
     
-    m_Last = m_Mess = 0;
+    m_Last = nullptr;
+    m_Mess = nullptr;
 }
 
 void cMessageQue::AddToQue( std::string text, int color )
@@ -248,15 +249,15 @@ void cMessageQue::ActivateNext()
     {
         sMessage* Ptr = m_Mess;
         m_Mess = m_Mess->m_Next;
-        Ptr->m_Next = 0;
+        Ptr->m_Next = nullptr;
         
-        if( m_Mess == 0 )
-            m_Last = 0;
+        if( m_Mess == nullptr )
+            m_Last = nullptr;
             
         g_MessageBox.ResetWindow( Ptr->m_Text, Ptr->m_Color );
         g_MessageBox.SetActive( true );
         
         delete Ptr;
-        Ptr = 0;
+        Ptr = nullptr;
     }
 }

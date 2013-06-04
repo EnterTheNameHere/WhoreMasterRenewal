@@ -24,7 +24,7 @@
 #include "CLog.h"
 #include "XmlMisc.h"
 
-std::vector<sFacility *> *sFacilityList::list = 0;
+std::vector<sFacility *> *sFacilityList::list = nullptr;
 
 sFacilityList::sFacilityList()
 {

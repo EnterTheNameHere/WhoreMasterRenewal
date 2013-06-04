@@ -91,7 +91,7 @@ bool cPlayer::LoadPlayerXML(TiXmlHandle hPlayer)
 {
 	SetToZero();//init to 0
 	TiXmlElement* pPlayer = hPlayer.ToElement();
-	if (pPlayer == 0)
+	if (pPlayer == nullptr)
 	{
 		return false;
 	}

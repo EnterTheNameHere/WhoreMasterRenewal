@@ -163,7 +163,7 @@ void cScreenGangs::init()
 		for(int i=0; i < g_Gangs.GetNumGangs(); i++)
 		{
 			sGang* g = g_Gangs.GetGang(i);
-			if (g == 0)
+			if (g == nullptr)
 				g = g_Gangs.GetGang(i-1);
 
 			cost += tariff.goon_mission_cost(g->m_MissionID);
@@ -303,7 +303,9 @@ void cScreenGangs::init()
 	DisableButton(gangfire_id, (g_Gangs.GetNumGangs() <= 0)
 							|| (selection == -1));
 
-	potions = wlev = nets = 0;
+	potions = nullptr;
+	wlev = nullptr;
+	nets = nullptr;
 }
 
 void cScreenGangs::process()
@@ -367,7 +369,7 @@ void cScreenGangs::check_events()
 			*wlev += 1;
 			g_InitWin = true;
 		}
-		wlev = 0;
+		wlev = nullptr;
 		return;
 	}
 	if(g_InterfaceEvents.CheckButton(netbuy_id))
@@ -385,7 +387,7 @@ void cScreenGangs::check_events()
 				g_Gangs.KeepNetStocked(*nets);
 			g_InitWin = true;
 		}
-		nets = 0;
+		nets = nullptr;
 		return;
 	}
 	if(g_InterfaceEvents.CheckButton(healbuy_id))
@@ -401,7 +403,7 @@ void cScreenGangs::check_events()
 			*potions += amount;
 			g_InitWin = true;
 		}
-		potions = 0;
+		potions = nullptr;
 		return;
 	}
 	if(g_InterfaceEvents.CheckCheckbox(netautobuy_id))
@@ -523,7 +525,7 @@ void cScreenGangs::check_events()
  *				make sure we found the gang - pretty catastrophic
  *				if not, so log it if we do
  */
-			if(gang == 0) {
+			if(gang == nullptr) {
 				g_LogFile.ss()	<< "Error: No gang for index "
 				  		<< selection
 				;

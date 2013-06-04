@@ -27,9 +27,10 @@
 
 CSurface::CSurface()
 {
-	m_Temp = 0;
-	m_Surface = 0;
-	m_Next = m_Prev = 0;
+	m_Temp = nullptr;
+	m_Surface = nullptr;
+	m_Next = nullptr;
+	m_Prev = nullptr;
 	m_UseKey = false;
 	m_Cached=false;
 	//m_CachedLocation=0;
@@ -40,14 +41,15 @@ CSurface::CSurface()
 	loaded=false;
 	m_SaveSurface = false;
 	m_ColoredSurface = false;
-	m_SpriteImage = 0;
+	m_SpriteImage = nullptr;
 }
 
 CSurface::CSurface(SDL_Surface* inputsurface)
 {
-	m_Temp = 0;
-	m_Surface = 0;
-	m_Next = m_Prev = 0;
+	m_Temp = nullptr;
+	m_Surface = nullptr;
+	m_Next = nullptr;
+	m_Prev = nullptr;
 	m_UseKey = false;
 	m_UseAlpha = true;
 	m_Cached = false;
@@ -56,17 +58,18 @@ CSurface::CSurface(SDL_Surface* inputsurface)
 	LoadSurface(inputsurface);
 	m_SaveSurface = false;
 	m_ColoredSurface = false;
-	m_SpriteImage=0;
+	m_SpriteImage = nullptr;
 }
 
 
 CSurface::CSurface(std::string filename)
 {
-	m_Temp = 0;
-	m_Surface = 0;
-	m_SpriteImage=0;
+	m_Temp = nullptr;
+	m_Surface = nullptr;
+	m_SpriteImage = nullptr;
 	m_Filename = filename;
-	m_Next = m_Prev = 0;
+	m_Next = nullptr;
+	m_Prev = nullptr;
 	m_UseKey = false;
 	m_UseAlpha = true;
 	loaded=false;
@@ -93,15 +96,15 @@ void CSurface::Free()
 
 	if(m_Temp)
 		SDL_FreeSurface(m_Temp);
-	m_Temp = 0;
+	m_Temp = nullptr;
 
 	if(m_Surface)
 		SDL_FreeSurface(m_Surface);
-	m_Surface = 0;
+	m_Surface = nullptr;
 
 	if(m_SpriteImage)
 		SDL_FreeSurface(m_SpriteImage);
-	m_SpriteImage = 0;
+	m_SpriteImage = nullptr;
 }
 
 void CSurface::FreeResources()
@@ -126,7 +129,7 @@ bool CSurface::LoadImage(std::string filename, bool load)
 		return true;
 	}
 
-	SDL_Surface* loadedImage = 0;
+	SDL_Surface* loadedImage = nullptr;
 
 	// Load image
 	loadedImage = IMG_Load(filename.c_str());
@@ -210,7 +213,7 @@ bool CSurface::ResizeSprite(SDL_Surface* image, SDL_Rect* clip, bool maintainRat
 	double scaleX, scaleY;
 	if(m_SpriteImage)	// free old image
 		SDL_FreeSurface(m_SpriteImage);
-	m_SpriteImage = 0;
+	m_SpriteImage = nullptr;
 
 	if(maintainRatio == true)
 	{
@@ -238,7 +241,7 @@ bool CSurface::ResizeSprite(SDL_Surface* image, SDL_Rect* clip, bool maintainRat
 
 bool CSurface::DrawSprite(int x, int y)
 {
-	if(m_SpriteImage == 0)
+	if(m_SpriteImage == nullptr)
 	{
 		CLog l;
 		l.ss() <<	"ERROR - Draw Sprite, null surface";
@@ -250,7 +253,7 @@ bool CSurface::DrawSprite(int x, int y)
 	offset.x = x;
 	offset.y = y;
 
-	SDL_BlitSurface(m_SpriteImage, 0, g_Graphics.GetScreen(), &offset);
+	SDL_BlitSurface(m_SpriteImage, nullptr, g_Graphics.GetScreen(), &offset);
 	
 	return true;
 }
@@ -270,7 +273,7 @@ bool CSurface::DrawSurface(int x, int y, SDL_Surface* destination, SDL_Rect* cli
 		return false;
 	}
 
-	if(m_Surface == 0)
+	if(m_Surface == nullptr)
 	{
 		if(m_ColoredSurface == true)
 		{
@@ -284,7 +287,7 @@ bool CSurface::DrawSurface(int x, int y, SDL_Surface* destination, SDL_Rect* cli
 
 		if(m_Temp)
 			SDL_FreeSurface(m_Temp);
-		m_Temp = 0;
+		m_Temp = nullptr;
 		if(!loaded)
 		{
 			if(!LoadImage(m_Filename))
@@ -308,7 +311,7 @@ bool CSurface::DrawSurface(int x, int y, SDL_Surface* destination, SDL_Rect* cli
 
 	if(clip && resize)
 	{
-		if(m_Temp == 0)
+		if(m_Temp == nullptr)
 		{
 			if(maintainRatio == true)
 			{
@@ -339,7 +342,7 @@ bool CSurface::DrawSurface(int x, int y, SDL_Surface* destination, SDL_Rect* cli
 				{
 					if(m_Temp)	// free old image
 						SDL_FreeSurface(m_Temp);
-					m_Temp = 0;
+					m_Temp = nullptr;
 
 					if(m_Surface->w > m_Surface->h)	// if the width is larger so scale down based on the width but keep aspect ratio
 						scaleX = scaleY = ((double)clip->w / (double)m_Surface->w);
@@ -354,7 +357,7 @@ bool CSurface::DrawSurface(int x, int y, SDL_Surface* destination, SDL_Rect* cli
 				{
 					if(m_Temp)	// free old image
 						SDL_FreeSurface(m_Temp);
-					m_Temp = 0;
+					m_Temp = nullptr;
 
 					scaleX = ((double)clip->w / (double)m_Surface->w);
 					scaleY = ((double)clip->h / (double)m_Surface->h);
@@ -401,5 +404,5 @@ void CSurface::MakeColoredSurface(int width, int height, int red, int green, int
 {
 	m_ColoredSurface = true;
 	m_Surface = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, BPP, 0,0,0,0);
-	SDL_FillRect(m_Surface,0,SDL_MapRGB(m_Surface->format,red,green,blue));
+	SDL_FillRect(m_Surface,nullptr,SDL_MapRGB(m_Surface->format,red,green,blue));
 }

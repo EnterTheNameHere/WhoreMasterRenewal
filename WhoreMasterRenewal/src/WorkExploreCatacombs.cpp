@@ -78,7 +78,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 		{
 			if(type == 2)  // Monster girl type
 			{
-				sGirl* ugirl = 0;
+				sGirl* ugirl = nullptr;
 				bool unique = false;
 				if((g_Dice%100)+1 < 30)	// chance of getting unique girl
 					unique = true;
@@ -86,7 +86,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 				if(unique)  // Unique monster girl type
 				{
 					ugirl = g_Girls.GetRandomGirl(false, true);
-					if(ugirl == 0)
+					if(ugirl == nullptr)
 						unique = false;
 				}
 
@@ -108,7 +108,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 					// MYR: Commented out for local testing only. 
 
 					ugirl = g_Girls.CreateRandomGirl(0, false, false, true, true);
-					if(ugirl != 0)  // make sure a girl was returned
+					if(ugirl != nullptr)  // make sure a girl was returned
 					{
 						g_Brothels.GetDungeon()->AddGirl(ugirl, DUNGEON_GIRLCAPTURED);
 						type_monster_girls++;
@@ -127,7 +127,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 
 			if(tempgirl)
 				delete tempgirl;
-			tempgirl = 0;
+			tempgirl = nullptr;
 			break;
 		}
 		else if (fight_outcome == 0)  // it was a draw
@@ -137,7 +137,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 
 		if(tempgirl)
 			delete tempgirl;
-		tempgirl = 0;
+		tempgirl = nullptr;
 	} // # of monsters to fight loop
 
 
@@ -204,7 +204,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 			{
 				for(int j=0; j<MAXNUM_INVENTORY; j++)
 				{
-					if(g_Brothels.m_Inventory[j] == 0) // Empty slot
+					if(g_Brothels.m_Inventory[j] == nullptr) // Empty slot
 					{
 						item_list += ((item_list=="") ? "" : ", ") + TempItem->m_Name;
 						g_Brothels.m_Inventory[j] = TempItem;

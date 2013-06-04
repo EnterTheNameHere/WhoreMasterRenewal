@@ -52,7 +52,7 @@ static const char *stats[] = {
 	"spirit",	"beauty",       "tiredness",
 	"health",       "pc_fear",	 "pc_love",
 	"pc_hate",
-	0
+	nullptr
 };
 
 /*
@@ -70,7 +70,7 @@ static const char *skills[] =
 	"service",
 	"strip",
 	"combat",
-	0
+	nullptr
 };
 
 static void add_to_table(lua_State *L, int table, const char *key, lua_func f)
@@ -434,7 +434,7 @@ static void make_lua_girl(lua_State *L, sGirl *girl)
  *	that way we null out any pre-existing girl to show that
  *	there is no target girl for the current event
  */
-	if(girl == 0) {
+	if(girl == nullptr) {
 		lua_pushnil(L);
 		return;
 	}
@@ -690,7 +690,7 @@ static const luaL_Reg funx [] = {
 	{ "pop_window", pop_window },
 	{ "log", log_from_lua },
 	{ "message", queue_message },
-	{ 0, 0 }
+	{ nullptr, nullptr }
 };
 
 cLuaStateInner::cLuaStateInner()
@@ -729,7 +729,7 @@ cLuaStateInner::set_param(const char *name, void *pt)
 }
  */
 
-cLuaStateInner *cLuaState::instance = 0;
+cLuaStateInner *cLuaState::instance = nullptr;
 
 std::string cLuaScript::slurp(std::string path)
 {

@@ -131,7 +131,7 @@ std::string TrainableGirl::update_random(int size)
 }
 
 IdealAttr::IdealAttr(std::vector<TrainableGirl> set, std::string name, int attr_idx)
-: cTrainable(0, name, attr_idx, cTrainable::Stat)
+: cTrainable(nullptr, name, attr_idx, cTrainable::Stat)
 {
 	m_value		= 0;
 	m_potential	= 0;

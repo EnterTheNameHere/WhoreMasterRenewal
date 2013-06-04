@@ -27,7 +27,7 @@
 #include "InterfaceIDs.h"
 #include "InterfaceProcesses.h"
 
-cGetStringScreenManager_Inner *cGetStringScreenManager::instance = 0;
+cGetStringScreenManager_Inner *cGetStringScreenManager::instance = nullptr;
 
 cGetStringTransport::cGetStringTransport( std::string& dest )
     : m_dest( dest )

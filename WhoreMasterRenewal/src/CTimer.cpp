@@ -13,7 +13,7 @@ CTimer::CTimer()
 
 CTimer::~CTimer()
 {
-    
+    ;
 }
 
 void CTimer::Start()

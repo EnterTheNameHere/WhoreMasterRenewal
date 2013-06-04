@@ -5,8 +5,8 @@
 
 cTextItem::cTextItem()
 {
-    m_Next = 0;
-    m_ScrollBar = 0;
+    m_Next = nullptr;
+    m_ScrollBar = nullptr;
     m_Hide = false;
     m_AutoScrollBar = true;
     m_ForceScrollBar = false;
@@ -17,7 +17,7 @@ cTextItem::~cTextItem()
 {
     if( m_Next )
         delete m_Next;
-    m_Next = 0;
+    m_Next = nullptr;
 }
 
 void cTextItem::CreateTextItem( int ID, int x, int y, int width, int height, std::string text, int size, bool auto_scrollbar, bool force_scrollbar )

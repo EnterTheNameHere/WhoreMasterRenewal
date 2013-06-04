@@ -251,7 +251,7 @@ LUA_API int   (lua_getctx) (lua_State *L, int *ctx);
 
 LUA_API int   (lua_pcallk) (lua_State *L, int nargs, int nresults, int errfunc,
                             int ctx, lua_CFunction k);
-#define lua_pcall(L,n,r,f)	lua_pcallk(L, (n), (r), (f), 0, NULL)
+#define lua_pcall(L,n,r,f)	lua_pcallk(L, (n), (r), (f), 0, nullptr)
 
 LUA_API int   (lua_load) (lua_State *L, lua_Reader reader, void *dt,
                                         const char *chunkname,
@@ -311,9 +311,9 @@ LUA_API void      (lua_setallocf) (lua_State *L, lua_Alloc f, void *ud);
 ** ===============================================================
 */
 
-#define lua_tonumber(L,i)	lua_tonumberx(L,i,NULL)
-#define lua_tointeger(L,i)	lua_tointegerx(L,i,NULL)
-#define lua_tounsigned(L,i)	lua_tounsignedx(L,i,NULL)
+#define lua_tonumber(L,i)	lua_tonumberx(L,i, nullptr)
+#define lua_tointeger(L,i)	lua_tointegerx(L,i, nullptr)
+#define lua_tounsigned(L,i)	lua_tounsignedx(L,i, nullptr)
 
 #define lua_pop(L,n)		lua_settop(L, -(n)-1)
 
@@ -338,7 +338,7 @@ LUA_API void      (lua_setallocf) (lua_State *L, lua_Alloc f, void *ud);
 #define lua_pushglobaltable(L)  \
 	lua_rawgeti(L, LUA_REGISTRYINDEX, LUA_RIDX_GLOBALS)
 
-#define lua_tostring(L,i)	lua_tolstring(L, (i), NULL)
+#define lua_tostring(L,i)	lua_tolstring(L, (i), nullptr)
 
 
 

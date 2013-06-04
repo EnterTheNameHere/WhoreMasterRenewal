@@ -162,7 +162,7 @@ bool LoadStatsXML(TiXmlHandle hStats,
 				  int tempStats[])
 {
 	TiXmlElement* pStats = hStats.ToElement();
-	if (pStats == 0)
+	if (pStats == nullptr)
 	{
 		return false;
 	}
@@ -216,7 +216,7 @@ bool LoadSkillsXML(TiXmlHandle hSkills,
 				   int tempSkills[])
 {
 	TiXmlElement* pSkills = hSkills.ToElement();
-	if (pSkills == 0)
+	if (pSkills == nullptr)
 	{
 		return false;
 	}
@@ -284,7 +284,7 @@ bool LoadTraitsXML(TiXmlHandle hTraits,
 {
 	numTraits = 0;
 	TiXmlElement* pTraits = hTraits.ToElement();
-	if (pTraits == 0)
+	if (pTraits == nullptr)
 	{
 		return false;
 	}
@@ -349,7 +349,7 @@ bool LoadActionsXML(TiXmlHandle hActions,
 					int enjoyments[])
 {
 	TiXmlElement* pActions = hActions.ToElement();
-	if (pActions == 0)
+	if (pActions == nullptr)
 	{
 		return false;
 	}
@@ -400,7 +400,7 @@ bool LoadInventoryXML(TiXmlHandle hInventory,
 {
 	numItems = 0;
 	TiXmlElement* pInventory = hInventory.ToElement();
-	if (pInventory == 0)
+	if (pInventory == nullptr)
 	{
 		return false;
 	}
@@ -409,7 +409,7 @@ bool LoadInventoryXML(TiXmlHandle hInventory,
 	if (pItems)
 	{
 		for(TiXmlElement* pItem = pItems->FirstChildElement("Item");
-			pItem != 0;
+			pItem != nullptr;
 			pItem = pItem->NextSiblingElement("Item"))
 		{
 			if (pItem->Attribute("Name"))

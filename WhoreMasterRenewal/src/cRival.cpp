@@ -55,15 +55,15 @@ cRival::~cRival()
     if( m_Next )
         delete m_Next;
     
-    m_Next = 0;
-    m_Prev = 0;
+    m_Next = nullptr;
+    m_Prev = nullptr;
 }
 
 cRivalManager::cRivalManager()
 {
-	m_Rivals=0;
+	m_Rivals=nullptr;
 	m_NumRivals=0;
-	m_Last=0;
+	m_Last=nullptr;
 	m_PlayerSafe = true;
 
 
@@ -410,7 +410,7 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 									g_MessageQue.AddToQue(message, 3);
 								}
 								delete rGang;
-								rGang = 0;
+								rGang = nullptr;
 							}
 							else
 							{
@@ -514,7 +514,7 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 									miss1->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 								}
 								delete rGang;
-								rGang = 0;
+								rGang = nullptr;
 							}
 							else
 							{
@@ -644,7 +644,7 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 cRival* cRivalManager::GetRandomRival()
 {
 	if(m_NumRivals == 0)
-		return 0;
+		return nullptr;
 
 	if(m_NumRivals == 1)
 		return m_Rivals;
@@ -686,13 +686,13 @@ cRival* cRivalManager::GetRival(std::string name)
 			return current;
 		current = current->m_Next;
 	}
-	return 0;
+	return nullptr;
 }
 
 cRival* cRivalManager::get_influential_rival()
 {
 	cRival* current;
-	cRival* top = 0;
+	cRival* top = nullptr;
 /*
  *	we're looking for the rival with the most influence
  */
@@ -710,7 +710,7 @@ cRival* cRivalManager::get_influential_rival()
  *		And since we already weeded out
  *		the influence-less rivals at this point...
  */
-		if(top == 0) {
+		if(top == nullptr) {
 			top = current;
 			continue;
 		}
@@ -742,7 +742,7 @@ cRival* cRivalManager::GetRival(int number)
 		current = current->m_Next;
 	}
 
-	return 0;
+	return nullptr;
 }
 
 TiXmlElement* cRivalManager::SaveRivalsXML(TiXmlElement* pRoot)
@@ -808,7 +808,7 @@ bool cRivalManager::LoadRivalsXML(TiXmlHandle hRivalManager)
 {
 	Free();//everything should be init even if we failed to load an XML element
 	TiXmlElement* pRivalManager = hRivalManager.ToElement();
-	if (pRivalManager == 0)
+	if (pRivalManager == nullptr)
 	{
 		return false;
 	}
@@ -819,7 +819,7 @@ bool cRivalManager::LoadRivalsXML(TiXmlHandle hRivalManager)
 	if (pRivals)
 	{
 		for(TiXmlElement* pRival = pRivals->FirstChildElement("Rival");
-			pRival != 0;
+			pRival != nullptr;
 			pRival = pRival->NextSiblingElement("Rival"))
 		{
 			cRival* current = new cRival();
@@ -949,8 +949,9 @@ void cRivalManager::RemoveRival(cRival* rival)
 		m_Rivals = rival->m_Next;
 	if(rival == m_Last)
 		m_Last = rival->m_Prev;
-	rival->m_Prev = rival->m_Next = 0;
+	rival->m_Prev = nullptr;
+	rival->m_Next = nullptr;
 	delete rival;
-	rival = 0;
+	rival = nullptr;
 	m_NumRivals--;
 }

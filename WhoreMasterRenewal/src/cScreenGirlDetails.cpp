@@ -105,7 +105,7 @@ void cScreenGirlDetails::Free()
 void cScreenGirlDetails::init()
 {
 
-	if(selected_girl == 0)
+	if(selected_girl == nullptr)
 	{
 		g_WinManager.Pop();
 		g_InitWin = true;
@@ -131,7 +131,7 @@ void cScreenGirlDetails::init()
 	if(selected_girl->health() <= 0)
 	{
 		selected_girl = remove_selected_girl();
-		if(selected_girl == 0)
+		if(selected_girl == nullptr)
 		{
 			g_WinManager.Pop();
 			g_InitWin = true;
@@ -402,7 +402,7 @@ void cScreenGirlDetails::check_events()
 
 			if(g_Brothels.GetDungeon()->GetNumGirls() == 0)
 			{
-				selected_girl = 0;
+				selected_girl = nullptr;
 				g_WinManager.Pop();
 			}
 			else
@@ -470,7 +470,7 @@ void cScreenGirlDetails::check_events()
 					g_MessageQue.AddToQue(smess, 1);
 
 					selected_girl = nextGirl;
-					if(selected_girl == 0)
+					if(selected_girl == nullptr)
 						g_WinManager.Pop();
 				}
 				else	// otherwise put her in the dungeon
@@ -486,7 +486,7 @@ void cScreenGirlDetails::check_events()
 
 					if(g_Brothels.GetNumGirls(g_CurrBrothel) == 0)
 					{
-						selected_girl = 0;
+						selected_girl = nullptr;
 						g_WinManager.Pop();
 					}
 					else
@@ -545,7 +545,7 @@ void cScreenGirlDetails::check_events()
 			if(selected_girl->m_DayJob != JOB_INDUNGEON)
 			{
 				int v[2] = {1,-1};
-				cTrigger* trig = 0;
+				cTrigger* trig = nullptr;
 				if(!(trig = selected_girl->m_Triggers.CheckForScript(TRIGGER_TALK, false, v)))	// trigger any girl specific talk script
 				{
 					// no, so trigger the default one
@@ -567,7 +567,7 @@ void cScreenGirlDetails::check_events()
 			else
 			{
 				int v[2] = {0,-1};
-				cTrigger* trig = 0;
+				cTrigger* trig = nullptr;
 				if(!(trig = selected_girl->m_Triggers.CheckForScript(TRIGGER_TALK, false, v)))	// trigger any girl specific talk script
 				{
 					// no, so trigger the default one
@@ -665,7 +665,7 @@ void cScreenGirlDetails::NextGirl()
  */
 sGirl *cScreenGirlDetails::get_prev_girl()
 {
-	sGirl *prev_girl = 0;
+	sGirl *prev_girl = nullptr;
 
 	if (cycle_girls.size() == 0)					// Myr: Found this case from an exception. Will test to see if this
 		return prev_girl;							//      is a good fix.
@@ -690,7 +690,7 @@ sGirl *cScreenGirlDetails::get_prev_girl()
  */
 sGirl *cScreenGirlDetails::get_next_girl()
 {
-	sGirl *next_girl = 0;
+	sGirl *next_girl = nullptr;
 
 	if (cycle_girls.size() == 0) // Myr: Found this case from an exception.
 		return next_girl;
@@ -715,10 +715,10 @@ sGirl *cScreenGirlDetails::get_next_girl()
  */
 sGirl *cScreenGirlDetails::remove_selected_girl()
 {
-	sGirl *next_girl = 0;
+	sGirl *next_girl = nullptr;
 
 	if(cycle_girls.size() == 0) {
-		return 0;
+		return nullptr;
 	}
 
 	int cur_id = cycle_girls[cycle_pos];
@@ -864,7 +864,7 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, std::string &message)
 	selected_girl = nextGirl;
 	g_InitWin = true;
 
-	if(selected_girl == 0)
+	if(selected_girl == nullptr)
 		g_WinManager.Pop();
 
 	return true;	// the girl still won

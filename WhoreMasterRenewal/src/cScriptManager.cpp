@@ -22,7 +22,7 @@
 #include "CLog.h"
 #include "DirPath.h"
 
-cScriptManagerInner* cScriptManager::instance = 0;
+cScriptManagerInner* cScriptManager::instance = nullptr;
 
 static bool ends_with( std::string s, std::string suff )
 {

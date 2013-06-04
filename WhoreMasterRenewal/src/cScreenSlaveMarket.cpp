@@ -109,7 +109,7 @@ void cScreenSlaveMarket::init()
  *			first of all, if there isn't a girl in this slot
  *			the rest doesn't matter much
  */
-			if(MarketSlaveGirls[i] == 0) {
+			if(MarketSlaveGirls[i] == nullptr) {
 				continue;
 			}
 /*
@@ -140,7 +140,7 @@ void cScreenSlaveMarket::init()
  *
  *		For now: is there a girl in the current slot?
  */
-		if(MarketSlaveGirls[i] != 0) {
+		if(MarketSlaveGirls[i] != nullptr) {
 /*
  *			Yes there is. Is it OK to delete her.
  *			If so, do it
@@ -151,7 +151,7 @@ void cScreenSlaveMarket::init()
 /*
  *			in any case, mark the slot as empty
  */
-			MarketSlaveGirls[i] = 0;
+			MarketSlaveGirls[i] = nullptr;
 		}
 
 /*
@@ -164,7 +164,7 @@ void cScreenSlaveMarket::init()
  *
  *		so we need a random one
  */
-		if(MarketSlaveGirls[i] == 0) {
+		if(MarketSlaveGirls[i] == nullptr) {
 			MarketSlaveGirls[i] = g_Girls.CreateRandomGirl(0, false, "", true);
 			MarketSlaveGirlsDel[i] = -1;
 		}
@@ -175,7 +175,7 @@ void cScreenSlaveMarket::init()
  *		in which case there's nothing more for this time round.
  *		(and arguably for the loop...)
  */
-		if(MarketSlaveGirls[i] == 0) {
+		if(MarketSlaveGirls[i] == nullptr) {
 			continue;
 		}
 /*
@@ -242,7 +242,7 @@ void cScreenSlaveMarket::init()
  *	diagnostic before exiting the func
  */
 	sGirl* g = MarketSlaveGirls[tmp];
-	if(g == 0) {
+	if(g == nullptr) {
 		g_LogFile.ss() << "error: null pointer for cursor entry in market" << std::endl;
 		g_LogFile.ssend();
 		return;
@@ -426,7 +426,7 @@ bool cScreenSlaveMarket::change_selected_girl()
  *	if the player selected an empty slot
  *	make that into "nothing selected" and return
  */
-	if(MarketSlaveGirls[selection] == 0)
+	if(MarketSlaveGirls[selection] == nullptr)
 		selection = -1;
 
 /*
@@ -538,7 +538,7 @@ bool cScreenSlaveMarket::check_events()
  *	and we're done
  */
 	if(g_InterfaceEvents.CheckButton(back_id)) {
-		girl = 0;
+		girl = nullptr;
 		g_InitWin = true;
 		g_WinManager.Pop();
 		return true;
@@ -589,7 +589,7 @@ bool cScreenSlaveMarket::check_events()
 				g_Brothels.AddGirl(g_CurrBrothel, girl);
 			}
 			EditTextItem("", details_id);
-			MarketSlaveGirls[selection] = 0;
+			MarketSlaveGirls[selection] = nullptr;
 		}
 		selection = -1;
 		g_InitWin = true;

@@ -65,7 +65,7 @@ bool cJobManager::WorkBeastCapture(sGirl* girl, sBrothel* brothel, int DayNight,
     // Cleanup
 	if(tempgirl)
 		delete tempgirl;
-	tempgirl = 0;
+	tempgirl = nullptr;
 
 	// Improve girl
 	int xp = 8, libido = 2, skill = 1, BestSkill = g_Dice%4;

@@ -118,11 +118,11 @@ void cInterfaceWindow::Free()
 
 	if(m_Background)
 		SDL_FreeSurface(m_Background);
-	m_Background = 0;
+	m_Background = nullptr;
 
 	if(m_Border)
 		SDL_FreeSurface(m_Border);
-	m_Border = 0;
+	m_Border = nullptr;
 }
 
 void cInterfaceWindow::UpdateWindow(int x, int y)
@@ -191,7 +191,7 @@ void cInterfaceWindow::Reset()
 	{
 		if(m_Images[i]->m_loaded == false)
 		{
-			m_Images[i]->m_Image = 0;
+			m_Images[i]->m_Image = nullptr;
 		}
 	}
 
@@ -211,11 +211,11 @@ void cInterfaceWindow::Draw()
 		offset.y = m_YPos;
 
 		// blit to the screen
-		SDL_BlitSurface(m_Border, 0, g_Graphics.GetScreen(), &offset);
+		SDL_BlitSurface(m_Border, nullptr, g_Graphics.GetScreen(), &offset);
 
 		offset.x = m_XPos+m_BorderSize;
 		offset.y = m_YPos+m_BorderSize;
-		SDL_BlitSurface(m_Background, 0, g_Graphics.GetScreen(), &offset);
+		SDL_BlitSurface(m_Background, nullptr, g_Graphics.GetScreen(), &offset);
 	}
 
 	if(m_BackgroundSurface)
@@ -226,7 +226,7 @@ void cInterfaceWindow::Draw()
 		clip.w = m_Width-(m_BorderSize*2);
 		clip.h = m_Height-(m_BorderSize*2);
 
-		m_BackgroundSurface->DrawSurface(clip.x,clip.y,0,&clip,true);
+		m_BackgroundSurface->DrawSurface(clip.x,clip.y, nullptr,&clip,true);
 	}
 
 	// draw Images
@@ -397,7 +397,7 @@ void cInterfaceWindow::AddImage(int & id, std::string filename, int x, int y, in
 void cInterfaceWindow::SetImage(int id, CSurface* image)
 {
 	m_Images[id]->m_Image = image;
-	m_Images[id]->m_AnimatedImage = 0;
+	m_Images[id]->m_AnimatedImage = nullptr;
 }
 
 void cInterfaceWindow::SetImage(int id, cAnimatedSurface* image)
@@ -446,10 +446,10 @@ void cInterfaceWindow::CreateWindow(int x, int y, int width, int height, int Bor
 	m_BorderSize = BorderSize;
 	SetPosition(x,y,width,height);
 	m_Border = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, 0,0,0,0);
-	SDL_FillRect(m_Border,0,SDL_MapRGB(m_Border->format,g_WindowBorderR,g_WindowBorderG,g_WindowBorderB));
+	SDL_FillRect(m_Border, nullptr,SDL_MapRGB(m_Border->format,g_WindowBorderR,g_WindowBorderG,g_WindowBorderB));
 
 	m_Background = SDL_CreateRGBSurface(SDL_SWSURFACE, width-(BorderSize*2), height-(BorderSize*2), 32, 0,0,0,0);
-	SDL_FillRect(m_Background,0,SDL_MapRGB(m_Background->format,g_WindowBackgroundR,g_WindowBackgroundG,g_WindowBackgroundB));
+	SDL_FillRect(m_Background, nullptr,SDL_MapRGB(m_Background->format,g_WindowBackgroundR,g_WindowBackgroundG,g_WindowBackgroundB));
 }
 
 void cInterfaceWindow::SetBackgroundImage(std::string file)
@@ -1060,7 +1060,7 @@ void cInterfaceWindowXML::add_widget(std::string widget_name,int x,int y,std::st
 	CLog l;
 
 	cXmlWidget *widget = find_widget(widget_name);
-	if(widget == 0) {
+	if(widget == nullptr) {
 		l.ss()	<< "Error: can't find definition for widget '"
 			<< widget_name
 			<< "'"
@@ -1604,7 +1604,7 @@ cXmlWidget* cInterfaceWindowXML::find_widget(std::string name)
 
 	it = widgets.find(name);
 	if(it == widgets.end()) {
-		return 0;
+		return nullptr;
 	}
 	return it->second;
 }

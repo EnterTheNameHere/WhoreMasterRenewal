@@ -118,7 +118,7 @@ void cScreenGirlManagement::init()
 					else
 					{  // random girls simply get removed from the game
 						delete selected_girl;
-						selected_girl = 0;
+						selected_girl = nullptr;
 					}
 
 					g_Gold.slave_sales(cost);
@@ -152,7 +152,7 @@ void cScreenGirlManagement::init()
 					else
 					{  // random girls simply get removed from the game
 						delete selected_girl;
-						selected_girl = 0;
+						selected_girl = nullptr;
 					}
 
 					g_InitWin = true;
@@ -460,7 +460,7 @@ void cScreenGirlManagement::check_events()
 			DisableButton(freeslave_id, true);
 			DisableButton(sellslave_id, true);
 			DisableButton(viewdetails_id, true);
-			selected_girl = 0;
+			selected_girl = nullptr;
 			selection = -1;
 		}
 		lastNum = -2;
