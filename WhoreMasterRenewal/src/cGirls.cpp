@@ -11873,6 +11873,15 @@ sChild::sChild( bool is_players, Gender gender )
     m_Sex = ( g_Dice.is_girl() ? Girl : Boy );
 }
 
+sChild::~sChild()
+{
+    m_Prev = 0;
+    
+    if( m_Next )delete m_Next;
+    
+    m_Next = 0;
+}
+
 void cChildList::add_child( sChild* child )
 {
     m_NumChildren++;

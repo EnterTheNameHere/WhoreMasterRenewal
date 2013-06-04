@@ -215,7 +215,7 @@ typedef struct sChild
 	sChild* m_Prev;
 
 	sChild(bool is_players = false, Gender gender = None);
-	~sChild(){m_Prev=0;if(m_Next)delete m_Next;m_Next=0;}
+	~sChild();
 
 	TiXmlElement* SaveChildXML(TiXmlElement* pRoot);
 	bool LoadChildXML(TiXmlHandle hChild);
