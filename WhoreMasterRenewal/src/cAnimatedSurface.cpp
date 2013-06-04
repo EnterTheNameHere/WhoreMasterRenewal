@@ -95,11 +95,13 @@ void cAnimatedSurface::UpdateSprite(SDL_Rect& rect, int width, int height)
 
 void cAnimatedSurface::SetData(int xPos, int yPos, int numFrames, int speed, int width, int height, CSurface* surface)
 {
-	m_CurrentColumn = m_CurrentRow = m_CurrentFrame = 0;
+	m_CurrentColumn = 0;
+	m_CurrentRow = 0;
+	m_CurrentFrame = 0;
 	m_Speed = speed;
 	m_NumFrames = numFrames;
 
-	if(surface->GetSurface() != 0)
+	if( surface->GetSurface() != nullptr )
 	{
 		m_Colums = (**(surface->GetSurface())).w/width;
 		m_Rows = (**(surface->GetSurface())).h/height;
@@ -118,7 +120,7 @@ void cAnimatedSurface::SetData(int xPos, int yPos, int numFrames, int speed, int
 	// prepare the sprite surface
 	if(m_SpriteSurface)
 		SDL_FreeSurface(m_SpriteSurface);
-	m_SpriteSurface = 0;
+	m_SpriteSurface = nullptr;
 	m_SpriteSurface = SDL_CreateRGBSurface(SDL_SWSURFACE, m_Frames.w, m_Frames.h, 32, 0,0,0,0);
 
 	m_Surface = surface;
@@ -126,8 +128,8 @@ void cAnimatedSurface::SetData(int xPos, int yPos, int numFrames, int speed, int
 
 CAnimatedSprite::CAnimatedSprite()
 {
-    m_Animations = 0;
-    m_Image = 0;
+    m_Animations = nullptr;
+    m_Image = nullptr;
     m_CurrAnimation = 0;
 }
 
@@ -145,13 +147,13 @@ void CAnimatedSprite::Free()
 {
 	if(m_Animations)
 		delete [] m_Animations;
-	m_Animations=0;
+	m_Animations = nullptr;
 
 	if(m_Image)
 		delete m_Image;
-	m_Image = 0;
+	m_Image = nullptr;
 
-	m_CurrAnimation=0;
+	m_CurrAnimation = 0;
 }
 
 bool CAnimatedSprite::Draw(int x, int y, int width, int height, unsigned int currentTime)
@@ -163,9 +165,9 @@ bool CAnimatedSprite::LoadAnimations(std::string imgFilename, std::string animat
 {
 	int NumAnims;
 	int numFrames, speed, xPos, yPos, width, height;
-	std::ifstream ifile(animationData.c_str());
+	std::ifstream ifile( animationData );
 
-	if(ifile == 0)
+	if( !ifile )
 		return false;
 
 	m_Image = new CSurface(imgFilename);

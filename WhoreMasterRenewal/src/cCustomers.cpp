@@ -143,7 +143,7 @@ void cCustomers::GetCustomer(sCustomer& customer, sBrothel * brothel)
 		customer.m_Class = 3;
 	}
 
-	customer.m_Next = 0;
+	customer.m_Next = nullptr;
 }
 
 void cCustomers::GenerateCustomers(sBrothel * brothel, int DayNight)

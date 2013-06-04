@@ -29,8 +29,9 @@ float FontScale = 1.0f;
 
 cFont::cFont()
 {
-    m_Font = 0;
-    m_MultilineMessage = m_Message = 0;
+    m_Font = nullptr;
+    m_MultilineMessage = nullptr;
+    m_Message = nullptr;
     m_Text = "";
     m_NewText = true;
     m_IsMultiline = false;
@@ -55,7 +56,7 @@ void cFont::SetText( std::string text )
 // it then blits the lines of text to this surface so it is then ready to be drawn as normal
 void cFont::RenderMultilineText( std::string text )
 {
-    if( m_NewText == false && m_MultilineMessage != 0 )
+    if( m_NewText == false && m_MultilineMessage != nullptr )
         return;
         
     if( text == "" && m_Text == "" )
@@ -136,7 +137,7 @@ void cFont::RenderMultilineText( std::string text )
     if( m_MultilineMessage )
         SDL_FreeSurface( m_MultilineMessage );
         
-    m_MultilineMessage = 0;
+    m_MultilineMessage = nullptr;
     
     // create a surface to render all the text too
     m_MultilineMessage = SDL_CreateRGBSurface( SDL_SWSURFACE, width, height, 32, 0xFF000000, 0x00FF0000, 0x0000FF00, 0x000000FF );
@@ -157,17 +158,17 @@ void cFont::RenderMultilineText( std::string text )
     if( m_Message )
         SDL_FreeSurface( m_Message );
         
-    m_Message = 0;
+    m_Message = nullptr;
     
     m_NewText = false;
 }
 
 void cFont::RenderText( std::string text, bool multi )
 {
-    if( m_NewText == false && m_Message != 0 )
+    if( m_NewText == false && m_Message != nullptr )
         return;
         
-    if( m_Font == 0 )
+    if( m_Font == nullptr )
     {
         g_LogFile.ss() << "Error rendering font string: " << text << std::endl;
         g_LogFile.ssend();
@@ -177,14 +178,14 @@ void cFont::RenderText( std::string text, bool multi )
     if( m_Message )
         SDL_FreeSurface( m_Message );
         
-    m_Message = 0;
+    m_Message = nullptr;
     
     if( ( text == "" ) && ( m_Text == "" ) )
         return;
-    
+        
     if( text == "" )
         text = m_Text;
-    
+        
     // We don't want to display \r since it does square...
     if( text == "\r" )
         return;
@@ -196,7 +197,7 @@ void cFont::RenderText( std::string text, bool multi )
     else
         m_Message = TTF_RenderText_Solid( m_Font, text.c_str(), m_TextColor );
         
-    if( m_Message == 0 )
+    if( m_Message == nullptr )
     {
         g_LogFile.write( "Error in RenderText m_Message. Text which was to be rendered: \"" + text + "\"" );
         g_LogFile.write( TTF_GetError() );
@@ -256,9 +257,9 @@ bool cFont::DrawText( int x, int y, SDL_Surface* destination, bool multi )
         int ret = 0;
         
         if( destination )
-            ret = SDL_BlitSurface( m_Message, 0, destination, &offset );
+            ret = SDL_BlitSurface( m_Message, nullptr, destination, &offset );
         else
-            ret = SDL_BlitSurface( m_Message, 0, g_Graphics.GetScreen(), &offset );
+            ret = SDL_BlitSurface( m_Message, nullptr, g_Graphics.GetScreen(), &offset );
             
         if( ret == -1 )
         {
@@ -336,7 +337,7 @@ bool cFont::LoadFont( std::string font, int size )
     if( m_Font )
         TTF_CloseFont( m_Font );
         
-    m_Font = 0;
+    m_Font = nullptr;
     
     if( cfg.debug.log_fonts() )
     {
@@ -349,7 +350,7 @@ bool cFont::LoadFont( std::string font, int size )
         g_LogFile.ssend();
     }
     
-    if( ( m_Font = TTF_OpenFont( font.c_str(), ( int )( size * FontScale ) ) ) == 0 )
+    if( ( m_Font = TTF_OpenFont( font.c_str(), ( int )( size * FontScale ) ) ) == nullptr )
     {
         g_LogFile.write( "Error in LoadFont for font file: " + font );
         g_LogFile.write( TTF_GetError() );
@@ -364,17 +365,17 @@ void cFont::Free()
     if( m_Message )
         SDL_FreeSurface( m_Message );
         
-    m_Message = 0;
+    m_Message = nullptr;
     
     if( m_MultilineMessage )
         SDL_FreeSurface( m_MultilineMessage );
         
-    m_MultilineMessage = 0;
+    m_MultilineMessage = nullptr;
     
 // this was consistently causing a crash on exit for me on Win7x64 - Dagoth
 //  if(m_Font)
 //      TTF_CloseFont(m_Font);
-    m_Font = 0;
+    m_Font = nullptr;
 }
 
 std::string cFont::UpdateLineEndings( std::string text )
@@ -389,6 +390,7 @@ std::string cFont::UpdateLineEndings( std::string text )
         text.insert( pos, "\r" );
         pos = text.find( "\n", pos + 2 );
     }
+    
 #endif
     return text;
 }

@@ -39,20 +39,20 @@ cButton::~cButton()
 {
 	if(m_Next)
 		delete m_Next;
-	m_Next = 0;
-	m_CurrImage = 0;
+	m_Next = nullptr;
+	m_CurrImage = nullptr;
 
 	if(m_OffImage)
 		delete m_OffImage;
-	m_OffImage = 0;
+	m_OffImage = nullptr;
 
 	if(m_DisabledImage)
 		delete m_DisabledImage;
-	m_DisabledImage = 0;
+	m_DisabledImage = nullptr;
 
 	if(m_OnImage)
 		delete m_OnImage;
-	m_OnImage = 0;
+	m_OnImage = nullptr;
 }
 
 void cButton::SetDisabled( bool disable )
@@ -72,7 +72,7 @@ bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std:
 		m_OffImage->m_Cached=cached;
 	}
 	else
-		m_OffImage = 0;
+		m_OffImage = nullptr;
 
 	if(DisabledImage != "")
 	{
@@ -80,7 +80,7 @@ bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std:
 		m_DisabledImage->m_Cached=cached;
 	}
 	else 
-		m_DisabledImage = 0;
+		m_DisabledImage = nullptr;
 
 	if(OnImage != "")
 	{
@@ -88,7 +88,7 @@ bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std:
 		m_OnImage->m_Cached=cached;
 	}
 	else
-		m_OnImage = 0;
+		m_OnImage = nullptr;
 
 	m_CurrImage = m_OffImage;
 	SetPosition(x,y,width,height);
@@ -103,7 +103,7 @@ bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std:
 			m_OnImage->SetAlpha(true);
 	}
 
-	m_Next = 0;
+	m_Next = nullptr;
 	m_ID = ID;
 
 	return true;
@@ -149,6 +149,6 @@ void cButton::Draw()
 		rect.w = m_Width;
 		rect.h = m_Height;
 
-		m_CurrImage->DrawSurface(m_XPos,m_YPos, 0, &rect, true);
+		m_CurrImage->DrawSurface(m_XPos,m_YPos, nullptr, &rect, true);
 	}
 }

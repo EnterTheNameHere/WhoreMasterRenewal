@@ -580,10 +580,10 @@ public:
 	void LevelUpStats(sGirl* girl); // Functionalized stat increase for LevelUp
 	void UpdateStat(sGirl* girl, int stat, int amount);	// updates a stat
 	void LoadGirlImages(sGirl* girl);	// loads a girls images using her name to check that directory in the characters folder
-	void ApplyTraits(sGirl* girl, sTrait* trait = 0, bool rememberflag= false);	// applys the stat bonuses for traits to a girl
-	void UnapplyTraits(sGirl* girl, sTrait* trait = 0);	// unapplys a trait (or all traits) from a girl
+	void ApplyTraits(sGirl* girl, sTrait* trait = nullptr, bool rememberflag = false);	// applys the stat bonuses for traits to a girl
+	void UnapplyTraits(sGirl* girl, sTrait* trait = nullptr);	// unapplys a trait (or all traits) from a girl
 	bool PossiblyGainNewTrait(sGirl* girl, std::string Trait, int Threshold, int ActionType, std::string Message, bool DayNight);
-	//int UnapplyTraits(sGirl* girl, sTrait* trait = 0);	// unapplys a trait (or all traits) from a girl
+	//int UnapplyTraits(sGirl* girl, sTrait* trait = nullptr);	// unapplys a trait (or all traits) from a girl
 	void UpdateSkill(sGirl* girl, int skill, int amount);	// updates a skill
 	void UpdateEnjoyment(sGirl* girl, int whatSheEnjoys, int amount, bool wrapTo100 = false); //updates what she enjoys
 	int DrawGirl(sGirl* girl, int x, int y, int width, int height, int ImgType, bool random = true, int img = 0);	// draws a image of a girl
@@ -647,7 +647,7 @@ public:
 
 	int GetSkillWorth(sGirl* girl);
 
-	bool DisobeyCheck(sGirl* girl, int action, sBrothel* brothel = 0);
+	bool DisobeyCheck(sGirl* girl, int action, sBrothel* brothel = nullptr);
 
 	std::string GetDetailsString(sGirl* girl, bool purchace = false);
 	std::string GetMoreDetailsString(sGirl* girl);

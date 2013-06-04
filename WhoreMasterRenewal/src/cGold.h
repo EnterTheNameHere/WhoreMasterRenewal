@@ -242,7 +242,7 @@ class cGold : public cGoldBase
 	std::map<int, cGoldBase *> brothels;
 	cGoldBase *find_brothel_account(int id) {
 		cGoldBase *ac_pt = brothels[id];
-		if(ac_pt == 0) {
+		if( ac_pt == nullptr ) {
 			ac_pt = new cGoldBase(0);
 			brothels[id] = ac_pt;
 		}

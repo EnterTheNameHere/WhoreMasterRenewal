@@ -34,8 +34,8 @@ public:
 
 	void SetColor(unsigned char r, unsigned char g, unsigned char b);
 
-	bool DrawText(int x, int y, SDL_Surface* destination = 0, bool multi = false);	// draws the text surface to the screen
-	bool DrawMultilineText(int x, int y, int linesToSkip = 0, int offsetY = 0, SDL_Surface* destination = 0);	// draws the text surface to the screen
+	bool DrawText(int x, int y, SDL_Surface* destination = nullptr, bool multi = false);	// draws the text surface to the screen
+	bool DrawMultilineText(int x, int y, int linesToSkip = 0, int offsetY = 0, SDL_Surface* destination = nullptr);	// draws the text surface to the screen
 	bool LoadFont(std::string font, int size);
 	void SetText(std::string text);
 	std::string GetText();

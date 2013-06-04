@@ -41,7 +41,7 @@ cBuilding::cBuilding()
 {
     m_capacity	= 20;
     m_free		= 20;
-    m_reversion	= 0;
+    m_reversion	= nullptr;
 }
 
 bool cBuilding::add(sFacility* fac)
@@ -101,7 +101,7 @@ void cBuilding::revert()
         m_free -= fpt->space_taken();
     }
     delete m_reversion;
-    m_reversion = 0;
+    m_reversion = nullptr;
 }
 
 std::ofstream& cBuilding::save(std::ofstream& ofs, std::string name)
@@ -259,8 +259,8 @@ void cBuilding::clear_reversion_list()
 	u_int lim = list.size();
  	for(u_int i = 0; i < lim; i++) {
 		delete list[i];
-		list[i] = 0;
+		list[i] = nullptr;
 	}
 	delete m_reversion;
-	m_reversion = 0;
+	m_reversion = nullptr;
 }
