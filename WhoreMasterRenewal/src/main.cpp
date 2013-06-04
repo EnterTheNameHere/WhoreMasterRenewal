@@ -25,7 +25,6 @@
 #include "sConfig.h"
 #include "CSurface.h"
 #include "cJobManager.h"
-#include "Revision.h"
 #include "cWindowManager.h"
 #include "cMessageBox.h"
 #include "cChoiceMessage.h"
@@ -525,15 +524,13 @@ bool Init()
 //	build the caption string
 //
 	std::stringstream ss;
-	ss << "Whore Master v"
+	ss << "Whore Master: Renewal v"
 	   << g_MajorVersion
 	   << "."
-	   << g_MinorVersionA
-	   << g_MinorVersionB
+	   << g_MinorVersion
 	   << "."
-	   << g_StableVersion
-	   << " BETA"
-	   << " Svn: " << svn_revision
+	   << g_PatchVersion
+	   << g_MetadataVersion;
 	;
 //
 //  init the graphics, with the caption on the titlebar

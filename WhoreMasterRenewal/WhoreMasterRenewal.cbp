@@ -261,7 +261,6 @@
 		<Unit filename="src/LuaUtils.hpp" />
 		<Unit filename="src/MasterFile.cpp" />
 		<Unit filename="src/MasterFile.h" />
-		<Unit filename="src/Revision.h" />
 		<Unit filename="src/WindowManager.cpp" />
 		<Unit filename="src/WindowManager.hpp" />
 		<Unit filename="src/WorkAdvertising.cpp" />

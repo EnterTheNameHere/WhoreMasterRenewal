@@ -20,13 +20,15 @@
 #define CONSTANTS_H_INCLUDED_1522
 #pragma once
 
+#include <string>
+
 typedef unsigned int u_int;
 
-// game version
-const int g_MajorVersion    = 1;
-const int g_MinorVersionA   = 3;
-const int g_MinorVersionB   = 0;
-const int g_StableVersion   = 4;
+// Game version. Semantic Versioning used, see: http://semver.org/
+const size_t g_MajorVersion = 0;
+const size_t g_MinorVersion = 0;
+const size_t g_PatchVersion = 0;
+const std::string g_MetadataVersion = "-alpha";
 
 enum {
 	SHIFT_DAY	= 0,
