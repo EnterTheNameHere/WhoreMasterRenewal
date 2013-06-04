@@ -117,39 +117,8 @@ typedef struct sRandomGirl
  *	END MOD
  */
 	static sGirl* lookup;  // used to look up stat and skill IDs
-	sRandomGirl()
-	{
-		m_Next=0;
-		//assigning defaults
-		for(int i=0;i<NUM_STATS;i++)
-		{
-			m_MinStats[i]=30;
-			m_MaxStats[i]=60;
-		}
-		for(int i=0;i<10;i++)
-		{
-			m_MinSkills[i]=30;
-			m_MaxSkills[i]=30;
-		}
-		//now for a few overrides
-		m_MinStats[STAT_AGE]=17;
-		m_MaxStats[STAT_AGE]=25;
-		m_MinStats[STAT_HOUSE]=0;
-		m_MaxStats[STAT_HOUSE]=100;
-		m_MinStats[STAT_HEALTH]=100;
-		m_MaxStats[STAT_HEALTH]=100;
-		m_MinStats[STAT_FAME]=0;
-		m_MaxStats[STAT_FAME]=0;
-		m_MinStats[STAT_LEVEL]=0;
-		m_MaxStats[STAT_LEVEL]=0;
-		m_MinStats[STAT_PCFEAR]=0;
-		m_MaxStats[STAT_PCFEAR]=0;
-		m_MinStats[STAT_PCHATE]=0;
-		m_MaxStats[STAT_PCHATE]=0;
-		m_MinStats[STAT_PCLOVE]=0;
-		m_MaxStats[STAT_PCLOVE]=0;
-	}
-	~sRandomGirl() {if(m_Next)delete m_Next;m_Next=0;}
+	sRandomGirl();
+	~sRandomGirl();
 }sRandomGirl;
 
 
@@ -170,17 +139,10 @@ public:
 class cImageList
 {
 public:
-	cImageList() {m_NumImages=0;m_LastImages=0;m_Images=0;}
-	~cImageList() {Free();}
+	cImageList();
+	~cImageList();
 
-	void Free()
-	{
-		if(m_Images)
-			delete m_Images;
-		m_LastImages=0;
-		m_Images=0;
-		m_NumImages=0;
-	}
+	void Free();
 
 	bool AddImage(std::string filename, std::string path = "", std::string file = "");
 	int DrawImage(int x, int y, int width, int height, bool random, int img);
@@ -197,15 +159,8 @@ public:
 class cAImgList	// class that manages a set of images from a directory
 {
 public:
-	cAImgList() {m_Next=0;}
-	~cAImgList()
-	{
-		for(int i=0; i<NUM_IMGTYPES; i++)
-			m_Images[i].Free();
-		if(m_Next)
-			delete m_Next;
-		m_Next=0;
-	}
+	cAImgList();
+	~cAImgList();
 
 	std::string m_Name;	// name of the directory containing the images
 	cImageList m_Images[NUM_IMGTYPES];	// the images
@@ -217,10 +172,10 @@ public:
 class cImgageListManager	// manages all the girl images
 {
 public:
-	cImgageListManager() {m_First=m_Last=0;}
-	~cImgageListManager() {Free();}
+	cImgageListManager();
+	~cImgageListManager();
 
-	void Free() {if(m_First)delete m_First;m_Last=m_First=0;}
+	void Free();
 
 	cAImgList* ListExists(std::string name);	// returns the list if the list is already loaded, returns 0 if it is not
 	cAImgList* LoadList(std::string name);	// loads a list if it doensn't already exist and returns a pointer to it. returns pointer to list if it does exist
@@ -272,12 +227,12 @@ a class to handle all the child related code to prevent errors.
 class cChildList
 {
 public:
-
+    cChildList();
+	~cChildList();
+    
 	sChild* m_FirstChild;
 	sChild* m_LastChild;
 	int m_NumChildren;
-	cChildList(){m_FirstChild=0;m_LastChild=0;m_NumChildren=0;}
-	~cChildList(){if(m_FirstChild) delete m_FirstChild;}
 	void add_child(sChild*);
 	sChild* remove_child(sChild*,sGirl*);
 	//void handle_childs();
@@ -373,90 +328,8 @@ struct sGirl
 	unsigned char m_PregCooldown;				// number of weeks until can get pregnant again
 	cChildList m_Children;
 
-	sGirl()
-	{
-		m_Stats[STAT_HOUSE]	= 60;
-		m_GirlImages		= 0;
-		m_Tort				= false;
-		m_JustGaveBirth		= false;
-		m_Realname			= "";
-		m_WeeksPreg			= 0;
-		m_BDay				= 0;
-		m_NumCusts			= 0;
-		m_WeeksPast			= 0;
-		m_Withdrawals		= 0;
-		m_Virgin			= false;
-		m_Spotted			= 0;
-		m_RunAway			= 0;
-		m_AccLevel			= 0;
-		m_Money				= 0;
-		m_NumInventory		= 0;
-		m_Pay				= 0;
-		m_FetishTypes		= 0;
-		m_DaysUnhappy		= 0;
-		m_PregCooldown		= 0;
-		for(int i=0; i<40; i++)
-		{
-			m_EquipedItems[i]	= 0;
-			m_Inventory[i]		= 0;
-		}
-
-		m_NumRememTraits = m_NumTraits = 0;
-		for(int i=0; i<MAXNUM_TRAITS; i++)
-		{
-			m_Traits[i]			= 0;
-			m_TempTrait[i]		= 0;
-		}
-		for(int i=0; i<MAXNUM_TRAITS*2; i++)
-			m_RememTraits[i]	= 0;
-
-		for(int i=0; i<NUM_GIRLFLAGS; i++)
-			m_Flags[i]			= 0;
-
-		m_Prev					= 0;
-		m_Next					= 0;
-		m_Name					= 0;
-		m_Desc					= "";
-		m_States				= 0;
-		m_DayJob = m_NightJob	= 0;
-		m_PrevDayJob = m_PrevNightJob = 255;
-
-		m_UseAntiPreg		= true;
-
-		for(u_int i=0; i<NUM_SKILLS; i++)
-			m_TempSkills[i] = m_SkillMods[i] = 0;
-		for(int i=0; i<NUM_STATS; i++)
-			m_TempStats[i] = m_StatMods[i] = 0;
-		for(u_int i=0; i<NUM_ACTIONTYPES; i++)
-			m_Enjoyment[i] = -20;	// start off disliking everything
-/*
- *		MOD: DocClox, Sun Nov 15 06:08:32 GMT 2009
- *		initialise maps to look up stat and skill names
- *		needed for XML loader
- *
- *		things that need to happen every time the struct
- *		is constructed need to go before this point
- *		or they'll only happen the first time around
- */
- 		if(!m_maps_setup)	// only need to do this once
-			setup_maps();
-	}
-
-	~sGirl()
-	{
-		m_GirlImages = 0;
-
-		if(m_Name)
-			delete [] m_Name;
-		m_Name = 0;
-
-		m_Events.Free();
-
-		if(m_Next)
-			delete m_Next;
-		m_Next = 0;
-		m_Prev = 0;
-	}
+	sGirl();
+	~sGirl();
 
 	void dump(std::ostream &os);
 
@@ -516,17 +389,9 @@ struct sGirl
  *	So this is safer, if a bit inefficient.
  */
  	bool calc_pregnancy(int,cPlayer*);
- 	int get_stat(int stat_id) {
-		return g_GirlsPtr->GetStat(this, stat_id);
-	}
- 	int upd_temp_stat(int stat_id, int amount) {
-		g_GirlsPtr->UpdateTempStat(this, stat_id, amount);
-		return g_GirlsPtr->GetStat(this, stat_id);
-	}
- 	int upd_stat(int stat_id, int amount) {
-		g_GirlsPtr->UpdateStat(this, stat_id, amount);
-		return g_GirlsPtr->GetStat(this, stat_id);
-	}
+ 	int get_stat(int stat_id);
+ 	int upd_temp_stat(int stat_id, int amount);
+ 	int upd_stat(int stat_id, int amount);
 /*
  *	Now then:
  */
@@ -581,17 +446,9 @@ struct sGirl
  *
  *	similarly...
  */
- 	int get_skill(int skill_id) {
-		return g_GirlsPtr->GetSkill(this, skill_id);
-	}
- 	int upd_temp_skill(int skill_id, int amount) {
-		g_GirlsPtr->UpdateTempSkill(this, skill_id, amount);
-		return g_GirlsPtr->GetSkill(this, skill_id);
-	}
- 	int upd_skill(int skill_id, int amount) {
-		g_GirlsPtr->UpdateSkill(this, skill_id, amount);
-		return g_GirlsPtr->GetSkill(this, skill_id);
-	}
+ 	int get_skill(int skill_id);
+ 	int upd_temp_skill(int skill_id, int amount);
+ 	int upd_skill(int skill_id, int amount);
 	int	anal()		{ return get_skill(SKILL_ANAL); }
 	int	anal(int n)	{ return upd_skill(SKILL_ANAL, n); }
 	int	bdsm()		{ return get_skill(SKILL_BDSM); }
@@ -617,40 +474,14 @@ struct sGirl
 /*
  *	convenience func. Also easier to read like this
  */
-	bool carrying_monster() {
-		return(m_States & (1 << STATUS_INSEMINATED)) !=0;
-	}
-	bool carrying_human() {
-		return carrying_players_child() || carrying_customer_child();
-	}
-	bool carrying_players_child() {
-		return(m_States & (1 << STATUS_PREGNANT_BY_PLAYER)) !=0;
-	}
-	bool carrying_customer_child() {
-		return(m_States & (1 << STATUS_PREGNANT)) !=0;
-	}
-	bool is_pregnant() {
-		return(	m_States & (1 << STATUS_PREGNANT		) ||
-			m_States & (1 << STATUS_PREGNANT_BY_PLAYER	) ||
-			m_States & (1 << STATUS_INSEMINATED	)
-		);
-	}
-
-	bool is_mother() {
-		return(m_States&(1<<STATUS_HAS_DAUGHTER)
-			|| m_States&(1<<STATUS_HAS_SON));
-	}
-
-	bool is_poisoned() {
-		return(m_States&(1<<STATUS_POISONED)
-			|| m_States&(1<<STATUS_BADLY_POISONED));
-	}
-
-	void clear_pregnancy() {
-		m_States &= ~(1<<STATUS_PREGNANT);
-		m_States &= ~(1<<STATUS_PREGNANT_BY_PLAYER);
-		m_States &= ~(1<<STATUS_INSEMINATED);
-	}
+	bool carrying_monster();
+	bool carrying_human();
+	bool carrying_players_child();
+	bool carrying_customer_child();
+	bool is_pregnant();
+	bool is_mother();
+	bool is_poisoned();
+	void clear_pregnancy();
 	int preg_chance(int base_pc, bool good=false, double factor=1.0);
 	bool calc_pregnancy(cPlayer *player, bool good=false, double factor=1.0);
 	bool calc_pregnancy(sCustomer *cust, bool good=false, double factor=1.0);
@@ -660,48 +491,18 @@ struct sGirl
  *	let's overload that...
  *	should be able to do the same using sCustomer as well...
  */
-	void add_trait(std::string trait, bool temp = true) {
-		g_GirlsPtr->AddTrait(this, trait, temp);
-	}
-	bool has_trait(std::string trait) {
-		return g_GirlsPtr->HasTrait(this, trait);
-	}
-	bool is_addict() {
-		return	has_trait("Shroud Addict")	||
-			has_trait("Fairy Dust Addict")	||
-			has_trait("Viras Blood Addict")
-		;
-	}
-
-	sChild* next_child(sChild* child, bool remove=false) {
-		if(!remove) {
-			return child->m_Next;
-		}
-		return m_Children.remove_child(child, this);
-	}
-
-	int preg_type(int image_type)
-	{
-		int new_type = image_type + PREG_OFFSET;
-/*
- *		if the new image type is >=  NUM_IMGTYPES
- *		then it was one of the types that doesn't have
- *		an equivalent pregnant form
- */
- 		if(new_type >= NUM_IMGTYPES) {
-			return image_type;
-		}
-		return new_type;
-	}
+	void add_trait(std::string trait, bool temp = true);
+	bool has_trait(std::string trait);
+	bool is_addict();
+	sChild* next_child(sChild* child, bool remove=false);
+	int preg_type(int image_type);
 	sGirl* run_away();
 
-	bool is_slave() { return (m_States & (1<<STATUS_SLAVE)) !=0; }
-	bool is_free()	{ return !is_slave(); }
-	void set_slave() {
-		m_States |= (1<<STATUS_SLAVE);
-	}
-	bool is_monster()	{ return (m_States & (1<<STATUS_CATACOMBS)) !=0; }
-	bool is_human()		{ return !is_monster(); }
+	bool is_slave();
+	bool is_free();
+	void set_slave();
+	bool is_monster();
+	bool is_human();
 
 	void fight_own_gang(bool& girl_wins);
 	void win_vs_own_gang(std::vector<sGang*> &v, int max_goons, bool& girl_wins);
@@ -884,9 +685,7 @@ public:
 /*
  *	while I'm on, a few funcs to factor out some common code in DrawImages
  */
-	int num_images(sGirl* girl, int image_type) {
-		return girl->m_GirlImages->m_Images[image_type].m_NumImages;
-	}
+	int num_images(sGirl* girl, int image_type);
 	int get_modified_image_type(sGirl* girl, int image_type, int preg_type);
 	int draw_with_default(
 		sGirl* girl,
