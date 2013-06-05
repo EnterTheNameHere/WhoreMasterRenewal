@@ -23,6 +23,7 @@
 #include "cInterfaceObject.h" // required inheritance
 
 #include <string>
+#include <memory>
 
 class CSurface;
 class cAnimatedSurface;
@@ -41,12 +42,11 @@ public:
 	void Draw();
 
 	cAnimatedSurface* m_AnimatedImage;
-	CSurface* m_Image;
 	SDL_Surface* m_Surface;
 	int m_ID;
 	bool m_loaded;
 	cImageItem* m_Next;	// next button on the window
-
+    std::shared_ptr<CSurface> m_Image;
 	void hide()	{ m_Hidden = true; }
 	void unhide()	{ m_Hidden = false; }
 	void toggle()	{ m_Hidden = !m_Hidden; }

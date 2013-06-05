@@ -99,6 +99,9 @@ bool g_Fullscreen = false;
 
 void FreeInterface()
 {
+    //g_LogFile.ss() << "Freeing interface...";
+    //g_LogFile.ssend();
+    
 	g_MainMenu.Free();
 	g_GetString.Free();
 	g_BrothelManagement.Free();
@@ -123,10 +126,16 @@ void FreeInterface()
 	g_ItemManagement.Free();
 	g_PrisonScreen.Free();
 	g_BuildingManagementScreen.Reset();
+	
+	//g_LogFile.ss() << "Done freeing interface...";
+    //g_LogFile.ssend();
 }
 
 void ResetInterface()
 {
+    //g_LogFile.ss() << "Resetting interface...";
+    //g_LogFile.ssend();
+    
 	g_MainMenu.Reset();
 	g_GetString.Reset();
 	g_BrothelManagement.Reset();
@@ -150,6 +159,9 @@ void ResetInterface()
 	g_ItemManagement.Reset();
 	g_PrisonScreen.Reset();
 	g_BuildingManagementScreen.Reset();
+	
+	//g_LogFile.ss() << "Done resetting interface...";
+    //g_LogFile.ssend();
 }
 
 void LoadInterface()

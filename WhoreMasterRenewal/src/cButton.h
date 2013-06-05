@@ -23,6 +23,7 @@
 #include "cInterfaceObject.h" // required inheritance
 
 #include <string>
+#include <memory>
 
 class CSurface;
 
@@ -46,10 +47,10 @@ public:
 private:
     int m_ID;
     
-    CSurface* m_OffImage;
-	CSurface* m_DisabledImage;
-	CSurface* m_OnImage;
-	CSurface* m_CurrImage;
+    std::shared_ptr<CSurface> m_OffImage;
+	std::shared_ptr<CSurface> m_DisabledImage;
+	std::shared_ptr<CSurface> m_OnImage;
+	std::shared_ptr<CSurface> m_CurrImage;
 
 	cButton* m_Next;	// next button on the window
 	

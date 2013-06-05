@@ -93,7 +93,7 @@ void cAnimatedSurface::UpdateSprite(SDL_Rect& rect, int width, int height)
 	m_Surface->ResizeSprite(m_SpriteSurface,&temp);
 }
 
-void cAnimatedSurface::SetData(int xPos, int yPos, int numFrames, int speed, int width, int height, CSurface* surface)
+void cAnimatedSurface::SetData(int xPos, int yPos, int numFrames, int speed, int width, int height, std::shared_ptr<CSurface> surface)
 {
 	m_CurrentColumn = 0;
 	m_CurrentRow = 0;
@@ -145,15 +145,20 @@ void CAnimatedSprite::SetAnimation( int animation )
 
 void CAnimatedSprite::Free()
 {
+    //g_LogFile.ss() << "CAnimatedSprite::Free() [" << this << "]";
+    //g_LogFile.ssend();
+    
 	if(m_Animations)
 		delete [] m_Animations;
 	m_Animations = nullptr;
 
 	if(m_Image)
-		delete m_Image;
-	m_Image = nullptr;
+		m_Image.reset();
 
 	m_CurrAnimation = 0;
+	
+	//g_LogFile.ss() << "CAnimatedSprite::Free() finished [" << this << "]";
+    //g_LogFile.ssend();
 }
 
 bool CAnimatedSprite::Draw(int x, int y, int width, int height, unsigned int currentTime)
@@ -170,7 +175,7 @@ bool CAnimatedSprite::LoadAnimations(std::string imgFilename, std::string animat
 	if( !ifile )
 		return false;
 
-	m_Image = new CSurface(imgFilename);
+	m_Image.reset( new CSurface(imgFilename) );
 	m_Image->SetColorKey(255,0,168);
 
 	ifile>>NumAnims;

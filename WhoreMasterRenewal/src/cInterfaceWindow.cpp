@@ -21,7 +21,6 @@
 #include "DirPath.h"
 #include "CLog.h"
 #include "XmlMisc.h"
-#include "CResourceManager.h"
 #include "cButton.h"
 #include "cSlider.h"
 #include "cEditBox.h"
@@ -42,16 +41,6 @@
 #include <ctime>
 
 typedef unsigned int u_int;
-
-//extern CGraphics g_Graphics;
-//extern CResourceManager rmanager;
-//
-//extern unsigned char g_WindowBorderR, g_WindowBorderG, g_WindowBorderB;
-//extern unsigned char g_WindowBackgroundR, g_WindowBackgroundG, g_WindowBackgroundB;
-//
-//extern int g_ScreenWidth, g_ScreenHeight;
-//extern bool g_Fullscreen;
-//extern bool g_InitWin;
 
 cInterfaceWindow::cInterfaceWindow()
 {
@@ -90,6 +79,8 @@ void cInterfaceWindow::Free()
 			if (m_Images[i]->m_Image &&
 				*(m_Images[i]->m_Image->GetSurface()) == (SDL_Surface*)0xfeeefeee)
 			{
+			    g_LogFile.ss() << "ERROR: trying to delete deleted SDL_Surface";
+			    g_LogFile.ssend();
 				//error, it's been deleted, do nothing
 			}
 			else
@@ -394,7 +385,7 @@ void cInterfaceWindow::AddImage(int & id, std::string filename, int x, int y, in
 	m_Images.push_back(newImage);
 }
 
-void cInterfaceWindow::SetImage(int id, CSurface* image)
+void cInterfaceWindow::SetImage(int id, std::shared_ptr<CSurface> image)
 {
 	m_Images[id]->m_Image = image;
 	m_Images[id]->m_AnimatedImage = nullptr;
@@ -454,7 +445,7 @@ void cInterfaceWindow::CreateWindow(int x, int y, int width, int height, int Bor
 
 void cInterfaceWindow::SetBackgroundImage(std::string file)
 {
-	m_BackgroundSurface = new CSurface(file);
+	m_BackgroundSurface.reset( new CSurface(file) );
 }
 
 std::string cInterfaceWindow::GetEditBoxText(int ID)

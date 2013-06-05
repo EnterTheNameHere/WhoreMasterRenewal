@@ -21,6 +21,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 class cGold;
 class cBrothelManager;
@@ -121,8 +122,8 @@ extern unsigned long g_Month;
 extern unsigned long g_Day;
 
 extern cSlider* g_DragSlider;
-extern CSurface* g_BackgroundImage;
-extern CSurface* g_BrothelImages[6];
+extern std::shared_ptr<CSurface> g_BackgroundImage;
+extern std::shared_ptr<CSurface> g_BrothelImages[6];
 extern sGirl* MarketSlaveGirls[8];
 extern int MarketSlaveGirlsDel[8];
 

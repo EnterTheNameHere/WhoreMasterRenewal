@@ -30,6 +30,7 @@
 #include <iomanip>
 #include <string>
 #include <fstream>
+#include <memory>
 
 class cGirls;
 extern cGirls g_Girls;
@@ -131,7 +132,7 @@ public:
 	~cImage();
 
 	cImage* m_Next;
-	CSurface* m_Surface;
+	std::shared_ptr<CSurface> m_Surface;
 	cAnimatedSurface* m_AniSurface;
 };
 
@@ -146,7 +147,7 @@ public:
 
 	bool AddImage(std::string filename, std::string path = "", std::string file = "");
 	int DrawImage(int x, int y, int width, int height, bool random, int img);
-	CSurface* GetImageSurface(bool random, int& img);
+	std::shared_ptr<CSurface> GetImageSurface(bool random, int& img);
 	cAnimatedSurface* GetAnimatedSurface(int& img);
 	bool IsAnimatedSurface(int& img);
 	std::string GetName(int i);
@@ -587,7 +588,7 @@ public:
 	void UpdateSkill(sGirl* girl, int skill, int amount);	// updates a skill
 	void UpdateEnjoyment(sGirl* girl, int whatSheEnjoys, int amount, bool wrapTo100 = false); //updates what she enjoys
 	int DrawGirl(sGirl* girl, int x, int y, int width, int height, int ImgType, bool random = true, int img = 0);	// draws a image of a girl
-	CSurface* GetImageSurface(sGirl* girl, int ImgType, bool random, int& img, bool gallery=false);	// draws a image of a girl
+	std::shared_ptr<CSurface> GetImageSurface(sGirl* girl, int ImgType, bool random, int& img, bool gallery=false);	// draws a image of a girl
 	cAnimatedSurface* GetAnimatedSurface(sGirl* girl, int ImgType, int& img);
 	bool IsAnimatedSurface(sGirl* girl, int ImgType, int& img);
 	bool HasTrait(sGirl* girl, std::string trait);

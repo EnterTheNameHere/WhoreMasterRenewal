@@ -26,6 +26,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <memory>
 
 class cInterfaceWindow;
 extern cInterfaceWindow g_MainMenu;
@@ -94,7 +95,7 @@ public:
 	void HideImage(int id) { HideImage(id, true); }
 	void UnhideImage(int id) { HideImage(id, false); }
 	void AddImage(int & id, std::string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
-	void SetImage(int id, CSurface* image);
+	void SetImage(int id, std::shared_ptr<CSurface> image);
 	void SetImage(int id, cAnimatedSurface* image);
 
 	void AddEditBox(int& ID, int x, int y, int width, int height, int BorderSize);
@@ -169,7 +170,7 @@ protected:
 	std::vector<cSlider*>m_Sliders;	// Sliders
 
 	// the windows properties
-	CSurface* m_BackgroundSurface;
+	std::shared_ptr<CSurface> m_BackgroundSurface;
 	SDL_Surface* m_Background;
 	SDL_Surface* m_Border;
 	int m_BorderSize;

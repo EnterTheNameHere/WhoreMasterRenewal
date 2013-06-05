@@ -19,7 +19,6 @@
 
 #include "cSlider.h"
 #include "CLog.h"
-#include "CResourceManager.h"
 #include "DirPath.h"
 #include "InterfaceGlobals.h"
 #include "CGraphics.h"

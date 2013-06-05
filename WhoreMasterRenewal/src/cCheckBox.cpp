@@ -50,11 +50,9 @@ cCheckBox::~cCheckBox()
     if( m_Image )
     {
         m_Image->Free();
-        delete m_Image;
+        m_Image.reset();
     }
-    
-    m_Image = nullptr;
-    
+        
     if( m_Next )
         delete m_Next;
         
@@ -73,9 +71,7 @@ bool cCheckBox::CreateCheckBox( int id, int x, int y, int width, int height, std
     
     SetPosition( x, y, width, height );
     
-    m_Image = new CSurface(
-        ImagePath( "CheckBoxCheck.png" )
-    );
+    m_Image.reset( new CSurface( ImagePath( "CheckBoxCheck.png" ) ) );
     m_Image->SetAlpha( true );
     
     cConfig cfg;

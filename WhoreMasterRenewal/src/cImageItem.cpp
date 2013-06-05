@@ -37,13 +37,15 @@ cImageItem::cImageItem()
 
 cImageItem::~cImageItem()
 {
+    //g_LogFile.ss() << "cImageItem::~cImageItem() [" << this << "] id: \"" << m_ID << "\"";
+    //g_LogFile.ssend();
+    
 	if(m_Next)
 		delete m_Next;
 	m_Next = nullptr;
 	
 	if(m_Image && m_loaded)
-		delete m_Image;
-	m_Image = nullptr;
+		m_Image.reset();
 
 	if(m_Surface)
 		SDL_FreeSurface(m_Surface);
@@ -52,6 +54,9 @@ cImageItem::~cImageItem()
 	if(m_AnimatedImage && m_loaded)
 		delete m_AnimatedImage;
 	m_AnimatedImage = nullptr;
+	
+	//g_LogFile.ss() << "cImageItem::~cImageItem() finished [" << this << "] id: \"" << m_ID << "\"";
+    //g_LogFile.ssend();
 }
 
 bool cImageItem::CreateImage(int id, std::string filename, int x, int y, int width, int height, bool statImage, int R, int G, int B)
@@ -67,7 +72,7 @@ bool cImageItem::CreateImage(int id, std::string filename, int x, int y, int wid
 	if(filename != "")
 	{
 		m_loaded = true;
-		m_Image = new CSurface(filename);
+		m_Image.reset( new CSurface(filename) );
 		m_Image->SetAlpha(true);
 	}
 	else
@@ -86,7 +91,7 @@ bool cImageItem::CreateAnimatedImage(int id, std::string filename, std::string d
 	if(filename != "")
 	{
 		m_loaded = true;
-		m_Image = new CSurface(filename);
+		m_Image.reset( new CSurface(filename) );
 		m_Image->SetAlpha(true);
 
 		// load the animation

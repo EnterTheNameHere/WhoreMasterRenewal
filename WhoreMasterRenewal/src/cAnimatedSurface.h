@@ -23,6 +23,7 @@
 #include <SDL.h> // Required SDL_Rect
 
 #include <string>
+#include <memory>
 
 class CSurface;
 
@@ -38,7 +39,7 @@ public:
 	void Stop();
 
 	bool DrawFrame(int x, int y, int width, int height, unsigned int currentTime);	// Updates animation according to speed, and then draws it on the screen
-	void SetData(int xPos, int yPos, int numFrames, int speed, int width, int height, CSurface* surface);
+	void SetData(int xPos, int yPos, int numFrames, int speed, int width, int height, std::shared_ptr<CSurface> surface);
 	void UpdateSprite(SDL_Rect& rect, int width, int height);
 
 private:
@@ -54,7 +55,7 @@ private:
 	int m_Rows;
 	int m_Colums;
 
-	CSurface* m_Surface;	// pointer to the image where all the sprites are kept
+	std::shared_ptr<CSurface> m_Surface;	// pointer to the image where all the sprites are kept
 	SDL_Surface* m_SpriteSurface;	// pointer to the image where the current sprite is kept
 	SDL_Rect m_Frames;	// Holds the data for ALL frames, since all frames have same width/height
 };
@@ -75,7 +76,7 @@ public:
 private:
 	int m_CurrAnimation;
 	cAnimatedSurface* m_Animations;
-	CSurface* m_Image;
+	std::shared_ptr<CSurface> m_Image;
 };
 
 #endif // CANIMATEDSURFACE_H_INCLUDED_1533

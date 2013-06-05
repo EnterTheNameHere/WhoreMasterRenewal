@@ -18,9 +18,9 @@
  */
 
 #include "cButton.h"
-#include "CResourceManager.h"
 #include "CSurface.h"
 #include "cInterfaceEvent.h"
+//#include "CLog.h"
 
 #include <SDL.h>
 
@@ -37,22 +37,25 @@ cButton::cButton()
 
 cButton::~cButton()
 {
+    //g_LogFile.ss() << "cButton::~cButton() [" << this << "] id: \"" << m_ID << "\"";
+    //g_LogFile.ssend();
+    
 	if(m_Next)
 		delete m_Next;
 	m_Next = nullptr;
 	m_CurrImage = nullptr;
 
 	if(m_OffImage)
-		delete m_OffImage;
-	m_OffImage = nullptr;
+		m_OffImage.reset();
 
 	if(m_DisabledImage)
-		delete m_DisabledImage;
-	m_DisabledImage = nullptr;
+		m_DisabledImage.reset();
 
 	if(m_OnImage)
-		delete m_OnImage;
-	m_OnImage = nullptr;
+		m_OnImage.reset();
+	
+    //g_LogFile.ss() << "cButton::~cButton() finished [" << this << "] id: \"" << m_ID << "\"";
+    //g_LogFile.ssend();
 }
 
 void cButton::SetDisabled( bool disable )
@@ -68,7 +71,7 @@ bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std:
 {
 	if(OffImage != "")
 	{
-		m_OffImage = new CSurface(OffImage);
+		m_OffImage.reset( new CSurface(OffImage) );
 		m_OffImage->m_Cached=cached;
 	}
 	else
@@ -76,7 +79,7 @@ bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std:
 
 	if(DisabledImage != "")
 	{
-		m_DisabledImage = new CSurface(DisabledImage);
+		m_DisabledImage.reset( new CSurface(DisabledImage) );
 		m_DisabledImage->m_Cached=cached;
 	}
 	else 
@@ -84,7 +87,7 @@ bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std:
 
 	if(OnImage != "")
 	{
-		m_OnImage = new CSurface(OnImage);
+		m_OnImage.reset( new CSurface(OnImage) );
 		m_OnImage->m_Cached=cached;
 	}
 	else

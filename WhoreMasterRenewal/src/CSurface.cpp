@@ -20,7 +20,6 @@
 #include "CSurface.h"
 #include "CLog.h"
 #include "CGraphics.h"
-#include "CResourceManager.h"
 
 #include <SDL_image.h>
 #include <SDL_rotozoom.h>
@@ -84,13 +83,13 @@ CSurface::~CSurface()
 {
 	m_SaveSurface = false;
 	Free();
-
-	g_LogFile.ss() << "'" << m_Filename << "' Freed";
-	g_LogFile.ssend();
 }
 
 void CSurface::Free()
 {
+    //g_LogFile.ss() << "CSurface::~Free() [" << this << "] Filename \"" << m_Filename << "\"";
+	//g_LogFile.ssend();
+    
 	if(m_SaveSurface)
 		return;
 
@@ -105,6 +104,9 @@ void CSurface::Free()
 	if(m_SpriteImage)
 		SDL_FreeSurface(m_SpriteImage);
 	m_SpriteImage = nullptr;
+	
+	//g_LogFile.ss() << "CSurface::Free() finished [" << this << "] Filename \"" << m_Filename << "\"";
+	//g_LogFile.ssend();
 }
 
 void CSurface::FreeResources()
@@ -114,15 +116,15 @@ void CSurface::FreeResources()
 	Free();
 }
 
-void CSurface::Register(bool loaded)
+void CSurface::Register(bool /*loaded*/)
 {
-	if(loaded)
-		rmanager.AddResource(this, IMAGE_RESOURCE);
+    /// @todo Replace with proper resource management
 }
 
 bool CSurface::LoadImage(std::string filename, bool load)
 {
 	m_Filename = filename;
+	
 	if(load == false)
 	{
 		Register(false);
@@ -130,8 +132,8 @@ bool CSurface::LoadImage(std::string filename, bool load)
 	}
 
 	SDL_Surface* loadedImage = nullptr;
-
-	// Load image
+    
+    // Load image
 	loadedImage = IMG_Load(filename.c_str());
 
 	if(loadedImage)

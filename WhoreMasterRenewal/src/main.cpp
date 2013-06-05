@@ -30,7 +30,6 @@
 #include "cChoiceMessage.h"
 #include "cBrothel.h"
 #include "cGangs.h"
-#include "CResourceManager.h"
 #include "IconSurface.h"
 #include "cSlider.h"
 #include "cScrollBar.h"
@@ -91,7 +90,6 @@ cCustomers g_Customers;
 cGangManager g_Gangs;
 cGold g_Gold;
 CGraphics g_Graphics;
-CResourceManager rmanager;
 cInventory g_InvManager;
 cRng g_Dice;
 cTraits g_Traits;
@@ -150,8 +148,8 @@ std::vector<int> cycle_girls;  // globally available sorted list of girl IDs for
 int cycle_pos;  //currently selected girl's position in the cycle_girls vector
 char buffer[1000];
 cSlider* g_DragSlider = nullptr;
-CSurface* g_BackgroundImage = nullptr;
-CSurface* g_BrothelImages[6] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+std::shared_ptr<CSurface> g_BackgroundImage = nullptr;
+std::shared_ptr<CSurface> g_BrothelImages[6] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 sGirl* MarketSlaveGirls[8] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 int MarketSlaveGirlsDel[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
 
@@ -466,8 +464,6 @@ int main_old(int ac, char* av[])
 			else if(g_ChoiceManager.IsActive() && !g_MessageQue.HasNext())
 				g_ChoiceManager.Draw();
 
-			rmanager.CullOld(g_Graphics.GetTicks());
-
 			g_Graphics.End();
 //		}
 //		else
@@ -483,14 +479,13 @@ void Shutdown()
 	g_LogFile.write("Shutting Down");
 	g_Graphics.Free();
 
-	delete g_BackgroundImage;
+	g_BackgroundImage.reset();
 
 	for(int i=0; i<6; i++)
 	{
 		if(g_BrothelImages[i])
 		{
-			delete g_BrothelImages[i];
-			g_BrothelImages[i] = nullptr;
+			g_BrothelImages[i].reset();
 		}
 	}
 
@@ -509,7 +504,6 @@ void Shutdown()
 
 	FreeInterface();
 
-	rmanager.Free();
 	#ifdef _DEBUG
 	cJobManager::freeJobs();
 	#else
@@ -543,7 +537,7 @@ bool Init()
 
 	g_LogFile.write("Graphics Initialized");
 	// Load the universal background image
-	g_BackgroundImage = new ImageSurface("background", "");
+	g_BackgroundImage.reset( new ImageSurface("background", "") );
 	g_LogFile.write("Background Image Set");
 
 	LoadInterface();	// Load the interface
@@ -557,15 +551,14 @@ bool Init()
 	{
 		if(g_BrothelImages[i])
 		{
-			delete g_BrothelImages[i];
-			g_BrothelImages[i] = nullptr;
+			g_BrothelImages[i].reset();
 		}
 //
 //      I think this should work - kept the old line below
 //      reference
 //
 		/*char buffer[32];*/
-		g_BrothelImages[i] = new ImageSurface("Brothel", toString(i).c_str());
+		g_BrothelImages[i].reset( new ImageSurface("Brothel", toString(i).c_str()) );
 		//g_BrothelImages[i]->LoadImage(file,false);
 	}
 	g_LogFile.write("Brothel Images Set");

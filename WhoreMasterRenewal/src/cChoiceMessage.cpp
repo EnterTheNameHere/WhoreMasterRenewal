@@ -226,15 +226,19 @@ void cChoiceManager::BuildChoiceBox( int ID, int MaxStrLen )
         newChoice->m_XPos = ( ( g_Graphics.GetWidth() / 2 ) - ( newChoice->m_Width / 2 ) );
         newChoice->m_YPos = ( ( g_Graphics.GetHeight() / 2 ) - ( newChoice->m_Height / 2 ) );
         
-        if( m_UpOn == nullptr ) m_UpOn = new ButtonSurface( "UpOn" );
+        if( m_UpOn == nullptr )
+            m_UpOn.reset( new ButtonSurface( "UpOn" ) );
         
-        if( m_UpOff == nullptr ) m_UpOff = new ButtonSurface( "UpOff" );
+        if( m_UpOff == nullptr )
+            m_UpOff.reset( new ButtonSurface( "UpOff" ) );
         
         m_CurrUp = m_UpOff;
         
-        if( m_DownOn == nullptr ) m_DownOn = new ButtonSurface( "DownOn" );
+        if( m_DownOn == nullptr )
+            m_DownOn.reset( new ButtonSurface( "DownOn" ) );
         
-        if( m_DownOff == nullptr ) m_DownOff = new ButtonSurface( "DownOff" );
+        if( m_DownOff == nullptr )
+            m_DownOff.reset( new ButtonSurface( "DownOff" ) );
         
         m_CurrDown = m_DownOff;
     }
@@ -361,15 +365,19 @@ void cChoiceManager::CreateChoiceBox( int x, int y, int width, int height, int I
         newChoice->m_YPos = ( ( g_Graphics.GetHeight() / 2 ) - ( newChoice->m_Height / 2 ) );
     }
     
-    if( m_UpOn == nullptr ) m_UpOn = new ButtonSurface( "UpOn" );
+    if( m_UpOn == nullptr )
+        m_UpOn.reset( new ButtonSurface( "UpOn" ) );
     
-    if( m_UpOff == nullptr ) m_UpOff = new ButtonSurface( "UpOff" );
+    if( m_UpOff == nullptr )
+        m_UpOff.reset( new ButtonSurface( "UpOff" ) );
     
     m_CurrUp = m_UpOff;
     
-    if( m_DownOn == nullptr ) m_DownOn = new ButtonSurface( "DownOn" );
+    if( m_DownOn == nullptr )
+        m_DownOn.reset( new ButtonSurface( "DownOn" ) );
     
-    if( m_DownOff == nullptr ) m_DownOff = new ButtonSurface( "DownOff" );
+    if( m_DownOff == nullptr )
+        m_DownOff.reset( new ButtonSurface( "DownOff" ) );
     
     m_CurrDown = m_DownOff;
     

@@ -3386,9 +3386,11 @@ cChildList::cChildList()
     m_LastChild = nullptr;
     m_NumChildren = 0;
 }
+
 cChildList::~cChildList()
 {
-    if( m_FirstChild ) delete m_FirstChild;
+    if( m_FirstChild )
+        delete m_FirstChild;
 }
 
 bool sChild::LoadChildXML( TiXmlHandle hChild )
@@ -12993,6 +12995,9 @@ cAImgList::cAImgList()
 
 cAImgList::~cAImgList()
 {
+    //g_LogFile.ss() << "cAImgList::~cAImgList() [" << this << "] name: \"" << m_Name << "\"";
+    //g_LogFile.ssend();
+    
     for( int i = 0; i < NUM_IMGTYPES; i++ )
         m_Images[i].Free();
         
@@ -13000,6 +13005,9 @@ cAImgList::~cAImgList()
         delete m_Next;
         
     m_Next = nullptr;
+    
+    //g_LogFile.ss() << "cAImgList::~cAImgList() finished [" << this << "] name: \"" << m_Name << "\"";
+    //g_LogFile.ssend();
 }
 
 cImageList::cImageList()
@@ -13015,12 +13023,18 @@ cImageList::~cImageList()
 
 void cImageList::Free()
 {
+    //g_LogFile.ss() << "cImageList::~Free() [" << this << "]";
+    //g_LogFile.ssend();
+    
     if( m_Images )
         delete m_Images;
         
     m_LastImages = nullptr;
     m_Images = nullptr;
     m_NumImages = 0;
+    
+    //g_LogFile.ss() << "cImageList::~Free() finished [" << this << "]";
+    //g_LogFile.ssend();
 }
 
 bool cImageList::AddImage( std::string filename, std::string path, std::string file )
@@ -13044,7 +13058,7 @@ bool cImageList::AddImage( std::string filename, std::string path, std::string f
         name += file;
         name.erase( name.size() - 4, 4 );
         name += ".jpg";
-        newImage->m_Surface = new CSurface();
+        newImage->m_Surface.reset( new CSurface() );
         
         newImage->m_Surface->LoadImage( name );
         newImage->m_AniSurface = new cAnimatedSurface();
@@ -13067,7 +13081,7 @@ bool cImageList::AddImage( std::string filename, std::string path, std::string f
         //newImage->m_Surface->FreeResources();  //this was causing lockup in CResourceManager::CullOld
     }
     else
-        newImage->m_Surface = new CSurface( filename );
+        newImage->m_Surface.reset( new CSurface( filename ) );
         
     // Store image item
     if( m_Images )
@@ -13081,7 +13095,7 @@ bool cImageList::AddImage( std::string filename, std::string path, std::string f
     return true;
 }
 
-CSurface* cImageList::GetImageSurface( bool random, int& img )
+std::shared_ptr<CSurface> cImageList::GetImageSurface( bool random, int& img )
 {
     int count = 0;
     int ImageNum = -1;
@@ -13329,10 +13343,17 @@ cImgageListManager::~cImgageListManager()
 
 void cImgageListManager::Free()
 {
-    if( m_First )delete m_First;
+    //g_LogFile.ss() << "cImageList::~Free() [" << this << "]\"";
+    //g_LogFile.ssend();
+    
+    if( m_First )
+        delete m_First;
     
     m_Last = nullptr;
     m_First = nullptr;
+    
+    //g_LogFile.ss() << "cImageList::~Free() finished [" << this << "]\"";
+    //g_LogFile.ssend();
 }
 
 cAImgList* cImgageListManager::ListExists( std::string name )
@@ -13570,7 +13591,7 @@ bool cGirls::IsAnimatedSurface( sGirl* girl, int ImgType, int& img )
     return 0;
 }
 
-CSurface* cGirls::GetImageSurface( sGirl* girl, int ImgType, bool random, int& img, bool gallery )
+std::shared_ptr<CSurface> cGirls::GetImageSurface( sGirl* girl, int ImgType, bool random, int& img, bool gallery )
 {
     while( 1 )
     {
@@ -14258,17 +14279,21 @@ cImage::cImage()
 
 cImage::~cImage()
 {
+    //g_LogFile.ss() << "cImage::~cImage() [" << this << "]";
+    //g_LogFile.ssend();
+    
     if( m_Surface && !m_Surface->m_SaveSurface )
     {
-        delete m_Surface;
+        m_Surface.reset();
     }
-    
-    m_Surface = nullptr;
-    
+        
     if( m_AniSurface )
         delete m_AniSurface;
         
     m_AniSurface = nullptr;
     //if(m_Next) delete m_Next;
     m_Next = nullptr;
+    
+    //g_LogFile.ss() << "cImage::~cImage() finished [" << this << "]";
+    //g_LogFile.ssend();
 }

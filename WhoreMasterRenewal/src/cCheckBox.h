@@ -24,6 +24,7 @@
 #include "cFont.h" // required cFont
 
 #include <string>
+#include <memory>
 
 class CSurface;
 class SDL_Surface;
@@ -41,7 +42,7 @@ public:
 
 	void Draw();
 
-	CSurface* m_Image;
+	std::shared_ptr<CSurface> m_Image;
 	SDL_Surface* m_Surface;
 	SDL_Surface* m_Border;
 	int m_ID;

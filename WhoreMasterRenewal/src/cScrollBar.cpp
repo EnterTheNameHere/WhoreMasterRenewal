@@ -19,7 +19,6 @@
 
 #include "cScrollBar.h"
 #include "CLog.h"
-#include "CResourceManager.h"
 #include "DirPath.h"
 #include "CGraphics.h"
 #include "cInterfaceEvent.h"

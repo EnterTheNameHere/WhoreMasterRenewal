@@ -234,8 +234,6 @@
 		<Unit filename="src/CRenderQue.h" />
 		<Unit filename="src/CResource.cpp" />
 		<Unit filename="src/CResource.h" />
-		<Unit filename="src/CResourceManager.cpp" />
-		<Unit filename="src/CResourceManager.h" />
 		<Unit filename="src/CSurface.cpp" />
 		<Unit filename="src/CSurface.h" />
 		<Unit filename="src/CTimer.cpp" />

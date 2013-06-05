@@ -21,6 +21,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 class cChoiceManager;
 extern cChoiceManager g_ChoiceManager;
@@ -94,12 +95,12 @@ private:
 
 	cFont* m_Font;
 
-	CSurface* m_UpOn;
-	CSurface* m_DownOn;
-	CSurface* m_UpOff;
-	CSurface* m_DownOff;
-	CSurface* m_CurrUp;
-	CSurface* m_CurrDown;
+	std::shared_ptr<CSurface> m_UpOn;
+	std::shared_ptr<CSurface> m_DownOn;
+	std::shared_ptr<CSurface> m_UpOff;
+	std::shared_ptr<CSurface> m_DownOff;
+	std::shared_ptr<CSurface> m_CurrUp;
+	std::shared_ptr<CSurface> m_CurrDown;
 };
 
 #endif // CCHOICEMESSAGE_H_INCLUDED_1527
