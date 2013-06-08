@@ -722,15 +722,8 @@ void ChangeGirlJobs()
 
 				if(selection == 5)
 				{
-					if(g_Brothels.GetTimeToMovie(g_CurrBrothel) == 0)
-					{
-						int time = (g_Dice%14)+2;
-						g_Brothels.StartMovie(g_CurrBrothel, time);
-					    std::string message = "The movie will be done in ";
-						message += toString(time);
-						message += " days, add more girls to increase quality of final product.";
-						g_MessageQue.AddToQue(message, 0);
-					}
+					g_LogFile.ss() << "Error: Movies should not be available...";
+					g_LogFile.ssend();
 				}
 
 				selection = g_ChangeJobs.GetSelectedItemFromList(g_interfaceid.LIST_CJNIGHTTIME);
@@ -739,15 +732,8 @@ void ChangeGirlJobs()
 
 				if(selection == 5)
 				{
-					if(g_Brothels.GetTimeToMovie(g_CurrBrothel) == 0)
-					{
-						int time = (g_Dice%14)+2;
-						g_Brothels.StartMovie(g_CurrBrothel, time);
-					    std::string message = "The movie will be done in ";
-						message += toString(time);
-						message += " weeks, add more girls to increase quality of final product.";
-						g_MessageQue.AddToQue(message, 0);
-					}
+					g_LogFile.ss() << "Error: Movies should not be available...";
+					g_LogFile.ssend();
 				}
 			}
 			else
@@ -765,15 +751,8 @@ void ChangeGirlJobs()
 
 					if(selection == 5)
 					{
-						if(g_Brothels.GetTimeToMovie(g_CurrBrothel) == 0)
-						{
-							int time = (g_Dice%14)+2;
-							g_Brothels.StartMovie(g_CurrBrothel, time);
-						    std::string message = "The movie will be done in ";
-							message += toString(time);
-							message += " weeks, add more girls to increase quality of final product.";
-							g_MessageQue.AddToQue(message, 0);
-						}
+						g_LogFile.ss() << "Error: Movies should not be available...";
+                        g_LogFile.ssend();
 					}
 
 					selection = g_ChangeJobs.GetSelectedItemFromList(g_interfaceid.LIST_CJNIGHTTIME);
@@ -782,15 +761,8 @@ void ChangeGirlJobs()
 
 					if(selection == 5)
 					{
-						if(g_Brothels.GetTimeToMovie(g_CurrBrothel) == 0)
-						{
-							int time = (g_Dice%14)+2;
-							g_Brothels.StartMovie(g_CurrBrothel, time);
-						    std::string message = "The movie will be done in ";
-							message += toString(time);
-							message += " weeks, add more girls to increase quality of final product.";
-							g_MessageQue.AddToQue(message, 0);
-						}
+						g_LogFile.ss() << "Error: Movies should not be available...";
+                        g_LogFile.ssend();
 					}
 				}
 			}
@@ -817,7 +789,7 @@ void ChangeGirlJobs()
 				else if(selection == 2)
 					g_ChangeJobs.EditTextItem("She will work on the streets surrounding and for a short distance from the brothel. It can be dangerous.", g_interfaceid.TEXT_CJDESC);
 				else if(selection == 5)
-					g_ChangeJobs.EditTextItem("Start or help making a movie crystal, costs 100 per week but when finished will make money for 35 weeks.", g_interfaceid.TEXT_CJDESC);
+					g_ChangeJobs.EditTextItem("Error: You shouldn't see this, since Movies were removed from game.", g_interfaceid.TEXT_CJDESC);
 				else if(selection == 4)
 					g_ChangeJobs.EditTextItem("Work in your strip bar. Bar requires 3 girls or to have hired bar staff to run. More girls adds customers.", g_interfaceid.TEXT_CJDESC);
 				else if(selection == 8)
@@ -838,7 +810,7 @@ void ChangeGirlJobs()
 				else if(selection == 2)
 					g_ChangeJobs.EditTextItem("She will work on the streets surrounding and for a short distance from the brothel. It can be dangerous.", g_interfaceid.TEXT_CJDESC);
 				else if(selection == 5)
-					g_ChangeJobs.EditTextItem("Start or help making a movie crystal, costs 100 per week but when finished will make money for 35 weeks.", g_interfaceid.TEXT_CJDESC);
+					g_ChangeJobs.EditTextItem("Error: You shouldn't see this, since Movies were removed from game.", g_interfaceid.TEXT_CJDESC);
 				else if(selection == 4)
 					g_ChangeJobs.EditTextItem("Work in your strip bar. Bar requires 3 girls or to have hired bar staff to run. More girls adds customers.", g_interfaceid.TEXT_CJDESC);
 				else if(selection == 8)

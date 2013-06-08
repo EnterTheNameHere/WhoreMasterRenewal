@@ -37,11 +37,6 @@
 #include <algorithm>
 #include <sstream>
 
-sFilm::sFilm()
-{
-    quality_multiplyer = 0;
-}
-
 cJobManager::~cJobManager()
 {
     ;
@@ -78,15 +73,6 @@ void cJobManager::Setup()
 	JobFunctions[JOB_STRIPPER] = &WorkBar;
 	JobFunctions[JOB_WHOREBAR] = &WorkWhore;
 	JobFunctions[JOB_SINGER] = &WorkBar;
-	// - Movie Crystal Studio
-	JobFunctions[JOB_FILMBEAST] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FILMSEX] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FILMANAL] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FILMLESBIAN] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FILMBONDAGE] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FLUFFER] = &WorkFluffer;
-	JobFunctions[JOB_CAMERAMAGE] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_CRYSTALPURIFIER] = &WorkVoid;	// ************** TODO
 	// - Community Centre
 	JobFunctions[JOB_COLLECTDONATIONS] = &WorkVoid;	// ************** TODO
 	JobFunctions[JOB_FEEDPOOR] = &WorkVoid;	// ************** TODO
@@ -193,26 +179,6 @@ void cJobManager::Setup()
 	JobDescription[JOB_WHOREBAR] = "She will provide sex to the customers.";
 	JobName[JOB_SINGER] = "Singer";
 	JobDescription[JOB_SINGER] = "She will sing for the customers.";
-
-	JobFilterName[JOBFILTER_MOVIESTUDIO] = "Movie Studio";
-	JobFilterDescription[JOBFILTER_MOVIESTUDIO] = "These are jobs for running a movie studio.";
-	JobFilterIndex[JOBFILTER_MOVIESTUDIO] = JOB_FILMBEAST;
-	JobName[JOB_FILMBEAST] = "Film Bestiality";
-	JobDescription[JOB_FILMBEAST] = "She will film bestiality scenes.";
-	JobName[JOB_FILMSEX] = "Film Sex";
-	JobDescription[JOB_FILMSEX] = "She will film normal sex scenes.";
-	JobName[JOB_FILMANAL] = "Film Anal";
-	JobDescription[JOB_FILMANAL] = "She will film anal scenes.";
-	JobName[JOB_FILMLESBIAN] = "Film Lesbian";
-	JobDescription[JOB_FILMLESBIAN] = "She will do a lesbian scene.";
-	JobName[JOB_FILMBONDAGE] = "Film Bondage";
-	JobDescription[JOB_FILMBONDAGE] = "She will perform in bondage scenes.";
-	JobName[JOB_FLUFFER] = "Fluffer";
-	JobDescription[JOB_FLUFFER] = "She will keep the porn stars and animals aroused.";
-	JobName[JOB_CAMERAMAGE] = "Camera Mage";
-	JobDescription[JOB_CAMERAMAGE] = "She will film the scenes. (requires 1) (max 1)";
-	JobName[JOB_CRYSTALPURIFIER] = "Crystal Purifier";
-	JobDescription[JOB_CRYSTALPURIFIER] = "She will clean up the filmed scenes. (requires 1)";
 
 	JobFilterName[JOBFILTER_COMMUNITYCENTRE] = "Community Centre";
 	JobFilterDescription[JOBFILTER_COMMUNITYCENTRE] = "These are jobs for running a community centre.";
@@ -493,16 +459,6 @@ bool cJobManager::is_job_Paid_Player(u_int Job)
  */
 
 #if 0
-		// - Movie Crystal Studio
-		Job ==	JOB_FILMBEAST			||	// films this sort of scene in the movie (uses beast resource)
-		Job ==	JOB_FILMSEX				||	// films this sort of scene in the movie
-		Job ==	JOB_FILMANAL			||	// films this sort of scene in the movie
-		Job ==	JOB_FILMLESBIAN			||	// films this sort of scene in the movie. thinking about changing to Lesbian
-		Job ==	JOB_FILMBONDAGE			||	// films this sort of scene in the movie
-		Job ==	JOB_FLUFFER				||	// Keeps the porn stars and animals aroused
-		Job ==	JOB_CAMERAMAGE			||	// Uses magic to record the scenes to crystals (requires at least 1)
-		Job ==	JOB_CRYSTALPURIFIER		||	// Post editing to get the best out of the film (requires at least 1)
-
 		// - Community Centre
 		Job ==	JOB_COLLECTDONATIONS	||	// collects money to help the poor
 		Job ==	JOB_FEEDPOOR			||	// work in a soup kitchen
@@ -1512,93 +1468,5 @@ void cJobManager::do_training(sBrothel* brothel, int DayNight)
 		sGirl *girl = girls[i];
 		g_Girls.AddTiredness(girl);
 		g_Girls.UpdateTempStat(girl, STAT_LIBIDO, 2);
-	}
-}
-
-// ----- Film & related
-
-void cJobManager::update_film(sBrothel * brothel)
-{
-
-	if(brothel->m_CurrFilm)
-	{
-		if(brothel->m_CurrFilm->time)
-			brothel->m_CurrFilm->time--;
-		else
-		{
-			brothel->m_CurrFilm->final_quality=0;
-			for(u_int i=0;i<brothel->m_CurrFilm->scene_quality.size();i++)
-			{
-				brothel->m_CurrFilm->final_quality+=(int)((float)brothel->m_CurrFilm->scene_quality[i]*brothel->m_CurrFilm->quality_multiplyer);
-			}
-			brothel->m_CurrFilm->total_customers=0;
-			char cust_mult=0;
-			for(int j=0;j<5;j++)
-			{
-				if(brothel->m_CurrFilm->sex_acts_flags[j])
-					cust_mult++;
-			}
-			brothel->m_CurrFilm->total_customers=cust_mult*brothel->m_CurrFilm->final_quality*10;
-			brothel->m_CurrFilm->final_quality/=brothel->m_CurrFilm->scene_quality.size();
-			film_list.push_back(brothel->m_CurrFilm);
-			brothel->m_CurrFilm = nullptr;
-		}
-	}
-}
-
-long cJobManager::make_money_films()
-{
-	long income=0;
-	for(u_int i=0;i<film_list.size();i++)
-	{
-		income+=(long)((float)film_list[i]->final_quality*(float)film_list[i]->total_customers*.85f);
-		film_list[i]->total_customers=(int)((float)film_list[i]->total_customers*.85f);
-	}
-	return income;
-}
-
-void cJobManager::save_films(std::ofstream &ofs)
-{
-	ofs<<film_list.size()<<'\n';
-	for(u_int i=0;i<film_list.size();i++)
-	{
-		ofs<<film_list[i]->final_quality<<' '<<film_list[i]->quality_multiplyer<<' '<<film_list[i]->time<<' '<<film_list[i]->total_customers<<'\n';
-		for(int j=0;j<5;j++)
-		{
-			ofs<<film_list[i]->sex_acts_flags[j];
-			if(j!=4)
-			ofs<<' ';
-		}
-		ofs<<'\n';
-		ofs<<film_list[i]->scene_quality.size()<<'\n';
-			for(u_int j=0;j<film_list[i]->scene_quality.size();j++)
-			ofs<<film_list[i]->scene_quality[j]<<' ';
-		ofs<<'\n';
-	}
-}
-
-void cJobManager::load_films(std::ifstream &ifs)
-{
-	u_int temp;
-	ifs>>temp;
-	film_list.resize(temp);
-	if(ifs.peek()=='\n') ifs.ignore(1,'\n');
-	for(u_int i=0;i<film_list.size();i++)
-	{
-		film_list[i]=new sFilm;
-		ifs>>film_list[i]->final_quality;
-		ifs>>film_list[i]->quality_multiplyer;
-		ifs>>film_list[i]->time;
-		ifs>>film_list[i]->total_customers;
-		if(ifs.peek()=='\n') ifs.ignore(1,'\n');
-		for(int j=0;j<5;j++)
-			ifs>>film_list[i]->sex_acts_flags[j];
-		if(ifs.peek()=='\n') ifs.ignore(1,'\n');
-		ifs>>temp;
-		film_list[i]->scene_quality.resize(temp);
-		for(u_int j=0;j<temp;j++)
-		{
-			ifs>>film_list[i]->scene_quality[i];
-		}
 	}
 }

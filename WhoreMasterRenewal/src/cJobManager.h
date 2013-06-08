@@ -30,20 +30,6 @@ struct sBrothel;
 struct sGang;
 struct sCustomer;
 
-struct sFilm
-{
-    sFilm();
-    
-    //int total_girls;
-    //int total_cost;
-    float quality_multiplyer;
-    std::vector<int> scene_quality;
-    char time;
-    int final_quality;
-    bool sex_acts_flags[5];
-    int total_customers;
-};
-
 //mainly a list of functions
 class cJobManager
 {
@@ -140,7 +126,6 @@ public:
     bool is_job_Paid_Player( u_int Job );                   //  WD: Test for all jobs paid by player
     
 private:
-    std::vector<sFilm*> film_list;
     // bah 2d array time for speed
     std::vector< std::vector<u_int> > job_groups;
 };

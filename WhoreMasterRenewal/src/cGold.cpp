@@ -64,7 +64,6 @@ std::string cGoldBase::in::str( int brothel_no )
     
     ss << std::setw(7) << brothel_work << " ";
     ss << std::setw(7) << street_work	<< " ";
-    ss << std::setw(7) << movie_income	<< " ";
     ss << std::setw(7) << bar_income	<< " ";
     ss << std::setw(7) << gambling_profits	<< " ";
     ss << std::setw(7) << item_sales	<< " ";
@@ -173,21 +172,12 @@ void cGoldBase::creature_sales(double income)
 }
 
 /*
- * income from movie crystals
- */
-void cGoldBase::movie_income(double income)
-{
-	m_income += income;
-	detail_in.movie_income += income;
-}
-
-/*
  * income from the bar
  */
 void cGoldBase::bar_income(double income)
 {
 	m_income += income;
-	detail_in.movie_income += income;
+	detail_in.bar_income += income;
 }
 
 /*
@@ -260,14 +250,6 @@ bool cGoldBase::debit_if_ok(double price, bool force)
 	m_value -= price;
 	m_cash_out -= price;
 	return true;
-}
-
-/*
- * weekly cost of making a movie - delayed transaction
- */
-void cGoldBase::movie_cost(double price)
-{
-	m_upkeep += price;
 }
 
 /*

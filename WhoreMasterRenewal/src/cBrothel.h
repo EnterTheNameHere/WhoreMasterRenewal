@@ -57,14 +57,7 @@ typedef struct sObjective
 	int m_Difficulty;	// a number representing how hard it is
 }sObjective;
 
-// holds data for movies
-typedef struct sMovie
-{
-	long m_Quality;
-	sMovie* m_Next;
-	sMovie();
-	~sMovie();
-}sMovie;
+
 
 // defines a single brothel
 typedef struct sBrothel
@@ -92,13 +85,10 @@ typedef struct sBrothel
 
 	int				m_MovieRunTime;		// see above, counter for the 7 week effect
 	int				m_NumMovies;
-	sMovie*			m_Movies;			// the movies currently selling
-	sMovie*			m_LastMovies;
 
 	// For keeping track of any shows currently being produced here
 	int				m_ShowTime;			// when reaches 0 then the show is ready
 	int				m_ShowQuality;		// Determined by the average fame and skill of the girls in the show
-	sFilm*			m_CurrFilm;
 	unsigned char	m_HasGambStaff;		// gambling hall or
 	unsigned char	m_HasBarStaff;		// Bar staff. Not as good as girls but consistent
 
@@ -218,12 +208,6 @@ public:
 	sBrothel*	GetBrothel(int brothelID);
 	int			GetNumBrothels()			{ return m_NumBrothels; }
 	int			GetNumBrothelsWithVacancies();
-
-	void StartMovie(int brothelID, int Time);
-	int  GetTimeToMovie(int brothelID);
-	void NewMovie(sBrothel* brothel, int Quality);
-	void EndMovie(sBrothel* brothel);
-	bool CheckMovieGirls(sBrothel* brothel);	// checks if any girls are working on the movie
 
 	void CalculatePay(sBrothel* brothel, sGirl* girl, u_int Job);
 

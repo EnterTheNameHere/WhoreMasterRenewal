@@ -268,7 +268,6 @@
 		<Unit filename="src/WorkBeastCare.cpp" />
 		<Unit filename="src/WorkBrothelMassusse.cpp" />
 		<Unit filename="src/WorkExploreCatacombs.cpp" />
-		<Unit filename="src/WorkFluffer.cpp" />
 		<Unit filename="src/WorkFreetime.cpp" />
 		<Unit filename="src/WorkHall.cpp" />
 		<Unit filename="src/WorkMatron.cpp" />

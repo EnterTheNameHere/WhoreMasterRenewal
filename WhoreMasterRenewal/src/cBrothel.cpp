@@ -37,25 +37,6 @@
 
 #include <sstream>
 
-/*
- * mod - this is a bit big for an inline func
- * and we don't create so many of them that we
- * we need the speed - so taken out of the header
- */
-
-sMovie::sMovie()
-{
-    m_Next = nullptr;
-}
-
-sMovie::~sMovie()
-{
-    if( m_Next )
-        delete m_Next;
-        
-    m_Next = nullptr;
-}
-
 // Prototypes
 sGirl* girl_sort( sGirl* girl, sGirl** lastgirl );
 int sGirlcmp( sGirl* a, sGirl* b );
@@ -65,11 +46,8 @@ sBrothel::sBrothel()    :   m_Finance( 0 )  // constructor
 {
     m_MiscCustomers         = 0;
     m_TotalCustomers        = 0;
-    m_CurrFilm              = nullptr;
     m_Filthiness            = 0;
     m_NumMovies             = 0;
-    m_LastMovies            = nullptr;
-    m_Movies                = nullptr;
     m_MovieRunTime          = 0;
     m_HasGambStaff          = 0;
     m_HasBarStaff           = 0;
@@ -100,21 +78,12 @@ sBrothel::~sBrothel()           // destructor
     m_ShowTime              = 0;
     m_ShowQuality           = 0;
     m_NumMovies             = 0;
-    
-    if( m_Movies )
-        delete m_Movies;
         
-    m_Movies                = nullptr;
-    m_LastMovies            = nullptr;
-    
     if( m_Next )
         delete m_Next;
         
     m_Next                  = nullptr;
     
-    if( m_CurrFilm )
-        delete m_CurrFilm;
-        
     if( m_Girls )
         delete m_Girls;
         
@@ -877,6 +846,7 @@ void cBrothelManager::LoadDataLegacy( std::ifstream& ifs )
         int count = 0;
         ifs >> count;
         
+        /* Movies - let's just ignore this for now... */
         for( int i = 0; i < count; i++ )
         {
             if( ifs.peek() == '\n' ) ifs.ignore( 1, '\n' );
@@ -885,7 +855,6 @@ void cBrothelManager::LoadDataLegacy( std::ifstream& ifs )
             //when you create a new movie, you set m_Quality to quality*0.5
             //but you directly save m_Quality, so this undoes the division
             temp *= 2;
-            NewMovie( current, temp );
         }
         
         // Load girls
@@ -1123,24 +1092,6 @@ bool sBrothel::LoadBrothelXML( TiXmlHandle hBrothel )
     
     m_Finance.loadGoldXML( hBrothel.FirstChild( "Gold" ) );
     
-    m_NumMovies = 0;
-    TiXmlElement* pMovies = pBrothel->FirstChildElement( "Movies" );
-    
-    if( pMovies )
-    {
-        for( TiXmlElement* pMovie = pMovies->FirstChildElement( "Movie" );
-                pMovie != nullptr;
-                pMovie = pMovie->NextSiblingElement( "Movie" ) )
-        {
-            long quality = 0;
-            pMovie->QueryValueAttribute<long>( "Qual", &quality );
-            //when you create a new movie, you set m_Quality to quality*0.5
-            //but you directly save m_Quality, so this undoes the division
-            quality *= 2;
-            g_Brothels.NewMovie( this, quality );
-        }
-    }
-    
     // Load girls
     m_NumGirls = 0;
     TiXmlElement* pGirls = pBrothel->FirstChildElement( "Girls" );
@@ -1330,18 +1281,6 @@ TiXmlElement* sBrothel::SaveBrothelXML( TiXmlElement* pRoot )
     pBrothel->LinkEndChild( pBuildingQualities );
     SaveJobsXML( pBuildingQualities, m_BuildingQuality );
 #endif
-    
-    TiXmlElement* pMovies = new TiXmlElement( "Movies" );
-    pBrothel->LinkEndChild( pMovies );
-    sMovie* movie = m_Movies;
-    
-    while( movie )
-    {
-        TiXmlElement* pMovie = new TiXmlElement( "Movie" );
-        pMovies->LinkEndChild( pMovie );
-        pBrothel->SetAttribute( "Qual", movie->m_Quality );
-        movie = movie->m_Next;
-    }
     
     // Save Girls
     TiXmlElement* pGirls = new TiXmlElement( "Girls" );
@@ -1842,39 +1781,6 @@ void cBrothelManager::UpdateBrothels()
         current->m_Happiness = current->m_MiscCustomers = current->m_TotalCustomers = 0;
         current->m_Finance.zero();
         current->m_Events.Clear();
-        
-        // Update movies currently being sold
-        if( current->m_Movies )
-        {
-            current->m_MovieRunTime++;
-            
-            if( current->m_MovieRunTime == 35 )
-            {
-                EndMovie( current );
-                current->m_MovieRunTime = 0;
-            }
-            
-            long income = 0;
-            
-            if( current->m_Movies )
-            {
-                sMovie* movie = current->m_Movies;
-                
-                while( movie )
-                {
-                    income += movie->m_Quality;
-                    int degrade = ( int )( ( float )movie->m_Quality * 0.15f );
-                    movie->m_Quality -= degrade;
-                    movie = movie->m_Next;
-                }
-                
-                current->m_Finance.movie_income( income );
-                
-                ss.str( "" );
-                ss << "You earn " << income << " gold from movie income, at " << current->m_Name;
-                g_MessageQue.AddToQue( ss.str(), 2 );
-            }
-        }
         
         // Clear the girls' events from the last turn
         sGirl* cgirl = current->m_Girls;
@@ -5489,67 +5395,6 @@ sGirl* cBrothelManager::WhoHasTorturerJob()
     }
     
     return nullptr;                                       // WD: Not Found
-}
-
-// ----- Movie
-void cBrothelManager::StartMovie( int brothelID, int Time )
-{
-    sBrothel* current = m_Parent;
-    
-    while( current )
-    {
-        if( current->m_id == brothelID )
-            break;
-            
-        current = current->m_Next;
-    }
-    
-    current->m_ShowQuality = 0;
-    current->m_ShowTime = Time;
-}
-
-int cBrothelManager::GetTimeToMovie( int brothelID )
-{
-    sBrothel* current = m_Parent;
-    
-    while( current )
-    {
-        if( current->m_id == brothelID )
-            break;
-            
-        current = current->m_Next;
-    }
-    
-    return current->m_ShowTime;
-}
-
-void cBrothelManager::NewMovie( sBrothel* brothel, int Quality )
-{
-    sMovie* newMovie = new sMovie();
-    newMovie->m_Quality = ( int )( ( float )Quality * 0.5f );
-    
-    if( brothel->m_Movies )
-    {
-        brothel->m_LastMovies->m_Next = newMovie;
-        brothel->m_LastMovies = newMovie;
-    }
-    else
-        brothel->m_LastMovies = brothel->m_Movies = newMovie;
-        
-    brothel->m_NumMovies++;
-}
-
-void cBrothelManager::EndMovie( sBrothel* brothel )
-{
-    if( brothel->m_Movies )
-    {
-        sMovie* movie = brothel->m_Movies;
-        brothel->m_Movies = movie->m_Next;
-        movie->m_Next = nullptr;
-        delete movie;
-        movie = nullptr;
-        brothel->m_NumMovies--;
-    }
 }
 
 #if 0

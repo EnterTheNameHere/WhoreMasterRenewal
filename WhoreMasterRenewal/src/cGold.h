@@ -36,7 +36,6 @@ class cGoldBase
 	struct in {
 		double brothel_work;
 		double street_work;
-		double movie_income;
 		double bar_income;
 		double gambling_profits;
 		double item_sales;
@@ -64,7 +63,6 @@ class cGoldBase
 		double slave_cost;
 		double item_cost;
 		double consumable_cost;
-		double movie_cost;
 		double goon_wages;
 		double staff_wages;
 		double girl_support;

@@ -152,6 +152,7 @@ const unsigned int JOB_STRIPPER         = 21;	// not added yet	// strips for the
 const unsigned int JOB_WHOREBAR         = 22;	// not added yet	// offers sexual services to customers
 const unsigned int JOB_SINGER           = 23;	// not added yet	// sings int the bar (girl needs singer trait)
 // - Movie Crystal Studio
+/// @todo Remove Movies from game...
 const unsigned int JOBFILTER_MOVIESTUDIO = 4;
 const unsigned int JOB_FILMBEAST        = 24;	// not added yet	// films this sort of scene in the movie (uses beast resource)
 const unsigned int JOB_FILMSEX          = 25;	// not added yet	// films this sort of scene in the movie
