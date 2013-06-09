@@ -4,6 +4,7 @@
 
 #include <string>
 #include <sstream>
+#include <cmath>
 
 template<typename T> std::string toString( T value )
 {
@@ -12,6 +13,12 @@ template<typename T> std::string toString( T value )
     std::string result;
     str >> result;
     return result;
+}
+
+template<typename T>
+inline bool areEqual( T value1, T value2, T precision = 0.00001 )
+{
+    return ( std::abs( value1 - value2 ) <= precision );
 }
 
 #endif // HELPER_H_INCLUDED_1917

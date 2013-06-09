@@ -110,6 +110,7 @@
 					<Add option="-Wredundant-decls" />
 					<Add option="-Wcast-align" />
 					<Add option="-Wundef" />
+					<Add option="-Wfloat-equal" />
 					<Add option="-Winline" />
 					<Add option="-Wunreachable-code" />
 					<Add option="-Wmissing-declarations" />

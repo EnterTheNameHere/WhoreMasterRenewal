@@ -20,6 +20,7 @@
 #include "sFacility.h"
 #include "XmlMisc.h"
 #include "CLog.h"
+#include "Helper.hpp"
 
 #include <cmath>
 
@@ -169,7 +170,7 @@ void sBoundedVar_Provides::down()
  *		my head around the problem, I'm going to invoke the KISS principle.
  *		Keep It Simple, Stupid.
  */
-    if( m_slots_per_space == 1.0 )
+    if( areEqual( m_slots_per_space, 1.0 ) )
     {
         m_curr --;
         m_space --;
