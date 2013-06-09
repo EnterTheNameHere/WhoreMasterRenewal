@@ -338,7 +338,6 @@ sFacility* sFacility::clone()
 
 void sFacility::load_from_xml(TiXmlElement *base_el)
 {
-	CLog l;
 	XmlUtil u("Loading Facility Data from XML");
 
 	new_flag = false;
@@ -363,11 +362,11 @@ void sFacility::load_from_xml(TiXmlElement *base_el)
 	    std::string tag = el->ValueStr();
 
 		if(tag != "BoundedVar") {
-			l.ss()	<< "Warning: Unexpected tag '"
+			g_LogFile.ss()	<< "Warning: Unexpected tag '"
 				<< tag
 				<< "': don't know what to do - ignoring."
 			;
-			l.ssend();
+			g_LogFile.ssend();
 			continue;
 		}
 /*
@@ -380,8 +379,8 @@ void sFacility::load_from_xml(TiXmlElement *base_el)
 	    std::string bvar_name;
 		u.context(tag + " tag");
 		u.get_att(el,	"Name",	bvar_name);
-		l.ss() << "loading boundedvar " << bvar_name << std::endl;
-		l.ssend();
+		g_LogFile.ss() << "loading boundedvar " << bvar_name << std::endl;
+		g_LogFile.ssend();
 
 		if(bvar_name == "Glitz") {
 			m_glitz.from_xml(el);
@@ -393,11 +392,11 @@ void sFacility::load_from_xml(TiXmlElement *base_el)
 			m_stealth.from_xml(el);
 		}
 		else {
-			l.ss()	<< "Warning: unknown name '"
+			g_LogFile.ss()	<< "Warning: unknown name '"
 				<< bvar_name
 				<< "' for bounded var"
 			;
-			l.ssend();
+			g_LogFile.ssend();
 		}
 	}
 
@@ -415,9 +414,8 @@ TiXmlElement *sBoundedVar::to_xml(std::string name)
 
 bool sBoundedVar::from_xml(TiXmlElement *el)
 {
-	CLog l;
-	l.ss() << "sBoundedVar::from_xml called";
-	l.ssend();
+	g_LogFile.ss() << "sBoundedVar::from_xml called";
+	g_LogFile.ssend();
 	XmlUtil u("Loading BoundedVar/Facility Data from XML");
 /*
  *	The element we get passed should be a BoundedVar node

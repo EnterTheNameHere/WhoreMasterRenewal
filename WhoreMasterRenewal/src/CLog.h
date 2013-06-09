@@ -52,7 +52,6 @@ public:
 	~CLog();
 	
 	void write( std::string text );
-	//std::ofstream& os();
 	std::stringstream& ss();
 	void ssend();
 	

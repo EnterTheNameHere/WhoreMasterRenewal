@@ -1160,13 +1160,11 @@ bool cGangManager::GangBrawl( sGang* gang1, sGang* gang2 )
 
 bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
 {
-    CLog l;
-    
     // MYR: Sanity check: Incorporial is an auto-win.
     if( girl->has_trait( "Incorporial" ) )
     {
         girl->m_Stats[STAT_HEALTH] = 100;
-        l.ss()  << "\nGirl vs. Goons: " << girl->m_Realname << " is incorporial, so she wins.\n";
+        g_LogFile.ss()  << "\nGirl vs. Goons: " << girl->m_Realname << " is incorporial, so she wins.\n";
         gang->m_Num = ( int ) gang->m_Num / 2;
         
         while( gang->m_Num > 0 )  // Do the casualty calculation
@@ -1177,7 +1175,7 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
                 break;
         }
         
-        l.ss()  << "  " << gang->m_Num << " goons escaped with their lives.\n";
+        g_LogFile.ss()  << "  " << gang->m_Num << " goons escaped with their lives.\n";
         return true;
     }
     
@@ -1224,18 +1222,18 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
      */
     int heal_lim = healing_limit();
     
-    l.ss()  << "Girl vs. Goons: "
+    g_LogFile.ss()  << "Girl vs. Goons: "
             << girl->m_Realname
             << " fights "
             << num_goons
             << " opponents!"
             ;
-    l.ss()  << girl->m_Realname
+    g_LogFile.ss()  << girl->m_Realname
             << ": Health " << girl->health()
             << ", Dodge " << dodge
             << ", Mana " << girl->mana()
             ;
-    l.ssend();
+    g_LogFile.ssend();
     
     for( int i = 0; i < num_goons; i++ )
     {
@@ -1243,72 +1241,72 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
         int gDodge = gang->m_Stats[STAT_AGILITY];
         int gMana = 100;
         
-        l.ss()  << "	Goon #" << i
+        g_LogFile.ss()  << "	Goon #" << i
                 << ": Health 100, Dodge " << gDodge
                 << ", Mana ";
-        l.ssend();
+        g_LogFile.ssend();
         
         while( g_Girls.GetStat( girl, STAT_HEALTH ) >= 20 && gHealth > 0 )
         {
         
             // Girl attacks
-            l.ss()  << "\t\t"
+            g_LogFile.ss()  << "\t\t"
                     << girl->m_Realname
                     << " attacks the goon."
                     ;
-            l.ssend();
+            g_LogFile.ssend();
             
             if( attack == SKILL_MAGIC )
             {
             
                 if( girl->mana() < 7 )
                 {
-                    l.ss()  << "\t\t"
+                    g_LogFile.ss()  << "\t\t"
                             << girl->m_Realname
                             << " insufficient mana: using combat"
                             ;
-                    l.ssend();
+                    g_LogFile.ssend();
                 }
                 else
                 {
                 
                     girl->mana( -7 );
-                    l.ss()  << "\t\t"
+                    g_LogFile.ss()  << "\t\t"
                             << girl->m_Realname
                             << " casts a spell; mana now "
                             << girl->mana()
                             ;
-                    l.ssend();
+                    g_LogFile.ssend();
                 }
             }
             else
             {
-                l.ss()  << "\t\t"
+                g_LogFile.ss()  << "\t\t"
                         << girl->m_Realname
                         << " using physical attack"
                         ;
-                l.ssend();
+                g_LogFile.ssend();
             }
             
             int girl_attack_chance = g_Girls.GetSkill( girl, attack );
             int die_roll = g_Dice.d100();
             
-            l.ss()  << "\t\t"
+            g_LogFile.ss()  << "\t\t"
                     << " attack chance = "
                     << girl_attack_chance
                     ;
-            l.ssend();
+            g_LogFile.ssend();
             
-            l.ss()  << "\t\t"
+            g_LogFile.ss()  << "\t\t"
                     << " die roll = "
                     << die_roll
                     ;
-            l.ssend();
+            g_LogFile.ssend();
             
             
             if( die_roll > girl_attack_chance )
             {
-                l.ss()  << "\t\t\t"
+                g_LogFile.ss()  << "\t\t\t"
                         << " attack fails"
                         ;
             }
@@ -1316,12 +1314,12 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
             {
                 int damage = 5;
                 
-                l.ss()  << "\t\t\t"
+                g_LogFile.ss()  << "\t\t\t"
                         << " attack hits! base damage is"
                         << damage
                         << "."
                         ;
-                l.ssend();
+                g_LogFile.ssend();
                 
                 /*
                  *              she has hit now calculate how much damage will be done
@@ -1340,11 +1338,11 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
                     bonus = girl-> combat() / 10;
                 }
                 
-                l.ss()  << "\t\t"
+                g_LogFile.ss()  << "\t\t"
                         << bonus
                         << " points damage bonus."
                         ;
-                l.ssend();
+                g_LogFile.ssend();
                 damage += bonus;
                 
                 /*
@@ -1355,38 +1353,38 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
                 
                 if( gain )
                 {
-                    l.ss()  << "\t\t"
+                    g_LogFile.ss()  << "\t\t"
                             <<  girl->m_Realname
                             << " gains +"
                             << gain
                             << " to attack skill"
                             ;
-                    l.ssend();
+                    g_LogFile.ssend();
                     g_Girls.UpdateSkill( girl, attack, gain );
                 }
                 
                 die_roll = g_Dice.d100();
                 
                 // Goon attempts Dodge
-                l.ss()  << "\t\t"
+                g_LogFile.ss()  << "\t\t"
                         << "Goon tries to dodge: needs "
                         << gDodge
                         << ", gets "
                         << die_roll
                         << ": "
                         ;
-                l.ssend();
+                g_LogFile.ssend();
                 
                 if( die_roll <= gDodge )
                 {
-                    l.ss()  << "\t\t"
+                    g_LogFile.ss()  << "\t\t"
                             << "success!";
                 }
                 else
                 {
                     int con_mod = gang->m_Stats[STAT_CONSTITUTION] / 10;
                     gHealth -= con_mod;
-                    l.ss()  << "\t\t"
+                    g_LogFile.ss()  << "\t\t"
                             << "failure!\n"
                             << "\t\t"
                             << "Goon takes "
@@ -1401,7 +1399,7 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
                 }
             }
             
-            l.ssend();
+            g_LogFile.ssend();
             
             // goons use healing potions
             if( heal_lim > 0 && gHealth <= 40 )
@@ -1409,24 +1407,24 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
                 m_NumHealingPotions--;
                 heal_lim --;
                 gHealth += 30;
-                l.ss()  << "Goon drinks healing potion: "
+                g_LogFile.ss()  << "Goon drinks healing potion: "
                         << "new health value = " << gHealth
                         << ". Gang has "
                         << heal_lim
                         << " remaining."
                         ;
-                l.ssend();
+                g_LogFile.ssend();
             }
             
             // Goon Attacks
             
             die_roll = g_Dice.d100();
             int goon_attack_chance = gang->m_Skills[gattack];
-            l.ss()  << "\tGoon Attack: ";
-            l.ssend();
+            g_LogFile.ss()  << "\tGoon Attack: ";
+            g_LogFile.ssend();
             
             
-            l.ss()  << "\t\t"
+            g_LogFile.ss()  << "\t\t"
                     << "chance = "
                     << goon_attack_chance
                     << ", die roll = "
@@ -1436,13 +1434,13 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
                     
             if( die_roll > goon_attack_chance )
             {
-                l.ss()  << " attack fails!";
-                l.ssend();
+                g_LogFile.ss()  << " attack fails!";
+                g_LogFile.ssend();
             }
             else
             {
-                l.ss()  << " attack succeeds!";
-                l.ssend();
+                g_LogFile.ss()  << " attack succeeds!";
+                g_LogFile.ssend();
                 
                 int damage = ( m_SwordLevel + 1 ) * 5;
                 
@@ -1513,11 +1511,11 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
         }
     }
     
-    l.ss()  << "No more opponents: "
+    g_LogFile.ss()  << "No more opponents: "
             << girl->m_Realname
             << " WINS!"
             ;
-    l.ssend();
+    g_LogFile.ssend();
     
     g_Girls.UpdateEnjoyment( girl, ACTION_COMBAT, +1, true );
     
@@ -1533,13 +1531,11 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
 
 bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
 {
-    CLog l;
-    
     // MYR: Sanity check: Incorporial is an auto-win.
     if( girl->has_trait( "Incorporial" ) )
     {
         girl->m_Stats[STAT_HEALTH] = 100;
-        l.ss()  << "\nGirl vs. Goons: " << girl->m_Realname << " is incorporial, so she wins.\n";
+        g_LogFile.ss()  << "\nGirl vs. Goons: " << girl->m_Realname << " is incorporial, so she wins.\n";
         enemy_gang->m_Num = ( int ) enemy_gang->m_Num / 2;
         
         while( enemy_gang->m_Num > 0 )  // Do the casualty calculation
@@ -1550,7 +1546,8 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
                 break;
         }
         
-        l.ss()  << "  " << enemy_gang->m_Num << " goons escaped with their lives.\n";
+        g_LogFile.ss()  << "  " << enemy_gang->m_Num << " goons escaped with their lives.\n";
+        g_LogFile.ssend();
         return true;
     }
     
@@ -1582,18 +1579,18 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
     enemy_gang->m_Combat = true;
     
     
-    l.ss()  << "\nGirl vs. Goons: " << girl->m_Realname << " fights " << initial_num << " opponents!";
-    l.ssend();
-    l.ss()  << girl->m_Realname << ": Health " << girl->health() << ", Dodge " << g_Girls.GetStat( girl, STAT_AGILITY )
+    g_LogFile.ss()  << "\nGirl vs. Goons: " << girl->m_Realname << " fights " << initial_num << " opponents!";
+    g_LogFile.ssend();
+    g_LogFile.ss()  << girl->m_Realname << ": Health " << girl->health() << ", Dodge " << g_Girls.GetStat( girl, STAT_AGILITY )
             << ", Mana " << girl->mana();
-    l.ssend();
+    g_LogFile.ssend();
     
     for( int i = 0; i < initial_num; i++ )
     {
-        l.ss() << "Goon #" << i << ": Health: " << ( int ) enemy_gang->m_Stats[STAT_HEALTH] << " Mana: "
+        g_LogFile.ss() << "Goon #" << i << ": Health: " << ( int ) enemy_gang->m_Stats[STAT_HEALTH] << " Mana: "
                << ( int ) enemy_gang->m_Stats[STAT_MANA] << " Dodge: " << ( int ) enemy_gang->m_Stats[STAT_AGILITY]
                << " Attack: " << ( int ) enemy_gang->m_Skills[goon_attack] << " Constitution: " << ( int ) enemy_gang->m_Stats[STAT_CONSTITUTION];
-        l.ssend();
+        g_LogFile.ssend();
         
         int gHealth = enemy_gang->m_Stats[STAT_HEALTH];
         int gDodge = enemy_gang->m_Stats[STAT_AGILITY];
@@ -1602,8 +1599,8 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
         while( g_Girls.GetStat( girl, STAT_HEALTH ) >= 20 && gHealth > 0 )
         {
             // Girl attacks
-            //l.ss()    << "\t" << girl->m_Realname << " attacks the goon.";
-            //l.ssend();
+            //g_LogFile.ss()    << "\t" << girl->m_Realname << " attacks the goon.";
+            //g_LogFile.ssend();
             
             if( attack == SKILL_MAGIC )
             {
@@ -1611,33 +1608,33 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
                 if( mana < 5 )
                 {
                     attack = SKILL_COMBAT;
-                    //l.ss() << "\t\t" << girl->m_Realname << " insufficient mana: using combat";
-                    //l.ssend();
+                    //g_LogFile.ss() << "\t\t" << girl->m_Realname << " insufficient mana: using combat";
+                    //g_LogFile.ssend();
                 }
                 else
                 {
                 
                     mana = mana - 5;
-                    //l.ss() << "\t\t" << girl->m_Realname << " casts a spell; mana now " << mana;
-                    //l.ssend();
+                    //g_LogFile.ss() << "\t\t" << girl->m_Realname << " casts a spell; mana now " << mana;
+                    //g_LogFile.ssend();
                 }
             }
             else
             {
-                //l.ss() << "\t\t" << girl->m_Realname << " using physical attack";
-                //l.ssend();
+                //g_LogFile.ss() << "\t\t" << girl->m_Realname << " using physical attack";
+                //g_LogFile.ssend();
             }
             
             int girl_attack_chance = g_Girls.GetSkill( girl, attack );
             
             int die_roll = g_Dice.d100();
             
-            //l.ss() << "\t\t" << " attack chance: " << girl_attack_chance << "\t\t" << " die roll:" << die_roll;
-            //l.ssend();
+            //g_LogFile.ss() << "\t\t" << " attack chance: " << girl_attack_chance << "\t\t" << " die roll:" << die_roll;
+            //g_LogFile.ssend();
             
             if( die_roll > girl_attack_chance )
             {
-                //l.ss() << "\t\t\t" << " attack misses";
+                //g_LogFile.ss() << "\t\t\t" << " attack misses";
             }
             else
             {
@@ -1646,13 +1643,13 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
                 die_roll = g_Dice.d100();
                 
                 // Goon attempts Dodge
-                //l.ss() << "\t\t" << "Goon tries to dodge: needs " << gDodge << ", gets " << die_roll << ": ";
-                //l.ssend();
+                //g_LogFile.ss() << "\t\t" << "Goon tries to dodge: needs " << gDodge << ", gets " << die_roll << ": ";
+                //g_LogFile.ssend();
                 
                 // Dodge maxes out at 95%
                 if( die_roll <= gDodge && die_roll <= 95 )
                 {
-                    //l.ss() << "\t\t" << "success!";
+                    //g_LogFile.ss() << "\t\t" << "success!";
                 }
                 else
                 {
@@ -1663,8 +1660,8 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
                         damage = 1;
                         
                     gHealth -= damage;
-                    l.ss() << "\t\tGoon takes " << damage << ". New health value: " << gHealth;
-                    l.ssend();
+                    g_LogFile.ss() << "\t\tGoon takes " << damage << ". New health value: " << gHealth;
+                    g_LogFile.ssend();
                 }
             }
             
@@ -1675,21 +1672,21 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
             // Goon Attacks
             
             die_roll = g_Dice.d100();
-            //l.ss()    << "\tGoon Attack: ";
-            //l.ssend();
+            //g_LogFile.ss()    << "\tGoon Attack: ";
+            //g_LogFile.ssend();
             
             
-            //l.ss() << "\t\t" << "chance:" << (int) enemy_gang->m_Skills[goon_attack] << ", die roll:" << die_roll << ": ";
+            //g_LogFile.ss() << "\t\t" << "chance:" << (int) enemy_gang->m_Skills[goon_attack] << ", die roll:" << die_roll << ": ";
             
             if( die_roll > enemy_gang->m_Skills[goon_attack] )
             {
-                //l.ss() << " attack fails!";
-                //l.ssend();
+                //g_LogFile.ss() << " attack fails!";
+                //g_LogFile.ssend();
             }
             else
             {
-                //l.ss() << " attack succeeds!";
-                //l.ssend();
+                //g_LogFile.ss() << " attack succeeds!";
+                //g_LogFile.ssend();
                 
                 // MYR: Goon damage calculation is different from girl's.  Do we care?
                 int damage = 5 + enemy_gang->m_Skills[goon_attack] / 10;
@@ -1708,26 +1705,26 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
                 // girl attempts Dodge
                 die_roll = g_Dice.d100();
                 
-                //l.ss() << "\t\t" << girl->m_Realname << " tries to dodge: needs " << dodge << ", gets "
+                //g_LogFile.ss() << "\t\t" << girl->m_Realname << " tries to dodge: needs " << dodge << ", gets "
                 //  << die_roll << ": ";
-                //l.ssend();
+                //g_LogFile.ssend();
                 
                 // MYR: Girl dodge maxes out at 90 (Gang dodge at 95).  It's a bit of a hack
                 if( die_roll <= dodge && die_roll <= 90 )
                 {
-                    //l.ss() << "\t\t" << "success!";
-                    //l.ssend();
+                    //g_LogFile.ss() << "\t\t" << "success!";
+                    //g_LogFile.ssend();
                 }
                 else
                 {
                     g_Girls.TakeCombatDamage( girl, -damage ); // MYR: Note change
                     
-                    l.ss() << "\t" << girl->m_Realname << " takes " << damage << ". New health value: " << girl->health();
+                    g_LogFile.ss() << "\t" << girl->m_Realname << " takes " << damage << ". New health value: " << girl->health();
                     
                     if( girl->has_trait( "Incorporial" ) )
-                        l.ss() << " (Girl is Incorporial)";
+                        g_LogFile.ss() << " (Girl is Incorporial)";
                         
-                    l.ssend();
+                    g_LogFile.ssend();
                 }
             }
             
@@ -1746,8 +1743,8 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
         
         if( g_Girls.GetStat( girl, STAT_HEALTH ) <= 20 )
         {
-            l.ss() << "The gang overwhelmed and defeated " << girl->m_Realname << ". She lost the battle." ;
-            l.ssend();
+            g_LogFile.ss() << "The gang overwhelmed and defeated " << girl->m_Realname << ". She lost the battle." ;
+            g_LogFile.ssend();
             g_Girls.UpdateEnjoyment( girl, ACTION_COMBAT, -5, true );
             return false;
         }
@@ -1760,8 +1757,8 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
         {
             if( ( 1 + ( g_Dice % 100 ) ) <= 50 ) // MYR: Adjusting this has a big effect
             {
-                l.ss() << "The gang ran away after losing too many members. " << girl->m_Realname << " WINS!" ;
-                l.ssend();
+                g_LogFile.ss() << "The gang ran away after losing too many members. " << girl->m_Realname << " WINS!" ;
+                g_LogFile.ssend();
                 g_Girls.UpdateEnjoyment( girl, ACTION_COMBAT, +5, true );
                 return true;    // the men run away
             }
@@ -1770,15 +1767,15 @@ bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
         // Gang fought to the death
         if( enemy_gang->m_Num == 0 )
         {
-            l.ss() << "The gang fought to bitter end. They are all dead. " << girl->m_Realname << " WINS!" ;
-            l.ssend();
+            g_LogFile.ss() << "The gang fought to bitter end. They are all dead. " << girl->m_Realname << " WINS!" ;
+            g_LogFile.ssend();
             g_Girls.UpdateEnjoyment( girl, ACTION_COMBAT, +5, true );
             return true;
         }
     }
     
-    l.ss()  << "No more opponents: " << girl->m_Realname << " WINS!";
-    l.ssend();
+    g_LogFile.ss()  << "No more opponents: " << girl->m_Realname << " WINS!";
+    g_LogFile.ssend();
     
     g_Girls.UpdateEnjoyment( girl, ACTION_COMBAT, +5, true );
     

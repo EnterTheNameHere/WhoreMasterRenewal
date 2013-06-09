@@ -71,7 +71,7 @@ public:
 	virtual void UpdateTempSkill(sGirl* girl, int skill, int amount)=0;	// updates a skill temporarily
 	virtual void UpdateTempStat(sGirl* girl, int stat, int amount)=0;
 };
-extern cAbstractGirls* g_GirlsPtr;
+
 
 
 // structure to hold randomly generated girl information

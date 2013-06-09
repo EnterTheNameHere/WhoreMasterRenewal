@@ -420,7 +420,6 @@ void cScrollBar::Draw()
 
 void cScrollBar::LogScrollBarError( std::string description )
 {
-    CLog l;
-    l.ss() << description << " - " << SDL_GetError();
-    l.ssend();
+    g_LogFile.ss() << description << " - " << SDL_GetError();
+    g_LogFile.ssend();
 }

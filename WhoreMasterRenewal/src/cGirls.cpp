@@ -10816,24 +10816,22 @@ Uint8 cGirls::girl_fights_girl( sGirl* a, sGirl* b )
     //   "      "    " 2  "   b (the monster) won
     //   "      "    " 0  "   it was a draw
     
-    CLog l;
-    
     // MYR: Sanity checks on incorporial. It is actually possible (but very rare)
     //      for both girls to be incorporial.
     if( a->has_trait( "Incorporial" ) && b->has_trait( "Incorporial" ) )
     {
-        l.ss()  << "\ngirl_fights_girl: Both " << a->m_Realname << " and " << b->m_Realname
+        g_LogFile.ss()  << "\ngirl_fights_girl: Both " << a->m_Realname << " and " << b->m_Realname
                 << " are incorporial, so the fight is a draw.\n";
         return 0;
     }
     else if( a->has_trait( "Incorporial" ) )
     {
-        l.ss()  << "\ngirl_fights_girl: " << a->m_Realname << " is incorporial, so she wins.\n";
+        g_LogFile.ss()  << "\ngirl_fights_girl: " << a->m_Realname << " is incorporial, so she wins.\n";
         return 1;
     }
     else if( a->has_trait( "Incorporial" ) )
     {
-        l.ss()  << "\ngirl_fights_girl: " << b->m_Realname << " is incorporial, so she wins.\n";
+        g_LogFile.ss()  << "\ngirl_fights_girl: " << b->m_Realname << " is incorporial, so she wins.\n";
         return 2;
     }
     
@@ -10871,10 +10869,10 @@ Uint8 cGirls::girl_fights_girl( sGirl* a, sGirl* b )
     else
         b_dodge = ( g_Girls.GetStat( b, STAT_AGILITY ) - g_Girls.GetStat( b, STAT_TIREDNESS ) );
         
-    l.ss() << "Girl vs. Girl: " << a->m_Realname << " fights " << b->m_Realname << "\n";
-    l.ss() << "\t" << a->m_Realname << ": Health " << a->health() << ", Dodge " << a_dodge << ", Mana " << a->mana() << "\n";
-    l.ss() << "\t" << b->m_Realname << ": Health " << b->health() << ", Dodge " << b_dodge << ", Mana " << b->mana() << "\n";
-    l.ssend();
+    g_LogFile.ss() << "Girl vs. Girl: " << a->m_Realname << " fights " << b->m_Realname << "\n";
+    g_LogFile.ss() << "\t" << a->m_Realname << ": Health " << a->health() << ", Dodge " << a_dodge << ", Mana " << a->mana() << "\n";
+    g_LogFile.ss() << "\t" << b->m_Realname << ": Health " << b->health() << ", Dodge " << b_dodge << ", Mana " << b->mana() << "\n";
+    g_LogFile.ssend();
     
     sGirl* Attacker = b;
     sGirl* Defender = a;
@@ -10900,8 +10898,8 @@ Uint8 cGirls::girl_fights_girl( sGirl* a, sGirl* b )
         
         if( attack_count > 1000 ) // if the fight's not over after 1000 blows, call it a tie
         {
-            l.ss()  << "The fight has gone on for too long, over 1000 (attempted) blows either way. Calling it a draw.";
-            l.ssend();
+            g_LogFile.ss()  << "The fight has gone on for too long, over 1000 (attempted) blows either way. Calling it a draw.";
+            g_LogFile.ssend();
             
             return 0;
         }
@@ -10926,36 +10924,36 @@ Uint8 cGirls::girl_fights_girl( sGirl* a, sGirl* b )
         }
         
         // Girl attacks
-        l.ss() << "\t\t" << Attacker->m_Realname << " attacks: ";
+        g_LogFile.ss() << "\t\t" << Attacker->m_Realname << " attacks: ";
         
         if( attack == SKILL_MAGIC )
         {
             if( Attacker->mana() < 7 )
-                l.ss()  << "Insufficient mana: using combat";
+                g_LogFile.ss()  << "Insufficient mana: using combat";
             else
             {
                 Attacker->mana( -7 );
-                l.ss()  << "Casts a spell (mana now " << Attacker->mana() << ")";
+                g_LogFile.ss()  << "Casts a spell (mana now " << Attacker->mana() << ")";
             }
         }
         else
-            l.ss()  << "Using physical attack";
+            g_LogFile.ss()  << "Using physical attack";
             
-        l.ssend();
+        g_LogFile.ssend();
         
         int girl_attack_chance = g_Girls.GetSkill( Attacker, attack );
         int die_roll = g_Dice.d100();
         
-        l.ss()  << "\t\t" << "Attack chance: " << girl_attack_chance << " Die roll: " << die_roll;
-        l.ssend();
+        g_LogFile.ss()  << "\t\t" << "Attack chance: " << girl_attack_chance << " Die roll: " << die_roll;
+        g_LogFile.ssend();
         
         
         if( die_roll > girl_attack_chance )
-            l.ss()  << "\t\t\t" << "Miss!";
+            g_LogFile.ss()  << "\t\t\t" << "Miss!";
         else
         {
             int damage = 5;
-            l.ss()  << "\t\t\t" << "Hit! base damage is " << damage << ". ";
+            g_LogFile.ss()  << "\t\t\t" << "Hit! base damage is " << damage << ". ";
             
             /*
             *       she has hit now calculate how much damage will be done
@@ -10970,41 +10968,41 @@ Uint8 cGirls::girl_fights_girl( sGirl* a, sGirl* b )
             else
                 bonus = g_Girls.GetSkill( Attacker, SKILL_COMBAT ) / 10;
                 
-            l.ss()  << "Bonus damage is " << bonus << ".";
-            l.ssend();
+            g_LogFile.ss()  << "Bonus damage is " << bonus << ".";
+            g_LogFile.ssend();
             damage += bonus;
             
             die_roll = g_Dice.d100();
             
             // Defender attempts Dodge
-            l.ss()  << "\t\t\t\t" << Defender->m_Realname << " tries to dodge: needs " << dodge << ", gets " << die_roll << ": ";
+            g_LogFile.ss()  << "\t\t\t\t" << Defender->m_Realname << " tries to dodge: needs " << dodge << ", gets " << die_roll << ": ";
             
             if( die_roll <= dodge )
             {
-                l.ss()  << "Success!";
-                l.ssend();
+                g_LogFile.ss()  << "Success!";
+                g_LogFile.ssend();
             }
             else
             {
-                l.ss()  << "Failure! ";
-                l.ssend();
+                g_LogFile.ss()  << "Failure! ";
+                g_LogFile.ssend();
                 
                 //int con_mod = Defender->m_Stats[STAT_CONSTITUTION] / 10;
                 int con_mod = g_Girls.GetStat( Defender, STAT_CONSTITUTION ) / 10;
                 int ActualDmg = damage - con_mod;
                 
                 if( ActualDmg <= 0 )
-                    l.ss() << "\t\t\t\t" << Defender->m_Realname << " shrugs it off.";
+                    g_LogFile.ss() << "\t\t\t\t" << Defender->m_Realname << " shrugs it off.";
                 else
                 {
                     g_Girls.UpdateStat( Defender, STAT_HEALTH, -ActualDmg );
-                    l.ss() << "\t\t\t\t" << Defender->m_Realname << " takes " << damage  << " damage, less " << con_mod << " for CON\n";
-                    l.ss() << "\t\t\t\t\t" << "New health value = " << Defender->health();
+                    g_LogFile.ss() << "\t\t\t\t" << Defender->m_Realname << " takes " << damage  << " damage, less " << con_mod << " for CON\n";
+                    g_LogFile.ss() << "\t\t\t\t\t" << "New health value = " << Defender->health();
                 }
             } // Didn't dodge
         }     // Hit
         
-        l.ssend();
+        g_LogFile.ssend();
         
         // update girls dodge ability
         if( ( dodge - 1 ) < 0 )
@@ -11024,8 +11022,8 @@ Uint8 cGirls::girl_fights_girl( sGirl* a, sGirl* b )
     // Girls exploring catacombs: Girl is "a" - and thus wins
     if( Attacker == a )
     {
-        l.ss() << a->m_Realname << " WINS!";
-        l.ssend();
+        g_LogFile.ss() << a->m_Realname << " WINS!";
+        g_LogFile.ssend();
         
         g_Girls.UpdateEnjoyment( a, ACTION_COMBAT, +1, true );
         
@@ -11034,16 +11032,16 @@ Uint8 cGirls::girl_fights_girl( sGirl* a, sGirl* b )
     
     if( Attacker == b ) // Catacombs: Monster wins
     {
-        l.ss()  << b->m_Realname << " WINS!";
-        l.ssend();
+        g_LogFile.ss()  << b->m_Realname << " WINS!";
+        g_LogFile.ssend();
         
         g_Girls.UpdateEnjoyment( b, ACTION_COMBAT, +1, true );
         
         return 2;
     }
     
-    l.ss()  << "ERROR: cGirls::girl_fights_girl - Shouldn't reach the function bottom.";
-    l.ssend();
+    g_LogFile.ss()  << "ERROR: cGirls::girl_fights_girl - Shouldn't reach the function bottom.";
+    g_LogFile.ssend();
     
     return 0;
 }
@@ -13068,9 +13066,8 @@ bool cImageList::AddImage( std::string filename, std::string path, std::string f
         
         if( !input )
         {
-            CLog l;
-            l.ss() << "Incorrect data file given for animation - " << filename;
-            l.ssend();
+            g_LogFile.ss() << "Incorrect data file given for animation - " << filename;
+            g_LogFile.ssend();
             return false;
         }
         else
@@ -13497,8 +13494,6 @@ void cGirls::LoadDefaultImages()    // for now they are hard coded
 
 bool cGirls::IsAnimatedSurface( sGirl* girl, int ImgType, int& img )
 {
-    CLog l;
-    
     while( 1 )
     {
         switch( ImgType )
@@ -13579,11 +13574,11 @@ bool cGirls::IsAnimatedSurface( sGirl* girl, int ImgType, int& img )
             
         default:
         
-            l.ss()  << "cGirls::IsAnimatedSurface: "
+            g_LogFile.ss()  << "cGirls::IsAnimatedSurface: "
                     << "unexpected image type: "
                     << ImgType
                     ;
-            l.ssend();
+            g_LogFile.ssend();
             break;
         }
     }

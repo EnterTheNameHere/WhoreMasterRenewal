@@ -119,14 +119,13 @@ static void add_to_table(lua_State *L, int table, const char *key, void *value)
 // unused function
 //static int sex(lua_State *L)
 //{
-//	CLog local_log;
 // 	int argtab = lua_gettop(L);
 // /*
 //  *	make sure it exists and is in fact a table
 //  */
 //	if(argtab == 0) {
-//		local_log.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
-//		local_log.ssend();
+//		g_LogFile.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
+//		g_LogFile.ssend();
 //		return 1;
 //	}
 //	luaL_checktype(L, argtab, LUA_TTABLE);

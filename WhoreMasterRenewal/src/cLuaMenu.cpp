@@ -264,8 +264,8 @@ str_vec cLuaMenuInner::traverse_caption_table()
  *		on top of that
  */
  	    std::string option_pt = lua_tostring(l, -1);
-		//log.ss() << "traverse: '" << option_pt << "'";
-		//log.ssend();
+		//g_LogFile.ss() << "traverse: '" << option_pt << "'";
+		//g_LogFile.ssend();
 
 /*
  *		we need some storage for the string
