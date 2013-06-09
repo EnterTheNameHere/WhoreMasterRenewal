@@ -56,6 +56,7 @@
 #include "cScreenPrison.h"
 #include "cScreenSlaveMarket.h"
 #include "cScreenTown.h"
+#include "cGetStringScreenManager.h"
 #include "libRocketSFMLInterface/RenderInterfaceSFML.h"
 #include "libRocketSFMLInterface/SystemInterfaceSFML.h"
 #include "libRocketSFMLInterface/ShellFileInterface.h"
@@ -502,7 +503,9 @@ void Shutdown()
 	g_InvManager.Free();
 
 	FreeInterface();
-
+    
+    cGetStringScreenManager::ReleaseResources();
+    
 	#ifdef _DEBUG
 	cJobManager::freeJobs();
 	#else

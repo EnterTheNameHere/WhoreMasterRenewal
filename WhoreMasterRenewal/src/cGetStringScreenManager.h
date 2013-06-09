@@ -81,6 +81,8 @@ public:
 	cGetStringScreenManager();
 	~cGetStringScreenManager();
 	
+	static void ReleaseResources();
+	
 	void process();
 	void set_dest( std::string& dest );
 	void set_handler( Funker funk );

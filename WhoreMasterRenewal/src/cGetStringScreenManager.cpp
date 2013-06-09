@@ -164,6 +164,16 @@ cGetStringScreenManager::cGetStringScreenManager()
 
 cGetStringScreenManager::~cGetStringScreenManager()
 {
+    ; /// @note We can't release instance, because we will lose information it carries... (m_Trans) - REFACTOR
+}
+
+void cGetStringScreenManager::ReleaseResources()
+{
+    /// @note This is HACK to release instance (Inner object). We can't do it in destructor, since
+    ///       object is not global and gets constructed in code (thus destructed out of scope), but
+    ///       instance carries information we will need to check later, so we have to keep it alive.
+    ///       To prevent memory leak, this function needs to be called when shutting down the game.
+    
     if( instance )
         delete instance;
     instance = nullptr;
