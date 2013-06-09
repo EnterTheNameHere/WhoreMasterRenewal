@@ -39,7 +39,6 @@ sFacilityList::sFacilityList()
 /*
  *	loop through files and load them
  */
-	CLog log;
  	for(int i = 0; i < fl.size(); i++) {
 /*
  *		get the file name
@@ -54,34 +53,32 @@ sFacilityList::sFacilityList()
 /*
  *		moan if we failed at that task
  */
-		log.ss()<< "Error: failed to parse file '"
+		g_LogFile.ss()<< "Error: failed to parse file '"
 			<< file
 			<< "': continuing..."
 		;
-		log.ssend();
+		g_LogFile.ssend();
 	}
 }
 
 
 bool sFacilityList::load_xml(std::string filename)
 {
-	CLog log;
-
 	TiXmlDocument doc(filename);
 	if(!doc.LoadFile()) {
-		log.ss()<< "sFacilityList::load_xml: load failure for file '"
+		g_LogFile.ss()<< "sFacilityList::load_xml: load failure for file '"
 			<< filename
 			<< "'"
 			<< std::endl
 		;
-		log.ss()<< "Error: line "
+		g_LogFile.ss()<< "Error: line "
 			<< doc.ErrorRow()
 			<< ", col "
 			<< doc.ErrorCol()
 			<< ": "
 			<< doc.ErrorDesc()
 		;
-		log.ssend();
+		g_LogFile.ssend();
 		return false;
 	}
 /*

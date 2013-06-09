@@ -245,9 +245,8 @@ bool CSurface::DrawSprite(int x, int y)
 {
 	if(m_SpriteImage == nullptr)
 	{
-		CLog l;
-		l.ss() <<	"ERROR - Draw Sprite, null surface";
-		l.ssend();
+		g_LogFile.ss() <<	"ERROR - Draw Sprite, null surface";
+		g_LogFile.ssend();
 		return false;
 	}
 
@@ -279,11 +278,10 @@ bool CSurface::DrawSurface(int x, int y, SDL_Surface* destination, SDL_Rect* cli
 	{
 		if(m_ColoredSurface == true)
 		{
-			CLog l;
-			l.ss() <<	"ERROR - Colored surface null: '"
+			g_LogFile.ss() <<	"ERROR - Colored surface null: '"
 				<< m_Filename << "'"
 			;
-			l.ssend();
+			g_LogFile.ssend();
 			return false;
 		}
 
@@ -393,9 +391,8 @@ bool CSurface::DrawSurface(int x, int y, SDL_Surface* destination, SDL_Rect* cli
 
 	if(error == -1)
 	{
-		CLog l;
-		l.ss() << "Error Blitting surface (" << m_Filename << ") - " << SDL_GetError();
-		l.ssend();
+		g_LogFile.ss() << "Error Blitting surface (" << m_Filename << ") - " << SDL_GetError();
+		g_LogFile.ssend();
 		return false;
 	}
 	

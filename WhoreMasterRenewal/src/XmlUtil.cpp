@@ -23,37 +23,34 @@
 
 bool XmlUtil::get_att( TiXmlElement* el, const char* name, int& ipt, bool optional )
 {
-	CLog l;
 	if(el->Attribute(name, &ipt) || optional) {
 		return true;
 	}
-	l.ss()	<< "Warning: " << m_context << ": No '"
+	g_LogFile.ss()	<< "Warning: " << m_context << ": No '"
 		<< name
 		<< "' attribute: defaulting to "
 		<< ipt
 	;
-	l.ssend();
+	g_LogFile.ssend();
 	return false;
 }
 
 bool XmlUtil::get_att( TiXmlElement* el, const char* name, double& dpt, bool optional )
 {
-	CLog l;
 	if(el->Attribute(name, &dpt) || optional) {
 		return true;
 	}
-	l.ss()	<< "Warning: " << m_context << ": No '"
+	g_LogFile.ss()	<< "Warning: " << m_context << ": No '"
 		<< name
 		<< "' attribute: defaulting to "
 		<< dpt
 	;
-	l.ssend();
+	g_LogFile.ssend();
 	return false;
 }
 
 bool XmlUtil::get_att( TiXmlElement* el, const char* name, bool& bval, bool optional )
 {
-	CLog l;
 	const char* pt;
 
 	pt = el->Attribute(name);
@@ -62,12 +59,12 @@ bool XmlUtil::get_att( TiXmlElement* el, const char* name, bool& bval, bool opti
 		if(optional) {
 			return true;
 		}
-		l.ss()	<< "Warning: " << m_context << ": No '"
+		g_LogFile.ss()	<< "Warning: " << m_context << ": No '"
 			<< name
 			<< "' attribute: defaulting to "
 			<< bval
 		;
-		l.ssend();
+		g_LogFile.ssend();
 		return false;
 	}
 
@@ -92,19 +89,18 @@ bool XmlUtil::get_att( TiXmlElement* el, const char* name, bool& bval, bool opti
 		bval = false;
 		return true;
 	}
-	l.ss()	<< "Error: " << m_context << ": Unexpected value '"
+	g_LogFile.ss()	<< "Error: " << m_context << ": Unexpected value '"
 		<< s
 		<< "' in binary attribute '"
 		<< name
 		<< "'"
 	;
-	l.ssend();
+	g_LogFile.ssend();
 	return false;
 }
 
 bool XmlUtil::get_att( TiXmlElement* el, const char* name, std::string& s, bool optional )
 {
-	CLog l;
 	const char* pt;
 
 	pt = el->Attribute(name);
@@ -113,11 +109,11 @@ bool XmlUtil::get_att( TiXmlElement* el, const char* name, std::string& s, bool 
 		return true;
 	}
 	if(optional) return true;
-	l.ss()	<< "Warning: " << m_context << ": No '"
+	g_LogFile.ss()	<< "Warning: " << m_context << ": No '"
 		<< name
 		<< "' attribute: defaulting to "
 		<< s;
-	l.ssend();
+	g_LogFile.ssend();
 	return false;
 }
 

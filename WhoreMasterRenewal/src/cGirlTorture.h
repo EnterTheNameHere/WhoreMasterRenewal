@@ -26,8 +26,6 @@ struct sGirl;
 struct sDungeonGirl;
 class cPlayer;
 class cDungeon;
-class CLog;
-class cConfig;
 
 class cGirlTorture
 {

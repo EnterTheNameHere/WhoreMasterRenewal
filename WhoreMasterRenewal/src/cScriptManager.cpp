@@ -113,18 +113,17 @@ void cScriptManagerInner::RunScript()
     *       if it returned true, leave it there so it can
     *       get another time slice
     */
-    CLog log;
     
     if( rc )
     {
-        log.ss() << "RunScript: lua returned true: "
+        g_LogFile.ss() << "RunScript: lua returned true: "
                  << "script left on queue"
                  ;
-        log.ssend();
+        g_LogFile.ssend();
         return;
     }
     
-    log.ss() << "RunScript: lua returned false: "
+    g_LogFile.ss() << "RunScript: lua returned false: "
              << "deleting from queue";
     /*
     *       if it returned false, or nothing at all,

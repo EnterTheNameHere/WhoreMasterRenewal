@@ -95,14 +95,7 @@ void CLog::write( std::string text )
         inner = new CLogInner();
     inner->write( text );
 }
-/*
-std::ofstream& CLog::os()
-{
-    if( !inner )
-        inner = new CLogInner();
-    return inner->os();
-}
-*/
+
 std::stringstream& CLog::ss()
 {
     if( !inner )

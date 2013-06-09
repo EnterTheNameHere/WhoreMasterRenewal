@@ -943,7 +943,6 @@ void cInterfaceWindowXML::read_text_item(TiXmlElement *el)
 
 void cInterfaceWindowXML::define_widget(TiXmlElement *base_el)
 {
-	CLog l;
 	TiXmlElement *el;
     std::string widget_name;
 	XmlUtil xu(m_filename);
@@ -951,10 +950,10 @@ void cInterfaceWindowXML::define_widget(TiXmlElement *base_el)
  *	first get the widget name
  */
 	if(!xu.get_att(base_el, "Widget", widget_name)) {
-		l.ss()	<< "Error in " << m_filename << ": "
+		g_LogFile.ss()	<< "Error in " << m_filename << ": "
 			<< "'Define' tag with no 'Widget' attribute"
 		;
-		l.ssend();
+		g_LogFile.ssend();
 		return;
 	}
 /*
@@ -970,8 +969,8 @@ void cInterfaceWindowXML::define_widget(TiXmlElement *base_el)
 	) {
 	    std::string tag = el->ValueStr();
 
-		l.ss() << "define widget: '" << tag << "'";
-		l.ssend();
+		g_LogFile.ss() << "define widget: '" << tag << "'";
+		g_LogFile.ssend();
 
  		if(tag == "Text") {
 			widget_text_item(el, *widget);
@@ -1008,17 +1007,16 @@ void cInterfaceWindowXML::define_widget(TiXmlElement *base_el)
 			continue;
 		}
 
-		l.ss()	<< "Warning: Unhandled widget tag: '"
+		g_LogFile.ss()	<< "Warning: Unhandled widget tag: '"
 			<< tag
 			<< "'"
 		;
-		l.ssend();
+		g_LogFile.ssend();
 	}
 }
 
 void cInterfaceWindowXML::place_widget(TiXmlElement *el, std::string /*suffix*/)
 {
-	CLog l;
 	int x, y;
 	std::stringstream ss;
     std::string seq, name;
@@ -1029,14 +1027,14 @@ void cInterfaceWindowXML::place_widget(TiXmlElement *el, std::string /*suffix*/)
  *	sequence number to generate new names
  */
 	if(xu.get_att(el, "Definition", name) == 0) {
-		l.ss()	<< "Error in " << m_filename << ": "
+		g_LogFile.ss()	<< "Error in " << m_filename << ": "
 			<< "'Widget' tag found with no 'Definition' attribute"
 		;
-		l.ssend();
+		g_LogFile.ssend();
 		return;
 	}
-	l.ss()	<< "Placing Widget '" << name << "'";
-	l.ssend();
+	g_LogFile.ss()	<< "Placing Widget '" << name << "'";
+	g_LogFile.ssend();
 
 	xu.get_att(el, "XPos",	x);
 	xu.get_att(el, "YPos",	y);
@@ -1048,15 +1046,14 @@ void cInterfaceWindowXML::place_widget(TiXmlElement *el, std::string /*suffix*/)
 void cInterfaceWindowXML::add_widget(std::string widget_name,int x,int y,std::string seq)
 {
 	int id;
-	CLog l;
 
 	cXmlWidget *widget = find_widget(widget_name);
 	if(widget == nullptr) {
-		l.ss()	<< "Error: can't find definition for widget '"
+		g_LogFile.ss()	<< "Error: can't find definition for widget '"
 			<< widget_name
 			<< "'"
 			;
-		l.ssend();
+		g_LogFile.ssend();
 		return;
 	}
 /*
@@ -1081,10 +1078,10 @@ void cInterfaceWindowXML::add_widget(std::string widget_name,int x,int y,std::st
  *
  *		all told it's less fuss to use a big IF, really
  */
-		//l.ss() << "TAG = '" << tag << "'";
-		//l.ssend();
+		//g_LogFile.ss() << "TAG = '" << tag << "'";
+		//g_LogFile.ssend();
 
-		l.ss()	<< "add_widget: x = "
+		g_LogFile.ss()	<< "add_widget: x = "
 			<< x
 			<< ", xw.x = "
 			<< xw.x
@@ -1093,7 +1090,7 @@ void cInterfaceWindowXML::add_widget(std::string widget_name,int x,int y,std::st
 			<< ", xw.y = "
 			<< xw.y
 		;
-		l.ssend();
+		g_LogFile.ssend();
 
 		int full_x = x + xw.x;
 		int full_y = y + xw.y;
@@ -1150,12 +1147,12 @@ void cInterfaceWindowXML::add_widget(std::string widget_name,int x,int y,std::st
 			register_id(id, name);
 		}
 		else if(tag == "Widget") {
-			l.ss()	<< "Placing nested widget at "
+			g_LogFile.ss()	<< "Placing nested widget at "
 				<< full_x
 				<< ", "
 				<< full_y
 			;
-			l.ssend();
+			g_LogFile.ssend();
 			add_widget(xw.name, full_x, full_y, xw.seq + seq);
 		}
 		else {
@@ -1204,7 +1201,6 @@ void cInterfaceWindowXML::read_listbox_definition(TiXmlElement *el)
 	register_id(id, name);
 
 	// Check for column definitions
-	CLog l;
 	TiXmlElement *sub_el;
 	int column_count = 0, column_offset[LISTBOX_COLUMNS];
     std::string column_name[LISTBOX_COLUMNS], column_header[LISTBOX_COLUMNS];
@@ -1215,8 +1211,8 @@ void cInterfaceWindowXML::read_listbox_definition(TiXmlElement *el)
 	) {
 	    std::string tag = sub_el->ValueStr();
 
-		l.ss() << "define listbox element: '" << tag << "'";
-		l.ssend();
+		g_LogFile.ss() << "define listbox element: '" << tag << "'";
+		g_LogFile.ssend();
 
  		// XML definition can arrange columns in any order and even leave some columns out if desired
 		// Listbox itself (via DefineColumns) keeps track of what order they're to be displayed in based on this
@@ -1231,8 +1227,8 @@ void cInterfaceWindowXML::read_listbox_definition(TiXmlElement *el)
 		}
 		else
 		{
-			l.ss()	<< "Warning: Unhandled listbox element: '" << tag << "'";
-			l.ssend();
+			g_LogFile.ss()	<< "Warning: Unhandled listbox element: '" << tag << "'";
+			g_LogFile.ssend();
 		}
 	}
 
@@ -1550,15 +1546,13 @@ void cInterfaceWindowXML::widget_image_item(TiXmlElement *el, cXmlWidget &wid)
 
 void cInterfaceWindowXML::register_id(int id, std::string name)
 {
-	CLog l;
-
-	l.ss()	<< "registering ID "
+	g_LogFile.ss()	<< "registering ID "
 		<< id
 		<< " to name '"
 		<< name
 		<< "'"
 	;
-	l.ssend();
+	g_LogFile.ssend();
 	name_to_id[name] = id;
 	id_to_name[id]	 = name;
 }

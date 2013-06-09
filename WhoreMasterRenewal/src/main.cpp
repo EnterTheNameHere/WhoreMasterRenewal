@@ -282,8 +282,7 @@ int main_old(int ac, char* av[])
 		cfg.reload(av[1]);
 	}
 
-	CLog log = log;
-	log.write("calling init");
+	g_LogFile.write("calling init");
 	// INit the program
 	if(!Init())
 		return 1;

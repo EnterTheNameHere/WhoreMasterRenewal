@@ -106,7 +106,6 @@ void cBuilding::revert()
 
 std::ofstream& cBuilding::save(std::ofstream& ofs, std::string name)
 {
-	CLog log;
     std::string s;
 	std::stringstream ss;
 /*
@@ -168,14 +167,13 @@ std::ofstream& cBuilding::save(std::ofstream& ofs, std::string name)
 	ss.str("");
 	ss << doc;
 	s = ss.str();
-	log.write(s);
+	g_LogFile.write(s);
 	ofs << s;
 	return ofs;
 }
 
 std::ifstream& cBuilding::load(std::ifstream& ifs)
 {
-	CLog log;
 	TiXmlDocument doc;
 	XmlUtil u("Loading building data from XML");
 /*
@@ -183,13 +181,13 @@ std::ifstream& cBuilding::load(std::ifstream& ifs)
  */
 	ifs >> doc;
 	if(doc.Error()) {
-		log.ss() << "error loading building data from XML: " << std::endl;
-		log.ss()<< "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol() << ": " << doc.ErrorDesc();
-		log.ssend();
+		g_LogFile.ss() << "error loading building data from XML: " << std::endl;
+		g_LogFile.ss()<< "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol() << ": " << doc.ErrorDesc();
+		g_LogFile.ssend();
 		return ifs;
 	}
-	log.ss() << "Loaded XML string: " << doc ;
-	log.ssend();
+	g_LogFile.ss() << "Loaded XML string: " << doc ;
+	g_LogFile.ssend();
 /*
  *	get the docuement root
  */

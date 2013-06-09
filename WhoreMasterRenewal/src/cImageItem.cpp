@@ -101,9 +101,8 @@ bool cImageItem::CreateAnimatedImage(int id, std::string filename, std::string d
 		input.open(dataFilename.c_str());
 		if(!input)
 		{
-			CLog log;
-			log.ss() << "Incorrect data file given for animation - " << dataFilename;
-			log.ssend();
+			g_LogFile.ss() << "Incorrect data file given for animation - " << dataFilename;
+			g_LogFile.ssend();
 			return false;
 		}
 		else
@@ -113,9 +112,8 @@ bool cImageItem::CreateAnimatedImage(int id, std::string filename, std::string d
 	}
 	else
 	{
-		CLog log;
-		log.ss() << "Incorrect image file given for animation";
-		log.ssend();
+		g_LogFile.ss() << "Incorrect image file given for animation";
+		g_LogFile.ssend();
 		m_loaded = false;
 		return false;
 	}

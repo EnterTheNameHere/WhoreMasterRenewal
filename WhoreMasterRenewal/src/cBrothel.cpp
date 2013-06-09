@@ -4824,13 +4824,12 @@ std::string cBrothelManager::happiness_text( sBrothel* brothel )
 // True means the girl beat the brothel master
 bool cBrothelManager::PlayerCombat( sGirl* girl )   //  **************************** for now doesn't count items
 {
-    CLog l;
-    
     // MYR: Sanity check: Incorporial is an auto-win.
     if( girl->has_trait( "Incorporial" ) )
     {
         girl->m_Stats[STAT_HEALTH] = 100;
-        l.ss()  << "\nGirl vs. Brothel owner: " << girl->m_Realname << " is incorporial, so she wins.\n";
+        g_LogFile.ss()  << "\nGirl vs. Brothel owner: " << girl->m_Realname << " is incorporial, so she wins.\n";
+        g_LogFile.ssend();
         return true;
     }
     
