@@ -31,6 +31,7 @@
 #include <string>
 #include <fstream>
 #include <memory>
+#include <vector>
 
 class cGirls;
 extern cGirls g_Girls;
@@ -38,6 +39,10 @@ class cAbstractGirls;
 extern cAbstractGirls* g_GirlsPtr;
 class sGirl;
 extern sGirl* MarketSlaveGirls[8];
+extern int MarketSlaveGirlsDel[8];
+extern sGirl* selected_girl;
+extern std::vector<int> cycle_girls;
+extern int cycle_pos;
 
 class cIndexedList;
 class TiXmlElement;

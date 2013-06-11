@@ -37,7 +37,6 @@ extern bool g_Cheats;
 extern bool g_WalkAround; // for keeping track of weather have walked around town today
 extern bool g_AllTogle; // used on screens when wishing to apply something to all items
 extern std::string g_ReturnText;
-extern bool g_InitWin;
 extern long g_IntReturn;
 extern bool eventrunning;
 extern int g_TalkCount;

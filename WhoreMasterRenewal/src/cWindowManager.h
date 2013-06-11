@@ -22,9 +22,14 @@
 
 #include <map>
 #include <string>
+#include <memory>
 
 class cWindowManager;
 extern cWindowManager g_WinManager;
+extern bool g_InitWin;
+class CSurface;
+extern std::shared_ptr<CSurface> g_BackgroundImage;
+extern std::shared_ptr<CSurface> g_BrothelImages[6];
 
 class cInterfaceWindow;
 class cInterfaceWindowXML;

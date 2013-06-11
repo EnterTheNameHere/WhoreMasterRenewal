@@ -23,53 +23,6 @@
 #include <vector>
 #include <memory>
 
-class cGold;
-class cBrothelManager;
-class cGangManager;
-class cCustomers;
-class cInventory;
-class cGirls;
-class cTraits;
-class cMessageBox;
-class cMessageQue;
-class cWindowManager;
-class cInterfaceEventManager;
-class cInterfaceWindow;
-class cChoiceManager;
-class cSlider;
-class CSurface;
-class cScrollBar;
-struct sGirl;
-struct sInterfaceIDs;
-
-// Globals
-extern cInterfaceEventManager g_InterfaceEvents;
-extern cInterfaceWindow g_MainMenu;
-extern cInterfaceWindow g_GetString;
-extern cInterfaceWindow g_BrothelManagement;
-extern cInterfaceWindow g_ChangeJobs;
-extern cInterfaceWindow g_Turnsummary;
-extern cInterfaceWindow g_Gallery;
-extern cInterfaceWindow g_GetInt;
-extern cInterfaceWindow g_LoadGame;
-extern cInterfaceWindow g_TransferGirls;
-extern cMessageBox g_MessageBox;
-extern cChoiceManager g_ChoiceManager;
-extern cMessageQue g_MessageQue;
-extern cWindowManager g_WinManager;
-extern cInventory g_InvManager;
-extern cGold g_Gold;
-extern cTraits g_Traits;
-extern cGirls g_Girls;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cCustomers g_Customers;
-extern cScrollBar* g_DragScrollBar;
-extern sGirl* selected_girl;
-extern std::vector<int> cycle_girls;
-extern int cycle_pos;
-extern bool g_InitWin;
-
 extern unsigned char g_MessageBoxBorderR, g_MessageBoxBorderG, g_MessageBoxBorderB;
 extern unsigned char g_MessageBoxBackground0R, g_MessageBoxBackground0G, g_MessageBoxBackground0B;
 extern unsigned char g_MessageBoxBackground1R, g_MessageBoxBackground1G, g_MessageBoxBackground1B;
@@ -120,12 +73,6 @@ extern bool g_Fullscreen;
 extern unsigned long g_Year;
 extern unsigned long g_Month;
 extern unsigned long g_Day;
-
-extern cSlider* g_DragSlider;
-extern std::shared_ptr<CSurface> g_BackgroundImage;
-extern std::shared_ptr<CSurface> g_BrothelImages[6];
-extern sGirl* MarketSlaveGirls[8];
-extern int MarketSlaveGirlsDel[8];
 
 
 void LoadInterface();	// Function for loading the interface

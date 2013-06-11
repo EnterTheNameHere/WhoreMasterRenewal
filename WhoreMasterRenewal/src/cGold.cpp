@@ -84,23 +84,26 @@ std::string cGoldBase::in::str( int brothel_no )
 
 
 cGoldBase::cGoldBase()
+    : cGoldBase( 0 )
 {
-	cConfig cfg;
 
-	m_initial_value = m_value = cfg.initial.gold();
-	m_upkeep = 0;
-	m_income = 0;
-	m_cash_in = 0;
-	m_cash_out = 0;
 }
 
-cGoldBase::cGoldBase(int init_val)
+cGoldBase::cGoldBase( int init_val )
+    : detail_in(), detail_out(), m_upkeep(0), m_income(0), m_cash_in(0), m_cash_out(0)
 {
-	m_initial_value = m_value = init_val;
-	m_upkeep = 0;
-	m_income = 0;
-	m_cash_in = 0;
-	m_cash_out = 0;
+    if( init_val == 0 )
+    {
+        m_initial_value = init_val;
+        m_value = init_val;
+    }
+    else
+    {
+        cConfig cfg;
+        
+        m_initial_value = cfg.initial.gold();
+        m_value = cfg.initial.gold();
+    }
 }
 
 cGoldBase::~cGoldBase()
@@ -447,6 +450,17 @@ std::istream &operator>>(std::istream& is, cGoldBase &g)
 	return is;
 }
 
+cGold::cGold()
+    : cGoldBase(), m_Brothels()
+{
+    ;
+}
+
+cGold::cGold( int initial )
+    : cGoldBase( initial ), m_Brothels()
+{
+    ;
+}
 
 void cGold::brothel_accounts(cGold &g, int brothel_id)
 {
@@ -474,7 +488,7 @@ void cGold::week_end()
 	ss << "               : cash in  = " << m_cash_in << std::endl;
 	ss << "               : cash out = " << m_cash_out << std::endl;
 
-	for(int i = 0; (bpt = brothels[i]); i++) {
+	for(int i = 0; (bpt = m_Brothels[i]); i++) {
 		(*this) += (*bpt);
 
 		ss << "Added Bothel "<< i << ": value    = " << m_value << std::endl;
@@ -501,7 +515,7 @@ int cGold::total_income()
 	cGoldBase *bpt;
 	double sum = cGoldBase::total_income();
 
-	for(int i = 0; (bpt = brothels[i]); i++) {
+	for(int i = 0; (bpt = m_Brothels[i]); i++) {
 		sum += bpt->total_income();
 	}
 	return int(floor(sum));
@@ -512,7 +526,7 @@ int cGold::total_upkeep()
 	cGoldBase *bpt;
 	double sum = cGoldBase::total_upkeep();
 
-	for(int i = 0; (bpt = brothels[i]); i++) {
+	for(int i = 0; (bpt = m_Brothels[i]); i++) {
 		sum += bpt->total_upkeep();
 	}
 	return int(floor(sum));
@@ -523,7 +537,7 @@ int cGold::total_earned()
 	cGoldBase *bpt;
 	double sum = cGoldBase::total_earned();
 
-	for(int i = 0; (bpt = brothels[i]); i++) {
+	for(int i = 0; (bpt = m_Brothels[i]); i++) {
 		sum += bpt->total_earned();
 	//	bpt->reset_income();
 
@@ -531,17 +545,19 @@ int cGold::total_earned()
 	return int(floor(sum));
 }
 
-/*
- *
-
- */
 void cGold::gen_report(int /*month*/)
 {
 }
 
-
-/*
-
- *
-
- */
+cGoldBase* cGold::find_brothel_account(int id)
+{
+    cGoldBase* ac_pt = m_Brothels[id];
+    
+    if( ac_pt == nullptr )
+    {
+        ac_pt = new cGoldBase(0);
+        m_Brothels[id] = ac_pt;
+    }
+    
+    return ac_pt;
+}
