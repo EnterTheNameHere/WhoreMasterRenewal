@@ -34,7 +34,7 @@
 
 #include <sstream>
 
-bool cJobManager::WorkAdvertising(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkAdvertising(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
     std::string message = "";
 	if(Preprocessing(ACTION_WORKADVERTISING, girl, brothel, DayNight, summary, message))

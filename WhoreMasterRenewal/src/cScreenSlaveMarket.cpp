@@ -241,7 +241,7 @@ void cScreenSlaveMarket::init()
  *	something funny is going on, so splurge a
  *	diagnostic before exiting the func
  */
-	sGirl* g = MarketSlaveGirls[tmp];
+	Girl* g = MarketSlaveGirls[tmp];
 	if(g == nullptr) {
 		g_LogFile.ss() << "error: null pointer for cursor entry in market" << std::endl;
 		g_LogFile.ssend();
@@ -332,7 +332,7 @@ void cScreenSlaveMarket::process()
 	if(index == -1) {
 		return;
 	}
-	sGirl *girl;
+	Girl *girl;
 	girl = MarketSlaveGirls[index];
 	if(!girl) {
 		g_LogFile.ss() << "... no girl at index "
@@ -368,7 +368,7 @@ void cScreenSlaveMarket::generate_unique_girl(int i, bool &unique)
 /*
  *	try and get a struct for the girl in question
  */
- 	sGirl *gpt = g_Girls.GetGirl(g_Girls.GetSlaveGirl(g));
+ 	Girl *gpt = g_Girls.GetGirl(g_Girls.GetSlaveGirl(g));
 /*
  *	if we can't, we go home
  */
@@ -448,7 +448,7 @@ bool cScreenSlaveMarket::change_selected_girl()
  *
  *	if we can't find the pointer. log an error and go home
  */
- 	sGirl *girl = MarketSlaveGirls[selection];
+ 	Girl *girl = MarketSlaveGirls[selection];
 	if(!girl) {
 		g_LogFile.ss()
 			<< "Warning: cScreenSlaveMarket::change_selected_girl"
@@ -526,7 +526,7 @@ bool cScreenSlaveMarket::change_selected_girl()
 bool cScreenSlaveMarket::check_events()
 {
 	cTariff tariff;
-	sGirl *girl = MarketSlaveGirls[selection];
+	Girl *girl = MarketSlaveGirls[selection];
 /*
  *	no events means we can go home
  */

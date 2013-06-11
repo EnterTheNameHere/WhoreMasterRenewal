@@ -25,7 +25,7 @@
 class cScreenDungeon;
 extern cScreenDungeon g_Dungeon;
 
-struct sGirl;
+class Girl;
 struct sGang;
 
 extern int g_CurrBrothel;
@@ -77,7 +77,7 @@ public:
 	void	init();
 	void	process();
 	void	selection_change();
-	void	set_slave_stats(sGirl *girl);
+	void	set_slave_stats(Girl *girl);
 	void	release_all_customers();
 	void	release_all_girls();
 	void	sell_slaves();
@@ -89,11 +89,11 @@ public:
 	void	talk();
 	void	get_selected_girls(std::vector<int> *girl_array);
 	void	store_selected_girls();
-	void	check_gang_for_survivors(sGirl *girl, sGang *gang, std::string &message, int start_count);
+	void	check_gang_for_survivors(Girl *girl, sGang *gang, std::string &message, int start_count);
 
 // WD	Replaced by Doclox's cGirlTorture and cGirlGangFight code.
-//	int		girl_fights_gang(sGirl *girl, sGang *&gang);
-//	bool	girl_fight_torture(sGirl *girl, std::string &message, bool &fight);
+//	int		girl_fights_gang(Girl *girl, sGang *&gang);
+//	bool	girl_fight_torture(Girl *girl, std::string &message, bool &fight);
 
 
 	// XML screen replacement for cSelector, for multi-select listboxes

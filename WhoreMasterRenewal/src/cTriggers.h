@@ -28,7 +28,7 @@ class cTriggerList;
 extern cTriggerList g_GlobalTriggers;
 
 
-struct sGirl;
+class Girl;
 class TiXmlElement;
 class TiXmlHandle;
 
@@ -136,7 +136,7 @@ public:
 	void ProcessNextQueItem(std::string fileloc);
 
 	// set script targets
-	void SetGirlTarget(sGirl* girl){m_GirlTarget = girl;}
+	void SetGirlTarget(Girl* girl){m_GirlTarget = girl;}
 
 	bool HasRun(int num);
 
@@ -153,7 +153,7 @@ private:
 
 
 	// script targets (things that the script will affect with certain commands)
-	sGirl* m_GirlTarget;	// if not 0 then the script is affecting a girl
+	Girl* m_GirlTarget;	// if not 0 then the script is affecting a girl
 };
 
 #endif // CTRIGGERS_H_INCLUDED_1509

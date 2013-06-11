@@ -47,7 +47,7 @@ cGirlTorture::~cGirlTorture()		// deconstructor
 	}
 }
 
-cGirlTorture::cGirlTorture(sGirl* a_girl)		// Torture girl by player
+cGirlTorture::cGirlTorture(Girl* a_girl)		// Torture girl by player
 {		
 	// Init for DoTorture()
 	m_TorturedByPlayer	= true;
@@ -77,7 +77,7 @@ cGirlTorture::cGirlTorture(sDungeonGirl* a_girl)	// Torture Dungeon girl by play
 	DoTorture();
 }
 
-cGirlTorture::cGirlTorture(sDungeonGirl* a_girl, sGirl* Tourturer)
+cGirlTorture::cGirlTorture(sDungeonGirl* a_girl, Girl* Tourturer)
 {
 	// Init for DoTorture()
 	m_TorturedByPlayer	= false;
@@ -94,8 +94,8 @@ void cGirlTorture::DoTorture()
 /*
  *	These variables to be initilisied befor calling DoTorture()
  *		bool			m_TorturedByPlayer
- *		sGirl			*m_Girl;
- *		sGirl			*m_Torturer;
+ *		Girl			*m_Girl;
+ *		Girl			*m_Torturer;
  *		sDungeonGirl	*m_DungeonGirl;
  *		Dungeon			*m_Dungeon;
  */

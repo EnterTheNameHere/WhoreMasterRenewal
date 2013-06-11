@@ -20,13 +20,13 @@
 #define CGIRLGANGFIGHT_H_INCLUDED_1529
 #pragma once
 
-struct sGirl;
+class Girl;
 struct sGang;
 
 class cGirlGangFight
 {
 public:
-	cGirlGangFight( sGirl *girl );
+	cGirlGangFight( Girl *girl );
 
 	bool girl_fights()	{ return m_girl_fights; }
 	bool girl_submits()	{ return !m_girl_fights; }
@@ -39,7 +39,7 @@ public:
 //	int dead_goons()	{ return m_dead_goons; }
 
 private:
-	sGirl* m_girl;
+	Girl* m_girl;
 
 	int m_girl_stats;
 	int m_goon_stats;

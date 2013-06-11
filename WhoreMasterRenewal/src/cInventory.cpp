@@ -76,12 +76,12 @@ void sEffect::set_what( std::string s )
 
 const char* sEffect::girl_status_name(unsigned int id)
 {
-	if(id < sGirl::max_statuses) {
-		return sGirl::status_names[id];
+	if(id < Girl::max_statuses) {
+		return Girl::status_names[id];
 	}
 	g_LogFile.ss() << "[sEffect::girl_status_name] Error: girl status id " << id
 	     << " too large (max is "
-	     << sGirl::max_statuses
+	     << Girl::max_statuses
 	     << ")"
 	     << std::endl;
     g_LogFile.ssend();
@@ -90,12 +90,12 @@ const char* sEffect::girl_status_name(unsigned int id)
 
 const char* sEffect::skill_name(unsigned int id)
 {
-	if(id < sGirl::max_skills) {
-		return sGirl::skill_names[id];
+	if(id < Girl::max_skills) {
+		return Girl::skill_names[id];
 	}
 	g_LogFile.ss() << "[sEffect::skill_name] Error: skill id " << id
 	     << " too large (max is "
-	     << sGirl::max_skills
+	     << Girl::max_skills
 	     << ")"
 	     << std::endl;
     g_LogFile.ssend();
@@ -104,12 +104,12 @@ const char* sEffect::skill_name(unsigned int id)
 
 const char* sEffect::stat_name(unsigned int id)
 {
-	if(id < sGirl::max_stats) {
-		return sGirl::stat_names[id];
+	if(id < Girl::max_stats) {
+		return Girl::stat_names[id];
 	}
 	g_LogFile.ss() << "[sEffect::stat_name] Error: stat id " << id
 	     << " too large (max is "
-	     << sGirl::max_stats
+	     << Girl::max_stats
 	     << ")"
 	     << std::endl;
     g_LogFile.ssend();
@@ -120,7 +120,7 @@ const char* sEffect::stat_name(unsigned int id)
 bool sEffect::set_skill(std::string s)
 {
 
-    int nID	= sGirl::lookup_skill_code(s);
+    int nID	= Girl::lookup_skill_code(s);
 
     if (nID == -1)		// ERROR
     {
@@ -136,7 +136,7 @@ bool sEffect::set_skill(std::string s)
 bool sEffect::set_girl_status(std::string s)
 {
 
-    int nID	= sGirl::lookup_status_code(s);
+    int nID	= Girl::lookup_status_code(s);
 
     if (nID == -1)		// ERROR
     {
@@ -151,7 +151,7 @@ bool sEffect::set_girl_status(std::string s)
 bool sEffect::set_stat(std::string s)
 {
 
-    int nID	= sGirl::lookup_stat_code(s);
+    int nID	= Girl::lookup_stat_code(s);
 
     if (nID == -1)		// ERROR
     {
@@ -265,7 +265,7 @@ void cInventory::AddItem(sInventoryItem* item)
 	items.push_back(item);
 }
 
-void cInventory::remove_trait(sGirl* girl, int num, int index)
+void cInventory::remove_trait(Girl* girl, int num, int index)
 {
 	u_int item_type = girl->m_Inventory[num]->m_Type;
     std::string trait_name = girl->m_Inventory[num]->m_Effects[index].m_Trait;
@@ -282,7 +282,7 @@ void cInventory::remove_trait(sGirl* girl, int num, int index)
 		item_type != INVFOOD && item_type != INVMAKEUP);	// Remember if not consumable
 }
 
-bool cInventory::GirlBuyItem(sGirl* girl, int ShopItem, int MaxItems, bool AutoEquip)
+bool cInventory::GirlBuyItem(Girl* girl, int ShopItem, int MaxItems, bool AutoEquip)
 {
 	// girl buys selected item if possible; returns true if bought
 	sInventoryItem* item = GetShopItem(ShopItem);
@@ -637,7 +637,7 @@ sInventoryItem* cInventory::GetItem(std::string name)
 
 // ----- Equip unequip
 
-void cInventory::Equip(sGirl* girl, int num, bool force)
+void cInventory::Equip(Girl* girl, int num, bool force)
 {
 	// dead girls shouldn't be able to equip or use anything
 	if(girl->health() <= 0)
@@ -824,7 +824,7 @@ void cInventory::Equip(sGirl* girl, int num, bool force)
 	g_Girls.CalculateGirlType(girl);
 }
 
-void cInventory::Unequip(sGirl* girl, int num)
+void cInventory::Unequip(Girl* girl, int num)
 {
 	// if already unequiped do nothing
 	if(girl->m_EquipedItems[num] == 0)
@@ -894,7 +894,7 @@ void cInventory::Unequip(sGirl* girl, int num)
 	g_Girls.CalculateGirlType(girl);
 }
 
-void cInventory::Equip(sGirl* girl, sInventoryItem* item, bool /*force*/)
+void cInventory::Equip(Girl* girl, sInventoryItem* item, bool /*force*/)
 {
 	// this function is only used for global effects sInventoryItem::AffectsAll = 1
 	if(item->m_Special != sInventoryItem::AffectsAll)
@@ -927,22 +927,22 @@ void cInventory::Equip(sGirl* girl, sInventoryItem* item, bool /*force*/)
 	}
 }
 
-bool cInventory::equip_ring_ok(sGirl* girl, int num, bool force)
+bool cInventory::equip_ring_ok(Girl* girl, int num, bool force)
 {
 	return equip_limited_item_ok(girl, num, force, 8);
 }
 
-bool cInventory::equip_singleton_ok(sGirl* girl, int num, bool force)
+bool cInventory::equip_singleton_ok(Girl* girl, int num, bool force)
 {
 	return equip_limited_item_ok(girl, num, force, 1);
 }
 
-bool cInventory::equip_pair_ok(sGirl* girl, int num, bool force)
+bool cInventory::equip_pair_ok(Girl* girl, int num, bool force)
 {
 	return equip_limited_item_ok(girl, num, force, 2);
 }
 
-bool cInventory::equip_limited_item_ok(sGirl* girl, int num, bool force, int limit)
+bool cInventory::equip_limited_item_ok(Girl* girl, int num, bool force, int limit)
 {
 	int count = 0;
 	int target_type = girl->m_Inventory[num]->m_Type;
@@ -1012,7 +1012,7 @@ bool cInventory::equip_limited_item_ok(sGirl* girl, int num, bool force, int lim
 	return true;
 }
 
-bool cInventory::ok_2_equip(sGirl *girl, int num, bool force)
+bool cInventory::ok_2_equip(Girl *girl, int num, bool force)
 {
 	// first check if can equip it
 	switch(girl->m_Inventory[num]->m_Type)

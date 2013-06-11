@@ -112,7 +112,7 @@ void cScreenDungeon::init()
 /*
  *		get the i-th girl
  */
-		sGirl *girl = dungeon->GetGirl(i)->m_Girl;
+		Girl *girl = dungeon->GetGirl(i)->m_Girl;
 /*
  *		if selected_girl is this girl, update selection
  */
@@ -229,7 +229,7 @@ void cScreenDungeon::selection_change()
  */
 	int num = selection;
 	sDungeonGirl* dgirl = dungeon->GetGirl(num);
-	sGirl * girl = dgirl->m_Girl;
+	Girl * girl = dgirl->m_Girl;
 /*
  *	again, we're just enabling and disabling buttons
  */
@@ -270,7 +270,7 @@ int cScreenDungeon::view_girl()
 /*
  *	if we can't find the girl, there's nothing we can do
  */
-	sGirl *girl = dungeon->GetGirl(selection)->m_Girl;
+	Girl *girl = dungeon->GetGirl(selection)->m_Girl;
 	if(!girl) {
 		return Continue;
 	}
@@ -340,7 +340,7 @@ int cScreenDungeon::enslave_customer(int girls_removed, int custs_removed)
 	return 0;
 }
 
-void cScreenDungeon::set_slave_stats(sGirl *girl)
+void cScreenDungeon::set_slave_stats(Girl *girl)
 {
 	cConfig cfg;
 	girl->set_slave();
@@ -382,7 +382,7 @@ int cScreenDungeon::enslave()
 		sDungeonGirl* dgirl = dungeon->GetGirl(
 			selection - numGirlsRemoved
 		);
-		sGirl *girl = dgirl->m_Girl;
+		Girl *girl = dgirl->m_Girl;
 /*
  *		nothing to do if she's _already_ enslaved
  */
@@ -535,10 +535,10 @@ void cScreenDungeon::sell_slaves()
 /*
  *		get the index of the girl,
  *		get the DungeonGirl entry
- *		and get the sGirl
+ *		and get the Girl
  */
 		sDungeonGirl* dgirl = dungeon->GetGirl(selection);
-		sGirl *girl = dgirl->m_Girl;
+		Girl *girl = dgirl->m_Girl;
 /*
  *		if she's not a slave, the player isn't allowed to sell her
  */
@@ -619,7 +619,7 @@ void cScreenDungeon::release_all_girls()
  *		make sure there's room for another girl
  */
 		if(brothel->free_rooms() > 0) {
-			sGirl* girl = dungeon->RemoveGirl(dungeon->GetGirl(0));
+			Girl* girl = dungeon->RemoveGirl(dungeon->GetGirl(0));
 			g_Brothels.AddGirl(g_CurrBrothel, girl);
 			continue;
 		}
@@ -741,7 +741,7 @@ void cScreenDungeon::torture_customer(int girls_removed)
 }
 
 #if 0	// WD	Replaced by Doclox's cGirlTorture and cGirlGangFight code.
-bool cScreenDungeon::girl_fight_torture(sGirl *girl, std::string &message, bool &fight)
+bool cScreenDungeon::girl_fight_torture(Girl *girl, std::string &message, bool &fight)
 {
 	cGirlGangFight ggf(girl);
 
@@ -907,7 +907,7 @@ void cScreenDungeon::release()
 		int num = selection;
 		if((brothel->m_NumRooms - brothel->m_NumGirls) > 0)
 		{
-			sGirl* girl = dungeon->RemoveGirl(dungeon->GetGirl(num));
+			Girl* girl = dungeon->RemoveGirl(dungeon->GetGirl(num));
 			g_Brothels.AddGirl(g_CurrBrothel, girl);
 			continue;
 		}

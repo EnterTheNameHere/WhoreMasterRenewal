@@ -141,7 +141,7 @@ TiXmlElement* SaveStatsXML(TiXmlElement* pRoot,
 	pRoot->LinkEndChild(pStats);
 	for(int i=0; i<NUM_STATS; i++)
 	{
-		TiXmlElement* pStat = new TiXmlElement(XMLifyString(sGirl::stat_names[i]));
+		TiXmlElement* pStat = new TiXmlElement(XMLifyString(Girl::stat_names[i]));
 		pStats->LinkEndChild(pStat);
 		pStat->SetAttribute("Value", stats[i]);
 		if (statMods && statMods[i])
@@ -168,7 +168,7 @@ bool LoadStatsXML(TiXmlHandle hStats,
 	}
 	for(int i=0; i<NUM_STATS; i++)
 	{
-		TiXmlElement* pStat = pStats->FirstChildElement(XMLifyString(sGirl::stat_names[i]));
+		TiXmlElement* pStat = pStats->FirstChildElement(XMLifyString(Girl::stat_names[i]));
 		if (pStat)
 		{
 			int tempInt = 0;
@@ -195,7 +195,7 @@ TiXmlElement* SaveSkillsXML(TiXmlElement* pRoot,
 	pRoot->LinkEndChild(pSkills);
 	for( unsigned int i = 0; i < NUM_SKILLS; ++i )
 	{
-		TiXmlElement* pSkill = new TiXmlElement(XMLifyString(sGirl::skill_names[i]));
+		TiXmlElement* pSkill = new TiXmlElement(XMLifyString(Girl::skill_names[i]));
 		pSkills->LinkEndChild(pSkill);
 		pSkill->SetAttribute("Value", skills[i]);
 		if (skillMods && skillMods[i])
@@ -222,7 +222,7 @@ bool LoadSkillsXML(TiXmlHandle hSkills,
 	}
 	for( unsigned int i = 0; i < NUM_SKILLS; ++i )
 	{
-		TiXmlElement* pSkill = pSkills->FirstChildElement(XMLifyString(sGirl::skill_names[i]));
+		TiXmlElement* pSkill = pSkills->FirstChildElement(XMLifyString(Girl::skill_names[i]));
 		if (pSkill)
 		{
 			int tempInt = 0;

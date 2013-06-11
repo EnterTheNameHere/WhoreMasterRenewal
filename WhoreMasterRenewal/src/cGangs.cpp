@@ -1158,7 +1158,7 @@ bool cGangManager::GangBrawl( sGang* gang1, sGang* gang2 )
     return false;
 }
 
-bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
+bool cGangManager::GangCombat( Girl* girl, sGang* gang )
 {
     // MYR: Sanity check: Incorporial is an auto-win.
     if( girl->has_trait( "Incorporial" ) )
@@ -1529,7 +1529,7 @@ bool cGangManager::GangCombat( sGirl* girl, sGang* gang )
 //      This will also be needed to be updated to the new way of doing combat.
 // true means the girl won
 
-bool cGangManager::GirlVsEnemyGang( sGirl* girl, sGang* enemy_gang )
+bool cGangManager::GirlVsEnemyGang( Girl* girl, sGang* enemy_gang )
 {
     // MYR: Sanity check: Incorporial is an auto-win.
     if( girl->has_trait( "Incorporial" ) )
@@ -2338,7 +2338,7 @@ void cGangManager::UpdateGangs()
             
             if( ( g_Dice % 101 ) < 25 )
             {
-                sGirl* girl = g_Girls.GetRandomGirl();
+                Girl* girl = g_Girls.GetRandomGirl();
                 
                 if( girl )
                 {
@@ -2714,7 +2714,7 @@ void cGangManager::UpdateGangs()
                 // determine if get a monster girl
                 if( ( g_Dice % 100 ) + 1 < 40 )
                 {
-                    sGirl* ugirl = nullptr;
+                    Girl* ugirl = nullptr;
                     bool unique = false;
                     
                     if( ( g_Dice % 100 ) + 1 < 30 ) // chance of getting unique girl
@@ -2909,7 +2909,7 @@ std::vector<sGang*> cGangManager::gangs_on_mission( u_int mission_id )
  * B: The intelligence of the girl and the goons
  *    affects the result
  */
-int cGangManager::chance_to_catch( sGirl* girl )
+int cGangManager::chance_to_catch( Girl* girl )
 {
     int pc = 0;
     sGang* gang = m_GangStart;
@@ -3171,7 +3171,7 @@ bool cGangManager::recapture_mission( sGang* gang )
     
     
     // if no runnaway then the gang continues on as normal
-    sGirl* runnaway = g_Brothels.GetFirstRunaway();
+    Girl* runnaway = g_Brothels.GetFirstRunaway();
     
     if( runnaway == nullptr )
         return true;

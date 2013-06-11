@@ -22,7 +22,7 @@
 
 #include "cScripts.h" // required inheritance
 
-struct sGirl;
+class Girl;
 
 const int NUMVARS = 20;
 
@@ -32,7 +32,7 @@ public:
 	cGameScript();
 	virtual ~cGameScript();
 
-	bool Prepare(sGirl* girlTarget);
+	bool Prepare(Girl* girlTarget);
 
 	bool Release();
 
@@ -94,7 +94,7 @@ private:
 	bool IsIfStatement(int type);
 
 	// script targets (things that the script will affect with certain commands)
-	sGirl* m_GirlTarget;	// if not 0 then the script is affecting a girl
+	Girl* m_GirlTarget;	// if not 0 then the script is affecting a girl
 };
 
 #endif // CGAMESCRIPT_H_INCLUDED_1530

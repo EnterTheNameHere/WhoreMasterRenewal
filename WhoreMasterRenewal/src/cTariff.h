@@ -23,7 +23,7 @@
 #include "sConfig.h" // required cConfig
 
 struct sBrothel;
-struct sGirl;
+class Girl;
 
 class cTariff
 {
@@ -48,9 +48,9 @@ public:
 	int casino_staff_wages();
 	int advertising_costs( int );
 	int add_room_cost( int );
-	double slave_price( sGirl*, bool );
-	int slave_buy_price( sGirl* );
-	int slave_sell_price( sGirl* );
+	double slave_price( Girl*, bool );
+	int slave_buy_price( Girl* );
+	int slave_sell_price( Girl* );
 	int male_slave_sales();
 	int creature_sales();
 	int girl_training();
@@ -58,7 +58,7 @@ public:
 	
 private:
     cConfig config;
-	double slave_base_price( sGirl* );
+	double slave_base_price( Girl* );
 };
 
 #endif // CTARIFF_H_INCLUDED_1511

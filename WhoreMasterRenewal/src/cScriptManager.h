@@ -27,7 +27,7 @@
 
 class cLuaScript;
 class ScriptPath;
-struct sGirl;
+class Girl;
 
 /*
  * OK: I got into a bit of a mess the last time I tried this,
@@ -40,7 +40,7 @@ struct sGirl;
 class cScriptManagerInner
 {
 public:
-	void Load(std::string filename, sGirl* girl);
+	void Load(std::string filename, Girl* girl);
 	void Release();
 	bool IsActive();
 	void RunScript();
@@ -54,8 +54,8 @@ class cScriptManager
 {
 public:
 	cScriptManager();
-	void Load(ScriptPath& dp, sGirl* girl);
-	void Load(std::string filename, sGirl* girl);
+	void Load(ScriptPath& dp, Girl* girl);
+	void Load(std::string filename, Girl* girl);
 	void Release();
 	bool IsActive();
 	void RunScript();

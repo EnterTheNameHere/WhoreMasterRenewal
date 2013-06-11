@@ -36,8 +36,8 @@
 #include <sstream>
 
 // Prototypes
-sGirl* girl_sort( sGirl* girl, sGirl** lastgirl );
-int sGirlcmp( sGirl* a, sGirl* b );
+Girl* girl_sort( Girl* girl, Girl** lastgirl );
+int sGirlcmp( Girl* a, Girl* b );
 
 // // ----- Strut sBrothel Create / destroy
 sBrothel::sBrothel()    :   m_Finance( 0 )  // constructor
@@ -427,7 +427,7 @@ void cBrothelManager::check_raid()
 int cBrothelManager::TotalFame( sBrothel* brothel )
 {
     int total_fame = 0;
-    sGirl* current = brothel->m_Girls;
+    Girl* current = brothel->m_Girls;
     
     while( current )
     {
@@ -445,7 +445,7 @@ bool cBrothelManager::CheckScripts()
     
     while( current )
     {
-        sGirl* girl;
+        Girl* girl;
         
         for( girl = current->m_Girls; girl; girl = girl->m_Next )
         {
@@ -515,7 +515,7 @@ void cBrothelManager::AddAntiPreg( int amount )
 
 
 // ----- Add / remove
-void cBrothelManager::AddGirl( int brothelID, sGirl* girl )
+void cBrothelManager::AddGirl( int brothelID, Girl* girl )
 {
     if( girl == nullptr )
         return;
@@ -547,7 +547,7 @@ void cBrothelManager::AddGirl( int brothelID, sGirl* girl )
     //sort(current);
 }
 
-void cBrothelManager::RemoveGirl( int brothelID, sGirl* girl, bool deleteGirl )
+void cBrothelManager::RemoveGirl( int brothelID, Girl* girl, bool deleteGirl )
 {
     if( girl == nullptr )
         return;
@@ -562,7 +562,7 @@ void cBrothelManager::RemoveGirl( int brothelID, sGirl* girl, bool deleteGirl )
         current = current->m_Next;
     }
     
-    sGirl* t = current->m_Girls;
+    Girl* t = current->m_Girls;
     bool found = false;
     
     while( t )
@@ -638,7 +638,7 @@ void cBrothelManager::LoadDataLegacy( std::ifstream& ifs )
     
     for( int i = 0; i < numGirlsToLoad; i++ )
     {
-        sGirl* rgirl = new sGirl();
+        Girl* rgirl = new Girl();
         g_Girls.LoadGirlLegacy( rgirl, ifs );
         
         AddGirlToRunaways( rgirl );
@@ -653,7 +653,7 @@ void cBrothelManager::LoadDataLegacy( std::ifstream& ifs )
     
     for( int i = 0; i < numGirlsToLoad; i++ )
     {
-        sGirl* pgirl = new sGirl();
+        Girl* pgirl = new Girl();
         g_Girls.LoadGirlLegacy( pgirl, ifs );
         
         AddGirlToPrison( pgirl );
@@ -863,7 +863,7 @@ void cBrothelManager::LoadDataLegacy( std::ifstream& ifs )
         
         for( int i = 0; i < numGirlsToLoad; i++ )
         {
-            sGirl* girl = new sGirl();
+            Girl* girl = new Girl();
             g_Girls.LoadGirlLegacy( girl, ifs );
             
             message = "Loading girl: ";
@@ -922,7 +922,7 @@ bool cBrothelManager::LoadDataXML( TiXmlHandle hBrothelManager )
                 pGirl != nullptr;
                 pGirl = pGirl->NextSiblingElement( "Girl" ) ) // load each girl and add her
         {
-            sGirl* rgirl = new sGirl();
+            Girl* rgirl = new Girl();
             bool success = rgirl->LoadGirlXML( TiXmlHandle( pGirl ) );
             
             if( success == true )
@@ -947,7 +947,7 @@ bool cBrothelManager::LoadDataXML( TiXmlHandle hBrothelManager )
                 pGirl != nullptr;
                 pGirl = pGirl->NextSiblingElement( "Girl" ) ) // load each girl and add her
         {
-            sGirl* pgirl = new sGirl();
+            Girl* pgirl = new Girl();
             bool success = pgirl->LoadGirlXML( TiXmlHandle( pGirl ) );
             
             if( success == true )
@@ -1100,7 +1100,7 @@ bool sBrothel::LoadBrothelXML( TiXmlHandle hBrothel )
                 pGirl != nullptr;
                 pGirl = pGirl->NextSiblingElement( "Girl" ) ) // load each girl and add her
         {
-            sGirl* girl = new sGirl();
+            Girl* girl = new Girl();
             bool success = girl->LoadGirlXML( TiXmlHandle( pGirl ) );
             
             if( success == true )
@@ -1120,7 +1120,7 @@ bool sBrothel::LoadBrothelXML( TiXmlHandle hBrothel )
     return true;
 }
 
-void sBrothel::AddGirl( sGirl* pGirl )
+void sBrothel::AddGirl( Girl* pGirl )
 {
     if( m_Girls )
     {
@@ -1164,7 +1164,7 @@ TiXmlElement* cBrothelManager::SaveDataXML( TiXmlElement* pRoot )
     // save runaways
     TiXmlElement* pRunaways = new TiXmlElement( "Runaways" );
     pBrothelManager->LinkEndChild( pRunaways );
-    sGirl* rgirl = m_Runaways;
+    Girl* rgirl = m_Runaways;
     
     while( rgirl )
     {
@@ -1175,7 +1175,7 @@ TiXmlElement* cBrothelManager::SaveDataXML( TiXmlElement* pRoot )
     // save prison
     TiXmlElement* pPrison = new TiXmlElement( "PrisonGirls" );
     pBrothelManager->LinkEndChild( pPrison );
-    sGirl* pgirl = m_Prison;
+    Girl* pgirl = m_Prison;
     
     while( pgirl )
     {
@@ -1283,7 +1283,7 @@ TiXmlElement* sBrothel::SaveBrothelXML( TiXmlElement* pRoot )
     // Save Girls
     TiXmlElement* pGirls = new TiXmlElement( "Girls" );
     pBrothel->LinkEndChild( pGirls );
-    sGirl* girl = m_Girls;
+    Girl* girl = m_Girls;
     
     while( girl )
     {
@@ -1781,7 +1781,7 @@ void cBrothelManager::UpdateBrothels()
         current->m_Events.Clear();
         
         // Clear the girls' events from the last turn
-        sGirl* cgirl = current->m_Girls;
+        Girl* cgirl = current->m_Girls;
         
         while( cgirl )
         {
@@ -1859,7 +1859,7 @@ void cBrothelManager::UpdateBrothels()
     
     if( m_Runaways )
     {
-        sGirl* rgirl = m_Runaways;
+        Girl* rgirl = m_Runaways;
         
         while( rgirl )
         {
@@ -1871,7 +1871,7 @@ void cBrothelManager::UpdateBrothels()
                     if( ( g_Dice % 100 ) + 1 < 5 )
                     {
                         // girl is recaptured and returned to you
-                        sGirl* temp = rgirl;
+                        Girl* temp = rgirl;
                         rgirl = temp->m_Next;
                         RemoveGirlFromRunaways( temp );
                         m_Dungeon.AddGirl( temp, DUNGEON_GIRLRUNAWAY );
@@ -1884,7 +1884,7 @@ void cBrothelManager::UpdateBrothels()
             }
             else    // add her back to girls
             {
-                sGirl* temp = rgirl;
+                Girl* temp = rgirl;
                 rgirl = temp->m_Next;
                 temp->m_NightJob = temp->m_DayJob = JOB_RESTING;
                 RemoveGirlFromRunaways( temp );
@@ -1900,7 +1900,7 @@ void cBrothelManager::UpdateBrothels()
     {
         if( ( g_Dice % 100 ) + 1 < 10 ) // 10% chance of someone being released
         {
-            sGirl* girl = m_Prison;
+            Girl* girl = m_Prison;
             RemoveGirlFromPrison( girl );
             g_Girls.AddGirl( girl );
         }
@@ -2013,11 +2013,11 @@ void cBrothelManager::UpdateBrothels()
 // End of turn stuff is here
 void cBrothelManager::UpdateGirls( sBrothel* brothel, int DayNight )
 {
-    sGirl* current = brothel->m_Girls;
+    Girl* current = brothel->m_Girls;
     std::string summary, msg, girlName, MatronMsg, MatronWarningMsg;
     int totalGold;
     bool refused;
-    sGirl* DeadGirl = nullptr;
+    Girl* DeadGirl = nullptr;
     
     // WD:  Set processing flag to shift type
     m_Processing_Shift = DayNight;
@@ -2202,7 +2202,7 @@ void cBrothelManager::UpdateGirls( sBrothel* brothel, int DayNight )
         // Runaway, Depression & Drug checking
         if( runaway_check( brothel, current ) == true )
         {
-            sGirl* temp = current;
+            Girl* temp = current;
             current = current->m_Next;
             g_Brothels.RemoveGirl( brothel->m_id, temp, false );
             g_Brothels.AddGirlToRunaways( temp );
@@ -2439,7 +2439,7 @@ void cBrothelManager::UpdateGirls( sBrothel* brothel, int DayNight )
 }
 
 // MYR: My automation is here
-void cBrothelManager::UsePlayersItems( sGirl* cur )
+void cBrothelManager::UsePlayersItems( Girl* cur )
 {
     int has = 0, has2 = 0, Die = 0, PolishCount = 0;
     
@@ -3073,7 +3073,7 @@ void cBrothelManager::UsePlayersItems( sGirl* cur )
     
 }
 
-bool cBrothelManager::AutomaticItemUse( sGirl* girl, int InvNum, std::string message )
+bool cBrothelManager::AutomaticItemUse( Girl* girl, int InvNum, std::string message )
 {
     int EquipSlot = -1;
     
@@ -3099,7 +3099,7 @@ bool cBrothelManager::AutomaticItemUse( sGirl* girl, int InvNum, std::string mes
         return false;
 }
 
-bool cBrothelManager::AutomaticSlotlessItemUse( sGirl* girl, int InvNum, std::string message )
+bool cBrothelManager::AutomaticSlotlessItemUse( Girl* girl, int InvNum, std::string message )
 {
     // Slotless items include manuals, stripper poles, free weights, etc...
     int EquipSlot = -1;
@@ -3117,7 +3117,7 @@ bool cBrothelManager::AutomaticSlotlessItemUse( sGirl* girl, int InvNum, std::st
         return false;
 }
 
-bool cBrothelManager::AutomaticFoodItemUse( sGirl* girl, int InvNum, std::string message )
+bool cBrothelManager::AutomaticFoodItemUse( Girl* girl, int InvNum, std::string message )
 {
     int EquipSlot = -1;
     
@@ -3238,7 +3238,7 @@ void cBrothelManager::do_tax()
     g_MessageQue.AddToQue( ss.str(), 0 );
 }
 
-void cBrothelManager::do_food_and_digs( sBrothel* brothel, sGirl* girl )
+void cBrothelManager::do_food_and_digs( sBrothel* brothel, Girl* girl )
 {
     /*
      *  add the girls accomodation and food costs to the upkeep
@@ -3460,7 +3460,7 @@ void cBrothelManager::DepositInBank( long amount )
         m_Bank += amount;
 }
 
-double cBrothelManager::calc_pilfering( sGirl* girl )
+double cBrothelManager::calc_pilfering( Girl* girl )
 {
     double factor = 0.0;
     
@@ -3522,7 +3522,7 @@ double cBrothelManager::calc_pilfering( sGirl* girl )
     return 0.0;
 }
 
-void cBrothelManager::CalculatePay( sBrothel* brothel, sGirl* girl, u_int Job )
+void cBrothelManager::CalculatePay( sBrothel* brothel, Girl* girl, u_int Job )
 {
     if(
         girl->m_Stats[STAT_HOUSE] == 0
@@ -4112,12 +4112,12 @@ int& cBrothelManager::stat_lookup( std::string stat_name, int brothel_id )
     return m_Dummy;
 }
 
-void cBrothelManager::SetGirlStat( sGirl* girl, int stat, int amount )
+void cBrothelManager::SetGirlStat( Girl* girl, int stat, int amount )
 {
     girl->m_StatMods[stat] = amount;
 }
 
-void cBrothelManager::updateGirlTurnBrothelStats( sGirl* girl )
+void cBrothelManager::updateGirlTurnBrothelStats( Girl* girl )
 {
     /*
      *  WD: Update each turn the stats for girl in brothel
@@ -4244,7 +4244,7 @@ void cBrothelManager::UpdateAllGirlsStat( sBrothel* brothel, int stat, int amoun
 {
     if( brothel )
     {
-        sGirl* current = brothel->m_Girls;
+        Girl* current = brothel->m_Girls;
         
         while( current )
         {
@@ -4258,7 +4258,7 @@ void cBrothelManager::UpdateAllGirlsStat( sBrothel* brothel, int stat, int amoun
         
         while( curBroth )
         {
-            sGirl* current = curBroth->m_Girls;
+            Girl* current = curBroth->m_Girls;
             
             while( current )
             {
@@ -4272,7 +4272,7 @@ void cBrothelManager::UpdateAllGirlsStat( sBrothel* brothel, int stat, int amoun
 }
 
 // ----- Get / Set
-sGirl* cBrothelManager::GetGirl( int brothelID, int num )
+Girl* cBrothelManager::GetGirl( int brothelID, int num )
 {
     if( num < 0 )
         return nullptr;
@@ -4293,7 +4293,7 @@ sGirl* cBrothelManager::GetGirl( int brothelID, int num )
     if( current )
     {
         int count = 0;
-        sGirl* currentGirl = current->m_Girls;
+        Girl* currentGirl = current->m_Girls;
         
         while( currentGirl )
         {
@@ -4310,7 +4310,7 @@ sGirl* cBrothelManager::GetGirl( int brothelID, int num )
     return nullptr;
 }
 
-int cBrothelManager::GetGirlPos( int brothelID, sGirl* girl )
+int cBrothelManager::GetGirlPos( int brothelID, Girl* girl )
 {
     sBrothel* current = m_Parent;
     
@@ -4325,7 +4325,7 @@ int cBrothelManager::GetGirlPos( int brothelID, sGirl* girl )
     if( current )
     {
         int count = 0;
-        sGirl* currentGirl = current->m_Girls;
+        Girl* currentGirl = current->m_Girls;
         
         while( currentGirl )
         {
@@ -4340,7 +4340,7 @@ int cBrothelManager::GetGirlPos( int brothelID, sGirl* girl )
     return -1;
 }
 
-sGirl* cBrothelManager::GetGirlByName( int brothelID, std::string name )
+Girl* cBrothelManager::GetGirlByName( int brothelID, std::string name )
 {
     // Get the proper brothel
     sBrothel* current = m_Parent;
@@ -4356,7 +4356,7 @@ sGirl* cBrothelManager::GetGirlByName( int brothelID, std::string name )
     // Find the girl
     if( current )
     {
-        sGirl* currentGirl = current->m_Girls;
+        Girl* currentGirl = current->m_Girls;
         
         while( currentGirl )
         {
@@ -4372,7 +4372,7 @@ sGirl* cBrothelManager::GetGirlByName( int brothelID, std::string name )
     return nullptr;
 }
 
-int cBrothelManager::GetGirlsCurrentBrothel( sGirl* girl )
+int cBrothelManager::GetGirlsCurrentBrothel( Girl* girl )
 {
     // Used by new security guard code
     int BrothelNo = -1;
@@ -4390,7 +4390,7 @@ int cBrothelManager::GetGirlsCurrentBrothel( sGirl* girl )
     return -1;
 }
 
-std::vector<sGirl*> cBrothelManager::GirlsOnJob( int BrothelID, int JobID, bool day )
+std::vector<Girl*> cBrothelManager::GirlsOnJob( int BrothelID, int JobID, bool day )
 {
     // Used by new security code
     sBrothel* current = m_Parent;
@@ -4403,9 +4403,9 @@ std::vector<sGirl*> cBrothelManager::GirlsOnJob( int BrothelID, int JobID, bool 
         current = current->m_Next;
     }
     
-    std::vector<sGirl*> GirlsOnJob;
+    std::vector<Girl*> GirlsOnJob;
     
-    sGirl* curr = current->m_Girls;
+    Girl* curr = current->m_Girls;
     
     while( curr )
     {
@@ -4443,7 +4443,7 @@ int cBrothelManager::GetTotalNumGirls( bool monster )
         
         while( current )
         {
-            sGirl* girl = current->m_Girls;
+            Girl* girl = current->m_Girls;
             
             while( girl )
             {
@@ -4484,7 +4484,7 @@ std::string cBrothelManager::GetGirlString( int brothelID, int girlNum )
     if( current )
     {
         int count = 0;
-        sGirl* currentGirl = current->m_Girls;
+        Girl* currentGirl = current->m_Girls;
         
         while( currentGirl )
         {
@@ -4704,7 +4704,7 @@ int cBrothelManager::GetNumGirlsOnJob( int brothelID, int jobID, bool day )
 
     while( current )
     {
-        sGirl* curr = current->m_Girls;
+        Girl* curr = current->m_Girls;
         
         while( curr )
         {
@@ -4822,7 +4822,7 @@ std::string cBrothelManager::happiness_text( sBrothel* brothel )
 // ----- Combat
 
 // True means the girl beat the brothel master
-bool cBrothelManager::PlayerCombat( sGirl* girl )   //  **************************** for now doesn't count items
+bool cBrothelManager::PlayerCombat( Girl* girl )   //  **************************** for now doesn't count items
 {
     // MYR: Sanity check: Incorporial is an auto-win.
     if( girl->has_trait( "Incorporial" ) )
@@ -4956,7 +4956,7 @@ bool cBrothelManager::PlayerCombat( sGirl* girl )   //  ************************
     return true;
 }
 
-bool cBrothelManager::FightsBack( sGirl* girl )
+bool cBrothelManager::FightsBack( Girl* girl )
 {
     if( g_Girls.GetStat( girl, STAT_HEALTH ) < 10 ) // she won't fight back in this state
         return false;
@@ -4971,9 +4971,9 @@ bool cBrothelManager::FightsBack( sGirl* girl )
 }
 
 // ----- Utility
-sGirl* girl_sort( sGirl* girl, sGirl** lastgirl ) // sort using merge sort (cause works well with linked lists)
+Girl* girl_sort( Girl* girl, Girl** lastgirl ) // sort using merge sort (cause works well with linked lists)
 {
-    sGirl* p, *q, *e, *tail;
+    Girl* p, *q, *e, *tail;
     int insize, nmerges, psize, qsize, i;
     
     insize = 1;
@@ -5053,7 +5053,7 @@ sGirl* girl_sort( sGirl* girl, sGirl** lastgirl ) // sort using merge sort (caus
         {
             // find the last girl in the list
             //*lastgirl = tail;
-            sGirl* tmp = girl;
+            Girl* tmp = girl;
             
             while( tmp->m_Next )
                 tmp = tmp->m_Next;
@@ -5066,7 +5066,7 @@ sGirl* girl_sort( sGirl* girl, sGirl** lastgirl ) // sort using merge sort (caus
     }
 }
 
-int sGirlcmp( sGirl* a, sGirl* b )
+int sGirlcmp( Girl* a, Girl* b )
 {
     if( a == nullptr || b == nullptr )
         return 1;
@@ -5085,7 +5085,7 @@ bool cBrothelManager::NameExists( std::string name )
     
     while( current )
     {
-        sGirl* currentGirl = current->m_Girls;
+        Girl* currentGirl = current->m_Girls;
         
         while( currentGirl )
         {
@@ -5102,12 +5102,12 @@ bool cBrothelManager::NameExists( std::string name )
 }
 
 // ----- Runaways
-sGirl* cBrothelManager::GetFirstRunaway()
+Girl* cBrothelManager::GetFirstRunaway()
 {
     return m_Runaways;
 }
 
-void cBrothelManager::RemoveGirlFromRunaways( sGirl* girl )
+void cBrothelManager::RemoveGirlFromRunaways( Girl* girl )
 {
     if( girl->m_Next )
         girl->m_Next->m_Prev = girl->m_Prev;
@@ -5126,7 +5126,7 @@ void cBrothelManager::RemoveGirlFromRunaways( sGirl* girl )
     m_NumRunaways--;
 }
 
-void cBrothelManager::AddGirlToRunaways( sGirl* girl )
+void cBrothelManager::AddGirlToRunaways( Girl* girl )
 {
     girl->m_Prev = nullptr;
     girl->m_Next = nullptr;
@@ -5143,7 +5143,7 @@ void cBrothelManager::AddGirlToRunaways( sGirl* girl )
     m_NumRunaways++;
 }
 
-bool cBrothelManager::runaway_check( sBrothel* brothel, sGirl* girl )
+bool cBrothelManager::runaway_check( sBrothel* brothel, Girl* girl )
 {
     /*
      *  nothing interesting happens here unless the girl is miserable
@@ -5258,7 +5258,7 @@ void cBrothelManager::check_druggy_girl( std::stringstream& ss )
     if( g_Dice.percent( 90 ) )
         return;
         
-    sGirl* girl = GetDrugPossessor();
+    Girl* girl = GetDrugPossessor();
     
     if( girl == nullptr )
         return;
@@ -5289,13 +5289,13 @@ void cBrothelManager::check_druggy_girl( std::stringstream& ss )
     AddGirlToPrison( girl );
 }
 
-sGirl* cBrothelManager::GetDrugPossessor()
+Girl* cBrothelManager::GetDrugPossessor()
 {
     sBrothel* current = m_Parent;
     
     while( current )
     {
-        sGirl* girl = current->m_Girls;
+        Girl* girl = current->m_Girls;
         
         while( girl )
         {
@@ -5315,7 +5315,7 @@ sGirl* cBrothelManager::GetDrugPossessor()
 }
 
 // ----- Dungeon & torture
-void cBrothelManager::RemoveGirlFromPrison( sGirl* girl )
+void cBrothelManager::RemoveGirlFromPrison( Girl* girl )
 {
     if( girl->m_Next )
         girl->m_Next->m_Prev = girl->m_Prev;
@@ -5334,7 +5334,7 @@ void cBrothelManager::RemoveGirlFromPrison( sGirl* girl )
     m_NumPrison--;
 }
 
-void cBrothelManager::AddGirlToPrison( sGirl* girl )
+void cBrothelManager::AddGirlToPrison( Girl* girl )
 {
     // remove from girl manager if she is there
     g_Girls.RemoveGirl( girl );
@@ -5358,7 +5358,7 @@ void cBrothelManager::AddGirlToPrison( sGirl* girl )
     m_NumPrison++;
 }
 
-sGirl* cBrothelManager::WhoHasTorturerJob()
+Girl* cBrothelManager::WhoHasTorturerJob()
 {
     /*  WD:
      *  Loops through all brothels to find first
@@ -5370,7 +5370,7 @@ sGirl* cBrothelManager::WhoHasTorturerJob()
      */
     
     sBrothel* curBrothel = m_Parent;
-    sGirl* curGirl;
+    Girl* curGirl;
     
     while( curBrothel )                             // WD: loop through all brothels
     {

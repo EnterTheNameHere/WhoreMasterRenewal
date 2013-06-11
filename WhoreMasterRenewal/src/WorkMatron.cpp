@@ -34,7 +34,7 @@
 
 #include <sstream>
 
-bool cJobManager::WorkMatron(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkMatron(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	cTariff tariff;
 	if(DayNight == 1)

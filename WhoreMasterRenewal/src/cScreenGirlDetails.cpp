@@ -396,8 +396,8 @@ void cScreenGirlDetails::check_events()
 		}
 		else
 		{
-			sGirl* nextGirl = remove_selected_girl();
-			sGirl* tempGirl = g_Brothels.GetDungeon()->RemoveGirl(g_Brothels.GetDungeon()->GetGirl(g_Brothels.GetDungeon()->GetGirlPos(selected_girl)));
+			Girl* nextGirl = remove_selected_girl();
+			Girl* tempGirl = g_Brothels.GetDungeon()->RemoveGirl(g_Brothels.GetDungeon()->GetGirl(g_Brothels.GetDungeon()->GetGirlPos(selected_girl)));
 			g_Brothels.AddGirl(g_CurrBrothel, tempGirl);
 
 			if(g_Brothels.GetDungeon()->GetNumGirls() == 0)
@@ -452,8 +452,8 @@ void cScreenGirlDetails::check_events()
 					message += "After defeating you as well, she escapes to the outside.\n";
 					message += " She will escape for good in 6 weeks if you don't send someone after her.";
 
-					sGirl* nextGirl = remove_selected_girl();
-					sGirl* temp = selected_girl;
+					Girl* nextGirl = remove_selected_girl();
+					Girl* temp = selected_girl;
 					if(selected_girl->m_DayJob != JOB_INDUNGEON)
 						g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 					else
@@ -478,7 +478,7 @@ void cScreenGirlDetails::check_events()
 					int reason = DUNGEON_GIRLWHIM;
 					if(selected_girl->m_Spotted)
 						reason = DUNGEON_GIRLSTEAL;
-					sGirl* nextGirl = remove_selected_girl();
+					Girl* nextGirl = remove_selected_girl();
 					selected_girl->m_DayJob = selected_girl->m_NightJob = JOB_INDUNGEON;
 					g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 					g_Brothels.GetDungeon()->AddGirl(selected_girl,reason);
@@ -507,7 +507,7 @@ void cScreenGirlDetails::check_events()
 				int reason = DUNGEON_GIRLWHIM;
 				if(selected_girl->m_Spotted)
 					reason = DUNGEON_GIRLSTEAL;
-				sGirl* nextGirl = remove_selected_girl();
+				Girl* nextGirl = remove_selected_girl();
 				g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 				g_Brothels.GetDungeon()->AddGirl(selected_girl,reason);
 
@@ -522,7 +522,7 @@ void cScreenGirlDetails::check_events()
 			int reason = DUNGEON_GIRLWHIM;
 			if(selected_girl->m_Spotted)
 				reason = DUNGEON_GIRLSTEAL;
-			sGirl* nextGirl = remove_selected_girl();
+			Girl* nextGirl = remove_selected_girl();
 			g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 			g_Brothels.GetDungeon()->AddGirl(selected_girl,reason);
 			message += "She goes quietly with a sullen look on her face.";
@@ -604,7 +604,7 @@ void cScreenGirlDetails::check_events()
 }
 
 
-bool cScreenGirlDetails::GirlDead(sGirl *dgirl)
+bool cScreenGirlDetails::GirlDead(Girl *dgirl)
 {
 	if(g_Girls.GetStat(dgirl, STAT_HEALTH) == 0)
 	{
@@ -663,9 +663,9 @@ void cScreenGirlDetails::NextGirl()
 /*
  * return previous girl in the sorted list
  */
-sGirl *cScreenGirlDetails::get_prev_girl()
+Girl *cScreenGirlDetails::get_prev_girl()
 {
-	sGirl *prev_girl = nullptr;
+	Girl *prev_girl = nullptr;
 
 	if (cycle_girls.size() == 0)					// Myr: Found this case from an exception. Will test to see if this
 		return prev_girl;							//      is a good fix.
@@ -688,9 +688,9 @@ sGirl *cScreenGirlDetails::get_prev_girl()
 /*
  * return next girl in the sorted list
  */
-sGirl *cScreenGirlDetails::get_next_girl()
+Girl *cScreenGirlDetails::get_next_girl()
 {
-	sGirl *next_girl = nullptr;
+	Girl *next_girl = nullptr;
 
 	if (cycle_girls.size() == 0) // Myr: Found this case from an exception.
 		return next_girl;
@@ -713,9 +713,9 @@ sGirl *cScreenGirlDetails::get_next_girl()
 /*
  * the selected girl is to be removed from the current list; returns next selected girl
  */
-sGirl *cScreenGirlDetails::remove_selected_girl()
+Girl *cScreenGirlDetails::remove_selected_girl()
 {
-	sGirl *next_girl = nullptr;
+	Girl *next_girl = nullptr;
 
 	if(cycle_girls.size() == 0) {
 		return nullptr;
@@ -751,7 +751,7 @@ sGirl *cScreenGirlDetails::remove_selected_girl()
 /*
  * returns TRUE if the girl won
  */
-bool cScreenGirlDetails::do_take_gold(sGirl *girl, std::string &message)
+bool cScreenGirlDetails::do_take_gold(Girl *girl, std::string &message)
 {
 	const int GIRL_LOSES = false;
 	const int GIRL_WINS = true;
@@ -836,8 +836,8 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, std::string &message)
  */
 	message += "after defeating you as well she escapes to the outside.\n";
 
-	sGirl* nextGirl = remove_selected_girl();
-	sGirl* temp = girl;
+	Girl* nextGirl = remove_selected_girl();
+	Girl* temp = girl;
 /*
  *	what we have to do depends on whether she was in brothel
  *	or dungeon
@@ -870,7 +870,7 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, std::string &message)
 	return true;	// the girl still won
 }
 
-void cScreenGirlDetails::take_gold(sGirl *girl)
+void cScreenGirlDetails::take_gold(Girl *girl)
 {
     std::string message;
 	bool girl_win = do_take_gold(girl, message);

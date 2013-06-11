@@ -237,7 +237,7 @@ void cScreenGirlManagement::init()
 	// Add girls to list
 	for(int i=0; i<g_Brothels.GetNumGirls(g_CurrBrothel); i++)
 	{
-		sGirl* gir = g_Brothels.GetGirl(g_CurrBrothel, i);
+		Girl* gir = g_Brothels.GetGirl(g_CurrBrothel, i);
 		if (selected_girl == gir)
 			selection = i;
 
@@ -581,7 +581,7 @@ void cScreenGirlManagement::check_events()
 }
 
 
-bool cScreenGirlManagement::GirlDead(sGirl *dgirl)
+bool cScreenGirlManagement::GirlDead(Girl *dgirl)
 {
 	if(g_Girls.GetStat(dgirl, STAT_HEALTH) <= 0)
 	{

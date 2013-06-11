@@ -29,7 +29,7 @@
 class cGangManager;
 extern cGangManager g_Gangs;
 
-struct sGirl;
+class Girl;
 class TiXmlElement;
 class TiXmlHandle;
 
@@ -90,7 +90,7 @@ public:
 	void UpdateGangs();
 	int GetNumGangs();
 	int GetNumHireableGangs();
-	bool GangCombat(sGirl* girl, sGang* gang);	// returns true if the girl wins
+	bool GangCombat(Girl* girl, sGang* gang);	// returns true if the girl wins
 	bool GangBrawl(sGang* gang1, sGang* gang2);	// returns true if gang1 wins
 	sGang* GetTempGang();	// creates a new gang
 	void BoostGangSkill(unsigned char* affect_skill, int count = 1);  // increases a specific skill/stat the specified number of times
@@ -115,12 +115,12 @@ public:
 
 	void sabotage_mission(sGang* gang);
 	bool recapture_mission(sGang* gang);
-	int chance_to_catch(sGirl* girl);
+	int chance_to_catch(Girl* girl);
 	int healing_limit();
 
 	// Used by the new brothel security code
 	sGang*	random_gang(std::vector<sGang*>& v);
-	bool GirlVsEnemyGang(sGirl* girl, sGang* enemy_gang);
+	bool GirlVsEnemyGang(Girl* girl, sGang* enemy_gang);
 
 	std::vector<sGang*> gangs_on_mission(u_int mission_id);
 

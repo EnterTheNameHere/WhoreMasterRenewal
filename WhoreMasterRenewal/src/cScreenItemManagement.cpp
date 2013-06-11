@@ -122,7 +122,7 @@ void cScreenItemManagement::init()
 
 	// and girls from current brothel to list
 	int i=2;
-	sGirl* temp = g_Brothels.GetGirl(g_CurrBrothel, 0);
+	Girl* temp = g_Brothels.GetGirl(g_CurrBrothel, 0);
 	while(temp)
 	{
 		if(temp == nullptr)
@@ -257,7 +257,7 @@ void cScreenItemManagement::check_events()
 			}
 			else
 			{
-				sGirl* targetGirl = nullptr;
+				Girl* targetGirl = nullptr;
 				if(leftOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 				else // dungeon girl
@@ -329,7 +329,7 @@ void cScreenItemManagement::check_events()
 			}
 			else
 			{
-				sGirl* targetGirl = nullptr;
+				Girl* targetGirl = nullptr;
 				if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 				else // dungeon girl
@@ -369,7 +369,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(equip_l_id))
 	{
-		sGirl* targetGirl = nullptr;
+		Girl* targetGirl = nullptr;
 		if(leftOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 		else // dungeon girl
@@ -387,7 +387,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(unequip_l_id))
 	{
-		sGirl* targetGirl = nullptr;
+		Girl* targetGirl = nullptr;
 		if(leftOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 		else // dungeon girl
@@ -405,7 +405,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(equip_r_id))
 	{
-		sGirl* targetGirl = nullptr;
+		Girl* targetGirl = nullptr;
 		if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 		else // dungeon girl
@@ -424,7 +424,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(unequip_r_id))
 	{
-		sGirl* targetGirl = nullptr;
+		Girl* targetGirl = nullptr;
 		if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 		else // dungeon girl
@@ -536,7 +536,7 @@ void cScreenItemManagement::refresh_item_list(Side which_list)
 		}
 		else	// girl items
 		{
-			sGirl* targetGirl = nullptr;
+			Girl* targetGirl = nullptr;
 			if(*owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				targetGirl = g_Brothels.GetGirl(g_CurrBrothel, *owner-2);
 			else // dungeon girl
@@ -628,7 +628,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 	rightItem = GetLastSelectedItemFromList(items_r_id);
 	if(target_owner == 1)	// target is shop
 	{
-		sGirl* targetGirl = nullptr;
+		Girl* targetGirl = nullptr;
 		if(source_owner > 1)	// taking from a girl and selling to shop
 		{
 			if(source_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
@@ -727,7 +727,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 		else	// taking from girl
 		{
 			// take items from girl and give to player
-			sGirl* targetGirl = nullptr;
+			Girl* targetGirl = nullptr;
 			if(source_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				targetGirl = g_Brothels.GetGirl(g_CurrBrothel, GetSelectedItemFromList(source_owner_list)-2);
 			else	// dungeon girl
@@ -767,7 +767,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 	}
 	else	// target is girl
 	{
-		sGirl* targetGirl = nullptr;
+		Girl* targetGirl = nullptr;
 		if(target_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, GetSelectedItemFromList(target_owner_list)-2);
 		else // dungeon girl
@@ -880,7 +880,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 		}
 		else	// player forcing a girl to give to another girl
 		{
-			sGirl* fromGirl = nullptr;
+			Girl* fromGirl = nullptr;
 			if(source_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				fromGirl = g_Brothels.GetGirl(g_CurrBrothel, GetSelectedItemFromList(source_owner_list)-2);
 			else // dungeon girl

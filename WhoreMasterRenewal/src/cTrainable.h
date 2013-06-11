@@ -23,7 +23,7 @@
 #include <vector>
 #include <string>
 
-struct sGirl;
+class Girl;
 
 /*
  * this represents a trainaible attribute of a girl
@@ -47,7 +47,7 @@ public:
  *	constructor - nothing fancy here
  */
 	cTrainable();
-	cTrainable(sGirl *girl, std::string stat_name, int index, AType typ);
+	cTrainable(Girl *girl, std::string stat_name, int index, AType typ);
 	cTrainable(const cTrainable& t);
     
     virtual ~cTrainable();
@@ -63,7 +63,7 @@ public:
 	int	gain();
 	
 protected:
-	sGirl* m_girl;
+	Girl* m_girl;
     std::string m_name;
 	int	m_index;
 	AType	m_type;
@@ -78,13 +78,13 @@ protected:
 class TrainableStat : public cTrainable
 {
 public:
-	TrainableStat(sGirl *girl, std::string stat_name, int index);
+	TrainableStat(Girl *girl, std::string stat_name, int index);
 };
 
 class TrainableSkill : public cTrainable
 {
 public:
-	TrainableSkill(sGirl *girl, std::string stat_name, int index);
+	TrainableSkill(Girl *girl, std::string stat_name, int index);
 };
 
 /*
@@ -94,7 +94,7 @@ public:
 class TrainableGirl
 {
 public:
-	TrainableGirl(sGirl *girl);
+	TrainableGirl(Girl *girl);
 	cTrainable &operator[](int index)
 	{
 		return stats[index];
@@ -104,10 +104,10 @@ public:
  *	this is useful for solo training
  */
     std::string update_random(int size=1);
-	sGirl*	girl() 	{ return m_girl; }
+	Girl*	girl() 	{ return m_girl; }
 	
 private:
-	sGirl *m_girl;
+	Girl *m_girl;
 	std::vector<cTrainable> stats;
 };
 
@@ -115,7 +115,7 @@ private:
  * we also need an idealized girl - one who combines the best attributes
  * from all the girls in the training set
  *
- * we don't need an underlying sGirl for this one - she's just
+ * we don't need an underlying Girl for this one - she's just
  * an abstraction
  */
 class IdealAttr : public cTrainable {

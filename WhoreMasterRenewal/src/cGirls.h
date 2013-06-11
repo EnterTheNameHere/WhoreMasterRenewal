@@ -37,10 +37,10 @@ class cGirls;
 extern cGirls g_Girls;
 class cAbstractGirls;
 extern cAbstractGirls* g_GirlsPtr;
-class sGirl;
-extern sGirl* MarketSlaveGirls[8];
+class Girl;
+extern Girl* MarketSlaveGirls[8];
 extern int MarketSlaveGirlsDel[8];
-extern sGirl* selected_girl;
+extern Girl* selected_girl;
 extern std::vector<int> cycle_girls;
 extern int cycle_pos;
 
@@ -61,20 +61,20 @@ class cAbstractGirls {
 public:
     virtual ~cAbstractGirls() {};
     
-	virtual int GetStat(sGirl* girl, int stat)=0;
-	virtual int GetSkill(sGirl* girl, int skill)=0;
-	virtual void UpdateStat(sGirl* girl, int stat, int amount)=0;
-	virtual void UpdateSkill(sGirl* girl, int skill, int amount)=0;
+	virtual int GetStat(Girl* girl, int stat)=0;
+	virtual int GetSkill(Girl* girl, int skill)=0;
+	virtual void UpdateStat(Girl* girl, int stat, int amount)=0;
+	virtual void UpdateSkill(Girl* girl, int skill, int amount)=0;
 	virtual bool CalcPregnancy(
-		sGirl* girl, int chance, int type,
+		Girl* girl, int chance, int type,
 		unsigned char stats[NUM_STATS],
 		unsigned char skills[NUM_SKILLS]
 	)=0;
-//	virtual void AddTrait(sGirl* girl, std::string name, bool temp = false, bool removeitem = false, bool remember = false)=0;
-	virtual bool AddTrait(sGirl* girl, std::string name, bool temp = false, bool removeitem = false, bool remember = false)=0;
-	virtual bool HasTrait(sGirl* girl, std::string name)=0;
-	virtual void UpdateTempSkill(sGirl* girl, int skill, int amount)=0;	// updates a skill temporarily
-	virtual void UpdateTempStat(sGirl* girl, int stat, int amount)=0;
+//	virtual void AddTrait(Girl* girl, std::string name, bool temp = false, bool removeitem = false, bool remember = false)=0;
+	virtual bool AddTrait(Girl* girl, std::string name, bool temp = false, bool removeitem = false, bool remember = false)=0;
+	virtual bool HasTrait(Girl* girl, std::string name)=0;
+	virtual void UpdateTempSkill(Girl* girl, int skill, int amount)=0;	// updates a skill temporarily
+	virtual void UpdateTempStat(Girl* girl, int stat, int amount)=0;
 };
 
 
@@ -122,7 +122,7 @@ typedef struct sRandomGirl
 /*
  *	END MOD
  */
-	static sGirl* lookup;  // used to look up stat and skill IDs
+	static Girl* lookup;  // used to look up stat and skill IDs
 	sRandomGirl();
 	~sRandomGirl();
 }sRandomGirl;
@@ -240,7 +240,7 @@ public:
 	sChild* m_LastChild;
 	int m_NumChildren;
 	void add_child(sChild*);
-	sChild* remove_child(sChild*,sGirl*);
+	sChild* remove_child(sChild*,Girl*);
 	//void handle_childs();
 	//void save_data(std::ofstream);
 	//void write_data(std::ofstream);
@@ -251,8 +251,9 @@ public:
 
 
 // Represents a single girl
-struct sGirl
+class Girl
 {
+public:
 	char* m_Name;								// The girls name
 	std::string m_Realname;							// this is the name displayed in text
 /*
@@ -327,15 +328,15 @@ struct sGirl
 
 	unsigned char m_DaysUnhappy;				// used to track how many days they are really unhappy for
 
-	sGirl* m_Next;
-	sGirl* m_Prev;
+	Girl* m_Next;
+	Girl* m_Prev;
 
 	unsigned char m_WeeksPreg;					// number of weeks pregnant or inseminated
 	unsigned char m_PregCooldown;				// number of weeks until can get pregnant again
 	cChildList m_Children;
 
-	sGirl();
-	~sGirl();
+	Girl();
+	~Girl();
 
 	void dump(std::ostream &os);
 
@@ -360,7 +361,7 @@ struct sGirl
  *	we need to be able to go the other way, too:
  *	from string to number. The maps map stat/skill names
  *	onto index numbers. The setup flag is so we can initialise
- * 	the maps the first time an sGirl is constructed
+ * 	the maps the first time an Girl is constructed
  */
 	static bool m_maps_setup;
 	static std::map<std::string, unsigned int> stat_lookup;
@@ -382,12 +383,12 @@ struct sGirl
 /*
  *	stream operator - used for debug
  */
-	friend std::ostream& operator<<(std::ostream& os, sGirl& g);
+	friend std::ostream& operator<<(std::ostream& os, Girl& g);
 /*
  *	it's a bit daft that we have to go through the global g_Girls
  *	every time we want a stat.
  *
- *	I mean the sGirl type is the one we're primarily concerned with.
+ *	I mean the Girl type is the one we're primarily concerned with.
  *	that ought to be the base for the query.
  *
  *	Of course, I could just index into the stat array,
@@ -502,7 +503,7 @@ struct sGirl
 	bool is_addict();
 	sChild* next_child(sChild* child, bool remove=false);
 	int preg_type(int image_type);
-	sGirl* run_away();
+	Girl* run_away();
 
 	bool is_slave();
 	bool is_free();
@@ -529,7 +530,7 @@ struct sGirl
 class GirlPredicate {
 public:
     virtual ~GirlPredicate() {}
-	virtual bool test(sGirl*) { return true; }
+	virtual bool test(Girl*) { return true; }
 };
 
 // Keeps track of all the available (not used by player) girls in the game.
@@ -562,14 +563,14 @@ public:
 	TiXmlElement* SaveGirlsXML(TiXmlElement* pRoot);	// Saves the girls to a file
 	bool LoadGirlsXML(TiXmlHandle hGirls);
 	void LoadGirlsLegacy(std::ifstream& ifs);
-	void LoadGirlLegacy(sGirl* current, std::ifstream& ifs);
+	void LoadGirlLegacy(Girl* current, std::ifstream& ifs);
 
-	void AddGirl(sGirl* girl);		// adds a girl to the list
-	void RemoveGirl(sGirl* girl, bool deleteGirl = false);	// Removes a girl from the list (only used with editor where all girls are available)
+	void AddGirl(Girl* girl);		// adds a girl to the list
+	void RemoveGirl(Girl* girl, bool deleteGirl = false);	// Removes a girl from the list (only used with editor where all girls are available)
 
-	sGirl* GetGirl(int girl);	// gets the girl by count
+	Girl* GetGirl(int girl);	// gets the girl by count
 
-	void GirlFucks(sGirl* girl, int DayNight, sCustomer* customer, bool group, std::string& message, u_int& SexType);	// does the logic for fucking
+	void GirlFucks(Girl* girl, int DayNight, sCustomer* customer, bool group, std::string& message, u_int& SexType);	// does the logic for fucking
 	// MYR: Millions of ways to say, [girl] does [act] to [customer]
 	std::string GetRandomGroupString();
 	std::string GetRandomSexString();
@@ -579,40 +580,40 @@ public:
 	std::string GetRandomAnalString();
 
 	// MYR: More functions for attack/defense/agility-style combat.
-	int GetCombatDamage(sGirl *girl, int CombatType);
-	int TakeCombatDamage(sGirl* girl, int amt);
+	int GetCombatDamage(Girl *girl, int CombatType);
+	int TakeCombatDamage(Girl* girl, int amt);
 
-	void LevelUp(sGirl* girl);	// advances a girls level
-	void LevelUpStats(sGirl* girl); // Functionalized stat increase for LevelUp
-	void UpdateStat(sGirl* girl, int stat, int amount);	// updates a stat
-	void LoadGirlImages(sGirl* girl);	// loads a girls images using her name to check that directory in the characters folder
-	void ApplyTraits(sGirl* girl, sTrait* trait = nullptr, bool rememberflag = false);	// applys the stat bonuses for traits to a girl
-	void UnapplyTraits(sGirl* girl, sTrait* trait = nullptr);	// unapplys a trait (or all traits) from a girl
-	bool PossiblyGainNewTrait(sGirl* girl, std::string Trait, int Threshold, int ActionType, std::string Message, bool DayNight);
-	//int UnapplyTraits(sGirl* girl, sTrait* trait = nullptr);	// unapplys a trait (or all traits) from a girl
-	void UpdateSkill(sGirl* girl, int skill, int amount);	// updates a skill
-	void UpdateEnjoyment(sGirl* girl, int whatSheEnjoys, int amount, bool wrapTo100 = false); //updates what she enjoys
-	int DrawGirl(sGirl* girl, int x, int y, int width, int height, int ImgType, bool random = true, int img = 0);	// draws a image of a girl
-	std::shared_ptr<CSurface> GetImageSurface(sGirl* girl, int ImgType, bool random, int& img, bool gallery=false);	// draws a image of a girl
-	cAnimatedSurface* GetAnimatedSurface(sGirl* girl, int ImgType, int& img);
-	bool IsAnimatedSurface(sGirl* girl, int ImgType, int& img);
-	bool HasTrait(sGirl* girl, std::string trait);
-	bool HasRememberedTrait(sGirl* girl, std::string trait);
+	void LevelUp(Girl* girl);	// advances a girls level
+	void LevelUpStats(Girl* girl); // Functionalized stat increase for LevelUp
+	void UpdateStat(Girl* girl, int stat, int amount);	// updates a stat
+	void LoadGirlImages(Girl* girl);	// loads a girls images using her name to check that directory in the characters folder
+	void ApplyTraits(Girl* girl, sTrait* trait = nullptr, bool rememberflag = false);	// applys the stat bonuses for traits to a girl
+	void UnapplyTraits(Girl* girl, sTrait* trait = nullptr);	// unapplys a trait (or all traits) from a girl
+	bool PossiblyGainNewTrait(Girl* girl, std::string Trait, int Threshold, int ActionType, std::string Message, bool DayNight);
+	//int UnapplyTraits(Girl* girl, sTrait* trait = nullptr);	// unapplys a trait (or all traits) from a girl
+	void UpdateSkill(Girl* girl, int skill, int amount);	// updates a skill
+	void UpdateEnjoyment(Girl* girl, int whatSheEnjoys, int amount, bool wrapTo100 = false); //updates what she enjoys
+	int DrawGirl(Girl* girl, int x, int y, int width, int height, int ImgType, bool random = true, int img = 0);	// draws a image of a girl
+	std::shared_ptr<CSurface> GetImageSurface(Girl* girl, int ImgType, bool random, int& img, bool gallery=false);	// draws a image of a girl
+	cAnimatedSurface* GetAnimatedSurface(Girl* girl, int ImgType, int& img);
+	bool IsAnimatedSurface(Girl* girl, int ImgType, int& img);
+	bool HasTrait(Girl* girl, std::string trait);
+	bool HasRememberedTrait(Girl* girl, std::string trait);
 	int GetNumSlaveGirls();
 	int GetNumCatacombGirls();
 	int GetSlaveGirl(int from);
-	int GetStat(sGirl* girl, int stat);
-	int GetSkill(sGirl* girl, int skill);
-	void SetSkill(sGirl* girl, int skill, int amount);
-	void SetStat(sGirl* girl, int stat, int amount);
-	void UpdateTempSkill(sGirl* girl, int skill, int amount);	// updates a skill temporarily
-	void UpdateTempStat(sGirl* girl, int stat, int amount);	// updates a stat temporarily
-	int GetRebelValue(sGirl* girl, bool matron);
-	void EquipCombat(sGirl* girl);  // girl makes sure best armor and weapons are equipped, ready for combat
-	void UnequipCombat(sGirl* girl);  // girl unequips armor and weapons, ready for brothel work or other non-aggressive jobs
-	bool RemoveInvByNumber(sGirl* girl, int Pos);
+	int GetStat(Girl* girl, int stat);
+	int GetSkill(Girl* girl, int skill);
+	void SetSkill(Girl* girl, int skill, int amount);
+	void SetStat(Girl* girl, int stat, int amount);
+	void UpdateTempSkill(Girl* girl, int skill, int amount);	// updates a skill temporarily
+	void UpdateTempStat(Girl* girl, int stat, int amount);	// updates a stat temporarily
+	int GetRebelValue(Girl* girl, bool matron);
+	void EquipCombat(Girl* girl);  // girl makes sure best armor and weapons are equipped, ready for combat
+	void UnequipCombat(Girl* girl);  // girl unequips armor and weapons, ready for brothel work or other non-aggressive jobs
+	bool RemoveInvByNumber(Girl* girl, int Pos);
 
-	Uint8 girl_fights_girl(sGirl* a, sGirl* b);
+	Uint8 girl_fights_girl(Girl* a, Girl* b);
 
 	bool InheritTrait(sTrait* trait);
 
@@ -628,61 +629,61 @@ public:
 	void LoadRandomGirlLegacy(std::string filename);
 	// end mod
 
-	sGirl* CreateRandomGirl(int age, bool addToGGirls, bool slave = false, bool undead = false, bool NonHuman = false, bool childnaped = false);
+	Girl* CreateRandomGirl(int age, bool addToGGirls, bool slave = false, bool undead = false, bool NonHuman = false, bool childnaped = false);
 
-	sGirl* GetRandomGirl(bool slave = false, bool catacomb = false);
+	Girl* GetRandomGirl(bool slave = false, bool catacomb = false);
 
 	bool NameExists(std::string name);
 
-	bool CheckInvSpace(sGirl* girl) {if(girl->m_NumInventory == 40)return false;return true;}
-	int AddInv(sGirl* girl, sInventoryItem* item);
-	bool EquipItem(sGirl* girl, int num, bool force);
-	bool CanEquip(sGirl* girl, int num, bool force);
-	int GetWorseItem(sGirl* girl, int type, int cost);
-	int GetNumItemType(sGirl* girl, int Type);
-	void SellInvItem(sGirl* girl, int num);
-	void UseItems(sGirl* girl);
-	int HasItem(sGirl* girl, std::string name);
-//	void RemoveTrait(sGirl* girl, std::string name, bool addrememberlist = false, bool force = false);
-	bool RemoveTrait(sGirl* girl, std::string name, bool addrememberlist = false, bool force = false);
-	void RemoveRememberedTrait(sGirl* girl, std::string name);
-	void RemoveAllRememberedTraits(sGirl* girl);					// WD: Cleanup remembered traits on new girl creation
-	int GetNumItemEquiped(sGirl* girl, int Type);
-	bool IsItemEquipable(sGirl* girl, int num);
-	bool IsInvFull(sGirl* girl);
+	bool CheckInvSpace(Girl* girl) {if(girl->m_NumInventory == 40)return false;return true;}
+	int AddInv(Girl* girl, sInventoryItem* item);
+	bool EquipItem(Girl* girl, int num, bool force);
+	bool CanEquip(Girl* girl, int num, bool force);
+	int GetWorseItem(Girl* girl, int type, int cost);
+	int GetNumItemType(Girl* girl, int Type);
+	void SellInvItem(Girl* girl, int num);
+	void UseItems(Girl* girl);
+	int HasItem(Girl* girl, std::string name);
+//	void RemoveTrait(Girl* girl, std::string name, bool addrememberlist = false, bool force = false);
+	bool RemoveTrait(Girl* girl, std::string name, bool addrememberlist = false, bool force = false);
+	void RemoveRememberedTrait(Girl* girl, std::string name);
+	void RemoveAllRememberedTraits(Girl* girl);					// WD: Cleanup remembered traits on new girl creation
+	int GetNumItemEquiped(Girl* girl, int Type);
+	bool IsItemEquipable(Girl* girl, int num);
+	bool IsInvFull(Girl* girl);
 
-	int GetSkillWorth(sGirl* girl);
+	int GetSkillWorth(Girl* girl);
 
-	bool DisobeyCheck(sGirl* girl, int action, sBrothel* brothel = nullptr);
+	bool DisobeyCheck(Girl* girl, int action, sBrothel* brothel = nullptr);
 
-	std::string GetDetailsString(sGirl* girl, bool purchace = false);
-	std::string GetMoreDetailsString(sGirl* girl);
-	std::string GetGirlMood(sGirl* girl);
+	std::string GetDetailsString(Girl* girl, bool purchace = false);
+	std::string GetMoreDetailsString(Girl* girl);
+	std::string GetGirlMood(Girl* girl);
 
-//	void AddTrait(sGirl* girl, std::string name, bool temp = false, bool removeitem = false, bool inrememberlist = false);
-	bool AddTrait(sGirl* girl, std::string name, bool temp = false, bool removeitem = false, bool inrememberlist = false);
-	void AddRememberedTrait(sGirl* girl, std::string name);
+//	void AddTrait(Girl* girl, std::string name, bool temp = false, bool removeitem = false, bool inrememberlist = false);
+	bool AddTrait(Girl* girl, std::string name, bool temp = false, bool removeitem = false, bool inrememberlist = false);
+	void AddRememberedTrait(Girl* girl, std::string name);
 
 	cImgageListManager* GetImgManager() {return &m_ImgListManager;}
 
-	void CalculateAskPrice(sGirl* girl, bool vari);
+	void CalculateAskPrice(Girl* girl, bool vari);
 
-	void AddTiredness(sGirl* girl);
+	void AddTiredness(Girl* girl);
 
-	void SetAntiPreg(sGirl* girl, bool useAntiPreg) {girl->m_UseAntiPreg = useAntiPreg;}
+	void SetAntiPreg(Girl* girl, bool useAntiPreg) {girl->m_UseAntiPreg = useAntiPreg;}
 
-	bool GirlInjured(sGirl* girl, unsigned int modifier);
+	bool GirlInjured(Girl* girl, unsigned int modifier);
 
-	void CalculateGirlType(sGirl* girl);	// updates a girls fetish type based on her traits and stats
-	bool CheckGirlType(sGirl* girl, int type);	// Checks if a girl has this fetish type
+	void CalculateGirlType(Girl* girl);	// updates a girls fetish type based on her traits and stats
+	bool CheckGirlType(Girl* girl, int type);	// Checks if a girl has this fetish type
 
-	void do_abnormality(sGirl *sprog, int chance);
-	void HandleChild(sGirl* girl, sChild* child, std::string& summary);
-	void HandleChild_CheckIncest(sGirl* mum, sGirl *sprog, sChild* child, std::string& summary);
-	bool child_is_grown(sGirl* girl, sChild* child, std::string& summary, bool PlayerControlled = true);
-	bool child_is_due(sGirl* girl, sChild* child, std::string& summary, bool PlayerControlled = true);
-	void HandleChildren(sGirl* girl, std::string& summary, bool PlayerControlled = true);	// ages children and handles pregnancy
-	bool CalcPregnancy(sGirl* girl, int chance, int type, unsigned char stats[NUM_STATS], unsigned char skills[NUM_SKILLS]);	// checks if a girl gets pregnant
+	void do_abnormality(Girl *sprog, int chance);
+	void HandleChild(Girl* girl, sChild* child, std::string& summary);
+	void HandleChild_CheckIncest(Girl* mum, Girl *sprog, sChild* child, std::string& summary);
+	bool child_is_grown(Girl* girl, sChild* child, std::string& summary, bool PlayerControlled = true);
+	bool child_is_due(Girl* girl, sChild* child, std::string& summary, bool PlayerControlled = true);
+	void HandleChildren(Girl* girl, std::string& summary, bool PlayerControlled = true);	// ages children and handles pregnancy
+	bool CalcPregnancy(Girl* girl, int chance, int type, unsigned char stats[NUM_STATS], unsigned char skills[NUM_SKILLS]);	// checks if a girl gets pregnant
 	void UncontrolledPregnancies();	// ages children and handles pregnancy for all girls not controlled by player
 
 	// mod - docclox - func to return random girl N in the chain
@@ -691,37 +692,37 @@ public:
 /*
  *	while I'm on, a few funcs to factor out some common code in DrawImages
  */
-	int num_images(sGirl* girl, int image_type);
-	int get_modified_image_type(sGirl* girl, int image_type, int preg_type);
+	int num_images(Girl* girl, int image_type);
+	int get_modified_image_type(Girl* girl, int image_type, int preg_type);
 	int draw_with_default(
-		sGirl* girl,
+		Girl* girl,
 		int x, int y,
 		int width, int height,
 		int ImgType,
 		bool random,
 		int img
 	);
-	int calc_abnormal_pc(sGirl* mom, sGirl* sprog, bool is_players);
+	int calc_abnormal_pc(Girl* mom, Girl* sprog, bool is_players);
 
-	std::vector<sGirl*>  get_girls(GirlPredicate* pred);
+	std::vector<Girl*>  get_girls(GirlPredicate* pred);
 
 	// end mod
 
 	// WD:	Consolidate common code in BrothelUpdate and DungeonUpdate to fn's
-	void updateGirlAge(sGirl* girl, bool inc_inService = false);
-	void updateTempStats(sGirl* girl);
-	void updateTempSkills(sGirl* girl);
-	void updateTempTraits(sGirl* girl);
-	void updateSTD(sGirl* girl);
-	void updateHappyTraits(sGirl* girl);
-	void updateGirlTurnStats(sGirl* girl);
+	void updateGirlAge(Girl* girl, bool inc_inService = false);
+	void updateTempStats(Girl* girl);
+	void updateTempSkills(Girl* girl);
+	void updateTempTraits(Girl* girl);
+	void updateSTD(Girl* girl);
+	void updateHappyTraits(Girl* girl);
+	void updateGirlTurnStats(Girl* girl);
 
 
 
 private:
 	unsigned int m_NumGirls;	// number of girls in the class
-	sGirl* m_Parent;	// first in the list of girls who are dead, gone or in use
-	sGirl* m_Last;	// last in the list of girls who are dead, gone or in use
+	Girl* m_Parent;	// first in the list of girls who are dead, gone or in use
+	Girl* m_Last;	// last in the list of girls who are dead, gone or in use
 
 	unsigned int m_NumRandomGirls;
 	sRandomGirl* m_RandomGirls;

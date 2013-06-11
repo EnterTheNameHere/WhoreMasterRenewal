@@ -29,7 +29,7 @@
 class cInventory;
 extern cInventory g_InvManager;
 
-struct sGirl;
+class Girl;
 
 struct sEffect
 {
@@ -69,18 +69,18 @@ struct sEffect
     /*
      *  but I still need strings for the skills, states, traits and so forth
      *
-     *  these should be (were until the merge) in sGirl. Will be again
+     *  these should be (were until the merge) in Girl. Will be again
      *  as soon as I sort the main mess out...
      */
     const char* girl_status_name( unsigned int id );
-    const char* skill_name( unsigned int id );      // WD:  Use definition in sGirl::
-    const char* stat_name( unsigned int id );       // WD:  Use definition in sGirl::
+    const char* skill_name( unsigned int id );      // WD:  Use definition in Girl::
+    const char* stat_name( unsigned int id );       // WD:  Use definition in Girl::
     
     /*
      *  and we need to go the other way,
      *  setting m_EffectID from the strings in the XML file
      *
-     *  WD: Change to use definition and code in sGirl::
+     *  WD: Change to use definition and code in Girl::
      *      remove duplicated code
      */
     bool set_skill( std::string s );
@@ -218,11 +218,11 @@ public:
     sInventoryItem* GetRandomItem();
     int CheckShopItem( std::string name );  // checks if a item is in shop inventory, returns -1 if not and the id if it is
     sInventoryItem* BuyShopItem( int num ); // removes and returns the item from the shop
-    bool GirlBuyItem( sGirl* girl, int ShopItem, int MaxItems, bool AutoEquip ); // girl buys selected item if possible; returns true if bought
+    bool GirlBuyItem( Girl* girl, int ShopItem, int MaxItems, bool AutoEquip ); // girl buys selected item if possible; returns true if bought
     
-    void Equip( sGirl* girl, int num, bool force );
-    void Equip( sGirl* girl, sInventoryItem* item, bool force );
-    void Unequip( sGirl* girl, int num );
+    void Equip( Girl* girl, int num, bool force );
+    void Equip( Girl* girl, sInventoryItem* item, bool force );
+    void Unequip( Girl* girl, int num );
     
     void AddItem( sInventoryItem* item );
     void CalculateCost( sInventoryItem* newItem );
@@ -240,12 +240,12 @@ public:
     }
     void sort();
     
-    bool    equip_limited_item_ok( sGirl*, int, bool, int );
-    bool    equip_pair_ok( sGirl*, int, bool );
-    bool    equip_ring_ok( sGirl*, int, bool );
-    bool    equip_singleton_ok( sGirl*, int, bool );
-    bool    ok_2_equip( sGirl*, int, bool );
-    void    remove_trait( sGirl*, int, int );
+    bool    equip_limited_item_ok( Girl*, int, bool, int );
+    bool    equip_pair_ok( Girl*, int, bool );
+    bool    equip_ring_ok( Girl*, int, bool );
+    bool    equip_singleton_ok( Girl*, int, bool );
+    bool    ok_2_equip( Girl*, int, bool );
+    void    remove_trait( Girl*, int, int );
     
     
 private:

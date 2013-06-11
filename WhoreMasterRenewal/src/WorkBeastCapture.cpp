@@ -34,7 +34,7 @@
 
 #include <sstream>
 
-bool cJobManager::WorkBeastCapture(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkBeastCapture(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
     std::string message = "";
 	if(Preprocessing(ACTION_COMBAT, girl, brothel, DayNight, summary, message))
@@ -44,7 +44,7 @@ bool cJobManager::WorkBeastCapture(sGirl* girl, sBrothel* brothel, int DayNight,
 	g_Girls.EquipCombat(girl);
 
 	// TODO need better dialog
-	sGirl* tempgirl = g_Girls.CreateRandomGirl(18, false, false, false, true, false);
+	Girl* tempgirl = g_Girls.CreateRandomGirl(18, false, false, false, true, false);
 
 	Uint8 fight_outcome = g_Girls.girl_fights_girl(girl, tempgirl);
 	if(fight_outcome == 1)	// she won

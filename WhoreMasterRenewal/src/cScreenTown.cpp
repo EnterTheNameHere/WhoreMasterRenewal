@@ -356,7 +356,7 @@ void cScreenTown::do_walk()
 /*
  *	let's get a girl for the player to meet
  */
-	sGirl* girl = g_Girls.GetRandomGirl();
+	Girl* girl = g_Girls.GetRandomGirl();
 /*
  *	if there's no girl, no meeting
  */

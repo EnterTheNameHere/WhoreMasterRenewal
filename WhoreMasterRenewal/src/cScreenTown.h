@@ -25,7 +25,7 @@
 class cScreenTown;
 extern cScreenTown g_TownScreen;
 
-struct sGirl;
+class Girl;
 
 class cScreenTown : public cInterfaceWindowXML
 {
@@ -68,7 +68,7 @@ public:
 	void more_button();
 	void release_button();
 	void update_details();
-	sGirl* get_selected_girl();
+	Girl* get_selected_girl();
 	void selection_change();
 	bool check_keys();
 	void do_walk();

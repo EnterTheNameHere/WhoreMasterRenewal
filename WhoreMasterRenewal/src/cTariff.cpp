@@ -118,7 +118,7 @@ int cTariff::add_room_cost( int n )
     return int( n * 1000 * config.out_fact.brothel_cost() );
 }
 
-double cTariff::slave_price( sGirl* girl, bool buying )
+double cTariff::slave_price( Girl* girl, bool buying )
 {
     if( buying )
     {
@@ -151,7 +151,7 @@ int cTariff::buy_facility( int base_price )
     return int( config.out_fact.brothel_cost() * base_price );
 }
 
-double cTariff::slave_base_price( sGirl* girl )
+double cTariff::slave_base_price( Girl* girl )
 {
 	double cost;
 /*
@@ -189,7 +189,7 @@ double cTariff::slave_base_price( sGirl* girl )
 	return cost;
 }
 
-int cTariff::slave_buy_price( sGirl* girl )
+int cTariff::slave_buy_price( Girl* girl )
 {
 	cConfig cfg;
 	double cost = slave_base_price(girl);
@@ -215,7 +215,7 @@ int cTariff::slave_buy_price( sGirl* girl )
 	return int(cost);
 }
 
-int cTariff::slave_sell_price( sGirl* girl )
+int cTariff::slave_sell_price( Girl* girl )
 {
 	cConfig cfg;
 	double cost = slave_base_price( girl );

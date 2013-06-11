@@ -24,6 +24,9 @@
 
 #include <string>
 
+class cSlider;
+extern cSlider* g_DragSlider;
+
 class SDL_Rect;
 class SDL_Surface;
 

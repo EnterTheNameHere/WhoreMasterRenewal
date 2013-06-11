@@ -59,7 +59,7 @@ cGameScript::~cGameScript()
     m_ScriptParent = nullptr;
 }
 
-bool cGameScript::Prepare( sGirl* girlTarget )
+bool cGameScript::Prepare( Girl* girlTarget )
 {
     m_Active = true;
     m_Leave = false;

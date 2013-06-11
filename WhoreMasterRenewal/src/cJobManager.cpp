@@ -285,14 +285,14 @@ void cJobManager::free()
 
 // ----- Misc
 
-bool cJobManager::WorkVoid(sGirl* girl, sBrothel* /*brothel*/, int /*DayNight*/, std::string& summary)
+bool cJobManager::WorkVoid(Girl* girl, sBrothel* /*brothel*/, int /*DayNight*/, std::string& summary)
 {
 	summary += "This job isn't implemented yet";
 	girl->m_Events.AddMessage("This job isn't implemented yet", IMGTYPE_PROFILE, EVENT_DEBUG);
 	return false;
 }
 
-bool cJobManager::Preprocessing(int action, sGirl* girl, sBrothel* brothel, int DayNight, std::string& /*summary*/, std::string& /*message*/)
+bool cJobManager::Preprocessing(int action, Girl* girl, sBrothel* brothel, int DayNight, std::string& /*summary*/, std::string& /*message*/)
 {
 	brothel->m_Filthiness++;
 	g_Girls.AddTiredness(girl);
@@ -342,11 +342,11 @@ bool cJobManager::is_sex_type_allowed(unsigned int sex_type, sBrothel* brothel)
 
 // ----- Job related
 
-std::vector<sGirl*> cJobManager::girls_on_job(sBrothel *brothel, u_int job_wanted, int day_or_night)
+std::vector<Girl*> cJobManager::girls_on_job(sBrothel *brothel, u_int job_wanted, int day_or_night)
 {
 	u_int job_id;
-	sGirl* girl;
-	std::vector<sGirl*> v;
+	Girl* girl;
+	std::vector<Girl*> v;
 
 	for(girl = brothel->m_Girls; girl; girl = girl->m_Next) {
 		if (day_or_night == 0)
@@ -367,7 +367,7 @@ std::vector<sGirl*> cJobManager::girls_on_job(sBrothel *brothel, u_int job_wante
 bool cJobManager::is_job_employed(sBrothel * brothel,u_int job_wanted,int day_or_night)
 {
 	u_int job_id;
-	sGirl* girl;
+	Girl* girl;
 	for(girl = brothel->m_Girls; girl; girl = girl->m_Next) {
 		if(day_or_night == 0)
 			job_id = girl->m_DayJob;
@@ -382,7 +382,7 @@ bool cJobManager::is_job_employed(sBrothel * brothel,u_int job_wanted,int day_or
 void cJobManager::do_advertising(sBrothel* brothel)
 {  // advertising jobs are handled before other jobs, more particularly before customer generation
 	brothel->m_AdvertisingLevel = 1.0;  // base multiplier
-	sGirl* current = brothel->m_Girls;
+	Girl* current = brothel->m_Girls;
 	while(current)
 	{
 	    std::string summary = "";
@@ -523,7 +523,7 @@ std::string cJobManager::JobDescriptionCount(int job_id, int brothel_id, bool da
 	return text.str();
 }
 
-bool cJobManager::HandleSpecialJobs(int TargetBrothel, sGirl* Girl, int JobID, int OldJobID, bool DayOrNight)
+bool cJobManager::HandleSpecialJobs(int TargetBrothel, Girl* Girl, int JobID, int OldJobID, bool DayOrNight)
 {
 	bool MadeChanges = true;  // whether a special case applies to specified job or not
 	// Special cases?
@@ -585,7 +585,7 @@ bool cJobManager::HandleSpecialJobs(int TargetBrothel, sGirl* Girl, int JobID, i
  * false if nothing happened, or if violence was committed
  * against the customer.
  */
-bool cJobManager::work_related_violence(sGirl* girl, int DayNight, bool streets)
+bool cJobManager::work_related_violence(Girl* girl, int DayNight, bool streets)
 {
 	cConfig cfg;
 	int rape_chance = (int)cfg.prostitution.rape_brothel();
@@ -718,22 +718,22 @@ int cJobManager::guard_coverage(std::vector<sGang*> *vpt)
 
 // True means security intercepted the perp(s)
 
-bool cJobManager::security_stops_rape(sGirl * girl, sGang *enemy_gang, int day_night)
+bool cJobManager::security_stops_rape(Girl * girl, sGang *enemy_gang, int day_night)
 {
 	// MYR: Note to self: STAT_HOUSE isn't the brothel number :)
 	int GirlsBrothelNo = g_Brothels.GetGirlsCurrentBrothel(girl);
 	sBrothel * Brothl = g_Brothels.GetBrothel(GirlsBrothelNo);
 	int SecLev = Brothl->m_SecurityLevel, OrgNumMem = enemy_gang->m_Num;
-	sGirl * SecGuard;
+	Girl * SecGuard;
 
 	// A gang takes 5 security points per member to stop
 	if (SecLev < OrgNumMem * 5)
 		return false;
 
 	// Security guards on duty this shift
-	std::vector<sGirl *> SecGrd = g_Brothels.GirlsOnJob(GirlsBrothelNo, JOB_SECURITY, day_night == SHIFT_DAY);
+	std::vector<Girl *> SecGrd = g_Brothels.GirlsOnJob(GirlsBrothelNo, JOB_SECURITY, day_night == SHIFT_DAY);
 	// Security guards with enough health to fight
-	std::vector<sGirl *> SecGrdWhoCanFight;
+	std::vector<Girl *> SecGrdWhoCanFight;
 
 	if (SecGrd.size() == 0)
 		return false;
@@ -838,7 +838,7 @@ bool cJobManager::security_stops_rape(sGirl * girl, sGang *enemy_gang, int day_n
 	return res;
 }
 
-bool cJobManager::gang_stops_rape(sGirl* girl, std::vector<sGang *> gangs_guarding, sGang *enemy_gang,
+bool cJobManager::gang_stops_rape(Girl* girl, std::vector<sGang *> gangs_guarding, sGang *enemy_gang,
 	int coverage, int day_night)
 {
 	if((g_Dice%100 + 1) > coverage)
@@ -899,7 +899,7 @@ bool cJobManager::gang_stops_rape(sGirl* girl, std::vector<sGang *> gangs_guardi
  * dead customers should impact disposition and suspicion
  * might also need a bribe to cover it up
  */
-bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_night)
+bool cJobManager::gang_stops_rape(Girl* girl, sGang *gang, int chance, int day_night)
 {
 	if(g_Dice.percent(chance) == false)
 		return false;
@@ -975,7 +975,7 @@ bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_
 
 // true means she won
 
-bool cJobManager::girl_fights_rape(sGirl* girl, sGang *enemy_gang, int /*day_night*/)
+bool cJobManager::girl_fights_rape(Girl* girl, sGang *enemy_gang, int /*day_night*/)
 {
 	int OrgNumMem = enemy_gang->m_Num;
 
@@ -1039,7 +1039,7 @@ bool cJobManager::girl_fights_rape(sGirl* girl, sGang *enemy_gang, int /*day_nig
  *
  * returns true if the girl is successful in fighting the rapist off
  */
-bool cJobManager::girl_fights_rape(sGirl* girl, int day_night)
+bool cJobManager::girl_fights_rape(Girl* girl, int day_night)
 {
     std::string msg;
 	bool res = false;
@@ -1062,7 +1062,7 @@ bool cJobManager::girl_fights_rape(sGirl* girl, int day_night)
  * I think these next three could use a little detail
  * MYR: Added the requested detail (in GetGirlAttackedString() below)
  */
-void cJobManager::customer_rape(sGirl* girl)
+void cJobManager::customer_rape(Girl* girl)
 {
 	std::stringstream ss;
 
@@ -1085,7 +1085,7 @@ void cJobManager::customer_rape(sGirl* girl)
 	g_Girls.UpdateEnjoyment(girl, ACTION_SEX, -30, true);
 }
 #if 0
-void cJobManager::customer_rape(sGirl* girl)
+void cJobManager::customer_rape(Girl* girl)
 {
 	girl->m_Events.AddMessage(girl->m_Realname + " " + GetGirlAttackedString()/*"She was beaten and raped, and the perpetrator escaped"*/, IMGTYPE_DEATH, EVENT_DANGER);
 	g_Girls.UpdateStat(girl, STAT_HEALTH, -2);
@@ -1211,7 +1211,7 @@ std::string cJobManager::GetGirlAttackedString()
 /*
  * let's look at this a little differently...
  */
-void cJobManager::get_training_set(std::vector<sGirl*> &v, std::vector<sGirl*> &t_set)
+void cJobManager::get_training_set(std::vector<Girl*> &v, std::vector<Girl*> &t_set)
 {
 	u_int max = 4;
 	u_int v_siz = v.size();
@@ -1261,7 +1261,7 @@ void cJobManager::get_training_set(std::vector<sGirl*> &v, std::vector<sGirl*> &
 	}
 }
 
-bool cJobManager::WorkTraining(sGirl* /*girl*/, sBrothel* /*brothel*/, int /*DayNight*/, std::string& /*summary*/)
+bool cJobManager::WorkTraining(Girl* /*girl*/, sBrothel* /*brothel*/, int /*DayNight*/, std::string& /*summary*/)
 {
 	// training is already handled in UpdateGirls
 	//do_training(brothel, DayNight);
@@ -1269,7 +1269,7 @@ bool cJobManager::WorkTraining(sGirl* /*girl*/, sBrothel* /*brothel*/, int /*Day
 	return false;
 }
 
-void cJobManager::do_solo_training(sGirl *girl, int DayNight)
+void cJobManager::do_solo_training(Girl *girl, int DayNight)
 {
 	TrainableGirl trainee(girl);
 	girl->m_Events.AddMessage("She trained during this shift by herself, so learning anything worthwhile was difficult.", IMGTYPE_PROFILE, DayNight);
@@ -1292,9 +1292,9 @@ void cJobManager::do_solo_training(sGirl *girl, int DayNight)
 	girl->m_Events.AddMessage(ss.str(), IMGTYPE_PROFILE, EVENT_SUMMARY);
 }
 
-void cJobManager::do_training_set(std::vector<sGirl*> girls, int DayNight)
+void cJobManager::do_training_set(std::vector<Girl*> girls, int DayNight)
 {
-	sGirl *girl;
+	Girl *girl;
 	std::stringstream ss;
 /*
  *	we're getting a vector of 1-4 girls here
@@ -1312,7 +1312,7 @@ void cJobManager::do_training_set(std::vector<sGirl*> girls, int DayNight)
 		return;
 	}
 /*
- *	OK. Now, as I was saying. We have an array of sGirl* pointers..
+ *	OK. Now, as I was saying. We have an array of Girl* pointers..
  *	We need that to be a list of TrainableGirl objects:
  */
  	std::vector<TrainableGirl> set;
@@ -1377,7 +1377,7 @@ void cJobManager::do_training_set(std::vector<sGirl*> girls, int DayNight)
 			trainee[index].upd(inc);
 		}
 
-		sGirl *girl = trainee.girl();
+		Girl *girl = trainee.girl();
 /*
  *		need to do the  "she trained hard with ..." stuff here
  */
@@ -1429,8 +1429,8 @@ void cJobManager::do_training(sBrothel* brothel, int DayNight)
 	cTariff tariff;
 	cConfig cfg;
 
-	std::vector<sGirl*> t_set;
-	std::vector<sGirl*> girls = girls_on_job(brothel, JOB_TRAINING, DayNight);
+	std::vector<Girl*> t_set;
+	std::vector<Girl*> girls = girls_on_job(brothel, JOB_TRAINING, DayNight);
 
 	for(u_int i = girls.size(); i --> 0; )
 	{  // no girls sneaking in training if she gave birth
@@ -1465,7 +1465,7 @@ void cJobManager::do_training(sBrothel* brothel, int DayNight)
  */
  	for(u_int i = 0; i < girls.size(); i++)
 	{
-		sGirl *girl = girls[i];
+		Girl *girl = girls[i];
 		g_Girls.AddTiredness(girl);
 		g_Girls.UpdateTempStat(girl, STAT_LIBIDO, 2);
 	}

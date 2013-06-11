@@ -144,14 +144,14 @@ long g_IntReturn;
 bool eventrunning = false;
 int g_TalkCount = 10;
 bool g_GenGirls = false;
-sGirl* selected_girl;  // global pointer for the currently selected girl
+Girl* selected_girl;  // global pointer for the currently selected girl
 std::vector<int> cycle_girls;  // globally available sorted list of girl IDs for Girl Details screen to cycle through
 int cycle_pos;  //currently selected girl's position in the cycle_girls vector
 char buffer[1000];
 cSlider* g_DragSlider = nullptr;
 std::shared_ptr<CSurface> g_BackgroundImage = nullptr;
 std::shared_ptr<CSurface> g_BrothelImages[6] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
-sGirl* MarketSlaveGirls[8] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+Girl* MarketSlaveGirls[8] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
 int MarketSlaveGirlsDel[8] = {-1,-1,-1,-1,-1,-1,-1,-1};
 
 

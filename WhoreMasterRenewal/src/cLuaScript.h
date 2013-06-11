@@ -34,7 +34,7 @@ bool get_from_table(lua_State *L, int table, const char *key, std::string &dest)
 
 
 class cInterfaceWindowXML;
-struct sGirl;
+class Girl;
 
 class cLuaStateInner
 {
@@ -77,7 +77,7 @@ public:
 
 	void set_param(const char *name, void *pointer);
 
-	bool load(std::string filename, sGirl *girl);
+	bool load(std::string filename, Girl *girl);
 
 	bool run(const char *func = "script");
 	bool process(cInterfaceWindowXML *window);
@@ -85,7 +85,7 @@ public:
 	bool call_handler(cInterfaceWindowXML *window, std::string handler_name);
 	int get_ref(const char *name);
 	bool run_by_ref(int ref);
-	void set_wm_girl(sGirl *girl);
+	void set_wm_girl(Girl *girl);
 	void set_wm_player();
 	
 private:
@@ -101,7 +101,7 @@ private:
 /*
  *	the girl who is the subject (if any) of the event
  */
-	sGirl* girl;
+	Girl* girl;
 
     std::string slurp(std::string path);
 	void get_param_table();

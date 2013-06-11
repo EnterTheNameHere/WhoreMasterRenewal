@@ -20,7 +20,7 @@
 #define CINVENTORYMANAGEMENTSM_H_INCLUDED_1525
 #pragma once
 
-class sGirl;
+class Girl;
 
 class cInventoryManagementSM
 {
@@ -28,7 +28,7 @@ public:
 	void init();
 	void handle_events();
 	void item_shift_r();
-	sGirl* get_girl_from_list(int owner_idx, int list_id);
+	Girl* get_girl_from_list(int owner_idx, int list_id);
 
 private:
 	int leftOwner;

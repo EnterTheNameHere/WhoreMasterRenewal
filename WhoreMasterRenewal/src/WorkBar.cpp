@@ -34,7 +34,7 @@
 
 #include <sstream>
 
-bool cJobManager::WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkBar(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	/* WD:	Added missing SEX_ACTION filter
 	 *

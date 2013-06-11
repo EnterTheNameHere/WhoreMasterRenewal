@@ -34,7 +34,7 @@
 
 #include <sstream>
 
-bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkExploreCatacombs(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	int num_monsters = 0;
 	int type_monster_girls = 0;
@@ -71,14 +71,14 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 	{
 		int type = ((g_Dice%2)+1);	// 1 is beast 2 is monster girl
 
-		sGirl* tempgirl = g_Girls.CreateRandomGirl(18, false, false, false, true, false);
+		Girl* tempgirl = g_Girls.CreateRandomGirl(18, false, false, false, true, false);
 
 		Uint8 fight_outcome = g_Girls.girl_fights_girl(girl, tempgirl);
 		if (fight_outcome == 1)  // If she won
 		{
 			if(type == 2)  // Monster girl type
 			{
-				sGirl* ugirl = nullptr;
+				Girl* ugirl = nullptr;
 				bool unique = false;
 				if((g_Dice%100)+1 < 30)	// chance of getting unique girl
 					unique = true;

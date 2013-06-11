@@ -25,7 +25,7 @@
 class cScreenGirlManagement;
 extern cScreenGirlManagement g_GirlManagement;
 
-struct sGirl;
+class Girl;
 
 class cScreenGirlManagement : public cInterfaceWindowXML
 {
@@ -58,7 +58,7 @@ private:
 	int night_id;		// Night button
 
 	void set_ids();
-	bool GirlDead(sGirl* dgirl);
+	bool GirlDead(Girl* dgirl);
 	void RefreshSelectedJobType();
 	void RefreshJobList();
 	void GetSelectedGirls(std::vector<int> *girl_array);

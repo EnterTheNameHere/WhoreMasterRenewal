@@ -1185,7 +1185,7 @@ int cTrigger::load_skill_from_xml( TiXmlElement* el )
     /*
      *  get the skill code
      */
-    int code = sGirl::lookup_skill_code( pt );
+    int code = Girl::lookup_skill_code( pt );
     
     /*
      *  make sure what we have is actually a skill name
@@ -1244,7 +1244,7 @@ int cTrigger::load_stat_from_xml( TiXmlElement* el )
     /*
      *  get the stat code
      */
-    int code = sGirl::lookup_stat_code( pt );
+    int code = Girl::lookup_stat_code( pt );
     
     /*
      *  make sure what we have is actually a stat name
@@ -1302,7 +1302,7 @@ int cTrigger::load_status_from_xml( TiXmlElement* el )
     /*
      *  get the status code
      */
-    int code = sGirl::lookup_status_code( pt );
+    int code = Girl::lookup_status_code( pt );
     
     /*
      *  make sure what we have is actually a stat name

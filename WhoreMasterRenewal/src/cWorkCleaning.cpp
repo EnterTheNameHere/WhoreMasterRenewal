@@ -34,7 +34,7 @@
 
 #include <sstream>
 
-bool cJobManager::WorkCleaning(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkCleaning(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
     std::string message = "";
 	if(Preprocessing(ACTION_WORKCLEANING, girl, brothel, DayNight, summary, message))

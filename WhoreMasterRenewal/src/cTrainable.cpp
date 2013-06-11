@@ -31,7 +31,7 @@ cTrainable::cTrainable()
 {
 }
 
-cTrainable::cTrainable(sGirl *girl, std::string stat_name, int index, AType typ)
+cTrainable::cTrainable(Girl *girl, std::string stat_name, int index, AType typ)
 {
     m_girl	= girl;
     m_index	= index;
@@ -92,18 +92,18 @@ void cTrainable::upd(int increment)
 	g_Girls.UpdateSkill(m_girl, m_index, increment);
 }
 
-TrainableStat::TrainableStat(sGirl *girl, std::string stat_name, int index)
+TrainableStat::TrainableStat(Girl *girl, std::string stat_name, int index)
 	: cTrainable(girl, stat_name, index, cTrainable::Stat)
 {
 }
 
 
-TrainableSkill::TrainableSkill(sGirl *girl, std::string stat_name, int index)
+TrainableSkill::TrainableSkill(Girl *girl, std::string stat_name, int index)
 	: cTrainable(girl, stat_name, index, cTrainable::Skill)
 {
 }
 
-TrainableGirl::TrainableGirl(sGirl *girl)
+TrainableGirl::TrainableGirl(Girl *girl)
 {
 	stats.push_back(TrainableStat(girl, "Charisma", STAT_CHARISMA));
 	stats.push_back(TrainableStat(girl, "Constitution", STAT_CONSTITUTION));

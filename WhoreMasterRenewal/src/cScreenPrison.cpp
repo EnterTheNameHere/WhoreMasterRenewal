@@ -67,7 +67,7 @@ void cScreenPrison::init()
 
 	int i=0;
 	ClearListBox(prison_list_id);
-	sGirl* pgirls = g_Brothels.GetPrison();
+	Girl* pgirls = g_Brothels.GetPrison();
 	while(pgirls)
 	{
 		//sGirls * girl = mg.girl;
@@ -201,7 +201,7 @@ void cScreenPrison::update_details()
 	if(selection == -1)
 		return;
 
-	sGirl* pgirls = get_selected_girl();
+	Girl* pgirls = get_selected_girl();
 	if(!pgirls)
 		return;
 
@@ -211,12 +211,12 @@ void cScreenPrison::update_details()
 		EditTextItem(g_Girls.GetDetailsString(pgirls,true), girl_desc_id);
 }
 
-sGirl* cScreenPrison::get_selected_girl()
+Girl* cScreenPrison::get_selected_girl()
 {
 	if(selection == -1)
 		return nullptr;
 
-	sGirl* pgirls = g_Brothels.GetPrison();
+	Girl* pgirls = g_Brothels.GetPrison();
 	int i=0;
 	while(pgirls)
 	{
@@ -243,7 +243,7 @@ void cScreenPrison::release_button()
 	if(selection == -1)
 		return;
 
-	sGirl* pgirls = get_selected_girl();
+	Girl* pgirls = get_selected_girl();
 	if(!pgirls)
 		return;
 

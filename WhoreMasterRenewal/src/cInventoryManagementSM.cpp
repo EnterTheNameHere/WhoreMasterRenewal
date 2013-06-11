@@ -73,7 +73,7 @@ void cInventoryManagementSM::handle_events()
 			rightItem = g_ItemManagement.GetLastSelectedItemFromList(g_interfaceid.LIST_ITMITEMSR);
 			if(rightOwner == 1)	// target is shop
 			{
-				sGirl* targetGirl = 0;
+				Girl* targetGirl = 0;
 				if(leftOwner > 1)	// giving to a girl from the shop
 				{
 					if(leftOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
@@ -181,7 +181,7 @@ void cInventoryManagementSM::handle_events()
 				}
 				else	// giving gift to a girl
 				{
-					sGirl* targetGirl = 0;
+					Girl* targetGirl = 0;
 					if(leftOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 						targetGirl = g_Brothels.GetGirl(g_CurrBrothel, g_ItemManagement.GetSelectedItemFromList(g_interfaceid.LIST_ITMOWNERSL)-2);
 					else	// dungeon girl
@@ -242,7 +242,7 @@ void cInventoryManagementSM::handle_events()
 			}
 			else	// target is girl
 			{
-				sGirl* targetGirl = 0;
+				Girl* targetGirl = 0;
 				if(rightOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, g_ItemManagement.GetSelectedItemFromList(g_interfaceid.LIST_ITMOWNERSR)-2);
 				else // dungeon girl
@@ -311,7 +311,7 @@ void cInventoryManagementSM::handle_events()
 				}
 				else	// player forcing a girl to give to another girl
 				{
-					sGirl* fromGirl = 0;// ********************
+					Girl* fromGirl = 0;// ********************
 					if(leftOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 						fromGirl = g_Brothels.GetGirl(g_CurrBrothel, g_ItemManagement.GetSelectedItemFromList(g_interfaceid.LIST_ITMOWNERSL)-2);
 					else // dungeon girl
@@ -451,7 +451,7 @@ void cInventoryManagementSM::handle_events()
 			}
 			else	// girl items
 			{
-				sGirl* targetGirl = 0;
+				Girl* targetGirl = 0;
 				if(leftOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 				else // dungeon girl
@@ -552,7 +552,7 @@ void cInventoryManagementSM::handle_events()
 			}
 			else	// girl items
 			{
-				sGirl* targetGirl = 0;
+				Girl* targetGirl = 0;
 				if(rightOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 				else // dungeon girl
@@ -617,7 +617,7 @@ void cInventoryManagementSM::handle_events()
 			}
 			else
 			{
-				sGirl* targetGirl = 0;
+				Girl* targetGirl = 0;
 				if(leftOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 				else // dungeon girl
@@ -687,7 +687,7 @@ void cInventoryManagementSM::handle_events()
 			}
 			else
 			{
-				sGirl* targetGirl = 0;
+				Girl* targetGirl = 0;
 				if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 				else // dungeon girl
@@ -732,7 +732,7 @@ void cInventoryManagementSM::handle_events()
 	}
 	else if(g_InterfaceEvents.CheckEvent(EVENT_BUTTONCLICKED, g_interfaceid.BUTTON_ITMEQUIP1))
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = 0;
 		if(leftOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 		else // dungeon girl
@@ -750,7 +750,7 @@ void cInventoryManagementSM::handle_events()
 	}
 	else if(g_InterfaceEvents.CheckEvent(EVENT_BUTTONCLICKED, g_interfaceid.BUTTON_ITMUNEQUIP1))
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = 0;
 		if(leftOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 		else // dungeon girl
@@ -768,7 +768,7 @@ void cInventoryManagementSM::handle_events()
 	}
 	else if(g_InterfaceEvents.CheckEvent(EVENT_BUTTONCLICKED, g_interfaceid.BUTTON_ITMEQUIP2))
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = 0;
 		if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 		else // dungeon girl
@@ -787,7 +787,7 @@ void cInventoryManagementSM::handle_events()
 	}
 	else if(g_InterfaceEvents.CheckEvent(EVENT_BUTTONCLICKED, g_interfaceid.BUTTON_ITMUNEQUIP2))
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = 0;
 		if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 		else // dungeon girl
@@ -844,7 +844,7 @@ void cInventoryManagementSM::init()
 
 	// and girls from current brothel to list
 	int i=2;
-	sGirl* temp = g_Brothels.GetGirl(g_CurrBrothel, 0);
+	Girl* temp = g_Brothels.GetGirl(g_CurrBrothel, 0);
 	while(temp)
 	{
 		if(temp == 0)
@@ -892,7 +892,7 @@ void cInventoryManagementSM::init()
 	g_InitWin = false;
 }
 
-sGirl *InventoryManagementSM::get_girl_from_list(int owner_idx, int list_id)
+Girl *InventoryManagementSM::get_girl_from_list(int owner_idx, int list_id)
 {
 	int idx, girls_in_brothel = g_Brothels.GetNumGirls(g_CurrBrothel);
 /*
@@ -941,7 +941,7 @@ void cInventoryManagementSM::take_from_player(int index)
 	g_Brothels.m_NumInventory--;
 }
 
-void cInventoryManagementSM::take_from_girl(sGirl *girl, int index)
+void cInventoryManagementSM::take_from_girl(Girl *girl, int index)
 {
 	sInventoryItem *item = girl->m_Inventory[selection];
 /*
@@ -982,7 +982,7 @@ void cInventoryManagementSM::take_from_girl(sGirl *girl, int index)
  * would we need to consider more that hate, love and fear?
  * libido?
  */
-string cInventoryManagementSM::nice_item_message(sGirl *girl, sInventoryItem *item)
+string cInventoryManagementSM::nice_item_message(Girl *girl, sInventoryItem *item)
 {
 	std::stringstream ss;
 /*
@@ -1042,7 +1042,7 @@ string cInventoryManagementSM::nice_item_message(sGirl *girl, sInventoryItem *it
 	return "She is happy with the gift and gives you a big hug and a kiss on the cheek.";
 }
 
-void cInventoryManagementSM::give_to_girl(sGirl *girl, sInventoryItem *item)
+void cInventoryManagementSM::give_to_girl(Girl *girl, sInventoryItem *item)
 {
 	int happiness = 1;
 /*
@@ -1108,7 +1108,7 @@ void cInventoryManagementSM::item_shift_r()
 
 	if(rightOwner == 1)	// target is shop
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = 0;
 
 		for(int	selection = sel.first(); selection != -1; selection = sel.next()) {
 			if(leftOwner > 1)	// taking from a girl and selling to shop
@@ -1181,7 +1181,7 @@ void cInventoryManagementSM::item_shift_r()
 		else	// taking from girl
 		{
 			// take items from girl and give to player
-			sGirl* targetGirl = get_girl_from_list(leftOwner, l_owners_id);
+			Girl* targetGirl = get_girl_from_list(leftOwner, l_owners_id);
 /*
  *			loop trought the selected items
  */
@@ -1201,7 +1201,7 @@ void cInventoryManagementSM::item_shift_r()
 	}
 	else	// target is girl
 	{
-		sGirl* targetGirl = get_girl_from_list(rightOwner, r_owners_id);
+		Girl* targetGirl = get_girl_from_list(rightOwner, r_owners_id);
 
 		if(leftOwner == 0)	// player giving gift to the girl
 		{
@@ -1257,7 +1257,7 @@ void cInventoryManagementSM::item_shift_r()
 		}
 		else	// player forcing a girl to give to another girl
 		{
-			sGirl* fromGirl = 0;
+			Girl* fromGirl = 0;
 			if(leftOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				fromGirl = g_Brothels.GetGirl(g_CurrBrothel, g_ItemManagement.GetSelectedItemFromList(g_interfaceid.LIST_ITMOWNERSL)-2);
 			else // dungeon girl

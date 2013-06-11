@@ -611,7 +611,7 @@ void LoadGirlsFiles()
 
 void ChangeGirlJobs()
 {
-	sGirl *girl = selected_girl;
+	Girl *girl = selected_girl;
 
 	static int selection = -1;
 	if(girl == nullptr && g_AllTogle == false)
@@ -741,7 +741,7 @@ void ChangeGirlJobs()
 				g_AllTogle = false;
 				for(int i=0; i<g_Brothels.GetNumGirls(g_CurrBrothel); i++)
 				{
-					sGirl* selGirl = g_Brothels.GetGirl(g_CurrBrothel, i);
+					Girl* selGirl = g_Brothels.GetGirl(g_CurrBrothel, i);
 					if(g_Girls.GetStat(selGirl, STAT_HEALTH) == 0)
 						continue;
 
@@ -837,7 +837,7 @@ void Turnsummary()
 	static int category_last = 0;
 	static int Item = 0;
 
-	sGirl *girl;
+	Girl *girl;
 
 	if(g_InitWin)
 	{
@@ -884,7 +884,7 @@ void Turnsummary()
 			// MYR: Girls with danger events first
 			for(int i=0; i<nNumGirls; i++)
 			{
-				sGirl* pTmpGirl = g_Brothels.GetGirl(g_CurrBrothel, i);
+				Girl* pTmpGirl = g_Brothels.GetGirl(g_CurrBrothel, i);
 				if(pTmpGirl->m_Events.HasDanger())
 				{
 				    std::string tname = pTmpGirl->m_Realname;
@@ -898,7 +898,7 @@ void Turnsummary()
 			// Girls with warning events next
 			for(int j=0; j<nNumGirls; j++)
 			{
-				sGirl* pTmpGirl = g_Brothels.GetGirl(g_CurrBrothel, j);
+				Girl* pTmpGirl = g_Brothels.GetGirl(g_CurrBrothel, j);
 				if( pTmpGirl->m_Events.HasWarning() && !pTmpGirl->m_Events.HasDanger())
 				{
 				    std::string temp = pTmpGirl->m_Realname;
@@ -912,7 +912,7 @@ void Turnsummary()
 			// Then every other girl
 			for(int k=0; k<nNumGirls; k++)
 			{
-				sGirl* pTmpGirl = g_Brothels.GetGirl(g_CurrBrothel, k);
+				Girl* pTmpGirl = g_Brothels.GetGirl(g_CurrBrothel, k);
 				if(!pTmpGirl->m_Events.HasUrgent())
 				{
 				    std::string temp = pTmpGirl->m_Realname;
@@ -949,7 +949,7 @@ void Turnsummary()
 			for(int i = 0; i < nNumGirls; i++)	// add girls
 			{
 				int col = LISTBOX_BLUE;
-				sGirl *girl = pDungeon->GetGirl(i)->m_Girl;
+				Girl *girl = pDungeon->GetGirl(i)->m_Girl;
 				if (selected_girl == girl)
 					Item = i;
 				if(girl->health() <= 30) {
@@ -964,7 +964,7 @@ void Turnsummary()
 			// MYR: Girls with danger events first
 			for(int i=0; i<nNumGirls; i++)
 			{
-				sGirl* pTmpGirl = pDungeon->GetGirl(i)->m_Girl;
+				Girl* pTmpGirl = pDungeon->GetGirl(i)->m_Girl;
 				if(pTmpGirl->m_Events.HasDanger())
 				{
 				    std::string tname = pTmpGirl->m_Realname;
@@ -978,7 +978,7 @@ void Turnsummary()
 			// Girls with warning events next
 			for(int j=0; j<nNumGirls; j++)
 			{
-				sGirl* pTmpGirl = pDungeon->GetGirl(j)->m_Girl;
+				Girl* pTmpGirl = pDungeon->GetGirl(j)->m_Girl;
 				if( pTmpGirl->m_Events.HasWarning() && !pTmpGirl->m_Events.HasDanger())
 				{
 				    std::string temp = pTmpGirl->m_Realname;
@@ -992,7 +992,7 @@ void Turnsummary()
 			// Then every other girl
 			for(int k=0; k<nNumGirls; k++)
 			{
-				sGirl* pTmpGirl = pDungeon->GetGirl(k)->m_Girl;
+				Girl* pTmpGirl = pDungeon->GetGirl(k)->m_Girl;
 				if(!pTmpGirl->m_Events.HasUrgent())
 				{
 				    std::string temp = pTmpGirl->m_Realname;
@@ -1334,7 +1334,7 @@ void Turnsummary()
 					// if a girl is selected then
 					if((SelGirl = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)
 					{
-						sGirl* girl = nullptr;
+						Girl* girl = nullptr;
 
 						// MYR
 					    std::string selectedName	= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
@@ -1406,7 +1406,7 @@ void Turnsummary()
 					{
 						// WD	Get girl by name
 					    std::string selectedName	= g_Turnsummary.GetSelectedTextFromList(g_interfaceid.LIST_TSITEM);
-						sGirl* girl			= g_Brothels.GetDungeon()->GetGirlByName(selectedName)->m_Girl;
+						Girl* girl			= g_Brothels.GetDungeon()->GetGirlByName(selectedName)->m_Girl;
 
 						if(girl == nullptr)
 							return;
@@ -1554,7 +1554,7 @@ void Turnsummary()
 /*
  *	both cases need the selected girl data - so let's get that
  */
-	sGirl* selGirl = nullptr;
+	Girl* selGirl = nullptr;
 	if (category == 0)
 	{
 		// MYR
@@ -1617,7 +1617,7 @@ void Turnsummary()
 	static int category = 0;
 	static int Item = 0;
 
-	sGirl *girl;
+	Girl *girl;
 
 	if(g_InitWin)
 	{
@@ -1648,7 +1648,7 @@ void Turnsummary()
 		{
 			for(int i=0; i<g_Brothels.GetNumGirls(g_CurrBrothel); i++)
 			{
-				sGirl* b_girl = g_Brothels.GetGirl(g_CurrBrothel, i);
+				Girl* b_girl = g_Brothels.GetGirl(g_CurrBrothel, i);
 				if (selected_girl == b_girl)
 					Item = i;
 
@@ -1696,7 +1696,7 @@ void Turnsummary()
 			for(int i = 0; i < pDungeon->GetNumGirls(); i++)	// add girls
 			{
 				//int col = LISTBOX_BLUE;
-				//sGirl *girl = pDungeon->GetGirl(i)->m_Girl;
+				//Girl *girl = pDungeon->GetGirl(i)->m_Girl;
 				//if (selected_girl == girl)
 				//	Item = i;
 				//if(girl->health() <= 30) {
@@ -1704,7 +1704,7 @@ void Turnsummary()
 				//}
 				//g_Turnsummary.AddToListBox(g_interfaceid.LIST_TSITEM, i, girl->m_Realname, col);
 
-				sGirl* d_girl = pDungeon->GetGirl(i)->m_Girl;
+				Girl* d_girl = pDungeon->GetGirl(i)->m_Girl;
 				if (selected_girl == d_girl)
 					Item = i;
 
@@ -2000,7 +2000,7 @@ void Turnsummary()
 					int ret2;
 					if((ret2 = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)	// if a girl is selected then
 					{
-						sGirl* girl = g_Brothels.GetGirl(g_CurrBrothel, ret2);
+						Girl* girl = g_Brothels.GetGirl(g_CurrBrothel, ret2);
 
 						// Set the event desc text
 						g_Turnsummary.EditTextItem(girl->m_Events.GetMessage(ret1).m_Message, g_interfaceid.TEXT_TSEVENTDESC);
@@ -2059,7 +2059,7 @@ void Turnsummary()
 					if((ret2 = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)	// if a girl is selected then
 					{
 						cDungeon* pDungeon = g_Brothels.GetDungeon();
-						sGirl* girl = pDungeon->GetGirl(ret2)->m_Girl;
+						Girl* girl = pDungeon->GetGirl(ret2)->m_Girl;
 
 						if(girl == 0)
 							return;
@@ -2222,7 +2222,7 @@ void Turnsummary()
 /*
  *	both cases need the selected girl data - so let's get that
  */
-	sGirl* selGirl = NULL;
+	Girl* selGirl = NULL;
 	if (category == 0)
 	{
 		selGirl = g_Brothels.GetGirl(g_CurrBrothel, num);
@@ -2414,7 +2414,7 @@ void Gallery()
 {
 	static int Mode = IMGTYPE_ANAL;
 	static int Img = 0;	// what image currently drawing
-	sGirl *girl = selected_girl;
+	Girl *girl = selected_girl;
 
 	if(g_InitWin)
 	{
@@ -3006,7 +3006,7 @@ void TransferGirls()
 					while(girlSelection != -1)
 					{
 						// get the girl
-						sGirl* temp = g_Brothels.GetGirl(leftBrothel, girlSelection-NumRemoved);
+						Girl* temp = g_Brothels.GetGirl(leftBrothel, girlSelection-NumRemoved);
 
 						// check there is still room
 						if(brothel->m_NumGirls+1 > brothel->m_NumRooms)
@@ -3047,7 +3047,7 @@ void TransferGirls()
 					while(girlSelection != -1)
 					{
 						// get the girl
-						sGirl* temp = g_Brothels.GetGirl(rightBrothel, girlSelection-NumRemoved);
+						Girl* temp = g_Brothels.GetGirl(rightBrothel, girlSelection-NumRemoved);
 
 						// check there is still room
 						if(brothel->m_NumGirls+1 > brothel->m_NumRooms)
@@ -3080,7 +3080,7 @@ void TransferGirls()
 			if(leftBrothel != -1)
 			{
 				// add the girls to the list
-				sGirl* temp = g_Brothels.GetGirl(leftBrothel, 0);
+				Girl* temp = g_Brothels.GetGirl(leftBrothel, 0);
 				int i=0;
 				while(temp)
 				{
@@ -3097,7 +3097,7 @@ void TransferGirls()
 			if(rightBrothel != -1)
 			{
 				// add the girls to the list
-				sGirl* temp = g_Brothels.GetGirl(rightBrothel, 0);
+				Girl* temp = g_Brothels.GetGirl(rightBrothel, 0);
 				int i=0;
 				while(temp)
 				{

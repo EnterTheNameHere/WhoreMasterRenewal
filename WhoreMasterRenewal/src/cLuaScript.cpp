@@ -274,7 +274,7 @@ int get_from_table(lua_State *L, int table, const char *key, bool &dest)
 }
 
 /*
- * take a girl object and update the corresponding sGirl struct
+ * take a girl object and update the corresponding Girl struct
  *
  * some use cases:
  *
@@ -310,7 +310,7 @@ static int update_girl(lua_State *L)
 			"girl.update: supplied object has no pointer"
 		);
 	}
-	sGirl *girl = (sGirl *) lua_touserdata(L, -1);
+	Girl *girl = (Girl *) lua_touserdata(L, -1);
 /*
  *	set the stack back to the lua_girl
  */
@@ -393,7 +393,7 @@ static int game_over(lua_State* /*L*/)
 	return 0;
 }
 
-static void add_trait_table(lua_State *L, sGirl *girl, int table)
+static void add_trait_table(lua_State *L, Girl *girl, int table)
 {
 /*
  *	push the string "traits" onto the stack - this is going to be the key
@@ -425,7 +425,7 @@ static void add_trait_table(lua_State *L, sGirl *girl, int table)
  * really this needs a LuaGirl class and a lot more thought
  * for now, this is enough to add the girl to the current brothel
  */
-static void make_lua_girl(lua_State *L, sGirl *girl)
+static void make_lua_girl(lua_State *L, Girl *girl)
 {
 	const char *pt;
 /*
@@ -449,7 +449,7 @@ static void make_lua_girl(lua_State *L, sGirl *girl)
  	add_to_table(L, table, "real_name", girl->m_Realname);
  	add_to_table(L, table, "desc", girl->m_Desc);
 /*
- *	let's add the sGirl pointer as light userdata
+ *	let's add the Girl pointer as light userdata
  */
  	add_to_table(L, table, "pointer", (void *)girl);
 /*
@@ -523,7 +523,7 @@ static int create_random_girl(lua_State *L)
 /*
  *	now create the girl
  */
-	sGirl *girl = g_Girls.CreateRandomGirl(
+	Girl *girl = g_Girls.CreateRandomGirl(
 		age,		// age
 		global,		// add to global girl list flag
 		slave,		// create as slave flag
@@ -666,7 +666,7 @@ static int add_girl_to_brothel(lua_State *L)
 /*
  *	now convert that back to a pointer
  */
-	sGirl *girl = (sGirl *) lua_touserdata(L, -1);
+	Girl *girl = (Girl *) lua_touserdata(L, -1);
 /*
  *	add the girl
  */
@@ -777,7 +777,7 @@ int cLuaScript::get_ref(const char *name)
  	return ref;
 }
 
-bool cLuaScript::load(std::string filename, sGirl *a_girl)
+bool cLuaScript::load(std::string filename, Girl *a_girl)
 {
 	int rc;
 	m_file = filename;
@@ -887,7 +887,7 @@ static void make_lua_player(lua_State *L, cPlayer *player)
 /*
  * this sets the wm.girl field to the girl passed
  */
-void cLuaScript::set_wm_girl(sGirl *girl)
+void cLuaScript::set_wm_girl(Girl *girl)
 {
 /*
  *	get the "wm" symbol on the stack to start with
@@ -902,7 +902,7 @@ void cLuaScript::set_wm_girl(sGirl *girl)
  */
  	lua_pushstring(l, "girl");
 /*
- *	now format the sGirl data as a Lua table
+ *	now format the Girl data as a Lua table
  */
 	make_lua_girl(l, girl);
 /*
@@ -927,7 +927,7 @@ void cLuaScript::set_wm_player()
  */
  	lua_pushstring(l, "player");
 /*
- *	now format the sGirl data as a Lua table
+ *	now format the Girl data as a Lua table
  */
 	make_lua_player(l, player);
 	//bool flag = !lua_isnil(l, -1);

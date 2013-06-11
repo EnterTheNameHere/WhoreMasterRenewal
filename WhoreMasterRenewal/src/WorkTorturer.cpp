@@ -34,7 +34,7 @@
 
 #include <sstream>
 
-bool cJobManager::WorkTorturer(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkTorturer(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	if(DayNight == SHIFT_NIGHT)  // Do this only once a day
 		return false;

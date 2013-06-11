@@ -44,7 +44,7 @@ class cEvents;
 class TiXmlElement;
 class TiXmlHandle;
 struct sInventoryItem;
-struct sGirl;
+class Girl;
 
 // holds an objective and its data
 typedef struct sObjective
@@ -106,8 +106,8 @@ typedef struct sBrothel
 
 	int		m_BuildingQuality[NUMJOBTYPES];
 
-	sGirl*		m_Girls;				// A list of all the girls this place has
-	sGirl*		m_LastGirl;
+	Girl*		m_Girls;				// A list of all the girls this place has
+	Girl*		m_LastGirl;
 	sBrothel*	m_Next;
 
 	int		m_SecurityLevel;
@@ -120,7 +120,7 @@ typedef struct sBrothel
 	// end mod
 	TiXmlElement* SaveBrothelXML(TiXmlElement* pRoot);
 	bool LoadBrothelXML(TiXmlHandle hBrothel);
-	void AddGirl(sGirl* pGirl);
+	void AddGirl(Girl* pGirl);
 
 }sBrothel;
 
@@ -139,14 +139,14 @@ public:
 
 	void Free();
 
-	sGirl* GetDrugPossessor();
+	Girl* GetDrugPossessor();
 
-	void AddGirlToPrison(sGirl* girl);
-	void RemoveGirlFromPrison(sGirl* girl);
+	void AddGirlToPrison(Girl* girl);
+	void RemoveGirlFromPrison(Girl* girl);
 	int  GetNumInPrison()			{ return m_NumPrison; }
 
-	void AddGirlToRunaways(sGirl* girl);
-	void RemoveGirlFromRunaways(sGirl* girl);
+	void AddGirlToRunaways(Girl* girl);
+	void RemoveGirlFromRunaways(Girl* girl);
 	int  GetNumRunaways()			{ return m_NumRunaways; }
 
 	void NewBrothel(int NumRooms);
@@ -154,22 +154,22 @@ public:
 	void UpdateBrothels();
 	void UpdateGirls(sBrothel* brothel, int DayNight);
 	// MYR: Start of my automation functions
-	void UsePlayersItems(sGirl* cur);
-    bool AutomaticItemUse(sGirl * girl, int InvNum, std::string message);
-	bool AutomaticSlotlessItemUse(sGirl * girl, int InvNum, std::string message);
-	bool AutomaticFoodItemUse(sGirl * girl, int InvNum, std::string message);
+	void UsePlayersItems(Girl* cur);
+    bool AutomaticItemUse(Girl * girl, int InvNum, std::string message);
+	bool AutomaticSlotlessItemUse(Girl * girl, int InvNum, std::string message);
+	bool AutomaticFoodItemUse(Girl * girl, int InvNum, std::string message);
 	bool RemoveItemFromInventoryByNumber(int Pos); // support fn
 	// End of automation functions
 	void UpdateAllGirlsStat(sBrothel* brothel, int stat, int amount);
-	void SetGirlStat(sGirl* girl, int stat, int amount);
+	void SetGirlStat(Girl* girl, int stat, int amount);
 
-	sGirl* GetPrison()				{ return m_Prison; }
+	Girl* GetPrison()				{ return m_Prison; }
 		//mod needed for convenience
 	int& stat_lookup(std::string stat_name,int brothel_id=-1);
 	// jobs moving to their own class
 
-	int GetGirlsCurrentBrothel(sGirl* girl); // Used by new security guard code
-	std::vector<sGirl*> GirlsOnJob(int BrothelID, int JobID, bool day); // Also used by new security code
+	int GetGirlsCurrentBrothel(Girl* girl); // Used by new security guard code
+	std::vector<Girl*> GirlsOnJob(int BrothelID, int JobID, bool day); // Also used by new security code
 
 	bool UseAntiPreg(bool use);
 	void AddAntiPreg(int amount);
@@ -182,9 +182,9 @@ public:
 	void UpgradeSupplySheds()				{ m_SupplyShedLevel++ ;}
 	int  GetSupplyShedLevel()				{ return m_SupplyShedLevel; }
 
-	void	AddGirl(int brothelID, sGirl* girl);
-	void	RemoveGirl(int brothelID, sGirl* girl, bool deleteGirl = true);
-	sGirl*	GetFirstRunaway();
+	void	AddGirl(int brothelID, Girl* girl);
+	void	RemoveGirl(int brothelID, Girl* girl, bool deleteGirl = true);
+	Girl*	GetFirstRunaway();
 	void	sort(sBrothel* brothel);		// sorts the list of girls
 	void	SortInventory();
 
@@ -194,24 +194,24 @@ public:
 	bool CheckBarStaff(sBrothel* brothel, int numGirls);	// returns true if the bar is staffed
 	bool CheckGambStaff(sBrothel* brothel, int numGirls);	// as above but for gambling hall
 
-	bool	FightsBack(sGirl* girl);
+	bool	FightsBack(Girl* girl);
 	int		GetNumGirls(int brothelID);
     std::string GetGirlString(int brothelID, int girlNum);
 	int		GetNumGirlsOnJob(int brothelID, int jobID, bool day);
 
     std::string GetBrothelString(int brothelID);
 
-	sGirl* GetGirl(int brothelID, int num);
-	int    GetGirlPos(int brothelID, sGirl* girl);
-	sGirl* GetGirlByName(int brothelID, std::string name); // MYR: Used by new end of turn code in InerfaceProcesses::TurnSummary
+	Girl* GetGirl(int brothelID, int num);
+	int    GetGirlPos(int brothelID, Girl* girl);
+	Girl* GetGirlByName(int brothelID, std::string name); // MYR: Used by new end of turn code in InerfaceProcesses::TurnSummary
 
 	sBrothel*	GetBrothel(int brothelID);
 	int			GetNumBrothels()			{ return m_NumBrothels; }
 	int			GetNumBrothelsWithVacancies();
 
-	void CalculatePay(sBrothel* brothel, sGirl* girl, u_int Job);
+	void CalculatePay(sBrothel* brothel, Girl* girl, u_int Job);
 
-	bool PlayerCombat(sGirl* girl);	// returns true if the girl wins
+	bool PlayerCombat(Girl* girl);	// returns true if the girl wins
 
 	cPlayer*	GetPlayer()				{ return &m_Player; }
 	cDungeon*	GetDungeon()			{ return &m_Dungeon; }
@@ -260,21 +260,21 @@ public:
 	void do_tax();
 	void check_rivals();
     std::string new_rival_text();
-	void do_food_and_digs(sBrothel* brothel, sGirl* girl);
+	void do_food_and_digs(sBrothel* brothel, Girl* girl);
     std::string disposition_text();
     std::string fame_text(sBrothel* brothel);
     std::string suss_text();
     std::string happiness_text(sBrothel* brothel);
-	double calc_pilfering(sGirl *girl);
+	double calc_pilfering(Girl *girl);
 	void peace_breaks_out();
 
-	bool runaway_check(sBrothel *brothel, sGirl *girl);
+	bool runaway_check(sBrothel *brothel, Girl *girl);
 
 
 	// WD: JOB_TORTURER stuff
 	void	TortureDone(bool flag)		{ m_TortureDoneFlag = flag; return; }
 	bool	TortureDone()				{ return m_TortureDoneFlag; }
-	sGirl* WhoHasTorturerJob();
+	Girl* WhoHasTorturerJob();
 
 	// WD: test to check if doing turn processing.  Used to ingnore HOUSE_STAT value in GetRebelValue() if girl gets to keep all her income.
 	bool is_Dayshift_Processing()		{ return m_Processing_Shift == SHIFT_DAY; };
@@ -300,12 +300,12 @@ private:
 	int m_AlchemyIngredients;
 
 	int		m_NumPrison;
-	sGirl*  m_Prison;				// a list of girls kept in prision
-	sGirl*  m_LastPrison;
+	Girl*  m_Prison;				// a list of girls kept in prision
+	Girl*  m_LastPrison;
 
 	int		m_NumRunaways;
-	sGirl*	m_Runaways;
-	sGirl*	m_LastRunaway;
+	Girl*	m_Runaways;
+	Girl*	m_LastRunaway;
 
 	long m_BribeRate;				// the amount of money spent bribing officials per week
 	int  m_Influence;				// based on the bribe rate this is the percentage of influence you have
@@ -320,7 +320,7 @@ private:
 	int  m_Processing_Shift;		// WD:	Store DayNight value when processing girls
 
 	// WD:	Update code of girls stats
-	void updateGirlTurnBrothelStats(sGirl* girl);
+	void updateGirlTurnBrothelStats(Girl* girl);
 
 	void AddBrothel(sBrothel* newBroth);
 };

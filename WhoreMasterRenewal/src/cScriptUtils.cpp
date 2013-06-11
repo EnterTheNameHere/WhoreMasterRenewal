@@ -22,7 +22,7 @@
 #include "cMessageBox.h"
 #include "cBrothel.h"
 
-void cScriptUtils::add_girl_to_brothel(sGirl *girl)
+void cScriptUtils::add_girl_to_brothel(Girl *girl)
 {
 /*
  *	no girl -> nothing to do -> go home early

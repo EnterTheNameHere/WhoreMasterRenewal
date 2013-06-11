@@ -20,11 +20,11 @@
 #define CSCRIPTUTILS_H_INCLUDED_1512
 #pragma once
 
-struct sGirl;
+class Girl;
 
 class cScriptUtils {
 public:
-	static void add_girl_to_brothel(sGirl *girl);
+	static void add_girl_to_brothel(Girl *girl);
 };
 
 #endif // CSCRIPTUTILS_H_INCLUDED_1512

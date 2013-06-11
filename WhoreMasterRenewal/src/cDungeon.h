@@ -24,7 +24,7 @@
 #include <fstream>
 #include <vector>
 
-struct sGirl;
+class Girl;
 class cGirlTorture;
 class TiXmlElement;
 class TiXmlHandle;
@@ -60,7 +60,7 @@ typedef struct sDungeonGirl
 	int				m_Weeks;			// the number of weeks they have been here
 
 	// customer data
-	sGirl*			m_Girl;
+	Girl*			m_Girl;
 	sDungeonGirl*	m_Next;
 	sDungeonGirl*	m_Prev;
 	void OutputGirlDetailString(std::string& Data, const std::string& detailName);
@@ -90,20 +90,20 @@ public:
 	TiXmlElement* SaveDungeonDataXML(TiXmlElement* pRoot);	// saves dungeon data
 	bool LoadDungeonDataXML(TiXmlHandle hDungeon);
 	void LoadDungeonDataLegacy(std::ifstream& ifs);	// loads dungeon data
-	void AddGirl(sGirl* girl, int reason);
+	void AddGirl(Girl* girl, int reason);
 	void AddCust(int reason, int numDaughters, bool hasWife);
 	void OutputGirlRow(int i, std::string* Data, const std::vector<std::string>& columnNames);
 	void OutputCustRow(int i, std::string* Data, const std::vector<std::string>& columnNames);
 	sDungeonGirl* GetGirl(int i);
 	sDungeonGirl* GetGirlByName(std::string name);
 	sDungeonCust* GetCust(int i);
-	int GetDungeonPos(sGirl* girl);
-	sGirl* RemoveGirl(sGirl* girl);
-	sGirl* RemoveGirl(sDungeonGirl* girl);	// releases or kills a girl
+	int GetDungeonPos(Girl* girl);
+	Girl* RemoveGirl(Girl* girl);
+	Girl* RemoveGirl(sDungeonGirl* girl);	// releases or kills a girl
 	void RemoveCust(sDungeonCust* cust);	// releases or kills a customer
 	void Update();
 
-	int GetGirlPos(sGirl* girl);
+	int GetGirlPos(Girl* girl);
 	int GetNumCusts()				{ return m_NumCusts; }
 	int GetNumGirls()				{ return m_NumGirls; }
 	unsigned long GetNumDied()		{ return m_NumberDied; }
@@ -115,7 +115,7 @@ public:
 
 
 	// WD:	Torturer tortures dungeon girl.
-	//void doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, std::string& summary);	{ cGirlTorture::cGirlTorture(d_girl, t_girl) }
+	//void doTorturer(sDungeonGirl* d_girl, Girl* t_girl, std::string& summary);	{ cGirlTorture::cGirlTorture(d_girl, t_girl) }
 
 	void PlaceDungeonGirl(sDungeonGirl* newGirl);
 	void PlaceDungeonCustomer(sDungeonCust* newCust);

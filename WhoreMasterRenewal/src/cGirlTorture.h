@@ -22,7 +22,7 @@
 
 #include <string>
 
-struct sGirl;
+class Girl;
 struct sDungeonGirl;
 class cPlayer;
 class cDungeon;
@@ -31,14 +31,14 @@ class cGirlTorture
 {
 public:
 	~cGirlTorture();
-	cGirlTorture( sGirl* pGirl ); // Torture Girl by player
+	cGirlTorture( Girl* pGirl ); // Torture Girl by player
 	cGirlTorture( sDungeonGirl* pGirl ); // Torture Dungeon girl by player
-	cGirlTorture( sDungeonGirl* pGirl, sGirl* pTourturer );	// Tortured by Torture job girl
+	cGirlTorture( sDungeonGirl* pGirl, Girl* pTourturer );	// Tortured by Torture job girl
 
 private:
 	cPlayer* m_Player;
-	sGirl* m_Girl;
-	sGirl* m_Torturer;
+	Girl* m_Girl;
+	Girl* m_Torturer;
 	sDungeonGirl* m_DungeonGirl;
 	cDungeon* m_Dungeon;
     std::string m_Message;

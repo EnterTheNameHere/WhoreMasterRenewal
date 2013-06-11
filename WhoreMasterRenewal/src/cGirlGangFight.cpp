@@ -6,7 +6,7 @@
 #include "cRng.h"
 #include "CLog.h"
 
-cGirlGangFight::cGirlGangFight(sGirl *girl)
+cGirlGangFight::cGirlGangFight(Girl *girl)
 {
 	m_girl	= girl;
 	m_girl_stats	= 0;

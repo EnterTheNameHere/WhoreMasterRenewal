@@ -39,7 +39,7 @@ static bool ends_with( std::string s, std::string suff )
 }
 
 
-void cScriptManagerInner::Load( std::string filename, sGirl* girl )
+void cScriptManagerInner::Load( std::string filename, Girl* girl )
 {
     /*
      *  so - if it doesn't end with ".lua" we assume it's a GameScript
@@ -139,12 +139,12 @@ cScriptManager::cScriptManager()
         instance = new cScriptManagerInner();
 }
 
-void cScriptManager::Load( ScriptPath& dp, sGirl* girl )
+void cScriptManager::Load( ScriptPath& dp, Girl* girl )
 {
     instance->Load( std::string( dp.c_str() ), girl );
 }
 
-void cScriptManager::Load( std::string filename, sGirl* girl )
+void cScriptManager::Load( std::string filename, Girl* girl )
 {
     instance->Load( filename, girl );
 }

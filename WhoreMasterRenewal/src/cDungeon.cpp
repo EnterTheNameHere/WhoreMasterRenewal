@@ -184,7 +184,7 @@ void cDungeon::LoadDungeonDataLegacy(std::ifstream& ifs)	// loads all the people
 		if (ifs.peek()=='\n') ifs.ignore(1,'\n');
 		ifs>>girl->m_Reason>>girl->m_Weeks;
 
-		girl->m_Girl = new sGirl();
+		girl->m_Girl = new Girl();
 		g_Girls.LoadGirlLegacy(girl->m_Girl, ifs);
 
 		message = "Loading Dungeon Girl: ";
@@ -273,7 +273,7 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 			pGirl = pGirl->NextSiblingElement("Girl"))// load each girl and add her
 		{
 			sDungeonGirl* girl = new sDungeonGirl();
-			girl->m_Girl = new sGirl();
+			girl->m_Girl = new Girl();
 			bool success = girl->m_Girl->LoadGirlXML(TiXmlHandle(pGirl));
 			if (success == true)
 			{
@@ -326,7 +326,7 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 	return true;
 }
 
-void cDungeon::AddGirl(sGirl* girl, int reason)
+void cDungeon::AddGirl(Girl* girl, int reason)
 {
 	if (reason == DUNGEON_GIRLKIDNAPPED)
 	{
@@ -396,7 +396,7 @@ void cDungeon::PlaceDungeonCustomer(sDungeonCust *newCust)
 	m_NumCusts++;
 }
 
-int cDungeon::GetGirlPos(sGirl* girl)
+int cDungeon::GetGirlPos(Girl* girl)
 {
 	if (girl == nullptr || m_Girls == nullptr)
 		return -1;
@@ -417,7 +417,7 @@ int cDungeon::GetGirlPos(sGirl* girl)
 	return count;
 }
 
-sGirl* cDungeon::RemoveGirl(sGirl* girl)	// this returns the girl, it must be placed somewhere or deleted
+Girl* cDungeon::RemoveGirl(Girl* girl)	// this returns the girl, it must be placed somewhere or deleted
 {
 	sDungeonGirl* current = m_Girls;
 	while(current)
@@ -433,7 +433,7 @@ sGirl* cDungeon::RemoveGirl(sGirl* girl)	// this returns the girl, it must be pl
 	return nullptr;
 }
 
-sGirl* cDungeon::RemoveGirl(sDungeonGirl* girl)	// this returns the girl, it must be placed somewhere or deleted
+Girl* cDungeon::RemoveGirl(sDungeonGirl* girl)	// this returns the girl, it must be placed somewhere or deleted
 {
 	girl->m_Girl->m_DayJob = girl->m_Girl->m_NightJob = JOB_RESTING;
 	if (girl->m_Next)
@@ -445,7 +445,7 @@ sGirl* cDungeon::RemoveGirl(sDungeonGirl* girl)	// this returns the girl, it mus
 	if (girl == m_Girls)
 		m_Girls = girl->m_Next;
 
-	sGirl* girlData = girl->m_Girl;
+	Girl* girlData = girl->m_Girl;
 	girl->m_Next = nullptr;
 	girl->m_Prev = nullptr;
 	girl->m_Girl = nullptr;
@@ -667,7 +667,7 @@ sDungeonGirl* cDungeon::GetGirlByName(std::string name)
 	}
 	return nullptr;
 }
-int cDungeon::GetDungeonPos(sGirl* girl)
+int cDungeon::GetDungeonPos(Girl* girl)
 {
 	sDungeonGirl* tgirl = m_Girls;
 	int tmp = 0;
@@ -703,7 +703,7 @@ void cDungeon::Update()
  *	WD: GetNumGirlsOnJob() not testing if the girl worked
  *
  */
-	sGirl* TorturerGirlref = nullptr;
+	Girl* TorturerGirlref = nullptr;
     std::string msg, summary, girlName;
 
 	// Reser counters
@@ -727,7 +727,7 @@ void cDungeon::Update()
 		sDungeonGirl* current = m_Girls;
 		while(current)
 		{
-			sGirl* girl = current->m_Girl;
+			Girl* girl = current->m_Girl;
 			// Clear the girls' events from the last turn
 			girl->m_Events.Clear();
 
@@ -966,7 +966,7 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 //#define WDTEST // debuging
 #undef WDTEST
 
-	sGirl* girl = d_girl->m_Girl;
+	Girl* girl = d_girl->m_Girl;
     std::string msg;
     std::string girlName	= girl->m_Realname;
 
@@ -1089,7 +1089,7 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 }
 
 #if 0		// WD	Moved to cGirlTorture class
-void cDungeon::doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, std::string& summary)
+void cDungeon::doTorturer(sDungeonGirl* d_girl, Girl* t_girl, std::string& summary)
 {
 /*
  *	WD:	Torturer tortures dungeon girl
@@ -1101,7 +1101,7 @@ void cDungeon::doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, std::string& summ
  *	summary :	Summary messages are appended
  */
 
-	sGirl *girl		= d_girl->m_Girl;
+	Girl *girl		= d_girl->m_Girl;
     std::string girlName = girl->m_Realname;
     std::string msg		= "";
 	int chance		= 0;

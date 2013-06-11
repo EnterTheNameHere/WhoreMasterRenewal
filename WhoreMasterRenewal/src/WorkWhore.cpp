@@ -36,7 +36,7 @@
 #include <sstream>
 #include <algorithm>
 
-bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkWhore(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	// put that shit away, you'll scare off the customers!
 	g_Girls.UnequipCombat(girl);

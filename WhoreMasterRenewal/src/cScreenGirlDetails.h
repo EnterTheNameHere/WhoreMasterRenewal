@@ -25,7 +25,7 @@
 class cScreenGirlDetails;
 extern cScreenGirlDetails g_GirlDetails;
 
-struct sGirl;
+class Girl;
 
 class cScreenGirlDetails : public cInterfaceWindowXML
 {
@@ -70,15 +70,15 @@ private:
 	int traitdesc_id;	// Trait Description text
 
 	void set_ids();
-	bool GirlDead(sGirl* dgirl);
+	bool GirlDead(Girl* dgirl);
 	void RefreshJobList();
 	void PrevGirl();
 	void NextGirl();
-	sGirl *get_prev_girl();
-	sGirl *get_next_girl();
-	sGirl *remove_selected_girl();
-	bool do_take_gold(sGirl *girl, std::string &message);
-	void take_gold(sGirl *girl);
+	Girl *get_prev_girl();
+	Girl *get_next_girl();
+	Girl *remove_selected_girl();
+	bool do_take_gold(Girl *girl, std::string &message);
+	void take_gold(Girl *girl);
 public:
 	cScreenGirlDetails();
 	virtual ~cScreenGirlDetails();

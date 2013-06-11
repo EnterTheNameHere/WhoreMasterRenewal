@@ -25,7 +25,7 @@
 class cScreenPrison;
 extern cScreenPrison g_PrisonScreen;
 
-struct sGirl;
+class Girl;
 
 class cScreenPrison : public cInterfaceWindowXML
 {
@@ -57,7 +57,7 @@ public:
 	void more_button();
 	void release_button();
 	void update_details();
-	sGirl* get_selected_girl();
+	Girl* get_selected_girl();
 	void selection_change();
 	bool check_keys();
 
