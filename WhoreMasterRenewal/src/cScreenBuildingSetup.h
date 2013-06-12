@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenBuildingSetup;
 extern cScreenBuildingSetup g_BuildingSetupScreen;
 
@@ -70,5 +73,7 @@ public:
 	void process();
 	void check_events();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENBUILDINGSETUP_H_INCLUDED_1518

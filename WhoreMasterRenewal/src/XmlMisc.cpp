@@ -24,6 +24,9 @@
 #include "cTraits.h"
 #include "cInventory.h"
 
+namespace WhoreMasterRenewal
+{
+
 const char* actionTypeNames[] = 
 {
 	"COMBAT",
@@ -438,3 +441,4 @@ bool LoadInventoryXML(TiXmlHandle hInventory,
 	return true;
 }
 
+} // namespace WhoreMasterRenewal

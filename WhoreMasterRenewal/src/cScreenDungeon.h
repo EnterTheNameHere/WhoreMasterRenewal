@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenDungeon;
 extern cScreenDungeon g_Dungeon;
 
@@ -100,5 +103,7 @@ public:
 	int multi_first();
 	int multi_next();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENDUNGEON_H_INCLUDED_1518

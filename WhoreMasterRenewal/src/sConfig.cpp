@@ -30,6 +30,9 @@
 #include <fstream>
 #include <cctype>
 
+namespace WhoreMasterRenewal
+{
+
 sConfigData* cConfig::data;
 
 /*
@@ -542,3 +545,5 @@ void cConfig::reload( const char* filename )
     sConfigData* newd = new sConfigData(filename);
     *data = *newd;
 }
+
+} // namespace WhoreMasterRenewal

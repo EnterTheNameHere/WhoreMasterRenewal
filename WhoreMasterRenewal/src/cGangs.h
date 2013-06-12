@@ -26,12 +26,16 @@
 #include <vector>
 #include <string>
 
+class TiXmlElement;
+class TiXmlHandle;
+
+namespace WhoreMasterRenewal
+{
+
 class cGangManager;
 extern cGangManager g_Gangs;
 
 class Girl;
-class TiXmlElement;
-class TiXmlHandle;
 
 // A gang of street toughs
 typedef struct sGang
@@ -147,5 +151,7 @@ private:
 	int m_KeepNetsStocked;
 	int m_NumNets;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif  // CGANGS_H_INCLUDED_1530

@@ -37,6 +37,9 @@
 #include <sstream>
 #include <algorithm>
 
+namespace WhoreMasterRenewal
+{
+
 static cPlayer* m_Player = g_Brothels.GetPlayer();
 static cRivalManager* m_Rivals = g_Brothels.GetRivalManager();
 static cDungeon* m_Dungeon = g_Brothels.GetDungeon();
@@ -880,7 +883,7 @@ sGang* cGangManager::random_gang( std::vector<sGang*>& v )
     /*
      *  make sure the list isn't empty
      */
-    if( list.size() == 0 )
+    if( list.empty() )
     {
         return nullptr;
     }
@@ -1812,7 +1815,6 @@ void cGangManager::UpdateGangs()
     cConfig cfg;
     sGang* gang;
     cTariff tariff;
-    std::stringstream ss;
     
     // update goons combat status
     int cost = 0;
@@ -3250,7 +3252,4 @@ bool cGangManager::recapture_mission( sGang* gang )
     return false;
 }
 
-
-
-
-
+} // namespace WhoreMasterRenewal

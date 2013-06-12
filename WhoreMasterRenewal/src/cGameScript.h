@@ -22,6 +22,9 @@
 
 #include "cScripts.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class Girl;
 
 const int NUMVARS = 20;
@@ -96,5 +99,7 @@ private:
 	// script targets (things that the script will affect with certain commands)
 	Girl* m_GirlTarget;	// if not 0 then the script is affecting a girl
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CGAMESCRIPT_H_INCLUDED_1530

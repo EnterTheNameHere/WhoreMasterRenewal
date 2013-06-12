@@ -1,6 +1,9 @@
 
 #include "cInterfaceObject.h"
 
+namespace WhoreMasterRenewal
+{
+
 cInterfaceObject::~cInterfaceObject()
 {
     
@@ -38,3 +41,5 @@ int cInterfaceObject::GetHeight()
 {
     return m_Height;
 }
+
+} // namespace WhoreMasterRenewal

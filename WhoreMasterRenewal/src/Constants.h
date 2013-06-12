@@ -22,6 +22,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 typedef unsigned int u_int;
 
 // Game version. Semantic Versioning used, see: http://semver.org/
@@ -375,5 +378,7 @@ const int	EVENT_GANG			= 7;
 const int	EVENT_BROTHEL		= 8;
 const int	EVENT_NOWORK		= 10;
 const int	EVENT_DEBUG			= 99;
+
+} // namespace WhoreMasterRenewal
 
 #endif // CONSTANTS_H_INCLUDED_1522

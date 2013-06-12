@@ -24,6 +24,9 @@
 #include <string>
 #include <vector>
 
+namespace WhoreMasterRenewal
+{
+
 struct sFacility;
 
 class cBuilding
@@ -63,5 +66,6 @@ private:
 	vFacilities* m_reversion;
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif // CBUILDING_H_INCLUDED_1533

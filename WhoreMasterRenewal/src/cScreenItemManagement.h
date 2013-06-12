@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenItemManagement;
 extern cScreenItemManagement g_ItemManagement;
 
@@ -76,5 +79,7 @@ public:
 	int multi_right_first();
 	int multi_right_next();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENITEMMANAGEMENT_H_INCLUDED_1514

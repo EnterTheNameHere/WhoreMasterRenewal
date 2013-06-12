@@ -25,8 +25,8 @@
  *
  */
 
-#ifndef SHELLFILEINTERFACE_H
-#define SHELLFILEINTERFACE_H
+#ifndef SHELLFILEINTERFACE_H_INCLUDED_1544
+#define SHELLFILEINTERFACE_H_INCLUDED_1544
 
 #include <Rocket/Core/String.h>
 #include <Rocket/Core/FileInterface.h>
@@ -62,4 +62,4 @@ private:
 	Rocket::Core::String m_RootDirectory;
 };
 
-#endif
+#endif // SHELLFILEINTERFACE_H_INCLUDED_1544

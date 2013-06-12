@@ -28,6 +28,9 @@ extern "C" {
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 int get_from_table(lua_State *L, int table, const char *key, bool &dest);
 int get_from_table(lua_State *L, int table, const char *key, int &dest);
 bool get_from_table(lua_State *L, int table, const char *key, std::string &dest);
@@ -107,5 +110,7 @@ private:
 	void get_param_table();
 	bool get_from_space(const char *func);
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CLUASCRIPT_H_INCLUDED_1523

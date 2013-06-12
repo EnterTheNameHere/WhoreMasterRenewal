@@ -22,6 +22,9 @@
 
 #include "sConfig.h" // required cConfig
 
+namespace WhoreMasterRenewal
+{
+
 struct sBrothel;
 class Girl;
 
@@ -60,5 +63,8 @@ private:
     cConfig config;
 	double slave_base_price( Girl* );
 };
+
+
+} // namespace WhoreMasterRenewal
 
 #endif // CTARIFF_H_INCLUDED_1511

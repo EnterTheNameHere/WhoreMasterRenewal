@@ -21,7 +21,11 @@
 
 #include <map>
 
-static std::string clobber_extension(std::string s);
+namespace WhoreMasterRenewal
+{
+    static std::string clobber_extension(std::string s);
+} // namespace WhoreMasterRenewal
+
 
 #ifdef LINUX
 
@@ -33,6 +37,9 @@ static std::string clobber_extension(std::string s);
 #include <iostream>
 #include <regex.h>
 #include <string.h>
+
+namespace WhoreMasterRenewal
+{
 
 static std::string& gsub(std::string &str, const char *pat_pt, const char *repl_pt)
 {
@@ -114,10 +121,19 @@ void FileList::scan(const char *pattern)
 	closedir(dpt);
 }
 
+
+
+} // namespace WhoreMasterRenewal
+
 #else
 #include"cInterfaceWindow.h"
 #include<windows.h>
 #include"interfaceIDs.h"
+
+namespace WhoreMasterRenewal
+{
+
+
 
 FileList::FileList(DirPath dp, const char *pattern)
 {
@@ -184,7 +200,15 @@ void FileList::scan(const char * pattern )
 	FindClose(hFind);
 }
 
+
+
+} // namespace WhoreMasterRenewal
+
 #endif
+
+namespace WhoreMasterRenewal
+{
+
 
 
 FileListEntry::FileListEntry() {}
@@ -303,7 +327,7 @@ std::vector<std::string> ImageFileList::file_extensions;
 ImageFileList::ImageFileList( DirPath dp, const char* pattern )
     : FileList( dp, nullptr, true )
 {
-    if( file_extensions.size() == 0 )
+    if( file_extensions.empty() )
     {
         file_extensions.push_back( std::string( ".jp*g" ) );
         file_extensions.push_back( ".gif" );
@@ -333,3 +357,5 @@ void ImageFileList::scan(const char *base)
 		(*this) += l;
 	}
 }
+
+} // namespace WhoreMasterRenewal

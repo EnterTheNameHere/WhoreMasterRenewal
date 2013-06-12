@@ -41,6 +41,9 @@
 #define STRNATCMP_H_INCLUDED_1458
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 /* CUSTOMIZATION SECTION
  *
  * You can change this typedef, but must then also change the inline
@@ -49,5 +52,7 @@ typedef char nat_char;
 
 int strnatcmp(nat_char const *a, nat_char const *b);
 int strnatcasecmp(nat_char const *a, nat_char const *b);
+
+} // namespace WhoreMasterRenewal
 
 #endif // STRNATCMP_H_INCLUDED_1458

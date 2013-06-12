@@ -28,6 +28,9 @@
 
 #include <fstream>
 
+namespace WhoreMasterRenewal
+{
+
 static std::map<std::string, int> trigger_types;
 
 cTrigger::cTrigger()
@@ -1531,9 +1534,7 @@ void cTrigger::load_talk_from_xml( TiXmlElement* el )
 int cTrigger::load_weeks_from_xml( TiXmlElement* el )
 {
     int ival;
-    std::string s;
     const char* pt;
-    std::stringstream ss;
     /*
      *  get the "Threshold" attribute value
      */
@@ -1557,7 +1558,6 @@ int cTrigger::load_weeks_from_xml( TiXmlElement* el )
 
 int cTrigger::load_flag_from_xml( TiXmlElement* el )
 {
-    std::string s;
     const char* pt;
     std::stringstream ss;
     /*
@@ -1596,12 +1596,11 @@ int cTrigger::load_flag_from_xml( TiXmlElement* el )
 int cTrigger::load_from_xml( TiXmlElement* el )
 {
     const char* pt;
-    std::stringstream ss;
     
     /*
      *  make sure the maps are intialised
      */
-    if( trigger_types.size() == 0 )
+    if( trigger_types.empty() )
     {
         init_trigger_types();
     }
@@ -1804,3 +1803,5 @@ cTriggerList::~cTriggerList()
 {
     Free();
 }
+
+} // namespace WhoreMasterRenewal

@@ -13,6 +13,9 @@
 #include "cInventory.h"
 #include "DirPath.h"
 
+namespace WhoreMasterRenewal
+{
+
 bool cScreenItemManagement::ids_set = false;
 
 static int leftOwner = 0;
@@ -975,3 +978,5 @@ int cScreenItemManagement::multi_right_next()
 {
     return GetNextSelectedItemFromList(items_r_id, sel_pos_r+1, sel_pos_r);
 }
+
+} // namespace WhoreMasterRenewal

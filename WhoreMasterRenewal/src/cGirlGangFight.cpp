@@ -6,6 +6,9 @@
 #include "cRng.h"
 #include "CLog.h"
 
+namespace WhoreMasterRenewal
+{
+
 cGirlGangFight::cGirlGangFight(Girl *girl)
 {
 	m_girl	= girl;
@@ -37,7 +40,8 @@ cGirlGangFight::cGirlGangFight(Girl *girl)
 /*
  *	no gang, so girl wins. PC combat is outside this class ATM
  */
-	if(v.size() == 0) {
+	if( v.empty() )
+	{
 		m_girl_wins = true;
 		m_unopposed = true;
 		return;
@@ -250,4 +254,4 @@ void cGirlGangFight::win_vs_own_gang(sGang* gang)
 	}
 }
 
-
+} // namespace WhoreMasterRenewal

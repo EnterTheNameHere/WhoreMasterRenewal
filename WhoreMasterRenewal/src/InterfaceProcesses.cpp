@@ -46,6 +46,8 @@
 
 #include <SDL.h>
 
+namespace WhoreMasterRenewal
+{
 
 //used to store what files we have loaded
 MasterFile loadedGirlsFiles;
@@ -3109,3 +3111,5 @@ void TransferGirls()
 		}
 	}
 }
+
+} // namespace WhoreMasterRenewal

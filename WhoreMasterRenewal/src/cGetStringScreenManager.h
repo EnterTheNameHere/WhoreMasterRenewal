@@ -22,6 +22,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 extern bool g_EnterKey;
 
 typedef void (*Funker)();
@@ -93,5 +96,6 @@ private:
     static cGetStringScreenManager_Inner* instance;
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif // CGETSTRINGSCREENMANAGER_H_INCLUDED_1529

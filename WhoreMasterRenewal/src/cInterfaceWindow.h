@@ -28,6 +28,13 @@
 #include <string>
 #include <memory>
 
+class TiXmlElement;
+class SDL_Color;
+class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
 class cInterfaceWindow;
 extern cInterfaceWindow g_MainMenu;
 extern cInterfaceWindow g_GetString;
@@ -50,9 +57,6 @@ class cScrollBar;
 class cSlider;
 class cAnimatedSurface;
 class cXmlWidget;
-class TiXmlElement;
-class SDL_Color;
-class SDL_Surface;
 
 class cInterfaceWindow : public cInterfaceObject
 {
@@ -250,5 +254,7 @@ private:
 	int pos;		// position variable
 	cInterfaceWindow& win;	// window reference
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CINTERFACEWINDOW_H_INCLUDED_1526

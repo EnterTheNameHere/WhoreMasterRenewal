@@ -24,6 +24,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class cFont
 {
 public:
@@ -70,5 +73,7 @@ private:
 	void RenderMultilineText(std::string text);	// function that renders multiline text to the internal surface
 	std::string UpdateLineEndings(std::string text);  // added function to fix line endings ("/n"=>"/r/n") for Windows
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CFONT_H_INCLUDED_1531

@@ -34,6 +34,9 @@
 
 #include <algorithm>
 
+namespace WhoreMasterRenewal
+{
+
 static cTariff tariff;
 static std::stringstream ss; /// @todo Get rid of this static variable
 
@@ -680,3 +683,5 @@ void cScreenGirlManagement::ViewSelectedGirl()
 		return;
 	}
 }
+
+} // namespace WhoreMasterRenewal

@@ -21,6 +21,9 @@
 #include "cBrothel.h"
 #include "cRng.h"
 
+namespace WhoreMasterRenewal
+{
+
 sCustomer::sCustomer()
 {
     m_Fetish = 0;
@@ -335,3 +338,5 @@ void cCustomers::ChangeCustomerBase()
 		cust = 0;
 	}
 }*/
+
+} // namespace WhoreMasterRenewal

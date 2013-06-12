@@ -23,6 +23,9 @@
 #include <vector>
 #include <memory>
 
+namespace WhoreMasterRenewal
+{
+
 extern unsigned char g_MessageBoxBorderR, g_MessageBoxBorderG, g_MessageBoxBorderB;
 extern unsigned char g_MessageBoxBackground0R, g_MessageBoxBackground0G, g_MessageBoxBackground0B;
 extern unsigned char g_MessageBoxBackground1R, g_MessageBoxBackground1G, g_MessageBoxBackground1B;
@@ -78,5 +81,7 @@ extern unsigned long g_Day;
 void LoadInterface();	// Function for loading the interface
 void FreeInterface();
 void ResetInterface();
+
+} // namespace WhoreMasterRenewal
 
 #endif // INTERFACEGLOBALS_H_INCLUDED_1505

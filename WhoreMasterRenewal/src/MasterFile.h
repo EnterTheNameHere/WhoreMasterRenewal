@@ -27,6 +27,9 @@
 class TiXmlHandle;
 class TiXmlElement;
 
+namespace WhoreMasterRenewal
+{
+
 class MasterFile
 {
 public:
@@ -41,5 +44,7 @@ private:
 	typedef std::map<std::string,int> FileFlags;
 	FileFlags files;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // MASTERFILE_H_INCLUDED_1501

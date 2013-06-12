@@ -34,6 +34,9 @@
 
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 bool cJobManager::WorkExploreCatacombs(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	int num_monsters = 0;
@@ -266,3 +269,5 @@ bool cJobManager::WorkExploreCatacombs(Girl* girl, sBrothel* brothel, int DayNig
 	
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

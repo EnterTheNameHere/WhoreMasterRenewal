@@ -6,6 +6,9 @@
 #include <string>
 #include <fstream>
 
+namespace WhoreMasterRenewal
+{
+
 void MasterFile::LoadLegacy( std::string filename )
 {
     files.clear();
@@ -112,3 +115,4 @@ TiXmlElement* MasterFile::SaveXML( TiXmlElement* pRoot )
     return pLoadedFiles;
 }
 
+} // namespace WhoreMasterRenewal

@@ -26,6 +26,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class IconSurface : public CSurface
 {
 public:
@@ -46,5 +49,7 @@ public:
 	ImageSurface( std::string name );
 	ImageSurface( std::string name, const char *pt, const char *ext = ".jpg" );
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // ICONSURFACE_H_INCLUDED_1505

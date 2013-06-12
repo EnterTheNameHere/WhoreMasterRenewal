@@ -24,10 +24,13 @@
 
 #include <string>
 
+class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
 class CGraphics;
 extern CGraphics g_Graphics;
-
-class SDL_Surface;
 
 class CGraphics
 {
@@ -60,5 +63,7 @@ private:
 	unsigned int m_CurrentTime;
 	CTimer m_FPS;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CGRAPHICS_H_INCLUDED_1527

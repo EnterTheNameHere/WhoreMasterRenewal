@@ -21,6 +21,9 @@
 #include "XmlMisc.h"
 #include "CLog.h"
 
+namespace WhoreMasterRenewal
+{
+
 bool XmlUtil::get_att( TiXmlElement* el, const char* name, int& ipt, bool optional )
 {
 	if(el->Attribute(name, &ipt) || optional) {
@@ -131,3 +134,5 @@ XmlUtil::XmlUtil( std::string context )
 {
     m_context = context;
 }
+
+} // namespace WhoreMasterRenewal

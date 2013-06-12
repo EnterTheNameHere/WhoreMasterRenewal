@@ -34,6 +34,9 @@
 #include <algorithm>
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 SDL_Surface* cListBox::m_HeaderSortAsc = nullptr;
 SDL_Surface* cListBox::m_HeaderSortDesc = nullptr;
 SDL_Surface* cListBox::m_HeaderUnSort = nullptr;
@@ -1258,3 +1261,5 @@ void cListBox::GetColumnNames(std::vector<std::string>& columnNames)
 		columnNames.push_back(m_ColumnName[x]);
 	}
 }
+
+} // namespace WhoreMasterRenewal

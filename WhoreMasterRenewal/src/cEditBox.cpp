@@ -25,6 +25,9 @@
 
 #include <SDL.h>
 
+namespace WhoreMasterRenewal
+{
+
 cEditBox::cEditBox()
 {
     m_Next = nullptr;
@@ -173,3 +176,5 @@ void cEditBox::UpdateText( char key, bool upper )
         
     m_Text->SetText( text );
 }
+
+} // namespace WhoreMasterRenewal

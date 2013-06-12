@@ -26,6 +26,10 @@
 
 class SDL_Surface;
 class SDL_Rect;
+
+namespace WhoreMasterRenewal
+{
+
 typedef uint32_t Uint32; // Used by SDL
 
 class CSurface : public CResource
@@ -65,5 +69,7 @@ private:
 	bool m_UseAlpha;
 	bool m_ColoredSurface;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSURFACE_H_INCLUDED_1511

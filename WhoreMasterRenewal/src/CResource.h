@@ -22,6 +22,9 @@
 #define CRESOURCE_H_INCLUDED_1521
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 class CResource
 {
 public:
@@ -36,5 +39,7 @@ public:
 	unsigned long m_TimeUsed; // Stores the last time this resource was used
 	bool m_Registered;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CRESOURCE_H_INCLUDED_1521

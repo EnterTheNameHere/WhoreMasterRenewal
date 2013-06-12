@@ -22,6 +22,9 @@
 #include "CLog.h"
 #include "DirPath.h"
 
+namespace WhoreMasterRenewal
+{
+
 cScriptManagerInner* cScriptManager::instance = nullptr;
 
 static bool ends_with( std::string s, std::string suff )
@@ -164,3 +167,4 @@ void cScriptManager::RunScript()
     instance->RunScript();
 }
 
+} // namespace WhoreMasterRenewal

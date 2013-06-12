@@ -34,6 +34,9 @@
 
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 bool cJobManager::WorkFreetime(Girl* girl, sBrothel* brothel, int DayNight, std::string& /*summary*/)
 {
 	//brothel->m_Filthiness++;
@@ -261,3 +264,5 @@ bool cJobManager::AddictBuysDrugs(std::string /*Addiction*/, std::string Drug, G
 	}
 
 }
+
+} // namespace WhoreMasterRenewal

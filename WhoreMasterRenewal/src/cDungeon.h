@@ -24,10 +24,14 @@
 #include <fstream>
 #include <vector>
 
-class Girl;
-class cGirlTorture;
 class TiXmlElement;
 class TiXmlHandle;
+
+namespace WhoreMasterRenewal
+{
+
+class Girl;
+class cGirlTorture;
 
 // Keeps track of customers in the dungeon
 typedef struct sDungeonCust
@@ -121,5 +125,6 @@ public:
 	void PlaceDungeonCustomer(sDungeonCust* newCust);
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif  // CDUNGEON_H_INCLUDED_1532

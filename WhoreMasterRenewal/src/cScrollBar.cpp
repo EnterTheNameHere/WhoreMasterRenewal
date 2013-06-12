@@ -25,6 +25,9 @@
 
 #include <SDL_image.h>
 
+namespace WhoreMasterRenewal
+{
+
 //these static vars defined in the header file need to be specified here
 SDL_Surface* cScrollBar::m_ImgBarBG = nullptr;
 SDL_Surface* cScrollBar::m_ImgBarOn = nullptr;
@@ -423,3 +426,5 @@ void cScrollBar::LogScrollBarError( std::string description )
     g_LogFile.ss() << description << " - " << SDL_GetError();
     g_LogFile.ssend();
 }
+
+} // namespace WhoreMasterRenewal

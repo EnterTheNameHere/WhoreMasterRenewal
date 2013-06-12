@@ -24,6 +24,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 Uint8 cColor::convertFromHex( std::string hex )
 {
     Uint8 value = 0;
@@ -107,3 +110,4 @@ void cColor::HexToSDLColor( std::string HexColor, SDL_Color* SDLColor )
     SDLColor->b = convertFromHex( blueString );
 }
 
+} // namespace WhoreMasterRenewal

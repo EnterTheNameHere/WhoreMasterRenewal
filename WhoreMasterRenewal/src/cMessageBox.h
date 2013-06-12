@@ -22,11 +22,17 @@
 
 #include <string>
 
+class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
+class cMessageBox;
+extern cMessageBox g_MessageBox;
 class cMessageQue;
 extern cMessageQue g_MessageQue;
 
 class cFont;
-class SDL_Surface;
 
 const int NUM_MESSBOXCOLOR = 4;
 
@@ -63,8 +69,6 @@ private:
 	int m_Color;	// used to determine which color to use
 };
 
-extern cMessageBox g_MessageBox;
-
 typedef struct sMessage
 {
     sMessage();
@@ -93,5 +97,7 @@ private:
 	sMessage* m_Mess;
 	sMessage* m_Last;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CMESSAGEBOX_H_INCLUDED_1522

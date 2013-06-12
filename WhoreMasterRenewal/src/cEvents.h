@@ -25,6 +25,9 @@
 #include <string>
 #include <vector>
 
+namespace WhoreMasterRenewal
+{
+
 class CEvent
 {
 public:
@@ -44,6 +47,7 @@ public:
 	bool			IsWarning();
 	static bool		CmpEventPredicate(CEvent eFirst, CEvent /*eSecond*/)
 					{
+						// TODO: why are both sides same variables?
 						return eFirst.m_Ordinal < eFirst.m_Ordinal;
 					}
 };
@@ -73,5 +77,7 @@ private:
 	bool			m_bSorted;				// flag to only allow sort once
 	unsigned int	MakeOrdinal(int nEvent);
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CEVENTS_H_INCLUDED_1531

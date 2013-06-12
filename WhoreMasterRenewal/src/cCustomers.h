@@ -22,6 +22,9 @@
 
 #include "Constants.h"
 
+namespace WhoreMasterRenewal
+{
+
 class cCustomers;
 extern cCustomers g_Customers;
 
@@ -85,5 +88,7 @@ private:
 //	sCustomer* m_Parent;
 //	sCustomer* m_Last;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CCUSTOMERS_H_INCLUDED_1532

@@ -21,6 +21,9 @@
 
 #include <iostream>
 
+namespace WhoreMasterRenewal
+{
+
 std::ofstream& CLogInner::os()
 {
     return m_ofile;
@@ -112,3 +115,5 @@ void CLog::ssend()
 
 bool CLogInner::setup = false;
 CLogInner* CLog::inner = nullptr;
+
+} // namespace WhoreMasterRenewal

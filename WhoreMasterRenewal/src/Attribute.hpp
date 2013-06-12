@@ -49,6 +49,6 @@ class AttributeXMLLoader
     }
 };
 
-}
+} // namespace WhoreMasterRenewal
 
 #endif // ATTRIBUTE_HPP_INCLUDED_1455

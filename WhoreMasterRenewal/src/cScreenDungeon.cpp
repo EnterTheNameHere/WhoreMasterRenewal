@@ -40,6 +40,9 @@
 #include <sstream>
 #include <algorithm>
 
+namespace WhoreMasterRenewal
+{
+
 static cPlayer* player = g_Brothels.GetPlayer();
 static cDungeon* dungeon = g_Brothels.GetDungeon();
 static cTariff tariff;
@@ -1147,3 +1150,5 @@ int cScreenDungeon::multi_next()
 {
     return GetNextSelectedItemFromList( girllist_id, sel_pos + 1, sel_pos );
 }
+
+} // namespace WhoreMasterRenewal

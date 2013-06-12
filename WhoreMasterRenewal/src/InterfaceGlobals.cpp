@@ -44,6 +44,9 @@
 
 #include <iostream>
 
+namespace WhoreMasterRenewal
+{
+
 // interface colors
 unsigned char g_StaticImageR = 0, g_StaticImageG = 0, g_StaticImageB = 0;
 
@@ -167,7 +170,6 @@ void ResetInterface()
 void LoadInterface()
 {
 	cTariff tariff;
-	std::stringstream ss;
 	int r=0, g=0, b=0;
 	int a=0, c=0, d=0, e=0;
 	std::ifstream incol;
@@ -599,3 +601,5 @@ void LoadInterface()
 	g_interfaceid.STATIC_STATIC=1;//evil magic number
 	g_MessageBox.CreateWindow();
 }
+
+} // namespace WhoreMasterRenewal

@@ -1,6 +1,9 @@
 
 #include "cXmlWidget.h"
 
+namespace WhoreMasterRenewal
+{
+
 cXmlWidget::cXmlWidget() {}
 
 int cXmlWidget::size()
@@ -17,3 +20,5 @@ void cXmlWidget::add( sXmlWidgetPart& part )
 {
     list.push_back( part );
 }
+
+} // namespace WhoreMasterRenewal

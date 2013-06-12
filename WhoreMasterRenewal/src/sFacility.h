@@ -22,6 +22,9 @@
 
 #include "cTariff.h" // required cTariff
 
+namespace WhoreMasterRenewal
+{
+
 struct sFacility;
 
 /*
@@ -181,10 +184,6 @@ struct sFacility
 	sFacility* clone();
 };
 
-/*
-
- *
-
- */
+} // namespace WhoreMasterRenewal
 
 #endif // SFACILITY_H_INCLUDED_1500

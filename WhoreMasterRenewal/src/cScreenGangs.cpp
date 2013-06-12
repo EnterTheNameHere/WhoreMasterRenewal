@@ -30,6 +30,9 @@
 #include "cTariff.h"
 #include "DirPath.h"
 
+namespace WhoreMasterRenewal
+{
+
 static cTariff tariff;
 static std::stringstream ss;
 
@@ -729,3 +732,5 @@ int cScreenGangs::multi_next()
 {
     return GetNextSelectedItemFromList(ganglist_id, sel_pos+1, sel_pos);
 }
+
+} // namespace WhoreMasterRenewal

@@ -23,6 +23,9 @@
 #include <string>
 #include <vector>
 
+namespace WhoreMasterRenewal
+{
+
 class Girl;
 struct sBrothel;
 struct sGang;
@@ -110,5 +113,7 @@ public:
 private:
 	std::vector<sFilm *> film_list;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CJOBS_H_INCLUDED_1524

@@ -24,6 +24,9 @@
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
 
+namespace WhoreMasterRenewal
+{
+
 cMessageBox::~cMessageBox()
 {
     for( int i = 0; i < NUM_MESSBOXCOLOR; i++ )
@@ -261,3 +264,5 @@ void cMessageQue::ActivateNext()
         Ptr = nullptr;
     }
 }
+
+} // namespace WhoreMasterRenewal

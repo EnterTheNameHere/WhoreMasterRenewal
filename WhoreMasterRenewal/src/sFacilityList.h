@@ -25,9 +25,12 @@
 #include <vector>
 #include <string>
 
-struct sFacility;
-
 class TiXmlElement;
+
+namespace WhoreMasterRenewal
+{
+
+struct sFacility;
 
 class sFacilityList {
 static std::vector<sFacility *> *list;
@@ -39,5 +42,7 @@ public:
 	bool	load_xml(std::string path);
 	bool	parse_facility(TiXmlElement*, sFacility &fac);
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // SFACILITYLIST_H_INCLUDED_1459

@@ -26,6 +26,9 @@
 #include <string>
 #include <vector>
 
+namespace WhoreMasterRenewal
+{
+
 class cInventory;
 extern cInventory g_InvManager;
 
@@ -253,5 +256,7 @@ private:
     int m_NumShopItems; // number of items in the shop
     sInventoryItem* m_ShopItems[NUM_SHOPITEMS]; // pointers to all items, the shop can only hold 30 random items
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CINVENTORY_H_INCLUDED_1525

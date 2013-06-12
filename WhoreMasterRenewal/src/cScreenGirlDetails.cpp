@@ -37,6 +37,9 @@
 
 #include <algorithm>
 
+namespace WhoreMasterRenewal
+{
+
 static cTariff tariff;
 static std::stringstream ss; /// @todo Get rid of this static variable
 
@@ -753,6 +756,7 @@ Girl *cScreenGirlDetails::remove_selected_girl()
  */
 bool cScreenGirlDetails::do_take_gold(Girl *girl, std::string &message)
 {
+	// TODO: checking bool against integer
 	const int GIRL_LOSES = false;
 	const int GIRL_WINS = true;
 	bool girl_win_flag = GIRL_WINS;
@@ -799,14 +803,14 @@ bool cScreenGirlDetails::do_take_gold(Girl *girl, std::string &message)
 		girl_win_flag = g_Gangs.GangCombat(girl, gang);
 /*
  *		if she didn't win, exit the loop
- */
+ */		// TODO: checking bool against integer
 		if(girl_win_flag == GIRL_LOSES) {
 			break;
 		}
 	}
 /*
  *	the "girl lost" case is easier
- */
+ */ // TODO: checking bool against integer
 	if(girl_win_flag == GIRL_LOSES) {		// put her in the dungeon
 		message += "She puts up a fight ";
 		if(gang && gang->m_Num == 0) {
@@ -919,3 +923,5 @@ void cScreenGirlDetails::take_gold(Girl *girl)
 	g_InitWin = true;
 	return;
 }
+
+} // namespace WhoreMasterRenewal

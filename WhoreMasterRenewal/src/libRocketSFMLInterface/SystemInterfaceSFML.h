@@ -42,4 +42,5 @@ public:
 private:
 	sf::Clock timer = {};
 };
+
 #endif // SYSTEMINTERFACESFML_H_INCLUDED_1247

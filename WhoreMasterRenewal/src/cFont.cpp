@@ -25,6 +25,9 @@
 #include <iostream>
 #include <vector>
 
+namespace WhoreMasterRenewal
+{
+
 float FontScale = 1.0f;
 
 cFont::cFont()
@@ -148,7 +151,7 @@ void cFont::RenderMultilineText( std::string text )
     
     for( unsigned int i = 0; i < m_NumLines; i++ )
     {
-        SetText( lines[i].c_str() );
+        SetText( lines[i] );
         
         DrawText( 0, i * m_Lineskip, m_MultilineMessage, true );
     }
@@ -446,3 +449,5 @@ std::string cFont::GetText()
 {
     return m_Text;
 }
+
+} // namespace WhoreMasterRenewal

@@ -24,6 +24,9 @@
 #include <string>
 #include <memory>
 
+namespace WhoreMasterRenewal
+{
+
 class cWindowManager;
 extern cWindowManager g_WinManager;
 extern bool g_InitWin;
@@ -94,5 +97,7 @@ public:
 private:
 	sWindow* m_Parent;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CWINDOWMANAGER_H_INCLUDED_1508

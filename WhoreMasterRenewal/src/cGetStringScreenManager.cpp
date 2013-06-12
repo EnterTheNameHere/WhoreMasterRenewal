@@ -19,13 +19,15 @@
 
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
-#include "cInterfaceWindow.h"
 #include "cInterfaceEvent.h"
 #include "cInterfaceWindow.h"
 #include "cWindowManager.h"
 #include "cMessageBox.h"
 #include "InterfaceIDs.h"
 #include "InterfaceProcesses.h"
+
+namespace WhoreMasterRenewal
+{
 
 cGetStringScreenManager_Inner *cGetStringScreenManager::instance = nullptr;
 
@@ -132,11 +134,15 @@ void cGetStringScreenManager_Inner::submit()
 
 void cGetStringScreenManager_Inner::set_dest( std::string& dest )
 {
+	if( m_Trans )
+		delete m_Trans;
     m_Trans = new cGetStringTransport( dest );
 }
 
 void cGetStringScreenManager_Inner::set_handler( Funker funk )
 {
+	if( m_Trans )
+		delete m_Trans;
     m_Trans = new cGetStringTransport_Func( funk );
 }
 
@@ -203,3 +209,5 @@ bool cGetStringScreenManager::empty_allowed()
 {
     return instance->empty_allowed();;
 }
+
+} // namespace WhoreMasterRenewal

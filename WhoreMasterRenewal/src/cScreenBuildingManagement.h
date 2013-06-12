@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cBuildingManagement;
 extern cBuildingManagement g_BuildingManagementScreen;
 
@@ -96,5 +99,7 @@ public:
 	void stealth_down(int facility_idx);
 	void stealth_up(int facility_idx);
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENBUILDINGMANAGER_H_INCLUDED_1519

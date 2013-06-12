@@ -24,6 +24,9 @@
 
 #include <fstream>
 
+namespace WhoreMasterRenewal
+{
+
 cNameList::cNameList()
 {
     ;
@@ -105,7 +108,7 @@ void cNameList::load( std::string file )
     /*
      *  quick sanity check
      */
-    if( names.size() == 0 )
+    if( names.empty() )
     {
         g_LogFile.ss()
                 << "Error: zero names found in file '"
@@ -166,3 +169,5 @@ std::string cDoubleNameList::random()
     s += m_last.random();
     return s;
 }
+
+} // namespace WhoreMasterRenewal

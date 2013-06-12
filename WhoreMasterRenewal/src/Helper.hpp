@@ -6,6 +6,9 @@
 #include <sstream>
 #include <cmath>
 
+namespace WhoreMasterRenewal
+{
+
 template<typename T> std::string toString( T value )
 {
     std::stringstream str;
@@ -20,5 +23,7 @@ inline bool areEqual( T value1, T value2, T precision = 0.00001 )
 {
     return ( std::abs( value1 - value2 ) <= precision );
 }
+
+} // namespace WhoreMasterRenewal
 
 #endif // HELPER_H_INCLUDED_1917

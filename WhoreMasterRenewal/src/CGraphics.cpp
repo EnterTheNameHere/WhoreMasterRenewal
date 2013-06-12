@@ -28,6 +28,9 @@
 
 #include <fstream>
 
+namespace WhoreMasterRenewal
+{
+
 extern CGraphics g_Graphics;
 
 CGraphics::CGraphics()
@@ -79,7 +82,6 @@ bool CGraphics::InitGraphics(std::string caption, int Width, int Height, int BPP
 {
 	if(Width == 0 || Height == 0)
 	{
-		char buffer[1000];
 		std::ifstream incol;
 		// WD: Typecast to resolve ambiguous call in VS 2010
 		DirPath dp = DirPath() << "ScreenMode.txt";
@@ -87,6 +89,7 @@ bool CGraphics::InitGraphics(std::string caption, int Width, int Height, int BPP
 		incol.open(dp.c_str());
 		if(incol)
 		{
+			char buffer[1000];
 			incol.ignore(1000, '\n');	// ignore first line
 			incol>>g_ScreenWidth>>g_ScreenHeight;incol.ignore(1000, '\n');	// width/height
 			incol.getline(buffer, 1000, '\n');
@@ -178,3 +181,5 @@ int CGraphics::GetHeight()
 {
     return m_ScreenHeight;
 }
+
+} // namespace WhoreMasterRenewal

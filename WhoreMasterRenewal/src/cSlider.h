@@ -24,11 +24,14 @@
 
 #include <string>
 
-class cSlider;
-extern cSlider* g_DragSlider;
-
 class SDL_Rect;
 class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
+class cSlider;
+extern cSlider* g_DragSlider;
 
 class cSlider : public cInterfaceObject
 {
@@ -87,5 +90,6 @@ public:
 	bool m_LiveUpdate;  // send update events while user is dragging? default enabled; if disabled, only sends update event on MouseUp
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif // CSLIDER_H_INCLUDED_1511

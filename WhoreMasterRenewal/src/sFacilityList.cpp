@@ -24,6 +24,9 @@
 #include "CLog.h"
 #include "XmlMisc.h"
 
+namespace WhoreMasterRenewal
+{
+
 std::vector<sFacility *> *sFacilityList::list = nullptr;
 
 sFacilityList::sFacilityList()
@@ -108,3 +111,4 @@ bool sFacilityList::load_xml(std::string filename)
 	return true;
 }
 
+} // namespace WhoreMasterRenewal

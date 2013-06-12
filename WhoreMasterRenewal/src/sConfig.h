@@ -24,6 +24,10 @@
 
 class TiXmlElement;
 struct SDL_Color;
+
+namespace WhoreMasterRenewal
+{
+
 typedef unsigned int u_int;
 
 struct sConfigData
@@ -275,5 +279,6 @@ public:
 
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif // SCONFIG_H_INCLUDED_1500

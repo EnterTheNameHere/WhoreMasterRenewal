@@ -33,6 +33,9 @@
 
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 // strut sDungeonCust
 sDungeonCust::sDungeonCust()		// constructor
 {
@@ -779,7 +782,7 @@ void cDungeon::Update()
 					continue;
 				}
 			}
-#endif
+#endif // #if 0
 /*
  *			DAILY Processing
  */
@@ -967,7 +970,6 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 #undef WDTEST
 
 	Girl* girl = d_girl->m_Girl;
-    std::string msg;
     std::string girlName	= girl->m_Realname;
 
 	// Sanity check. Abort on dead girl
@@ -994,7 +996,7 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 	sum	+= "  TD=";
 	sum	+= toString(girl->tiredness());
 
-#endif
+#endif // WDTEST
 
 	if (d_girl->m_Feeding)
 	{
@@ -1085,7 +1087,7 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 	girl->m_Events.AddMessage(sum, IMGTYPE_PROFILE, EVENT_DEBUG);
 
 #undef WDTEST
-#endif
+#endif // WDTEST
 }
 
 #if 0		// WD	Moved to cGirlTorture class
@@ -1237,6 +1239,8 @@ void cDungeon::doTorturer(sDungeonGirl* d_girl, Girl* t_girl, std::string& summa
 			t_girl->m_Events.AddMessage( msg, IMGTYPE_PROFILE, EVENT_DUNGEON);
 		}
 	}
-#endif
+#endif // #if 1
 }
-#endif
+#endif // #if 0
+
+} // namespace WhoreMasterRenewal

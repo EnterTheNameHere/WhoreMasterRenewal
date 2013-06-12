@@ -24,6 +24,9 @@
 
 class TiXmlElement;
 
+namespace WhoreMasterRenewal
+{
+
 typedef unsigned int u_int;
 
 class XmlUtil
@@ -42,5 +45,7 @@ public:
 private:
     std::string m_context;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // XMLUTIL_H_INCLUDED_1534

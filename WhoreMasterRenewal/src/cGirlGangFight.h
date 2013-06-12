@@ -20,6 +20,9 @@
 #define CGIRLGANGFIGHT_H_INCLUDED_1529
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 class Girl;
 struct sGang;
 
@@ -59,5 +62,7 @@ private:
 	void win_vs_own_gang(sGang* gang);
 	int use_potions(sGang *gang, int casualties);
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif  // CGIRLGANGFIGHT_H_INCLUDED_1529

@@ -24,6 +24,9 @@
 
 #include <cmath>
 
+namespace WhoreMasterRenewal
+{
+
 /*
  *	defaults are set up for facility adjusters
  *	so range is 0-9, default to zero
@@ -440,9 +443,4 @@ void sBoundedVar_Provides::init(sFacility *fac)
 	m_slots_per_space = 1.0 * m_curr / m_min;
 }
 
-
-/*
-
- *
-
- */
+} // namespace WhoreMasterRenewal

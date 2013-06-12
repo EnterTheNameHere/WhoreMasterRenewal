@@ -22,6 +22,9 @@
 
 #include "Constants.h"
 
+namespace WhoreMasterRenewal
+{
+
 // Externs
 extern unsigned int g_GameFlags[NUM_GAMEFLAGS][2];
 
@@ -68,4 +71,7 @@ inline void ClearGameFlag(int flag);
 inline int GetGameFlag(int flag);
 inline bool CheckGameFlag(int flag);
 */
+
+} // namespace WhoreMasterRenewal
+
 #endif

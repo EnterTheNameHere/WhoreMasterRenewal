@@ -1,6 +1,8 @@
 
 #include "cInterfaceEvent.h"
 
+namespace WhoreMasterRenewal
+{
 
 cInterfaceEvent::cInterfaceEvent()
 {
@@ -117,3 +119,5 @@ void cInterfaceEventManager::ClearEvents()
         delete m_Events;
     m_Events = nullptr;
 }
+
+} // namespace WhoreMasterRenewal

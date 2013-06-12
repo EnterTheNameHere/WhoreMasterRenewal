@@ -24,12 +24,16 @@
 #include <string>
 #include <map>
 
+class TiXmlElement;
+class TiXmlHandle;
+
+namespace WhoreMasterRenewal
+{
+
 class cGold;
 extern cGold g_Gold;
 
 struct sBrothel;
-class TiXmlElement;
-class TiXmlHandle;
 
 class cGoldBase
 {
@@ -295,5 +299,6 @@ private:
     std::map<int, cGoldBase*> m_Brothels;
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif // CGOLD_H_INCLUDED_1528

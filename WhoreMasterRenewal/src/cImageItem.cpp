@@ -23,6 +23,9 @@
 #include "CSurface.h"
 #include "cAnimatedSurface.h"
 
+namespace WhoreMasterRenewal
+{
+
 extern CGraphics g_Graphics;
 
 cImageItem::cImageItem()
@@ -157,3 +160,5 @@ void cImageItem::Draw()
 		SDL_BlitSurface(m_Surface, nullptr, g_Graphics.GetScreen(), &offset);
 	}
 }
+
+} // namespace WhoreMasterRenewal

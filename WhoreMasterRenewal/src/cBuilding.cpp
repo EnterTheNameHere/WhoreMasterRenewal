@@ -22,6 +22,9 @@
 #include "XmlMisc.h"
 #include "sFacility.h"
 
+namespace WhoreMasterRenewal
+{
+
 int cBuilding::capacity()
 {
     return m_capacity;
@@ -262,3 +265,5 @@ void cBuilding::clear_reversion_list()
 	delete m_reversion;
 	m_reversion = nullptr;
 }
+
+} // namespace WhoreMasterRenewal

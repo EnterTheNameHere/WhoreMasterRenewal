@@ -34,6 +34,9 @@
 #include <sstream>
 #include <cstdlib>
 
+namespace WhoreMasterRenewal
+{
+
 cRival::cRival()
 {
     m_Next = nullptr;
@@ -850,7 +853,6 @@ bool cRivalManager::LoadRivalsXML(TiXmlHandle hRivalManager)
 
 void cRivalManager::CreateRival(long bribeRate, int extort, long gold, int bars, int gambHalls, int Girls, int brothels, int goons)
 {
-	std::ifstream in;
 	cRival* rival = new cRival();
 
 	DirPath first_names = DirPath()
@@ -896,7 +898,6 @@ bool cRivalManager::NameExists(std::string name)
 
 void cRivalManager::CreateRandomRival()
 {
-	std::ifstream in;
 	cRival* rival = new cRival();
 
 	DirPath first_names = DirPath()
@@ -955,3 +956,5 @@ void cRivalManager::RemoveRival(cRival* rival)
 	rival = nullptr;
 	m_NumRivals--;
 }
+
+} // namespace WhoreMasterRenewal

@@ -42,6 +42,9 @@
 #include <locale>
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 bool cScreenTown::ids_set = false;
 
 cScreenTown::cScreenTown()
@@ -386,7 +389,6 @@ void cScreenTown::do_walk()
 	cTrigger* trig = nullptr;
 
 	DirPath dp;
-    std::string filename;
 	cScriptManager sm;
 /*
  *	is there a girl specific talk script?
@@ -444,3 +446,5 @@ void cScreenTown::check_brothel(int BrothelNum)
 		g_WinManager.Pop();
 	}
 }
+
+} // namespace WhoreMasterRenewal

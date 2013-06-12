@@ -25,6 +25,9 @@
 #include "cInterfaceEvent.h"
 #include "InterfaceGlobals.h"
 
+namespace WhoreMasterRenewal
+{
+
 cCheckBox::cCheckBox()
 {
     m_Image = nullptr;
@@ -130,3 +133,5 @@ void cCheckBox::ButtonClicked( int x, int y )
         g_InterfaceEvents.AddEvent( EVENT_CHECKBOXCLICKED, m_ID );
     }
 }
+
+} // namespace WhoreMasterRenewal

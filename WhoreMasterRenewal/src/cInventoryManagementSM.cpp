@@ -27,6 +27,9 @@
 #include <string>
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 cInventoryManagementSM::cInventoryManagementSM()
 {
     leftOwner	= 0;
@@ -1327,4 +1330,4 @@ void cInventoryManagementSM::item_shift_r()
 	// update the item lists
 }
 
-
+} // namespace WhoreMasterRenewal

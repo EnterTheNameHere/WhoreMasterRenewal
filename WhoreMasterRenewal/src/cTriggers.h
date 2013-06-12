@@ -24,13 +24,17 @@
 #include <queue>
 #include <fstream>
 
+class TiXmlElement;
+class TiXmlHandle;
+
+namespace WhoreMasterRenewal
+{
+
 class cTriggerList;
 extern cTriggerList g_GlobalTriggers;
 
 
 class Girl;
-class TiXmlElement;
-class TiXmlHandle;
 
 
 // girl specific triggers
@@ -155,5 +159,7 @@ private:
 	// script targets (things that the script will affect with certain commands)
 	Girl* m_GirlTarget;	// if not 0 then the script is affecting a girl
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CTRIGGERS_H_INCLUDED_1509

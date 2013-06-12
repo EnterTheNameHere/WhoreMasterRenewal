@@ -24,6 +24,9 @@
 #include <cstring>
 #include <cstdio>
 
+namespace WhoreMasterRenewal
+{
+
 sTrait::sTrait()
 {
     m_Name = nullptr;
@@ -244,3 +247,5 @@ sTrait* cTraits::GetTraitNum( int num )
     
     return current;
 }
+
+} // namespace WhoreMasterRenewal

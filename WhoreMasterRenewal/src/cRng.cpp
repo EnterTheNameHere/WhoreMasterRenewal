@@ -23,6 +23,9 @@
 #include <cstdlib>
 #include <ctime>
 
+namespace WhoreMasterRenewal
+{
+
 cRng::cRng()
 {
     srand( static_cast<int>( time(nullptr) ) );
@@ -105,4 +108,4 @@ bool cRng::is_girl( int mod )
 	return percent( chance );
 }
 
-//end mod
+} // namespace WhoreMasterRenewal

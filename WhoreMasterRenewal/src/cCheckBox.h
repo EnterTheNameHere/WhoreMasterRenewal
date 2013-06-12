@@ -26,8 +26,12 @@
 #include <string>
 #include <memory>
 
-class CSurface;
 class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
+class CSurface;
 
 class cCheckBox : public cInterfaceObject
 {
@@ -51,5 +55,7 @@ public:
 	cFont m_Font;
 	bool m_Disabled;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CCHECKBOX_H_INCLUDED_1527

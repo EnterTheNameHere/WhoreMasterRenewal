@@ -20,6 +20,9 @@
 #define CINTERFACEOBJECT_H_INCLUDED_1526
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 class cInterfaceObject
 {
 public:
@@ -38,5 +41,7 @@ protected:
 	int m_Width;
 	int m_Height;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CINTERFACEOBJECT_H_INCLUDED_1526

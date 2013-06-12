@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenHouse;
 extern cScreenHouse g_PlayersHouse;
 
@@ -48,5 +51,7 @@ public:
 	void process();
 	void check_events();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENHOUSE_H_INCLUDED_1514

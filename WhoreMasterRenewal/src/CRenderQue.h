@@ -20,6 +20,9 @@
 #define CRENDERQUE_H_INCLUDED_1521
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 // An object that can be added to the render que, eg a character, or a game object.
 class CRenderObject
 {
@@ -49,5 +52,7 @@ private:
     CRenderObject* m_Parent;
     CRenderObject* m_Last;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CRENDERQUE_H_INCLUDED_1521

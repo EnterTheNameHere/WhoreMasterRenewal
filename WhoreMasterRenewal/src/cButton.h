@@ -25,6 +25,9 @@
 #include <string>
 #include <memory>
 
+namespace WhoreMasterRenewal
+{
+
 class CSurface;
 
 class cButton : public cInterfaceObject
@@ -58,5 +61,6 @@ private:
     bool m_Hidden;
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif // CBUTTON_H_INCLUDED_1533

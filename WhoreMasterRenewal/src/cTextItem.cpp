@@ -3,6 +3,9 @@
 #include "sConfig.h"
 #include "cScrollBar.h"
 
+namespace WhoreMasterRenewal
+{
+
 cTextItem::cTextItem()
 {
     m_Next = nullptr;
@@ -195,3 +198,5 @@ void cTextItem::unhide()
     if( m_ScrollBar && m_ScrollBar->m_Hidden )
         m_ScrollBar->unhide();
 }
+
+} // namespace WhoreMasterRenewal

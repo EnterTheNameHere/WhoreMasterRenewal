@@ -28,6 +28,9 @@
 #include "cInterfaceEvent.h"
 #include "DirPath.h"
 
+namespace WhoreMasterRenewal
+{
+
 bool cScreenMayor::ids_set = false;
 
 cScreenMayor::cScreenMayor()
@@ -181,3 +184,5 @@ void cScreenMayor::check_events()
 		return;
 	}
 }
+
+} // namespace WhoreMasterRenewal

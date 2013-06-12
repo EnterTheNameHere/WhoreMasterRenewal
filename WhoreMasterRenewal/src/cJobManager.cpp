@@ -37,6 +37,9 @@
 #include <algorithm>
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 cJobManager::~cJobManager()
 {
     ;
@@ -735,7 +738,7 @@ bool cJobManager::security_stops_rape(Girl * girl, sGang *enemy_gang, int day_ni
 	// Security guards with enough health to fight
 	std::vector<Girl *> SecGrdWhoCanFight;
 
-	if (SecGrd.size() == 0)
+	if( SecGrd.empty() )
 		return false;
 
 	// Remove security guards who are too wounded to fight
@@ -753,7 +756,7 @@ bool cJobManager::security_stops_rape(Girl * girl, sGang *enemy_gang, int day_ni
 	}
 
 	// If all the security guards are too wounded to fight
-	if (SecGrdWhoCanFight.size() == 0)
+	if( SecGrdWhoCanFight.empty() )
 		return false;
 
 	// Get a random security guard
@@ -1470,3 +1473,5 @@ void cJobManager::do_training(sBrothel* brothel, int DayNight)
 		g_Girls.UpdateTempStat(girl, STAT_LIBIDO, 2);
 	}
 }
+
+} // namespace WhoreMasterRenewal

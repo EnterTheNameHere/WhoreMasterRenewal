@@ -24,6 +24,9 @@
 #include <sstream>
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class CLog;
 extern CLog g_LogFile;
 
@@ -59,5 +62,7 @@ private:
 	bool m_glob;
     static CLogInner* inner;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CLOG_H_INCLUDED_1524

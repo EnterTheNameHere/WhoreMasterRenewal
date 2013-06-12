@@ -3,6 +3,9 @@
 
 #include <SDL.h>
 
+namespace WhoreMasterRenewal
+{
+
 CTimer::CTimer()
 {
     m_StartTicks = 0;
@@ -68,3 +71,5 @@ bool CTimer::IsPaused()
 {
     return m_Paused;
 }
+
+} // namespace WhoreMasterRenewal

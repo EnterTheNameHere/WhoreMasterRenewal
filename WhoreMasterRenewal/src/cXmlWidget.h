@@ -23,6 +23,9 @@
 #include <vector>
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 struct sXmlWidgetPart
 {
 public:
@@ -40,5 +43,7 @@ public:
 	sXmlWidgetPart& operator[](int i);
 	void add(sXmlWidgetPart &part);
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CXMLWIDGET_H_INCLUDED_1508

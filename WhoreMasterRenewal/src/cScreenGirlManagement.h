@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenGirlManagement;
 extern cScreenGirlManagement g_GirlManagement;
 
@@ -73,5 +76,7 @@ public:
 	bool check_keys();
 	void update_image();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENGIRLMANAGEMENT_H_INCLUDED_1517

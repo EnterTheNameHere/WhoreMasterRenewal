@@ -23,6 +23,9 @@
 #include <vector>
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class Girl;
 
 /*
@@ -146,5 +149,7 @@ public:
 	unsigned int size()	{ return stats.size(); }
 	std::vector<int> training_indices();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CTRAINABLE_H_INCLUDED_1510

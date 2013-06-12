@@ -21,6 +21,9 @@
 #include "CLog.h"
 #include "cInterfaceWindow.h"
 
+namespace WhoreMasterRenewal
+{
+
 sWindow::sWindow()
 {
     m_Next = nullptr;
@@ -198,10 +201,4 @@ void cWindowManager::push(process_funcxml Process, cInterfaceWindow* Interface)
 	InterfacePtr->xmlfunc=true;
 }
 
-
-
-/*
-
-make: *** [cWindowManager.o] Error 1
-
- */
+} // namespace WhoreMasterRenewal

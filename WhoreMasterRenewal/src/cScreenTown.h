@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenTown;
 extern cScreenTown g_TownScreen;
 
@@ -75,5 +78,7 @@ public:
     std::string walk_no_luck();
 
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENTOWN_H_INCLUDED_1513

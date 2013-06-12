@@ -24,6 +24,9 @@
 
 class TiXmlHandle;
 
+namespace WhoreMasterRenewal
+{
+
 // Moved from main.cpp
 extern bool g_LeftArrow;
 extern bool g_RightArrow;
@@ -69,5 +72,7 @@ extern void LoadGameScreen();
 extern void LoadGameInfoFiles();
 extern void LoadGirlsFiles();
 extern void TransferGirls();
+
+} // namespace WhoreMasterRenewal
 
 #endif // INTERFACEPROCESSES_H_INCLUDED_1504

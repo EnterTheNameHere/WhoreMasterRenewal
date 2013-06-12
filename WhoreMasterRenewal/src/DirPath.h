@@ -23,6 +23,9 @@
 #include <string>
 #include <fstream>
 
+namespace WhoreMasterRenewal
+{
+
 /*
  * little class to create pathnames in a cross platform way
  */
@@ -136,5 +139,7 @@ class ScriptPath : public DirPath
 public:
     ScriptPath( std::string filename );
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // DIRPATH_H_INCLUDED_1507

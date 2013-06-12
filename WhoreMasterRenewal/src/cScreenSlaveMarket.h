@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenSlaveMarket;
 extern cScreenSlaveMarket g_SlaveMarket;
 
@@ -69,5 +72,7 @@ public:
 	int multi_slave_first();
 	int multi_slave_next();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENSLAVEMARKET_H_INCLUDED_1513

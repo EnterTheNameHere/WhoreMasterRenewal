@@ -25,6 +25,9 @@
 #include "CSurface.h"
 #include "InterfaceGlobals.h"
 
+namespace WhoreMasterRenewal
+{
+
 cChoice::cChoice()
 {
     m_Next = nullptr;
@@ -640,3 +643,4 @@ bool cChoiceManager::find_active( int x, int y )
     return false;
 }
 
+} // namespace WhoreMasterRenewal

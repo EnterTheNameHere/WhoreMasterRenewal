@@ -24,8 +24,8 @@
  * THE SOFTWARE.
  *
  */
-#ifndef RENDERINTERFACESFML_H
-#define RENDERINTERFACESFML_H
+#ifndef RENDERINTERFACESFML_H_INCLUDED_1545
+#define RENDERINTERFACESFML_H_INCLUDED_1545
 
 #include <Rocket/Core/RenderInterface.h>
 #include <SFML/Graphics.hpp>
@@ -79,4 +79,4 @@ private:
     sf::RenderWindow* m_Window = {nullptr};
 };
 
-#endif
+#endif // RENDERINTERFACESFML_H_INCLUDED_1545

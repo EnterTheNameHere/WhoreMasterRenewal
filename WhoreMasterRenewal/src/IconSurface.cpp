@@ -2,6 +2,9 @@
 #include "IconSurface.h"
 #include "CLog.h"
 
+namespace WhoreMasterRenewal
+{
+
 IconSurface::IconSurface( std::string name )
     : CSurface( ImagePath(name + ".png") )
 {
@@ -23,7 +26,7 @@ IconSurface::IconSurface( std::string name, const char*pt , const char* ext )
     ;
     g_LogFile.ssend();
 
-    LoadImage(dp.c_str(), true);
+    LoadImage( dp, true );
 }
 
 
@@ -47,3 +50,5 @@ ImageSurface::ImageSurface ( std::string name, const char* pt, const char* ext )
     : CSurface( ImagePath((name + pt) + ext).c_str() )
 {
 }
+
+} // namespace WhoreMasterRenewal

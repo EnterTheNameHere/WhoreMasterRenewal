@@ -20,6 +20,9 @@
 #define CINVENTORYMANAGEMENTSM_H_INCLUDED_1525
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 class Girl;
 
 class cInventoryManagementSM
@@ -39,5 +42,7 @@ private:
 	int leftItem;
 	int rightItem;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CINVENTORYMANAGEMENTSM_H_INCLUDED_1525

@@ -27,6 +27,9 @@
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
 
+namespace WhoreMasterRenewal
+{
+
 /*
  * OK: this is a little bit complicated
  *
@@ -556,3 +559,5 @@ cLuaMenu::cLuaMenu()
     if( !instance )
         instance = new cLuaMenuInner();
 }
+
+} // namespace WhoreMasterRenewal

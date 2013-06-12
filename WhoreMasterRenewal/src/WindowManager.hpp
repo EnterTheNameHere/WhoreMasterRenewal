@@ -15,7 +15,7 @@ public:
     ~ScreenManager();
     
     ScreenManager( const ScreenManager& );
-    ScreenManager operator = ( const ScreenManager& );
+    ScreenManager& operator = ( const ScreenManager& );
     
 private:
     sf::RenderWindow* m_RenderWindow = {nullptr};

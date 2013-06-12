@@ -26,7 +26,8 @@
 #include <iomanip>
 #include <cmath>
 
-
+namespace WhoreMasterRenewal
+{
 
 /*
  * Two types of transaction here: instant and delayed.
@@ -561,3 +562,5 @@ cGoldBase* cGold::find_brothel_account(int id)
     
     return ac_pt;
 }
+
+} // namespace WhoreMasterRenewal

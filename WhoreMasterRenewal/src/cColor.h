@@ -23,6 +23,10 @@
 #include <string>
 
 struct SDL_Color;
+
+namespace WhoreMasterRenewal
+{
+
 typedef uint8_t	Uint8; // Used by SDL
 
 class cColor
@@ -31,5 +35,7 @@ public:
 	static Uint8 convertFromHex( std::string hex );
 	static void HexToSDLColor( std::string HexColor, SDL_Color* SDLColor );
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CCOLOR_H_INCLUDED_1533

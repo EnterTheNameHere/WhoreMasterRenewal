@@ -34,6 +34,9 @@
 
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 bool cJobManager::WorkBrothelStripper(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
     std::string message = "";
@@ -85,3 +88,5 @@ bool cJobManager::WorkBrothelStripper(Girl* girl, sBrothel* brothel, int DayNigh
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

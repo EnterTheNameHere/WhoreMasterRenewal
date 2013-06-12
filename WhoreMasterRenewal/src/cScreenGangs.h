@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenGangs;
 extern cScreenGangs g_GangManagement;
 
@@ -76,5 +79,7 @@ public:
 	int multi_first();
 	int multi_next();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENGANGS_H_INCLUDED_1518

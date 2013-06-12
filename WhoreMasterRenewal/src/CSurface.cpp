@@ -24,6 +24,9 @@
 #include <SDL_image.h>
 #include <SDL_rotozoom.h>
 
+namespace WhoreMasterRenewal
+{
+
 CSurface::CSurface()
 {
 	m_Temp = nullptr;
@@ -405,3 +408,5 @@ void CSurface::MakeColoredSurface(int width, int height, int red, int green, int
 	m_Surface = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, BPP, 0,0,0,0);
 	SDL_FillRect(m_Surface,nullptr,SDL_MapRGB(m_Surface->format,red,green,blue));
 }
+
+} // namespace WhoreMasterRenewal

@@ -28,6 +28,9 @@
 #include "InterfaceGlobals.h"
 #include "DirPath.h"
 
+namespace WhoreMasterRenewal
+{
+
 static std::stringstream ss; /// @todo Get rid of this static variable
 static cTariff tariff;
 
@@ -291,3 +294,5 @@ void cScreenBuildingSetup::check_events()
 	if(g_InterfaceEvents.CheckCheckbox(nolesbian_id))
 		g_Brothels.GetBrothel(g_CurrBrothel)->m_RestrictLesbian = IsCheckboxOn(nolesbian_id);
 }
+
+} // namespace WhoreMasterRenewal

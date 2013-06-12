@@ -28,6 +28,9 @@
 class TiXmlElement;
 class TiXmlHandle;
 
+namespace WhoreMasterRenewal
+{
+
 class cPlayer
 {
 public:
@@ -71,5 +74,6 @@ private:
 	int m_CustomerFear;
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif	// CPLAYER_H_INCLUDED_1521

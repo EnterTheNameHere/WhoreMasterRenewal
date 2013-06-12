@@ -25,6 +25,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class cScrollBar;
 
 class cTextItem : public cInterfaceObject
@@ -71,5 +74,7 @@ public:
 	int m_ScrollChange;  // scrollbar changes will update this value; translates to skipped lines of text
 	cScrollBar* m_ScrollBar;  // pointer to the associated scrollbar, if any
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CTEXTITEM_H_INCLUDED_1510

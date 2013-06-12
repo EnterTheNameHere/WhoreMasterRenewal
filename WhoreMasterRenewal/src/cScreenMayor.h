@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenMayor;
 extern cScreenMayor g_MayorsOfficeScreen;
 
@@ -51,5 +54,7 @@ public:
 	void process();
 	void check_events();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENMAYOR_H_INCLUDED_1514

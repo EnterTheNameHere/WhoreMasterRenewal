@@ -22,6 +22,9 @@
 #include "cMessageBox.h"
 #include "cBrothel.h"
 
+namespace WhoreMasterRenewal
+{
+
 void cScriptUtils::add_girl_to_brothel(Girl *girl)
 {
 /*
@@ -70,3 +73,4 @@ void cScriptUtils::add_girl_to_brothel(Girl *girl)
 	g_Brothels.AddGirl(g_CurrBrothel, girl);
 }
 
+} // namespace WhoreMasterRenewal

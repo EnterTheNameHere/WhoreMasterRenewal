@@ -34,6 +34,9 @@
 
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 bool cJobManager::WorkSecurity(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
     std::string message = "";
@@ -195,3 +198,5 @@ bool cJobManager::WorkSecurity(Girl* girl, sBrothel* brothel, int DayNight, std:
 	g_Girls.PossiblyGainNewTrait(girl, "Aggressive", 60, ACTION_WORKSECURITY, "She is getting rather Aggressive from her enjoyment of combat.", DayNight != 0);
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

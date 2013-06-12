@@ -34,6 +34,9 @@
 
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 bool cJobManager::WorkMatron(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	cTariff tariff;
@@ -88,3 +91,5 @@ bool cJobManager::WorkMatron(Girl* girl, sBrothel* brothel, int DayNight, std::s
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

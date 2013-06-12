@@ -41,6 +41,9 @@
 #include <iostream>
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 typedef int (*lua_func)(lua_State *L);
 
 static const char *stats[] = {
@@ -1054,3 +1057,5 @@ cLuaScript::~cLuaScript()
 {
     ;
 }
+
+} // namespace WhoreMasterRenewal

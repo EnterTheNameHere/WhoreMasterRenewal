@@ -24,8 +24,12 @@
 
 #include <string>
 
-class cFont;
 class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
+class cFont;
 
 class cEditBox : public cInterfaceObject
 {
@@ -54,5 +58,7 @@ public:
 	
 	cEditBox* m_Next;	// next button on the window
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CEDITBOX_H_INCLUDED_1531

@@ -29,6 +29,9 @@
 #include <vector>
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class cScrollBar;
 
 class cListItem
@@ -167,5 +170,7 @@ public:
 
 	cListBox* m_Next;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CLISTBOX_H_INCLUDED_1524

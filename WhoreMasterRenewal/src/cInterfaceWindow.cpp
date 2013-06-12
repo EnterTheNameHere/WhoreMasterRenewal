@@ -40,6 +40,9 @@
 #include <cctype>
 #include <ctime>
 
+namespace WhoreMasterRenewal
+{
+
 typedef unsigned int u_int;
 
 cInterfaceWindow::cInterfaceWindow()
@@ -1018,7 +1021,6 @@ void cInterfaceWindowXML::define_widget(TiXmlElement *base_el)
 void cInterfaceWindowXML::place_widget(TiXmlElement *el, std::string /*suffix*/)
 {
 	int x, y;
-	std::stringstream ss;
     std::string seq, name;
 	bool cache;
 	XmlUtil xu(m_filename);
@@ -1621,3 +1623,5 @@ int cSelector::next()
 {
     return win.GetNextSelectedItemFromList( id, pos + 1, pos );
 }
+
+} // namespace WhoreMasterRenewal

@@ -1,6 +1,9 @@
 
 #include "cJobs.h"
 
+namespace WhoreMasterRenewal
+{
+
 sJobs::sJobs()
 {
     ;
@@ -35,3 +38,5 @@ void sJobs::setup( std::string name,
     m_GirlPay = girlpay;
     m_ActionID = id;
 }
+
+} // namespace WhoreMasterRenewal

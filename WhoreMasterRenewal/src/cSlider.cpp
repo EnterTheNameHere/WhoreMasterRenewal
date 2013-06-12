@@ -26,6 +26,9 @@
 
 #include <SDL_image.h>
 
+namespace WhoreMasterRenewal
+{
+
 //these static vars defined in the header file need to be specified here
 SDL_Surface* cSlider::m_ImgRailDefault = nullptr;
 SDL_Surface* cSlider::m_ImgRailDisabled = nullptr;
@@ -315,3 +318,5 @@ void cSlider::LogSliderError( std::string description )
     g_LogFile.ss() << description << " - " << SDL_GetError();
     g_LogFile.ssend();
 }
+
+} // namespace WhoreMasterRenewal

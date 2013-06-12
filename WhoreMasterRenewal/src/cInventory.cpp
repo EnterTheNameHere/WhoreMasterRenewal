@@ -31,6 +31,9 @@
 #include <iostream>
 #include <fstream>
 
+namespace WhoreMasterRenewal
+{
+
 cInventory::cInventory()
 {
     for( int i = 0; i < NUM_SHOPITEMS; ++i )
@@ -38,7 +41,7 @@ cInventory::cInventory()
         m_ShopItems[i] = nullptr;
     }
     m_NumShopItems = 0;
-}
+	}
 
 cInventory::~cInventory()
 {
@@ -602,7 +605,8 @@ sInventoryItem* cInventory::GetRandomItem()
 	//     << items.size()
 	//     << std::endl
 	//;
-	if(items.size() == 0) {
+	if( items.empty() )
+	{
 		//g_LogFile.os() << "	returning null" << std::endl;
 		return nullptr;
 	}
@@ -1431,3 +1435,5 @@ std::ostream& operator << (std::ostream& os, sInventoryItem &it)
     }
     return os;
 }
+
+} // namespace WhoreMasterRenewal

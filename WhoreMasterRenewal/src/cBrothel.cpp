@@ -32,8 +32,12 @@
 #include "cTariff.h"
 #include "InterfaceProcesses.h"
 #include "InterfaceGlobals.h"
+#include "Girl.hpp"
 
 #include <sstream>
+
+namespace WhoreMasterRenewal
+{
 
 // Prototypes
 Girl* girl_sort( Girl* girl, Girl** lastgirl );
@@ -1766,7 +1770,6 @@ void cBrothelManager::peace_breaks_out()
 void cBrothelManager::UpdateBrothels()
 {
     cTariff tariff;
-    std::stringstream ss;
     sBrothel* current = m_Parent;
     
     m_TortureDoneFlag = false;                          //WD: Reset flag each day is set in WorkTorture()
@@ -4155,7 +4158,6 @@ void cBrothelManager::updateGirlTurnBrothelStats( Girl* girl )
 //#define WDTEST // debuging
 #undef WDTEST
 
-    std::string msg;
     std::string girlName    = girl->m_Realname;
     int statHouse   = girl->house();
     int bonus       = ( 60 - statHouse ) / 30;
@@ -5673,3 +5675,5 @@ int cBrothelManager::casino_update( sBrothel* brothel )
 }
 
 #endif
+
+} // namespace WhoreMasterRenewal

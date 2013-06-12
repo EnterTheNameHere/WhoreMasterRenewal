@@ -23,6 +23,9 @@
 #include "CLog.h"
 #include "cRng.h"
 
+namespace WhoreMasterRenewal
+{
+
 cTariff::cTariff()
 {
     
@@ -324,3 +327,5 @@ int cTariff::goon_mission_cost( int mission )
 	g_LogFile.ssend();
 	return int( factor * 60 );
 }
+
+} // namespace WhoreMasterRenewal

@@ -30,6 +30,9 @@
 #include "InterfaceProcesses.h"
 #include "CLog.h"
 
+namespace WhoreMasterRenewal
+{
+
 cBuildingManagement::cBuildingManagement()
 {
     DirPath dp = DirPath()
@@ -667,3 +670,4 @@ void cBuildingManagement::stealth_down(int facility_idx)
 	sfac->stealth_down();
 }
 
+} // namespace WhoreMasterRenewal

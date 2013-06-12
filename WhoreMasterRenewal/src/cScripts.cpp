@@ -24,6 +24,9 @@
 #include <cstring>
 #include <cstdlib>
 
+namespace WhoreMasterRenewal
+{
+
 sEntry::sEntry()
 {
     m_Type = _NONE;
@@ -294,7 +297,7 @@ long cActionTemplate::GetNumEntries( long ActionNum )
     {
         if( current->m_ID == ActionNum )
             break;
-            
+        
         current = current->m_Next;
     }
     
@@ -608,3 +611,5 @@ cScript::~cScript()
     
     m_ScriptParent = nullptr;
 }
+
+} // namespace WhoreMasterRenewal

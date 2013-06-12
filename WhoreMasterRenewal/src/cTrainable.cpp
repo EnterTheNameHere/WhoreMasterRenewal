@@ -27,6 +27,9 @@
 
 #include <cmath>
 
+namespace WhoreMasterRenewal
+{
+
 cTrainable::cTrainable()
 {
 }
@@ -250,3 +253,4 @@ std::vector<int> IdealGirl::training_indices()
 	return indices;
 }
 
+} // namespace WhoreMasterRenewal

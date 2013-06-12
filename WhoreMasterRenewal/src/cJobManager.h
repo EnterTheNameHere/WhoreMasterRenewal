@@ -25,6 +25,9 @@
 #include <string>
 #include <vector>
 
+namespace WhoreMasterRenewal
+{
+
 class Girl;
 struct sBrothel;
 struct sGang;
@@ -129,5 +132,7 @@ private:
     // bah 2d array time for speed
     std::vector< std::vector<u_int> > job_groups;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CJOBMANAGER_H_INCLUDED_1525

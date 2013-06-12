@@ -22,6 +22,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 enum Types { _NONE = 0, _TEXT, _BOOL, _INT, _FLOAT, _CHOICE };
 //typedef unsigned char bool;
 //const unsigned int true = 1;
@@ -171,5 +174,7 @@ public:
 sScript* LoadScriptFile(std::string Filename);
 bool SaveScriptFile(const char* Filename, sScript* ScriptRoot);
 void TraverseScript(sScript* pScript);
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCRIPTS_H_INCLUDED_1512

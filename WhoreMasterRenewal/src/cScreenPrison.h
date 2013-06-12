@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenPrison;
 extern cScreenPrison g_PrisonScreen;
 
@@ -62,5 +65,7 @@ public:
 	bool check_keys();
 
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENPRISON_H_INCLUDED_1514

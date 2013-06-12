@@ -25,6 +25,9 @@
 #include <queue>
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class cLuaScript;
 class ScriptPath;
 class Girl;
@@ -63,5 +66,7 @@ public:
 private:
     static cScriptManagerInner* instance;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCRIPTMANAGER_H_INCLUDED_1513

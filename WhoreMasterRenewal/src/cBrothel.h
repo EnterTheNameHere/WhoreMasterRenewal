@@ -33,6 +33,12 @@
 #include <sstream>
 #include <fstream>
 
+class TiXmlElement;
+class TiXmlHandle;
+
+namespace WhoreMasterRenewal
+{
+
 class cBrothelManager;
 extern cBrothelManager g_Brothels;
 extern int g_CurrBrothel;
@@ -41,8 +47,6 @@ class cBuilding;
 class cGirls;
 class cCustomers;
 class cEvents;
-class TiXmlElement;
-class TiXmlHandle;
 struct sInventoryItem;
 class Girl;
 
@@ -325,5 +329,6 @@ private:
 	void AddBrothel(sBrothel* newBroth);
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif  // CBROTHEL_H_INCLUDED_1533

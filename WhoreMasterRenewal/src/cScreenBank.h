@@ -22,6 +22,9 @@
 
 #include "cInterfaceWindow.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class cScreenBank;
 extern cScreenBank g_BankScreen;
 
@@ -54,5 +57,7 @@ public:
 	void process();
 	void check_events();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENBANK_H_INCLUDED_1519

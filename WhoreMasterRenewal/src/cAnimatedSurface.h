@@ -25,6 +25,9 @@
 #include <string>
 #include <memory>
 
+namespace WhoreMasterRenewal
+{
+
 class CSurface;
 
 // Class to hold the data for a single animation within an image
@@ -78,5 +81,7 @@ private:
 	cAnimatedSurface* m_Animations;
 	std::shared_ptr<CSurface> m_Image;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CANIMATEDSURFACE_H_INCLUDED_1533

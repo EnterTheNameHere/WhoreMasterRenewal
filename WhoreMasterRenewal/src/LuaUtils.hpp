@@ -7,6 +7,9 @@
 #include <iomanip>
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 /*
 lua_State* luaL_newstate( void );
 void lua_close (lua_State *L);
@@ -334,7 +337,6 @@ public:
 private:
     lua_State* m_luaState = {nullptr};
 };
-
 
 } // namespace WhoreMasterRenewal
 

@@ -20,7 +20,12 @@
 #define MAIN_H_INCLUDED_1502
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 int main_old( int, char* [] );
 void handle_hotkeys();
+
+} // namespace WhoreMasterRenewal
 
 #endif // MAIN_H_INCLUDED_1502

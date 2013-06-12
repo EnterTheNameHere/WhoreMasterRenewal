@@ -25,6 +25,9 @@
 #include <string>
 #include <vector>
 
+namespace WhoreMasterRenewal
+{
+
 /*
  * Just a container class to hold the path, filename
  * and full path of a file.
@@ -123,5 +126,7 @@ public:
     int size();
     void scan( const char* );
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // FILELIST_H_INCLUDED_1507

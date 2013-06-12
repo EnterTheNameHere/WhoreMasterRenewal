@@ -25,6 +25,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class cTraits;
 extern cTraits g_Traits;
 
@@ -63,5 +66,7 @@ private:
 	sTrait* m_ParentTrait;				// the first trait in the list
 	sTrait* m_LastTrait;				// the last trait in the list
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CTRAITS_H_INCLUDED_1509

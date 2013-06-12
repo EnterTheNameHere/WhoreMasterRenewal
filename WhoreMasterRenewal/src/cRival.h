@@ -27,6 +27,9 @@
 class TiXmlElement;
 class TiXmlHandle;
 
+namespace WhoreMasterRenewal
+{
+
 class cRival
 {
 public:
@@ -100,5 +103,7 @@ private:
     
     cDoubleNameList names;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CRIVAL_H_INCLUDED_1520

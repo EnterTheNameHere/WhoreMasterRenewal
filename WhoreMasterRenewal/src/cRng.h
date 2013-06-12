@@ -23,6 +23,9 @@
 #define CRNG_H_INCLUDED_1519
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 class cRng;
 extern cRng g_Dice;
 
@@ -74,5 +77,7 @@ public:
  */
 	int d100();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CRNG_H_INCLUDED_1519

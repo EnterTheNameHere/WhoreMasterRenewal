@@ -23,6 +23,9 @@
 #include <vector>
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class cNameList
 {
 public:
@@ -48,5 +51,7 @@ private:
     cNameList m_first;
     cNameList m_last;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CNAMELIST_H_INCLUDED_1522

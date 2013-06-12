@@ -20,6 +20,9 @@
 #define CINTERFACEEVENT_H_INCLUDED_1526
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 class cInterfaceEventManager;
 extern cInterfaceEventManager g_InterfaceEvents;
 
@@ -63,5 +66,7 @@ private:
 	int m_NumEvents;
 	cInterfaceEvent* m_Events;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CINTERFACEEVENT_H_INCLUDED_1526

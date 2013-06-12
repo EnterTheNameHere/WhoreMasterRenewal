@@ -28,6 +28,9 @@
 #include "CLog.h"
 #include "DirPath.h"
 
+namespace WhoreMasterRenewal
+{
+
 static std::string fmt_objective(std::stringstream &ss, std::string desc, int limit, int sofar=-1)
 {
 	ss << desc;
@@ -194,3 +197,5 @@ void cScreenHouse::check_events()
 	}
 
 }
+
+} // namespace WhoreMasterRenewal

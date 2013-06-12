@@ -24,11 +24,15 @@
 
 #include <string>
 
+class SDL_Surface;
+class SDL_Rect;
+
+namespace WhoreMasterRenewal
+{
+
 class cScrollBar;
 extern cScrollBar* g_DragScrollBar;
 
-class SDL_Surface;
-class SDL_Rect;
 typedef uint8_t	Uint8; // Used by SDL
 
 class cScrollBar : public cInterfaceObject
@@ -105,5 +109,6 @@ public:
 	int* ParentPosition;  // pointer to callback value of parent with updated position
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif // CSCROLLBAR_H_INCLUDED_1512

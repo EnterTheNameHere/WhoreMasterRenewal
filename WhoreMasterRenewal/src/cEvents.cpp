@@ -24,6 +24,9 @@
 #include <iostream>
 #include <iterator>
 
+namespace WhoreMasterRenewal
+{
+
 std::string CEvent::TitleText()
 {
 
@@ -302,5 +305,4 @@ void cEvents::DoSort()
 	}
 }
 
-
-
+} // namespace WhoreMasterRenewal

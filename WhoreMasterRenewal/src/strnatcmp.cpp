@@ -60,6 +60,9 @@
 #include <cassert>
 #include <cstdio>
 
+namespace WhoreMasterRenewal
+{
+
 /* These are defined as macros to make it easier to adapt this code to
  * different characters types or comparison functions. */
 static inline int
@@ -198,3 +201,5 @@ int strnatcmp(nat_char const *a, nat_char const *b) {
 int strnatcasecmp(nat_char const *a, nat_char const *b) {
      return strnatcmp0(a, b, 1);
 }
+
+} // namespace WhoreMasterRenewal

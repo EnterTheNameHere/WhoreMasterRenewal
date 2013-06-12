@@ -28,6 +28,9 @@
 #include "CLog.h"
 #include "InterfaceProcesses.h"
 
+namespace WhoreMasterRenewal
+{
+
 /*
  * ideally, we'd keep a queue of message strings and 
  * pop them out in order at the end
@@ -403,7 +406,6 @@ bool cGirlTorture::IsGirlInjured(unsigned int unModifier)
  *		Now check for injury first
  *		Use usigned int so can't pass negative chance
  */
-    std::string sMsg;
     std::string sGirlName	= m_Girl->m_Realname;
 	int		nMod		= static_cast<int>(unModifier); 
 
@@ -632,3 +634,4 @@ inline void cGirlTorture::MakeEvent(std::string sMsg)
 	m_Torturer->m_Events.AddMessage( sMsg, IMGTYPE_PROFILE, EVENT_DUNGEON);
 }
 
+} // namespace WhoreMasterRenewal

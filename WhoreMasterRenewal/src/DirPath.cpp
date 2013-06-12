@@ -20,6 +20,8 @@
 #include "DirPath.h"
 #include "sConfig.h"
 
+namespace WhoreMasterRenewal
+{
 
 /*
  * kind of trivial...
@@ -170,3 +172,4 @@ ScriptPath::ScriptPath( std::string filename )
     ( *this ) << "Resources" << "Scripts" << filename;
 }
 
+} // namespace WhoreMasterRenewal

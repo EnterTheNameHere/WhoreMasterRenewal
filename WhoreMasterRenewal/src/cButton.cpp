@@ -24,6 +24,9 @@
 
 #include <SDL.h>
 
+namespace WhoreMasterRenewal
+{
+
 cButton::cButton()
 {
     m_CurrImage = nullptr;
@@ -155,3 +158,5 @@ void cButton::Draw()
 		m_CurrImage->DrawSurface(m_XPos,m_YPos, nullptr, &rect, true);
 	}
 }
+
+} // namespace WhoreMasterRenewal

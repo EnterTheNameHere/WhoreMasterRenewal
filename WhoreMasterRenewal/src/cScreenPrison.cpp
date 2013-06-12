@@ -31,6 +31,9 @@
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
 
+namespace WhoreMasterRenewal
+{
+
 cScreenPrison::cScreenPrison()
 {
     DirPath dp = DirPath()
@@ -49,8 +52,6 @@ cScreenPrison::~cScreenPrison()
 
 void cScreenPrison::init()
 {
-	std::stringstream ss;
-
 	if(!g_InitWin) {
 		return;
 	}
@@ -94,8 +95,6 @@ bool cScreenPrison::ids_set = false;
 
 void cScreenPrison::set_ids()
 {
-	std::stringstream ss;
-
 	ids_set		= true;
 	header_id	= get_id("ScreenHeader");
 	back_id		= get_id("BackButton");
@@ -278,3 +277,5 @@ void cScreenPrison::release_button()
 		g_Brothels.AddGirl(g_CurrBrothel, pgirls);
 	}
 }
+
+} // namespace WhoreMasterRenewal

@@ -23,6 +23,9 @@
 
 #include "CRenderQue.h" // required inheritance
 
+namespace WhoreMasterRenewal
+{
+
 class CGameObject : public CRenderObject
 {
 public:
@@ -43,5 +46,7 @@ protected:
 	int m_State;
 	bool m_Alive;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CGAMEOBJECT_H_INCLUDED_1530

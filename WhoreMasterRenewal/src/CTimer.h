@@ -20,6 +20,9 @@
 #define CTIMER_H_INCLUDED_1510
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 // Frame Rate for games
 const int FRAMES_PER_SECOND = 25;
 
@@ -42,5 +45,7 @@ private:
 	bool m_Paused;
 	bool m_Started;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CTIMER_H_INCLUDED_1510

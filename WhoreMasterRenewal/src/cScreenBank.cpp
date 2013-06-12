@@ -28,6 +28,9 @@
 #include "cInterfaceEvent.h"
 #include "DirPath.h"
 
+namespace WhoreMasterRenewal
+{
+
 bool cScreenBank::ids_set = false;
 
 cScreenBank::cScreenBank()
@@ -174,3 +177,5 @@ void cScreenBank::check_events()
 	}
 
 }
+
+} // namespace WhoreMasterRenewal

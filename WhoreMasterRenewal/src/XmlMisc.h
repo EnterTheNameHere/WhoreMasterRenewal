@@ -27,6 +27,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 struct sTrait;
 struct sInventoryItem;
 
@@ -95,5 +98,7 @@ bool LoadInventoryXML(TiXmlHandle hInventory,
 					  int& numItems,
 					  unsigned char isEquipped[] = nullptr,
 					  unsigned char quantities[] = nullptr );
+
+} // namespace WhoreMasterRenewal
 
 #endif // XMLMISC_H_INCLUDED_1534

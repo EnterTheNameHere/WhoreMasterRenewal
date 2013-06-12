@@ -34,6 +34,9 @@
 
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 bool cJobManager::WorkTorturer(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	if(DayNight == SHIFT_NIGHT)  // Do this only once a day
@@ -95,3 +98,5 @@ bool cJobManager::WorkTorturer(Girl* girl, sBrothel* brothel, int DayNight, std:
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

@@ -25,9 +25,13 @@
 #include <string>
 #include <memory>
 
+struct SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
 class CSurface;
 class cAnimatedSurface;
-struct SDL_Surface;
 
 class cImageItem : public cInterfaceObject
 {
@@ -51,5 +55,7 @@ public:
 	void unhide()	{ m_Hidden = false; }
 	void toggle()	{ m_Hidden = !m_Hidden; }
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CIMAGEITEM_H_INCLUDED_1527

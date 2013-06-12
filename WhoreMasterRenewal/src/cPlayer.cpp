@@ -22,6 +22,8 @@
 
 #include <cmath>
 
+namespace WhoreMasterRenewal
+{
 
 cPlayer::cPlayer()			// constructor
 {
@@ -176,3 +178,5 @@ int cPlayer::customerfear(int n)
 	m_CustomerFear = Limit100(m_CustomerFear + n);
 	return m_CustomerFear;
 }
+
+} // namespace WhoreMasterRenewal

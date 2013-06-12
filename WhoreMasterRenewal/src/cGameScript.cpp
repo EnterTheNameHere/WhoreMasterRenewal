@@ -36,6 +36,9 @@
 
 #include <cstring>
 
+namespace WhoreMasterRenewal
+{
+
 cGameScript::cGameScript()
 {
     // Clear all internal flags to false
@@ -1809,8 +1812,4 @@ sScript* cGameScript::Script_IfNotDisobey( sScript* Script )
     return nullptr; // End of script reached
 }
 
-
-/*
-
-
- */
+} // namespace WhoreMasterRenewal

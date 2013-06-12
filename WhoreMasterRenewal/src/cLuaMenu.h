@@ -23,8 +23,12 @@
 #include <string>
 #include <vector>
 
+namespace WhoreMasterRenewal
+{
+
 typedef std::vector<std::string*> str_vec;
 
+// TODO: Add constructor
 class cLuaMenuInner
 {	
 public:
@@ -74,5 +78,7 @@ public:
 private:
     static cLuaMenuInner* instance;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CLUAMENU_H_INCLUDED_1523

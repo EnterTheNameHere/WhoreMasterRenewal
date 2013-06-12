@@ -23,12 +23,16 @@
 #include <string>
 #include <memory>
 
+class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
 class cChoiceManager;
 extern cChoiceManager g_ChoiceManager;
 
 class cFont;
 class cChoice;
-class SDL_Surface;
 class CSurface;
 
 typedef void (*menu_callback_type)(int);
@@ -102,5 +106,7 @@ private:
 	std::shared_ptr<CSurface> m_CurrUp;
 	std::shared_ptr<CSurface> m_CurrDown;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CCHOICEMESSAGE_H_INCLUDED_1527

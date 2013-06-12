@@ -19,6 +19,9 @@
 
 #include "CRenderQue.h"
 
+namespace WhoreMasterRenewal
+{
+
 CRenderQue::CRenderQue()
 {
     m_Parent = nullptr;
@@ -65,3 +68,5 @@ void CRenderQue::AddObject( CRenderObject* object )
         m_Last = object;
     }
 }
+
+} // namespace WhoreMasterRenewal

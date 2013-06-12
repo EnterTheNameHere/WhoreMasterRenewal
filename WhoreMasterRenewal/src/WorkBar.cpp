@@ -34,6 +34,9 @@
 
 #include <sstream>
 
+namespace WhoreMasterRenewal
+{
+
 bool cJobManager::WorkBar(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	/* WD:	Added missing SEX_ACTION filter
@@ -181,3 +184,5 @@ bool cJobManager::WorkBar(Girl* girl, sBrothel* brothel, int DayNight, std::stri
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

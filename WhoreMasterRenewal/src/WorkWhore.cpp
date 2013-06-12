@@ -36,6 +36,9 @@
 #include <sstream>
 #include <algorithm>
 
+namespace WhoreMasterRenewal
+{
+
 bool cJobManager::WorkWhore(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
 {
 	// put that shit away, you'll scare off the customers!
@@ -590,3 +593,5 @@ bool cJobManager::WorkWhore(Girl* girl, sBrothel* brothel, int DayNight, std::st
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

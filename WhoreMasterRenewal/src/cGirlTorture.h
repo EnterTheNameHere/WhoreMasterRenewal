@@ -22,6 +22,9 @@
 
 #include <string>
 
+namespace WhoreMasterRenewal
+{
+
 class Girl;
 struct sDungeonGirl;
 class cPlayer;
@@ -55,5 +58,7 @@ private:
 	void MakeEvent( std::string sMsg );
 	void DoTorture();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CGIRLTORTURE_H_INCLUDED_1528

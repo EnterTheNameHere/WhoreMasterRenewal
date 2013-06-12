@@ -21,6 +21,9 @@
 #include "CLog.h"
 #include "CSurface.h"
 
+namespace WhoreMasterRenewal
+{
+
 cAnimatedSurface::cAnimatedSurface()
 {
     m_Surface = nullptr;
@@ -191,3 +194,5 @@ bool CAnimatedSprite::LoadAnimations(std::string imgFilename, std::string animat
 
 	return true;
 }
+
+} // namespace WhoreMasterRenewal
