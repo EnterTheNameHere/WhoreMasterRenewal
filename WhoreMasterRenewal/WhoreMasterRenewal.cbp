@@ -14,21 +14,22 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-g" />
-					<Add option="-pedantic" />
-					<Add option="-Wall" />
-					<Add option="-Wextra" />
-					<Add option="-Wno-unknown-pragmas" />
 					<Add option="-Winit-self" />
 					<Add option="-Wredundant-decls" />
 					<Add option="-Wcast-align" />
 					<Add option="-Wundef" />
+					<Add option="-Wfloat-equal" />
 					<Add option="-Winline" />
 					<Add option="-Wunreachable-code" />
 					<Add option="-Wmissing-declarations" />
 					<Add option="-Wmissing-include-dirs" />
 					<Add option="-Wswitch-default" />
 					<Add option="-Wmain" />
+					<Add option="-pedantic" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-Wno-unknown-pragmas" />
 					<Add option="-Wformat=2" />
 					<Add option="-Wunused-local-typedefs" />
 					<Add option="-Wuninitialized" />
@@ -225,7 +226,6 @@
 		<Unit filename="Resources/Scripts/TestScript.lua" />
 		<Unit filename="src/Attribute.cpp" />
 		<Unit filename="src/Attribute.hpp" />
-		<Unit filename="src/CGameObject.cpp" />
 		<Unit filename="src/CGameObject.h" />
 		<Unit filename="src/CGraphics.cpp" />
 		<Unit filename="src/CGraphics.h" />
@@ -244,7 +244,6 @@
 		<Unit filename="src/DirPath.h" />
 		<Unit filename="src/FileList.cpp" />
 		<Unit filename="src/FileList.h" />
-		<Unit filename="src/GameFlags.cpp" />
 		<Unit filename="src/GameFlags.h" />
 		<Unit filename="src/Girl.cpp" />
 		<Unit filename="src/Girl.hpp" />
@@ -259,6 +258,7 @@
 		<Unit filename="src/Logger.cpp" />
 		<Unit filename="src/Logger.hpp" />
 		<Unit filename="src/LuaUtils.hpp" />
+		<Unit filename="src/Managers.hpp" />
 		<Unit filename="src/MasterFile.cpp" />
 		<Unit filename="src/MasterFile.h" />
 		<Unit filename="src/WindowManager.cpp" />
