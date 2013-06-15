@@ -24,7 +24,10 @@ Attribute::Attribute( const Attribute& other )
 Attribute& Attribute::operator=(const Attribute& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
-    //assignment operator
+    
+    this->m_Name = rhs.m_Name;
+    this->m_Type = rhs.m_Type;
+    
     return *this;
 }
 

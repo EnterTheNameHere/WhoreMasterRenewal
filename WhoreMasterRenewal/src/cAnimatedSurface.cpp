@@ -25,9 +25,21 @@ namespace WhoreMasterRenewal
 {
 
 cAnimatedSurface::cAnimatedSurface()
+    : m_FrameDone(false),
+    m_PlayOnce(0),
+    m_CurrentFrame(0),
+    m_CurrentRow(0),
+    m_CurrentColumn(0),
+    m_Speed(0),
+    m_NumFrames(0),
+    m_LastTime(0),
+    m_Rows(0),
+    m_Colums(0),
+    m_Surface(nullptr),
+    m_SpriteSurface(nullptr),
+    m_Frames()
 {
-    m_Surface = nullptr;
-    m_SpriteSurface = nullptr;
+    ;
 }
 cAnimatedSurface::~cAnimatedSurface()
 {
@@ -130,10 +142,11 @@ void cAnimatedSurface::SetData(int xPos, int yPos, int numFrames, int speed, int
 }
 
 CAnimatedSprite::CAnimatedSprite()
+    : m_CurrAnimation(0),
+    m_Animations(nullptr),
+    m_Image(nullptr)
 {
-    m_Animations = nullptr;
-    m_Image = nullptr;
-    m_CurrAnimation = 0;
+    ;
 }
 
 CAnimatedSprite::~CAnimatedSprite()
