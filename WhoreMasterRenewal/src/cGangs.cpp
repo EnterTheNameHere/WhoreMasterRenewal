@@ -45,15 +45,25 @@ static cRivalManager* m_Rivals = g_Brothels.GetRivalManager();
 static cDungeon* m_Dungeon = g_Brothels.GetDungeon();
 
 sGang::sGang()
+    : m_Num(0),
+	m_MissionID(MISS_GUARDING),
+	m_LastMissID(-1),
+	m_AutoRecruit(false),
+    m_Name("Unnamed"),
+	m_Combat(false),
+    m_Events(),
+	m_Next(nullptr),
+	m_Prev(nullptr)
 {
-    m_Name = "Unnamed";
-    m_Num = 0;
-    m_Prev = nullptr;
-    m_Next = nullptr;
-    m_MissionID = MISS_GUARDING;
-    m_Combat = false;
-    m_LastMissID = -1;
-    m_AutoRecruit = false;
+    for( auto& value : m_Skills )
+    {
+        value = 0;
+    }
+    
+    for( auto& value : m_Stats )
+    {
+        value = 0;
+    }
 }
 
 sGang::~sGang()
@@ -65,31 +75,56 @@ sGang::~sGang()
     m_Next = nullptr;
 }
 
-
+sGang& sGang::operator = ( const sGang& rhs )
+{
+    if( this != &rhs )
+    {
+        m_Num = rhs.m_Num;
+        m_MissionID = rhs.m_MissionID;
+        m_LastMissID = rhs.m_LastMissID;
+        m_AutoRecruit = rhs.m_AutoRecruit;
+        m_Name = rhs.m_Name;
+        m_Combat = rhs.m_Combat;
+        m_Events = rhs.m_Events;
+        
+        m_Next = rhs.m_Next;
+        m_Prev = rhs.m_Prev;
+        
+        for( unsigned int i = 0; i < NUM_SKILLS; ++i )
+        {
+            m_Skills[i] = rhs.m_Skills[i];
+        }
+        
+        for( auto i = 0; i < NUM_STATS; ++i )
+        {
+            m_Stats[i] = rhs.m_Stats[i];
+        }
+    }
+    
+    return *this;
+}
 
 cGangManager::cGangManager()
+    : m_BusinessesExtort(0),
+	m_NumGangNames(0),
+    m_NumGangs(0),
+	m_GangStart(nullptr),
+	m_GangEnd(nullptr),
+	m_NumHireableGangs(0),
+	m_HireableGangStart(nullptr),
+	m_HireableGangEnd(nullptr),
+	m_KeepHealStocked(false),
+	m_NumHealingPotions(0),
+	m_SwordLevel(0),
+	m_KeepNetsStocked(false),
+	m_NumNets(0)
 {
-    m_NumGangNames = 0;
     std::ifstream in;
     // WD: Typecast to resolve ambiguous call in VS 2010
-    DirPath dp = DirPath() <<   "Resources" << "Data" << "HiredGangNames.txt";
+    DirPath dp = DirPath() << "Resources" << "Data" << "HiredGangNames.txt";
     in.open( dp.c_str() );
-    //in.open(DirPath() << "Resources" << "Data" << "HiredGangNames.txt");
     in >> m_NumGangNames;
     in.close();
-    
-    m_NumGangs = 0;
-    m_GangStart = nullptr;
-    m_GangEnd = nullptr;
-    
-    m_NumHireableGangs = 0;
-    m_HireableGangStart = nullptr;
-    m_HireableGangEnd = nullptr;
-    
-    m_BusinessesExtort = 0;
-    
-    m_NumHealingPotions = m_NumNets = m_SwordLevel = 0;
-    m_KeepHealStocked = m_KeepNetsStocked = false;
 }
 
 cGangManager::~cGangManager()
@@ -99,30 +134,26 @@ cGangManager::~cGangManager()
 
 void cGangManager::Free()
 {
-
-//  if(m_GoonMissions)
-//      delete m_GoonMissions;
-//  m_GoonMissions = 0;
-//  m_LastGoonMission = 0;
-
     if( m_GangStart )
         delete m_GangStart;
-        
+    
     m_NumGangs = 0;
     m_GangStart = nullptr;
     m_GangEnd = nullptr;
     
     if( m_HireableGangStart )
         delete m_HireableGangStart;
-        
+    
     m_NumHireableGangs = 0;
     m_HireableGangStart = nullptr;
     m_HireableGangEnd = nullptr;
     
     m_BusinessesExtort = 0;
-    
-    m_NumHealingPotions = m_SwordLevel = m_NumNets = 0;
-    m_KeepHealStocked = m_KeepNetsStocked = false;
+    m_NumHealingPotions = 0;
+    m_SwordLevel = 0;
+    m_NumNets = 0;
+    m_KeepHealStocked = false;
+    m_KeepNetsStocked = false;
 }
 
 void cGangManager::LoadGangsLegacy( std::ifstream& ifs )

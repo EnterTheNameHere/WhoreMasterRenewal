@@ -44,9 +44,12 @@ public:
     sGang();
 	~sGang();
     
-    int magic()		{ return m_Skills[SKILL_MAGIC]; }
-	int combat()		{ return m_Skills[SKILL_COMBAT]; }
-	int intelligence()	{ return m_Stats[STAT_INTELLIGENCE]; }
+    sGang( const sGang& ) = delete;
+	sGang& operator = ( const sGang& rhs );
+    
+    int magic() { return m_Skills[SKILL_MAGIC]; }
+	int combat() { return m_Skills[SKILL_COMBAT]; }
+	int intelligence() { return m_Stats[STAT_INTELLIGENCE]; }
     
     TiXmlElement* SaveGangXML(TiXmlElement* pRoot);
 	bool LoadGangXML(TiXmlHandle hGang);
@@ -75,7 +78,10 @@ class cGangManager
 public:
 	cGangManager();
 	~cGangManager();
-
+    
+    cGangManager( const cGangManager& ) = delete;
+	cGangManager& operator = ( const cGangManager& ) = delete;
+    
 	void Free();
 
 	void AddNewGang(bool boosted = false);	// Adds a new randomly generated gang to the recruitable list
