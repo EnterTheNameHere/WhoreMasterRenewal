@@ -415,7 +415,7 @@ void cBuildingManagement::process()
  *	get a pointer to the current brothel
  */
 	brothel = g_Brothels.GetBrothel(g_CurrBrothel);
-	building = &brothel->building;
+	building = &brothel->m_Building;
 
 	init();
 /*

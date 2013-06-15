@@ -43,44 +43,42 @@ namespace WhoreMasterRenewal
 Girl* girl_sort( Girl* girl, Girl** lastgirl );
 int sGirlcmp( Girl* a, Girl* b );
 
-// // ----- Strut sBrothel Create / destroy
-sBrothel::sBrothel()    :   m_Finance( 0 )  // constructor
+sBrothel::sBrothel()
+    : m_id(0),
+    m_Name(""),
+    m_Happiness(0),
+    m_TotalCustomers(0),
+    m_MiscCustomers(0),
+    m_Fame(0),
+    m_NumRooms(0),
+    m_Bar(0),
+    m_GamblingHall(0),
+    m_NumGirls(0),
+    m_AdvertisingBudget(0),
+    m_AdvertisingLevel(0),
+    m_Building(),
+    m_Finance(),
+    m_HasGambStaff(0),
+    m_HasBarStaff(0),
+    m_RestrictAnal(false),
+    m_RestrictBDSM(false),
+    m_RestrictBeast(false),
+    m_RestrictGroup(false),
+    m_RestrictNormal(false),
+    m_RestrictLesbian(false),
+    m_Filthiness(0),
+    m_Events(),
+    m_Girls(nullptr),
+    m_LastGirl(nullptr),
+    m_Next(nullptr),
+    m_SecurityLevel(0)
 {
-    m_MiscCustomers         = 0;
-    m_TotalCustomers        = 0;
-    m_Filthiness            = 0;
-    m_NumMovies             = 0;
-    m_MovieRunTime          = 0;
-    m_HasGambStaff          = 0;
-    m_HasBarStaff           = 0;
-    m_AdvertisingBudget     = 0;
-    m_Next                  = nullptr;
-    m_Girls                 = nullptr;
-    m_LastGirl              = nullptr;
-    m_Fame                  = 0;
-    m_Happiness             = 0;
-    // end mod
-    m_NumGirls              = 0;
-    m_ShowTime              = 0;
-    m_ShowQuality           = 0;
-    m_SecurityLevel         = 0;
-    m_RestrictAnal          = false;
-    m_RestrictBDSM          = false;
-    m_RestrictBeast         = false;
-    m_RestrictGroup         = false;
-    m_RestrictNormal        = false;
-    m_RestrictLesbian       = false;
-    
-    for( u_int i = 0; i < NUMJOBTYPES; i++ )
+    for( unsigned int i = 0; i < NUMJOBTYPES; i++ )
         m_BuildingQuality[i] = 0;
 }
 
-sBrothel::~sBrothel()           // destructor
+sBrothel::~sBrothel()
 {
-    m_ShowTime              = 0;
-    m_ShowQuality           = 0;
-    m_NumMovies             = 0;
-        
     if( m_Next )
         delete m_Next;
         
@@ -136,46 +134,41 @@ bool sBrothel::has_matron()
 
 
 
-// ----- Class cBrothelManager Create / destroy
-cBrothelManager::cBrothelManager()          // constructor
+cBrothelManager::cBrothelManager()
+    : m_NumInventory(0),
+    m_JobManager(),
+    m_Player(),
+    m_Dungeon(),
+    m_NumBrothels(0),
+    m_Parent(nullptr),
+    m_Last(nullptr),
+    m_KeepPotionsStocked(false),
+    m_AntiPregPotions(0),
+    m_SupplyShedLevel(1),
+    m_HandmadeGoods(0),
+    m_Beasts(0),
+    m_AlchemyIngredients(0),
+    m_NumPrison(0),
+    m_Prison(nullptr),
+    m_LastPrison(nullptr),
+    m_NumRunaways(0),
+    m_Runaways(nullptr),
+    m_LastRunaway(nullptr),
+    m_BribeRate(0),
+    m_Influence(0),
+    m_Dummy(0),
+    m_Bank(0),
+    m_Objective(nullptr),
+    m_Rivals(),
+    m_TortureDoneFlag(false),
+    m_Processing_Shift(-1)
 {
-    cConfig cfg;
-    m_NumInventory      = 0;
-    
     for( int i = 0; i < MAXNUM_INVENTORY; i++ )
     {
         m_Inventory[i]  = nullptr;
         m_EquipedItems[i] = 0;
         m_NumItem[i]    = 0;
     }
-    
-    m_Parent            = nullptr;
-    m_Last              = nullptr;
-    m_NumBrothels       = 0;
-    m_AntiPregPotions   = 0;
-    m_SupplyShedLevel   = 1;
-    m_BribeRate         = 0;
-    m_Influence         = 0;
-    m_Bank              = 0;
-    
-    m_Objective         = nullptr;
-    
-    m_Prison            = nullptr;
-    m_NumPrison         = 0;
-    m_LastPrison        = nullptr;
-    
-    m_NumRunaways       = 0;
-    m_Runaways          = nullptr;
-    m_LastRunaway       = nullptr;
-    
-    m_HandmadeGoods     = 0;
-    m_Beasts            = 0;
-    m_AlchemyIngredients = 0;
-    m_KeepPotionsStocked = false;
-    
-    m_TortureDoneFlag   = false;
-    m_Processing_Shift  = -1;
-    
     m_JobManager.Setup();
 }
 
@@ -823,13 +816,13 @@ void cBrothelManager::LoadDataLegacy( std::ifstream& ifs )
         ifs >> current->m_id;
         ifs >> temp;
         current->m_HasGambStaff = temp;
-        ifs >> current->m_MovieRunTime;
+        ifs >> temp; // m_MovieRunTime - we don't support movies
         ifs >> temp;
         current->m_NumGirls = temp;
         ifs >> temp;
         current->m_NumRooms = temp;
-        ifs >> current->m_ShowQuality;
-        ifs >> current->m_ShowTime;
+        ifs >> temp; // m_ShowQuality - we don't support movies
+        ifs >> temp; // m_ShowTime - we don't support movies
 //      ifs>>current->m_Upkeep;
         ifs >> current->m_Filthiness;
         ifs >> current->m_SecurityLevel;
@@ -1083,12 +1076,9 @@ bool sBrothel::LoadBrothelXML( TiXmlHandle hBrothel )
     pBrothel->QueryIntAttribute( "HasGambStaff", &tempInt );
     m_HasGambStaff = tempInt;
     tempInt = 0;
-    pBrothel->QueryIntAttribute( "MovieRunTime", &m_MovieRunTime );
     pBrothel->QueryIntAttribute( "NumRooms", &tempInt );
     m_NumRooms = tempInt;
     tempInt = 0;
-    pBrothel->QueryIntAttribute( "ShowQuality", &m_ShowQuality );
-    pBrothel->QueryIntAttribute( "ShowTime", &m_ShowTime );
     pBrothel->QueryIntAttribute( "Filthiness", &m_Filthiness );
     pBrothel->QueryIntAttribute( "SecurityLevel", &m_SecurityLevel );
     
@@ -1267,10 +1257,7 @@ TiXmlElement* sBrothel::SaveBrothelXML( TiXmlElement* pRoot )
     pBrothel->SetAttribute( "HasBarStaff", m_HasBarStaff );
     pBrothel->SetAttribute( "id", m_id );
     pBrothel->SetAttribute( "HasGambStaff", m_HasGambStaff );
-    pBrothel->SetAttribute( "MovieRunTime", m_MovieRunTime );
     pBrothel->SetAttribute( "NumRooms", m_NumRooms );
-    pBrothel->SetAttribute( "ShowQuality", m_ShowQuality );
-    pBrothel->SetAttribute( "ShowTime", m_ShowTime );
     pBrothel->SetAttribute( "Filthiness", m_Filthiness );
     pBrothel->SetAttribute( "SecurityLevel", m_SecurityLevel );
     
