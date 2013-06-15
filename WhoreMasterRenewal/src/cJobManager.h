@@ -127,10 +127,6 @@ public:
     ~cJobManager();
     
     bool is_job_Paid_Player( u_int Job );                   //  WD: Test for all jobs paid by player
-    
-private:
-    // bah 2d array time for speed
-    std::vector< std::vector<u_int> > job_groups;
 };
 
 } // namespace WhoreMasterRenewal
