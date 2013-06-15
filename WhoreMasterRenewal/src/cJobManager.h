@@ -29,7 +29,7 @@ namespace WhoreMasterRenewal
 {
 
 class Girl;
-struct sBrothel;
+class Brothel;
 struct sGang;
 struct sCustomer;
 
@@ -40,7 +40,7 @@ public:
     //static std::vector<sJobBase *> job_list; - Changed until it is working - necro
     // using an array of function pointers
 //  WorkJobF JobFunctions[NUM_JOBS];
-    bool ( *JobFunctions[NUM_JOBS] )( Girl*, sBrothel*, int, std::string& );
+    bool ( *JobFunctions[NUM_JOBS] )( Girl*, Brothel*, int, std::string& );
     
     std::string JobName[NUM_JOBS];  // short descriptive name of job
     std::string JobDescription[NUM_JOBS];  // longer description of job
@@ -53,36 +53,36 @@ public:
     void Setup();
     
     // - Misc
-    static bool WorkVoid( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary ); // used for jobs that are not yet implemented
+    static bool WorkVoid( Girl* girl, Brothel* brothel, int DayNight, std::string& summary ); // used for jobs that are not yet implemented
     
     // - General
-    static bool WorkFreetime( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary ); // resting
-    static bool AddictBuysDrugs( std::string Addiction, std::string Drug, Girl* girl, sBrothel* brothel, int DayNight );
+    static bool WorkFreetime( Girl* girl, Brothel* brothel, int DayNight, std::string& summary ); // resting
+    static bool AddictBuysDrugs( std::string Addiction, std::string Drug, Girl* girl, Brothel* brothel, int DayNight );
     
-    static bool WorkTraining( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkCleaning( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkSecurity( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkMatron( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkAdvertising( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkTorturer( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkExploreCatacombs( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkBeastCapture( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkBeastCare( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
+    static bool WorkTraining( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkCleaning( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkSecurity( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkMatron( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkAdvertising( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkTorturer( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkExploreCatacombs( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkBeastCapture( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkBeastCare( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
     
     // - Bar
-    static bool WorkBar( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
+    static bool WorkBar( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
     
     // - Gambling Hall
-    static bool WorkHall( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkShow( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
+    static bool WorkHall( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkShow( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
     
     // - Brothel
-    static bool WorkWhore( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkBrothelStripper( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
-    static bool WorkBrothelMasseuse( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
+    static bool WorkWhore( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkBrothelStripper( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
+    static bool WorkBrothelMasseuse( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
     
     // - Movie Studio
-    static bool WorkFluffer( Girl* girl, sBrothel* brothel, int DayNight, std::string& summary );
+    static bool WorkFluffer( Girl* girl, Brothel* brothel, int DayNight, std::string& summary );
     
     // - stuff that does processing for jobs
     
@@ -98,17 +98,17 @@ public:
     static std::string GetGirlAttackedString();
     
     
-    static bool Preprocessing( int action, Girl* girl, sBrothel* brothel, int DayNight, std::string& summary, std::string& message );
-    static void GetMiscCustomer( sBrothel* brothel, sCustomer& cust );
+    static bool Preprocessing( int action, Girl* girl, Brothel* brothel, int DayNight, std::string& summary, std::string& message );
+    static void GetMiscCustomer( Brothel* brothel, sCustomer& cust );
     
-    bool work_show( Girl* girl, sBrothel* brothel, std::string& summary, int DayNight );
-    void update_film( sBrothel* );
+    bool work_show( Girl* girl, Brothel* brothel, std::string& summary, int DayNight );
+    void update_film( Brothel* );
     long make_money_films();
     void save_films( std::ofstream& ofs );
     void load_films( std::ifstream& ifs );
     bool apply_job( Girl* girl, int job, int brothel_id, bool day_or_night, std::string& message );
     int get_num_on_job( int job, int brothel_id, bool day_or_night );
-    static bool is_sex_type_allowed( unsigned int sex_type, sBrothel* brothel );
+    static bool is_sex_type_allowed( unsigned int sex_type, Brothel* brothel );
 #ifndef _DEBUG
     static void free();
 #else
@@ -116,14 +116,14 @@ public:
 #endif
     
     //helpers
-    static std::vector<Girl*> girls_on_job( sBrothel* brothel, u_int job_wanted, int day_or_night );
+    static std::vector<Girl*> girls_on_job( Brothel* brothel, u_int job_wanted, int day_or_night );
     //need a function for seeing if there is a girl working on a job
-    bool is_job_employed( sBrothel* brothel, u_int job_wanted, int day_or_night );
+    bool is_job_employed( Brothel* brothel, u_int job_wanted, int day_or_night );
     static void get_training_set( std::vector<Girl*>& v, std::vector<Girl*>& set );
-    static void do_training( sBrothel* brothel, int DayNight );
+    static void do_training( Brothel* brothel, int DayNight );
     static void do_training_set( std::vector<Girl*> girls, int day_night );
     static void do_solo_training( Girl* girl, int DayNight );
-    static void do_advertising( sBrothel* brothel );
+    static void do_advertising( Brothel* brothel );
     ~cJobManager();
     
     bool is_job_Paid_Player( u_int Job );                   //  WD: Test for all jobs paid by player

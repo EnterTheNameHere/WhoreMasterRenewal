@@ -569,7 +569,7 @@ bool cScreenSlaveMarket::check_events()
 				break;
 			}
 
-			sBrothel* brothel = g_Brothels.GetBrothel(g_CurrBrothel);
+			Brothel* brothel = g_Brothels.GetBrothel(g_CurrBrothel);
 			if(g_Girls.GetRebelValue(girl, false) >= 35)
 			{
 			    std::string text = girl->m_Realname;

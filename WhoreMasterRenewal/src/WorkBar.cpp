@@ -37,7 +37,7 @@
 namespace WhoreMasterRenewal
 {
 
-bool cJobManager::WorkBar(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkBar(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
 {
 	/* WD:	Added missing SEX_ACTION filter
 	 *

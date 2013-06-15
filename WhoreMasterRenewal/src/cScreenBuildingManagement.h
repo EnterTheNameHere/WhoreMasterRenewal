@@ -29,7 +29,7 @@ class cBuildingManagement;
 extern cBuildingManagement g_BuildingManagementScreen;
 
 class cBuilding;
-struct sBrothel;
+class Brothel;
 
 class cBuildingManagement : public cInterfaceWindowXML
 {
@@ -55,7 +55,7 @@ public:
 		void	display(cBuildingManagement *m, int n, cBuilding *b);
 	};
 private:
-	sBrothel*	brothel;
+	Brothel*	brothel;
 	cBuilding*	building;
 	int		selection;
 	int		screen;

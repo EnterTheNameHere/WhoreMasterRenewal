@@ -74,7 +74,7 @@ void cCustomers::Free()
 	return num;
 }*/
 
-void cCustomers::GetCustomer(sCustomer& customer, sBrothel * brothel)
+void cCustomers::GetCustomer(sCustomer& customer, Brothel * brothel)
 {
 	int level = (g_Dice%100)+1;	// what working class are they
 
@@ -149,7 +149,7 @@ void cCustomers::GetCustomer(sCustomer& customer, sBrothel * brothel)
 	customer.m_Next = nullptr;
 }
 
-void cCustomers::GenerateCustomers(sBrothel * brothel, int DayNight)
+void cCustomers::GenerateCustomers(Brothel * brothel, int DayNight)
 {
 	Free();	// Free any existing customers
 

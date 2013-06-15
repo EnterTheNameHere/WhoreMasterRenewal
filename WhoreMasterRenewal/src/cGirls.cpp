@@ -178,7 +178,7 @@ Girl* sRandomGirl::lookup = new Girl();  // used to look up stat and skill IDs
 /*
  * if this returns true, the girl will disobey
  */
-bool cGirls::DisobeyCheck( Girl* girl, int action, sBrothel* brothel )
+bool cGirls::DisobeyCheck( Girl* girl, int action, Brothel* brothel )
 {
     int diff;
     int chance_to_obey = 0;     // high value - more likely to obey

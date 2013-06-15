@@ -37,7 +37,7 @@
 namespace WhoreMasterRenewal
 {
 
-bool cJobManager::WorkBeastCapture(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkBeastCapture(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
 {
     std::string message = "";
 	if(Preprocessing(ACTION_COMBAT, girl, brothel, DayNight, summary, message))

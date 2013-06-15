@@ -64,13 +64,14 @@ typedef struct sObjective
 
 
 // defines a single brothel
-typedef struct sBrothel
+class Brothel
 {
-    sBrothel();                         // constructor
-    ~sBrothel();                        // destructor
+public:
+    Brothel();                         // constructor
+    ~Brothel();                        // destructor
     
-    sBrothel( const sBrothel& ) = delete;
-    sBrothel& operator = ( const sBrothel& ) = delete;
+    Brothel( const Brothel& ) = delete;
+    Brothel& operator = ( const Brothel& ) = delete;
     
     int m_id;
     std::string m_Name;
@@ -109,7 +110,7 @@ typedef struct sBrothel
     
     Girl* m_Girls;                // A list of all the girls this place has
     Girl* m_LastGirl;
-    sBrothel* m_Next;
+    Brothel* m_Next;
     
     int m_SecurityLevel;
     
@@ -123,7 +124,7 @@ typedef struct sBrothel
     bool LoadBrothelXML( TiXmlHandle hBrothel );
     void AddGirl( Girl* pGirl );
     
-} sBrothel;
+};
 
 
 /*
@@ -162,7 +163,7 @@ public:
     void NewBrothel( int NumRooms );
     void DestroyBrothel( int ID );
     void UpdateBrothels();
-    void UpdateGirls( sBrothel* brothel, int DayNight );
+    void UpdateGirls( Brothel* brothel, int DayNight );
     // MYR: Start of my automation functions
     void UsePlayersItems( Girl* cur );
     bool AutomaticItemUse( Girl* girl, int InvNum, std::string message );
@@ -170,7 +171,7 @@ public:
     bool AutomaticFoodItemUse( Girl* girl, int InvNum, std::string message );
     bool RemoveItemFromInventoryByNumber( int Pos ); // support fn
     // End of automation functions
-    void UpdateAllGirlsStat( sBrothel* brothel, int stat, int amount );
+    void UpdateAllGirlsStat( Brothel* brothel, int stat, int amount );
     void SetGirlStat( Girl* girl, int stat, int amount );
     
     Girl* GetPrison()
@@ -213,14 +214,14 @@ public:
     void AddGirl( int brothelID, Girl* girl );
     void RemoveGirl( int brothelID, Girl* girl, bool deleteGirl = true );
     Girl* GetFirstRunaway();
-    void sort( sBrothel* brothel );      // sorts the list of girls
+    void sort( Brothel* brothel );      // sorts the list of girls
     void SortInventory();
     
     void SetName( int brothelID, std::string name );
     std::string GetName( int brothelID );
     
-    bool CheckBarStaff( sBrothel* brothel, int numGirls );  // returns true if the bar is staffed
-    bool CheckGambStaff( sBrothel* brothel, int numGirls ); // as above but for gambling hall
+    bool CheckBarStaff( Brothel* brothel, int numGirls );  // returns true if the bar is staffed
+    bool CheckGambStaff( Brothel* brothel, int numGirls ); // as above but for gambling hall
     
     bool FightsBack( Girl* girl );
     int GetNumGirls( int brothelID );
@@ -233,14 +234,14 @@ public:
     int GetGirlPos( int brothelID, Girl* girl );
     Girl* GetGirlByName( int brothelID, std::string name ); // MYR: Used by new end of turn code in InerfaceProcesses::TurnSummary
     
-    sBrothel* GetBrothel( int brothelID );
+    Brothel* GetBrothel( int brothelID );
     int GetNumBrothels()
     {
         return m_NumBrothels;
     }
     int GetNumBrothelsWithVacancies();
     
-    void CalculatePay( sBrothel* brothel, Girl* girl, u_int Job );
+    void CalculatePay( Brothel* brothel, Girl* girl, u_int Job );
     
     bool PlayerCombat( Girl* girl ); // returns true if the girl wins
     
@@ -324,15 +325,15 @@ public:
     void do_tax();
     void check_rivals();
     std::string new_rival_text();
-    void do_food_and_digs( sBrothel* brothel, Girl* girl );
+    void do_food_and_digs( Brothel* brothel, Girl* girl );
     std::string disposition_text();
-    std::string fame_text( sBrothel* brothel );
+    std::string fame_text( Brothel* brothel );
     std::string suss_text();
-    std::string happiness_text( sBrothel* brothel );
+    std::string happiness_text( Brothel* brothel );
     double calc_pilfering( Girl* girl );
     void peace_breaks_out();
     
-    bool runaway_check( sBrothel* brothel, Girl* girl );
+    bool runaway_check( Brothel* brothel, Girl* girl );
     
     
     // WD: JOB_TORTURER stuff
@@ -358,13 +359,13 @@ public:
     }
     
 private:
-    int TotalFame( sBrothel* );
+    int TotalFame( Brothel* );
     cPlayer m_Player;               // the stats for the player owning these brothels
     cDungeon m_Dungeon;             // the dungeon
     
     int m_NumBrothels;
-    sBrothel* m_Parent;
-    sBrothel* m_Last;
+    Brothel* m_Parent;
+    Brothel* m_Last;
     
     // brothel supplies
     bool m_KeepPotionsStocked;
@@ -399,7 +400,7 @@ private:
     // WD:  Update code of girls stats
     void updateGirlTurnBrothelStats( Girl* girl );
     
-    void AddBrothel( sBrothel* newBroth );
+    void AddBrothel( Brothel* newBroth );
 };
 
 } // namespace WhoreMasterRenewal

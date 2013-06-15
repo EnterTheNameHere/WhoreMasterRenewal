@@ -37,7 +37,7 @@
 namespace WhoreMasterRenewal
 {
 
-bool cJobManager::WorkFreetime(Girl* girl, sBrothel* brothel, int DayNight, std::string& /*summary*/)
+bool cJobManager::WorkFreetime(Girl* girl, Brothel* brothel, int DayNight, std::string& /*summary*/)
 {
 	//brothel->m_Filthiness++;
 	g_Girls.UpdateStat(girl, STAT_TIREDNESS, -20);
@@ -234,7 +234,7 @@ bool cJobManager::WorkFreetime(Girl* girl, sBrothel* brothel, int DayNight, std:
 	return false;
 }
 
-bool cJobManager::AddictBuysDrugs(std::string /*Addiction*/, std::string Drug, Girl* girl, sBrothel* brothel, int /*DayNight*/)
+bool cJobManager::AddictBuysDrugs(std::string /*Addiction*/, std::string Drug, Girl* girl, Brothel* brothel, int /*DayNight*/)
 {
 	int id = g_InvManager.CheckShopItem(Drug);
 	if(id == -1)

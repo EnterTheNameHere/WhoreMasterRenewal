@@ -28,7 +28,7 @@ namespace WhoreMasterRenewal
 class cCustomers;
 extern cCustomers g_Customers;
 
-struct sBrothel;
+class Brothel;
 
 // customers are randomly generated
 typedef struct sCustomer
@@ -70,9 +70,9 @@ public:
 
 	void Free();
 
-	void GenerateCustomers(sBrothel*, int DayNight = 0);	// generates a random amount of possible customers based on the number of poor, rich, and middle class
+	void GenerateCustomers(Brothel*, int DayNight = 0);	// generates a random amount of possible customers based on the number of poor, rich, and middle class
 //	sCustomer* GetParentCustomer();		// Gets a random customer from the customer base
-	void GetCustomer(sCustomer& customer, sBrothel* brothel);
+	void GetCustomer(sCustomer& customer, Brothel* brothel);
 	void ChangeCustomerBase();	// Changes customer base, it is based on how much money the player is bring into the town
 	int GetNumCustomers() {return m_NumCustomers;}
 	void AdjustNumCustomers(int amount) {m_NumCustomers+=amount;}

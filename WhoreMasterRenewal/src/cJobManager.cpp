@@ -288,14 +288,14 @@ void cJobManager::free()
 
 // ----- Misc
 
-bool cJobManager::WorkVoid(Girl* girl, sBrothel* /*brothel*/, int /*DayNight*/, std::string& summary)
+bool cJobManager::WorkVoid(Girl* girl, Brothel* /*brothel*/, int /*DayNight*/, std::string& summary)
 {
 	summary += "This job isn't implemented yet";
 	girl->m_Events.AddMessage("This job isn't implemented yet", IMGTYPE_PROFILE, EVENT_DEBUG);
 	return false;
 }
 
-bool cJobManager::Preprocessing(int action, Girl* girl, sBrothel* brothel, int DayNight, std::string& /*summary*/, std::string& /*message*/)
+bool cJobManager::Preprocessing(int action, Girl* girl, Brothel* brothel, int DayNight, std::string& /*summary*/, std::string& /*message*/)
 {
 	brothel->m_Filthiness++;
 	g_Girls.AddTiredness(girl);
@@ -319,13 +319,13 @@ bool cJobManager::Preprocessing(int action, Girl* girl, sBrothel* brothel, int D
 	return false;
 }
 
-void cJobManager::GetMiscCustomer(sBrothel* brothel, sCustomer& cust)
+void cJobManager::GetMiscCustomer(Brothel* brothel, sCustomer& cust)
 {
 	g_Customers.GetCustomer(cust, brothel);
 	brothel->m_MiscCustomers+=1;
 }
 
-bool cJobManager::is_sex_type_allowed(unsigned int sex_type, sBrothel* brothel)
+bool cJobManager::is_sex_type_allowed(unsigned int sex_type, Brothel* brothel)
 {
 	if(sex_type == SKILL_ANAL && brothel->m_RestrictAnal)
 		return false;
@@ -345,7 +345,7 @@ bool cJobManager::is_sex_type_allowed(unsigned int sex_type, sBrothel* brothel)
 
 // ----- Job related
 
-std::vector<Girl*> cJobManager::girls_on_job(sBrothel *brothel, u_int job_wanted, int day_or_night)
+std::vector<Girl*> cJobManager::girls_on_job(Brothel *brothel, u_int job_wanted, int day_or_night)
 {
 	u_int job_id;
 	Girl* girl;
@@ -367,7 +367,7 @@ std::vector<Girl*> cJobManager::girls_on_job(sBrothel *brothel, u_int job_wanted
 	return v;
 }
 
-bool cJobManager::is_job_employed(sBrothel * brothel,u_int job_wanted,int day_or_night)
+bool cJobManager::is_job_employed(Brothel * brothel,u_int job_wanted,int day_or_night)
 {
 	u_int job_id;
 	Girl* girl;
@@ -382,7 +382,7 @@ bool cJobManager::is_job_employed(sBrothel * brothel,u_int job_wanted,int day_or
 	return false;
 }
 
-void cJobManager::do_advertising(sBrothel* brothel)
+void cJobManager::do_advertising(Brothel* brothel)
 {  // advertising jobs are handled before other jobs, more particularly before customer generation
 	brothel->m_AdvertisingLevel = 1.0;  // base multiplier
 	Girl* current = brothel->m_Girls;
@@ -725,7 +725,7 @@ bool cJobManager::security_stops_rape(Girl * girl, sGang *enemy_gang, int day_ni
 {
 	// MYR: Note to self: STAT_HOUSE isn't the brothel number :)
 	int GirlsBrothelNo = g_Brothels.GetGirlsCurrentBrothel(girl);
-	sBrothel * Brothl = g_Brothels.GetBrothel(GirlsBrothelNo);
+	Brothel * Brothl = g_Brothels.GetBrothel(GirlsBrothelNo);
 	int SecLev = Brothl->m_SecurityLevel, OrgNumMem = enemy_gang->m_Num;
 	Girl * SecGuard;
 
@@ -1264,7 +1264,7 @@ void cJobManager::get_training_set(std::vector<Girl*> &v, std::vector<Girl*> &t_
 	}
 }
 
-bool cJobManager::WorkTraining(Girl* /*girl*/, sBrothel* /*brothel*/, int /*DayNight*/, std::string& /*summary*/)
+bool cJobManager::WorkTraining(Girl* /*girl*/, Brothel* /*brothel*/, int /*DayNight*/, std::string& /*summary*/)
 {
 	// training is already handled in UpdateGirls
 	//do_training(brothel, DayNight);
@@ -1427,7 +1427,7 @@ void cJobManager::do_training_set(std::vector<Girl*> girls, int DayNight)
 	}
 }
 
-void cJobManager::do_training(sBrothel* brothel, int DayNight)
+void cJobManager::do_training(Brothel* brothel, int DayNight)
 {
 	cTariff tariff;
 	cConfig cfg;

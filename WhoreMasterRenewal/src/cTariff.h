@@ -25,7 +25,7 @@
 namespace WhoreMasterRenewal
 {
 
-struct sBrothel;
+class Brothel;
 class Girl;
 
 class cTariff
@@ -43,7 +43,7 @@ public:
 	int movie_cost();
 	int matron_wages( int level = 65 );
 	int bar_staff_wages();
-	int empty_room_cost( sBrothel* );
+	int empty_room_cost( Brothel* );
 	int empty_bar_cost();
 	int active_bar_cost( int, double );
 	int empty_casino_cost( int );

@@ -37,7 +37,7 @@
 namespace WhoreMasterRenewal
 {
 
-bool cJobManager::WorkHall(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkHall(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
 {
     std::string message = "";
 	g_Girls.UpdateTempStat(girl, STAT_LIBIDO, 1);

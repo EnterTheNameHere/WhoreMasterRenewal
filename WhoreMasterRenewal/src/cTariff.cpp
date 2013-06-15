@@ -228,7 +228,7 @@ int cTariff::slave_sell_price( Girl* girl )
 	return int( cost * cfg.in_fact.slave_sales() );
 }
 
-int cTariff::empty_room_cost( sBrothel* brothel )
+int cTariff::empty_room_cost( Brothel* brothel )
 {
 	cConfig cfg;
 	double cost;

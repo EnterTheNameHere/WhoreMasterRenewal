@@ -37,7 +37,7 @@
 namespace WhoreMasterRenewal
 {
 
-bool cJobManager::WorkExploreCatacombs(Girl* girl, sBrothel* brothel, int DayNight, std::string& summary)
+bool cJobManager::WorkExploreCatacombs(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
 {
 	int num_monsters = 0;
 	int type_monster_girls = 0;

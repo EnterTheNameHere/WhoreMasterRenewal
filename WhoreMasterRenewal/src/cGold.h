@@ -33,7 +33,7 @@ namespace WhoreMasterRenewal
 class cGold;
 extern cGold g_Gold;
 
-struct sBrothel;
+class Brothel;
 
 class cGoldBase
 {

@@ -756,7 +756,7 @@ void cInventory::Equip(Girl* girl, int num, bool force)
 							}
 							if(girl->m_Inventory[num]->m_Effects[i].m_EffectID == STATUS_PREGNANT)
 							{
-								sBrothel* brothel = g_Brothels.GetBrothel(0);
+								Brothel* brothel = g_Brothels.GetBrothel(0);
 								sCustomer Cust;
 								g_Customers.GetCustomer(Cust, brothel);
 								bool preg = !girl->calc_pregnancy(&Cust, false, (double)girl->m_Inventory[num]->m_Effects[i].m_Amount);

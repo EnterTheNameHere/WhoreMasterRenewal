@@ -57,7 +57,7 @@ class CSurface;
 struct sCustomer;
 struct sGang;
 struct sInventoryItem;
-struct sBrothel;
+class Brothel;
 struct sTrait;
 
 typedef uint8_t Uint8; // Used by SDL
@@ -375,7 +375,7 @@ public:
     
     int GetSkillWorth( Girl* girl );
     
-    bool DisobeyCheck( Girl* girl, int action, sBrothel* brothel = nullptr );
+    bool DisobeyCheck( Girl* girl, int action, Brothel* brothel = nullptr );
     
     std::string GetDetailsString( Girl* girl, bool purchace = false );
     std::string GetMoreDetailsString( Girl* girl );

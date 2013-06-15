@@ -1203,7 +1203,7 @@ void Turnsummary()
 				if(selected != -1)
 				{
 #if 1
-					sBrothel	*pSelectedBrothel = g_Brothels.GetBrothel(selected);
+					Brothel	*pSelectedBrothel = g_Brothels.GetBrothel(selected);
 					if (!pSelectedBrothel->m_Events.IsEmpty())
 					{
 						pSelectedBrothel->m_Events.DoSort();						// Sort Events to put Warnings & Dangers first.
@@ -2969,7 +2969,7 @@ void TransferGirls()
 		g_TransferGirls.ClearListBox(g_interfaceid.LIST_TRANSGRIGHTGIRLS);
 
 		// list all the brothels
-		sBrothel* current = g_Brothels.GetBrothel(0);
+		Brothel* current = g_Brothels.GetBrothel(0);
 		int i=0;
 		while(current)
 		{
@@ -2997,7 +2997,7 @@ void TransferGirls()
 		{
 			if((rightBrothel != -1 && leftBrothel != -1))
 			{
-				sBrothel* brothel = g_Brothels.GetBrothel(rightBrothel);
+				Brothel* brothel = g_Brothels.GetBrothel(rightBrothel);
 				if(brothel->m_NumGirls == brothel->m_NumRooms)
 					g_MessageQue.AddToQue("Right side brothel is full", 1);
 				else
@@ -3038,7 +3038,7 @@ void TransferGirls()
 		{
 			if((rightBrothel != -1 && leftBrothel != -1))
 			{
-				sBrothel* brothel = g_Brothels.GetBrothel(leftBrothel);
+				Brothel* brothel = g_Brothels.GetBrothel(leftBrothel);
 				if(brothel->m_NumGirls == brothel->m_NumRooms)
 					g_MessageQue.AddToQue("Left side brothel is full", 1);
 				else

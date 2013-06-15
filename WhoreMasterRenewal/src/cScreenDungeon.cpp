@@ -601,7 +601,7 @@ void cScreenDungeon::sell_slaves()
 
 void cScreenDungeon::release_all_girls()
 {
-	sBrothel *brothel = g_Brothels.GetBrothel(g_CurrBrothel);
+	Brothel *brothel = g_Brothels.GetBrothel(g_CurrBrothel);
 /*
  *	Is there room?
  */
@@ -880,7 +880,7 @@ void cScreenDungeon::torture()
 void cScreenDungeon::release()
 {
 	cPlayer* player = g_Brothels.GetPlayer();
-	sBrothel *brothel = g_Brothels.GetBrothel(g_CurrBrothel);
+	Brothel *brothel = g_Brothels.GetBrothel(g_CurrBrothel);
 
 	std::vector<int> girl_array;
 	get_selected_girls(&girl_array);  // get and sort array of girls/customers
