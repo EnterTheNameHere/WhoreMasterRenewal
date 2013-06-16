@@ -36,6 +36,9 @@ class cAnimatedSurface
 public:
 	cAnimatedSurface();
 	~cAnimatedSurface();
+	
+	cAnimatedSurface( const cAnimatedSurface& ) = delete;
+	cAnimatedSurface& operator = ( const cAnimatedSurface& ) = delete;
 
 	void PlayOnce(bool playOnce);
 
@@ -69,6 +72,9 @@ class CAnimatedSprite
 public:
 	CAnimatedSprite();
 	~CAnimatedSprite();
+	
+	CAnimatedSprite( const CAnimatedSprite& ) = delete;
+	CAnimatedSprite& operator = ( const CAnimatedSprite& ) = delete;
 
 	void Free();
 

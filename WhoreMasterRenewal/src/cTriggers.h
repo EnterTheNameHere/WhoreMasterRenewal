@@ -66,6 +66,9 @@ public:
 
 	cTrigger();
 	~cTrigger();
+	
+	cTrigger( const cTrigger& ) = delete;
+	cTrigger& operator = ( const cTrigger& ) = delete;
 
 	TiXmlElement* SaveTriggerXML(TiXmlElement*);
 	bool LoadTriggerXML(TiXmlHandle);
@@ -114,6 +117,9 @@ public:
 
 	cTriggerQue();
 	~cTriggerQue();
+	
+	cTriggerQue( const cTriggerQue& ) = delete;
+	cTriggerQue& operator = ( const cTriggerQue& ) = delete;
 };
 
 class cTriggerList
@@ -121,7 +127,10 @@ class cTriggerList
 public:
 	cTriggerList();
 	~cTriggerList();
-
+    
+    cTriggerList( const cTriggerList& ) = delete;
+	cTriggerList& operator = ( const cTriggerList& ) = delete;
+    
 	void Free();
 	void LoadList(std::string filename);
 	TiXmlElement* SaveTriggersXML(TiXmlElement* pRoot);

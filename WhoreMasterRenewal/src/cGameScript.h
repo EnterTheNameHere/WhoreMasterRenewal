@@ -34,7 +34,10 @@ class cGameScript : public cScript
 public:
 	cGameScript();
 	virtual ~cGameScript();
-
+    
+    cGameScript( const cGameScript& ) = delete;
+	cGameScript& operator = ( const cGameScript& ) = delete;
+    
 	bool Prepare(Girl* girlTarget);
 
 	bool Release();

@@ -33,7 +33,10 @@ public:
 	virtual void FreeResources(); // Frees only the loaded data, this is so the class isn't destroyed
 	CResource();
 	virtual ~CResource();
-
+    
+    CResource( const CResource& ) = delete;
+	CResource& operator = ( const CResource& ) = delete;
+    
 	CResource* m_Next; // pointer to the next resource or null if end of list
 	CResource* m_Prev; // Pointer to the previous resource or null if top of list
 	unsigned long m_TimeUsed; // Stores the last time this resource was used

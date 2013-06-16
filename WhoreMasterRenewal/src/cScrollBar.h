@@ -64,6 +64,9 @@ class cScrollBar : public cInterfaceObject
 public:
 	cScrollBar();
 	virtual ~cScrollBar();
+	
+	cScrollBar( const cScrollBar& ) = delete;
+	cScrollBar& operator = ( const cScrollBar& ) = delete;
 
 	bool CreateScrollBar(int ID, int x, int y, int width, int height, int visibleitems);
 	void UpdateScrollBar();  // update size of draggable bar based on total items vs. visible items

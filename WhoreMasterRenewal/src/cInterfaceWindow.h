@@ -63,7 +63,10 @@ class cInterfaceWindow : public cInterfaceObject
 public:
 	cInterfaceWindow();
 	virtual ~cInterfaceWindow();
-
+    
+    cInterfaceWindow( const cInterfaceWindow& ) = delete;
+	//cInterfaceWindow& operator = ( const cInterfaceWindow& rhs );
+    
 	virtual void Free();
 
 	void CreateWindow(int x, int y, int width, int height, int BorderSize);	// and color options latter
@@ -170,7 +173,7 @@ protected:
 	// check boxes
 	std::vector<cEditBox*> m_EditBoxes; // Edit boxes;
 	std::vector<cTextItem*> m_TextItems; // Text Items
-	std::vector<cCheckBox* >m_CheckBoxes;	// check boxes
+	std::vector<cCheckBox*>m_CheckBoxes;	// check boxes
 	std::vector<cSlider*>m_Sliders;	// Sliders
 
 	// the windows properties

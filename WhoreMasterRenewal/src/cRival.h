@@ -36,6 +36,9 @@ public:
     cRival();
     ~cRival();
     
+    cRival( const cRival& ) = delete;
+	cRival& operator = ( const cRival& ) = delete;
+    
     // variables
     int m_NumGangs;
     int m_NumBrothels;
@@ -57,6 +60,9 @@ class cRivalManager
 public:
     cRivalManager();
     ~cRivalManager();
+    
+    cRivalManager( const cRivalManager& ) = delete;
+	cRivalManager& operator = ( const cRivalManager& ) = delete;
     
     void Free();
     

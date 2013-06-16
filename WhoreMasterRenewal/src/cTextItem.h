@@ -35,7 +35,10 @@ class cTextItem : public cInterfaceObject
 public:
 	cTextItem();
 	virtual ~cTextItem();
-
+    
+    cTextItem( const cTextItem& ) = delete;
+	cTextItem& operator = ( const cTextItem& ) = delete;
+    
 	void CreateTextItem( int ID, int x, int y, int width, int height, std::string text, int size, bool auto_scrollbar = true, bool force_scrollbar = false );
 	
 	void DisableAutoScroll( bool disable );

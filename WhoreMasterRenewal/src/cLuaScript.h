@@ -50,6 +50,9 @@ public:
 	cLuaStateInner();
 	~cLuaStateInner();
 	
+	cLuaStateInner( const cLuaStateInner& ) = delete;
+	cLuaStateInner& operator = ( const cLuaStateInner& ) = delete;
+	
 	inline operator lua_State* ()
 	{
 		return L;
@@ -75,6 +78,9 @@ class cLuaScript
 public:
 	cLuaScript();
 	~cLuaScript();
+	
+	cLuaScript( const cLuaScript& ) = delete;
+	cLuaScript& operator = ( const cLuaScript& ) = delete;
 	
 	void log_error();
 

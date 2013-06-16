@@ -82,6 +82,9 @@ static	bool		ids_set;
 public:
 	cBuildingManagement();
 	virtual ~cBuildingManagement();
+	
+	cBuildingManagement( const cBuildingManagement& ) = delete;
+	cBuildingManagement& operator = ( const cBuildingManagement& ) = delete;
 
 	void init();
 	void process();

@@ -66,6 +66,9 @@ private:
 public:
 	cSlider();
 	virtual ~cSlider();
+	
+	cSlider( const cSlider& ) = delete;
+	cSlider& operator = ( const cSlider& ) = delete;
 
 	bool CreateSlider(int ID, int x, int y, int width, int min = 0, int max = 100, int increment = 5, int value = 0, float height = 1.0);
 

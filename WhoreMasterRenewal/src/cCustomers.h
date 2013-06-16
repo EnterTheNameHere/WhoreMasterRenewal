@@ -33,6 +33,10 @@ class Brothel;
 // customers are randomly generated
 typedef struct sCustomer
 {
+public:
+    sCustomer( const sCustomer& ) = delete;
+	sCustomer& operator = ( const sCustomer& ) = delete;
+    
 	// Regular Stats
 	unsigned char m_IsWoman;	// 0 means a man, 1 means a woman
 	unsigned char m_Amount;	// how many customers this represents

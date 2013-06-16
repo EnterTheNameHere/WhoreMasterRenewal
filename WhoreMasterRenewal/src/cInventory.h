@@ -210,6 +210,9 @@ public:
     cInventory();
     ~cInventory();
     
+    cInventory( const cInventory& ) = delete;
+	cInventory& operator = ( const cInventory& ) = delete;
+    
     void Free();
     
     void LoadItems( std::string filename );

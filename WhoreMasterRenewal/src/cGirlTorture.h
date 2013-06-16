@@ -37,6 +37,9 @@ public:
 	cGirlTorture( Girl* pGirl ); // Torture Girl by player
 	cGirlTorture( sDungeonGirl* pGirl ); // Torture Dungeon girl by player
 	cGirlTorture( sDungeonGirl* pGirl, Girl* pTourturer );	// Tortured by Torture job girl
+	
+	cGirlTorture( const cGirlTorture& ) = delete;
+	cGirlTorture& operator = ( const cGirlTorture& ) = delete;
 
 private:
 	cPlayer* m_Player;

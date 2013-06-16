@@ -38,7 +38,10 @@ class cCheckBox : public cInterfaceObject
 public:
 	cCheckBox();
 	virtual ~cCheckBox();
-
+    
+    cCheckBox( const cCheckBox& ) = delete;
+	cCheckBox& operator = ( const cCheckBox& ) = delete;
+    
 	bool CreateCheckBox(int id, int x, int y, int width, int height, std::string text, int fontsize = 12);
 	bool GetState() {return m_StateOn;}
 	void ButtonClicked(int x, int y);

@@ -32,7 +32,10 @@ class cFont
 public:
 	cFont();
 	~cFont();
-
+    
+    cFont( const cFont& ) = delete;
+	cFont& operator = ( const cFont& ) = delete;
+    
 	void Free();
 
 	void SetColor(unsigned char r, unsigned char g, unsigned char b);

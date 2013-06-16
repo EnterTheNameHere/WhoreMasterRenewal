@@ -39,6 +39,9 @@ class cImageItem : public cInterfaceObject
 public:
 	cImageItem();
 	virtual ~cImageItem();
+	
+	cImageItem( const cImageItem& ) = delete;
+	cImageItem& operator = ( const cImageItem& ) = delete;
 
 	bool CreateImage(int id, std::string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
 	bool CreateAnimatedImage(int id, std::string filename, std::string dataFilename, int x, int y, int width, int height);

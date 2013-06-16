@@ -27,11 +27,12 @@ namespace WhoreMasterRenewal
 class CRenderObject
 {
 public:
-    CRenderObject()
-    {
-        m_Next = nullptr;
-    }
-    virtual ~CRenderObject() {}
+    CRenderObject() : m_Next(nullptr) {};
+    virtual ~CRenderObject() {};
+    
+    CRenderObject( const CRenderObject& ) = delete;
+	CRenderObject& operator = ( const CRenderObject& ) = delete;
+    
     virtual void Draw() {};
     
     CRenderObject* m_Next;
@@ -42,6 +43,9 @@ class CRenderQue
 public:
     CRenderQue();
     ~CRenderQue();
+    
+    CRenderQue( const CRenderQue& ) = delete;
+	CRenderQue& operator = ( const CRenderQue& ) = delete;
     
     void DrawQue();
     void ClearQue();

@@ -34,6 +34,9 @@ class cBuilding
 public:
 	cBuilding();
     
+    cBuilding( const cBuilding& ) = delete;
+	cBuilding& operator = ( const cBuilding& ) = delete;
+    
     int capacity();
 	int free_space();
 	int used_space();

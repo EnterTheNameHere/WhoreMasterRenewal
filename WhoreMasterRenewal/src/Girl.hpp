@@ -35,6 +35,9 @@ public:
     cChildList();
     ~cChildList();
     
+    cChildList( const cChildList& ) = delete;
+	cChildList& operator = ( const cChildList& ) = delete;
+    
     sChild* m_FirstChild;
     sChild* m_LastChild;
     int m_NumChildren;
@@ -137,6 +140,9 @@ public:
     
     Girl();
     ~Girl();
+    
+    Girl( const Girl& ) = delete;
+	Girl& operator = ( const Girl& ) = delete;
     
     void dump( std::ostream& os );
     

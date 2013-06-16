@@ -38,7 +38,10 @@ typedef struct sDungeonCust
 {
 	sDungeonCust();				// constructor
 	~sDungeonCust();			// destructor
-
+    
+    sDungeonCust( const sDungeonCust& ) = delete;
+	sDungeonCust& operator = ( const sDungeonCust& ) = delete;
+    
 	bool			m_Feeding;	// are you feeding them
 	bool			m_Tort;		// if true then have already tortured today
 	int				m_Reason;	// the reason they are here
@@ -58,7 +61,10 @@ typedef struct sDungeonGirl
 {
 	sDungeonGirl();						// constructor
 	~sDungeonGirl();					// destructor
-
+    
+    sDungeonGirl( const sDungeonGirl& ) = delete;
+	sDungeonGirl& operator = ( const sDungeonGirl& ) = delete;
+    
 	bool			m_Feeding;			// are you feeding them
 	int				m_Reason;			// the reason they are here
 	int				m_Weeks;			// the number of weeks they have been here
@@ -90,6 +96,10 @@ private:
 public:
 	cDungeon();								// constructor
 	~cDungeon();							// destructor
+	
+	cDungeon( const cDungeon& ) = delete;
+	cDungeon& operator = ( const cDungeon& ) = delete;
+	
 	void Free();
 	TiXmlElement* SaveDungeonDataXML(TiXmlElement* pRoot);	// saves dungeon data
 	bool LoadDungeonDataXML(TiXmlHandle hDungeon);

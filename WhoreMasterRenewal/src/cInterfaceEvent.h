@@ -37,7 +37,10 @@ class cInterfaceEvent
 public:
 	cInterfaceEvent();
 	~cInterfaceEvent();
-
+    
+    cInterfaceEvent( const cInterfaceEvent& ) = delete;
+	cInterfaceEvent& operator = ( const cInterfaceEvent& ) = delete;
+    
 	int m_EventID;
 	int m_ObjectID;
 
@@ -49,6 +52,10 @@ class cInterfaceEventManager
 public:
 	cInterfaceEventManager();
 	~cInterfaceEventManager();
+	
+	cInterfaceEventManager( const cInterfaceEventManager& ) = delete;
+	cInterfaceEventManager& operator = ( const cInterfaceEventManager& ) = delete;
+	
 /*
  *	a bit of shorthand - helps keep the code cleaner
  */

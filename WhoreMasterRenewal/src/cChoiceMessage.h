@@ -42,7 +42,10 @@ class cChoice	// represents a list of text selections and the currently selected
 public:
 	cChoice();
 	~cChoice();
-
+    
+    cChoice( const cChoice& ) = delete;
+	cChoice& operator = ( const cChoice& ) = delete;
+    
 	int m_NumChoices;	// The number of choices available
 	std::string* m_Choices;	// array of choices available
 	int m_CurrChoice;	// The choice selected at present
@@ -72,7 +75,10 @@ class cChoiceManager
 public:
 	cChoiceManager();
 	~cChoiceManager();
-
+    
+    cChoiceManager( const cChoiceManager& ) = delete;
+	cChoiceManager& operator = ( const cChoiceManager& ) = delete;
+    
 	void Free();
 	void CreateChoiceBox(int x, int y, int width, int height, int ID, int numChoices, int itemHeight, int MaxStrLen = 0);
 	void CreateChoiceBoxResize(int ID, int numChoices);

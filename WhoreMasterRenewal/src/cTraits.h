@@ -42,6 +42,9 @@ typedef struct sTrait
 	sTrait();
 	~sTrait();
 	
+	sTrait( const sTrait& ) = delete;
+	sTrait& operator = ( const sTrait& ) = delete;
+	
 }sTrait;
 
 // Manages and loads the traits file
@@ -50,7 +53,10 @@ class cTraits
 public:
 	cTraits();
 	~cTraits();
-
+    
+    cTraits( const cTraits& ) = delete;
+	cTraits& operator = ( const cTraits& ) = delete;
+    
 	void Free();	// Delete all the loaded data
 
 	void LoadTraits(std::string filename);	// Loads the traits from a file (adding them to the existing traits)

@@ -39,7 +39,10 @@ public:
 	CSurface(std::string filename);
 	CSurface(SDL_Surface* inputsurface);
 	virtual ~CSurface();
-
+    
+    CSurface( const CSurface& ) = delete;
+	CSurface& operator = ( const CSurface& ) = delete;
+    
 	void Free();
 	void FreeResources();
 	void Register(bool loaded);

@@ -46,8 +46,10 @@ typedef struct sWindow
 	sWindow* m_Next;
 
 	sWindow();
-
 	~sWindow();
+	
+	sWindow( const sWindow& ) = delete;
+	sWindow& operator = ( const sWindow& ) = delete;
 }sWindow;
 
 typedef void (*process_func)();
@@ -58,8 +60,10 @@ class cWindowManager
 	std::map<std::string,cInterfaceWindowXML *> windows;
 public:
 	cWindowManager();
-
 	~cWindowManager();
+	
+	cWindowManager( const cWindowManager& ) = delete;
+	cWindowManager& operator = ( const cWindowManager& ) = delete;
 
 	void add_window(std::string name, cInterfaceWindowXML *win);
 

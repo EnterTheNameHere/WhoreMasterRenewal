@@ -90,6 +90,9 @@ public:
 // structure to hold randomly generated girl information
 typedef struct sRandomGirl
 {
+public:
+    sRandomGirl( const sRandomGirl& ) = delete;
+    sRandomGirl& operator = ( const sRandomGirl& ) = delete;
     std::string m_Name;
     std::string m_Desc;
     
@@ -144,6 +147,9 @@ public:
     cImage();
     ~cImage();
     
+    cImage( const cImage& ) = delete;
+	cImage& operator = ( const cImage& ) = delete;
+    
     cImage* m_Next;
     std::shared_ptr<CSurface> m_Surface;
     cAnimatedSurface* m_AniSurface;
@@ -155,6 +161,9 @@ class cImageList
 public:
     cImageList();
     ~cImageList();
+    
+    cImageList( const cImageList& ) = delete;
+    cImageList& operator = ( const cImageList& ) = delete;
     
     void Free();
     
@@ -176,6 +185,9 @@ public:
     cAImgList();
     ~cAImgList();
     
+    cAImgList( const cAImgList& ) = delete;
+	cAImgList& operator = ( const cAImgList& ) = delete;
+    
     std::string m_Name; // name of the directory containing the images
     cImageList m_Images[NUM_IMGTYPES];  // the images
     
@@ -189,6 +201,9 @@ public:
     cImgageListManager();
     ~cImgageListManager();
     
+    cImgageListManager( const cImgageListManager& ) = delete;
+    cImgageListManager& operator = ( const cImgageListManager& ) = delete;
+    
     void Free();
     
     cAImgList* ListExists( std::string name );  // returns the list if the list is already loaded, returns 0 if it is not
@@ -201,6 +216,10 @@ private:
 
 typedef struct sChild
 {
+public:
+    sChild( const sChild& ) = delete;
+    sChild& operator = ( const sChild& ) = delete;
+    
     enum Gender
     {
         None    = -1,
@@ -260,6 +279,9 @@ class cGirls : public cAbstractGirls
 public:
     cGirls();
     virtual ~cGirls();
+    
+    cGirls( const cGirls& ) = delete;
+    cGirls& operator = ( const cGirls& ) = delete;
     
     void Free();
     

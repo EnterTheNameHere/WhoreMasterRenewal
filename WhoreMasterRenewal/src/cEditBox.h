@@ -36,7 +36,10 @@ class cEditBox : public cInterfaceObject
 public:
 	cEditBox();
 	virtual ~cEditBox();
-
+    
+    cEditBox( const cEditBox& ) = delete;
+	cEditBox& operator = ( const cEditBox& ) = delete;
+    
 	bool CreateEditBox(int ID, int x, int y, int width, int height, int BorderSize);
 	bool IsOver(int x, int y);
 	bool OnClicked(int x, int y);

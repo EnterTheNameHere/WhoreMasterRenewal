@@ -39,7 +39,10 @@ class cListItem
 public:
 	cListItem();
 	~cListItem();
-
+    
+    cListItem( const cListItem& ) = delete;
+	cListItem& operator = ( const cListItem& ) = delete;
+    
 	int m_Color;
 	bool m_Selected;
     std::string m_Data[LISTBOX_COLUMNS+1];	// the text to display, up to LISTBOX_COLUMNS number of columns (+1 is used for "original sort" slot)
@@ -53,7 +56,10 @@ class cListBox : public cInterfaceObject
 public:
 	cListBox();
 	virtual ~cListBox();
-
+    
+    cListBox( const cListBox& ) = delete;
+	cListBox& operator = ( const cListBox& ) = delete;
+    
 	bool IsOver(int x, int y);
 	void OnClicked(int x, int y, bool mouseWheelDown = false, bool mouseWheelUp = false);
 

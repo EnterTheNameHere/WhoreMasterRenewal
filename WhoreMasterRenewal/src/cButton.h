@@ -35,6 +35,9 @@ class cButton : public cInterfaceObject
 public:
 	cButton();
 	virtual ~cButton();
+	
+	cButton( const cButton& ) = delete;
+	cButton& operator = ( const cButton& ) = delete;
 
 	bool CreateButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int ID, int x, int y, int width, int height, bool transparency = false,bool cached=false);
 	bool IsOver(int x, int y);

@@ -43,6 +43,9 @@ class cMessageBox
 public:
 	cMessageBox();
 	~cMessageBox();
+	
+	cMessageBox( const cMessageBox& ) = delete;
+	cMessageBox& operator = ( const cMessageBox& ) = delete;
 
 	void CreateWindow(int x = 32, int y = 416, int width = 736, int height = 160, int BorderSize = 1, int FontSize = 16, bool scale = true);
 	void ChangeFontSize(int FontSize = 16);
@@ -74,6 +77,9 @@ typedef struct sMessage
     sMessage();
 	~sMessage();
     
+    sMessage( const sMessage& ) = delete;
+	sMessage& operator = ( const sMessage& ) = delete;
+    
     std::string m_Text;
 	int m_Color;
 	sMessage* m_Next;
@@ -84,7 +90,10 @@ class cMessageQue
 public:
 	cMessageQue();
 	~cMessageQue();
-
+    
+    cMessageQue( const cMessageQue& ) = delete;
+	cMessageQue& operator = ( const cMessageQue& ) = delete;
+    
 	void Free();
 
 	void AddToQue(std::string text, int color);

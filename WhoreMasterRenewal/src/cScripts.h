@@ -59,6 +59,7 @@ typedef struct sEntry	// represents a single entry in an action
 // a pointer for using linked lists.
 typedef struct sAction
 {
+public:
 	long m_ID; // Action ID (0 to # actions-1)
 	char m_Text[256]; // Action text
 	short m_NumEntries; // # of entries in action
@@ -68,6 +69,8 @@ typedef struct sAction
 	sAction();
 	~sAction();
 	
+	sAction( const sAction& ) = delete;
+	sAction& operator = ( const sAction& ) = delete;
 } sAction;
 
 typedef struct sScriptEntry
@@ -89,6 +92,9 @@ typedef struct sScriptEntry
 	sScriptEntry();
 	~sScriptEntry();
 	
+	sScriptEntry( const sScriptEntry& ) = delete;
+	sScriptEntry& operator = ( const sScriptEntry& ) = delete;
+	
 } sScriptEntry;
 
 typedef struct sScript
@@ -102,6 +108,8 @@ typedef struct sScript
 	sScript();
 	~sScript();
 	
+	sScript( const sScript& ) = delete;
+	sScript& operator = ( const sScript& ) = delete;
 } sScript;
 
 class cActionTemplate
@@ -109,7 +117,10 @@ class cActionTemplate
 public:
 	cActionTemplate();
 	~cActionTemplate();
-
+    
+    cActionTemplate( const cActionTemplate& ) = delete;
+	cActionTemplate& operator = ( const cActionTemplate& ) = delete;
+    
 	// Load and free the action templates
 	bool Load();
 	bool Free();
@@ -160,6 +171,9 @@ protected:
 public:
 	cScript();
 	virtual ~cScript();
+	
+	cScript( const cScript& ) = delete;
+	cScript& operator = ( const cScript& ) = delete;
 
 	bool Load(std::string filename); // Load a script
 	bool Free(); // Free loaded script

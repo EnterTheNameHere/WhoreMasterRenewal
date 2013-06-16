@@ -98,6 +98,13 @@ class TrainableGirl
 {
 public:
 	TrainableGirl(Girl *girl);
+	
+	//TrainableGirl( const TrainableGirl& )
+	//{
+	    // TODO: implement
+	//}
+	TrainableGirl& operator = ( const TrainableGirl& ) = delete;
+	
 	cTrainable &operator[](int index)
 	{
 		return stats[index];

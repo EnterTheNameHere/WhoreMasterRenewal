@@ -66,6 +66,9 @@ public:
 	cGetStringScreenManager_Inner();
 	~cGetStringScreenManager_Inner();
 	
+	cGetStringScreenManager_Inner( const cGetStringScreenManager_Inner& ) = delete;
+	cGetStringScreenManager_Inner& operator = ( const cGetStringScreenManager_Inner& ) = delete;
+	
 	void process();
 	void submit();
 	void set_dest( std::string& dest );

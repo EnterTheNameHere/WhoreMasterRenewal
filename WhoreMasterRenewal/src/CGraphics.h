@@ -37,7 +37,10 @@ class CGraphics
 public:
 	CGraphics();
 	~CGraphics();
-
+    
+    CGraphics( const CGraphics& ) = delete;
+	CGraphics& operator = ( const CGraphics& ) = delete;
+    
 	bool InitGraphics(std::string caption, int Width, int Height, int BPP);
 	void Free();
 	bool End();	// End Drawing Stuff
