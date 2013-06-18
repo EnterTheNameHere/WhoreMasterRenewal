@@ -36,7 +36,7 @@ static cTariff tariff;
 
 bool cScreenBuildingSetup::ids_set = false;
 
-cScreenBuildingSetup::cScreenBuildingSetup()
+cScreenBuildingSetup::cScreenBuildingSetup() : cInterfaceWindowXML()
 {
     DirPath dp = DirPath()
         << "Resources"
@@ -45,6 +45,7 @@ cScreenBuildingSetup::cScreenBuildingSetup()
     ;
     m_filename = dp.c_str();
 }
+
 cScreenBuildingSetup::~cScreenBuildingSetup()
 {
     

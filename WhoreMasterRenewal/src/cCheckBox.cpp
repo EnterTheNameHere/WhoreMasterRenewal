@@ -28,14 +28,9 @@
 namespace WhoreMasterRenewal
 {
 
-cCheckBox::cCheckBox()
+cCheckBox::cCheckBox() : cInterfaceObject()
 {
-    m_Image = nullptr;
-    m_Next = nullptr;
-    m_Border = nullptr;
-    m_Surface = nullptr;
-    m_StateOn = false;
-    m_Disabled = false;
+    ;
 }
 
 cCheckBox::~cCheckBox()

@@ -48,6 +48,7 @@ struct sJobs
 {
     sJobs();
 	~sJobs();
+	
 	void setup( std::string name,
                 int min = 0,
                 int max = -1,
@@ -60,17 +61,17 @@ struct sJobs
                 std::string hate = "",
                 int skill = 0 );
     
-    std::string m_Name;
-	bool m_FreeGirlAble;
-	bool m_SlaveAble;
-	short m_MinPositions;
-	short m_MaxPositions;
-	char m_Upkeep;
-	char m_GirlPay;
-	int m_ActionID;
-    std::string m_LikeWork;
-    std::string m_HateWork;
-	int m_DependantSkill;
+    std::string m_Name = "Default sJobs::m_Name";
+	bool m_FreeGirlAble = false;
+	bool m_SlaveAble = false;
+	short m_MinPositions = 0;
+	short m_MaxPositions = 0;
+	char m_Upkeep = 0;
+	char m_GirlPay = 0;
+	int m_ActionID = 0;
+    std::string m_LikeWork = "Default sJobs::m_LikeWork";
+    std::string m_HateWork = "Default sJobs::m_HateWork";
+	int m_DependantSkill = 0;
 };
 
 //mainly a list of functions
@@ -111,7 +112,7 @@ public:
 	void do_solo_training(Girl *girl, int day_night);
 	
 private:
-	std::vector<sFilm *> film_list;
+	std::vector<sFilm *> film_list = {};
 };
 
 } // namespace WhoreMasterRenewal

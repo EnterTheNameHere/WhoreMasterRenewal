@@ -48,7 +48,7 @@ struct sEffect
         GirlStatus  = 3,
         Trait       = 4
     };
-    What m_Affects;
+    
     /*
      *  define an ostream operator so it will pretty print
      *  (more useful for debugging than game play
@@ -68,7 +68,7 @@ struct sEffect
      *  The OO approach would be to write some variant classes, I expect
      *  but really? Life's too short...
      */
-    unsigned char m_EffectID;   // what stat, skill or status effect it affects
+    
     /*
      *  but I still need strings for the skills, states, traits and so forth
      *
@@ -90,6 +90,10 @@ struct sEffect
     bool set_girl_status( std::string s );
     bool set_stat( std::string s );
     
+    
+    
+    What m_Affects = {};
+    unsigned char m_EffectID = {0};   // what stat, skill or status effect it affects
     /*
      *  magnitude of the effect.
      *  -10 will subtract 10 from the target stat while equiped
@@ -98,11 +102,8 @@ struct sEffect
      *  With status effects and traits 1 means add,
      *  0 means take away and 2 means disable
      */
-    int m_Amount;
-    /*
-     *  name of the trait it adds
-     */
-    std::string m_Trait;
+    int m_Amount = {0};
+    std::string m_Trait = {"Default m_Trait name"}; // name of the trait it adds
     /*
      *  and a pretty printer for the class as a whole
      *  just a debug thing, really
@@ -114,8 +115,9 @@ std::ostream& operator << ( std::ostream& os, sEffect& eff );
 
 typedef struct sInventoryItem
 {
-    std::string m_Name;
-    std::string m_Desc;
+    std::string m_Name = {"Default sInventoryItem::m_Name"};
+    std::string m_Desc = {"Default sInventoryItem::m_Desc"};
+    
     /*
      *  item type: let's make an enum
      */
@@ -133,7 +135,8 @@ typedef struct sInventoryItem
         Armband = 10,   // (max 2), worn around arms
         SmWeapon = 11   // (max 1), hidden on body
     };
-    Type m_Type;
+    Type m_Type = {Type::Misc};
+    
     /*
      *  and another for special values
      */
@@ -143,27 +146,23 @@ typedef struct sInventoryItem
         AffectsAll  = 1,
         Temporary   = 2
     };
-    Special m_Special;
-    /*
-     *  if 1 then this item doesn't run out if stocked in shop inventory
-     */
-    bool m_Infinite;
-    /*
-     *  the number of effects this item has
-     */
-    std::vector<sEffect> m_Effects;
-    /*
-     *  how much the item is worth?
-     */
-    long m_Cost;
+    Special m_Special = {Special::None};
+    
+    bool m_Infinite = {false}; // if 1 then this item doesn't run out if stocked in shop inventory
+    std::vector<sEffect> m_Effects = {}; // the number of effects this item has
+    long m_Cost = {0}; // how much the item is worth?
+    
     /*  0 is good, while badness > is evil.
      *  Girls may fight back if badness > 0,
      *  Girls won't normally buy items > 20 on their own
      *      default formula is -5% chance to buy on their own per Badness point (5 Badness = 75% chance)
      *  Girls with low obedience may take off something that is bad for them
      */
-    unsigned char m_Badness;
-    unsigned char m_GirlBuyChance;  // chance that a girl on break will buy this item if she's looking at it in the shop
+    unsigned char m_Badness = {0};
+    
+    // chance that a girl on break will buy this item if she's looking at it in the shop
+    unsigned char m_GirlBuyChance = {0};
+    
     /*
      *  0 means common,
      *  1 means 50% chance of appearing in shops,
@@ -187,7 +186,7 @@ typedef struct sInventoryItem
         Catacomb05 = 7,   // MYR: Added 05 and 01 for the really, really valuable things like invulnerability
         Catacomb01 = 8
     };
-    Rarity m_Rarity;
+    Rarity m_Rarity = {Rarity::Common};
     
     void set_rarity( std::string s );
     void set_special( std::string s );
@@ -211,7 +210,7 @@ public:
     ~cInventory();
     
     cInventory( const cInventory& ) = delete;
-	cInventory& operator = ( const cInventory& ) = delete;
+    cInventory& operator = ( const cInventory& ) = delete;
     
     void Free();
     
@@ -255,8 +254,8 @@ public:
     
     
 private:
-    std::vector<sInventoryItem*> items;   // Master list of items?
-    int m_NumShopItems; // number of items in the shop
+    std::vector<sInventoryItem*> m_Items = {};   // Master list of items?
+    int m_NumShopItems = 0; // number of items in the shop
     sInventoryItem* m_ShopItems[NUM_SHOPITEMS]; // pointers to all items, the shop can only hold 30 random items
 };
 

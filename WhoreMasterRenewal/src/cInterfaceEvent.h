@@ -41,10 +41,10 @@ public:
     cInterfaceEvent( const cInterfaceEvent& ) = delete;
 	cInterfaceEvent& operator = ( const cInterfaceEvent& ) = delete;
     
-	int m_EventID;
-	int m_ObjectID;
+	int m_EventID = 0;
+	int m_ObjectID = 0;
 
-	cInterfaceEvent* m_Next;
+	cInterfaceEvent* m_Next = nullptr;
 };
 
 class cInterfaceEventManager
@@ -70,8 +70,8 @@ public:
 	void ClearEvents();
 
 private:
-	int m_NumEvents;
-	cInterfaceEvent* m_Events;
+	int m_NumEvents = 0;
+	cInterfaceEvent* m_Events = nullptr;
 };
 
 } // namespace WhoreMasterRenewal

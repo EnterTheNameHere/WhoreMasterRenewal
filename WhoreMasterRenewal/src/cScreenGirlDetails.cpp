@@ -51,7 +51,7 @@ static bool SetJob = true;
 
 bool cScreenGirlDetails::ids_set = false;
 
-cScreenGirlDetails::cScreenGirlDetails()
+cScreenGirlDetails::cScreenGirlDetails() : cInterfaceWindowXML()
 {
     DirPath dp = DirPath()
         << "Resources"

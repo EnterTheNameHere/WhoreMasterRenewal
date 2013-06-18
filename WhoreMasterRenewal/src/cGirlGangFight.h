@@ -42,25 +42,27 @@ public:
 //	int dead_goons()	{ return m_dead_goons; }
 
 private:
+    void lose_vs_own_gang(sGang* gang);
+	void win_vs_own_gang(sGang* gang);
+	int use_potions(sGang *gang, int casualties);
+    
+    
+    
 	Girl* m_girl;
 
-	int m_girl_stats;
-	int m_goon_stats;
-	int m_max_goons;
+	int m_girl_stats = 0;
+	int m_goon_stats = 0;
+	int m_max_goons = 0;
 //	double m_ratio;
 //	int m_dead_goons;
 
-	bool m_girl_fights;
-	bool m_girl_wins;
-	bool m_player_wins;
-	bool m_wipeout;
-	bool m_unopposed;
+	bool m_girl_fights = false;
+	bool m_girl_wins = false;
+	bool m_player_wins = false;
+	bool m_wipeout = false;
+	bool m_unopposed = false;
 
-	double m_odds;
-
-	void lose_vs_own_gang(sGang* gang);
-	void win_vs_own_gang(sGang* gang);
-	int use_potions(sGang *gang, int casualties);
+	double m_odds = 0.0;
 };
 
 } // namespace WhoreMasterRenewal

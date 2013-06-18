@@ -8,12 +8,7 @@ namespace WhoreMasterRenewal
 
 cTextItem::cTextItem()
 {
-    m_Next = nullptr;
-    m_ScrollBar = nullptr;
-    m_Hide = false;
-    m_AutoScrollBar = true;
-    m_ForceScrollBar = false;
-    m_ScrollChange = 0;
+    ;
 }
 
 cTextItem::~cTextItem()

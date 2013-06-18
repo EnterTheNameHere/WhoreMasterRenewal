@@ -64,18 +64,18 @@ public:
 	void hide();
 	void unhide();
     
-    bool m_Hide;
-	bool m_AutoScrollBar;  // automatically use scrollbar if text is too tall?
-	bool m_ForceScrollBar;  // force scrollbar display even if text fits?
+    bool m_Hide = false;
+	bool m_AutoScrollBar = true;  // automatically use scrollbar if text is too tall?
+	bool m_ForceScrollBar = false;  // force scrollbar display even if text fits?
 	
 	//int m_CharsPerLine, m_LinesPerBox, m_CharHeight;
-    std::string m_Text;
-	int m_ID;
-	cTextItem* m_Next;
-	cFont m_Font;
+    std::string m_Text = "Default cTextItem::m_Text value";
+	int m_ID = 0;
+	cTextItem* m_Next = nullptr;
+	cFont m_Font = {};
 
-	int m_ScrollChange;  // scrollbar changes will update this value; translates to skipped lines of text
-	cScrollBar* m_ScrollBar;  // pointer to the associated scrollbar, if any
+	int m_ScrollChange = 0;  // scrollbar changes will update this value; translates to skipped lines of text
+	cScrollBar* m_ScrollBar = nullptr;  // pointer to the associated scrollbar, if any
 };
 
 } // namespace WhoreMasterRenewal

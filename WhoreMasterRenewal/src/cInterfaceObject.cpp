@@ -4,11 +4,16 @@
 namespace WhoreMasterRenewal
 {
 
+cInterfaceObject::cInterfaceObject()
+{
+    ;
+}
+
 cInterfaceObject::~cInterfaceObject()
 {
-    
+    ;
 }
-    
+
 void cInterfaceObject::SetPosition( int x, int y, int width, int height )
 {
     m_XPos = x;

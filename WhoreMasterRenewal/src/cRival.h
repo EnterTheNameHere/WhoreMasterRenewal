@@ -40,19 +40,19 @@ public:
 	cRival& operator = ( const cRival& ) = delete;
     
     // variables
-    int m_NumGangs;
-    int m_NumBrothels;
-    int m_NumGirls;
-    int m_NumBars;
-    int m_NumGamblingHalls;
-    long m_Gold;
-    int m_BusinessesExtort;
-    long m_BribeRate;
-    int m_Influence;    // based on the bribe rate this is the percentage of influence you have
-    std::string m_Name;
+    int m_NumGangs = 3;
+    int m_NumBrothels = 1;
+    int m_NumGirls = 8;
+    int m_NumBars = 0;
+    int m_NumGamblingHalls = 0;
+    long m_Gold = 5000;
+    int m_BusinessesExtort = 0;
+    long m_BribeRate = 0;
+    int m_Influence = 0;    // based on the bribe rate this is the percentage of influence you have
+    std::string m_Name = "Default cRival::m_Name value";
     
-    cRival* m_Next;
-    cRival* m_Prev;
+    cRival* m_Next = nullptr;
+    cRival* m_Prev = nullptr;
 };
 
 class cRivalManager
@@ -101,13 +101,13 @@ public:
     void rivals_plunder_pc_gold( cRival* rival, std::string& message );
     
 private:
-    int m_NumRivals;
-    cRival* m_Rivals;
-    cRival* m_Last;
+    int m_NumRivals = 0;
+    cRival* m_Rivals = nullptr;
+    cRival* m_Last = nullptr;
     
-    bool m_PlayerSafe;
+    bool m_PlayerSafe = true;
     
-    cDoubleNameList names;
+    cDoubleNameList m_Names = {};
 };
 
 } // namespace WhoreMasterRenewal

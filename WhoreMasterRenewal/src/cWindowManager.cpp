@@ -26,8 +26,7 @@ namespace WhoreMasterRenewal
 
 sWindow::sWindow()
 {
-    m_Next = nullptr;
-    m_Interface = nullptr;
+    ;
 }
 
 sWindow::~sWindow()
@@ -41,7 +40,7 @@ sWindow::~sWindow()
 
 cWindowManager::cWindowManager()
 {
-    m_Parent = nullptr;
+    ;
 }
 
 cWindowManager::~cWindowManager()

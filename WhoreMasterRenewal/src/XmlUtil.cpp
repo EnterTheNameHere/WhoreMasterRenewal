@@ -131,8 +131,9 @@ void XmlUtil::context( std::string s )
 }
 
 XmlUtil::XmlUtil( std::string context )
+    : m_context( context )
 {
-    m_context = context;
+    ;
 }
 
 } // namespace WhoreMasterRenewal

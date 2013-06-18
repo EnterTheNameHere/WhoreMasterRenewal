@@ -91,34 +91,12 @@ public:
 typedef struct sRandomGirl
 {
 public:
+    sRandomGirl();
+    ~sRandomGirl();
+    
     sRandomGirl( const sRandomGirl& ) = delete;
     sRandomGirl& operator = ( const sRandomGirl& ) = delete;
-    std::string m_Name;
-    std::string m_Desc;
     
-    unsigned char m_Human;                      // 0 means they are human otherwise they are not
-    unsigned char m_Catacomb;                   // 1 means they are a monster found in catacombs, 0 means wanderer
-    
-    unsigned char m_MinStats[NUM_STATS];        // min and max stats they may start with
-    unsigned char m_MaxStats[NUM_STATS];
-    
-    unsigned char m_MinSkills[NUM_SKILLS];      // min and max skills they may start with
-    unsigned char m_MaxSkills[NUM_SKILLS];
-    
-    unsigned char m_NumTraits;                  // number of traits they are assigned
-    sTrait* m_Traits[MAXNUM_TRAITS];            // List of traits they may start with
-    unsigned char m_TraitChance[MAXNUM_TRAITS]; // the percentage change for each trait
-    
-    int m_MinMoney; // min and max money they can start with
-    int m_MaxMoney;
-    
-    sRandomGirl* m_Next;
-    /*
-     *  MOD: DocClox Sun Nov 15 06:11:43 GMT 2009
-     *  stream operator for debugging
-     *  plus a shitload of XML loader funcs
-     */
-    friend std::ostream& operator<<( std::ostream& os, sRandomGirl& g );
     /*
      *  one func to load the girl node,
      *  and then one each for each embedded node
@@ -130,12 +108,33 @@ public:
     void process_stat_xml( TiXmlElement* );
     void process_skill_xml( TiXmlElement* );
     void process_cash_xml( TiXmlElement* );
-    /*
-     *  END MOD
-     */
+    
+    friend std::ostream& operator<<( std::ostream& os, sRandomGirl& g );
+    
+    
+    
+    std::string m_Name = "";
+    std::string m_Desc = "";
+    
+    unsigned char m_Human = 0;                      // 0 means they are human otherwise they are not
+    unsigned char m_Catacomb = 0;                   // 1 means they are a monster found in catacombs, 0 means wanderer
+    
+    unsigned char m_MinStats[NUM_STATS];        // min and max stats they may start with
+    unsigned char m_MaxStats[NUM_STATS];
+    
+    unsigned char m_MinSkills[NUM_SKILLS];      // min and max skills they may start with
+    unsigned char m_MaxSkills[NUM_SKILLS];
+    
+    unsigned char m_NumTraits = 0;                  // number of traits they are assigned
+    sTrait* m_Traits[MAXNUM_TRAITS];            // List of traits they may start with
+    unsigned char m_TraitChance[MAXNUM_TRAITS]; // the percentage change for each trait
+    
+    int m_MinMoney = 0; // min and max money they can start with
+    int m_MaxMoney = 0;
+    
+    sRandomGirl* m_Next = nullptr;
+    
     static Girl* lookup;  // used to look up stat and skill IDs
-    sRandomGirl();
-    ~sRandomGirl();
 } sRandomGirl;
 
 
@@ -150,9 +149,9 @@ public:
     cImage( const cImage& ) = delete;
 	cImage& operator = ( const cImage& ) = delete;
     
-    cImage* m_Next;
-    std::shared_ptr<CSurface> m_Surface;
-    cAnimatedSurface* m_AniSurface;
+    cImage* m_Next = nullptr;
+    std::shared_ptr<CSurface> m_Surface = nullptr;
+    cAnimatedSurface* m_AniSurface = nullptr;
 };
 
 // Character image management class
@@ -174,9 +173,9 @@ public:
     bool IsAnimatedSurface( int& img );
     std::string GetName( int i );
     
-    int m_NumImages;
-    cImage* m_Images;
-    cImage* m_LastImages;
+    int m_NumImages = 0;
+    cImage* m_Images = nullptr;
+    cImage* m_LastImages = nullptr;
 };
 
 class cAImgList // class that manages a set of images from a directory
@@ -188,10 +187,10 @@ public:
     cAImgList( const cAImgList& ) = delete;
 	cAImgList& operator = ( const cAImgList& ) = delete;
     
-    std::string m_Name; // name of the directory containing the images
+    std::string m_Name = ""; // name of the directory containing the images
     cImageList m_Images[NUM_IMGTYPES];  // the images
     
-    cAImgList* m_Next;
+    cAImgList* m_Next = nullptr;
 };
 
 
@@ -210,23 +209,25 @@ public:
     cAImgList* LoadList( std::string name ); // loads a list if it doensn't already exist and returns a pointer to it. returns pointer to list if it does exist
     
 private:
-    cAImgList* m_First;
-    cAImgList* m_Last;
+    cAImgList* m_First = nullptr;
+    cAImgList* m_Last = nullptr;
 };
 
 typedef struct sChild
 {
 public:
-    sChild( const sChild& ) = delete;
-    sChild& operator = ( const sChild& ) = delete;
-    
     enum Gender
     {
-        None    = -1,
-        Girl    =  0,
+        None = -1,
+        Girl =  0,
         Boy =  1
     };
-    Gender m_Sex;
+    
+    sChild( bool is_players = false, Gender gender = Gender::None ); // Gender::None means random
+    ~sChild();
+    
+    sChild( const sChild& ) = delete;
+    sChild& operator = ( const sChild& ) = delete;
     
     std::string boy_girl_str()
     {
@@ -244,23 +245,21 @@ public:
         return m_Sex == Girl;
     }
     
-    unsigned char m_Age;    // grows up at 60 weeks
+    TiXmlElement* SaveChildXML( TiXmlElement* pRoot );
+    bool LoadChildXML( TiXmlHandle hChild );
+    
+    unsigned char m_Age = 0;    // grows up at 60 weeks
     unsigned char m_IsPlayers;  // 1 when players
-    unsigned char m_Unborn; // 1 when child is unborn (for when stats are inherited from customers)
+    unsigned char m_Unborn = 1; // 1 when child is unborn (for when stats are inherited from customers)
+    
+    Gender m_Sex;
     
     // skills and stats from the father
     unsigned char m_Stats[NUM_STATS];
     unsigned char m_Skills[NUM_SKILLS];
     
-    sChild* m_Next;
-    sChild* m_Prev;
-    
-    sChild( bool is_players = false, Gender gender = None );
-    ~sChild();
-    
-    TiXmlElement* SaveChildXML( TiXmlElement* pRoot );
-    bool LoadChildXML( TiXmlHandle hChild );
-    
+    sChild* m_Next = nullptr;
+    sChild* m_Prev = nullptr;
 } sChild;
 
 class GirlPredicate
@@ -466,18 +465,18 @@ public:
     
     
 private:
-    unsigned int m_NumGirls;    // number of girls in the class
-    Girl* m_Parent; // first in the list of girls who are dead, gone or in use
-    Girl* m_Last;   // last in the list of girls who are dead, gone or in use
+    unsigned int m_NumGirls = 0;    // number of girls in the class
+    Girl* m_Parent = nullptr; // first in the list of girls who are dead, gone or in use
+    Girl* m_Last = nullptr;   // last in the list of girls who are dead, gone or in use
     
-    unsigned int m_NumRandomGirls;
-    sRandomGirl* m_RandomGirls;
-    sRandomGirl* m_LastRandomGirls;
+    unsigned int m_NumRandomGirls = 0;
+    sRandomGirl* m_RandomGirls = nullptr;
+    sRandomGirl* m_LastRandomGirls = nullptr;
     
     // These are the default images used when a character is missing images for that particular purpose
-    cAImgList* m_DefImages;
-    cImgageListManager m_ImgListManager;
-    cNameList names;
+    cAImgList* m_DefImages = nullptr;
+    cImgageListManager m_ImgListManager = {};
+    cNameList m_Names;
 };
 
 } // namespace WhoreMasterRenewal

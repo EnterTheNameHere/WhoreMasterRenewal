@@ -36,7 +36,7 @@ public:
     void load( std::string file );
     
 private:
-    std::vector<std::string> names;
+    std::vector<std::string> m_Names = {};
 };
 
 class cDoubleNameList
@@ -48,8 +48,8 @@ public:
     std::string random();
     
 private:
-    cNameList m_first;
-    cNameList m_last;
+    cNameList m_first = {};
+    cNameList m_last = {};
 };
 
 } // namespace WhoreMasterRenewal

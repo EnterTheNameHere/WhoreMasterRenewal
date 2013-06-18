@@ -47,9 +47,9 @@ struct sFacility;
  */
 struct sBoundedVar
 {
-	int	m_min;
-	int	m_max;
-	int	m_curr;
+	int	m_min = 0;
+	int	m_max = 9;
+	int	m_curr = 0;
 /*
  *	defaults are set up for facility adjusters
  *	so range is 0-9, default to zero
@@ -101,9 +101,9 @@ struct sBoundedVar
  */
 struct sBoundedVar_Provides : public sBoundedVar
 {
-	int m_inc;			// increment - this per bump
-	int m_space;			// space taken
-	double m_slots_per_space;	// how many slots for one space?
+	int m_inc = 0;			// increment - this per bump
+	int m_space = 0;			// space taken
+	double m_slots_per_space = 0.0;	// how many slots for one space?
 
 /*
  *	we need to know how much extra space a bump would consume
@@ -140,20 +140,6 @@ struct sBoundedVar_Provides : public sBoundedVar
 
 struct sFacility
 {
-    std::string m_type_name;
-    std::string m_instance_name;
-    std::string m_desc;
-	int m_space_taken;
-	int m_slots;
-	int m_base_price;
-	int m_paid;
-	sBoundedVar_Provides m_provides;
-	sBoundedVar m_glitz;
-	sBoundedVar m_secure;
-	sBoundedVar m_stealth;
-	bool new_flag;
-	cTariff tariff;
-
 	sFacility();
 	sFacility( const sFacility& f );
 
@@ -182,6 +168,22 @@ struct sFacility
 	void load_from_xml( TiXmlElement* el );
 
 	sFacility* clone();
+	
+	
+	
+	std::string m_type_name = "";
+    std::string m_instance_name = "";
+    std::string m_desc = "";
+	int m_space_taken = 0;
+	int m_slots = 0;
+	int m_base_price = 0;
+	int m_paid = 0;
+	sBoundedVar_Provides m_provides = {};
+	sBoundedVar m_glitz = {};
+	sBoundedVar m_secure = {};
+	sBoundedVar m_stealth = {};
+	bool new_flag = false;
+	cTariff tariff = {};
 };
 
 } // namespace WhoreMasterRenewal

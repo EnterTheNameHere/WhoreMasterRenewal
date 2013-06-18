@@ -28,8 +28,8 @@ namespace WhoreMasterRenewal
 {
 
 sEntry::sEntry()
+    : m_Type( _NONE )
 {
-    m_Type = _NONE;
     m_NumChoices = 0;
     m_Choices = nullptr;
     m_TypeID = 0;
@@ -56,12 +56,12 @@ sEntry::~sEntry()
 }
 
 sAction::sAction()
+    : m_ID(0),
+    m_NumEntries(0),
+    m_Entries(nullptr),
+    m_Next(nullptr)
 {
-    m_ID = 0; // Set all data to defaults
     m_Text[0] = 0;
-    m_NumEntries = 0;
-    m_Entries = nullptr;
-    m_Next = nullptr;
 }
 
 sAction::~sAction()
@@ -76,11 +76,11 @@ sAction::~sAction()
 }
 
 sScriptEntry::sScriptEntry()
+    : m_Type( _NONE ),
+    m_Text(nullptr),
+    m_Var(0)
 {
-    m_Type = _NONE; // Clear to default values
     m_IOValue = 0;
-    m_Text = nullptr;
-    m_Var = 0;
 }
 
 sScriptEntry::~sScriptEntry()
@@ -92,12 +92,13 @@ sScriptEntry::~sScriptEntry()
 }
 
 sScript::sScript()
+    : m_Type(0),
+    m_NumEntries(0),
+    m_Entries(nullptr),
+    m_Prev(nullptr),
+    m_Next(nullptr)
 {
-    m_Type = 0; // Clear to defaults
-    m_NumEntries = 0;
-    m_Entries = nullptr;
-    m_Prev = nullptr;
-    m_Next = nullptr;
+    ;
 }
 
 sScript::~sScript()
@@ -115,8 +116,10 @@ sScript::~sScript()
 }
 
 cActionTemplate::cActionTemplate()
+    : m_NumActions(0),
+    m_ActionParent(nullptr)
 {
-    m_ActionParent = nullptr;
+    ;
 }
 cActionTemplate::~cActionTemplate()
 {
@@ -601,13 +604,19 @@ sScript* LoadScriptFile( std::string Filename )
     return ScriptRoot;
 }
 
-cScript::cScript()
+cScript::cScript( sScript* scriptParent, long numActions )
+    : m_NumActions( numActions ),
+    m_ScriptParent( scriptParent )
 {
-    m_ScriptParent = nullptr;   // Constructor
+    ;
 }
+
+
+
 cScript::~cScript()
 {
-    if( m_ScriptParent )delete m_ScriptParent;    // Destructor
+    if( m_ScriptParent )
+        delete m_ScriptParent;
     
     m_ScriptParent = nullptr;
 }

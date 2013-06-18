@@ -33,7 +33,7 @@
 namespace WhoreMasterRenewal
 {
 
-cBuildingManagement::cBuildingManagement()
+cBuildingManagement::cBuildingManagement() : cInterfaceWindowXML()
 {
     DirPath dp = DirPath()
         << "Resources"
@@ -41,8 +41,6 @@ cBuildingManagement::cBuildingManagement()
         << "upgrade_screen.xml"
     ;
     m_filename = dp.c_str();
-    selection = 0;
-    screen = 0;
 }
 
 cBuildingManagement::~cBuildingManagement()

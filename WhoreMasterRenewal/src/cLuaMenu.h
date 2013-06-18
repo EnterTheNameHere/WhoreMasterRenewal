@@ -30,41 +30,38 @@ typedef std::vector<std::string*> str_vec;
 
 // TODO: Add constructor
 class cLuaMenuInner
-{	
+{
 public:
-	void show();
-	void clicked(int option_number);
-	
+    void show();
+    void clicked( int option_number );
+    
 private:
-/*
- *	these are all singletons, so having them in the class
- *	is cheap
- */
-	//cLuaState	l;
-	//cConfig cfg;
-/*
- *	parameters to the initial show method
- */
-	int		x, y;
-	int		h, w;
-	int		maxw, maxh;
-	int		num_options;
-    std::string 	font_file;
-	int		font_size;
-	std::vector<std::string*>	captions;
-	int		lua_callback_ref;
-
-	int get_int(const char *name, int def_val);
-    std::string get_string(const char *name, const char *def_val);
-	void whoops(std::string msg);
-	int get_ref(const char *);
-	str_vec get_caption_strings();
-	str_vec traverse_caption_table();
-	void calc_size_from_font(str_vec &v);
-	void calc_co_ords(str_vec &v);
-	int get_menu_x(int maxw);
-	int get_menu_y(int maxh);
-	void write_captions();
+    /*
+     *  parameters to the initial show method
+     */
+    int x = 0;
+    int y = 0;
+    int h = 0;
+    int w = 0;
+    int maxw = 0;
+    int maxh = 0;
+    int num_options = 0;
+    std::string font_file = "Default cLuaMenuInner::font_file value";
+    int font_size = 0;
+    std::vector<std::string*> captions = {};
+    int lua_callback_ref = 0;
+    
+    int get_int( const char *name, int def_val );
+    std::string get_string( const char *name, const char *def_val );
+    void whoops( std::string msg );
+    int get_ref( const char * );
+    str_vec get_caption_strings();
+    str_vec traverse_caption_table();
+    void calc_size_from_font( str_vec &v );
+    void calc_co_ords( str_vec &v );
+    int get_menu_x( int maxw );
+    int get_menu_y( int maxh );
+    void write_captions();
 };
 
 class cLuaMenu
@@ -72,9 +69,9 @@ class cLuaMenu
 public:
     cLuaMenu();
     
-	void show();
-	void clicked( int option_number );
-
+    void show();
+    void clicked( int option_number );
+    
 private:
     static cLuaMenuInner* instance;
 };

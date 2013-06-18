@@ -42,18 +42,21 @@ typedef struct sDungeonCust
     sDungeonCust( const sDungeonCust& ) = delete;
 	sDungeonCust& operator = ( const sDungeonCust& ) = delete;
     
-	bool			m_Feeding;	// are you feeding them
-	bool			m_Tort;		// if true then have already tortured today
-	int				m_Reason;	// the reason they are here
-	int				m_Weeks;	// the number of weeks they have been here
+    void OutputCustDetailString(std::string& Data, const std::string& detailName);
+    
+    
+    
+    bool            m_Feeding = true;    // are you feeding them
+	bool			m_Tort = false;		// if true then have already tortured today
+	int				m_Reason = 0;	// the reason they are here
+	int				m_Weeks = 0;	// the number of weeks they have been here
 
 	// customer data
-	int				m_NumDaughters;
-	bool			m_HasWife;
-	sDungeonCust*	m_Next;
-	sDungeonCust*	m_Prev;
-	int				m_Health;
-	void OutputCustDetailString(std::string& Data, const std::string& detailName);
+	int				m_NumDaughters = 0;
+	bool			m_HasWife = 0;
+	sDungeonCust*	m_Next = nullptr;
+	sDungeonCust*	m_Prev = nullptr;
+	int				m_Health = 100;
 }sDungeonCust;
 
 // Keeps track of girls in the dungeon
@@ -64,35 +67,25 @@ typedef struct sDungeonGirl
     
     sDungeonGirl( const sDungeonGirl& ) = delete;
 	sDungeonGirl& operator = ( const sDungeonGirl& ) = delete;
+	
+	void OutputGirlDetailString(std::string& Data, const std::string& detailName);
+	
+	
     
-	bool			m_Feeding;			// are you feeding them
-	int				m_Reason;			// the reason they are here
-	int				m_Weeks;			// the number of weeks they have been here
+	bool			m_Feeding = true;			// are you feeding them
+	int				m_Reason = 0;			// the reason they are here
+	int				m_Weeks = 0;			// the number of weeks they have been here
 
 	// customer data
-	Girl*			m_Girl;
-	sDungeonGirl*	m_Next;
-	sDungeonGirl*	m_Prev;
-	void OutputGirlDetailString(std::string& Data, const std::string& detailName);
+	Girl*			m_Girl = nullptr;
+	sDungeonGirl*	m_Next = nullptr;
+	sDungeonGirl*	m_Prev = nullptr;
 }sDungeonGirl;
 
 
 // The dungeon
 class cDungeon
 {
-private:
-	sDungeonGirl* m_Girls;
-	sDungeonGirl* m_LastDGirl;
-	sDungeonCust* m_Custs;
-	sDungeonCust* m_LastDCusts;
-	unsigned long m_NumberDied;				// the total number of people that have died in the players dungeon
-	int m_NumGirls;
-	int m_NumCusts;
-
-	int m_NumGirlsTort;						//	WD:	Tracking for Torturer
-	int m_NumCustsTort;
-	void updateGirlTurnDungeonStats(sDungeonGirl* d_girl);
-
 public:
 	cDungeon();								// constructor
 	~cDungeon();							// destructor
@@ -133,6 +126,22 @@ public:
 
 	void PlaceDungeonGirl(sDungeonGirl* newGirl);
 	void PlaceDungeonCustomer(sDungeonCust* newCust);
+
+private:
+    void updateGirlTurnDungeonStats(sDungeonGirl* d_girl);
+    
+    
+    
+	sDungeonGirl* m_Girls = nullptr;
+	sDungeonGirl* m_LastDGirl = nullptr;
+	sDungeonCust* m_Custs = nullptr;
+	sDungeonCust* m_LastDCusts = nullptr;
+	unsigned long m_NumberDied = 0;				// the total number of people that have died in the players dungeon
+	int m_NumGirls = 0;
+	int m_NumCusts = 0;
+
+	int m_NumGirlsTort = 0;						//	WD:	Tracking for Torturer
+	int m_NumCustsTort = 0;
 };
 
 } // namespace WhoreMasterRenewal

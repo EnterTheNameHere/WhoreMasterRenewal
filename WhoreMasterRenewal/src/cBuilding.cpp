@@ -25,6 +25,20 @@
 namespace WhoreMasterRenewal
 {
 
+cBuilding::cBuilding()
+{
+    ;
+}
+
+cBuilding::~cBuilding()
+{
+    if( m_reversion )
+    {
+        g_LogFile.ss() << "cBuilding::~cBuilding() : Warning: m_reversion is not nullptr\n";
+        g_LogFile.ssend();
+    }
+}
+
 int cBuilding::capacity()
 {
     return m_capacity;
@@ -38,13 +52,6 @@ int cBuilding::free_space()
 int cBuilding::used_space()
 {
     return m_capacity - m_free;
-}
-
-cBuilding::cBuilding()
-{
-    m_capacity	= 20;
-    m_free		= 20;
-    m_reversion	= nullptr;
 }
 
 bool cBuilding::add(sFacility* fac)

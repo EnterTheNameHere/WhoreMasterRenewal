@@ -37,14 +37,9 @@ namespace WhoreMasterRenewal
 {
 
 // strut sDungeonCust
-sDungeonCust::sDungeonCust()		// constructor
+sDungeonCust::sDungeonCust()
 {
-	m_Prev = nullptr;
-	m_Next = nullptr;
-	m_Weeks = 0;
-	m_Tort = false;
-	m_Feeding = true;
-	m_Health = 100;
+	;
 }
 
 sDungeonCust::~sDungeonCust()		// destructor
@@ -55,13 +50,9 @@ sDungeonCust::~sDungeonCust()		// destructor
 }
 
 // strut sDungeonGirl
-sDungeonGirl::sDungeonGirl()		// constructor
+sDungeonGirl::sDungeonGirl()
 {
-	m_Girl = nullptr;
-	m_Prev = nullptr;
-	m_Next = nullptr;
-	m_Weeks = 0;
-	m_Feeding = true;
+	;
 }
 
 sDungeonGirl::~sDungeonGirl() 		// destructor
@@ -75,15 +66,9 @@ sDungeonGirl::~sDungeonGirl() 		// destructor
 }
 
 // class cDungeon
-cDungeon::cDungeon()		// constructor
+cDungeon::cDungeon()
 {
-    m_LastDGirl = nullptr;
-    m_Girls = nullptr;
-    m_LastDCusts = nullptr;
-    m_Custs = nullptr;
-    m_NumberDied = 0;
-    m_NumGirls = 0;
-    m_NumCusts = 0;
+    ;
 }
 
 cDungeon::~cDungeon()		// destructor

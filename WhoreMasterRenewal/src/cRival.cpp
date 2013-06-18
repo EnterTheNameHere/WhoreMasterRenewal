@@ -39,18 +39,7 @@ namespace WhoreMasterRenewal
 
 cRival::cRival()
 {
-    m_Next = nullptr;
-    m_Prev = nullptr;
-    m_Name = "";
-    m_Influence = 0;
-    m_BribeRate = 0;
-    m_Gold = 5000;
-    m_NumBrothels = 1;
-    m_NumGangs = 3;
-    m_NumGirls = 8;
-    m_NumBars = 0;
-    m_NumGamblingHalls = 0;
-    m_BusinessesExtort = 0;
+    ;
 }
 
 cRival::~cRival()
@@ -64,12 +53,6 @@ cRival::~cRival()
 
 cRivalManager::cRivalManager()
 {
-	m_Rivals=nullptr;
-	m_NumRivals=0;
-	m_Last=nullptr;
-	m_PlayerSafe = true;
-
-
 	DirPath first_names = DirPath()
 		<< "Resources"
 		<< "Data"
@@ -80,7 +63,7 @@ cRivalManager::cRivalManager()
 		<< "Data"
 		<< "RivalGangLastNames.txt"
 		;
-	names.load(first_names, last_names);
+	m_Names.load(first_names, last_names);
 }
 
 cRivalManager::~cRivalManager()
@@ -876,7 +859,7 @@ void cRivalManager::CreateRival(long bribeRate, int extort, long gold, int bars,
 	rival->m_NumGamblingHalls = gambHalls;
 
 	for(;;) {
-		rival->m_Name = names.random();
+		rival->m_Name = m_Names.random();
 		if(!NameExists(rival->m_Name)) {
 			break;
 		}
@@ -919,7 +902,7 @@ void cRivalManager::CreateRandomRival()
 	rival->m_NumGangs = 10+g_Dice%5;
 	
 	for(;;) {
-		rival->m_Name = names.random();
+		rival->m_Name = m_Names.random();
 		if(!NameExists(rival->m_Name)) {
 			break;
 		}

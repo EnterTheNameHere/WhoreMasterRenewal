@@ -51,17 +51,17 @@ public:
 	void toggle()	{ m_Hidden = !m_Hidden; }
 	
 private:
-    int m_ID;
+    int m_ID = 0;
     
-    std::shared_ptr<CSurface> m_OffImage;
-	std::shared_ptr<CSurface> m_DisabledImage;
-	std::shared_ptr<CSurface> m_OnImage;
-	std::shared_ptr<CSurface> m_CurrImage;
+    std::shared_ptr<CSurface> m_OffImage = nullptr;
+	std::shared_ptr<CSurface> m_DisabledImage = nullptr;
+	std::shared_ptr<CSurface> m_OnImage = nullptr;
+	std::shared_ptr<CSurface> m_CurrImage = nullptr;
 
-	cButton* m_Next;	// next button on the window
+	cButton* m_Next = nullptr;	// next button on the window
 	
-	bool m_Disabled;
-    bool m_Hidden;
+	bool m_Disabled = false;
+    bool m_Hidden = false;
 };
 
 } // namespace WhoreMasterRenewal

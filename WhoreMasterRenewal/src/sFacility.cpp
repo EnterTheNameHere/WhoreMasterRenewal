@@ -33,19 +33,18 @@ namespace WhoreMasterRenewal
  */
 sBoundedVar::sBoundedVar()
 {
-    m_min = 0;
-    m_max = 9;
-    m_curr = 0;
+    ;
 }
 
 /*
  *	but we could create one with any range
  */
 sBoundedVar::sBoundedVar( int min, int max, int def )
+    : m_min( min ),
+    m_max( max ),
+    m_curr( def )
 {
-    m_min = min;
-    m_max = max;
-    m_curr = def;
+    ;
 }
 
 sBoundedVar::~sBoundedVar()
@@ -230,24 +229,25 @@ int sBoundedVar_Provides::bound()
 
 sFacility::sFacility()
 {
-    m_type_name = "";
-    m_instance_name = "";
-    m_desc = "";
-    m_space_taken = 0;
-    m_slots = 0;
-    m_base_price = 0;
-    new_flag = false;
+    ;
 }
 
 sFacility::sFacility( const sFacility& f )
+    : m_type_name(f.m_type_name),
+    m_instance_name(f.m_instance_name),
+    m_desc(f.m_desc),
+    m_space_taken(f.m_space_taken),
+    m_slots(f.m_slots),
+    m_base_price(f.m_base_price),
+    m_paid(f.m_paid),
+    m_provides(f.m_provides),
+	m_glitz(f.m_glitz),
+	m_secure(f.m_secure),
+	m_stealth(f.m_stealth),
+    new_flag(f.new_flag),
+    tariff(f.tariff)
 {
-    m_base_price = f.m_base_price;
-    m_desc = f.m_desc;
-    m_instance_name	= f.m_instance_name;
-    m_slots = f.m_slots;
-    m_space_taken = f.m_space_taken;
-    m_type_name = f.m_type_name;
-    new_flag = f.new_flag;
+    ;
 }
 
 void sFacility::commit()

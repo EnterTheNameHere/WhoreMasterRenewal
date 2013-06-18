@@ -151,18 +151,8 @@ void cMessageBox::ChangeFontSize( int FontSize )
 
 cMessageBox::cMessageBox()
 {
-    m_Color = 0;
-    m_TextAdvance = false;
-    m_Font = nullptr;
-    m_Text = "";
-    
     for( int i = 0; i < NUM_MESSBOXCOLOR; ++i )
         m_Background[i] = nullptr;
-        
-    m_Border = nullptr;
-    m_Active = false;
-    m_Advance = false;
-    m_Position = 0;
 }
 
 void cMessageBox::ResetWindow( std::string text, int color )
@@ -188,9 +178,7 @@ void cMessageBox::SetActive( bool active )
 
 sMessage::sMessage()
 {
-    m_Next = nullptr;
-    m_Color = 0;
-    m_Text = "";
+    ;
 }
 
 sMessage::~sMessage()
@@ -202,8 +190,7 @@ sMessage::~sMessage()
 
 cMessageQue::cMessageQue()
 {
-    m_Mess = nullptr;
-    m_Last = nullptr;
+    ;
 }
 cMessageQue::~cMessageQue()
 {

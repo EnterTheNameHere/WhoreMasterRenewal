@@ -45,16 +45,39 @@ namespace WhoreMasterRenewal
 
 typedef unsigned int u_int;
 
-cInterfaceWindow::cInterfaceWindow()
+cInterfaceWindow::cInterfaceWindow() : cInterfaceObject()
 {
-    m_Background = nullptr;
-    m_Border = nullptr;
-    m_BackgroundSurface = nullptr;
+    ;
 }
 
 cInterfaceWindow::~cInterfaceWindow()
 {
 	Free();
+}
+
+cInterfaceWindow& cInterfaceWindow::operator = ( const cInterfaceWindow& rhs )
+{
+    // TODO: implement
+    
+    if( this != &rhs )
+    {
+        m_Buttons = rhs.m_Buttons;
+        m_Images = rhs.m_Images;
+        m_ListBoxes = rhs.m_ListBoxes;
+        m_ScrollBars = rhs.m_ScrollBars;
+        m_EditBoxes = rhs.m_EditBoxes;
+        m_TextItems = rhs.m_TextItems;
+        m_CheckBoxes = rhs.m_CheckBoxes;
+        m_Sliders = rhs.m_Sliders;
+        m_BackgroundSurface = rhs.m_BackgroundSurface;
+        m_Background = rhs.m_Background;
+        m_Border = rhs.m_Border;
+        m_BorderSize = rhs.m_BorderSize;
+        m_xRatio = rhs.m_xRatio;
+        m_yRatio = rhs.m_yRatio;
+    }
+    
+    return *this;
 }
 
 void cInterfaceWindow::Free()
@@ -828,8 +851,9 @@ void cInterfaceWindow::SetListBoxPosition(int ID, int pos)
 	m_ScrollBars[m_ListBoxes[ID]->m_ScrollDragID]->SetTopValue(pos);
 }
 
-cInterfaceWindowXML::cInterfaceWindowXML()
+cInterfaceWindowXML::cInterfaceWindowXML() : cInterfaceWindow()
 {
+    ;
 }
 
 void cInterfaceWindowXML::load()
@@ -1555,15 +1579,15 @@ void cInterfaceWindowXML::register_id(int id, std::string name)
 		<< "'"
 	;
 	g_LogFile.ssend();
-	name_to_id[name] = id;
-	id_to_name[id]	 = name;
+	m_name_to_id[name] = id;
+	m_id_to_name[id]	 = name;
 }
 
 
 int cInterfaceWindowXML::get_id(std::string s, bool essential)
 {
-	if(name_to_id.find(s) != name_to_id.end()) {
-		return name_to_id[s];
+	if(m_name_to_id.find(s) != m_name_to_id.end()) {
+		return m_name_to_id[s];
 	}
 	if(!essential) {
 		return -1;
@@ -1581,7 +1605,7 @@ cXmlWidget* cInterfaceWindowXML::new_widget(std::string name)
 {
 	cXmlWidget *wid = new cXmlWidget();
 
-	widgets[name] = wid;
+	m_widgets[name] = wid;
 	return wid;
 }
 
@@ -1589,39 +1613,40 @@ cXmlWidget* cInterfaceWindowXML::find_widget(std::string name)
 {
 	std::map<std::string,cXmlWidget*>::iterator it;
 
-	it = widgets.find(name);
-	if(it == widgets.end()) {
+	it = m_widgets.find(name);
+	if(it == m_widgets.end()) {
 		return nullptr;
 	}
 	return it->second;
 }
 
 cSelector::cSelector( cInterfaceWindow& a_win, int a_id )
-    : win( a_win )
+    : m_Id( a_id ),
+    m_Win( a_win )
 {
-    id = a_id;
+    ;
 }
 
 cSelector& cSelector::operator =( const cSelector& other )
 {
     if( this != &other )
     {
-        id = other.id;
-        pos = other.pos;
-        win = other.win;
+        m_Id = other.m_Id;
+        m_Pos = other.m_Pos;
+        m_Win = other.m_Win;
     }
     return *this;
 }
 
 int cSelector::first()
 {
-    pos = 0;
-    return win.GetNextSelectedItemFromList( id, 0, pos );
+    m_Pos = 0;
+    return m_Win.GetNextSelectedItemFromList( m_Id, 0, m_Pos );
 }
 
 int cSelector::next()
 {
-    return win.GetNextSelectedItemFromList( id, pos + 1, pos );
+    return m_Win.GetNextSelectedItemFromList( m_Id, m_Pos + 1, m_Pos );
 }
 
 } // namespace WhoreMasterRenewal

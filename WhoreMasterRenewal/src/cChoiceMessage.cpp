@@ -30,17 +30,7 @@ namespace WhoreMasterRenewal
 
 cChoice::cChoice()
 {
-    m_Next = nullptr;
-    m_Choices = nullptr;
-    m_NumChoices = 0;
-    m_CurrChoice = -1;
-    m_Background = nullptr;
-    m_Border = nullptr;
-    m_ElementSelectedBackground = nullptr;
-    m_ElementBackground = nullptr;
-    m_Position = 0;
-    m_HeaderBackground = nullptr;
-    m_ScrollDisabled = false;
+    ;
 }
 cChoice::~cChoice()
 {
@@ -82,16 +72,7 @@ cChoice::~cChoice()
 
 cChoiceManager::cChoiceManager()
 {
-    m_Parent = nullptr;
-    m_ActiveChoice = nullptr;
-    m_DownOn = nullptr;
-    m_UpOn = nullptr;
-    m_UpOff = nullptr;
-    m_DownOff = nullptr;
-    m_CurrUp = nullptr;
-    m_CurrDown = nullptr;
-    m_Font = nullptr;
-    m_callback = nullptr;
+    ;
 }
 
 cChoiceManager::~cChoiceManager()

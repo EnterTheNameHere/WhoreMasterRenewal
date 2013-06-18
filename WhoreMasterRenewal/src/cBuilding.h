@@ -33,6 +33,7 @@ class cBuilding
 {
 public:
 	cBuilding();
+	~cBuilding();
     
     cBuilding( const cBuilding& ) = delete;
 	cBuilding& operator = ( const cBuilding& ) = delete;
@@ -62,11 +63,11 @@ public:
 	void clear_reversion_list();
 	
 private:
-	int	m_capacity;
-	int	m_free;
+	int	m_capacity = 20;
+	int	m_free = 20;
 	typedef	std::vector<sFacility*> vFacilities;
-	vFacilities	m_facilities;
-	vFacilities* m_reversion;
+	vFacilities	m_facilities = {};
+	vFacilities* m_reversion = nullptr;
 };
 
 } // namespace WhoreMasterRenewal

@@ -77,8 +77,8 @@ public:
 	bool empty_allowed();
 	
 private:
-    cGetStringTransport_Base* m_Trans;
-	bool m_empty_ok;
+    cGetStringTransport_Base* m_Trans = nullptr;
+	bool m_empty_ok = true;
 };
 
 class cGetStringScreenManager

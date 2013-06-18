@@ -55,16 +55,16 @@ public:
 
 private:
 	// Screen
-	SDL_Surface* m_Screen;
+	SDL_Surface* m_Screen = nullptr;
 
 	// screen attributes
-	int m_ScreenWidth;
-	int m_ScreenHeight;
-	int m_ScreenBPP;
+	int m_ScreenWidth = 0;
+	int m_ScreenHeight = 0;
+	int m_ScreenBPP = 0;
 
 	// Time
-	unsigned int m_CurrentTime;
-	CTimer m_FPS;
+	unsigned int m_CurrentTime = 0;
+	CTimer m_FPS = {};
 };
 
 } // namespace WhoreMasterRenewal

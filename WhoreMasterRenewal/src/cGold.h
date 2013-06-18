@@ -37,23 +37,24 @@ class Brothel;
 
 class cGoldBase
 {
+    
     struct in
     {
-        double brothel_work;
-        double street_work;
-        double bar_income;
-        double gambling_profits;
-        double item_sales;
-        double slave_sales;
-        double creature_sales;
-        double extortion;
-        double plunder;
-        double petty_theft;
-        double grand_theft;
-        double catacomb_loot;
-        double objective_reward;
-        double bank_interest;
-        double misc;
+        double brothel_work = 0.0;
+        //double street_work = 0.0;
+        double bar_income = 0.0;
+        //double gambling_profits = 0.0;
+        double item_sales = 0.0;
+        double slave_sales = 0.0;
+        double creature_sales = 0.0;
+        //double extortion = 0.0;
+        //double plunder = 0.0;
+        //double petty_theft = 0.0;
+        //double grand_theft = 0.0;
+        //double catacomb_loot = 0.0;
+        //double objective_reward = 0.0;
+        //double bank_interest = 0.0;
+        //double misc = 0.0;
         
         
 //01234567890123456789012345678901234567890123456789012345678901234567890123456789
@@ -61,8 +62,11 @@ class cGoldBase
 // Brothel  Street   Movie     Bar  Casino   Items  Monster Loc'Biz   Raids P.Theft G.Theft C'combs  Reward Intr'st    Misc
 //  123456 1234567 1234567 1234567 1234567 1234567  1234567 1234567 1234567 1234567 1234567 1234567 1234567 1234567 1234567
         std::string str( int brothel_no = -1 );
-    } detail_in;
+    } detail_in = {};
     
+    
+    
+    /*
     struct out
     {
         double brothel_cost;
@@ -81,7 +85,8 @@ class cGoldBase
         double fines;
         double tax;
         double rival_raids;
-    } detail_out;
+    } detail_out = {};
+    */
     
 //   -------     Purchase    -------  Making --  Support  --    Girl ------   Upkeep  ------
 // # Brothel  Slaves   Items Consume  Movies    Goon    Girl Train'g Build'g     Bar  Casino Adverts  Bribes   Fines Raiders
@@ -107,24 +112,23 @@ protected:
      */
     double m_initial_value;
     double m_value;
-    double m_upkeep;
-    double m_income;
+    double m_upkeep = 0.0;
+    double m_income = 0.0;
     /*
      *  cash transactions are applied directly to value
      *  but we need to record how much came in and went out
      *  so we can calculate total earnings and expenditure
      *  for the turn
      */
-    double m_cash_in;
-    double m_cash_out;
+    double m_cash_in = 0.0;
+    double m_cash_out = 0.0;
     /*
      *  this lets us combine the "if pc can afford it" test
      *  with the actual debit, streamlining cash expediture
      */
     bool debit_if_ok( double price, bool force = false );
 public:
-    cGoldBase();
-    cGoldBase( int initial );
+    cGoldBase( int initial_value = 0 );
     
     virtual ~cGoldBase();
     /*
@@ -287,16 +291,12 @@ public:
      *  might be better
      */
     int total_earned();//   { return m_income + m_cash_in; }
-    int total_profit()
-    {
-        return  int( total_earned() - total_upkeep() );
-    }
+    int total_profit();
     void gen_report( int month );
     
 private:
     cGoldBase* find_brothel_account( int id );
-    
-    std::map<int, cGoldBase*> m_Brothels;
+    std::map<int, cGoldBase*> m_Brothels = {};
 };
 
 } // namespace WhoreMasterRenewal

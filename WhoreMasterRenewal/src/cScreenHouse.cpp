@@ -47,7 +47,7 @@ static std::string fmt_objective(std::stringstream &ss, std::string desc, int li
 
 bool cScreenHouse::ids_set = false;
 
-cScreenHouse::cScreenHouse()
+cScreenHouse::cScreenHouse() : cInterfaceWindowXML()
 {
     DirPath dp = DirPath()
         << "Resources"

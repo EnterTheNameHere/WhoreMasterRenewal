@@ -42,23 +42,13 @@ SDL_Surface* cScrollBar::m_ImgButtonDownOn = nullptr;
 SDL_Surface* cScrollBar::m_ImgButtonDownOff = nullptr;
 SDL_Surface* cScrollBar::m_ImgButtonDownDisabled = nullptr;
 
-cScrollBar::cScrollBar()
+cScrollBar::cScrollBar() : cInterfaceObject(),
+    m_RectBGTop( new SDL_Rect() ),
+    m_RectBGBottom( new SDL_Rect() ),
+    m_RectTop( new SDL_Rect() ),
+    m_RectBottom( new SDL_Rect() )
 {
-    m_BarHeight = m_SectionHeight = m_BarTop = m_ItemTop = 0;
-    m_ItemsTotal = m_ItemsVisible = m_ItemsTotalLast = 0;
-    ParentPosition = nullptr;
-    m_ScrollAmount = 1;
-    m_PageAmount = 3;
-    m_UpdateSelf = true;
-    m_Disabled = false;
-    m_Hidden = false;
-    m_RectBGTop = new SDL_Rect;
-    m_RectBGBottom = new SDL_Rect;
-    m_RectTop = new SDL_Rect;
-    m_RectBottom = new SDL_Rect;
-    m_ImgBar = nullptr;
-    m_ImgButtonUp = nullptr;
-    m_ImgButtonDown = nullptr;
+    ;
 }
 
 cScrollBar::~cScrollBar()

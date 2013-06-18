@@ -35,8 +35,8 @@ const char	DirPath::sep[] = "\\";
 
 
 DirPath::DirPath( const char* top_dir )
+    : path( top_dir )
 {
-    path = top_dir;
     size_t pos = path.find( '\r' );
     
     if( pos != std::string::npos )
@@ -46,8 +46,9 @@ DirPath::DirPath( const char* top_dir )
 }
 
 DirPath::DirPath( DirPath& dp )
+    : path( dp.path )
 {
-    path = dp.path;
+    ;
 }
 
 DirPath::~DirPath() {}
@@ -89,6 +90,7 @@ DirPath::operator std::string()
 
 
 DirPathR::DirPathR()
+    : over(nullptr)
 {
 	cConfig cfg;
     std::string s = cfg.override_dir();
@@ -98,10 +100,10 @@ DirPathR::DirPathR()
 }
 
 DirPathR::DirPathR( DirPathR& dp )
-    : DirPath( dp )
+    : DirPath( dp ),
+    over( dp.over )
 {
-    path = dp.path;
-    over = dp.over;
+    ;
 }
 
 std::ifstream& DirPathR::open( std::ifstream& ifs )

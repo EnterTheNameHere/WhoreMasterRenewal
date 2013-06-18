@@ -54,7 +54,6 @@ bool cScreenDungeon::ids_set = false;
 
 cScreenDungeon::cScreenDungeon()
 {
-    selection = -1;
     DirPath dp = DirPath()
         << "Resources"
         << "Interface"

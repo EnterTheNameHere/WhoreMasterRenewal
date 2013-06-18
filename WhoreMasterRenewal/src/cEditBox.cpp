@@ -28,14 +28,9 @@
 namespace WhoreMasterRenewal
 {
 
-cEditBox::cEditBox()
+cEditBox::cEditBox() : cInterfaceObject()
 {
-    m_Next = nullptr;
-    m_FocusedBackground = nullptr;
-    m_Border = nullptr;
-    m_Background = nullptr;
-    m_Text = nullptr;
-    m_HasFocus = false;
+    ;
 }
 
 cEditBox::~cEditBox()

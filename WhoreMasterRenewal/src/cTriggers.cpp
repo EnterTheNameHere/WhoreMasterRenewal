@@ -35,11 +35,7 @@ static std::map<std::string, int> trigger_types;
 
 cTrigger::cTrigger()
 {
-    m_Type = 0;
-    m_Triggered = 0;
-    m_Chance = 0;
-    m_Once = 0;
-    m_Next = nullptr;
+    ;
 }
 
 cTrigger::~cTrigger()
@@ -1778,9 +1774,7 @@ void cTriggerList::LoadList( std::string filename )
 
 cTriggerQue::cTriggerQue()
 {
-    m_Trigger = nullptr;
-    m_Next = nullptr;
-    m_Prev = nullptr;
+    ;
 }
 cTriggerQue::~cTriggerQue()
 {
@@ -1793,11 +1787,7 @@ cTriggerQue::~cTriggerQue()
 
 cTriggerList::cTriggerList()
 {
-    m_Triggers = nullptr;
-    m_CurrTrigger = nullptr;
-    m_Last = nullptr;/*m_StartQue=m_EndQue=0;m_NumQued=0;*/
-    m_NumTriggers = 0;
-    m_GirlTarget = nullptr;
+    ;
 }
 cTriggerList::~cTriggerList()
 {

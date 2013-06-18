@@ -33,7 +33,7 @@ namespace WhoreMasterRenewal
 
 bool cScreenBank::ids_set = false;
 
-cScreenBank::cScreenBank()
+cScreenBank::cScreenBank() : cInterfaceWindowXML()
 {
     DirPath dp = DirPath()
         << "Resources"
@@ -41,8 +41,6 @@ cScreenBank::cScreenBank()
         << "bank_screen.xml"
     ;
     m_filename = dp.c_str();
-    GetDeposit = false;
-    GetWithdraw = false;
 }
 
 cScreenBank::~cScreenBank()

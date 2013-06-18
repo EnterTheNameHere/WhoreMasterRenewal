@@ -38,9 +38,6 @@ namespace WhoreMasterRenewal
  */
 class FileListEntry
 {
-    std::string m_path; // the base path: ".\Resources\Characters"
-    std::string m_leaf; // the file name: "Girls.girls"
-    std::string m_full; // the full path: ".\Resources\Characters\Girls.girls"
 public:
     FileListEntry();
     FileListEntry( const FileListEntry& fle );
@@ -49,6 +46,11 @@ public:
     std::string& leaf();
     std::string& path();
     std::string& full();
+    
+private:
+    std::string m_path; // the base path: ".\Resources\Characters"
+    std::string m_leaf; // the file name: "Girls.girls"
+    std::string m_full; // the full path: ".\Resources\Characters\Girls.girls"
 };
 
 class FileList
@@ -96,7 +98,7 @@ private:
      *  std::vector - standard template library class.
      *  produces a typed dynamic array that grows as needed
      */
-    std::vector<FileListEntry>  files;
+    std::vector<FileListEntry> files = {};
 };
 
 /*
@@ -118,13 +120,15 @@ public:
 
 class XMLFileList
 {
-    DirPath folder;
-    std::vector<FileListEntry>  files;
 public:
     XMLFileList( DirPath dp, char const* pattern = "*" );
     FileListEntry& operator[]( int index );
     int size();
     void scan( const char* );
+    
+private:
+    DirPath folder;
+    std::vector<FileListEntry> files = {};
 };
 
 } // namespace WhoreMasterRenewal

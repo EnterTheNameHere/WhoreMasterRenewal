@@ -48,10 +48,6 @@ cScreenSlaveMarket::cScreenSlaveMarket()
         << "slavemarket_screen.xml"
     ;
     m_filename = dp.c_str();
-    selection = -1;
-    ImageNum = -1;
-    DetailLevel = 0;
-    sel_pos = 0;
 }
 
 cScreenSlaveMarket::~cScreenSlaveMarket()

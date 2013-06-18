@@ -26,6 +26,7 @@ namespace WhoreMasterRenewal
 class cInterfaceObject
 {
 public:
+    cInterfaceObject();
     virtual ~cInterfaceObject();
     
 	void SetPosition( int x, int y, int width, int height );
@@ -36,10 +37,10 @@ public:
 	int GetHeight();
 
 protected:
-	int m_XPos;
-	int m_YPos;
-	int m_Width;
-	int m_Height;
+	int m_XPos = 0;
+	int m_YPos = 0;
+	int m_Width = 0;
+	int m_Height = 0;
 };
 
 } // namespace WhoreMasterRenewal

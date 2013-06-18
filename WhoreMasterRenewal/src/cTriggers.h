@@ -55,14 +55,14 @@ const int TRIGGER_PLAYERMONEY = 12;	// triggers when players money hits a value
 class cTrigger
 {
 public:
-	std::string m_Script;			// the scripts filename
-	unsigned char m_Type;		// the type of trigger
-	unsigned char m_Triggered;	// 1 means this trigger has triggered already
-	unsigned char m_Chance;		// Percent chance of occuring
-	unsigned char m_Once;		// if 1 then this trigger will only work once, from then on it doesn't work
+	std::string m_Script = "Default cTrigger::m_Script value";			// the scripts filename
+	unsigned char m_Type = 0;		// the type of trigger
+	unsigned char m_Triggered = 0;	// 1 means this trigger has triggered already
+	unsigned char m_Chance = 0;		// Percent chance of occuring
+	unsigned char m_Once = 0;		// if 1 then this trigger will only work once, from then on it doesn't work
 	int m_Values[2];			// values used for the triggers
 
-	cTrigger* m_Next;
+	cTrigger* m_Next = nullptr;
 
 	cTrigger();
 	~cTrigger();
@@ -111,9 +111,9 @@ public:
 class cTriggerQue
 {
 public:
-	cTrigger* m_Trigger;	// the trigger that needs to be triggered
-	cTriggerQue* m_Next;	// the next one in the que
-	cTriggerQue* m_Prev;	// the previous one in the que
+	cTrigger* m_Trigger = nullptr;	// the trigger that needs to be triggered
+	cTriggerQue* m_Next = nullptr;	// the next one in the que
+	cTriggerQue* m_Prev = nullptr;	// the previous one in the que
 
 	cTriggerQue();
 	~cTriggerQue();
@@ -154,19 +154,19 @@ public:
 	bool HasRun(int num);
 
 private:
-	cTrigger* m_CurrTrigger;
-	cTrigger* m_Triggers;
-	cTrigger* m_Last;
-	int m_NumTriggers;
+	cTrigger* m_CurrTrigger = nullptr;
+	cTrigger* m_Triggers = nullptr;
+	cTrigger* m_Last = nullptr;
+	int m_NumTriggers = 0;
 
 	//int m_NumQued;
 	//cTriggerQue* m_StartQue;
 	//cTriggerQue* m_EndQue;
-	std::queue<cTriggerQue *> m_TriggerQueue;//mod
+	std::queue<cTriggerQue *> m_TriggerQueue = {};//mod
 
 
 	// script targets (things that the script will affect with certain commands)
-	Girl* m_GirlTarget;	// if not 0 then the script is affecting a girl
+	Girl* m_GirlTarget = nullptr;	// if not 0 then the script is affecting a girl
 };
 
 } // namespace WhoreMasterRenewal

@@ -35,7 +35,6 @@ class cAnimatedSurface;
 
 class cImageItem : public cInterfaceObject
 {
-	bool m_Hidden;
 public:
 	cImageItem();
 	virtual ~cImageItem();
@@ -47,16 +46,21 @@ public:
 	bool CreateAnimatedImage(int id, std::string filename, std::string dataFilename, int x, int y, int width, int height);
 
 	void Draw();
-
-	cAnimatedSurface* m_AnimatedImage;
-	SDL_Surface* m_Surface;
-	int m_ID;
-	bool m_loaded;
-	cImageItem* m_Next;	// next button on the window
-    std::shared_ptr<CSurface> m_Image;
-	void hide()	{ m_Hidden = true; }
-	void unhide()	{ m_Hidden = false; }
-	void toggle()	{ m_Hidden = !m_Hidden; }
+    
+    void hide()	{ m_Hidden = true; }
+	void unhide() { m_Hidden = false; }
+	void toggle() { m_Hidden = !m_Hidden; }
+    
+    
+    
+	cAnimatedSurface* m_AnimatedImage = nullptr;
+	SDL_Surface* m_Surface = nullptr;
+	int m_ID = 0;
+	bool m_loaded = false;
+	cImageItem* m_Next = nullptr;	// next button on the window
+    std::shared_ptr<CSurface> m_Image = nullptr;
+private:
+    bool m_Hidden = false;
 };
 
 } // namespace WhoreMasterRenewal

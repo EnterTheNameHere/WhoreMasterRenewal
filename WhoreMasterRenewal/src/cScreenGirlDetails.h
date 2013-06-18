@@ -33,63 +33,66 @@ class Girl;
 class cScreenGirlDetails : public cInterfaceWindowXML
 {
 public:
-	void Free();
-
+    cScreenGirlDetails();
+    virtual ~cScreenGirlDetails();
+    
+    void Free();
+    
+    void init();
+    void process();
+    void check_events();
+    bool check_keys();
+    
 private:
-	char	buffer[256];
-
-	static bool ids_set;
-/*
- *	interface/event IDs
- */
-	int back_id;		// Back button
-
-	int girlname_id;	// Girl Name text
-	int girldesc_id;	// Girl Description text
-	int girlimage_id;	// Girl image
-	int more_id;		// More button
-	int antipreg_id;	// Use Anti-preg checkbox
-	int prev_id;		// Prev button
-	int next_id;		// Next button
-	int accomup_id;		// Accom Up button
-	int accomdown_id;	// Accom Down button
-	int inventory_id;	// Inventory button
-	int senddungeon_id;	// Send To Dungeon button
-	int reldungeon_id;	// Release From Dungeon button
-	int interact_id;	// Interact button
-	int takegold_id;	// Take Gold button
-	int houseperc_id;	// House Percentage slider
-	int housepercval_id;// House Percentage value text
-	int gallery_id;		// Gallery button
-
-	int jobtypehead_id;	// Job Types header text
-	int jobtypelist_id;	// Job Types listbox
-	int jobhead_id;		// Job header text
-	int joblist_id;		// Job listbox
-	int day_id;			// Day button
-	int night_id;		// Night button
-	int traithead_id;	// Trait header text
-	int traitlist_id;	// Trait listbox
-	int traitdesc_id;	// Trait Description text
-
-	void set_ids();
-	bool GirlDead(Girl* dgirl);
-	void RefreshJobList();
-	void PrevGirl();
-	void NextGirl();
-	Girl *get_prev_girl();
-	Girl *get_next_girl();
-	Girl *remove_selected_girl();
-	bool do_take_gold(Girl *girl, std::string &message);
-	void take_gold(Girl *girl);
-public:
-	cScreenGirlDetails();
-	virtual ~cScreenGirlDetails();
-
-	void init();
-	void process();
-	void check_events();
-	bool check_keys();
+    void set_ids();
+    bool GirlDead( Girl* dgirl );
+    void RefreshJobList();
+    void PrevGirl();
+    void NextGirl();
+    Girl *get_prev_girl();
+    Girl *get_next_girl();
+    Girl *remove_selected_girl();
+    bool do_take_gold( Girl *girl, std::string &message );
+    void take_gold( Girl *girl );
+    
+    
+    
+    char buffer[256];
+    
+    static bool ids_set;
+    
+    /*
+     *  interface/event IDs
+     */
+    int back_id = 0;        // Back button
+    
+    int girlname_id = 0;    // Girl Name text
+    int girldesc_id = 0;    // Girl Description text
+    int girlimage_id = 0;   // Girl image
+    int more_id = 0;        // More button
+    int antipreg_id = 0;    // Use Anti-preg checkbox
+    int prev_id = 0;        // Prev button
+    int next_id = 0;        // Next button
+    int accomup_id = 0;     // Accom Up button
+    int accomdown_id = 0;   // Accom Down button
+    int inventory_id = 0;   // Inventory button
+    int senddungeon_id = 0; // Send To Dungeon button
+    int reldungeon_id = 0;  // Release From Dungeon button
+    int interact_id = 0;    // Interact button
+    int takegold_id = 0;    // Take Gold button
+    int houseperc_id = 0;   // House Percentage slider
+    int housepercval_id = 0;// House Percentage value text
+    int gallery_id = 0;     // Gallery button
+    
+    int jobtypehead_id = 0; // Job Types header text
+    int jobtypelist_id = 0; // Job Types listbox
+    int jobhead_id = 0;     // Job header text
+    int joblist_id = 0;     // Job listbox
+    int day_id = 0;         // Day button
+    int night_id = 0;       // Night button
+    int traithead_id = 0;   // Trait header text
+    int traitlist_id = 0;   // Trait listbox
+    int traitdesc_id = 0;   // Trait Description text
 };
 
 } // namespace WhoreMasterRenewal

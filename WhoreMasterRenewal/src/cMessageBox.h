@@ -41,70 +41,74 @@ const int NUM_MESSBOXCOLOR = 4;
 class cMessageBox
 {
 public:
-	cMessageBox();
-	~cMessageBox();
-	
-	cMessageBox( const cMessageBox& ) = delete;
-	cMessageBox& operator = ( const cMessageBox& ) = delete;
-
-	void CreateWindow(int x = 32, int y = 416, int width = 736, int height = 160, int BorderSize = 1, int FontSize = 16, bool scale = true);
-	void ChangeFontSize(int FontSize = 16);
-	void Draw();
-	void Advance();
-	void ResetWindow(std::string text, int color);
-	bool IsActive();
-	void SetActive(bool active);
-
+    cMessageBox();
+    ~cMessageBox();
+    
+    cMessageBox( const cMessageBox& ) = delete;
+    cMessageBox& operator = ( const cMessageBox& ) = delete;
+    
+    void CreateWindow( int x = 32, int y = 416, int width = 736, int height = 160, int BorderSize = 1, int FontSize = 16, bool scale = true );
+    void ChangeFontSize( int FontSize = 16 );
+    void Draw();
+    void Advance();
+    void ResetWindow( std::string text, int color );
+    bool IsActive();
+    void SetActive( bool active );
+    
 private:
-	int m_XPos, m_YPos, m_Height, m_Width, m_BorderSize;
-
-	bool m_Active;
-	bool m_Advance;
-
-	SDL_Surface* m_Background[NUM_MESSBOXCOLOR];
-	SDL_Surface* m_Border;
-
-	cFont* m_Font;
-    std::string m_Text;	// contains the entire text string
-	int m_Position;	// where we are up too
-
-	bool m_TextAdvance;
-	int m_Color;	// used to determine which color to use
+    int m_XPos = 0;
+    int m_YPos = 0;
+    int m_Height = 0;
+    int m_Width = 0;
+    int m_BorderSize = 0;
+    
+    bool m_Active = false;
+    bool m_Advance = false;
+    
+    SDL_Surface* m_Background[NUM_MESSBOXCOLOR];
+    SDL_Surface* m_Border = nullptr;
+    
+    cFont* m_Font = nullptr;
+    std::string m_Text = "Default cMessageBox::m_Text value"; // contains the entire text string
+    int m_Position = 0; // where we are up too
+    
+    bool m_TextAdvance = false;
+    int m_Color = 0; // used to determine which color to use
 };
 
 typedef struct sMessage
 {
     sMessage();
-	~sMessage();
+    ~sMessage();
     
     sMessage( const sMessage& ) = delete;
-	sMessage& operator = ( const sMessage& ) = delete;
+    sMessage& operator = ( const sMessage& ) = delete;
     
-    std::string m_Text;
-	int m_Color;
-	sMessage* m_Next;
-}sMessage;
+    std::string m_Text = "Default sMessage::m_Text value";
+    int m_Color = 0;
+    sMessage* m_Next = nullptr;
+} sMessage;
 
 class cMessageQue
 {
 public:
-	cMessageQue();
-	~cMessageQue();
+    cMessageQue();
+    ~cMessageQue();
     
     cMessageQue( const cMessageQue& ) = delete;
-	cMessageQue& operator = ( const cMessageQue& ) = delete;
+    cMessageQue& operator = ( const cMessageQue& ) = delete;
     
-	void Free();
-
-	void AddToQue(std::string text, int color);
-
-	bool HasNext();
-
-	void ActivateNext();
-
+    void Free();
+    
+    void AddToQue( std::string text, int color );
+    
+    bool HasNext();
+    
+    void ActivateNext();
+    
 private:
-	sMessage* m_Mess;
-	sMessage* m_Last;
+    sMessage* m_Mess = nullptr;
+    sMessage* m_Last = nullptr;
 };
 
 } // namespace WhoreMasterRenewal

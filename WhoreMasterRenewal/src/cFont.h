@@ -59,17 +59,17 @@ public:
 	int GetLinesPerBox();
 
 private:
-	TTF_Font* m_Font;
-	SDL_Color m_TextColor;
-	SDL_Surface* m_Message;	// for storing a single line message
-	SDL_Surface* m_MultilineMessage;	// for storing multiline messages
-	std::string m_Text;
-	bool m_NewText;	// variable for keeping track of if it needs to be updated
-	bool m_IsMultiline;
-	int m_Width;
-	int m_Height;
-	int m_Lineskip;
-	unsigned int m_NumLines;	// stores the total number of lines in the box
+	TTF_Font* m_Font = nullptr;
+	SDL_Color m_TextColor = {0,0,0,0};
+	SDL_Surface* m_Message = nullptr;	// for storing a single line message
+	SDL_Surface* m_MultilineMessage = nullptr;	// for storing multiline messages
+	std::string m_Text = "";
+	bool m_NewText = true;	// variable for keeping track of if it needs to be updated
+	bool m_IsMultiline = false;
+	int m_Width = 0;
+	int m_Height = 0;
+	int m_Lineskip = 0;
+	unsigned int m_NumLines = 0;	// stores the total number of lines in the box
 
 	// These functions are used internally to draw text to a surface
 	void RenderText(std::string text = "", bool multi = false);
