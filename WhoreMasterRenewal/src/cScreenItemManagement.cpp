@@ -41,8 +41,6 @@ cScreenItemManagement::cScreenItemManagement()
         << "itemmanagement_screen.xml"
     ;
     m_filename = dp.c_str();
-    sel_pos_l = -2;
-    sel_pos_r = -2;
 }
 
 cScreenItemManagement::~cScreenItemManagement()
@@ -496,7 +494,7 @@ void cScreenItemManagement::refresh_item_list(Side which_list)
 					if(*sel_name == it)  // if we just transferred this item here, might want to select it
 						*sel_pos = i;
 					it += " (";
-					it += toString(g_Brothels.m_NumItem[i]);
+					it += toString( static_cast<int>(g_Brothels.m_NumItem[i]) );
 					it += ")";
 					int item_type = g_Brothels.m_Inventory[i]->m_Type;
 					if(		(filter == 0)  // unfiltered?
