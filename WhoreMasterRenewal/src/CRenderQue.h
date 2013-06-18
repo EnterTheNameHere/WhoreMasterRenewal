@@ -53,8 +53,8 @@ public:
     void AddObject( CRenderObject* object );
     
 private:
-    CRenderObject* m_Parent;
-    CRenderObject* m_Last;
+    CRenderObject* m_Parent = nullptr;
+    CRenderObject* m_Last = nullptr;
 };
 
 } // namespace WhoreMasterRenewal

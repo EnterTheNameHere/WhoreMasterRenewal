@@ -696,8 +696,8 @@ static const luaL_Reg funx [] = {
 };
 
 cLuaStateInner::cLuaStateInner()
+    : L( luaL_newstate() )
 {
-	L = luaL_newstate();
 	luaL_openlibs(L);
 /*
  *	this should put all the functions in the "wm" namespace.
@@ -1047,10 +1047,7 @@ cLuaState::cLuaState()
 
 cLuaScript::cLuaScript()
 {
-    running = false;
-    girl	= nullptr;
-    init_ref= -1;
-    run_ref	= -1;
+    ;
 }
 
 cLuaScript::~cLuaScript()

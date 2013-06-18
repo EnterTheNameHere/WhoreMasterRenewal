@@ -36,19 +36,11 @@ SDL_Surface* cSlider::m_ImgButtonOff = nullptr;
 SDL_Surface* cSlider::m_ImgButtonOn = nullptr;
 SDL_Surface* cSlider::m_ImgButtonDisabled = nullptr;
 
-cSlider::cSlider()
+cSlider::cSlider() : cInterfaceObject(),
+    BGLeft( new SDL_Rect() ),
+    BGRight( new SDL_Rect() )
 {
-    m_ImgButton = nullptr;
-    m_ImgRail = nullptr;
-    m_MinVal = 0;
-    m_MaxVal = 100;
-    m_Value = m_Offset = m_MaxOffset = m_LastOffset = 0;
-    m_IncrementAmount = 5;
-    m_Disabled = false;
-    m_Hidden = false;
-    m_LiveUpdate = true;
-    BGLeft = new SDL_Rect;
-    BGRight = new SDL_Rect;
+    ;
 }
 
 cSlider::~cSlider()

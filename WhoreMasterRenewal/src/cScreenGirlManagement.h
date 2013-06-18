@@ -33,40 +33,6 @@ class Girl;
 class cScreenGirlManagement : public cInterfaceWindowXML
 {
 public:
-
-private:
-	char	buffer[256];
-
-	static bool ids_set;
-/*
- *	interface/event IDs
- */
-	int back_id;		// Back button
-	int curbrothel_id;	// Current Brothel text
-	int girllist_id;	// Girls listbox
-	int girlimage_id;	// Girl image
-	int girldesc_id;	// Girl Description text
-	int transfer_id;	// Transfer Girl button
-	int firegirl_id;	// Fire Girl button
-	int freeslave_id;	// Free Slave Button
-	int viewdetails_id;	// View Details button
-	int sellslave_id;	// Sell Slave button
-	int jobtypehead_id;	// Job Types header text
-	int jobtypelist_id;	// Job Types listbox
-	int jobtypedesc_id;	// Job Types Description text
-	int jobhead_id;		// Job header text
-	int joblist_id;		// Job listbox
-	int jobdesc_id;		// Job Description text
-	int day_id;			// Day button
-	int night_id;		// Night button
-
-	void set_ids();
-	bool GirlDead(Girl* dgirl);
-	void RefreshSelectedJobType();
-	void RefreshJobList();
-	void GetSelectedGirls(std::vector<int> *girl_array);
-	void ViewSelectedGirl();
-public:
 	cScreenGirlManagement();
 	virtual ~cScreenGirlManagement();
 
@@ -75,6 +41,41 @@ public:
 	void check_events();
 	bool check_keys();
 	void update_image();
+
+private:
+    void set_ids();
+	bool GirlDead(Girl* dgirl);
+	void RefreshSelectedJobType();
+	void RefreshJobList();
+	void GetSelectedGirls(std::vector<int> *girl_array);
+	void ViewSelectedGirl();
+	
+	
+	
+    char buffer[256];
+
+	static bool ids_set;
+/*
+ *	interface/event IDs
+ */
+	int back_id = 0;		// Back button
+	int curbrothel_id = 0;	// Current Brothel text
+	int girllist_id = 0;	// Girls listbox
+	int girlimage_id = 0;	// Girl image
+	int girldesc_id = 0;	// Girl Description text
+	int transfer_id = 0;	// Transfer Girl button
+	int firegirl_id = 0;	// Fire Girl button
+	int freeslave_id = 0;	// Free Slave Button
+	int viewdetails_id = 0;	// View Details button
+	int sellslave_id = 0;	// Sell Slave button
+	int jobtypehead_id = 0;	// Job Types header text
+	int jobtypelist_id = 0;	// Job Types listbox
+	int jobtypedesc_id = 0;	// Job Types Description text
+	int jobhead_id = 0;		// Job header text
+	int joblist_id = 0;		// Job listbox
+	int jobdesc_id = 0;		// Job Description text
+	int day_id = 0;			// Day button
+	int night_id = 0;		// Night button
 };
 
 } // namespace WhoreMasterRenewal

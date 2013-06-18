@@ -97,12 +97,15 @@ class GirlPredicate_GRG : public GirlPredicate
 {
     bool m_slave;
     bool m_catacomb;
+    
 public:
     GirlPredicate_GRG( bool slave, bool catacomb )
+        : m_slave( slave ),
+        m_catacomb( catacomb )
     {
-        m_slave = slave;
-        m_catacomb = catacomb;
+        ;
     }
+    
     virtual bool test( Girl* girl )
     {
         return  girl->is_slave() == m_slave
@@ -114,15 +117,9 @@ public:
 // ----- Create / destroy
 
 cGirls::cGirls()
+    : m_Names()
 {
-    m_DefImages = nullptr;
-    m_Parent = nullptr;
-    m_Last = nullptr;
-    m_NumRandomGirls = 0;
-    m_NumGirls = 0;
-    m_RandomGirls = nullptr;
-    m_LastRandomGirls = nullptr;
-    names.load( DirPath() << "Resources" << "Data" << "RandomGirlNames.txt" );
+    m_Names.load( DirPath() << "Resources" << "Data" << "RandomGirlNames.txt" );
 }
 
 cGirls::~cGirls()
@@ -1202,7 +1199,7 @@ Girl* cGirls::CreateRandomGirl( int age, bool addToGGirls, bool slave, bool /*un
     
     for( int i = 0; i < 5; i++ )
     {
-        name = names.random();
+        name = m_Names.random();
         
         if( NameExists( buffer ) )
         {
@@ -2972,8 +2969,6 @@ TiXmlElement* sChild::SaveChildXML( TiXmlElement* pRoot )
 
 sRandomGirl::sRandomGirl()
 {
-    m_Next = nullptr;
-    
     //assigning defaults
     for( int i = 0; i < NUM_STATS; i++ )
     {
@@ -10960,20 +10955,16 @@ std::ostream& operator<<( std::ostream& os, sRandomGirl& g )
 }
 
 sChild::sChild( bool is_players, Gender gender )
+    : m_IsPlayers(is_players),
+    m_Sex(gender)
 {
-    m_Unborn    = 1;
-    m_Age       = 0;
-    m_IsPlayers = is_players;
-    m_Sex       = gender;
-    m_Next      = nullptr;
-    m_Prev      = nullptr;
     
     if( gender != None )
     {
         return;
     }
     
-    m_Sex = ( g_Dice.is_girl() ? Girl : Boy );
+    m_Sex = ( g_Dice.is_girl() ? Gender::Girl : Gender::Boy );
 }
 
 sChild::~sChild()
@@ -11717,7 +11708,7 @@ void cGirls::LoadGirlImages( Girl* girl )
 
 cAImgList::cAImgList()
 {
-    m_Next = nullptr;
+    ;
 }
 
 cAImgList::~cAImgList()
@@ -11739,9 +11730,7 @@ cAImgList::~cAImgList()
 
 cImageList::cImageList()
 {
-    m_NumImages = 0;
-    m_LastImages = nullptr;
-    m_Images = nullptr;
+    ;
 }
 cImageList::~cImageList()
 {
@@ -12059,8 +12048,7 @@ std::string cImageList::GetName( int i )
 
 cImgageListManager::cImgageListManager()
 {
-    m_First = nullptr;
-    m_Last = nullptr;
+    ;
 }
 cImgageListManager::~cImgageListManager()
 {
@@ -12740,9 +12728,7 @@ int cGirls::DrawGirl( Girl* girl, int x, int y, int width, int height, int ImgTy
 
 cImage::cImage()
 {
-    m_Surface = nullptr;
-    m_Next = nullptr;
-    m_AniSurface = nullptr;
+    ;
 }
 
 cImage::~cImage()

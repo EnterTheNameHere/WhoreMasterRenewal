@@ -9,29 +9,16 @@
 namespace WhoreMasterRenewal
 {
 
-cGirlGangFight::cGirlGangFight(Girl *girl)
+cGirlGangFight::cGirlGangFight( Girl *girl )
+    : m_girl( girl )
 {
-	m_girl	= girl;
-	m_girl_stats	= 0;
-/*
- *	set this up on the basis that she refuses to fight
- */
-	m_goon_stats	= 0;
-	m_max_goons 	= 0;
-//	m_ratio	 		= 0.0;
-//	m_dead_goons 	= 0;
-	m_girl_fights	= false;
-	m_girl_wins		= false;
-	m_wipeout		= false;
-	m_unopposed		= false;
-	m_player_wins	= false;
 /*
  *	decide if she's going to fight or flee
  */
 	if(!g_Brothels.FightsBack(m_girl)) {
 		return;
 	}
-	m_girl_fights	= true;
+	m_girl_fights = true;
 /*
  *	ok, she fights. Find all the gangs on guard duty
  */

@@ -35,8 +35,7 @@ extern CGraphics g_Graphics;
 
 CGraphics::CGraphics()
 {
-	m_Screen = nullptr;
-	m_CurrentTime = 0;
+	;
 }
 
 CGraphics::~CGraphics()

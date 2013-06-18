@@ -128,20 +128,25 @@ void RocketSFMLRenderer::RenderGeometry( Rocket::Core::Vertex* vertices, int num
     };
     
     glEnableClientState( GL_VERTEX_ARRAY );
+    
     glEnableClientState( GL_COLOR_ARRAY );
+    
     glEnableClientState( GL_TEXTURE_COORD_ARRAY );
     
     glVertexPointer( 2, GL_FLOAT, 0, &positions[0] );
+    
     glColorPointer( 4, GL_UNSIGNED_BYTE, 0, &colors[0] );
+    
     glTexCoordPointer( 2, GL_FLOAT, 0, &texCoords[0] );
     
     glEnable( GL_BLEND );
+    
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     
     if( textureHandle )
     {
         glEnable( GL_TEXTURE_2D );
-        sf::Texture* sfTexture = (sf::Texture*)textureHandle;
+        sf::Texture* sfTexture = ( sf::Texture* )textureHandle;
         sfTexture->bind();
     }
     else
@@ -153,12 +158,15 @@ void RocketSFMLRenderer::RenderGeometry( Rocket::Core::Vertex* vertices, int num
     glDrawElements( GL_TRIANGLES, num_indices, GL_UNSIGNED_INT, indices );
     
     glDisableClientState( GL_TEXTURE_COORD_ARRAY );
+    
     glDisableClientState( GL_COLOR_ARRAY );
+    
     glDisableClientState( GL_VERTEX_ARRAY );
     
-//	glColor4f( 1, 1, 1, 1 );
+//  glColor4f( 1, 1, 1, 1 );
 
     glDisable( GL_TEXTURE_2D );
+    
     glDisable( GL_BLEND );
     
     glPopMatrix();
@@ -171,38 +179,38 @@ Rocket::Core::CompiledGeometryHandle RocketSFMLRenderer::CompileGeometry( Rocket
         const Rocket::Core::TextureHandle /*texture*/ )
 {
 //#ifdef ENABLE_GLEE
-//	m_Window->SetActive();
+//  m_Window->SetActive();
 //
-//	if( !GLEE_VERSION_2_0 )
-//		return ( Rocket::Core::CompiledGeometryHandle ) NULL;
+//  if( !GLEE_VERSION_2_0 )
+//      return ( Rocket::Core::CompiledGeometryHandle ) NULL;
 //
-//	std::vector<RocketSFMLRendererVertex> Data( num_vertices );
+//  std::vector<RocketSFMLRendererVertex> Data( num_vertices );
 //
-//	for( unsigned long i = 0; i < Data.size(); i++ )
-//	{
-//		Data[i].Position = *(sf::Vector2f*)&vertices[i].position;
-//		Data[i].TexCoord = *(sf::Vector2f*)&vertices[i].tex_coord;
-//		Data[i].Color = sf::Color( vertices[i].colour.red, vertices[i].colour.green,
-//			vertices[i].colour.blue, vertices[i].colour.alpha );
-//	};
+//  for( unsigned long i = 0; i < Data.size(); i++ )
+//  {
+//      Data[i].Position = *(sf::Vector2f*)&vertices[i].position;
+//      Data[i].TexCoord = *(sf::Vector2f*)&vertices[i].tex_coord;
+//      Data[i].Color = sf::Color( vertices[i].colour.red, vertices[i].colour.green,
+//          vertices[i].colour.blue, vertices[i].colour.alpha );
+//  };
 //
-//	RocketSFMLRendererGeometryHandler *geometry = new RocketSFMLRendererGeometryHandler();
-//	geometry->NumVertices = num_indices;
+//  RocketSFMLRendererGeometryHandler *geometry = new RocketSFMLRendererGeometryHandler();
+//  geometry->NumVertices = num_indices;
 //
-//	glGenBuffers( 1, &geometry->VertexID );
-//	glBindBuffer( GL_ARRAY_BUFFER, geometry->VertexID );
-//	glBufferData( GL_ARRAY_BUFFER, sizeof(RocketSFMLRendererVertex) * num_vertices, &Data[0],
-//		GL_STATIC_DRAW );
+//  glGenBuffers( 1, &geometry->VertexID );
+//  glBindBuffer( GL_ARRAY_BUFFER, geometry->VertexID );
+//  glBufferData( GL_ARRAY_BUFFER, sizeof(RocketSFMLRendererVertex) * num_vertices, &Data[0],
+//      GL_STATIC_DRAW );
 //
-//	glGenBuffers( 1, &geometry->IndexID );
-//	glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, geometry->IndexID );
-//	glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * num_indices, indices, GL_STATIC_DRAW );
+//  glGenBuffers( 1, &geometry->IndexID );
+//  glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, geometry->IndexID );
+//  glBufferData( GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * num_indices, indices, GL_STATIC_DRAW );
 //
-//	glBindBuffer( GL_ARRAY_BUFFER, 0 );
+//  glBindBuffer( GL_ARRAY_BUFFER, 0 );
 //
-//	geometry->Texture = texture;
+//  geometry->Texture = texture;
 //
-//	return (Rocket::Core::CompiledGeometryHandle)geometry;
+//  return (Rocket::Core::CompiledGeometryHandle)geometry;
 //#else
     return 0;
 //#endif
@@ -214,14 +222,14 @@ void RocketSFMLRenderer::RenderCompiledGeometry( Rocket::Core::CompiledGeometryH
 #ifdef ENABLE_GLEE
     m_Window->SetActive();
     
-    RocketSFMLRendererGeometryHandler* realGeometry = (RocketSFMLRendererGeometryHandler*)geometry;
+    RocketSFMLRendererGeometryHandler* realGeometry = ( RocketSFMLRendererGeometryHandler* )geometry;
     
     glPushMatrix();
     glTranslatef( translation.x, translation.y, 0 );
     glEnable( GL_BLEND );
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     
-    sf::Texture* texture = (sf::Image*)realGeometry->Texture;
+    sf::Texture* texture = ( sf::Image* )realGeometry->Texture;
     
     if( texture )
     {
@@ -233,30 +241,40 @@ void RocketSFMLRenderer::RenderCompiledGeometry( Rocket::Core::CompiledGeometryH
     };
     
     glEnable( GL_VERTEX_ARRAY );
+    
     glEnable( GL_TEXTURE_COORD_ARRAY );
+    
     glEnable( GL_COLOR_ARRAY );
     
 #define BUFFER_OFFSET(x) ((char*)0 + x)
     
     glBindBuffer( GL_ARRAY_BUFFER, realGeometry->VertexID );
-    glVertexPointer( 2, GL_FLOAT, sizeof(RocketSFMLRendererVertex), BUFFER_OFFSET( 0 ) );
-    glTexCoordPointer( 2, GL_FLOAT, sizeof(RocketSFMLRendererVertex), BUFFER_OFFSET( sizeof(sf::Vector2f) ) );
-    glColorPointer( 4, GL_UNSIGNED_BYTE, sizeof(RocketSFMLRendererVertex), BUFFER_OFFSET( sizeof(sf::Vector2f[2]) ) );
+    
+    glVertexPointer( 2, GL_FLOAT, sizeof( RocketSFMLRendererVertex ), BUFFER_OFFSET( 0 ) );
+    
+    glTexCoordPointer( 2, GL_FLOAT, sizeof( RocketSFMLRendererVertex ), BUFFER_OFFSET( sizeof( sf::Vector2f ) ) );
+    
+    glColorPointer( 4, GL_UNSIGNED_BYTE, sizeof( RocketSFMLRendererVertex ), BUFFER_OFFSET( sizeof( sf::Vector2f[2] ) ) );
     
     glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, realGeometry->IndexID );
+    
     glDrawElements( GL_TRIANGLES, realGeometry->NumVertices, GL_UNSIGNED_INT, BUFFER_OFFSET( 0 ) );
     
     glBindBuffer( GL_ARRAY_BUFFER, 0 );
     
     glDisable( GL_COLOR_ARRAY );
+    
     glDisable( GL_TEXTURE_COORD_ARRAY );
+    
     glDisable( GL_VERTEX_ARRAY );
     
     glColor4f( 1, 1, 1, 1 );
     
     glPopMatrix();
+    
 #else
     ROCKET_ASSERT( false & "Not Implemented" );
+    
 #endif
 }
 
@@ -266,7 +284,7 @@ void RocketSFMLRenderer::ReleaseCompiledGeometry( Rocket::Core::CompiledGeometry
 #ifdef ENABLE_GLEE
     m_Window->setActive();
     
-    delete (RocketSFMLRendererGeometryHandler*)geometry;
+    delete( RocketSFMLRendererGeometryHandler* )geometry;
 #else
     ROCKET_ASSERT( false & "Not Implemented" );
 #endif
@@ -301,14 +319,14 @@ bool RocketSFMLRenderer::LoadTexture( Rocket::Core::TextureHandle& textureHandle
     sf::Texture* sfTexture = new sf::Texture();
     
     // TODO: Texture manager based loading from file/cache
-    sfTexture->loadFromFile( (Rocket::Core::String("Resources/") + source).CString() );
+    sfTexture->loadFromFile( ( Rocket::Core::String( "Resources/" ) + source ).CString() );
     /*
     if( !sfTexture->loadFromFile( source.CString() ) )
     {
-    	return false;
+        return false;
     };
     */
-    textureHandle = (Rocket::Core::TextureHandle)sfTexture;
+    textureHandle = ( Rocket::Core::TextureHandle )sfTexture;
     textureDimensions = Rocket::Core::Vector2i( sfTexture->getSize().x, sfTexture->getSize().y );
     
     return true;
@@ -325,14 +343,14 @@ bool RocketSFMLRenderer::GenerateTexture( Rocket::Core::TextureHandle& textureHa
     texture->create( sourceDimensions.x, sourceDimensions.y );
     texture->update( source );
     
-//	if(!image->loadFromPixels(source_dimensions.x, source_dimensions.y, source))
-//	{
-//		delete image;
+//  if(!image->loadFromPixels(source_dimensions.x, source_dimensions.y, source))
+//  {
+//      delete image;
 //
-//		return false;
-//	};
+//      return false;
+//  };
 
-    textureHandle = (Rocket::Core::TextureHandle)texture;
+    textureHandle = ( Rocket::Core::TextureHandle )texture;
     
     return true;
 }
@@ -344,5 +362,5 @@ void RocketSFMLRenderer::ReleaseTexture( Rocket::Core::TextureHandle textureHand
     
     m_Window->setActive();
     
-    delete (sf::Texture*)textureHandle;
+    delete( sf::Texture* )textureHandle;
 }

@@ -58,7 +58,7 @@ void cNameList::load( std::string file )
         return;
     }
     
-    names.clear();
+    m_Names.clear();
     
     /*
      *  loop until the stream breaks
@@ -102,13 +102,13 @@ void cNameList::load( std::string file )
         /*
          *      finally, add it to the vector
          */
-        names.push_back( s );
+        m_Names.push_back( s );
     }
     
     /*
      *  quick sanity check
      */
-    if( names.empty() )
+    if( m_Names.empty() )
     {
         g_LogFile.ss()
                 << "Error: zero names found in file '"
@@ -122,7 +122,7 @@ void cNameList::load( std::string file )
 
 std::string cNameList::random()
 {
-    u_int size = names.size();
+    u_int size = m_Names.size();
     
     /*
      *  subscripting an empty vector causes a crash
@@ -144,7 +144,7 @@ std::string cNameList::random()
     /*
      *  otherwise, pick a random name
      */
-    return names[ g_Dice.random( size - 1 ) ]; // edited from size to size-1 since I got an OOB vector crash once
+    return m_Names[ g_Dice.random( size - 1 ) ]; // edited from size to size-1 since I got an OOB vector crash once
 }
 
 cDoubleNameList::cDoubleNameList()

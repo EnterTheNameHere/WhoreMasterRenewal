@@ -34,13 +34,13 @@ public:
 	Girl* get_girl_from_list(int owner_idx, int list_id);
 
 private:
-	int leftOwner;
-	int rightOwner;
-	int NumBrothelGirls;
-	int NumDungeonGirls;
-	int filter;
-	int leftItem;
-	int rightItem;
+	int leftOwner = 0;
+	int rightOwner = 1;
+	int NumBrothelGirls = 0;
+	int NumDungeonGirls = 0;
+	int filter = 0;
+	int leftItem = 0;
+	int rightItem = 0;
 };
 
 } // namespace WhoreMasterRenewal

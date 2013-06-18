@@ -1,4 +1,3 @@
-
 #include "Attribute.hpp"
 
 namespace WhoreMasterRenewal
@@ -21,9 +20,9 @@ Attribute::Attribute( const Attribute& other )
     //copy ctor
 }
 
-Attribute& Attribute::operator=(const Attribute& rhs)
+Attribute& Attribute::operator=( const Attribute& rhs )
 {
-    if (this == &rhs) return *this; // handle self assignment
+    if( this == &rhs ) return *this; // handle self assignment
     
     this->m_Name = rhs.m_Name;
     this->m_Type = rhs.m_Type;

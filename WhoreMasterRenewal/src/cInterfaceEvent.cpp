@@ -6,7 +6,7 @@ namespace WhoreMasterRenewal
 
 cInterfaceEvent::cInterfaceEvent()
 {
-    m_Next = nullptr;
+    ;
 }
 
 cInterfaceEvent::~cInterfaceEvent()
@@ -20,8 +20,7 @@ cInterfaceEvent::~cInterfaceEvent()
 
 cInterfaceEventManager::cInterfaceEventManager()
 {
-    m_NumEvents = 0;
-    m_Events = nullptr;
+    ;
 }
 
 cInterfaceEventManager::~cInterfaceEventManager()

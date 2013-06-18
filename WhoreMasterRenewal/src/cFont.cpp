@@ -32,15 +32,7 @@ float FontScale = 1.0f;
 
 cFont::cFont()
 {
-    m_Font = nullptr;
-    m_MultilineMessage = nullptr;
-    m_Message = nullptr;
-    m_Text = "";
-    m_NewText = true;
-    m_IsMultiline = false;
-    m_Height = m_Width = 0;
-    m_Lineskip = 0;
-    m_NumLines = 0;
+    ;
 }
 
 cFont::~cFont()

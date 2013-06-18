@@ -34,73 +34,94 @@ class Brothel;
 class cBuildingManagement : public cInterfaceWindowXML
 {
 public:
-	struct IDBlock {
-		int	unit;
-		int	shade;
-		int	desc;
-		int	type;
-		int	rename;
-		int	space;
-		int	cost;
-		int	bevel_t, bevel_b, bevel_l, bevel_r;
-		int	newsplash;
-		int	delete_btn;
-
-		int	glitz_cap, glitz_level, glitz_down, glitz_up;
-		int	provides_cap, provides_level, provides_down,provides_up;
-		int	secure_cap, secure_level, secure_down, secure_up;
-		int	stealth_cap, stealth_level, stealth_down,stealth_up;
-
-		void	hide(cBuildingManagement *mgr);
-		void	display(cBuildingManagement *m, int n, cBuilding *b);
-	};
+    struct IDBlock
+    {
+        int unit = 0;
+        int shade = 0;
+        int desc = 0;
+        int type = 0;
+        int rename = 0;
+        int space = 0;
+        int cost = 0;
+        int bevel_t = 0;
+        int bevel_b = 0;
+        int bevel_l = 0;
+        int bevel_r = 0;
+        int newsplash = 0;
+        int delete_btn = 0;
+        
+        int glitz_cap = 0;
+        int glitz_level = 0;
+        int glitz_down = 0;
+        int glitz_up = 0;
+        int provides_cap = 0;
+        int provides_level = 0;
+        int provides_down = 0;
+        int provides_up = 0;
+        int secure_cap = 0;
+        int secure_level = 0;
+        int secure_down = 0;
+        int secure_up = 0;
+        int stealth_cap = 0;
+        int stealth_level = 0;
+        int stealth_down = 0;
+        int stealth_up = 0;
+        
+        void hide( cBuildingManagement *mgr );
+        void display( cBuildingManagement *m, int n, cBuilding *b );
+    };
+    
+    
+    
+    cBuildingManagement();
+    virtual ~cBuildingManagement();
+    
+    cBuildingManagement( const cBuildingManagement& ) = delete;
+    cBuildingManagement& operator = ( const cBuildingManagement& ) = delete;
+    
+    void init();
+    void process();
+    void buy_button();
+    void revert_button();
+    bool check_keys();
+    void new_facility();
+    
+    void rename_button( int facility_idx );
+    void delete_button( int facility_idx );
+    void glitz_up( int facility_idx );
+    void glitz_down( int facility_idx );
+    void secure_down( int facility_idx );
+    void secure_up( int facility_idx );
+    void stealth_down( int facility_idx );
+    void stealth_up( int facility_idx );
+    
 private:
-	Brothel*	brothel;
-	cBuilding*	building;
-	int		selection;
-	int		screen;
-
-static	bool		ids_set;
-/*
- *	interface/event IDs
- */
-	int		header_id;	// screen header - changes with brothel
-	int		back_id;	// back button
-	int		capacity_id;	// capacity/used/free line
-	int		listbox_id;	// big listbox
-	int		narrative_id;	// narrative text at bottom
-	int		new_id;		// new button
-	int		gold_id;	// gold display
-	int		total_cost_id;	// total cost
-	int		buy_button_id;
-	int		revert_button_id;
-	IDBlock		blocks[6];
-
-	int		total_cost;
-
-	void		set_ids();
-public:
-	cBuildingManagement();
-	virtual ~cBuildingManagement();
-	
-	cBuildingManagement( const cBuildingManagement& ) = delete;
-	cBuildingManagement& operator = ( const cBuildingManagement& ) = delete;
-
-	void init();
-	void process();
-	void buy_button();
-	void revert_button();
-	bool check_keys();
-	void new_facility();
-
-	void rename_button(int facility_idx);
-	void delete_button(int facility_idx);
-	void glitz_up(int facility_idx);
-	void glitz_down(int facility_idx);
-	void secure_down(int facility_idx);
-	void secure_up(int facility_idx);
-	void stealth_down(int facility_idx);
-	void stealth_up(int facility_idx);
+    void set_ids();
+    
+    
+    
+    Brothel* brothel = nullptr;
+    cBuilding* building = nullptr;
+    int selection = 0;
+    int screen = 0;
+    
+    static bool ids_set;
+    /*
+     *  interface/event IDs
+     */
+    int header_id = 0;  // screen header - changes with brothel
+    int back_id = 0;    // back button
+    int capacity_id = 0;    // capacity/used/free line
+    int listbox_id = 0; // big listbox
+    int narrative_id = 0;   // narrative text at bottom
+    int new_id = 0;     // new button
+    int gold_id = 0;    // gold display
+    int total_cost_id = 0;  // total cost
+    int buy_button_id = 0;
+    int revert_button_id = 0;
+    IDBlock blocks[6];
+    
+    int total_cost = 0;
 };
 
 } // namespace WhoreMasterRenewal

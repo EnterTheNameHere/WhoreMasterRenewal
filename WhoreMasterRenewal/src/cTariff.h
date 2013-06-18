@@ -60,7 +60,7 @@ public:
 	int buy_facility( int );
 	
 private:
-    cConfig config;
+    cConfig config = {};
 	double slave_base_price( Girl* );
 };
 

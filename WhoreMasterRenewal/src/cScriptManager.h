@@ -49,8 +49,8 @@ public:
 	void RunScript();
 	
 private:
-    cGameScript m_Script;
-	std::queue<cLuaScript*> lq;
+    cGameScript m_Script = {};
+	std::queue<cLuaScript*> lq = {};
 };
 
 class cScriptManager

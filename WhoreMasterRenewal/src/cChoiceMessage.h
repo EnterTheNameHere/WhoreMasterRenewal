@@ -46,27 +46,27 @@ public:
     cChoice( const cChoice& ) = delete;
 	cChoice& operator = ( const cChoice& ) = delete;
     
-	int m_NumChoices;	// The number of choices available
-	std::string* m_Choices;	// array of choices available
-	int m_CurrChoice;	// The choice selected at present
-	int m_ID;	// the id for this particular box
-	cChoice* m_Next;	// the next choice box in the list
-	SDL_Surface* m_Background;
-	SDL_Surface* m_Border;
-	SDL_Surface* m_ElementBackground;	// the background and border for the list elements
-	SDL_Surface* m_ElementSelectedBackground;	// the background and border for the list elements
-	SDL_Surface* m_HeaderBackground;
-	int m_XPos;
-	int m_YPos;
-	int m_Width;
-	int m_Height;
+	int m_NumChoices = 0;	// The number of choices available
+	std::string* m_Choices = nullptr;	// array of choices available
+	int m_CurrChoice = -1;	// The choice selected at present
+	int m_ID = 0;	// the id for this particular box
+	cChoice* m_Next = nullptr;	// the next choice box in the list
+	SDL_Surface* m_Background = nullptr;
+	SDL_Surface* m_Border = nullptr;
+	SDL_Surface* m_ElementBackground = nullptr;	// the background and border for the list elements
+	SDL_Surface* m_ElementSelectedBackground = nullptr;	// the background and border for the list elements
+	SDL_Surface* m_HeaderBackground = nullptr;
+	int m_XPos = 0;
+	int m_YPos = 0;
+	int m_Width = 0;
+	int m_Height = 0;
 
-	int m_NumDrawnElements;
-	int m_eWidth;
-	int m_eHeight;
-	int m_Position;
+	int m_NumDrawnElements = 0;
+	int m_eWidth = 0;
+	int m_eHeight = 0;
+	int m_Position = 0;
 
-	bool m_ScrollDisabled;
+	bool m_ScrollDisabled = false;
 };
 
 
@@ -98,19 +98,19 @@ public:
 	bool find_active(int x, int y);
 
 private:
-    menu_callback_type m_callback;
+    menu_callback_type m_callback = nullptr;
     
-	cChoice* m_Parent;
-	cChoice* m_ActiveChoice;
+	cChoice* m_Parent = nullptr;
+	cChoice* m_ActiveChoice = nullptr;
 
-	cFont* m_Font;
+	cFont* m_Font = nullptr;
 
-	std::shared_ptr<CSurface> m_UpOn;
-	std::shared_ptr<CSurface> m_DownOn;
-	std::shared_ptr<CSurface> m_UpOff;
-	std::shared_ptr<CSurface> m_DownOff;
-	std::shared_ptr<CSurface> m_CurrUp;
-	std::shared_ptr<CSurface> m_CurrDown;
+	std::shared_ptr<CSurface> m_UpOn = nullptr;
+	std::shared_ptr<CSurface> m_DownOn = nullptr;
+	std::shared_ptr<CSurface> m_UpOff = nullptr;
+	std::shared_ptr<CSurface> m_DownOff = nullptr;
+	std::shared_ptr<CSurface> m_CurrUp = nullptr;
+	std::shared_ptr<CSurface> m_CurrDown = nullptr;
 };
 
 } // namespace WhoreMasterRenewal

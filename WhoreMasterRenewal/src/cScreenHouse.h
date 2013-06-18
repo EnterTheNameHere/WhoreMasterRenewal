@@ -31,25 +31,25 @@ extern cScreenHouse g_PlayersHouse;
 class cScreenHouse : public cInterfaceWindowXML
 {
 public:
-
+    cScreenHouse();
+    virtual ~cScreenHouse();
+    
+    void init();
+    void process();
+    void check_events();
+    
 private:
-
-	static bool ids_set;
-/*
- *	interface/event IDs
- */
-	int back_id;		// Back button
-	int details_id;		// House Details text
-	int header_id;		// page header text ("Your House")
-
-	void set_ids();
-public:
-	cScreenHouse();
-	virtual ~cScreenHouse();
-
-	void init();
-	void process();
-	void check_events();
+    void set_ids();
+    
+    
+    
+    static bool ids_set;
+    /*
+     *  interface/event IDs
+     */
+    int back_id = 0;        // Back button
+    int details_id = 0;     // House Details text
+    int header_id = 0;      // page header text ("Your House")
 };
 
 } // namespace WhoreMasterRenewal

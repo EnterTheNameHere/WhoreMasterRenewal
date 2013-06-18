@@ -31,51 +31,48 @@ namespace WhoreMasterRenewal
 class CEvent
 {
 public:
-	unsigned char	m_Event;				// type of event
-	unsigned char	m_MessageType;			// Image Type of message
-	std::string			m_Message;
-
-	//string		name;					//	name of who this event applies to, usually girl name
-	//int			imageType;
-	//int			imageNum;
-
-	std::string			TitleText();			//	Default listbox Text
-	unsigned int	ListboxColour();		//	Default Listbox Colour
-	unsigned int	m_Ordinal;				//  Used for sort order
-	bool			IsUrgent();
-	bool			IsDanger();
-	bool			IsWarning();
-	static bool		CmpEventPredicate(CEvent eFirst, CEvent /*eSecond*/)
-					{
-						// TODO: why are both sides same variables?
-						return eFirst.m_Ordinal < eFirst.m_Ordinal;
-					}
+    CEvent();
+    
+    std::string TitleText();            //  Default listbox Text
+    unsigned int ListboxColour();       //  Default Listbox Colour
+    bool IsUrgent();
+    bool IsDanger();
+    bool IsWarning();
+    static bool CmpEventPredicate( CEvent eFirst, CEvent /*eSecond*/ );
+    
+    
+    
+    unsigned char m_Event = 0;              // type of event
+    unsigned char m_MessageType = 0;        // Image Type of message
+    std::string m_Message = "";
+    unsigned int m_Ordinal = 0;             //  Used for sort order
 };
 
 class cEvents
 {
 public:
-	cEvents();
-	~cEvents();
-
-	void			Free();
-	void			Clear() {Free();}
-//	void			DisplayMessages();		// No definition
-	void			AddMessage(std::string message, int nImgType, int nEvent);
-
-	CEvent			GetMessage(int id);
-	int				GetNumEvents() 			{ return events.size(); }
-	bool			IsEmpty()				{ return events.empty() ; }
-	bool			HasUrgent();
-	bool			HasDanger();
-	bool			HasWarning();
-	void			DoSort();
-
-
+    cEvents();
+    ~cEvents();
+    
+    void Free();
+    void Clear()                { Free(); }
+    void AddMessage( std::string message, int nImgType, int nEvent );
+    
+    CEvent GetMessage( int id );
+    int GetNumEvents()          { return m_Events.size(); }
+    bool IsEmpty()              { return m_Events.empty() ; }
+    bool HasUrgent();
+    bool HasDanger();
+    bool HasWarning();
+    void DoSort();
+    
 private:
-	std::vector<CEvent>	events;
-	bool			m_bSorted;				// flag to only allow sort once
-	unsigned int	MakeOrdinal(int nEvent);
+    unsigned int MakeOrdinal( int nEvent );
+    
+    
+    
+    std::vector<CEvent> m_Events = {};
+    bool m_bSorted = false;                         // flag to only allow sort once
 };
 
 } // namespace WhoreMasterRenewal

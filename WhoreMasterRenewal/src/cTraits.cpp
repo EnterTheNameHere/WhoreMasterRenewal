@@ -29,9 +29,7 @@ namespace WhoreMasterRenewal
 
 sTrait::sTrait()
 {
-    m_Name = nullptr;
-    m_Desc = nullptr;
-    m_Next = nullptr;
+    ;
 }
 
 sTrait::~sTrait()
@@ -54,9 +52,7 @@ sTrait::~sTrait()
 
 cTraits::cTraits()
 {
-    m_ParentTrait = nullptr;
-    m_LastTrait = nullptr;
-    m_NumTraits = 0;
+    ;
 }
 
 cTraits::~cTraits()

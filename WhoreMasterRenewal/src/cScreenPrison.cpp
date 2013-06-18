@@ -42,7 +42,6 @@ cScreenPrison::cScreenPrison()
         << "prison_screen.xml"
     ;
     m_filename = dp.c_str();
-    selection = -1;
 }
 
 cScreenPrison::~cScreenPrison()

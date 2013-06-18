@@ -220,33 +220,12 @@ int Girl::lookup_stat_code( std::string s )
 Girl::Girl()
 {
     m_Stats[STAT_HOUSE] = 60;
-    m_GirlImages        = nullptr;
-    m_Tort              = false;
-    m_JustGaveBirth     = false;
-    m_Realname          = "";
-    m_WeeksPreg         = 0;
-    m_BDay              = 0;
-    m_NumCusts          = 0;
-    m_WeeksPast         = 0;
-    m_Withdrawals       = 0;
-    m_Virgin            = false;
-    m_Spotted           = 0;
-    m_RunAway           = 0;
-    m_AccLevel          = 0;
-    m_Money             = 0;
-    m_NumInventory      = 0;
-    m_Pay               = 0;
-    m_FetishTypes       = 0;
-    m_DaysUnhappy       = 0;
-    m_PregCooldown      = 0;
     
     for( int i = 0; i < 40; i++ )
     {
         m_EquipedItems[i]   = 0;
         m_Inventory[i]      = nullptr;
     }
-    
-    m_NumRememTraits = m_NumTraits = 0;
     
     for( int i = 0; i < MAXNUM_TRAITS; i++ )
     {
@@ -259,16 +238,6 @@ Girl::Girl()
         
     for( int i = 0; i < NUM_GIRLFLAGS; i++ )
         m_Flags[i]          = 0;
-        
-    m_Prev                  = nullptr;
-    m_Next                  = nullptr;
-    m_Name                  = nullptr;
-    m_Desc                  = "";
-    m_States                = 0;
-    m_DayJob = m_NightJob   = 0;
-    m_PrevDayJob = m_PrevNightJob = 255;
-    
-    m_UseAntiPreg       = true;
     
     for( u_int i = 0; i < NUM_SKILLS; i++ )
         m_TempSkills[i] = m_SkillMods[i] = 0;
@@ -1519,9 +1488,7 @@ std::ostream& operator<<( std::ostream& os, Girl& g )
 
 cChildList::cChildList()
 {
-    m_FirstChild = nullptr;
-    m_LastChild = nullptr;
-    m_NumChildren = 0;
+    ;
 }
 
 cChildList::~cChildList()

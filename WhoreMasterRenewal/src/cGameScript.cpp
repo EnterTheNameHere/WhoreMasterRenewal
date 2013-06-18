@@ -39,17 +39,11 @@
 namespace WhoreMasterRenewal
 {
 
-cGameScript::cGameScript()
+cGameScript::cGameScript() : cScript(nullptr)
 {
     // Clear all internal flags to false
     for( int i = 0; i < NUMVARS; ++i )
         m_Vars[i] = 0;
-        
-    m_CurrPos = nullptr;
-    m_ScriptParent = nullptr;
-    m_Active = false;
-    m_Leave = false;
-    m_GirlTarget = nullptr;
 }
 
 cGameScript::~cGameScript()

@@ -98,19 +98,19 @@ public:
 	void set_wm_player();
 	
 private:
-	cLuaState l;
-    std::string m_file;
-	bool running;
+	cLuaState l = {};
+    std::string m_file = "Default cLuaScript::m_file value";
+	bool running = false;
 /*
  *	these are going to hold lua references
  *	pointers to the script's init() and run() methods
  */
-	int init_ref;
-	int run_ref;
+	int init_ref = -1;
+	int run_ref = -1;
 /*
  *	the girl who is the subject (if any) of the event
  */
-	Girl* girl;
+	Girl* girl = nullptr;
 
     std::string slurp(std::string path);
 	void get_param_table();

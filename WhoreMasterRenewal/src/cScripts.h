@@ -157,19 +157,20 @@ private:
 class cScript
 {
 protected:
-	long m_NumActions; // # of script actions loaded
-	sScript* m_ScriptParent; // Script linked list
-
+	cScript( sScript* scriptParent = nullptr, long numActions = 0 );
+	
 	// Overloadable functions for preparing for script
 	// processing and when processing completed
 	virtual bool Prepare() { return true; }
 	virtual bool Release() { return true; }
+	
+	long m_NumActions; // # of script actions loaded
+	sScript* m_ScriptParent; // Script linked list
 
 	// Process a single script action
-	virtual sScript* Process(sScript* Script) { return Script->m_Next; }
+	virtual sScript* Process( sScript* script ) { return script->m_Next; }
 
 public:
-	cScript();
 	virtual ~cScript();
 	
 	cScript( const cScript& ) = delete;

@@ -33,44 +33,46 @@ class Girl;
  *
  * currently that means skill or stat.
  */
-class cTrainable {
+class cTrainable
+{
 public:
-/*
- *	comments in the forum notwithstanding, we do too need a flag here
- *	this can't be a pure virtual, since vector tries to construct
- *	a class instance before assigning a new member to a slot
- *
- *	could try making it default to skill or stat I suppose
- *	but this is probably safer
- */
-	enum AType {
-		Stat, Skill
-	} ;
-/*
- *	constructor - nothing fancy here
- */
-	cTrainable();
-	cTrainable(Girl *girl, std::string stat_name, int index, AType typ);
-	cTrainable(const cTrainable& t);
+    /*
+     *  comments in the forum notwithstanding, we do too need a flag here
+     *  this can't be a pure virtual, since vector tries to construct
+     *  a class instance before assigning a new member to a slot
+     *
+     *  could try making it default to skill or stat I suppose
+     *  but this is probably safer
+     */
+    enum AType
+    {
+        Stat, Skill
+    } ;
+    
+    /*
+     *  constructor - nothing fancy here
+     */
+    cTrainable( Girl* girl = nullptr, std::string stat_name = "", int index = 0, AType typ = AType::Stat );
+    cTrainable( const cTrainable& t );
     
     virtual ~cTrainable();
     
-	cTrainable& operator =(const cTrainable& t);
-
+    cTrainable& operator =( const cTrainable& t );
+    
     std::string name();
-/*
- *	lost the virtual here - don't need it
- */
-	int	value();
-	void upd(int increment);
-	int	gain();
-	
+    /*
+     *  lost the virtual here - don't need it
+     */
+    int value();
+    void upd( int increment );
+    int gain();
+    
 protected:
-	Girl* m_girl;
+    Girl* m_girl;
     std::string m_name;
-	int	m_index;
-	AType	m_type;
-	int	m_gain;
+    int m_index;
+    AType m_type;
+    int m_gain = 0;
 };
 
 /*
@@ -81,13 +83,13 @@ protected:
 class TrainableStat : public cTrainable
 {
 public:
-	TrainableStat(Girl *girl, std::string stat_name, int index);
+    TrainableStat( Girl* girl, std::string stat_name, int index );
 };
 
 class TrainableSkill : public cTrainable
 {
 public:
-	TrainableSkill(Girl *girl, std::string stat_name, int index);
+    TrainableSkill( Girl* girl, std::string stat_name, int index );
 };
 
 /*
@@ -97,28 +99,26 @@ public:
 class TrainableGirl
 {
 public:
-	TrainableGirl(Girl *girl);
-	
-	//TrainableGirl( const TrainableGirl& )
-	//{
-	    // TODO: implement
-	//}
-	TrainableGirl& operator = ( const TrainableGirl& ) = delete;
-	
-	cTrainable &operator[](int index)
-	{
-		return stats[index];
-	}
-	unsigned int size()	{ return stats.size(); }
-/*
- *	this is useful for solo training
- */
-    std::string update_random(int size=1);
-	Girl*	girl() 	{ return m_girl; }
-	
+    TrainableGirl( Girl* girl );
+    
+    TrainableGirl( const TrainableGirl& /*toCopy*/ ) = default;
+    TrainableGirl& operator = ( const TrainableGirl& ) = delete;
+    
+    unsigned int size() { return stats.size(); }
+    /*
+     *  this is useful for solo training
+     */
+    std::string update_random( int size = 1 );
+    Girl* girl() { return m_girl; }
+    
+    cTrainable& operator[]( int index )
+    {
+        return stats[index];
+    }
+    
 private:
-	Girl *m_girl;
-	std::vector<cTrainable> stats;
+    Girl* m_girl;
+    std::vector<cTrainable> stats = {};
 };
 
 /*
@@ -128,33 +128,42 @@ private:
  * we don't need an underlying Girl for this one - she's just
  * an abstraction
  */
-class IdealAttr : public cTrainable {
-	int	m_attr_idx;
-	int	m_value;
-	int	m_potential;
-	int	m_rand;
+class IdealAttr : public cTrainable
+{
 public:
-	IdealAttr(std::vector<TrainableGirl> set, std::string name, int attr_idx);
-	int	value()		const	{ return m_value; }
-	void	value(int n)		{ m_value = n; }
-	int	potential()	const	{ return m_potential; }
-	void	potential(int n)	{ m_potential = n; }
-	int	noise()	const		{ return m_rand; }
-	int	attr_index()	const	{ return m_attr_idx; }
+    IdealAttr( std::vector<TrainableGirl> set, std::string name, int attr_idx );
+    int value() const { return m_value; }
+    void value( int n ) { m_value = n; }
+    int potential() const { return m_potential; }
+    void potential( int n ) { m_potential = n; }
+    int noise() const { return m_rand; }
+    int attr_index() const { return m_attr_idx; }
+    
+private:
+    int m_attr_idx;
+    int m_value = 0;
+    int m_potential = 0;
+    int m_rand;
 };
 
 /*
  * and here's the idealized girl based on those attributes
  */
-class IdealGirl {
-	std::vector<IdealAttr> stats;
+class IdealGirl
+{
 public:
-	IdealGirl(std::vector<TrainableGirl> set);
-	/*cTrainable*/ IdealAttr &operator[](int index) {
-		return stats[index];
-	}
-	unsigned int size()	{ return stats.size(); }
-	std::vector<int> training_indices();
+    IdealGirl( std::vector<TrainableGirl> set );
+    
+    unsigned int size() { return stats.size(); }
+    std::vector<int> training_indices();
+    
+    IdealAttr& operator[]( int index )
+    {
+        return stats[index];
+    }
+    
+private:
+    std::vector<IdealAttr> stats = {};
 };
 
 } // namespace WhoreMasterRenewal

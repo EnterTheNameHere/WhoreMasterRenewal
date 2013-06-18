@@ -27,15 +27,9 @@
 namespace WhoreMasterRenewal
 {
 
-cButton::cButton()
+cButton::cButton() : cInterfaceObject()
 {
-    m_CurrImage = nullptr;
-    m_OffImage = nullptr;
-    m_DisabledImage = nullptr;
-    m_OnImage = nullptr;
-    m_Next = nullptr;
-    m_Disabled = false;
-    m_Hidden = false;
+    ;
 }
 
 cButton::~cButton()

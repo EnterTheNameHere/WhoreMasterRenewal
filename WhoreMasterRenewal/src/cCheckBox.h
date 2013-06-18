@@ -49,14 +49,14 @@ public:
 
 	void Draw();
 
-	std::shared_ptr<CSurface> m_Image;
-	SDL_Surface* m_Surface;
-	SDL_Surface* m_Border;
-	int m_ID;
-	bool m_StateOn;
-	cCheckBox* m_Next;	// next button on the window
-	cFont m_Font;
-	bool m_Disabled;
+	std::shared_ptr<CSurface> m_Image = nullptr;
+	SDL_Surface* m_Surface = nullptr;
+	SDL_Surface* m_Border = nullptr;
+	int m_ID = 0;
+	bool m_StateOn = false;
+	cCheckBox* m_Next = nullptr;	// next button on the window
+	cFont m_Font = {};
+	bool m_Disabled = false;
 };
 
 } // namespace WhoreMasterRenewal

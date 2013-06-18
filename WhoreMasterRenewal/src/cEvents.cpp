@@ -27,6 +27,11 @@
 namespace WhoreMasterRenewal
 {
 
+CEvent::CEvent()
+{
+    ;
+}
+
 std::string CEvent::TitleText()
 {
 
@@ -126,7 +131,7 @@ unsigned int CEvent::ListboxColour()
 	}
 }
 
- bool CEvent::IsUrgent()
+bool CEvent::IsUrgent()
 {
 	if(m_Event == EVENT_DANGER || m_Event == EVENT_WARNING || m_Event == EVENT_NOWORK)
 		return true;
@@ -147,9 +152,15 @@ bool CEvent::IsWarning()
 	return false;
 }
 
+bool CEvent::CmpEventPredicate( CEvent eFirst, CEvent /*eSecond*/ )
+{
+    // TODO: why are both sides same variables?
+    return eFirst.m_Ordinal < eFirst.m_Ordinal;
+}
+
 cEvents::cEvents()
 {
-    m_bSorted = false;
+    ;
 }
 
 cEvents::~cEvents()
@@ -159,13 +170,13 @@ cEvents::~cEvents()
 
 void cEvents::Free()
 {
-	events.clear();
+	m_Events.clear();
 	m_bSorted = false;
 }
 
 bool cEvents::HasUrgent()
 {
-	for (std::vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
+	for (std::vector<CEvent>::iterator iter = m_Events.begin(); iter != m_Events.end(); ++iter)
 	{
 		if(iter->IsUrgent())
 			return true;
@@ -175,7 +186,7 @@ bool cEvents::HasUrgent()
 
 bool cEvents::HasDanger()
 {
-	for (std::vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
+	for (std::vector<CEvent>::iterator iter = m_Events.begin(); iter != m_Events.end(); ++iter)
 	{
 		if(iter->IsDanger())
 			return true;
@@ -185,7 +196,7 @@ bool cEvents::HasDanger()
 
 bool cEvents::HasWarning()
 {
-	for (std::vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
+	for (std::vector<CEvent>::iterator iter = m_Events.begin(); iter != m_Events.end(); ++iter)
 	{
 		if(iter->IsWarning())
 			return true;
@@ -200,12 +211,12 @@ void cEvents::AddMessage(std::string message, int type, int eve)
 	newEvent.m_Event		= eve;
 	newEvent.m_Message		= message;
 	//newEvent.m_Ordinal		= MakeOrdinal(eve);
-	events.push_back(newEvent);
+	m_Events.push_back(newEvent);
 }
 
 CEvent cEvents::GetMessage(int id)
 {
-	return events.at(id);
+	return m_Events.at(id);
 }
 
 //bool CEvent::CmpEventPredicate(CEvent eFirst, CEvent eSecond)
@@ -299,8 +310,7 @@ void cEvents::DoSort()
 {
 	if (!m_bSorted)
 	{
-		sort(events.begin(), events.end(), CEvent::CmpEventPredicate);
-		//stable_sort(events.begin(), events.end(), CEvent::CmpEventPredicate);
+		sort(m_Events.begin(), m_Events.end(), CEvent::CmpEventPredicate);
 		m_bSorted = true;
 	}
 }

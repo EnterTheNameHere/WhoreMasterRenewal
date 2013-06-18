@@ -40,10 +40,10 @@ public:
 	bool IsPaused();
 
 private:
-	int m_StartTicks;
-	int m_PausedTicks;
-	bool m_Paused;
-	bool m_Started;
+	int m_StartTicks = 0;
+	int m_PausedTicks = 0;
+	bool m_Paused = false;
+	bool m_Started = false;
 };
 
 } // namespace WhoreMasterRenewal

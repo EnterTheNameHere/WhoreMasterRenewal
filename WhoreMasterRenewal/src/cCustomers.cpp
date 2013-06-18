@@ -26,10 +26,7 @@ namespace WhoreMasterRenewal
 
 sCustomer::sCustomer()
 {
-    m_Fetish = 0;
-    m_Next = nullptr;
-    m_Prev = nullptr;
-    m_Official = 0;
+    ;
 }
 
 sCustomer::~sCustomer()
@@ -43,10 +40,7 @@ sCustomer::~sCustomer()
 
 cCustomers::cCustomers()
 {
-    /*m_Parent=0;*/
-    m_NumCustomers = 0;
     ChangeCustomerBase();
-    /*m_Last=0;*/
 }
 
 cCustomers::~cCustomers()

@@ -41,8 +41,8 @@ cScreenMayor::cScreenMayor()
         << "mayor_screen.xml"
     ;
     m_filename = dp.c_str();
-    SetBribe = false;
 }
+
 cScreenMayor::~cScreenMayor()
 {
     

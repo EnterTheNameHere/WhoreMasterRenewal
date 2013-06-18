@@ -33,36 +33,6 @@ class Girl;
 class cScreenTown : public cInterfaceWindowXML
 {
 public:
-
-private:
-	int BuyBrothel;
-	bool GetName;
-
-	static	bool		ids_set;
-/*
- *	interface/event IDs
- */
-	int		back_id;		// Back button
-	int		walk_id;		// Walk Around Town button
-	int		curbrothel_id;	// Current Brothel text
-	int		slavemarket_id;	// Slave Market map button
-	int		shop_id;		// Shop map button
-	int		mayor_id;		// Mayor's Office map button
-	int		bank_id;		// Bank map button
-	int		house_id;		// Player's House map button
-	int		prison_id;		// Town Prison map button
-	int		brothel0_id;	// Brothel 0 map button
-	int		brothel1_id;	// Brothel 1 map button
-	int		brothel2_id;	// Brothel 2 map button
-	int		brothel3_id;	// Brothel 3 map button
-	int		brothel4_id;	// Brothel 4 map button
-	int		brothel5_id;	// Brothel 5 map button
-
-	bool m_first_walk;
-
-	void set_ids();
-	void check_brothel(int BrothelNum);
-public:
 	cScreenTown();
 	virtual ~cScreenTown();
 
@@ -76,7 +46,37 @@ public:
 	bool check_keys();
 	void do_walk();
     std::string walk_no_luck();
+    
+private:
+    void set_ids();
+	void check_brothel(int BrothelNum);
+	
+	
+	
+	int BuyBrothel = -1;
+	bool GetName = false;
 
+    static bool ids_set;
+/*
+ *	interface/event IDs
+ */
+	int back_id = 0;		// Back button
+	int walk_id = 0;		// Walk Around Town button
+	int curbrothel_id = 0;	// Current Brothel text
+	int slavemarket_id = 0;	// Slave Market map button
+	int shop_id = 0;		// Shop map button
+	int mayor_id = 0;		// Mayor's Office map button
+	int bank_id = 0;		// Bank map button
+	int house_id = 0;		// Player's House map button
+	int prison_id = 0;		// Town Prison map button
+	int brothel0_id = 0;	// Brothel 0 map button
+	int brothel1_id = 0;	// Brothel 1 map button
+	int brothel2_id = 0;	// Brothel 2 map button
+	int brothel3_id = 0;	// Brothel 3 map button
+	int brothel4_id = 0;	// Brothel 4 map button
+	int brothel5_id = 0;	// Brothel 5 map button
+
+	bool m_first_walk = true;
 };
 
 } // namespace WhoreMasterRenewal

@@ -8,10 +8,7 @@ namespace WhoreMasterRenewal
 
 CTimer::CTimer()
 {
-    m_StartTicks = 0;
-    m_PausedTicks = 0;
-    m_Paused = false;
-    m_Started = false;
+    ;
 }
 
 CTimer::~CTimer()

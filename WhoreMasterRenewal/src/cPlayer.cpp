@@ -32,8 +32,10 @@ cPlayer::cPlayer()			// constructor
 
 void cPlayer::SetToZero()
 {
-	m_CustomerFear = m_Disposition = m_Suspicion = 0;
-	m_WinGame=false;
+	m_CustomerFear = 0;
+	m_Disposition = 0;
+	m_Suspicion = 0;
+	m_WinGame = false;
 }
 
 

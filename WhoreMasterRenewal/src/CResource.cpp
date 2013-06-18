@@ -25,8 +25,6 @@ void CResource::FreeResources()
 
 CResource::CResource()
 {
-    m_Next = nullptr;
-    m_Prev = nullptr;
     m_TimeUsed = g_Graphics.GetTicks();
 }
 

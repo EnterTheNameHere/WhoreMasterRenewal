@@ -4,21 +4,23 @@
 namespace WhoreMasterRenewal
 {
 
-cXmlWidget::cXmlWidget() {}
+cXmlWidget::cXmlWidget()
+    : m_List()
+{}
 
 int cXmlWidget::size()
 {
-    return int( list.size() );
+    return int( m_List.size() );
 }
 
 sXmlWidgetPart& cXmlWidget::operator[]( int i )
 {
-    return list[i];
+    return m_List[i];
 }
 
 void cXmlWidget::add( sXmlWidgetPart& part )
 {
-    list.push_back( part );
+    m_List.push_back( part );
 }
 
 } // namespace WhoreMasterRenewal

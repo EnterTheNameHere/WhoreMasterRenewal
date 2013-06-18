@@ -50,16 +50,16 @@ public:
 
 	void Draw();
 
-	int m_ID;
-	cFont* m_Text;
-	bool m_HasFocus;
+	int m_ID = 0;
+	cFont* m_Text = nullptr;
+	bool m_HasFocus = false;
 
-	SDL_Surface* m_FocusedBackground;
-	SDL_Surface* m_Background;
-	SDL_Surface* m_Border;
-	int m_BorderSize;
+	SDL_Surface* m_FocusedBackground = nullptr;
+	SDL_Surface* m_Background = nullptr;
+	SDL_Surface* m_Border = nullptr;
+	int m_BorderSize = 0;
 	
-	cEditBox* m_Next;	// next button on the window
+	cEditBox* m_Next = nullptr;	// next button on the window
 };
 
 } // namespace WhoreMasterRenewal

@@ -34,7 +34,7 @@ namespace WhoreMasterRenewal
 class cPlayer
 {
 public:
-	bool m_WinGame;
+	bool m_WinGame = false;
 	unsigned char m_Skills[NUM_SKILLS];
 	unsigned char m_Stats[NUM_STATS];
 
@@ -61,17 +61,17 @@ private:
  *	-100 means they are on players side
  *	+100 means they will probably raid his brothels
  */
-	int m_Suspicion;
+	int m_Suspicion = 0;
 /*
  *	How good or evil the player is considered to be:
  *	-100 is evil while +100 is a saint
  */
-	int m_Disposition;
+	int m_Disposition = 0;
 /*
  *	how much the customers fear you:
  *	-100 is not at all while 100 means a lot
  */
-	int m_CustomerFear;
+	int m_CustomerFear = 0;
 };
 
 } // namespace WhoreMasterRenewal

@@ -24,8 +24,7 @@ namespace WhoreMasterRenewal
 
 CRenderQue::CRenderQue()
 {
-    m_Parent = nullptr;
-    m_Last = nullptr;
+    ;
 }
 
 CRenderQue::~CRenderQue()

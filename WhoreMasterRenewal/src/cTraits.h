@@ -34,10 +34,10 @@ extern cTraits g_Traits;
 // Represents a single trait
 typedef struct sTrait
 {
-	char* m_Name;		// the name and unique ID of the trait
-	char* m_Desc;		// a description of the trait
+	char* m_Name = nullptr;		// the name and unique ID of the trait
+	char* m_Desc = nullptr;		// a description of the trait
 
-	sTrait* m_Next;		// the next trait in the list
+	sTrait* m_Next = nullptr;		// the next trait in the list
 
 	sTrait();
 	~sTrait();
@@ -68,9 +68,9 @@ public:
 	int GetNumTraits() {return m_NumTraits;}
 
 private:
-	int m_NumTraits;
-	sTrait* m_ParentTrait;				// the first trait in the list
-	sTrait* m_LastTrait;				// the last trait in the list
+	int m_NumTraits = 0;
+	sTrait* m_ParentTrait = nullptr;				// the first trait in the list
+	sTrait* m_LastTrait = nullptr;				// the last trait in the list
 };
 
 } // namespace WhoreMasterRenewal

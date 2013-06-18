@@ -42,7 +42,7 @@ public:
 
 private:
 	typedef std::map<std::string,int> FileFlags;
-	FileFlags files;
+	FileFlags files = {};
 };
 
 } // namespace WhoreMasterRenewal
