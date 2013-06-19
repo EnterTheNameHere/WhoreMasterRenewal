@@ -146,7 +146,7 @@ void RocketSFMLRenderer::RenderGeometry( Rocket::Core::Vertex* vertices, int num
     if( textureHandle )
     {
         glEnable( GL_TEXTURE_2D );
-        sf::Texture* sfTexture = ( sf::Texture* )textureHandle;
+        sf::Texture* sfTexture = reinterpret_cast<sf::Texture*>( textureHandle );
         sfTexture->bind();
     }
     else
@@ -326,7 +326,7 @@ bool RocketSFMLRenderer::LoadTexture( Rocket::Core::TextureHandle& textureHandle
         return false;
     };
     */
-    textureHandle = ( Rocket::Core::TextureHandle )sfTexture;
+    textureHandle = reinterpret_cast<Rocket::Core::TextureHandle>( sfTexture );
     textureDimensions = Rocket::Core::Vector2i( sfTexture->getSize().x, sfTexture->getSize().y );
     
     return true;
@@ -350,7 +350,7 @@ bool RocketSFMLRenderer::GenerateTexture( Rocket::Core::TextureHandle& textureHa
 //      return false;
 //  };
 
-    textureHandle = ( Rocket::Core::TextureHandle )texture;
+    textureHandle = reinterpret_cast<Rocket::Core::TextureHandle>( texture );
     
     return true;
 }
@@ -362,5 +362,5 @@ void RocketSFMLRenderer::ReleaseTexture( Rocket::Core::TextureHandle textureHand
     
     m_Window->setActive();
     
-    delete( sf::Texture* )textureHandle;
+    delete reinterpret_cast<sf::Texture*>( textureHandle );
 }

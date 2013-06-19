@@ -43,7 +43,7 @@ cRng::~cRng()
 int cRng::random( int n )
 {
     float scaling_factor = rand() / float(RAND_MAX);
-    return int( scaling_factor * n );
+    return static_cast<int>( scaling_factor * n );
 }
 
 int cRng::operator %( int n )

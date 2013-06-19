@@ -96,7 +96,7 @@ bool cJobManager::WorkFreetime(Girl* girl, Brothel* brothel, int DayNight, std::
 		if(g_Dice.percent(g_InvManager.GetShopItem(item)->m_GirlBuyChance))
 		{
 			int chance = (g_Dice%100+1);
-			switch((int)g_InvManager.GetShopItem(item)->m_Type)
+			switch( static_cast<int>( g_InvManager.GetShopItem(item)->m_Type ) )
 			{
 				case INVRING:
 				{
@@ -219,7 +219,7 @@ bool cJobManager::WorkFreetime(Girl* girl, Brothel* brothel, int DayNight, std::
 				break;
 
 				default:
-                    g_LogFile.ss() << "switch ((int)g_InvManager.GetShopItem(item)->m_Type): unknown value \"" << ((int)g_InvManager.GetShopItem(item)->m_Type) << "\"\n" << __FILE__ << " " << __LINE__ << "\n";
+                    g_LogFile.ss() << "switch ((int)g_InvManager.GetShopItem(item)->m_Type): unknown value \"" << ( static_cast<int>( g_InvManager.GetShopItem(item)->m_Type ) ) << "\"\n" << __FILE__ << " " << __LINE__ << "\n";
 			} // Switch
 		}     // if buy
 	}         // for # buy chances

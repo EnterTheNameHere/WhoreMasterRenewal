@@ -1911,7 +1911,7 @@ void cBrothelManager::UpdateBrothels()
     // incraese the bank gold by 02%
     if( m_Bank > 0 )
     {
-        int amount = ( int )( m_Bank * 0.002f );
+        int amount = static_cast<int>( m_Bank * 0.002f );
         m_Bank += amount;
         /*
          *      bank iterest isn't added to the gold value
@@ -3145,7 +3145,7 @@ void cBrothelManager::UpdateBribeInfluence()
         while( rival )  // get the total for all bribes
         {
             if( rival->m_BribeRate > 0 && total != 0 )
-                rival->m_Influence = ( int )( ( ( float )rival->m_BribeRate / ( float )total ) * 100.0f );
+                rival->m_Influence = static_cast<int>( ( static_cast<float>(rival->m_BribeRate) / static_cast<float>(total) ) * 100.0f );
             else
                 rival->m_Influence = 0;
                 
@@ -3153,7 +3153,7 @@ void cBrothelManager::UpdateBribeInfluence()
         }
         
         if( m_BribeRate != 0 && total != 0 )
-            m_Influence = ( int )( ( ( float )m_BribeRate / ( float )total ) * 100.0f );
+            m_Influence = static_cast<int>( ( static_cast<float>(m_BribeRate) / static_cast<float>(total) ) * 100.0f );
         else
             m_Influence = 0;
     }
@@ -3162,7 +3162,7 @@ void cBrothelManager::UpdateBribeInfluence()
         if( m_BribeRate <= 0 )
             m_Influence = 0;
         else
-            m_Influence = ( int )( ( ( float )m_BribeRate / ( float )( ( float )TOWN_OFFICIALSWAGES + ( float )m_BribeRate ) ) * 100.0f );
+            m_Influence = static_cast<int>( ( static_cast<float>(m_BribeRate) / static_cast<float>( static_cast<float>(TOWN_OFFICIALSWAGES) + static_cast<float>(m_BribeRate) ) ) * 100.0f );
     }
 }
 
@@ -3174,7 +3174,7 @@ void cBrothelManager::do_tax()
     if( m_Influence > 0 ) // can you influence it lower
     {
         int lowerBy = m_Influence / 20;
-        float amount = ( float )( lowerBy / 100 );
+        float amount = static_cast<float>( lowerBy / 100 );
         taxRate -= amount;
         
         if( taxRate < cfg.tax.minimum() )
@@ -3199,8 +3199,8 @@ void cBrothelManager::do_tax()
      *  Probably we should make the player work for this.
      *  invest a little in businesses to launder through.
      */
-    int laundry = g_Dice.random( int( earnings * cfg.tax.laundry() ) );
-    long tax = long( ( earnings - laundry ) * taxRate );
+    int laundry = g_Dice.random( static_cast<int>( earnings * cfg.tax.laundry() ) );
+    long tax = static_cast<long>( ( earnings - laundry ) * taxRate );
     
     /*
      *  this should not logically happen unless we
@@ -4487,7 +4487,7 @@ std::string cBrothelManager::GetGirlString( int brothelID, int girlNum )
 //need to change into string lookup
         std::string dayjob = "Resting";
         
-        switch( ( int )currentGirl->m_DayJob )
+        switch( static_cast<int>(currentGirl->m_DayJob) )
         {
         case JOB_WHORESTREETS:
             dayjob = "Streets";
@@ -4514,7 +4514,7 @@ std::string cBrothelManager::GetGirlString( int brothelID, int girlNum )
         
         std::string nightjob = "Resting";
         
-        switch( ( int )currentGirl->m_NightJob )
+        switch( static_cast<int>(currentGirl->m_NightJob) )
         {
         case JOB_WHORESTREETS:
             nightjob = "Streets";
@@ -4540,9 +4540,9 @@ std::string cBrothelManager::GetGirlString( int brothelID, int girlNum )
         }
         
         if( g_Girls.GetStat( currentGirl, STAT_AGE ) == 100 )
-            sprintf( buffer, "%s | Age: unknown | Health: %i | Happiness %i | Day Job: %s | Night Job: %s", currentGirl->m_Realname.c_str(), ( int )g_Girls.GetStat( currentGirl, STAT_HEALTH ), ( int )g_Girls.GetStat( currentGirl, STAT_HAPPINESS ), dayjob.c_str(), nightjob.c_str() );
+            sprintf( buffer, "%s | Age: unknown | Health: %i | Happiness %i | Day Job: %s | Night Job: %s", currentGirl->m_Realname.c_str(), static_cast<int>( g_Girls.GetStat( currentGirl, STAT_HEALTH ) ), static_cast<int>( g_Girls.GetStat( currentGirl, STAT_HAPPINESS ) ), dayjob.c_str(), nightjob.c_str() );
         else
-            sprintf( buffer, "%s | Age: %i | Health: %i | Happiness %i | Day Job: %s | Night Job: %s", currentGirl->m_Realname.c_str(), g_Girls.GetStat( currentGirl, STAT_AGE ), ( int )g_Girls.GetStat( currentGirl, STAT_HEALTH ), ( int )g_Girls.GetStat( currentGirl, STAT_HAPPINESS ), dayjob.c_str(), nightjob.c_str() );
+            sprintf( buffer, "%s | Age: %i | Health: %i | Happiness %i | Day Job: %s | Night Job: %s", currentGirl->m_Realname.c_str(), g_Girls.GetStat( currentGirl, STAT_AGE ), static_cast<int>( g_Girls.GetStat( currentGirl, STAT_HEALTH ) ), static_cast<int>( g_Girls.GetStat( currentGirl, STAT_HAPPINESS ) ), dayjob.c_str(), nightjob.c_str() );
             
         data = buffer;
     }
@@ -5394,7 +5394,7 @@ Girl* cBrothelManager::WhoHasTorturerJob()
 /*
  * returns the number of customers the bar draws in
  */
-int cBrothelManager::bar_update( sbrothel* brothel )
+int cBrothelManager::bar_update( Brothel* brothel )
 {
     ctariff tariff;
     

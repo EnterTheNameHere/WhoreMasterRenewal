@@ -406,9 +406,9 @@ int main_old(int ac, char* av[])
 							}
 
 							if(vent.key.keysym.mod & KMOD_LSHIFT || vent.key.keysym.mod & KMOD_RSHIFT || vent.key.keysym.mod & KMOD_CAPS)
-								g_WinManager.UpdateKeyInput((char)vent.key.keysym.sym, true);
+								g_WinManager.UpdateKeyInput( static_cast<char>( vent.key.keysym.sym ), true);
 							else
-								g_WinManager.UpdateKeyInput((char)vent.key.keysym.sym);
+								g_WinManager.UpdateKeyInput( static_cast<char>( vent.key.keysym.sym ) );
 						}
 					}
 					else	// hotkeys

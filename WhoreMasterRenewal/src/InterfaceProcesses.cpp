@@ -705,8 +705,8 @@ void ChangeGirlJobs()
 
 		if(girl)
 		{
-			g_ChangeJobs.SetSelectedItemInList(g_interfaceid.LIST_CJDAYTIME, (int)girl->m_DayJob);
-			g_ChangeJobs.SetSelectedItemInList(g_interfaceid.LIST_CJNIGHTTIME, (int)girl->m_NightJob);
+			g_ChangeJobs.SetSelectedItemInList(g_interfaceid.LIST_CJDAYTIME, static_cast<int>(girl->m_DayJob) );
+			g_ChangeJobs.SetSelectedItemInList(g_interfaceid.LIST_CJNIGHTTIME, static_cast<int>(girl->m_NightJob) );
 		}
 
 		g_InitWin = false;

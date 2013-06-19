@@ -64,7 +64,9 @@ bool cJobManager::WorkHall(Girl* girl, Brothel* brothel, int DayNight, std::stri
 	girl->m_Events.AddMessage(message, IMGTYPE_PROFILE, DayNight);
 
 	// work out the pay between the house and the girl
-	girl->m_Pay += (g_Dice%((int)(((g_Girls.GetStat(girl, STAT_BEAUTY)+g_Girls.GetStat(girl, STAT_CHARISMA))/2)*0.5f)))+10;
+	int maxPay = ( g_Girls.GetStat( girl, STAT_BEAUTY ) + g_Girls.GetStat( girl, STAT_CHARISMA ) ) / 2;
+	maxPay /= 2;
+	girl->m_Pay += ( g_Dice % maxPay ) + 10;
     std::string pay = "";
 //	g_Brothels.CalculatePay(brothel,girl, pay, girl->m_Pay, DayNight);  // No longer used this way?
 	girl->m_Events.AddMessage(pay, IMGTYPE_PROFILE, DayNight);

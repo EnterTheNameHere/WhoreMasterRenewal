@@ -68,21 +68,21 @@ namespace WhoreMasterRenewal
 static inline int
 nat_isdigit(nat_char a)
 {
-     return isdigit((unsigned char) a);
+    return isdigit( static_cast<unsigned char>( a ) );
 }
 
 
 static inline int
 nat_isspace(nat_char a)
 {
-     return isspace((unsigned char) a);
+    return isspace( static_cast<unsigned char>( a ) );
 }
 
 
 static inline nat_char
 nat_toupper(nat_char a)
 {
-     return toupper((unsigned char) a);
+    return toupper( static_cast<unsigned char>( a ) );
 }
 
 

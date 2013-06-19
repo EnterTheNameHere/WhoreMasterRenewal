@@ -281,7 +281,7 @@ bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::str
 		if(Cust.m_Amount > 1 && is_sex_type_allowed(SKILL_GROUP, brothel))
 		{
 			group = true;
-			pay *= (int) Cust.m_Amount;	
+			pay *= static_cast<int>( Cust.m_Amount );	
 			if (Cust.m_SexPref == SKILL_GROUP)
 				pay = pay * 17 / 10;
 				// WD: this is complicated total for 1.7 * pay * num of customers
@@ -289,7 +289,7 @@ bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::str
 		}
 
 		// WD: Has the customer have enough money
-		bCustCanPay = Cust.m_Money >= (unsigned)pay;	
+		bCustCanPay = Cust.m_Money >= static_cast<unsigned>( pay );	
 
 		// WD:	TRACE Customer Money = {Cust.m_Money}, Pay = {pay}, Can Pay = {bCustCanPay}
 
@@ -298,7 +298,7 @@ bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::str
 		{
 			//continue;
 			// WD: Hack to avoid many newcustomer() calls
-			Cust.m_Money += (unsigned)pay;
+			Cust.m_Money += static_cast<unsigned>( pay );
 			bCustCanPay = true;
 		}
 
@@ -396,7 +396,7 @@ bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::str
 					{
 						fuckMessage += " The customer couldn't pay and tried to run off. Your men caught him before he got out the door.";
 						SetGameFlag(FLAG_CUSTNOPAY);
-						pay = (int) Cust.m_Money;	// WD: Take what customer has
+						pay = static_cast<int>( Cust.m_Money );	// WD: Take what customer has
 						Cust.m_Money = 0;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 					}
 				}
@@ -416,7 +416,7 @@ bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::str
 				else
 					fuckMessage += " The customer couldn't pay the full amount.";
 
-				pay = (int) Cust.m_Money;
+				pay = static_cast<int>( Cust.m_Money );
 				Cust.m_Money = 0;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 			}
 		}
@@ -435,7 +435,7 @@ bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::str
 				else
 				{
 					fuckMessage += " The customer refused to pay and tried to run off. Your men caught him before he got out the door and forced him to pay.";
-					Cust.m_Money -= (unsigned) pay; // WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
+					Cust.m_Money -= static_cast<unsigned>( pay ); // WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 				}
 			}
 			else
@@ -455,12 +455,12 @@ bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::str
 //					pay	+= (int)Cust.m_Money; // WD: Borked Cust.m_Money could have any amount and is +=
 					if (!bCustCanPay)
 					{
-						pay = (int) Cust.m_Money;
+						pay = static_cast<int>( Cust.m_Money );
 						
 						Cust.m_Money = 0;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 					}
 					else
-						Cust.m_Money -= (unsigned) pay;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
+						Cust.m_Money -= static_cast<unsigned>( pay );	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 				}
 				else
 					// she just accepts less then the agreed upon price
@@ -471,7 +471,7 @@ bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::str
 						Cust.m_Money = 0;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 					}
 					else
-						Cust.m_Money -= (unsigned) pay;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
+						Cust.m_Money -= static_cast<unsigned>( pay );	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 
 
 			}
@@ -480,12 +480,12 @@ bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::str
 
 		else  // Customer has enough money
 		{
-			Cust.m_Money -= (unsigned) pay; // WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
+			Cust.m_Money -= static_cast<unsigned>( pay ); // WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 
 			// if he is happy and has some extra gold he will give a tip
-			if((int)Cust.m_Money >= 20 && Cust.m_Stats[STAT_HAPPINESS] > 90)	
+			if( static_cast<int>( Cust.m_Money ) >= 20 && Cust.m_Stats[STAT_HAPPINESS] > 90)	
 			{
-				tip = (int) Cust.m_Money;
+				tip = static_cast<int>( Cust.m_Money );
 				if(tip > 20)
 				{
 					Cust.m_Money -= 20;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???

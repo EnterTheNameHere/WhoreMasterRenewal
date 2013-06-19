@@ -57,7 +57,7 @@ bool cAnimatedSurface::DrawFrame( int x, int y, int width, int height, unsigned 
         m_LastTime = currentTime;
         UpdateSprite( temp, width, height );
     }
-    else if( ( currentTime - m_LastTime ) >= ( unsigned int )m_Speed )
+    else if( ( currentTime - m_LastTime ) >= static_cast<unsigned int>( m_Speed ) )
     {
         m_LastTime = currentTime;
         m_CurrentFrame++;

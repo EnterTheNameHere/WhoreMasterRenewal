@@ -602,7 +602,7 @@ void Girl::OutputGirlDetailString( std::string& Data, const std::string& detailN
     }
     else if( detailName == "PregCooldown" )
     {
-        ss << ( int )m_PregCooldown;
+        ss << static_cast<int>(m_PregCooldown);
     }
     else if( detailName == "Accomodation" )
     {
@@ -1398,7 +1398,7 @@ void Girl::load_from_xml( TiXmlElement* el )
                 && i != SKILL_COMBAT
                 && i != SKILL_MAGIC
             )
-                avg += ( int )m_Skills[i];
+                avg += static_cast<int>(m_Skills[i]);
         }
         
         avg = avg / ( NUM_SKILLS - 1 );
