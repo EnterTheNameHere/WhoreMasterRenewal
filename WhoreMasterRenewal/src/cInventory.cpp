@@ -18,8 +18,9 @@
  */
 
 #include "cInventory.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cMessageBox.h"
+#include "BrothelManager.hpp"
 #include "cCustomers.h"
 #include "XmlMisc.h"
 #include "cTraits.h"

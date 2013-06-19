@@ -19,10 +19,11 @@
 
 #include "cScreenBuildingSetup.h"
 #include "Helper.hpp"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cWindowManager.h"
 #include "cMessageBox.h"
 #include "cGold.h"
+#include "BrothelManager.hpp"
 #include "cTariff.h"
 #include "cInterfaceEvent.h"
 #include "InterfaceGlobals.h"

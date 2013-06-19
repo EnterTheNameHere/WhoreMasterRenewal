@@ -1,7 +1,8 @@
 
 #include "cGirlGangFight.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cGangs.h"
+#include "BrothelManager.hpp"
 #include "cGirls.h"
 #include "cRng.h"
 #include "CLog.h"

@@ -19,8 +19,9 @@
 
 #include "cGirlTorture.h"
 #include "cGirls.h"
+#include "BrothelManager.hpp"
 #include "cMessageBox.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cDungeon.h"
 #include "cGirlGangFight.h"
 #include "cRng.h"

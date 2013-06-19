@@ -1,167 +1,136 @@
-/*
- * Copyright 2009, 2010, The Pink Petal Development Team.
- * The Pink Petal Devloment Team are defined as the game's coders
- * who meet on http://pinkpetal.co.cc
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-#include "cBrothel.h"
-#include "Helper.hpp"
-#include "cGangs.h"
-#include "DirPath.h"
-#include "cMessageBox.h"
-#include "strnatcmp.h"
-#include "XmlMisc.h"
-#include "cInventory.h"
-#include "cGirls.h"
-#include "cCustomers.h"
-#include "cRng.h"
-#include "CLog.h"
-#include "cTariff.h"
-#include "InterfaceProcesses.h"
-#include "InterfaceGlobals.h"
+#include "BrothelManager.hpp"
 #include "Girl.hpp"
+#include "sConfig.h"
+#include "cRng.h"
+#include "cDungeon.h"
+#include "cPlayer.h"
+#include "Brothel.h"
+#include "cMessageBox.h"
+#include "cGold.h"
+#include "DirPath.h"
+#include "CLog.h"
+#include "XmlMisc.h"
+#include "cTariff.h"
+#include "cCustomers.h"
+#include "cGangs.h"
+#include "Helper.hpp"
+#include "InterfaceProcesses.h"
+#include "strnatcmp.h"
+#include "InterfaceGlobals.h"
 
 #include <sstream>
 
 namespace WhoreMasterRenewal
 {
 
-// Prototypes
-Girl* girl_sort( Girl* girl, Girl** lastgirl );
-int sGirlcmp( Girl* a, Girl* b );
 
-Brothel::Brothel()
-    : m_id(0),
-    m_Name(""),
-    m_Happiness(0),
-    m_TotalCustomers(0),
-    m_MiscCustomers(0),
-    m_Fame(0),
-    m_NumRooms(0),
-    m_Bar(0),
-    m_GamblingHall(0),
-    m_NumGirls(0),
-    m_AdvertisingBudget(0),
-    m_AdvertisingLevel(0),
-    m_Building(),
-    m_Finance(),
-    m_HasGambStaff(0),
-    m_HasBarStaff(0),
-    m_RestrictAnal(false),
-    m_RestrictBDSM(false),
-    m_RestrictBeast(false),
-    m_RestrictGroup(false),
-    m_RestrictNormal(false),
-    m_RestrictLesbian(false),
-    m_Filthiness(0),
-    m_Events(),
-    m_Girls(nullptr),
-    m_LastGirl(nullptr),
-    m_Next(nullptr),
-    m_SecurityLevel(0)
+Girl* girl_sort( Girl* girl, Girl** lastgirl ) // sort using merge sort (cause works well with linked lists)
 {
-    for( unsigned int i = 0; i < NUMJOBTYPES; i++ )
-        m_BuildingQuality[i] = 0;
-}
-
-Brothel::~Brothel()
-{
-    if( m_Next )
-        delete m_Next;
-        
-    m_Next                  = nullptr;
+    Girl* p, *q, *e, *tail;
+    int insize, nmerges, psize, qsize, i;
     
-    if( m_Girls )
-        delete m_Girls;
-        
-    m_LastGirl              = nullptr;
-    m_Girls                 = nullptr;
-}
-
-int Brothel::free_rooms()
-{
-    return m_NumRooms - m_NumGirls;
-}
-
-// ----- Matron
-bool Brothel::matron_on_shift( int shift )
-{
-    return g_Brothels.GetNumGirlsOnJob( m_id, JOB_MATRON, shift == SHIFT_DAY ) > 0;
-}
-
-int Brothel::matron_count()
-{
-    int i, sum = 0;
+    insize = 1;
     
-    for( i = 0; i < 2; i++ )
+    if( !girl )
     {
-        if( g_Brothels.GetNumGirlsOnJob( m_id, JOB_MATRON, ( i == 0 ) ) > 0 )
-        {
-            sum ++;
-        }
+        *lastgirl = nullptr;
+        return nullptr;
     }
     
-    return sum;
-}
-
-bool Brothel::has_matron()
-{
-    int i;
-    
-    for( i = 0; i < 2; i++ )
+    while( 1 )
     {
-        if( g_Brothels.GetNumGirlsOnJob( m_id, JOB_MATRON, ( i == 0 ) ) > 0 )
+        p = girl;
+        girl = nullptr;
+        tail = nullptr;
+        nmerges = 0;
+        
+        while( p )
         {
-            return true;
+            nmerges++;
+            q = p;
+            psize = 0;
+            
+            for( i = 0; i < insize; i++ )
+            {
+                psize++;
+                q = q->m_Next;
+                
+                if( !q )
+                    break;
+            }
+            
+            qsize = insize;
+            
+            while( psize > 0 || ( qsize > 0 && q ) )
+            {
+                if( psize == 0 )
+                {
+                    e = q;
+                    q = q->m_Next;
+                    qsize--;
+                }
+                else if( qsize == 0 || !q )
+                {
+                    e = p;
+                    p = p->m_Next;
+                    psize--;
+                }
+                else if( sGirlcmp( p, q ) <= 0 )
+                {
+                    e = p;
+                    p = p->m_Next;
+                    psize--;
+                }
+                else
+                {
+                    e = q;
+                    q = q->m_Next;
+                    qsize--;
+                }
+                
+                if( tail )
+                    tail->m_Next = e;
+                else
+                    girl = e;
+                    
+                e->m_Prev = tail;
+                tail = e;
+            }
+            
+            p = q;
         }
+        
+        tail->m_Next = nullptr;
+        
+        if( nmerges <= 1 )
+        {
+            // find the last girl in the list
+            //*lastgirl = tail;
+            Girl* tmp = girl;
+            
+            while( tmp->m_Next )
+                tmp = tmp->m_Next;
+                
+            *lastgirl = tmp;
+            return girl;
+        }
+        
+        insize *= 2;
     }
-    
-    return false;
+}
+
+int sGirlcmp( Girl* a, Girl* b )
+{
+    if( a == nullptr || b == nullptr )
+        return 1;
+        
+    return strcmp( a->m_Realname.c_str(), b->m_Realname.c_str() );
 }
 
 
 
-cBrothelManager::cBrothelManager()
-    : m_NumInventory(0),
-    m_JobManager(),
-    m_Player(),
-    m_Dungeon(),
-    m_NumBrothels(0),
-    m_Parent(nullptr),
-    m_Last(nullptr),
-    m_KeepPotionsStocked(false),
-    m_AntiPregPotions(0),
-    m_SupplyShedLevel(1),
-    m_HandmadeGoods(0),
-    m_Beasts(0),
-    m_AlchemyIngredients(0),
-    m_NumPrison(0),
-    m_Prison(nullptr),
-    m_LastPrison(nullptr),
-    m_NumRunaways(0),
-    m_Runaways(nullptr),
-    m_LastRunaway(nullptr),
-    m_BribeRate(0),
-    m_Influence(0),
-    m_Dummy(0),
-    m_Bank(0),
-    m_Objective(nullptr),
-    m_Rivals(),
-    m_TortureDoneFlag(false),
-    m_Processing_Shift(-1)
+BrothelManager::BrothelManager()
+    : m_JobManager()
 {
     for( int i = 0; i < MAXNUM_INVENTORY; i++ )
     {
@@ -169,15 +138,16 @@ cBrothelManager::cBrothelManager()
         m_EquipedItems[i] = 0;
         m_NumItem[i]    = 0;
     }
+    
     m_JobManager.Setup();
 }
 
-cBrothelManager::~cBrothelManager()         // destructor
+BrothelManager::~BrothelManager()
 {
     Free();
 }
 
-void cBrothelManager::Free()
+void BrothelManager::Free()
 {
     cConfig cfg;
     
@@ -234,8 +204,7 @@ void cBrothelManager::Free()
     m_Last              = nullptr;
 }
 
-// ----- Misc
-void cBrothelManager::check_raid()
+void BrothelManager::check_raid()
 {
     cRival* rival = nullptr;
     cRivalManager* rival_mgr = GetRivalManager();
@@ -421,7 +390,7 @@ void cBrothelManager::check_raid()
     g_MessageQue.AddToQue( ss.str(), 1 );
 }
 
-int cBrothelManager::TotalFame( Brothel* brothel )
+int BrothelManager::TotalFame( Brothel* brothel )
 {
     int total_fame = 0;
     Girl* current = brothel->m_Girls;
@@ -435,7 +404,7 @@ int cBrothelManager::TotalFame( Brothel* brothel )
     return total_fame;
 }
 
-bool cBrothelManager::CheckScripts()
+bool BrothelManager::CheckScripts()
 {
     Brothel* current = m_Parent;
     DirPath base = DirPath() << "Resources" << "Characters" << "";
@@ -466,7 +435,7 @@ bool cBrothelManager::CheckScripts()
     return false;
 }
 
-bool cBrothelManager::UseAntiPreg( bool use )
+bool BrothelManager::UseAntiPreg( bool use )
 {
     if( !use )
         return false;
@@ -502,7 +471,7 @@ bool cBrothelManager::UseAntiPreg( bool use )
     return false;
 }
 
-void cBrothelManager::AddAntiPreg( int amount )
+void BrothelManager::AddAntiPreg( int amount )
 {
     m_AntiPregPotions += amount;
     
@@ -510,9 +479,7 @@ void cBrothelManager::AddAntiPreg( int amount )
         m_AntiPregPotions = 700;
 }
 
-
-// ----- Add / remove
-void cBrothelManager::AddGirl( int brothelID, Girl* girl )
+void BrothelManager::AddGirl( int brothelID, Girl* girl )
 {
     if( girl == nullptr )
         return;
@@ -544,7 +511,7 @@ void cBrothelManager::AddGirl( int brothelID, Girl* girl )
     //sort(current);
 }
 
-void cBrothelManager::RemoveGirl( int brothelID, Girl* girl, bool deleteGirl )
+void BrothelManager::RemoveGirl( int brothelID, Girl* girl, bool deleteGirl )
 {
     if( girl == nullptr )
         return;
@@ -602,8 +569,7 @@ void cBrothelManager::RemoveGirl( int brothelID, Girl* girl, bool deleteGirl )
     }
 }
 
-// ----- Load save create destroy
-void cBrothelManager::LoadDataLegacy( std::ifstream& ifs )
+void BrothelManager::LoadDataLegacy( std::ifstream& ifs )
 {
     Free();
     int temp;
@@ -670,7 +636,7 @@ void cBrothelManager::LoadDataLegacy( std::ifstream& ifs )
     {
         if( ifs.peek() == '\n' ) ifs.ignore( 1, '\n' );
         
-        m_Objective = new sObjective();
+        m_Objective = new Objective();
         ifs >> m_Objective->m_Difficulty >> m_Objective->m_Limit >> m_Objective->m_Objective >> m_Objective->m_Reward >> m_Objective->m_SoFar >> m_Objective->m_Target;
     }
     
@@ -876,7 +842,7 @@ void cBrothelManager::LoadDataLegacy( std::ifstream& ifs )
     } // load a brothel
 }
 
-bool cBrothelManager::LoadDataXML( TiXmlHandle hBrothelManager )
+bool BrothelManager::LoadDataXML( TiXmlHandle hBrothelManager )
 {
     Free();//everything should be init even if we failed to load an XML element
     //watch out, this frees dungeon and rivals too
@@ -968,7 +934,7 @@ bool cBrothelManager::LoadDataXML( TiXmlHandle hBrothelManager )
     
     if( pObjective )
     {
-        m_Objective = new sObjective();
+        m_Objective = new Objective();
         pObjective->QueryIntAttribute( "Difficulty", &m_Objective->m_Difficulty );
         pObjective->QueryIntAttribute( "Limit", &m_Objective->m_Limit );
         pObjective->QueryValueAttribute<u_int>( "Objective", &m_Objective->m_Objective );
@@ -1029,108 +995,7 @@ bool cBrothelManager::LoadDataXML( TiXmlHandle hBrothelManager )
     return true;
 }
 
-bool Brothel::LoadBrothelXML( TiXmlHandle hBrothel )
-{
-    //no need to init this, we just created it
-    TiXmlElement* pBrothel = hBrothel.ToElement();
-    
-    if( pBrothel == nullptr )
-    {
-        return false;
-    }
-    
-    if( pBrothel->Attribute( "Name" ) )
-    {
-        m_Name = pBrothel->Attribute( "Name" );
-    }
-    
-    int tempInt = 0;
-    
-    std::string message = "Loading brothel: ";
-    message += m_Name;
-    g_LogFile.write( message );
-    
-    // load variables for sex restrictions
-    pBrothel->QueryValueAttribute<bool>( "RestrictAnal", &m_RestrictAnal );
-    pBrothel->QueryValueAttribute<bool>( "RestrictBDSM", &m_RestrictBDSM );
-    pBrothel->QueryValueAttribute<bool>( "RestrictBeast", &m_RestrictBeast );
-    pBrothel->QueryValueAttribute<bool>( "RestrictGroup", &m_RestrictGroup );
-    pBrothel->QueryValueAttribute<bool>( "RestrictNormal", &m_RestrictNormal );
-    pBrothel->QueryValueAttribute<bool>( "RestrictLesbian", &m_RestrictLesbian );
-    
-    pBrothel->QueryValueAttribute<unsigned short>( "AdvertisingBudget", &m_AdvertisingBudget );
-    pBrothel->QueryIntAttribute( "Bar", &tempInt );
-    m_Bar = tempInt;
-    tempInt = 0;
-    pBrothel->QueryIntAttribute( "Fame", &tempInt );
-    m_Fame = tempInt;
-    tempInt = 0;
-    pBrothel->QueryIntAttribute( "GamblingHall", &tempInt );
-    m_GamblingHall = tempInt;
-    tempInt = 0;
-    pBrothel->QueryValueAttribute<unsigned short>( "Happiness", &m_Happiness );
-    pBrothel->QueryIntAttribute( "HasBarStaff", &tempInt );
-    m_HasBarStaff = tempInt;
-    tempInt = 0;
-    pBrothel->QueryIntAttribute( "id", &m_id );
-    pBrothel->QueryIntAttribute( "HasGambStaff", &tempInt );
-    m_HasGambStaff = tempInt;
-    tempInt = 0;
-    pBrothel->QueryIntAttribute( "NumRooms", &tempInt );
-    m_NumRooms = tempInt;
-    tempInt = 0;
-    pBrothel->QueryIntAttribute( "Filthiness", &m_Filthiness );
-    pBrothel->QueryIntAttribute( "SecurityLevel", &m_SecurityLevel );
-    
-    m_Finance.loadGoldXML( hBrothel.FirstChild( "Gold" ) );
-    
-    // Load girls
-    m_NumGirls = 0;
-    TiXmlElement* pGirls = pBrothel->FirstChildElement( "Girls" );
-    
-    if( pGirls )
-    {
-        for( TiXmlElement* pGirl = pGirls->FirstChildElement( "Girl" );
-                pGirl != nullptr;
-                pGirl = pGirl->NextSiblingElement( "Girl" ) ) // load each girl and add her
-        {
-            Girl* girl = new Girl();
-            bool success = girl->LoadGirlXML( TiXmlHandle( pGirl ) );
-            
-            if( success == true )
-            {
-                AddGirl( girl );
-            }
-            else
-            {
-                delete girl;
-                continue;
-            }
-        }
-    }
-    
-    //commented out before the conversion to XML
-    //building.load(ifs);
-    return true;
-}
-
-void Brothel::AddGirl( Girl* pGirl )
-{
-    if( m_Girls )
-    {
-        pGirl->m_Prev = m_LastGirl;
-        m_LastGirl->m_Next = pGirl;
-        m_LastGirl = pGirl;
-    }
-    else
-    {
-        m_LastGirl = m_Girls = pGirl;
-    }
-    
-    ++m_NumGirls;
-}
-
-TiXmlElement* cBrothelManager::SaveDataXML( TiXmlElement* pRoot )
+TiXmlElement* BrothelManager::SaveDataXML( TiXmlElement* pRoot )
 {
     TiXmlElement* pBrothelManager = new TiXmlElement( "Brothel_Manager" );
     pRoot->LinkEndChild( pBrothelManager );
@@ -1235,62 +1100,7 @@ TiXmlElement* cBrothelManager::SaveDataXML( TiXmlElement* pRoot )
     return pBrothelManager;
 }
 
-TiXmlElement* Brothel::SaveBrothelXML( TiXmlElement* pRoot )
-{
-    TiXmlElement* pBrothel = new TiXmlElement( "Brothel" );
-    pRoot->LinkEndChild( pBrothel );
-    pBrothel->SetAttribute( "Name", m_Name );
-    
-    // save variables for sex restrictions
-    pBrothel->SetAttribute( "RestrictAnal", m_RestrictAnal );
-    pBrothel->SetAttribute( "RestrictBDSM", m_RestrictBDSM );
-    pBrothel->SetAttribute( "RestrictBeast", m_RestrictBeast );
-    pBrothel->SetAttribute( "RestrictGroup", m_RestrictGroup );
-    pBrothel->SetAttribute( "RestrictNormal", m_RestrictNormal );
-    pBrothel->SetAttribute( "RestrictLesbian", m_RestrictLesbian );
-    
-    pBrothel->SetAttribute( "AdvertisingBudget", m_AdvertisingBudget );
-    pBrothel->SetAttribute( "Bar", m_Bar );
-    pBrothel->SetAttribute( "Fame", m_Fame );
-    pBrothel->SetAttribute( "GamblingHall", m_GamblingHall );
-    pBrothel->SetAttribute( "Happiness", m_Happiness );
-    pBrothel->SetAttribute( "HasBarStaff", m_HasBarStaff );
-    pBrothel->SetAttribute( "id", m_id );
-    pBrothel->SetAttribute( "HasGambStaff", m_HasGambStaff );
-    pBrothel->SetAttribute( "NumRooms", m_NumRooms );
-    pBrothel->SetAttribute( "Filthiness", m_Filthiness );
-    pBrothel->SetAttribute( "SecurityLevel", m_SecurityLevel );
-    
-    m_Finance.saveGoldXML( pBrothel );
-    
-    // save building qualities
-#if 0
-    //building qualities appears to be unimplemented, why waste space
-    TiXmlElement* pBuildingQualities = new TiXmlElement( "BuildingQualities" );
-    pBrothel->LinkEndChild( pBuildingQualities );
-    SaveJobsXML( pBuildingQualities, m_BuildingQuality );
-#endif
-    
-    // Save Girls
-    TiXmlElement* pGirls = new TiXmlElement( "Girls" );
-    pBrothel->LinkEndChild( pGirls );
-    Girl* girl = m_Girls;
-    
-    while( girl )
-    {
-        girl->SaveGirlXML( pGirls );
-        girl = girl->m_Next;
-    }
-    
-    /*
-    *       save the building setup
-    */
-    //this was commented out before the conversion to XML
-    //current->building.save(ofs, current->m_Name);
-    return pBrothel;
-}
-
-void cBrothelManager::NewBrothel( int NumRooms )
+void BrothelManager::NewBrothel( int NumRooms )
 {
     Brothel* newBroth = new Brothel();
     newBroth->m_NumRooms = NumRooms;
@@ -1299,7 +1109,7 @@ void cBrothelManager::NewBrothel( int NumRooms )
     AddBrothel( newBroth );
 }
 
-void cBrothelManager::AddBrothel( Brothel* newBroth )
+void BrothelManager::AddBrothel( Brothel* newBroth )
 {
     if( m_Parent )
     {
@@ -1316,7 +1126,7 @@ void cBrothelManager::AddBrothel( Brothel* newBroth )
     m_NumBrothels++;
 }
 
-void cBrothelManager::DestroyBrothel( int ID )
+void BrothelManager::DestroyBrothel( int ID )
 {
     Brothel* current = m_Parent;
     
@@ -1349,8 +1159,7 @@ void cBrothelManager::DestroyBrothel( int ID )
     }
 }
 
-// ----- Rival
-void cBrothelManager::check_rivals()
+void BrothelManager::check_rivals()
 {
     int num_rivals = m_Rivals.GetNumRivals();
     static bool peace = false;
@@ -1399,7 +1208,7 @@ void cBrothelManager::check_rivals()
     g_MessageQue.AddToQue( new_rival_text(), 2 );
 }
 
-std::string cBrothelManager::new_rival_text()
+std::string BrothelManager::new_rival_text()
 {
     std::stringstream ss;
     
@@ -1704,7 +1513,7 @@ std::string cBrothelManager::new_rival_text()
     return ss.str();
 }
 
-void cBrothelManager::peace_breaks_out()
+void BrothelManager::peace_breaks_out()
 {
     /*
      *  if the PC already won, this is just an minor outbreak
@@ -1753,8 +1562,7 @@ void cBrothelManager::peace_breaks_out()
     return;
 }
 
-// ----- Update & end of turn
-void cBrothelManager::UpdateBrothels()
+void BrothelManager::UpdateBrothels()
 {
     cTariff tariff;
     Brothel* current = m_Parent;
@@ -2000,8 +1808,7 @@ void cBrothelManager::UpdateBrothels()
     }
 }
 
-// End of turn stuff is here
-void cBrothelManager::UpdateGirls( Brothel* brothel, int DayNight )
+void BrothelManager::UpdateGirls( Brothel* brothel, int DayNight )
 {
     Girl* current = brothel->m_Girls;
     std::string summary, msg, girlName, MatronMsg, MatronWarningMsg;
@@ -2428,8 +2235,7 @@ void cBrothelManager::UpdateGirls( Brothel* brothel, int DayNight )
     m_Processing_Shift = -1;
 }
 
-// MYR: My automation is here
-void cBrothelManager::UsePlayersItems( Girl* cur )
+void BrothelManager::UsePlayersItems( Girl* cur )
 {
     int has = 0, has2 = 0, Die = 0, PolishCount = 0;
     
@@ -3063,7 +2869,7 @@ void cBrothelManager::UsePlayersItems( Girl* cur )
     
 }
 
-bool cBrothelManager::AutomaticItemUse( Girl* girl, int InvNum, std::string message )
+bool BrothelManager::AutomaticItemUse( Girl* girl, int InvNum, std::string message )
 {
     int EquipSlot = -1;
     
@@ -3089,7 +2895,7 @@ bool cBrothelManager::AutomaticItemUse( Girl* girl, int InvNum, std::string mess
         return false;
 }
 
-bool cBrothelManager::AutomaticSlotlessItemUse( Girl* girl, int InvNum, std::string message )
+bool BrothelManager::AutomaticSlotlessItemUse( Girl* girl, int InvNum, std::string message )
 {
     // Slotless items include manuals, stripper poles, free weights, etc...
     int EquipSlot = -1;
@@ -3107,7 +2913,7 @@ bool cBrothelManager::AutomaticSlotlessItemUse( Girl* girl, int InvNum, std::str
         return false;
 }
 
-bool cBrothelManager::AutomaticFoodItemUse( Girl* girl, int InvNum, std::string message )
+bool BrothelManager::AutomaticFoodItemUse( Girl* girl, int InvNum, std::string message )
 {
     int EquipSlot = -1;
     
@@ -3124,7 +2930,7 @@ bool cBrothelManager::AutomaticFoodItemUse( Girl* girl, int InvNum, std::string 
         return false;
 }
 
-void cBrothelManager::UpdateBribeInfluence()
+void BrothelManager::UpdateBribeInfluence()
 {
     m_Influence = GetBribeRate();
     cRival* rival = GetRivals();
@@ -3145,7 +2951,7 @@ void cBrothelManager::UpdateBribeInfluence()
         while( rival )  // get the total for all bribes
         {
             if( rival->m_BribeRate > 0 && total != 0 )
-                rival->m_Influence = static_cast<int>( ( static_cast<float>(rival->m_BribeRate) / static_cast<float>(total) ) * 100.0f );
+                rival->m_Influence = static_cast<int>( ( static_cast<float>( rival->m_BribeRate ) / static_cast<float>( total ) ) * 100.0f );
             else
                 rival->m_Influence = 0;
                 
@@ -3153,7 +2959,7 @@ void cBrothelManager::UpdateBribeInfluence()
         }
         
         if( m_BribeRate != 0 && total != 0 )
-            m_Influence = static_cast<int>( ( static_cast<float>(m_BribeRate) / static_cast<float>(total) ) * 100.0f );
+            m_Influence = static_cast<int>( ( static_cast<float>( m_BribeRate ) / static_cast<float>( total ) ) * 100.0f );
         else
             m_Influence = 0;
     }
@@ -3162,11 +2968,11 @@ void cBrothelManager::UpdateBribeInfluence()
         if( m_BribeRate <= 0 )
             m_Influence = 0;
         else
-            m_Influence = static_cast<int>( ( static_cast<float>(m_BribeRate) / static_cast<float>( static_cast<float>(TOWN_OFFICIALSWAGES) + static_cast<float>(m_BribeRate) ) ) * 100.0f );
+            m_Influence = static_cast<int>( ( static_cast<float>( m_BribeRate ) / static_cast<float>( static_cast<float>( TOWN_OFFICIALSWAGES ) + static_cast<float>( m_BribeRate ) ) ) * 100.0f );
     }
 }
 
-void cBrothelManager::do_tax()
+void BrothelManager::do_tax()
 {
     cConfig cfg;
     double taxRate = cfg.tax.rate();    // normal tax rate is 6%
@@ -3228,7 +3034,7 @@ void cBrothelManager::do_tax()
     g_MessageQue.AddToQue( ss.str(), 0 );
 }
 
-void cBrothelManager::do_food_and_digs( Brothel* brothel, Girl* girl )
+void BrothelManager::do_food_and_digs( Brothel* brothel, Girl* girl )
 {
     /*
      *  add the girls accomodation and food costs to the upkeep
@@ -3334,13 +3140,12 @@ void cBrothelManager::do_food_and_digs( Brothel* brothel, Girl* girl )
     }
 }
 
-// ----- Inventory
-void cBrothelManager::SortInventory()
+void BrothelManager::SortInventory()
 {
 //  qu_sort(0,299,m_Inventory);
 }
 
-int cBrothelManager::HasItem( std::string name, int countFrom )
+int BrothelManager::HasItem( std::string name, int countFrom )
 {
     // We look for an item in the range of countFrom to MAXNUM_INVENTORY.
     // Either the index of the item or -1 is returned.
@@ -3363,7 +3168,7 @@ int cBrothelManager::HasItem( std::string name, int countFrom )
     return -1;
 }
 
-bool cBrothelManager::AddItemToInventory( sInventoryItem* item )
+bool BrothelManager::AddItemToInventory( sInventoryItem* item )
 {
     bool added = false;
     int curI = g_Brothels.HasItem( item->m_Name, -1 );
@@ -3412,7 +3217,7 @@ bool cBrothelManager::AddItemToInventory( sInventoryItem* item )
     return added;
 }
 
-bool cBrothelManager::RemoveItemFromInventoryByNumber( int Pos )
+bool BrothelManager::RemoveItemFromInventoryByNumber( int Pos )
 {
     bool removed = false;
     
@@ -3437,20 +3242,19 @@ bool cBrothelManager::RemoveItemFromInventoryByNumber( int Pos )
     return removed;
 }
 
-// ----- Bank & money
-void cBrothelManager::WithdrawFromBank( long amount )
+void BrothelManager::WithdrawFromBank( long amount )
 {
     if( m_Bank - amount >= 0 )
         m_Bank -= amount;
 }
 
-void cBrothelManager::DepositInBank( long amount )
+void BrothelManager::DepositInBank( long amount )
 {
     if( amount > 0 )
         m_Bank += amount;
 }
 
-double cBrothelManager::calc_pilfering( Girl* girl )
+double BrothelManager::calc_pilfering( Girl* girl )
 {
     double factor = 0.0;
     
@@ -3512,7 +3316,7 @@ double cBrothelManager::calc_pilfering( Girl* girl )
     return 0.0;
 }
 
-void cBrothelManager::CalculatePay( Brothel* brothel, Girl* girl, u_int Job )
+void BrothelManager::CalculatePay( Brothel* brothel, Girl* girl, u_int Job )
 {
     if(
         girl->m_Stats[STAT_HOUSE] == 0
@@ -3599,8 +3403,7 @@ void cBrothelManager::CalculatePay( Brothel* brothel, Girl* girl, u_int Job )
     girl->m_Pay = 0;
 }
 
-// ----- Objective
-void cBrothelManager::UpdateObjective()
+void BrothelManager::UpdateObjective()
 {
     if( m_Objective )
     {
@@ -3656,19 +3459,19 @@ void cBrothelManager::UpdateObjective()
     }
 }
 
-sObjective* cBrothelManager::GetObjective()
+Objective* BrothelManager::GetObjective()
 {
     return m_Objective;
 }
 
-void cBrothelManager::CreateNewObjective()
+void BrothelManager::CreateNewObjective()
 {
     if( m_Objective )
         delete m_Objective;
         
     m_Objective = nullptr;
     
-    m_Objective = new sObjective();
+    m_Objective = new Objective();
     
     if( m_Objective )
     {
@@ -3812,53 +3615,53 @@ void cBrothelManager::CreateNewObjective()
                 break;
                 
             case OBJECTIVE_KIDNAPXGIRLS:
-            {
-                message += "Kidnap ";
-                
-                if( m_Objective->m_Difficulty >= 2 )
                 {
-                    m_Objective->m_Limit = ( g_Dice % 5 ) + 1;
-                    m_Objective->m_Target = ( g_Dice % ( m_Objective->m_Limit - 1 ) ) + 1;
-                    message += toString( m_Objective->m_Target );
-                    message += " girls from the streets within ";
-                    message += toString( m_Objective->m_Limit );
-                    message += " weeks.";
+                    message += "Kidnap ";
+                    
+                    if( m_Objective->m_Difficulty >= 2 )
+                    {
+                        m_Objective->m_Limit = ( g_Dice % 5 ) + 1;
+                        m_Objective->m_Target = ( g_Dice % ( m_Objective->m_Limit - 1 ) ) + 1;
+                        message += toString( m_Objective->m_Target );
+                        message += " girls from the streets within ";
+                        message += toString( m_Objective->m_Limit );
+                        message += " weeks.";
+                    }
+                    else
+                    {
+                        m_Objective->m_Target = ( g_Dice % 5 ) + 1;
+                        message += toString( m_Objective->m_Target );
+                        message += " girls from the streets.";
+                    }
+                    
+                    done = true;
                 }
-                else
-                {
-                    m_Objective->m_Target = ( g_Dice % 5 ) + 1;
-                    message += toString( m_Objective->m_Target );
-                    message += " girls from the streets.";
-                }
+                break;
                 
-                done = true;
-            }
-            break;
-            
             case OBJECTIVE_EXTORTXNEWBUSSINESS:
-            {
-                message += "Gain control of ";
-                
-                if( m_Objective->m_Difficulty >= 2 )
                 {
-                    m_Objective->m_Limit = ( g_Dice % 5 ) + 1;
-                    m_Objective->m_Target = ( g_Dice % ( m_Objective->m_Limit - 1 ) ) + 1;
-                    message += toString( m_Objective->m_Target );
-                    message += " new bussinesses within ";
-                    message += toString( m_Objective->m_Limit );
-                    message += " weeks.";
+                    message += "Gain control of ";
+                    
+                    if( m_Objective->m_Difficulty >= 2 )
+                    {
+                        m_Objective->m_Limit = ( g_Dice % 5 ) + 1;
+                        m_Objective->m_Target = ( g_Dice % ( m_Objective->m_Limit - 1 ) ) + 1;
+                        message += toString( m_Objective->m_Target );
+                        message += " new bussinesses within ";
+                        message += toString( m_Objective->m_Limit );
+                        message += " weeks.";
+                    }
+                    else
+                    {
+                        m_Objective->m_Target = ( g_Dice % 5 ) + 1;
+                        message += toString( m_Objective->m_Target );
+                        message += " new bussinesses.";
+                    }
+                    
+                    done = true;
                 }
-                else
-                {
-                    m_Objective->m_Target = ( g_Dice % 5 ) + 1;
-                    message += toString( m_Objective->m_Target );
-                    message += " new bussinesses.";
-                }
+                break;
                 
-                done = true;
-            }
-            break;
-            
             case OBJECTIVE_HAVEXAMOUNTOFGIRLS:
                 message += "Have a total of ";
                 
@@ -3910,7 +3713,7 @@ void cBrothelManager::CreateNewObjective()
     }
 }
 
-void cBrothelManager::PassObjective()
+void BrothelManager::PassObjective()
 {
     if( m_Objective )
     {
@@ -3919,143 +3722,143 @@ void cBrothelManager::PassObjective()
         switch( m_Objective->m_Reward )
         {
         case REWARD_GOLD:
-        {
-            long gold = ( g_Dice % 200 ) + 33;
-            
-            if( m_Objective->m_Difficulty > 0 )
-                gold *= m_Objective->m_Difficulty;
-                
-            message += toString( gold );
-            message += " gold.";
-            g_Gold.objective_reward( gold );
-        }
-        break;
-        
-        case REWARD_GIRLS:
-        {
-            int girls = 1;
-            
-            if( m_Objective->m_Difficulty > 0 )
-                girls *= m_Objective->m_Difficulty;
-                
-            message += toString( girls );
-            message += " slave girls.";
-            
-            while( girls > 0 )
             {
-                m_Dungeon.AddGirl( g_Girls.CreateRandomGirl( 0, true, "", true, true ), DUNGEON_NEWGIRL );
-                girls--;
-            }
-        }
-        break;
-        
-        case REWARD_RIVALHINDER:
-        {
-            cRival* rival = m_Rivals.GetRandomRival();
-            
-            if( rival )
-            {
-                long gold = 0;
-                message += "to steal ";
+                long gold = ( g_Dice % 200 ) + 33;
                 
-                if( rival->m_Gold > 10 )
-                    gold = ( g_Dice % ( rival->m_Gold / 2 ) ) + 1;
-                else
-                    gold = 436;
+                if( m_Objective->m_Difficulty > 0 )
+                    gold *= m_Objective->m_Difficulty;
                     
-                rival->m_Gold -= gold;
                 message += toString( gold );
-                message += " gold from the ";
-                message += rival->m_Name;
-                message += ".";
+                message += " gold.";
                 g_Gold.objective_reward( gold );
             }
-            else
-            {
-                message = "";
-                m_Objective->m_Reward  = REWARD_GOLD;
-                PassObjective();
-            }
-        }
-        break;
-        
-        case REWARD_ITEM:
-        {
-            int numItems = 1;
+            break;
             
-            if( m_Objective->m_Difficulty > 0 )
-                numItems *= m_Objective->m_Difficulty;
-                
-            while( numItems > 0 )
+        case REWARD_GIRLS:
             {
-                //mod
-                //purpose fix a crash
-                sInventoryItem* item = nullptr;
+                int girls = 1;
                 
-                do
-                {
-                    item = g_InvManager.GetRandomItem();
-                }
-                while( !item );
-                
-                // end mod
-                if( item->m_Rarity != 5 )
-                {
-                    int curI = g_Brothels.HasItem( item->m_Name, -1 );
-                    bool loop = true;
+                if( m_Objective->m_Difficulty > 0 )
+                    girls *= m_Objective->m_Difficulty;
                     
-                    while( loop )
+                message += toString( girls );
+                message += " slave girls.";
+                
+                while( girls > 0 )
+                {
+                    m_Dungeon.AddGirl( g_Girls.CreateRandomGirl( 0, true, "", true, true ), DUNGEON_NEWGIRL );
+                    girls--;
+                }
+            }
+            break;
+            
+        case REWARD_RIVALHINDER:
+            {
+                cRival* rival = m_Rivals.GetRandomRival();
+                
+                if( rival )
+                {
+                    long gold = 0;
+                    message += "to steal ";
+                    
+                    if( rival->m_Gold > 10 )
+                        gold = ( g_Dice % ( rival->m_Gold / 2 ) ) + 1;
+                    else
+                        gold = 436;
+                        
+                    rival->m_Gold -= gold;
+                    message += toString( gold );
+                    message += " gold from the ";
+                    message += rival->m_Name;
+                    message += ".";
+                    g_Gold.objective_reward( gold );
+                }
+                else
+                {
+                    message = "";
+                    m_Objective->m_Reward  = REWARD_GOLD;
+                    PassObjective();
+                }
+            }
+            break;
+            
+        case REWARD_ITEM:
+            {
+                int numItems = 1;
+                
+                if( m_Objective->m_Difficulty > 0 )
+                    numItems *= m_Objective->m_Difficulty;
+                    
+                while( numItems > 0 )
+                {
+                    //mod
+                    //purpose fix a crash
+                    sInventoryItem* item = nullptr;
+                    
+                    do
                     {
-                        if( curI != -1 )
+                        item = g_InvManager.GetRandomItem();
+                    }
+                    while( !item );
+                    
+                    // end mod
+                    if( item->m_Rarity != 5 )
+                    {
+                        int curI = g_Brothels.HasItem( item->m_Name, -1 );
+                        bool loop = true;
+                        
+                        while( loop )
                         {
-                            if( g_Brothels.m_NumItem[curI] >= 254 )
-                                curI = g_Brothels.HasItem( item->m_Name, curI + 1 );
+                            if( curI != -1 )
+                            {
+                                if( g_Brothels.m_NumItem[curI] >= 254 )
+                                    curI = g_Brothels.HasItem( item->m_Name, curI + 1 );
+                                else
+                                    loop = false;
+                            }
                             else
                                 loop = false;
                         }
-                        else
-                            loop = false;
-                    }
-                    
-                    if( g_Brothels.m_NumInventory < MAXNUM_INVENTORY || curI != -1 )
-                    {
-                        if( curI != -1 )
+                        
+                        if( g_Brothels.m_NumInventory < MAXNUM_INVENTORY || curI != -1 )
                         {
-                            message += "a ";
-                            message += item->m_Name;
-                            message += ", ";
-                            g_Brothels.m_NumItem[curI]++;
-                        }
-                        else
-                        {
-                            for( int j = 0; j < MAXNUM_INVENTORY; j++ )
+                            if( curI != -1 )
                             {
-                                if( g_Brothels.m_Inventory[j] == nullptr )
+                                message += "a ";
+                                message += item->m_Name;
+                                message += ", ";
+                                g_Brothels.m_NumItem[curI]++;
+                            }
+                            else
+                            {
+                                for( int j = 0; j < MAXNUM_INVENTORY; j++ )
                                 {
-                                    message += "a ";
-                                    message += item->m_Name;
-                                    message += ", ";
-                                    g_Brothels.m_Inventory[j] = item;
-                                    g_Brothels.m_EquipedItems[j] = 0;
-                                    g_Brothels.m_NumInventory++;
-                                    g_Brothels.m_NumItem[j]++;
-                                    break;
+                                    if( g_Brothels.m_Inventory[j] == nullptr )
+                                    {
+                                        message += "a ";
+                                        message += item->m_Name;
+                                        message += ", ";
+                                        g_Brothels.m_Inventory[j] = item;
+                                        g_Brothels.m_EquipedItems[j] = 0;
+                                        g_Brothels.m_NumInventory++;
+                                        g_Brothels.m_NumItem[j]++;
+                                        break;
+                                    }
                                 }
                             }
+                            
+                            numItems--;
                         }
-                        
-                        numItems--;
-                    }
-                    else
-                    {
-                        numItems = 0;
-                        message += " Your inventory is full\n";
+                        else
+                        {
+                            numItems = 0;
+                            message += " Your inventory is full\n";
+                        }
                     }
                 }
             }
-        }
-        break;
-        
+            break;
+            
         default:
             g_LogFile.ss() << "switch (m_Objective->m_Reward): unknown value \"" << m_Objective->m_Reward << "\"\n" << __FILE__ << " " << __LINE__ << "\n";
         }
@@ -4068,14 +3871,14 @@ void cBrothelManager::PassObjective()
     }
 }
 
-void cBrothelManager::AddCustomObjective( int limit, int diff, int objective, int reward, int sofar, int target )
+void BrothelManager::AddCustomObjective( int limit, int diff, int objective, int reward, int sofar, int target )
 {
     if( m_Objective )
         delete m_Objective;
         
     m_Objective = nullptr;
     
-    m_Objective = new sObjective();
+    m_Objective = new Objective();
     
     m_Objective->m_Difficulty = diff;
     m_Objective->m_Limit = limit;
@@ -4085,10 +3888,7 @@ void cBrothelManager::AddCustomObjective( int limit, int diff, int objective, in
     m_Objective->m_Target = target;
 }
 
-// ----- Stats
-
-//mod, damn it, I am trying to do python code in c++
-int& cBrothelManager::stat_lookup( std::string stat_name, int brothel_id )
+int& BrothelManager::stat_lookup( std::string stat_name, int brothel_id )
 {
     if( stat_name == "filth" )
         return this->GetBrothel( brothel_id )->m_Filthiness;
@@ -4102,12 +3902,12 @@ int& cBrothelManager::stat_lookup( std::string stat_name, int brothel_id )
     return m_Dummy;
 }
 
-void cBrothelManager::SetGirlStat( Girl* girl, int stat, int amount )
+void BrothelManager::SetGirlStat( Girl* girl, int stat, int amount )
 {
     girl->m_StatMods[stat] = amount;
 }
 
-void cBrothelManager::updateGirlTurnBrothelStats( Girl* girl )
+void BrothelManager::updateGirlTurnBrothelStats( Girl* girl )
 {
     /*
      *  WD: Update each turn the stats for girl in brothel
@@ -4229,7 +4029,7 @@ void cBrothelManager::updateGirlTurnBrothelStats( Girl* girl )
 #endif
 }
 
-void cBrothelManager::UpdateAllGirlsStat( Brothel* brothel, int stat, int amount )
+void BrothelManager::UpdateAllGirlsStat( Brothel* brothel, int stat, int amount )
 {
     if( brothel )
     {
@@ -4260,8 +4060,7 @@ void cBrothelManager::UpdateAllGirlsStat( Brothel* brothel, int stat, int amount
     }
 }
 
-// ----- Get / Set
-Girl* cBrothelManager::GetGirl( int brothelID, int num )
+Girl* BrothelManager::GetGirl( int brothelID, int num )
 {
     if( num < 0 )
         return nullptr;
@@ -4299,7 +4098,7 @@ Girl* cBrothelManager::GetGirl( int brothelID, int num )
     return nullptr;
 }
 
-int cBrothelManager::GetGirlPos( int brothelID, Girl* girl )
+int BrothelManager::GetGirlPos( int brothelID, Girl* girl )
 {
     Brothel* current = m_Parent;
     
@@ -4329,7 +4128,7 @@ int cBrothelManager::GetGirlPos( int brothelID, Girl* girl )
     return -1;
 }
 
-Girl* cBrothelManager::GetGirlByName( int brothelID, std::string name )
+Girl* BrothelManager::GetGirlByName( int brothelID, std::string name )
 {
     // Get the proper brothel
     Brothel* current = m_Parent;
@@ -4361,7 +4160,7 @@ Girl* cBrothelManager::GetGirlByName( int brothelID, std::string name )
     return nullptr;
 }
 
-int cBrothelManager::GetGirlsCurrentBrothel( Girl* girl )
+int BrothelManager::GetGirlsCurrentBrothel( Girl* girl )
 {
     // Used by new security guard code
     int BrothelNo = -1;
@@ -4379,7 +4178,7 @@ int cBrothelManager::GetGirlsCurrentBrothel( Girl* girl )
     return -1;
 }
 
-std::vector<Girl*> cBrothelManager::GirlsOnJob( int BrothelID, int JobID, bool day )
+std::vector<Girl*> BrothelManager::GirlsOnJob( int BrothelID, int JobID, bool day )
 {
     // Used by new security code
     Brothel* current = m_Parent;
@@ -4415,7 +4214,7 @@ std::vector<Girl*> cBrothelManager::GirlsOnJob( int BrothelID, int JobID, bool d
     return GirlsOnJob;
 }
 
-int cBrothelManager::GetTotalNumGirls( bool monster )
+int BrothelManager::GetTotalNumGirls( bool monster )
 {
     int total = 0;
     
@@ -4457,7 +4256,7 @@ int cBrothelManager::GetTotalNumGirls( bool monster )
     return total;
 }
 
-std::string cBrothelManager::GetGirlString( int brothelID, int girlNum )
+std::string BrothelManager::GetGirlString( int brothelID, int girlNum )
 {
     std::string data = "";
     Brothel* current = m_Parent;
@@ -4487,7 +4286,7 @@ std::string cBrothelManager::GetGirlString( int brothelID, int girlNum )
 //need to change into string lookup
         std::string dayjob = "Resting";
         
-        switch( static_cast<int>(currentGirl->m_DayJob) )
+        switch( static_cast<int>( currentGirl->m_DayJob ) )
         {
         case JOB_WHORESTREETS:
             dayjob = "Streets";
@@ -4514,7 +4313,7 @@ std::string cBrothelManager::GetGirlString( int brothelID, int girlNum )
         
         std::string nightjob = "Resting";
         
-        switch( static_cast<int>(currentGirl->m_NightJob) )
+        switch( static_cast<int>( currentGirl->m_NightJob ) )
         {
         case JOB_WHORESTREETS:
             nightjob = "Streets";
@@ -4550,7 +4349,7 @@ std::string cBrothelManager::GetGirlString( int brothelID, int girlNum )
     return data;
 }
 
-std::string cBrothelManager::GetName( int brothelID )
+std::string BrothelManager::GetName( int brothelID )
 {
     Brothel* current = m_Parent;
     
@@ -4565,10 +4364,10 @@ std::string cBrothelManager::GetName( int brothelID )
     if( current )
         return current->m_Name;
         
-    return "cBrothelManager::GetName - Something went wrong";
+    return "BrothelManager::GetName - Something went wrong";
 }
 
-std::string cBrothelManager::GetBrothelString( int brothelID )
+std::string BrothelManager::GetBrothelString( int brothelID )
 {
     std::stringstream ss;
     Brothel* brothel = GetBrothel( brothelID );
@@ -4618,7 +4417,7 @@ std::string cBrothelManager::GetBrothelString( int brothelID )
 //add cleanliness and check gh and bh
 }
 
-Brothel* cBrothelManager::GetBrothel( int brothelID )
+Brothel* BrothelManager::GetBrothel( int brothelID )
 {
     Brothel* current = m_Parent;
     
@@ -4639,7 +4438,7 @@ Brothel* cBrothelManager::GetBrothel( int brothelID )
     return nullptr;
 }
 
-int cBrothelManager::GetNumBrothelsWithVacancies()
+int BrothelManager::GetNumBrothelsWithVacancies()
 {
     int number = 0;
     Brothel* current = m_Parent;
@@ -4655,7 +4454,7 @@ int cBrothelManager::GetNumBrothelsWithVacancies()
     return number;
 }
 
-int cBrothelManager::GetNumGirls( int brothelID )
+int BrothelManager::GetNumGirls( int brothelID )
 {
     Brothel* current = m_Parent;
     
@@ -4673,7 +4472,7 @@ int cBrothelManager::GetNumGirls( int brothelID )
     return 0;
 }
 
-int cBrothelManager::GetNumGirlsOnJob( int brothelID, int jobID, bool day )
+int BrothelManager::GetNumGirlsOnJob( int brothelID, int jobID, bool day )
 {
     int count = 0;
     Brothel* current = m_Parent;
@@ -4720,7 +4519,7 @@ int cBrothelManager::GetNumGirlsOnJob( int brothelID, int jobID, bool day )
     return count;
 }
 
-void cBrothelManager::SetName( int brothelID, std::string name )
+void BrothelManager::SetName( int brothelID, std::string name )
 {
     std::string data = "";
     Brothel* current = m_Parent;
@@ -4736,11 +4535,10 @@ void cBrothelManager::SetName( int brothelID, std::string name )
     if( current )
         current->m_Name = name;
     else
-        current->m_Name =  "cBrothelManager::GetName - Something went wrong";
+        current->m_Name =  "BrothelManager::GetName - Something went wrong";
 }
 
-// ----- Status texts
-std::string cBrothelManager::disposition_text()
+std::string BrothelManager::disposition_text()
 {
     if( m_Player.disposition() >= 80 )    return "Benevolent";
     
@@ -4757,7 +4555,7 @@ std::string cBrothelManager::disposition_text()
     return "Evil";
 }
 
-std::string cBrothelManager::fame_text( Brothel* brothel )
+std::string BrothelManager::fame_text( Brothel* brothel )
 {
     if( brothel->m_Fame >= 90 )   return  "World Renowned\n";
     
@@ -4774,7 +4572,7 @@ std::string cBrothelManager::fame_text( Brothel* brothel )
     return  "Unknown\n";
 }
 
-std::string cBrothelManager::suss_text()
+std::string BrothelManager::suss_text()
 {
     //WD:   Should be Susipicion not Disposition
     if( m_Player.suspicion() >= 80 )  return "Town Scum";
@@ -4800,7 +4598,7 @@ std::string cBrothelManager::suss_text()
     //                  return "Town Hero";
 }
 
-std::string cBrothelManager::happiness_text( Brothel* brothel )
+std::string BrothelManager::happiness_text( Brothel* brothel )
 {
     if( brothel->m_Happiness >= 80 )      return "High";
     
@@ -4808,10 +4606,8 @@ std::string cBrothelManager::happiness_text( Brothel* brothel )
     else                    return "Medium";
 }
 
-// ----- Combat
-
 // True means the girl beat the brothel master
-bool cBrothelManager::PlayerCombat( Girl* girl )   //  **************************** for now doesn't count items
+bool BrothelManager::PlayerCombat( Girl* girl ) // **************************** for now doesn't count items
 {
     // MYR: Sanity check: Incorporial is an auto-win.
     if( girl->has_trait( "Incorporial" ) )
@@ -4945,7 +4741,7 @@ bool cBrothelManager::PlayerCombat( Girl* girl )   //  *************************
     return true;
 }
 
-bool cBrothelManager::FightsBack( Girl* girl )
+bool BrothelManager::FightsBack( Girl* girl )
 {
     if( g_Girls.GetStat( girl, STAT_HEALTH ) < 10 ) // she won't fight back in this state
         return false;
@@ -4959,116 +4755,12 @@ bool cBrothelManager::FightsBack( Girl* girl )
     return false;
 }
 
-// ----- Utility
-Girl* girl_sort( Girl* girl, Girl** lastgirl ) // sort using merge sort (cause works well with linked lists)
-{
-    Girl* p, *q, *e, *tail;
-    int insize, nmerges, psize, qsize, i;
-    
-    insize = 1;
-    
-    if( !girl )
-    {
-        *lastgirl = nullptr;
-        return nullptr;
-    }
-    
-    while( 1 )
-    {
-        p = girl;
-        girl = nullptr;
-        tail = nullptr;
-        nmerges = 0;
-        
-        while( p )
-        {
-            nmerges++;
-            q = p;
-            psize = 0;
-            
-            for( i = 0; i < insize; i++ )
-            {
-                psize++;
-                q = q->m_Next;
-                
-                if( !q )
-                    break;
-            }
-            
-            qsize = insize;
-            
-            while( psize > 0 || ( qsize > 0 && q ) )
-            {
-                if( psize == 0 )
-                {
-                    e = q;
-                    q = q->m_Next;
-                    qsize--;
-                }
-                else if( qsize == 0 || !q )
-                {
-                    e = p;
-                    p = p->m_Next;
-                    psize--;
-                }
-                else if( sGirlcmp( p, q ) <= 0 )
-                {
-                    e = p;
-                    p = p->m_Next;
-                    psize--;
-                }
-                else
-                {
-                    e = q;
-                    q = q->m_Next;
-                    qsize--;
-                }
-                
-                if( tail )
-                    tail->m_Next = e;
-                else
-                    girl = e;
-                    
-                e->m_Prev = tail;
-                tail = e;
-            }
-            
-            p = q;
-        }
-        
-        tail->m_Next = nullptr;
-        
-        if( nmerges <= 1 )
-        {
-            // find the last girl in the list
-            //*lastgirl = tail;
-            Girl* tmp = girl;
-            
-            while( tmp->m_Next )
-                tmp = tmp->m_Next;
-                
-            *lastgirl = tmp;
-            return girl;
-        }
-        
-        insize *= 2;
-    }
-}
-
-int sGirlcmp( Girl* a, Girl* b )
-{
-    if( a == nullptr || b == nullptr )
-        return 1;
-        
-    return strcmp( a->m_Realname.c_str(), b->m_Realname.c_str() );
-}
-
-void cBrothelManager::sort( Brothel* brothel )
+void BrothelManager::sort( Brothel* brothel )
 {
     brothel->m_Girls = girl_sort( brothel->m_Girls, &brothel->m_LastGirl );
 }
 
-bool cBrothelManager::NameExists( std::string name )
+bool BrothelManager::NameExists( std::string name )
 {
     Brothel* current = m_Parent;
     
@@ -5090,13 +4782,12 @@ bool cBrothelManager::NameExists( std::string name )
     return false;
 }
 
-// ----- Runaways
-Girl* cBrothelManager::GetFirstRunaway()
+Girl* BrothelManager::GetFirstRunaway()
 {
     return m_Runaways;
 }
 
-void cBrothelManager::RemoveGirlFromRunaways( Girl* girl )
+void BrothelManager::RemoveGirlFromRunaways( Girl* girl )
 {
     if( girl->m_Next )
         girl->m_Next->m_Prev = girl->m_Prev;
@@ -5115,7 +4806,7 @@ void cBrothelManager::RemoveGirlFromRunaways( Girl* girl )
     m_NumRunaways--;
 }
 
-void cBrothelManager::AddGirlToRunaways( Girl* girl )
+void BrothelManager::AddGirlToRunaways( Girl* girl )
 {
     girl->m_Prev = nullptr;
     girl->m_Next = nullptr;
@@ -5132,7 +4823,7 @@ void cBrothelManager::AddGirlToRunaways( Girl* girl )
     m_NumRunaways++;
 }
 
-bool cBrothelManager::runaway_check( Brothel* brothel, Girl* girl )
+bool BrothelManager::runaway_check( Brothel* brothel, Girl* girl )
 {
     /*
      *  nothing interesting happens here unless the girl is miserable
@@ -5241,8 +4932,7 @@ bool cBrothelManager::runaway_check( Brothel* brothel, Girl* girl )
     return false;
 }
 
-// ----- Drugs & addiction
-void cBrothelManager::check_druggy_girl( std::stringstream& ss )
+void BrothelManager::check_druggy_girl( std::stringstream& ss )
 {
     if( g_Dice.percent( 90 ) )
         return;
@@ -5278,7 +4968,7 @@ void cBrothelManager::check_druggy_girl( std::stringstream& ss )
     AddGirlToPrison( girl );
 }
 
-Girl* cBrothelManager::GetDrugPossessor()
+Girl* BrothelManager::GetDrugPossessor()
 {
     Brothel* current = m_Parent;
     
@@ -5303,8 +4993,7 @@ Girl* cBrothelManager::GetDrugPossessor()
     return nullptr;
 }
 
-// ----- Dungeon & torture
-void cBrothelManager::RemoveGirlFromPrison( Girl* girl )
+void BrothelManager::RemoveGirlFromPrison( Girl* girl )
 {
     if( girl->m_Next )
         girl->m_Next->m_Prev = girl->m_Prev;
@@ -5323,7 +5012,7 @@ void cBrothelManager::RemoveGirlFromPrison( Girl* girl )
     m_NumPrison--;
 }
 
-void cBrothelManager::AddGirlToPrison( Girl* girl )
+void BrothelManager::AddGirlToPrison( Girl* girl )
 {
     // remove from girl manager if she is there
     g_Girls.RemoveGirl( girl );
@@ -5347,7 +5036,7 @@ void cBrothelManager::AddGirlToPrison( Girl* girl )
     m_NumPrison++;
 }
 
-Girl* cBrothelManager::WhoHasTorturerJob()
+Girl* BrothelManager::WhoHasTorturerJob()
 {
     /*  WD:
      *  Loops through all brothels to find first
@@ -5384,17 +5073,11 @@ Girl* cBrothelManager::WhoHasTorturerJob()
 }
 
 #if 0
-/*
- * best way to comment out a large block of code is with
- * #if 0
- *
- * Doesn't complain about embedded comments, and you don't
- * need to change the code inside the ifdef
- */
+
 /*
  * returns the number of customers the bar draws in
  */
-int cBrothelManager::bar_update( Brothel* brothel )
+int BrothelManager::bar_update( Brothel* brothel )
 {
     ctariff tariff;
     
@@ -5502,7 +5185,7 @@ int cBrothelManager::bar_update( Brothel* brothel )
 /*
  * returns the number of customers the bar draws in
  */
-int cBrothelManager::casino_update( Brothel* brothel )
+int BrothelManager::casino_update( Brothel* brothel )
 {
     cTariff tariff;
     

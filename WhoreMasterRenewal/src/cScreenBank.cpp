@@ -18,7 +18,8 @@
  */
 
 #include "cScreenBank.h"
-#include "cBrothel.h"
+#include "BrothelManager.hpp"
+#include "Brothel.h"
 #include "cWindowManager.h"
 #include "cMessageBox.h"
 #include "cGold.h"

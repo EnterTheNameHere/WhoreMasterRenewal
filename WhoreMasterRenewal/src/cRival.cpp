@@ -18,7 +18,8 @@
  */
 
 #include "cRival.h"
-#include "cBrothel.h"
+#include "Brothel.h"
+#include "BrothelManager.hpp"
 #include "cMessageBox.h"
 #include "cGold.h"
 #include "GameFlags.h"

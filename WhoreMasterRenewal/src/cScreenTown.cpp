@@ -18,9 +18,10 @@
  */
 
 #include "cScreenTown.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
+#include "BrothelManager.hpp"
 #include "sFacilityList.h"
 #include "cGetStringScreenManager.h"
 #include "InterfaceProcesses.h"

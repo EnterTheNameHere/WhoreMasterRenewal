@@ -24,6 +24,7 @@
 					<Add option="-Wmissing-declarations" />
 					<Add option="-Wmissing-include-dirs" />
 					<Add option="-Wswitch-default" />
+					<Add option="-Weffc++" />
 					<Add option="-Wmain" />
 					<Add option="-pedantic" />
 					<Add option="-Wextra" />
@@ -117,6 +118,7 @@
 					<Add option="-Wmissing-declarations" />
 					<Add option="-Wmissing-include-dirs" />
 					<Add option="-Wswitch-default" />
+					<Add option="-Weffc++" />
 					<Add option="-Wmain" />
 					<Add option="-pedantic" />
 					<Add option="-Wzero-as-null-pointer-constant" />
@@ -226,6 +228,10 @@
 		<Unit filename="Resources/Scripts/TestScript.lua" />
 		<Unit filename="src/Attribute.cpp" />
 		<Unit filename="src/Attribute.hpp" />
+		<Unit filename="src/Brothel.cpp" />
+		<Unit filename="src/Brothel.h" />
+		<Unit filename="src/BrothelManager.cpp" />
+		<Unit filename="src/BrothelManager.hpp" />
 		<Unit filename="src/CGameObject.h" />
 		<Unit filename="src/CGraphics.cpp" />
 		<Unit filename="src/CGraphics.h" />
@@ -282,8 +288,6 @@
 		<Unit filename="src/XmlUtil.h" />
 		<Unit filename="src/cAnimatedSurface.cpp" />
 		<Unit filename="src/cAnimatedSurface.h" />
-		<Unit filename="src/cBrothel.cpp" />
-		<Unit filename="src/cBrothel.h" />
 		<Unit filename="src/cBuilding.cpp" />
 		<Unit filename="src/cBuilding.h" />
 		<Unit filename="src/cButton.cpp" />

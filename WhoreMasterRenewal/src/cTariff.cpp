@@ -19,7 +19,7 @@
  
 #include "cTariff.h"
 #include "cGirls.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "CLog.h"
 #include "cRng.h"
 

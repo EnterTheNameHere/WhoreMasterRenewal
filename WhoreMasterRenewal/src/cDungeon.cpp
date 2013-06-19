@@ -19,7 +19,7 @@
 
 #include "cDungeon.h"
 #include "Helper.hpp"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cMessageBox.h"
 #include "cGangs.h"
 #include "strnatcmp.h"
@@ -30,6 +30,7 @@
 #include "cRng.h"
 #include "CLog.h"
 #include "InterfaceProcesses.h"
+#include "BrothelManager.hpp"
 
 #include <sstream>
 

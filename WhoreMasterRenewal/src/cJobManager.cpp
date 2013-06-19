@@ -18,10 +18,11 @@
  */
 
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
+#include "BrothelManager.hpp"
 #include "sConfig.h"
 #include "cRival.h"
 #include "CLog.h"
@@ -304,7 +305,7 @@ bool cJobManager::Preprocessing(int action, Girl* girl, Brothel* brothel, int Da
 
 	{
 
-//		summary += "She has refused to work.\n";			// WD:	Refusal message done in cBrothelManager::UpdateGirls()
+//		summary += "She has refused to work.\n";			// WD:	Refusal message done in BrothelManager::UpdateGirls()
 	    std::string msg = girl->m_Realname + " refused to work during the ";
 		if(DayNight == 0)
 			msg += "day";

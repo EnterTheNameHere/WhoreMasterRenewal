@@ -18,13 +18,14 @@
  */
 
 #include "cScreenBuildingManagement.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "sFacilityList.h"
 #include "cGetStringScreenManager.h"
 #include "cInterfaceEvent.h"
 #include "sFacility.h"
+#include "BrothelManager.hpp"
 #include "DirPath.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"

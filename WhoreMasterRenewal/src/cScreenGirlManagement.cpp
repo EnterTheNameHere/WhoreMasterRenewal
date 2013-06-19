@@ -18,11 +18,12 @@
  */
 
 #include "cScreenGirlManagement.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cTariff.h"
 #include "cJobManager.h"
+#include "BrothelManager.hpp"
 #include "cChoiceMessage.h"
 #include "cMessageBox.h"
 #include "InterfaceProcesses.h"

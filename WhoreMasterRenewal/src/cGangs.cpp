@@ -19,7 +19,8 @@
 
 #include "cGangs.h"
 #include "Helper.hpp"
-#include "cBrothel.h"
+#include "BrothelManager.hpp"
+#include "Brothel.h"
 #include "cJobManager.h"
 #include "cCustomers.h"
 #include "cGirls.h"
@@ -3065,7 +3066,7 @@ void cGangManager::sabotage_mission( sGang* gang )
      *  if we had an objective to attack a rival
      *  we just achieved it
      */
-    sObjective* obj = g_Brothels.GetObjective();
+    Objective* obj = g_Brothels.GetObjective();
     
     if( obj && obj->m_Objective == OBJECTIVE_LAUNCHSUCCESSFULATTACK )
         g_Brothels.PassObjective();

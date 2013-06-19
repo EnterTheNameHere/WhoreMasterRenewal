@@ -18,11 +18,12 @@
  */
 
 #include "cScreenHouse.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
+#include "BrothelManager.hpp"
 #include "cGangs.h"
 #include "cInterfaceEvent.h"
 #include "CLog.h"
@@ -82,7 +83,7 @@ void cScreenHouse::init()
 	ss.imbue(syslocale);
 
 	ss << "CURRENT OBJECTIVE: ";
-	sObjective* obj = g_Brothels.GetObjective();
+	Objective* obj = g_Brothels.GetObjective();
 	if(obj)
 	{
 		switch(obj->m_Objective) {

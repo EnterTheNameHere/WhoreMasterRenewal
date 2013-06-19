@@ -19,8 +19,9 @@
 
 #include "Constants.h"
 #include "XmlMisc.h"
+#include "BrothelManager.hpp"
 #include "cGirls.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cTraits.h"
 #include "cInventory.h"
 

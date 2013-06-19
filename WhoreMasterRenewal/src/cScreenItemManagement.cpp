@@ -1,8 +1,9 @@
 
 #include "cScreenItemManagement.h"
 #include "Helper.hpp"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cWindowManager.h"
+#include "BrothelManager.hpp"
 #include "cGold.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"

@@ -18,6 +18,7 @@
  */
  
 #include "main.h"
+#include "BrothelManager.hpp"
 #include "Logger.hpp"
 #include "Helper.hpp"
 #include "InterfaceGlobals.h"
@@ -28,7 +29,7 @@
 #include "cWindowManager.h"
 #include "cMessageBox.h"
 #include "cChoiceMessage.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cGangs.h"
 #include "IconSurface.h"
 #include "cSlider.h"
@@ -92,7 +93,7 @@ bool Init();
 // Events
 CLog g_LogFile(true);
 SDL_Event vent;
-cBrothelManager g_Brothels;
+BrothelManager g_Brothels;
 cCustomers g_Customers;
 cGangManager g_Gangs;
 cGold g_Gold;

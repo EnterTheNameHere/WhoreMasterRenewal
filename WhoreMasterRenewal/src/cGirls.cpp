@@ -21,7 +21,7 @@
 #include "cTariff.h"
 #include "cEvents.h"
 #include "math.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cMessageBox.h"
 #include "cGold.h"
 #include "cGangs.h"
@@ -36,6 +36,7 @@
 #include "CSurface.h"
 #include "cInventory.h"
 #include "CLog.h"
+#include "BrothelManager.hpp"
 #include "cRng.h"
 #include "InterfaceProcesses.h"
 #include "Girl.hpp"
@@ -4051,7 +4052,11 @@ void cGirls::UseItems( Girl* girl )
                 }
                 
                 break;
-                
+            
+            case INVFOOD: // Do not sell food stuff
+            case INVMISC: // or misc stuff
+                break;
+            
             default:
                 std::stringstream local_ss;
                 local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";

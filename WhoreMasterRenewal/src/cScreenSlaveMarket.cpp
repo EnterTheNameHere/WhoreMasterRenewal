@@ -18,10 +18,11 @@
  */
 
 #include "cScreenSlaveMarket.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "sFacilityList.h"
+#include "BrothelManager.hpp"
 #include "cGetStringScreenManager.h"
 #include "cMessageBox.h"
 #include "cInterfaceEvent.h"

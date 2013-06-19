@@ -18,9 +18,10 @@
  */
 
 #include "InterfaceProcesses.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cGangs.h"
 #include "InterfaceGlobals.h"
+#include "BrothelManager.hpp"
 #include "Helper.hpp"
 #include "cGetStringScreenManager.h"
 #include "cTariff.h"

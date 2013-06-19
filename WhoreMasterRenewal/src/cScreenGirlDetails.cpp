@@ -18,9 +18,10 @@
  */
 
 #include "cScreenGirlDetails.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cWindowManager.h"
 #include "cGold.h"
+#include "BrothelManager.hpp"
 #include "cTariff.h"
 #include "cJobManager.h"
 #include "InterfaceProcesses.h"

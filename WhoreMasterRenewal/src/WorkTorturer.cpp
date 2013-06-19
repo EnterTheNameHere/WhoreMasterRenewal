@@ -18,11 +18,12 @@
  */
 
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.h"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
+#include "BrothelManager.hpp"
 #include "cRival.h"
 #include "CLog.h"
 #include "cTrainable.h"
