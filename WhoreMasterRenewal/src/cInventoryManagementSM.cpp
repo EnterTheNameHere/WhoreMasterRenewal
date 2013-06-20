@@ -141,7 +141,6 @@ void cInventoryManagementSM::handle_events()
                 else    // player buying from shop
                 {
                     // buy from shop, taking money from player
-                    int pos = 0;
                     
                     for( int selection = sel.first();
                             selection != -1;

@@ -219,12 +219,10 @@ void NewGame()
 	sm.Release();
 	g_InvManager.Free();
 
-    std::string d = g_ReturnText;
 	if(g_ReturnText == "Test")
 		g_Cheats = true;
 	else
 		g_Cheats = false;
-	d += ".gam";
 
 	// Load all the data
 	LoadGameInfoFiles();
@@ -1333,7 +1331,7 @@ void Turnsummary()
 				// ****************************
 				if((SelEvent = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSEVENTS)) != -1)
 				{
-					int SelGirl;
+					int SelGirl; // TODO check
 					// if a girl is selected then
 					if((SelGirl = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)
 					{
@@ -1404,7 +1402,7 @@ void Turnsummary()
 				int SelEvent = -1;
 				if((SelEvent = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSEVENTS)) != -1)	// if a event is selected then
 				{
-					int SelGirl;
+					int SelGirl; // TODO check
 					if((SelGirl = g_Turnsummary.GetSelectedItemFromList(g_interfaceid.LIST_TSITEM)) != -1)	// if a dungeon is selected then
 					{
 						// WD	Get girl by name

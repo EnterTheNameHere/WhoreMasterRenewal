@@ -139,7 +139,6 @@ void cGangManager::LoadGangsLegacy( std::ifstream& ifs )
 {
     Free();
     int temp;
-    std::string message = "";
     
     // load goons and goon missions
     if( ifs.peek() == '\n' ) ifs.ignore( 1, '\n' );

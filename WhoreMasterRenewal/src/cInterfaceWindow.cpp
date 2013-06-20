@@ -57,7 +57,7 @@ cInterfaceWindow::~cInterfaceWindow()
 
 cInterfaceWindow& cInterfaceWindow::operator = ( const cInterfaceWindow& rhs )
 {
-    // TODO: implement
+    // TODO: proper implementation
     
     if( this != &rhs )
     {
@@ -674,8 +674,6 @@ void cInterfaceWindow::AddListBox(int & ID, int x, int y, int width, int height,
 	DirPath up,down;
 	up = ButtonPath("Up");
 	down = ButtonPath("Down");
-    std::string ups=up.c_str();
-    std::string downs=down.c_str();
 
 	// if showing headers and allowing header clicks to sort list, offset scrollbar and scroll up button
 	int header_offset = (ShowHeaders && HeaderSort) ? 21 : 0;
