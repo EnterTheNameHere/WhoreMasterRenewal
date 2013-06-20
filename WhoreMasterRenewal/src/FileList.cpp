@@ -72,14 +72,15 @@ static std::string& gsub( std::string &str, const char *pat_pt, const char *repl
  * is underneath
  */
 FileList::FileList( DirPath dp, const char *pattern )
+	: folder( dp )
 {
-    folder = dp;
     scan( pattern );
 }
 
 FileList::FileList( DirPath dp, const char* /*pattern*/, bool /*no_load*/ )
+	: folder( dp )
 {
-    folder = dp;
+	;
 }
 
 void FileList::scan( const char *pattern )
