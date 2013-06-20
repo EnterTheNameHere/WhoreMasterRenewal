@@ -2015,7 +2015,7 @@ Girl* cGirls::GetRandomGirl( bool slave, bool catacomb )
     GirlPredicate_GRG pred( slave, catacomb );
     std::vector<Girl*> girls = get_girls( &pred );
     
-    if( girls.size() == 0 )
+    if( girls.empty() )
     {
         return nullptr;
     }
