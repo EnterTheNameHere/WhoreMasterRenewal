@@ -29,26 +29,18 @@ namespace WhoreMasterRenewal
 
 CSurface::CSurface() : CResource()
 {
-    m_Next = nullptr;
-    m_Prev = nullptr;
-    m_Registered = false;
+    ;
 }
 
 CSurface::CSurface( SDL_Surface* inputsurface ) : CResource()
 {
-    m_Next = nullptr;
-    m_Prev = nullptr;
-    m_Registered = false;
     LoadSurface( inputsurface );
 }
 
-
-CSurface::CSurface( std::string filename ) : CResource()
+CSurface::CSurface( std::string filename ) : CResource(),
+    m_Filename( filename )
 {
-    m_Filename = filename;
-    m_Next = nullptr;
-    m_Prev = nullptr;
-    m_Registered = false;
+    ;
 }
 
 CSurface::~CSurface()
