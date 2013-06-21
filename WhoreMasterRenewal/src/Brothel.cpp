@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "Helper.hpp"
 #include "cGangs.h"
 #include "DirPath.h"
@@ -26,6 +26,7 @@
 #include "XmlMisc.h"
 #include "cInventory.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "CLog.h"

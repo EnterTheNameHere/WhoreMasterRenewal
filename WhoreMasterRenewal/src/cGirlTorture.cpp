@@ -19,15 +19,17 @@
 
 #include "cGirlTorture.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "BrothelManager.hpp"
 #include "cMessageBox.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cDungeon.h"
 #include "cGirlGangFight.h"
 #include "cRng.h"
 #include "sConfig.h"
 #include "CLog.h"
 #include "InterfaceProcesses.h"
+#include "Girl.hpp"
 
 namespace WhoreMasterRenewal
 {

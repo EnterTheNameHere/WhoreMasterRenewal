@@ -21,6 +21,7 @@
 #include "cRng.h"
 #include "CLog.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "Constants.h"
 
 #include <algorithm>

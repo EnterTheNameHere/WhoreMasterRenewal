@@ -1,29 +1,25 @@
-
 #include "Girl.hpp"
 #include "CLog.h"
 #include "sConfig.h"
 #include "cCustomers.h"
 #include "cGangs.h"
 #include "BrothelManager.hpp"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cRng.h"
 #include "XmlMisc.h"
 #include "cTraits.h"
+#include "GirlManager.hpp"
 
 #include <cstring>
 
-namespace
-{
-    // ----- Utility
-
-    char* n_strdup( const char* s )
-    {
-        return strcpy( new char[strlen( s ) + 1], s );
-    }
-}
-
 namespace WhoreMasterRenewal
 {
+
+char* n_strdup( const char* s );
+char* n_strdup( const char* s )
+{
+    return strcpy( new char[strlen( s ) + 1], s );
+}
 
 bool Girl::m_maps_setup = false;
 std::map<std::string, unsigned int> Girl::stat_lookup;
@@ -62,9 +58,9 @@ const char* Girl::stat_names[] =
  */
 const unsigned int Girl::max_stats = (
         sizeof( Girl::stat_names ) / sizeof( Girl::stat_names[0] )
-                                      );
-
-
+                                     );
+                                     
+                                     
 /*
  * same again for skill names
  */
@@ -84,8 +80,8 @@ const char* Girl::skill_names[] =
 
 const unsigned int Girl::max_skills = (
         sizeof( Girl::skill_names ) / sizeof( Girl::skill_names[0] )
-                                       );
-
+                                      );
+                                      
 const char* Girl::status_names[] =
 {
     "None",
@@ -102,9 +98,9 @@ const char* Girl::status_names[] =
 };
 
 const unsigned int Girl::max_statuses = (
-            sizeof( Girl::status_names ) / sizeof( Girl::status_names[0] )
-        );
-
+        sizeof( Girl::status_names ) / sizeof( Girl::status_names[0] )
+                                        );
+                                        
 // ----- Lookups
 void Girl::setup_maps()
 {
@@ -216,8 +212,6 @@ int Girl::lookup_stat_code( std::string s )
     return stat_lookup[s];
 }
 
-
-
 Girl::Girl()
 {
     m_Stats[STAT_HOUSE] = 60;
@@ -239,7 +233,7 @@ Girl::Girl()
         
     for( int i = 0; i < NUM_GIRLFLAGS; i++ )
         m_Flags[i]          = 0;
-    
+        
     for( u_int i = 0; i < NUM_SKILLS; i++ )
         m_TempSkills[i] = m_SkillMods[i] = 0;
         
@@ -603,7 +597,7 @@ void Girl::OutputGirlDetailString( std::string& Data, const std::string& detailN
     }
     else if( detailName == "PregCooldown" )
     {
-        ss << static_cast<int>(m_PregCooldown);
+        ss << static_cast<int>( m_PregCooldown );
     }
     else if( detailName == "Accomodation" )
     {
@@ -1399,7 +1393,7 @@ void Girl::load_from_xml( TiXmlElement* el )
                 && i != SKILL_COMBAT
                 && i != SKILL_MAGIC
             )
-                avg += static_cast<int>(m_Skills[i]);
+                avg += static_cast<int>( m_Skills[i] );
         }
         
         avg = avg / ( NUM_SKILLS - 1 );
@@ -1447,8 +1441,6 @@ void Girl::load_from_xml( TiXmlElement* el )
     m_AccLevel = 1;
 }
 
-
-
 std::ostream& operator<<( std::ostream& os, Girl& g )
 {
     os << g.m_Realname << std::endl;
@@ -1484,8 +1476,6 @@ std::ostream& operator<<( std::ostream& os, Girl& g )
     os << std::endl;
     return os;
 }
-
-
 
 cChildList::cChildList()
 {

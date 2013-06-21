@@ -18,7 +18,7 @@
  */
 
 #include "cScreenTown.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "BrothelManager.hpp"
@@ -31,6 +31,7 @@
 #include "cChoiceMessage.h"
 #include "cInterfaceEvent.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "CLog.h"
 #include "cRng.h"
 #include "sConfig.h"
@@ -38,6 +39,8 @@
 #include "cChoiceMessage.h"
 #include "cMessageBox.h"
 #include "DirPath.h"
+#include "cTriggers.h"
+#include "Girl.hpp"
 
 #include <iostream>
 #include <locale>

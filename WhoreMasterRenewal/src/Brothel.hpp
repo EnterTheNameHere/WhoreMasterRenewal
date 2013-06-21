@@ -20,12 +20,8 @@
 #define CBROTHEL_H_INCLUDED_1533
 #pragma once
 
-#include "cRival.h" // required cRivalManager
 #include "cGold.h" // required cGold
-#include "cJobManager.h" // required cJobManager
 #include "cBuilding.h" // required cBuilding
-#include "cDungeon.h" // required cDungeon
-#include "cPlayer.h" // required cPlayer
 #include "cEvents.h" // required cEvents
 
 #include <string>
@@ -39,15 +35,6 @@ class TiXmlHandle;
 namespace WhoreMasterRenewal
 {
 
-class BrothelManager;
-extern BrothelManager g_Brothels;
-extern int g_CurrBrothel;
-
-class cBuilding;
-class cGirls;
-class cCustomers;
-class cEvents;
-struct sInventoryItem;
 class Girl;
 
 

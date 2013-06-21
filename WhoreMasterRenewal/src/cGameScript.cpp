@@ -20,9 +20,10 @@
 #include "cGameScript.h"
 #include "cMessageBox.h"
 #include "cChoiceMessage.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "GameFlags.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "cInventory.h"
 #include "cWindowManager.h"
 #include "cGangs.h"
@@ -34,6 +35,7 @@
 #include "CLog.h"
 #include "InterfaceProcesses.h"
 #include "cInterfaceWindow.h"
+#include "Girl.hpp"
 
 #include <cstring>
 

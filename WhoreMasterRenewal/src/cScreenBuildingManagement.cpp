@@ -18,7 +18,7 @@
  */
 
 #include "cScreenBuildingManagement.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "sFacilityList.h"

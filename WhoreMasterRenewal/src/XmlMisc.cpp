@@ -21,7 +21,9 @@
 #include "XmlMisc.h"
 #include "BrothelManager.hpp"
 #include "cGirls.h"
-#include "Brothel.h"
+#include "GirlManager.hpp"
+#include "Brothel.hpp"
+#include "Girl.hpp"
 #include "cTraits.h"
 #include "cInventory.h"
 

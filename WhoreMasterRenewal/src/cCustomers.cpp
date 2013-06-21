@@ -18,7 +18,7 @@
  */
 
 #include "cCustomers.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cRng.h"
 
 namespace WhoreMasterRenewal

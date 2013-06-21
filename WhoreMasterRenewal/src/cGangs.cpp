@@ -20,10 +20,11 @@
 #include "cGangs.h"
 #include "Helper.hpp"
 #include "BrothelManager.hpp"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cJobManager.h"
 #include "cCustomers.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "cMessageBox.h"
 #include "CGraphics.h"
 #include "sConfig.h"
@@ -34,6 +35,7 @@
 #include "cRng.h"
 #include "CLog.h"
 #include "InterfaceProcesses.h"
+#include "Girl.hpp"
 
 #include <sstream>
 #include <algorithm>

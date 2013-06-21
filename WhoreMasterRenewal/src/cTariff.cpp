@@ -19,9 +19,11 @@
  
 #include "cTariff.h"
 #include "cGirls.h"
-#include "Brothel.h"
+#include "GirlManager.hpp"
+#include "Brothel.hpp"
 #include "CLog.h"
 #include "cRng.h"
+#include "Girl.hpp"
 
 namespace WhoreMasterRenewal
 {

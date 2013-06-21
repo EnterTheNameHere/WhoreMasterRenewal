@@ -18,7 +18,7 @@
  */
 
 #include "cScreenSlaveMarket.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "sFacilityList.h"
@@ -27,6 +27,7 @@
 #include "cMessageBox.h"
 #include "cInterfaceEvent.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "cTraits.h"
 #include "CLog.h"
 #include "cRng.h"
@@ -35,6 +36,7 @@
 #include "DirPath.h"
 #include "InterfaceProcesses.h"
 #include "InterfaceGlobals.h"
+#include "Girl.hpp"
 
 namespace WhoreMasterRenewal
 {

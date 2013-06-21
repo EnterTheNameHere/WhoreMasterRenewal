@@ -18,13 +18,14 @@
  */
 
 #include "cJobManager.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
 #include "BrothelManager.hpp"
 #include "cRival.h"
+#include "Girl.hpp"
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
@@ -32,6 +33,7 @@
 #include "cGangs.h"
 #include "cMessageBox.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 
 #include <sstream>
 

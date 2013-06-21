@@ -1,7 +1,7 @@
 
 #include "cScreenItemManagement.h"
 #include "Helper.hpp"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "BrothelManager.hpp"
 #include "cGold.h"
@@ -11,8 +11,10 @@
 #include "cMessageBox.h"
 #include "cInterfaceEvent.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "cInventory.h"
 #include "DirPath.h"
+#include "Girl.hpp"
 
 namespace WhoreMasterRenewal
 {

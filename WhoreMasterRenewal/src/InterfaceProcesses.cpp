@@ -18,7 +18,7 @@
  */
 
 #include "InterfaceProcesses.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cGangs.h"
 #include "InterfaceGlobals.h"
 #include "BrothelManager.hpp"
@@ -42,8 +42,10 @@
 #include "XmlMisc.h"
 #include "cTriggers.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "CLog.h"
 #include "cRng.h"
+#include "Girl.hpp"
 
 #include <SDL.h>
 

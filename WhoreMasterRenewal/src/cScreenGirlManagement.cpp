@@ -18,7 +18,7 @@
  */
 
 #include "cScreenGirlManagement.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cTariff.h"
@@ -31,7 +31,9 @@
 #include "cInterfaceEvent.h"
 #include "cListBox.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "DirPath.h"
+#include "Girl.hpp"
 
 #include <algorithm>
 

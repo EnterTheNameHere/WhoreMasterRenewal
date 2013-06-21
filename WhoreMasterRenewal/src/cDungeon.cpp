@@ -19,18 +19,20 @@
 
 #include "cDungeon.h"
 #include "Helper.hpp"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cMessageBox.h"
 #include "cGangs.h"
 #include "strnatcmp.h"
 #include "cGirlTorture.h"
 #include "GameFlags.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "XmlMisc.h"
 #include "cRng.h"
 #include "CLog.h"
 #include "InterfaceProcesses.h"
 #include "BrothelManager.hpp"
+#include "Girl.hpp"
 
 #include <sstream>
 

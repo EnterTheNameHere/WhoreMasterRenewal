@@ -19,7 +19,7 @@
 
 #include "cScreenGangs.h"
 #include "Helper.hpp"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "InterfaceProcesses.h"

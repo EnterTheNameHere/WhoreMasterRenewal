@@ -4,7 +4,7 @@
 #include "cRng.h"
 #include "cDungeon.h"
 #include "cPlayer.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cMessageBox.h"
 #include "cGold.h"
 #include "DirPath.h"
@@ -17,6 +17,8 @@
 #include "InterfaceProcesses.h"
 #include "strnatcmp.h"
 #include "InterfaceGlobals.h"
+#include "GirlManager.hpp"
+#include "cInventory.h"
 
 #include <sstream>
 

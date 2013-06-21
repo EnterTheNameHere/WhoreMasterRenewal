@@ -22,7 +22,7 @@
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
 #include "cScriptManager.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "DirPath.h"
 #include "cTariff.h"
 #include "cGirlGangFight.h"
@@ -33,9 +33,11 @@
 #include "cInterfaceEvent.h"
 #include "BrothelManager.hpp"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "cRng.h"
 #include "DirPath.h"
 #include "CLog.h"
+#include "Girl.hpp"
 
 #include <string>
 #include <sstream>

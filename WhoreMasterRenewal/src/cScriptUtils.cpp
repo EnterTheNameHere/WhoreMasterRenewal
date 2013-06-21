@@ -19,9 +19,11 @@
 
 #include "cScriptUtils.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "BrothelManager.hpp"
 #include "cMessageBox.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
+#include "Girl.hpp"
 
 namespace WhoreMasterRenewal
 {

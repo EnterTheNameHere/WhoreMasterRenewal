@@ -19,7 +19,7 @@
 
 #include "cScreenMayor.h"
 #include "Helper.hpp"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "BrothelManager.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"

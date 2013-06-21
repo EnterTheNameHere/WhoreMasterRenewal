@@ -19,7 +19,7 @@
 
 #include "cScreenPrison.h"
 #include "Helper.hpp"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "BrothelManager.hpp"
@@ -28,9 +28,11 @@
 #include "cMessageBox.h"
 #include "cInterfaceEvent.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "DirPath.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
+#include "Girl.hpp"
 
 namespace WhoreMasterRenewal
 {

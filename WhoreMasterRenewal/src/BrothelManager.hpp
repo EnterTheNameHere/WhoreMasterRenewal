@@ -1,11 +1,10 @@
 #ifndef BROTHELMANAGER_HPP_INCLUDED_1636
 #define BROTHELMANAGER_HPP_INCLUDED_1636
 
-#include "cPlayer.h"
-#include "cDungeon.h"
-#include "cJobManager.h"
-#include "cInventory.h"
-#include "cRival.h"
+#include "cPlayer.h" // required cPlayer
+#include "cDungeon.h" // required cDungeon
+#include "cJobManager.h" // required cJobManager
+#include "cRival.h" // required cRivalManager
 
 #include <string>
 #include <vector>
@@ -15,11 +14,16 @@ class TiXmlElement;
 namespace WhoreMasterRenewal
 {
 
+class BrothelManager;
+extern BrothelManager g_Brothels;
+extern int g_CurrBrothel;
+
 typedef unsigned int u_int;
 
 class Girl;
 class Brothel;
-class cRival;
+//class cRival;
+class sInventoryItem;
 
 
 
@@ -185,7 +189,7 @@ public:
     }
     
     void UpdateBribeInfluence();
-    int  GetInfluence()
+    int GetInfluence()
     {
         return m_Influence;
     }

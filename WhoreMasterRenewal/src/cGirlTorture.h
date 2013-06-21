@@ -57,7 +57,7 @@ private:
     void UpdateStats();
     void UpdateTraits();
     void add_trait( std::string trait, int pc );
-    bool IsGirlInjured( unsigned int unModifier );      // Based on cGirls::GirlInjured()
+    bool IsGirlInjured( unsigned int unModifier );      // Based on GirlManager::GirlInjured()
     void MakeEvent( std::string sMsg );
     void DoTorture();
 };

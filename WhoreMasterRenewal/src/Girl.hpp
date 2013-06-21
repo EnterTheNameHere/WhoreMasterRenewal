@@ -2,10 +2,8 @@
 #define GIRL_HPP_INCLUDED_1616
 
 #include "Constants.h"
-#include "cEvents.h"
-#include "cTriggers.h"
-#include "cGirls.h"
-#include "cPlayer.h"
+#include "cEvents.h" // required cEvents
+#include "cTriggers.h" // required cTriggerList
 
 #include <string>
 #include <vector>
@@ -15,6 +13,15 @@ class TiXmlElement;
 
 namespace WhoreMasterRenewal
 {
+
+class Girl;
+extern Girl* MarketSlaveGirls[8];
+extern int MarketSlaveGirlsDel[8];
+extern Girl* selected_girl;
+extern std::vector<int> cycle_girls;
+extern int cycle_pos;
+
+
 
 struct sTrait;
 struct sInventoryItem;
@@ -57,31 +64,28 @@ public:
 class Girl
 {
 public:
-    char* m_Name = nullptr;                               // The girls name
-    std::string m_Realname = "";                         // this is the name displayed in text
-    /*
-     *  MOD: changed from char* -- easier to change from lua -- doc
-     */
-    std::string m_Desc = "";                             // Short story about the girl
+    char* m_Name = nullptr;                     // The girls name
+    std::string m_Realname = "";                // this is the name displayed in text
+    std::string m_Desc = "";                    // Short story about the girl
     
-    unsigned char m_NumTraits = 0;                  // current number of traits they have
+    unsigned char m_NumTraits = 0;              // current number of traits they have
     sTrait* m_Traits[MAXNUM_TRAITS];            // List of traits they have
     unsigned char m_TempTrait[MAXNUM_TRAITS];   // a temp trait if not 0. Trait removed when == 0. traits last for 20 weeks.
     
-    unsigned char m_NumRememTraits = 0;             // number of traits that are apart of the girls starting traits
+    unsigned char m_NumRememTraits = 0;         // number of traits that are apart of the girls starting traits
     sTrait* m_RememTraits[MAXNUM_TRAITS * 2];   // List of traits they have inbuilt
     
-    unsigned char m_DayJob = 0;                     // id for what job the girl is currently doing
-    unsigned char m_NightJob = 0;                   // id for what job the girl is currently doing
-    unsigned char m_PrevDayJob = 255;                 // id for what job the girl was doing
-    unsigned char m_PrevNightJob = 255;               // id for what job the girl was doing
+    unsigned char m_DayJob = 0;                 // id for what job the girl is currently doing
+    unsigned char m_NightJob = 0;               // id for what job the girl is currently doing
+    unsigned char m_PrevDayJob = 255;           // id for what job the girl was doing
+    unsigned char m_PrevNightJob = 255;         // id for what job the girl was doing
     
     //ADB needs to be int because player might have more than 256
-    int m_NumInventory = 0;                         // current amount of inventory they have
+    int m_NumInventory = 0;                     // current amount of inventory they have
     sInventoryItem* m_Inventory[40];            // List of inventory items they have (40 max)
     unsigned char m_EquipedItems[40];           // value of > 0 means equipped (wearing) the item
     
-    long m_States = 0;                              // Holds the states the girl has
+    long m_States = 0;                          // Holds the states the girl has
     
     // Abstract stats (not shown as numbers but as a raiting)
     unsigned char m_Stats[NUM_STATS];
@@ -90,52 +94,51 @@ public:
     
     int m_Enjoyment[NUM_ACTIONTYPES];           // these values determine how much a girl likes an action
     // (-100 is hate, +100 is loves)
-    bool m_Virgin = false;                              // is she a virgin
+    bool m_Virgin = false;                      // is she a virgin
     
-    bool m_UseAntiPreg = true;                         // if true she will use anit preg measures
+    bool m_UseAntiPreg = true;                  // if true she will use anit preg measures
     
-    unsigned char m_Withdrawals = 0;                // if she is addicted to something this counts how many weeks she has been off
+    unsigned char m_Withdrawals = 0;            // if she is addicted to something this counts how many weeks she has been off
     
     int m_Money = 0;
     
-    unsigned char m_AccLevel = 0;                   // how good her accomadation is, 0 is slave like and non-slaves will really hate it
+    unsigned char m_AccLevel = 0;               // how good her accomadation is, 0 is slave like and non-slaves will really hate it
     
     unsigned char m_Skills[NUM_SKILLS];
     int m_SkillMods[NUM_SKILLS];
     int m_TempSkills[NUM_SKILLS];               // these go down (or up) by 1 each week until they reach 0
     
-    unsigned char m_RunAway = 0;                    // if 0 then off, if 1 then girl is removed from list,
+    unsigned char m_RunAway = 0;                // if 0 then off, if 1 then girl is removed from list,
     // otherwise will count down each week
-    unsigned char m_Spotted = 0;                    // if 1 then she has been seen stealing but not punished yet
+    unsigned char m_Spotted = 0;                // if 1 then she has been seen stealing but not punished yet
     
-    unsigned long m_WeeksPast = 0;                  // number of weeks in your service
-    unsigned int m_BDay = 0;                        // number of weeks in your service since last aging
+    unsigned long m_WeeksPast = 0;              // number of weeks in your service
+    unsigned int m_BDay = 0;                    // number of weeks in your service since last aging
     
-    unsigned long m_NumCusts = 0;                   // number of customers this girl has slept with
+    unsigned long m_NumCusts = 0;               // number of customers this girl has slept with
     
-    bool m_Tort = false;                                // if true then have already tortured today
-    bool m_JustGaveBirth = false;                       // did she give birth this current week?
+    bool m_Tort = false;                        // if true then have already tortured today
+    bool m_JustGaveBirth = false;               // did she give birth this current week?
     
-    int m_Pay = 0;                                  // used to keep track of pay this turn
+    int m_Pay = 0;                              // used to keep track of pay this turn
     
-    cAImgList* m_GirlImages = nullptr;                    // Images to display
+    cAImgList* m_GirlImages = nullptr;          // Images to display
     
-    long m_FetishTypes = 0;                         // the types of fetishes this girl has
+    long m_FetishTypes = 0;                     // the types of fetishes this girl has
     
     unsigned char m_Flags[NUM_GIRLFLAGS];       // flags used by scripts
     
-    cEvents m_Events = {};                           // Each girl keeps track of all her events that happened to her in the last turn
+    cEvents m_Events = {};                      // Each girl keeps track of all her events that happened to her in the last turn
     
+    cTriggerList m_Triggers = {};               // triggers for the girl
     
-    cTriggerList m_Triggers = {};                    // triggers for the girl
-    
-    unsigned char m_DaysUnhappy = 0;                // used to track how many days they are really unhappy for
+    unsigned char m_DaysUnhappy = 0;            // used to track how many days they are really unhappy for
     
     Girl* m_Next = nullptr;
     Girl* m_Prev = nullptr;
     
-    unsigned char m_WeeksPreg = 0;                  // number of weeks pregnant or inseminated
-    unsigned char m_PregCooldown = 0;               // number of weeks until can get pregnant again
+    unsigned char m_WeeksPreg = 0;              // number of weeks pregnant or inseminated
+    unsigned char m_PregCooldown = 0;           // number of weeks until can get pregnant again
     cChildList m_Children = {};
     
     Girl();
@@ -178,10 +181,7 @@ public:
     static int lookup_stat_code( std::string s );
     static int lookup_skill_code( std::string s );
     static int lookup_status_code( std::string s );
-    /*
-     *  Strictly speaking, methods don't belong in structs.
-     *  I've always thought that more of a guideline than a hard and fast rule
-     */
+    
     void load_from_xml( TiXmlElement* el );
     TiXmlElement* SaveGirlXML( TiXmlElement* pRoot );
     bool LoadGirlXML( TiXmlHandle hGirl );
@@ -198,16 +198,14 @@ public:
      *  that ought to be the base for the query.
      *
      *  Of course, I could just index into the stat array,
-     *  but I'm not sure what else the cGirls method does.
+     *  but I'm not sure what else the GirlManager method does.
      *  So this is safer, if a bit inefficient.
      */
     bool calc_pregnancy( int, cPlayer* );
     int get_stat( int stat_id );
     int upd_temp_stat( int stat_id, int amount );
     int upd_stat( int stat_id, int amount );
-    /*
-     *  Now then:
-     */
+    
     int charisma()
     {
         return get_stat( STAT_CHARISMA );
@@ -296,7 +294,7 @@ public:
     {
         return upd_stat( STAT_ASKPRICE, n );
     }
-    /* It's NOT lupus! */
+    
     int house()
     {
         return get_stat( STAT_HOUSE );
@@ -385,12 +383,7 @@ public:
     {
         return upd_stat( STAT_PCHATE, n );
     }
-    /*
-     *  notice that if we do tweak get_stat to reference the stats array
-     *  direct, the above still work.
-     *
-     *  similarly...
-     */
+    
     int get_skill( int skill_id );
     int upd_temp_skill( int skill_id, int amount );
     int upd_skill( int skill_id, int amount );
@@ -475,10 +468,6 @@ public:
         return upd_skill( SKILL_STRIP, n );
     }
     
-    
-    /*
-     *  convenience func. Also easier to read like this
-     */
     bool carrying_monster();
     bool carrying_human();
     bool carrying_players_child();
@@ -492,10 +481,7 @@ public:
     bool calc_pregnancy( sCustomer* cust, bool good = false, double factor = 1.0 );
     bool calc_insemination( sCustomer* cust, bool good = false, double factor = 1.0 );
     bool calc_insemination( cPlayer* player, bool good = false, double factor = 1.0 );
-    /*
-     *  let's overload that...
-     *  should be able to do the same using sCustomer as well...
-     */
+    
     void add_trait( std::string trait, bool temp = true );
     bool has_trait( std::string trait );
     bool is_addict();
@@ -521,10 +507,8 @@ public:
     
     void OutputGirlRow( std::string* Data, const std::vector<std::string>& columnNames );
     void OutputGirlDetailString( std::string& Data, const std::string& detailName );
-    
-    // END MOD
 };
 
-} // namespace
+} // namespace WhoreMasterRenewal
 
 #endif // GIRL_HPP_INCLUDED_1616

@@ -1,11 +1,13 @@
 
 #include "cGirlGangFight.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cGangs.h"
 #include "BrothelManager.hpp"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "cRng.h"
 #include "CLog.h"
+#include "Girl.hpp"
 
 namespace WhoreMasterRenewal
 {

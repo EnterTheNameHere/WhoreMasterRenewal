@@ -21,7 +21,7 @@
 #include "InterfaceGlobals.h"
 #include "InterfaceIDs.h"
 #include "InterfaceGlobals.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "DirPath.h"
 
 #include <string>

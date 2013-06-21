@@ -20,6 +20,8 @@
 #include "cTriggers.h"
 #include "cScriptManager.h"
 #include "cGirls.h"
+#include "Girl.hpp"
+#include "GirlManager.hpp"
 #include "cGold.h"
 #include "cRng.h"
 #include "GameFlags.h"

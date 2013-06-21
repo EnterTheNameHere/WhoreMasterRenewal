@@ -26,7 +26,7 @@
 #include "BrothelManager.hpp"
 #include "cMessageBox.h"
 #include "cChoiceMessage.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "DirPath.h"
 #include "FileList.h"
 #include "sConfig.h"
@@ -35,9 +35,11 @@
 #include "cScriptManager.h"
 #include "cTraits.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "CGraphics.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
+#include "Girl.hpp"
 
 #include <iostream>
 #include <sstream>

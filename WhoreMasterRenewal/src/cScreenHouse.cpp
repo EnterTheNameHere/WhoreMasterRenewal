@@ -18,7 +18,7 @@
  */
 
 #include "cScreenHouse.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cGetStringScreenManager.h"

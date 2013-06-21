@@ -19,7 +19,7 @@
 
 #include "cScreenBank.h"
 #include "BrothelManager.hpp"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cMessageBox.h"
 #include "cGold.h"

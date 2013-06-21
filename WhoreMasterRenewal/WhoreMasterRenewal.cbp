@@ -229,7 +229,7 @@
 		<Unit filename="src/Attribute.cpp" />
 		<Unit filename="src/Attribute.hpp" />
 		<Unit filename="src/Brothel.cpp" />
-		<Unit filename="src/Brothel.h" />
+		<Unit filename="src/Brothel.hpp" />
 		<Unit filename="src/BrothelManager.cpp" />
 		<Unit filename="src/BrothelManager.hpp" />
 		<Unit filename="src/CGameObject.h" />
@@ -253,6 +253,8 @@
 		<Unit filename="src/GameFlags.h" />
 		<Unit filename="src/Girl.cpp" />
 		<Unit filename="src/Girl.hpp" />
+		<Unit filename="src/GirlManager.cpp" />
+		<Unit filename="src/GirlManager.hpp" />
 		<Unit filename="src/Helper.hpp" />
 		<Unit filename="src/IconSurface.cpp" />
 		<Unit filename="src/IconSurface.h" />

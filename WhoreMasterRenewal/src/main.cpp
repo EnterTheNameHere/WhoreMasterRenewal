@@ -29,17 +29,20 @@
 #include "cWindowManager.h"
 #include "cMessageBox.h"
 #include "cChoiceMessage.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cGangs.h"
 #include "IconSurface.h"
 #include "cSlider.h"
 #include "cScrollBar.h"
 #include "GameFlags.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
+#include "Girl.hpp"
 #include "cTraits.h"
 #include "cCustomers.h"
 #include "cInventory.h"
 #include "CGraphics.h"
+#include "cTriggers.h"
 #include "cRng.h"
 #include "InterfaceIDs.h"
 #include "cInterfaceEvent.h"
@@ -130,7 +133,7 @@ cMessageBox g_MessageBox;
 cChoiceManager g_ChoiceManager;
 cMessageQue g_MessageQue;
 cTriggerList g_GlobalTriggers;
-cGirls g_Girls;
+GirlManager g_Girls;
 
 
 cAbstractGirls* g_GirlsPtr = &g_Girls;

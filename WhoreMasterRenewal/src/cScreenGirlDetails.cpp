@@ -18,7 +18,7 @@
  */
 
 #include "cScreenGirlDetails.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "BrothelManager.hpp"
@@ -29,10 +29,12 @@
 #include "cGetStringScreenManager.h"
 #include "cGangs.h"
 #include "cScriptManager.h"
+#include "Girl.hpp"
 #include "cMessageBox.h"
 #include "cInterfaceEvent.h"
 #include "cTraits.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "CLog.h"
 #include "DirPath.h"
 

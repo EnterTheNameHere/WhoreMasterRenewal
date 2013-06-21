@@ -19,7 +19,7 @@
 
 #include "InterfaceGlobals.h"
 #include "DirPath.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "Constants.h"
 #include "cTariff.h"
 #include "cWindowManager.h"

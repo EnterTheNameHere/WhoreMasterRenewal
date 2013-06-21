@@ -19,6 +19,7 @@
 
 #include "cEvents.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 
 #include <algorithm>
 #include <iostream>

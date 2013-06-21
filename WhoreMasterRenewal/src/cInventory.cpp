@@ -18,16 +18,18 @@
  */
 
 #include "cInventory.h"
-#include "Brothel.h"
+#include "Brothel.hpp"
 #include "cMessageBox.h"
 #include "BrothelManager.hpp"
 #include "cCustomers.h"
 #include "XmlMisc.h"
 #include "cTraits.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
 #include "CLog.h"
 #include "cRng.h"
 #include "sConfig.h"
+#include "Girl.hpp"
 
 #include <iostream>
 #include <fstream>
