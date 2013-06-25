@@ -20,7 +20,7 @@
 #define CSCREENDUNGEON_H_INCLUDED_1518
 #pragma once
 
-#include "cInterfaceWindow.h" // required inheritance
+#include "InterfaceWindowXML.hpp" // required inheritance
 
 namespace WhoreMasterRenewal
 {

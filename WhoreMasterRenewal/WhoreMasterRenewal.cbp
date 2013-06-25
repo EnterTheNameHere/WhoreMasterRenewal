@@ -263,6 +263,8 @@
 		<Unit filename="src/InterfaceIDs.h" />
 		<Unit filename="src/InterfaceProcesses.cpp" />
 		<Unit filename="src/InterfaceProcesses.h" />
+		<Unit filename="src/InterfaceWindowXML.cpp" />
+		<Unit filename="src/InterfaceWindowXML.hpp" />
 		<Unit filename="src/Logger.cpp" />
 		<Unit filename="src/Logger.hpp" />
 		<Unit filename="src/LuaUtils.hpp" />

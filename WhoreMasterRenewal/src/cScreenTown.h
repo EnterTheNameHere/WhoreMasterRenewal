@@ -20,7 +20,7 @@
 #define CSCREENTOWN_H_INCLUDED_1513
 #pragma once
 
-#include "cInterfaceWindow.h" // required inheritance
+#include "InterfaceWindowXML.hpp" // required inheritance
 
 namespace WhoreMasterRenewal
 {

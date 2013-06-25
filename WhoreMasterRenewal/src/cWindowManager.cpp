@@ -20,6 +20,8 @@
 #include "cWindowManager.h"
 #include "CLog.h"
 #include "cInterfaceWindow.h"
+#include "InterfaceWindowXML.hpp"
+
 
 namespace WhoreMasterRenewal
 {

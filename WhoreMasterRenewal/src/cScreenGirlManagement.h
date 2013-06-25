@@ -20,7 +20,7 @@
 #define CSCREENGIRLMANAGEMENT_H_INCLUDED_1517
 #pragma once
 
-#include "cInterfaceWindow.h" // required inheritance
+#include "InterfaceWindowXML.hpp" // required inheritance
 
 namespace WhoreMasterRenewal
 {
