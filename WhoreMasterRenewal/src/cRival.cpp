@@ -25,6 +25,7 @@
 #include "GameFlags.h"
 #include "DirPath.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "XmlMisc.h"
 #include "CLog.h"
 #include "cRng.h"

@@ -2,6 +2,7 @@
 #include "cGirlGangFight.h"
 #include "Brothel.hpp"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "BrothelManager.hpp"
 #include "cGirls.h"
 #include "GirlManager.hpp"

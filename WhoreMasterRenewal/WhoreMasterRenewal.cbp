@@ -251,6 +251,8 @@
 		<Unit filename="src/FileList.cpp" />
 		<Unit filename="src/FileList.h" />
 		<Unit filename="src/GameFlags.h" />
+		<Unit filename="src/GangManager.cpp" />
+		<Unit filename="src/GangManager.hpp" />
 		<Unit filename="src/Girl.cpp" />
 		<Unit filename="src/Girl.hpp" />
 		<Unit filename="src/GirlManager.cpp" />
@@ -268,7 +270,6 @@
 		<Unit filename="src/Logger.cpp" />
 		<Unit filename="src/Logger.hpp" />
 		<Unit filename="src/LuaUtils.hpp" />
-		<Unit filename="src/Managers.hpp" />
 		<Unit filename="src/MasterFile.cpp" />
 		<Unit filename="src/MasterFile.h" />
 		<Unit filename="src/WindowManager.cpp" />

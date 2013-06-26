@@ -28,6 +28,7 @@
 #include "InterfaceGlobals.h"
 #include "cGetStringScreenManager.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "cScriptManager.h"
 #include "Girl.hpp"
 #include "cMessageBox.h"

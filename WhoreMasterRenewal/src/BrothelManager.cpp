@@ -13,6 +13,7 @@
 #include "cTariff.h"
 #include "cCustomers.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "Helper.hpp"
 #include "InterfaceProcesses.h"
 #include "strnatcmp.h"

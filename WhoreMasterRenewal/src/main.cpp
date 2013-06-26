@@ -31,6 +31,7 @@
 #include "cChoiceMessage.h"
 #include "Brothel.hpp"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "IconSurface.h"
 #include "cSlider.h"
 #include "cScrollBar.h"

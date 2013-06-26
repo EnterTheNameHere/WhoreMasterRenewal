@@ -25,6 +25,7 @@
 #include "InterfaceGlobals.h"
 #include "BrothelManager.hpp"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "cInterfaceEvent.h"
 #include "CLog.h"
 #include "DirPath.h"

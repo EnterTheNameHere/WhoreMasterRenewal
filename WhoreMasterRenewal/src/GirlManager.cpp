@@ -10,6 +10,7 @@
 #include "cMessageBox.h"
 #include "Helper.hpp"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "InterfaceProcesses.h"
 #include "BrothelManager.hpp"
 #include "cTariff.h"

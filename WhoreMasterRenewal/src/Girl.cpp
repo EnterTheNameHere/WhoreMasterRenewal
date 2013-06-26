@@ -3,6 +3,7 @@
 #include "sConfig.h"
 #include "cCustomers.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "BrothelManager.hpp"
 #include "Brothel.hpp"
 #include "cRng.h"

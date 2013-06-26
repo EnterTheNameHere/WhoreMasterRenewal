@@ -20,6 +20,7 @@
 #include "InterfaceProcesses.h"
 #include "Brothel.hpp"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "InterfaceGlobals.h"
 #include "BrothelManager.hpp"
 #include "Helper.hpp"

@@ -27,6 +27,7 @@
 #include "InterfaceProcesses.h"
 #include "cScriptManager.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "cMessageBox.h"
 #include "cChoiceMessage.h"
 #include "cInterfaceEvent.h"

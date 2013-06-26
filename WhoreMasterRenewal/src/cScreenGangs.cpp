@@ -25,6 +25,7 @@
 #include "InterfaceProcesses.h"
 #include "InterfaceGlobals.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "cInterfaceEvent.h"
 #include "CLog.h"
 #include "cTariff.h"

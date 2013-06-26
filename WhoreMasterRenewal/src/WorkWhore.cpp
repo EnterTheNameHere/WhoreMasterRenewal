@@ -30,6 +30,7 @@
 #include "cGold.h"
 #include "BrothelManager.hpp"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "cMessageBox.h"
 #include "GameFlags.h"
 #include "Girl.hpp"
