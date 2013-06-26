@@ -147,7 +147,7 @@ public:
     Girl( const Girl& ) = delete;
     Girl& operator = ( const Girl& ) = delete;
     
-    void dump( std::ostream& os );
+    // NOTE UNUSED void dump( std::ostream& os );
     
     /*
      *  MOD: docclox. attach the skill and stat names to the
@@ -419,22 +419,35 @@ public:
     {
         return upd_skill( SKILL_COMBAT, n );
     }
-    int group()
+    
+    /*
+    // NOTE UNUSED int group()
     {
         return get_skill( SKILL_GROUP );
     }
-    int group( int n )
+    */
+    
+    /*
+    // NOTE UNUSED int group( int n )
     {
         return upd_skill( SKILL_GROUP, n );
     }
-    int lesbian()
+    */
+    
+    /*
+    // NOTE UNUSED int lesbian()
     {
         return get_skill( SKILL_LESBIAN );
     }
-    int lesbian( int n )
+    */
+    
+    /*
+    // NOTE UNUSED int lesbian( int n )
     {
         return upd_skill( SKILL_LESBIAN, n );
     }
+    */
+    
     int magic()
     {
         return get_skill( SKILL_MAGIC );
@@ -443,32 +456,50 @@ public:
     {
         return upd_skill( SKILL_MAGIC, n );
     }
-    int normalsex()
+    
+    /*
+    // NOTE UNUSED int normalsex()
     {
         return get_skill( SKILL_NORMALSEX );
     }
-    int normalsex( int n )
+    */
+    
+    /*
+    // NOTE UNUSED int normalsex( int n )
     {
         return upd_skill( SKILL_NORMALSEX, n );
     }
-    int service()
+    */
+    
+    /*
+    // NOTE UNUSED int service()
     {
         return get_skill( SKILL_SERVICE );
     }
-    int service( int n )
+    */
+    
+    /*
+    // NOTE UNUSED int service( int n )
     {
         return upd_skill( SKILL_SERVICE, n );
     }
-    int strip()
+    */
+    
+    /*
+    // NOTE UNUSED int strip()
     {
         return get_skill( SKILL_STRIP );
     }
-    int strip( int n )
+    */
+    
+    /*
+    // NOTE UNUSED int strip( int n )
     {
         return upd_skill( SKILL_STRIP, n );
     }
+    */
     
-    bool carrying_monster();
+    // NOTE UNUSED bool carrying_monster();
     bool carrying_human();
     bool carrying_players_child();
     bool carrying_customer_child();
@@ -486,14 +517,14 @@ public:
     bool has_trait( std::string trait );
     bool is_addict();
     sChild* next_child( sChild* child, bool remove = false );
-    int preg_type( int image_type );
+    // NOTE UNUSED int preg_type( int image_type );
     Girl* run_away();
     
     bool is_slave();
-    bool is_free();
+    // NOTE UNUSED bool is_free();
     void set_slave();
     bool is_monster();
-    bool is_human();
+    // NOTE UNUSED bool is_human();
     
     void fight_own_gang( bool& girl_wins );
     void win_vs_own_gang( std::vector<sGang*>& v, int max_goons, bool& girl_wins );

@@ -309,10 +309,12 @@ int Girl::upd_skill( int skill_id, int amount )
     return g_GirlsPtr->GetSkill( this, skill_id );
 }
 
+/* UNUSED
 bool Girl::carrying_monster()
 {
     return( m_States & ( 1 << STATUS_INSEMINATED ) ) != 0;
 }
+*/
 
 bool Girl::carrying_human()
 {
@@ -384,15 +386,16 @@ sChild* Girl::next_child( sChild* child, bool remove )
     return m_Children.remove_child( child, this );
 }
 
+/* UNUSED
 int Girl::preg_type( int image_type )
 {
     int new_type = image_type + PREG_OFFSET;
     
-    /*
-     *      if the new image type is >=  NUM_IMGTYPES
-     *      then it was one of the types that doesn't have
-     *      an equivalent pregnant form
-     */
+    //
+    //      if the new image type is >=  NUM_IMGTYPES
+    //      then it was one of the types that doesn't have
+    //      an equivalent pregnant form
+    //
     if( new_type >= NUM_IMGTYPES )
     {
         return image_type;
@@ -400,16 +403,19 @@ int Girl::preg_type( int image_type )
     
     return new_type;
 }
+*/
 
 bool Girl::is_slave()
 {
     return ( m_States & ( 1 << STATUS_SLAVE ) ) != 0;
 }
 
+/* UNUSED
 bool Girl::is_free()
 {
     return !is_slave();
 }
+*/
 
 void Girl::set_slave()
 {
@@ -421,10 +427,12 @@ bool Girl::is_monster()
     return ( m_States & ( 1 << STATUS_CATACOMBS ) ) != 0;
 }
 
+/* UNUSED
 bool Girl::is_human()
 {
     return !is_monster();
 }
+*/
 
 int Girl::preg_chance( int base_pc, bool good, double factor )
 {
