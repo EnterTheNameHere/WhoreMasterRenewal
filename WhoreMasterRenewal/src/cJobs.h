@@ -32,18 +32,6 @@ struct sGang;
 
 typedef unsigned int u_int;
 
-struct sFilm
-{
-	//int total_girls;
-	//int total_cost;
-	float quality_multiplyer;
-	std::vector<int> scene_quality;
-	char time;
-	int final_quality;
-	bool sex_acts_flags[5];
-	int total_customers;
-};
-
 struct sJobs
 {
     sJobs();
