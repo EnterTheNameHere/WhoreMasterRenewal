@@ -22,7 +22,6 @@ typedef unsigned int u_int;
 
 class Girl;
 class Brothel;
-//class cRival;
 class sInventoryItem;
 
 
@@ -77,7 +76,7 @@ public:
     }
     
     void NewBrothel( int NumRooms );
-    void DestroyBrothel( int ID );
+    // NOTE UNUSED void DestroyBrothel( int ID );
     void UpdateBrothels();
     void UpdateGirls( Brothel* brothel, int DayNight );
     // MYR: Start of my automation functions
@@ -96,7 +95,7 @@ public:
     }
     
     //mod needed for convenience
-    int& stat_lookup( std::string stat_name, int brothel_id = -1 );
+    // NOTE UNUSED int& stat_lookup( std::string stat_name, int brothel_id = -1 );
     // jobs moving to their own class
     
     int GetGirlsCurrentBrothel( Girl* girl ); // Used by new security guard code
@@ -121,12 +120,14 @@ public:
     
     int GetTotalNumGirls( bool monster = false );
     
-    void UpgradeSupplySheds()
+    /*
+    // NOTE UNUSED void UpgradeSupplySheds()
     {
         m_SupplyShedLevel++ ;
     }
+    */
     
-    int  GetSupplyShedLevel()
+    int GetSupplyShedLevel()
     {
         return m_SupplyShedLevel;
     }
@@ -134,18 +135,18 @@ public:
     void AddGirl( int brothelID, Girl* girl );
     void RemoveGirl( int brothelID, Girl* girl, bool deleteGirl = true );
     Girl* GetFirstRunaway();
-    void sort( Brothel* brothel );      // sorts the list of girls
+    // NOTE UNUSED void sort( Brothel* brothel );      // sorts the list of girls
     void SortInventory();
     
     void SetName( int brothelID, std::string name );
     std::string GetName( int brothelID );
     
-    bool CheckBarStaff( Brothel* brothel, int numGirls );  // returns true if the bar is staffed
-    bool CheckGambStaff( Brothel* brothel, int numGirls ); // as above but for gambling hall
+    // NOTE UNUSED bool CheckBarStaff( Brothel* brothel, int numGirls );  // returns true if the bar is staffed
+    // NOTE UNUSED bool CheckGambStaff( Brothel* brothel, int numGirls ); // as above but for gambling hall
     
     bool FightsBack( Girl* girl );
     int GetNumGirls( int brothelID );
-    std::string GetGirlString( int brothelID, int girlNum );
+    // NOTE UNUSED std::string GetGirlString( int brothelID, int girlNum );
     int GetNumGirlsOnJob( int brothelID, int jobID, bool day );
     
     std::string GetBrothelString( int brothelID );
@@ -160,7 +161,7 @@ public:
         return m_NumBrothels;
     }
     
-    int GetNumBrothelsWithVacancies();
+    // NOTE UNUSED int GetNumBrothelsWithVacancies();
     
     void CalculatePay( Brothel* brothel, Girl* girl, u_int Job );
     
@@ -226,11 +227,11 @@ public:
     
     bool CheckScripts();
     
-    void UpdateObjective();             // updates an objective and checks for compleation
-    Objective* GetObjective();         // returns the objective
-    void CreateNewObjective();          // Creates a new objective
-    void PassObjective();               // Gives a reward
-    void AddCustomObjective( int limit, int diff, int objective, int reward, int sofar, int target );
+    void UpdateObjective();     // updates an objective and checks for compleation
+    Objective* GetObjective();  // returns the objective
+    void CreateNewObjective();  // Creates a new objective
+    void PassObjective();       // Gives a reward
+    // NOTE UNUSED void AddCustomObjective( int limit, int diff, int objective, int reward, int sofar, int target );
     
     TiXmlElement* SaveDataXML( TiXmlElement* pRoot );
     bool LoadDataXML( TiXmlHandle hBrothelManager );
@@ -270,7 +271,7 @@ public:
     
     Girl* WhoHasTorturerJob();
     
-    // WD: test to check if doing turn processing.  Used to ingnore HOUSE_STAT value in GetRebelValue() if girl gets to keep all her income.
+    // WD: test to check if doing turn processing. Used to ingnore HOUSE_STAT value in GetRebelValue() if girl gets to keep all her income.
     bool is_Dayshift_Processing()
     {
         return m_Processing_Shift == SHIFT_DAY;
@@ -285,7 +286,7 @@ private:
     int TotalFame( Brothel* );
     void AddBrothel( Brothel* newBroth );
     
-    // WD:  Update code of girls stats
+    // WD: Update code of girls stats
     void updateGirlTurnBrothelStats( Girl* girl );
     
     
@@ -293,15 +294,15 @@ private:
 public:
     // Some public members for ease of use
     //ADB needs to be int because player might have more than 256, look, MAXNUM_INVENTORY == 300!
-    int m_NumInventory = 0;                              // current amount of inventory the brothel has
-    sInventoryItem* m_Inventory[MAXNUM_INVENTORY];       // List of inventory items they have (300 max)
-    unsigned char m_EquipedItems[MAXNUM_INVENTORY];      // value of > 0 means equipped (wearing) the item
-    unsigned char m_NumItem[MAXNUM_INVENTORY];           // the number of items there are stacked
+    int m_NumInventory = 0;                         // current amount of inventory the brothel has
+    sInventoryItem* m_Inventory[MAXNUM_INVENTORY];  // List of inventory items they have (300 max)
+    unsigned char m_EquipedItems[MAXNUM_INVENTORY]; // value of > 0 means equipped (wearing) the item
+    unsigned char m_NumItem[MAXNUM_INVENTORY];      // the number of items there are stacked
     cJobManager m_JobManager;                       // manages all the jobs
 
 private:
-    cPlayer m_Player = {};               // the stats for the player owning these brothels
-    cDungeon m_Dungeon = {};             // the dungeon
+    cPlayer m_Player = {};              // the stats for the player owning these brothels
+    cDungeon m_Dungeon = {};            // the dungeon
     
     int m_NumBrothels = 0;
     Brothel* m_Parent = nullptr;
@@ -309,8 +310,8 @@ private:
     
     // brothel supplies
     bool m_KeepPotionsStocked = false;
-    int m_AntiPregPotions = 0;         // the number of pregnancy/insimination preventive potions in stock
-    int m_SupplyShedLevel = 1;         // the level of the supply sheds. the higher the level, the more alcohol and antipreg potions can hold
+    int m_AntiPregPotions = 0;          // the number of pregnancy/insimination preventive potions in stock
+    int m_SupplyShedLevel = 1;          // the level of the supply sheds. the higher the level, the more alcohol and antipreg potions can hold
     
     // brothel resources
     int m_HandmadeGoods = 0;            // used with the community centre
@@ -318,7 +319,7 @@ private:
     int m_AlchemyIngredients = 0;
     
     int m_NumPrison = 0;
-    Girl* m_Prison = nullptr;                // a list of girls kept in prision
+    Girl* m_Prison = nullptr;           // a list of girls kept in prision
     Girl* m_LastPrison = nullptr;
     
     int m_NumRunaways = 0;
@@ -326,15 +327,15 @@ private:
     Girl* m_LastRunaway = nullptr;
     
     long m_BribeRate = 0;               // the amount of money spent bribing officials per week
-    int m_Influence = 0;               // based on the bribe rate this is the percentage of influence you have
-    int m_Dummy = 0;                   //a dummy variable
+    int m_Influence = 0;                // based on the bribe rate this is the percentage of influence you have
+    int m_Dummy = 0;                    // a dummy variable
     long m_Bank = 0;                    // how much is stored in the bank
     
     Objective* m_Objective = nullptr;
     
-    cRivalManager m_Rivals = {};         // all of the players compedators
+    cRivalManager m_Rivals = {};        // all of the players compedators
     
-    bool m_TortureDoneFlag = false;         // WD:  Have we got a torturer working today
+    bool m_TortureDoneFlag = false;     // WD:  Have we got a torturer working today
     int m_Processing_Shift = -1;        // WD:  Store DayNight value when processing girls
 };
 

@@ -1129,6 +1129,7 @@ void BrothelManager::AddBrothel( Brothel* newBroth )
     m_NumBrothels++;
 }
 
+/* UNUSED
 void BrothelManager::DestroyBrothel( int ID )
 {
     Brothel* current = m_Parent;
@@ -1161,6 +1162,7 @@ void BrothelManager::DestroyBrothel( int ID )
         m_NumBrothels--;
     }
 }
+*/
 
 void BrothelManager::check_rivals()
 {
@@ -3874,6 +3876,7 @@ void BrothelManager::PassObjective()
     }
 }
 
+/* UNUSED
 void BrothelManager::AddCustomObjective( int limit, int diff, int objective, int reward, int sofar, int target )
 {
     if( m_Objective )
@@ -3890,7 +3893,9 @@ void BrothelManager::AddCustomObjective( int limit, int diff, int objective, int
     m_Objective->m_SoFar = sofar;
     m_Objective->m_Target = target;
 }
+*/
 
+/* UNUSED
 int& BrothelManager::stat_lookup( std::string stat_name, int brothel_id )
 {
     if( stat_name == "filth" )
@@ -3904,6 +3909,7 @@ int& BrothelManager::stat_lookup( std::string stat_name, int brothel_id )
         
     return m_Dummy;
 }
+*/
 
 void BrothelManager::SetGirlStat( Girl* girl, int stat, int amount )
 {
@@ -4259,6 +4265,7 @@ int BrothelManager::GetTotalNumGirls( bool monster )
     return total;
 }
 
+/* UNUSED
 std::string BrothelManager::GetGirlString( int brothelID, int girlNum )
 {
     std::string data = "";
@@ -4351,6 +4358,7 @@ std::string BrothelManager::GetGirlString( int brothelID, int girlNum )
     
     return data;
 }
+*/
 
 std::string BrothelManager::GetName( int brothelID )
 {
@@ -4441,6 +4449,7 @@ Brothel* BrothelManager::GetBrothel( int brothelID )
     return nullptr;
 }
 
+/* UNUSED
 int BrothelManager::GetNumBrothelsWithVacancies()
 {
     int number = 0;
@@ -4456,6 +4465,7 @@ int BrothelManager::GetNumBrothelsWithVacancies()
     
     return number;
 }
+*/
 
 int BrothelManager::GetNumGirls( int brothelID )
 {
@@ -4758,10 +4768,12 @@ bool BrothelManager::FightsBack( Girl* girl )
     return false;
 }
 
+/* UNUSED
 void BrothelManager::sort( Brothel* brothel )
 {
     brothel->m_Girls = girl_sort( brothel->m_Girls, &brothel->m_LastGirl );
 }
+*/
 
 bool BrothelManager::NameExists( std::string name )
 {
