@@ -9,7 +9,7 @@ binDirectory="bin"
 
 # Libraries (directories) in Dependencies where to search for files
 # (searching only in "bin" folder, not "lib")
-libraries=("freetype" "jpeg" "lua" "SDL" "SFGUI" "SFML" "TinyXML" "fonts")
+libraries=("lua" "SDL" "TinyXML" "fonts")
 # fonts - required only by former SLD GUI
 
 
