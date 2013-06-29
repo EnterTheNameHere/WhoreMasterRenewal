@@ -5,6 +5,7 @@
 		<Option title="Whore Master Renewal" />
 		<Option platforms="Windows;" />
 		<Option compiler="gcc" />
+		<Option virtualFolders="Resources\;Resources\Interface\;Resources\Interface\Screens\;Resources\Scripts\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="../bin/WhoreMasterRenewal-DEBUG" prefix_auto="1" extension_auto="1" />
@@ -13,7 +14,6 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-Wshadow" />
 					<Add option="-Winit-self" />
 					<Add option="-Wredundant-decls" />
 					<Add option="-Wcast-align" />
@@ -24,11 +24,47 @@
 					<Add option="-Wmissing-declarations" />
 					<Add option="-Wmissing-include-dirs" />
 					<Add option="-Wswitch-default" />
+					<Add option="-Weffc++" />
 					<Add option="-Wmain" />
+					<Add option="-pedantic" />
+					<Add option="-Wextra" />
 					<Add option="-Wall" />
-					<Add option="-ansi" />
 					<Add option="-g" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-Wformat=2" />
+					<Add option="-Wunused-local-typedefs" />
+					<Add option="-Wuninitialized" />
+					<Add option="-Wtrampolines" />
+					<Add option="-Wunsafe-loop-optimizations" />
+					<Add option="-Wcast-qual" />
+					<Add option="-Wlogical-op" />
+					<Add option="-Wmissing-format-attribute" />
+					<Add option="-Winvalid-pch" />
+					<Add option="-Wvector-operation-performance" />
+					<Add option="-Wsign-promo" />
 				</Compiler>
+				<Linker>
+					<Add library="mingw32" />
+					<Add library="Dependencies\SDL\lib\libSDLmain.a" />
+					<Add library="Dependencies\lua\lib\liblua.a" />
+					<Add library="Dependencies\SDL\lib\libSDL_gfx.a" />
+					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
+					<Add library="Dependencies\pugixml\lib\libpugixml-s.a" />
+					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
+					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
+					<Add library="Dependencies\SDL\lib\libSDL.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketCore-d.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketControls-d.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketDebugger-d.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-graphics-s-d.a" />
+					<Add library="glew" />
+					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-window-s-d.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-system-s-d.a" />
+					<Add library="opengl32" />
+					<Add library="gdi32" />
+					<Add library="winmm" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="../bin/WhoreMasterRenewal" prefix_auto="1" extension_auto="1" />
@@ -40,42 +76,162 @@
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-O3" />
 					<Add option="-Wall" />
+					<Add option="-Wdisabled-optimization" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="mingw32" />
+					<Add library="Dependencies\SDL\lib\libSDLmain.a" />
+					<Add library="Dependencies\lua\lib\liblua.a" />
+					<Add library="Dependencies\SDL\lib\libSDL_gfx.a" />
+					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
+					<Add library="Dependencies\pugixml\lib\libpugixml-s.a" />
+					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
+					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
+					<Add library="Dependencies\SDL\lib\libSDL.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketCore.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketDebugger.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-graphics-s.a" />
+					<Add library="glew" />
+					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-window-s.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-system-s.a" />
+					<Add library="opengl32" />
+					<Add library="gdi32" />
+					<Add library="winmm" />
+				</Linker>
+			</Target>
+			<Target title="Profiling">
+				<Option output="../bin/WhoreMasterRenewal-PROFILING" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../bin" />
+				<Option object_output="obj/Profiling/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Winit-self" />
+					<Add option="-Wredundant-decls" />
+					<Add option="-Wcast-align" />
+					<Add option="-Wundef" />
+					<Add option="-Wfloat-equal" />
+					<Add option="-Winline" />
+					<Add option="-Wunreachable-code" />
+					<Add option="-Wmissing-declarations" />
+					<Add option="-Wmissing-include-dirs" />
+					<Add option="-Wswitch-default" />
+					<Add option="-Weffc++" />
+					<Add option="-Wmain" />
+					<Add option="-pedantic" />
+					<Add option="-Wzero-as-null-pointer-constant" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-pg" />
+					<Add option="-g" />
+					<Add option="-Wno-unknown-pragmas" />
+					<Add option="-Wformat=2" />
+					<Add option="-Wunused-local-typedefs" />
+					<Add option="-Wuninitialized" />
+					<Add option="-Wtrampolines" />
+					<Add option="-Wunsafe-loop-optimizations" />
+					<Add option="-Wcast-qual" />
+					<Add option="-Wlogical-op" />
+					<Add option="-Wmissing-format-attribute" />
+					<Add option="-Winvalid-pch" />
+					<Add option="-Wvector-operation-performance" />
+					<Add option="-Wsign-promo" />
+				</Compiler>
+				<Linker>
+					<Add option="-pg -lgmon" />
+					<Add library="mingw32" />
+					<Add library="Dependencies\SDL\lib\libSDLmain.a" />
+					<Add library="Dependencies\lua\lib\liblua.a" />
+					<Add library="Dependencies\SDL\lib\libSDL_gfx.a" />
+					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
+					<Add library="Dependencies\pugixml\lib\libpugixml-s.a" />
+					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
+					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
+					<Add library="Dependencies\SDL\lib\libSDL.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketCore-d.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketControls-d.a" />
+					<Add library="Dependencies\libRocket\lib\libRocketDebugger-d.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-graphics-s-d.a" />
+					<Add library="glew" />
+					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-window-s-d.a" />
+					<Add library="Dependencies\SFML\lib\libsfml-system-s-d.a" />
+					<Add library="opengl32" />
+					<Add library="gdi32" />
+					<Add library="winmm" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-std=c++11" />
+			<Add option='-isystem &quot;Dependencies\SDL\include\SDL&quot;' />
+			<Add option='-isystem &quot;Dependencies\lua\include&quot;' />
+			<Add option='-isystem &quot;Dependencies\TinyXML\include&quot;' />
+			<Add option='-isystem &quot;Dependencies\SFML\include&quot;' />
+			<Add option='-isystem &quot;Dependencies\pugixml\include&quot;' />
+			<Add option='-isystem &quot;Dependencies\libRocket\include&quot;' />
+			<Add option="-DSFML_STATIC" />
+			<Add option="-D_UNICODE" />
 			<Add directory="Dependencies/SDL/include/SDL" />
-			<Add directory="Dependencies/lua/src" />
-			<Add directory="Dependencies/TinyXML/src" />
+			<Add directory="Dependencies/lua/include" />
+			<Add directory="Dependencies/TinyXML/include" />
+			<Add directory="Dependencies/SFML/include" />
+			<Add directory="Dependencies/pugixml/include" />
+			<Add directory="Dependencies/libRocket/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-static" />
 			<Add option="-static-libgcc" />
 			<Add option="-static-libstdc++" />
-			<Add library="mingw32" />
-			<Add library="libTinyXML.a" />
-			<Add library="libSDL.a" />
-			<Add library="libSDLmain.a" />
-			<Add library="libSDL_gfx.dll.a" />
-			<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
-			<Add library="libSDL_gfx.a" />
-			<Add library="Dependencies\SDL\lib\SDL_image.lib" />
-			<Add library="liblua.a" />
-			<Add library="libwinmm.a" />
-			<Add library="libgdi32.a" />
-			<Add directory="Dependencies/SDL/lib" />
-			<Add directory="Dependencies/lua/lib" />
-			<Add directory="Dependencies/TinyXML/lib" />
 		</Linker>
 		<ExtraCommands>
-			<Add after='C:\WINDOWS\system32\cmd.exe /C &quot;&quot;D:\Git\bin\sh.exe&quot; &quot;--login&quot; &quot;../copyRequiredFilesToBin.sh&quot; &quot;saves&quot; &quot;onlyNew&quot; &quot;verbose&quot;&quot;' />
+			<Add after='cmd.exe /C &quot;&quot;sh.exe&quot; &quot;--login&quot; &quot;../copyRequiredFilesToBin.sh&quot; &quot;saves&quot; &quot;onlyNew&quot; &quot;verbose&quot;&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
-		<Unit filename="src/CGameObject.cpp" />
+		<Unit filename="Docs&amp;Tools/DesignDocument/DesignDocument.txt">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="Resources/Data/Attributes/Attributes.xml" />
+		<Unit filename="Resources/Interface/Bank.rml" />
+		<Unit filename="Resources/Interface/BrothelSetup.rml" />
+		<Unit filename="Resources/Interface/Dungeon.rml" />
+		<Unit filename="Resources/Interface/Gallery.rml" />
+		<Unit filename="Resources/Interface/GangManagement.rml" />
+		<Unit filename="Resources/Interface/GirlDetails.rml" />
+		<Unit filename="Resources/Interface/GirlManagement.rml" />
+		<Unit filename="Resources/Interface/Inventory.rml" />
+		<Unit filename="Resources/Interface/LoadGame.rml" />
+		<Unit filename="Resources/Interface/MainMenu.rml" />
+		<Unit filename="Resources/Interface/MainScreen.rml" />
+		<Unit filename="Resources/Interface/NewGame.rml" />
+		<Unit filename="Resources/Interface/Prison.rml" />
+		<Unit filename="Resources/Interface/SharedStyle.rcss" />
+		<Unit filename="Resources/Interface/SlaveMarket.rml" />
+		<Unit filename="Resources/Interface/Town.rml" />
+		<Unit filename="Resources/Interface/TownHall.rml" />
+		<Unit filename="Resources/Interface/Transfer.rml" />
+		<Unit filename="Resources/Interface/TurnSummary.rml" />
+		<Unit filename="Resources/Interface/YourHouse.rml" />
+		<Unit filename="Resources/Scripts/CustGambCheat.script" />
+		<Unit filename="Resources/Scripts/CustNoPay.script" />
+		<Unit filename="Resources/Scripts/DefaultInteractDetails.script" />
+		<Unit filename="Resources/Scripts/DefaultInteractDungeon.script" />
+		<Unit filename="Resources/Scripts/GlobalTriggers.xml" />
+		<Unit filename="Resources/Scripts/Intro.lua" />
+		<Unit filename="Resources/Scripts/MeetTownDefault.script" />
+		<Unit filename="Resources/Scripts/NoMoney.script" />
+		<Unit filename="Resources/Scripts/RivalLose.script" />
+		<Unit filename="Resources/Scripts/TalkDetailsDefault.script" />
+		<Unit filename="Resources/Scripts/TalkDungeonDefault.script" />
+		<Unit filename="Resources/Scripts/TestScript.lua" />
+		<Unit filename="src/Attribute.cpp" />
+		<Unit filename="src/Attribute.hpp" />
+		<Unit filename="src/Brothel.cpp" />
+		<Unit filename="src/Brothel.hpp" />
+		<Unit filename="src/BrothelManager.cpp" />
+		<Unit filename="src/BrothelManager.hpp" />
 		<Unit filename="src/CGameObject.h" />
 		<Unit filename="src/CGraphics.cpp" />
 		<Unit filename="src/CGraphics.h" />
@@ -83,37 +239,47 @@
 		<Unit filename="src/CLog.h" />
 		<Unit filename="src/CRenderQue.cpp" />
 		<Unit filename="src/CRenderQue.h" />
+		<Unit filename="src/CResource.cpp" />
 		<Unit filename="src/CResource.h" />
-		<Unit filename="src/CResourceManager.cpp" />
-		<Unit filename="src/CResourceManager.h" />
 		<Unit filename="src/CSurface.cpp" />
 		<Unit filename="src/CSurface.h" />
+		<Unit filename="src/CTimer.cpp" />
 		<Unit filename="src/CTimer.h" />
 		<Unit filename="src/Constants.h" />
 		<Unit filename="src/DirPath.cpp" />
 		<Unit filename="src/DirPath.h" />
 		<Unit filename="src/FileList.cpp" />
 		<Unit filename="src/FileList.h" />
-		<Unit filename="src/GameFlags.cpp" />
 		<Unit filename="src/GameFlags.h" />
-		<Unit filename="src/GameSystem.h" />
-		<Unit filename="src/GraphicsSystem.h" />
+		<Unit filename="src/GangManager.cpp" />
+		<Unit filename="src/GangManager.hpp" />
+		<Unit filename="src/Girl.cpp" />
+		<Unit filename="src/Girl.hpp" />
+		<Unit filename="src/GirlManager.cpp" />
+		<Unit filename="src/GirlManager.hpp" />
+		<Unit filename="src/Helper.hpp" />
+		<Unit filename="src/IconSurface.cpp" />
 		<Unit filename="src/IconSurface.h" />
 		<Unit filename="src/InterfaceGlobals.cpp" />
 		<Unit filename="src/InterfaceGlobals.h" />
 		<Unit filename="src/InterfaceIDs.h" />
 		<Unit filename="src/InterfaceProcesses.cpp" />
 		<Unit filename="src/InterfaceProcesses.h" />
+		<Unit filename="src/InterfaceWindowXML.cpp" />
+		<Unit filename="src/InterfaceWindowXML.hpp" />
+		<Unit filename="src/Logger.cpp" />
+		<Unit filename="src/Logger.hpp" />
+		<Unit filename="src/LuaUtils.hpp" />
+		<Unit filename="src/MasterFile.cpp" />
 		<Unit filename="src/MasterFile.h" />
-		<Unit filename="src/Revision.h" />
-		<Unit filename="src/SDLStuff.h" />
+		<Unit filename="src/WindowManager.cpp" />
+		<Unit filename="src/WindowManager.hpp" />
 		<Unit filename="src/WorkAdvertising.cpp" />
 		<Unit filename="src/WorkBar.cpp" />
 		<Unit filename="src/WorkBeastCapture.cpp" />
 		<Unit filename="src/WorkBeastCare.cpp" />
 		<Unit filename="src/WorkBrothelMassusse.cpp" />
 		<Unit filename="src/WorkExploreCatacombs.cpp" />
-		<Unit filename="src/WorkFluffer.cpp" />
 		<Unit filename="src/WorkFreetime.cpp" />
 		<Unit filename="src/WorkHall.cpp" />
 		<Unit filename="src/WorkMatron.cpp" />
@@ -127,8 +293,6 @@
 		<Unit filename="src/XmlUtil.h" />
 		<Unit filename="src/cAnimatedSurface.cpp" />
 		<Unit filename="src/cAnimatedSurface.h" />
-		<Unit filename="src/cBrothel.cpp" />
-		<Unit filename="src/cBrothel.h" />
 		<Unit filename="src/cBuilding.cpp" />
 		<Unit filename="src/cBuilding.h" />
 		<Unit filename="src/cButton.cpp" />
@@ -165,7 +329,9 @@
 		<Unit filename="src/cGold.h" />
 		<Unit filename="src/cImageItem.cpp" />
 		<Unit filename="src/cImageItem.h" />
+		<Unit filename="src/cInterfaceEvent.cpp" />
 		<Unit filename="src/cInterfaceEvent.h" />
+		<Unit filename="src/cInterfaceObject.cpp" />
 		<Unit filename="src/cInterfaceObject.h" />
 		<Unit filename="src/cInterfaceWindow.cpp" />
 		<Unit filename="src/cInterfaceWindow.h" />
@@ -178,6 +344,7 @@
 		<Unit filename="src/cInventoryManagementSM.h" />
 		<Unit filename="src/cJobManager.cpp" />
 		<Unit filename="src/cJobManager.h" />
+		<Unit filename="src/cJobs.cpp" />
 		<Unit filename="src/cJobs.h" />
 		<Unit filename="src/cListBox.cpp" />
 		<Unit filename="src/cListBox.h" />
@@ -233,6 +400,7 @@
 		<Unit filename="src/cSlider.h" />
 		<Unit filename="src/cTariff.cpp" />
 		<Unit filename="src/cTariff.h" />
+		<Unit filename="src/cTextItem.cpp" />
 		<Unit filename="src/cTextItem.h" />
 		<Unit filename="src/cTrainable.cpp" />
 		<Unit filename="src/cTrainable.h" />
@@ -243,8 +411,14 @@
 		<Unit filename="src/cWindowManager.cpp" />
 		<Unit filename="src/cWindowManager.h" />
 		<Unit filename="src/cWorkCleaning.cpp" />
+		<Unit filename="src/cXmlWidget.cpp" />
 		<Unit filename="src/cXmlWidget.h" />
-		<Unit filename="src/linux.h" />
+		<Unit filename="src/libRocketSFMLInterface/RenderInterfaceSFML.cpp" />
+		<Unit filename="src/libRocketSFMLInterface/RenderInterfaceSFML.h" />
+		<Unit filename="src/libRocketSFMLInterface/ShellFileInterface.cpp" />
+		<Unit filename="src/libRocketSFMLInterface/ShellFileInterface.h" />
+		<Unit filename="src/libRocketSFMLInterface/SystemInterfaceSFML.cpp" />
+		<Unit filename="src/libRocketSFMLInterface/SystemInterfaceSFML.h" />
 		<Unit filename="src/main.cpp" />
 		<Unit filename="src/main.h" />
 		<Unit filename="src/sConfig.cpp" />
@@ -261,13 +435,13 @@
 			<debugger />
 			<lib_finder disable_auto="1" />
 			<DoxyBlocks>
-				<comment_style block="0" line="0" />
+				<comment_style block="0" line="2" />
 				<doxyfile_project />
-				<doxyfile_build />
+				<doxyfile_build extract_all="1" extract_private="1" extract_static="1" />
 				<doxyfile_warnings />
 				<doxyfile_output />
-				<doxyfile_dot />
-				<general />
+				<doxyfile_dot class_diagrams="1" have_dot="1" />
+				<general use_at_in_tags="1" />
 			</DoxyBlocks>
 		</Extensions>
 	</Project>

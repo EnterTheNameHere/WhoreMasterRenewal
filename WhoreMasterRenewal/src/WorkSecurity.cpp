@@ -16,33 +16,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "Girl.hpp"
+#include "cGirls.h"
+#include "GirlManager.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGold g_Gold;
+#include <sstream>
 
-bool cJobManager::WorkSecurity(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+namespace WhoreMasterRenewal
 {
-	string message = "";
+
+bool cJobManager::WorkSecurity(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
+{
+    std::string message = "";
 	if(Preprocessing(ACTION_WORKSECURITY, girl, brothel, DayNight, summary, message))
 		return true;
 
@@ -168,7 +167,7 @@ bool cJobManager::WorkSecurity(sGirl* girl, sBrothel* brothel, int DayNight, str
 
 	brothel->m_SecurityLevel += SecLev;
 
-	stringstream sstemp;
+	std::stringstream sstemp;
     sstemp << "Patrolling the building. Security level up by " << SecLev << ".";
 	girl->m_Events.AddMessage(sstemp.str(), IMGTYPE_PROFILE, DayNight);
 
@@ -201,3 +200,5 @@ bool cJobManager::WorkSecurity(sGirl* girl, sBrothel* brothel, int DayNight, str
 	g_Girls.PossiblyGainNewTrait(girl, "Aggressive", 60, ACTION_WORKSECURITY, "She is getting rather Aggressive from her enjoyment of combat.", DayNight != 0);
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

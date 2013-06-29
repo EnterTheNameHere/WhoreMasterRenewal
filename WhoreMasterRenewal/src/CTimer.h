@@ -20,56 +20,32 @@
 #define CTIMER_H_INCLUDED_1510
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 // Frame Rate for games
 const int FRAMES_PER_SECOND = 25;
 
 class CTimer
 {
 public:
-	CTimer() {m_StartTicks = m_PausedTicks = 0; m_Paused = m_Started = false;}
-	~CTimer() {}
+	CTimer();
+	~CTimer();
 
-	void Start() {m_Paused = false; m_Started = true; m_StartTicks = SDL_GetTicks();}
-	void Stop() {m_Paused = m_Started = false;}
-	void Pause(bool pause)
-	{
-		if(pause)
-		{
-			if(m_Started && !m_Paused)
-			{
-				m_Paused = true;
-				m_PausedTicks = SDL_GetTicks() - m_StartTicks;
-			}
-		}
-		else
-		{
-			m_Paused = false;
-			m_StartTicks = SDL_GetTicks() - m_PausedTicks;
-			m_PausedTicks = 0;
-		}
-	}
-
-	int GetTicks()
-	{
-		if(m_Started)
-		{
-			if(m_Paused)
-				return m_PausedTicks;
-			else
-				return (SDL_GetTicks() - m_StartTicks);
-		}
-		return 0;
-	}
-
-	bool IsStarted() {return m_Started;}
-	bool IsPaused() {return m_Paused;}
+	void Start();
+	void Stop();
+	void Pause(bool pause);
+	int GetTicks();
+	bool IsStarted();
+	bool IsPaused();
 
 private:
-	int m_StartTicks;
-	int m_PausedTicks;
-
-	bool m_Paused;
-	bool m_Started;
+	int m_StartTicks = 0;
+	int m_PausedTicks = 0;
+	bool m_Paused = false;
+	bool m_Started = false;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CTIMER_H_INCLUDED_1510

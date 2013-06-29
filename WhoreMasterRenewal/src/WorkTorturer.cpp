@@ -16,36 +16,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
+#include "BrothelManager.hpp"
 #include "cRival.h"
-#include <sstream>
+#include "Girl.hpp"
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGold g_Gold;
+#include <sstream>
 
-bool cJobManager::WorkTorturer(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+namespace WhoreMasterRenewal
+{
+
+bool cJobManager::WorkTorturer(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
 {
 	if(DayNight == SHIFT_NIGHT)  // Do this only once a day
 		return false;
 
-	string message = "";
+    std::string message = "";
 	if(Preprocessing(ACTION_WORKTORTURER, girl, brothel, DayNight, summary, message))
 		return true;
 
@@ -101,3 +101,5 @@ bool cJobManager::WorkTorturer(sGirl* girl, sBrothel* brothel, int DayNight, str
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

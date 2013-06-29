@@ -20,62 +20,61 @@
 #define CSCREENBUILDINGSETUP_H_INCLUDED_1518
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "InterfaceWindowXML.hpp" // required inheritance
+
+namespace WhoreMasterRenewal
+{
+
+class cScreenBuildingSetup;
+extern cScreenBuildingSetup g_BuildingSetupScreen;
 
 class cScreenBuildingSetup : public cInterfaceWindowXML
 {
 public:
+	cScreenBuildingSetup();
+	virtual ~cScreenBuildingSetup();
+
+	void init();
+	void process();
+	void check_events();
 
 private:
-	char	buffer[256];
+    void set_ids();
+    
+    
+    
+	char buffer[256];
 
 	static bool ids_set;
 /*
  *	interface/event IDs
  */
-	int back_id;		// Back button
-	int curbrothel_id;	// Current Brothel text
-	int potioncost_id;	// Potion Cost text
-	int potionavail_id;	// Available Potions text
-	int potions10_id;	// Buy 10 Potions button
-	int potions20_id;	// Buy 20 Potions button
-	int autopotions_id;	// Auto Buy Potions checkbox
-	int barstaff_id;	// Bar Staff Cost text
-	int barhire_id;		// Hire Bar Staff button
-	int barfire_id;		// Fire Bar Staff button
-	int casinostaff_id;	// Casino Staff Cost text
-	int casinohire_id;	// Hire Casino Staff button
-	int casinofire_id;	// Fire Casino Staff button
-	int roomcost_id;	// Room Cost text
-	int buyrooms_id;	// Add 5 Rooms button
-	int restrict_id;	// Sex Restrictions text
-	int noanal_id;		// Prohibit Anal checkbox
-	int nobdsm_id;		// Prohibit BDSM checkbox
-	int nonormal_id;	// Prohibit Normal Sex checkbox
-	int nobeast_id;		// Prohibit Bestiality checkbox
-	int nogroup_id;		// Prohibit Group Sex checkbox
-	int nolesbian_id;	// Prohibit Lesbian checkbox
-	int advertsli_id;	// Advertising Budget slider
-	int advertamt_id;	// Advertising Budget value output text
-
-	void set_ids();
-public:
-	cScreenBuildingSetup()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "building_setup_screen.xml"
-		;
-		m_filename = dp.c_str();
-	}
-	~cScreenBuildingSetup() {}
-
-	void init();
-	void process();
-	void check_events();
+    int back_id = 0;        // Back button
+	int curbrothel_id = 0;	// Current Brothel text
+	int potioncost_id = 0;	// Potion Cost text
+	int potionavail_id = 0;	// Available Potions text
+	int potions10_id = 0;	// Buy 10 Potions button
+	int potions20_id = 0;	// Buy 20 Potions button
+	int autopotions_id = 0;	// Auto Buy Potions checkbox
+	int barstaff_id = 0;	// Bar Staff Cost text
+	int barhire_id = 0;		// Hire Bar Staff button
+	int barfire_id = 0;		// Fire Bar Staff button
+	int casinostaff_id = 0;	// Casino Staff Cost text
+	int casinohire_id = 0;	// Hire Casino Staff button
+	int casinofire_id = 0;	// Fire Casino Staff button
+	int roomcost_id = 0;	// Room Cost text
+	int buyrooms_id = 0;	// Add 5 Rooms button
+	int restrict_id = 0;	// Sex Restrictions text
+	int noanal_id = 0;		// Prohibit Anal checkbox
+	int nobdsm_id = 0;		// Prohibit BDSM checkbox
+	int nonormal_id = 0;	// Prohibit Normal Sex checkbox
+	int nobeast_id = 0;		// Prohibit Bestiality checkbox
+	int nogroup_id = 0;		// Prohibit Group Sex checkbox
+	int nolesbian_id = 0;	// Prohibit Lesbian checkbox
+	int advertsli_id = 0;	// Advertising Budget slider
+	int advertamt_id = 0;	// Advertising Budget value output text
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENBUILDINGSETUP_H_INCLUDED_1518

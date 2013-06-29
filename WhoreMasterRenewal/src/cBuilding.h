@@ -20,87 +20,38 @@
 #define CBUILDING_H_INCLUDED_1533
 #pragma once
 
-#include <iostream>
-#include <ostream>
 #include <fstream>
 #include <string>
 #include <vector>
-#include "cTariff.h"
-#include "sFacility.h"
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
+namespace WhoreMasterRenewal
+{
 
-using namespace std;
+struct sFacility;
 
 class cBuilding
 {
-	int	m_capacity;
-	int	m_free;
-	typedef	vector<sFacility*> vFacilities;
-	vFacilities	m_facilities;
-	vFacilities	*m_reversion;
 public:
-	int capacity()		{ return m_capacity; }
-	int free_space()	{ return m_free; }
-	int used_space()	{ return m_capacity - m_free; }
+	cBuilding();
+	~cBuilding();
+    
+    cBuilding( const cBuilding& ) = delete;
+	cBuilding& operator = ( const cBuilding& ) = delete;
+    
+    int capacity();
+	int free_space();
+	int used_space();
+    
+	bool add( sFacility* );
+	sFacility* remove(int);
+	sFacility* item_at(int);
+	sFacility* operator[](int);
+	int	size();
+	void commit();
+	void revert();
 
-	cBuilding() {
-		m_capacity	= 20;
-		m_free		= 20;
-		m_reversion	= 0;
-	}
-
-	bool add(sFacility *fac)
-	{
-		int needed = fac->space_taken();
-		if(needed > m_free) {
-			return false;
-		}
-		m_free -= needed;
-		m_facilities.push_back(fac);
-		return true;
-	}
-	sFacility *remove(int i) {
-		sFacility* fac = m_facilities[i];
-		m_facilities.erase(m_facilities.begin()+i);
-		return fac;
-	}
-	sFacility *item_at(int i) {
-		return m_facilities[i];
-	}
-	sFacility *operator[](int i) {
-		return item_at(i);
-	}
-	int	size() {
-		return m_facilities.size();
-	}
-	void commit() {
-		for(u_int i = 0; i < m_facilities.size(); i++) {
-			m_facilities[i]->commit();
-		}
-	}
-	void revert()
-	{
-		for(u_int i = 0; i < m_facilities.size(); i++) {
-			delete m_facilities[i];
-		}
-		m_facilities.clear();
-		if(!m_reversion) {
-			return;
-		}
-		m_free = m_capacity;
-		for(u_int i = 0; i < m_reversion->size(); i++) {
-			sFacility *fpt = (*m_reversion)[i];
-			m_facilities.push_back(fpt);
-			m_free -= fpt->space_taken();
-		}
-		delete m_reversion;
-		m_reversion = 0;
-	}
-
-	ofstream &save(ofstream &ofs, string building_name);
-	ifstream &load(ifstream &ifs);
+	std::ofstream& save(std::ofstream& ofs, std::string building_name);
+	std::ifstream& load(std::ifstream& ifs);
 /*
  *	is the list free of changes that may need to be reverted?
  */
@@ -110,7 +61,15 @@ public:
  */
 	void make_reversion_list();
 	void clear_reversion_list();
+	
+private:
+	int	m_capacity = 20;
+	int	m_free = 20;
+	typedef	std::vector<sFacility*> vFacilities;
+	vFacilities	m_facilities = {};
+	vFacilities* m_reversion = nullptr;
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif // CBUILDING_H_INCLUDED_1533

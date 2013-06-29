@@ -20,6 +20,12 @@
 #define INTERFACEIDS_H_INCLUDED_1504
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
+struct sInterfaceIDs;
+extern sInterfaceIDs g_interfaceid;
+
 struct sInterfaceIDs
 {
 // Misc (Stuff that isn't interactive with so can all use the same ID)
@@ -290,5 +296,7 @@ struct sInterfaceIDs
 // misc
   int TEXT_CURRENTBROTHEL;  
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // INTERFACEIDS_H_INCLUDED_1504

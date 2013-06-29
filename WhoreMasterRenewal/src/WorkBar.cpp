@@ -16,30 +16,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
+#include "Girl.hpp"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
+#include <sstream>
 
-bool cJobManager::WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+namespace WhoreMasterRenewal
+{
+
+bool cJobManager::WorkBar(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
 {
 	/* WD:	Added missing SEX_ACTION filter
 	 *
@@ -47,7 +47,7 @@ bool cJobManager::WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, string& 
 	 *		Fixed income - need to decrement loop counter
 	 *		when customer is rejected
 	 */
-	string message = "";
+    std::string message = "";
 	int tex = g_Dice%4;
 
 	if(Preprocessing(ACTION_WORKBAR, girl, brothel, DayNight, summary, message))	// they refuse to have work in the bar
@@ -78,7 +78,7 @@ bool cJobManager::WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, string& 
 		u_int n = 0;
 		int num = (g_Dice%2)+1;
 		girl->m_Pay += g_Girls.GetStat(girl, STAT_ASKPRICE)*num;
-		stringstream sstemp;
+		std::stringstream sstemp;
 		sstemp << "She worked as a whore and fucked " << num << " customers.";
 		message += sstemp.str();
 		for(int i=0; i<num; i++)
@@ -186,3 +186,5 @@ bool cJobManager::WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, string& 
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

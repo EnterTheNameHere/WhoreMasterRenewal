@@ -20,12 +20,18 @@
 #define XMLMISC_H_INCLUDED_1534
 #pragma once
 
+#include "XmlUtil.h"
+
 #define TIXML_USE_STL
 #include "tinyxml.h"
 
 #include <string>
-#include "cTraits.h"
-#include "cInventory.h"
+
+namespace WhoreMasterRenewal
+{
+
+struct sTrait;
+struct sInventoryItem;
 
 std::string XMLifyString(const std::string& XMLName);
 std::string XMLifyString(const char* XMLName);
@@ -34,13 +40,13 @@ std::string UnXMLifyString(const char* XMLName);
 
 TiXmlElement* SaveStatsXML(TiXmlElement* pRoot,
 						   unsigned char stats[],
-						   int statMods[] = 0,
-						   int tempStats[] = 0);
+						   int statMods[] = nullptr,
+						   int tempStats[] = nullptr);
 
 TiXmlElement* SaveSkillsXML(TiXmlElement* pRoot,
 							unsigned char skills[],
-							int skillMods[] = 0,
-							int tempSkills[] = 0);
+							int skillMods[] = nullptr,
+							int tempSkills[] = nullptr);
 
 TiXmlElement* SaveJobsXML(TiXmlElement* pRoot,
 						  int buildingQualities[]);
@@ -57,8 +63,8 @@ TiXmlElement* SaveActionsXML(TiXmlElement* pRoot,
 TiXmlElement* SaveInventoryXML(TiXmlElement* pRoot,
 							   sInventoryItem* items[],
 							   const int numItems,
-							   unsigned char isEquipped[] = 0,
-							   unsigned char quantities[] = 0);
+							   unsigned char isEquipped[] = nullptr,
+							   unsigned char quantities[] = nullptr );
 
 
 
@@ -68,13 +74,13 @@ TiXmlElement* SaveInventoryXML(TiXmlElement* pRoot,
 
 bool LoadStatsXML(TiXmlHandle hStats,
 				  unsigned char stats[],
-				  int statMods[] = 0,
-				  int tempStats[] = 0);
+				  int statMods[] = nullptr,
+				  int tempStats[] = nullptr );
 
 bool LoadSkillsXML(TiXmlHandle hSkills,
 				   unsigned char skills[],
-				   int skillMods[] = 0,
-				   int tempSkills[] = 0);
+				   int skillMods[] = nullptr,
+				   int tempSkills[] = nullptr );
 
 bool LoadJobsXML(TiXmlHandle hJobs,
 				 int buildingQualities[]);
@@ -82,7 +88,7 @@ bool LoadJobsXML(TiXmlHandle hJobs,
 bool LoadTraitsXML(TiXmlHandle hTraits,
 				   unsigned char& numTraits,
 				   sTrait* traits[],
-				   unsigned char tempTraits[] = 0);
+				   unsigned char tempTraits[] = nullptr );
 
 bool LoadActionsXML(TiXmlHandle hActions,
 					int enjoyments[]);
@@ -90,7 +96,9 @@ bool LoadActionsXML(TiXmlHandle hActions,
 bool LoadInventoryXML(TiXmlHandle hInventory,
 					  sInventoryItem* items[],
 					  int& numItems,
-					  unsigned char isEquipped[] = 0,
-					  unsigned char quantities[] = 0);
+					  unsigned char isEquipped[] = nullptr,
+					  unsigned char quantities[] = nullptr );
+
+} // namespace WhoreMasterRenewal
 
 #endif // XMLMISC_H_INCLUDED_1534

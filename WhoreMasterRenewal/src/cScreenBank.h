@@ -20,48 +20,46 @@
 #define CSCREENBANK_H_INCLUDED_1519
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "InterfaceWindowXML.hpp" // required inheritance
+
+namespace WhoreMasterRenewal
+{
+
+class cScreenBank;
+extern cScreenBank g_BankScreen;
 
 class cScreenBank : public cInterfaceWindowXML
 {
 public:
-
+    cScreenBank();
+    virtual ~cScreenBank();
+    
+    void init();
+    void process();
+    void check_events();
+    
 private:
-	bool	GetDeposit;
-	bool	GetWithdraw;
-	char	buffer[256];
-
-	static bool ids_set;
-/*
- *	interface/event IDs
- */
-	int back_id;		// Back button
-	int deposit_id;		// Deposit button
-	int depositall_id;	// Deposit All button
-	int withdraw_id;	// Withdraw button
-	int details_id;		// Bank Details text
-	int header_id;		// page header text ("Town Bank")
-
-	void set_ids();
-public:
-	cScreenBank()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "bank_screen.xml"
-		;
-		m_filename = dp.c_str();
-		GetDeposit = false;
-		GetWithdraw = false;
-	}
-	~cScreenBank() {}
-
-	void init();
-	void process();
-	void check_events();
+    void set_ids();
+    
+    
+    
+    bool GetDeposit = false;
+    bool GetWithdraw = false;
+    char buffer[256];
+    
+    static bool ids_set;
+    
+    /*
+     *  interface/event IDs
+     */
+    int back_id = 0;        // Back button
+    int deposit_id = 0;     // Deposit button
+    int depositall_id = 0;  // Deposit All button
+    int withdraw_id = 0;    // Withdraw button
+    int details_id = 0;     // Bank Details text
+    int header_id = 0;      // page header text ("Town Bank")
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENBANK_H_INCLUDED_1519

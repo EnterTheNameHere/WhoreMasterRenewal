@@ -20,19 +20,29 @@
 #define CINTERFACEOBJECT_H_INCLUDED_1526
 #pragma once
 
+namespace WhoreMasterRenewal
+{
+
 class cInterfaceObject
 {
 public:
-	void SetPosition(int x, int y, int width, int height) {m_XPos = x; m_YPos = y; m_Width = width; m_Height = height;}
-	virtual void Draw() {};
-	int GetXPos() {return m_XPos;}
-	int GetYPos() {return m_YPos;}
-	int GetWidth() {return m_Width;}
-	int GetHeight() {return m_Height;}
+    cInterfaceObject();
+    virtual ~cInterfaceObject();
+    
+	void SetPosition( int x, int y, int width, int height );
+	virtual void Draw();
+	int GetXPos();
+	int GetYPos();
+	int GetWidth();
+	int GetHeight();
 
 protected:
-	int m_XPos, m_YPos;
-	int m_Width, m_Height;
+	int m_XPos = 0;
+	int m_YPos = 0;
+	int m_Width = 0;
+	int m_Height = 0;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CINTERFACEOBJECT_H_INCLUDED_1526

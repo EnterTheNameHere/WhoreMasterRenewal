@@ -16,56 +16,79 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cButton.h"
-#include "CResourceManager.h"
-extern cInterfaceEventManager g_InterfaceEvents;
-extern CResourceManager rmanager;
+#include "CSurface.h"
+#include "cInterfaceEvent.h"
+//#include "CLog.h"
+
+#include <SDL.h>
+
+namespace WhoreMasterRenewal
+{
+
+cButton::cButton() : cInterfaceObject()
+{
+    ;
+}
 
 cButton::~cButton()
 {
+    //g_LogFile.ss() << "cButton::~cButton() [" << this << "] id: \"" << m_ID << "\"";
+    //g_LogFile.ssend();
+    
 	if(m_Next)
 		delete m_Next;
-	m_Next = 0;
-	m_CurrImage = 0;
+	m_Next = nullptr;
+	m_CurrImage = nullptr;
 
 	if(m_OffImage)
-		delete m_OffImage;
-	m_OffImage = 0;
+		m_OffImage.reset();
 
 	if(m_DisabledImage)
-		delete m_DisabledImage;
-	m_DisabledImage = 0;
+		m_DisabledImage.reset();
 
 	if(m_OnImage)
-		delete m_OnImage;
-	m_OnImage = 0;
+		m_OnImage.reset();
+	
+    //g_LogFile.ss() << "cButton::~cButton() finished [" << this << "] id: \"" << m_ID << "\"";
+    //g_LogFile.ssend();
 }
 
-bool cButton::CreateButton(string OffImage, string DisabledImage, string OnImage, int ID, int x, int y, int width, int height, bool transparency,bool cached)
+void cButton::SetDisabled( bool disable )
+{
+    m_Disabled = disable;
+    if( disable )
+        m_CurrImage = m_DisabledImage;
+    else
+        m_CurrImage = m_OffImage;
+}
+
+bool cButton::CreateButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int ID, int x, int y, int width, int height, bool transparency,bool cached)
 {
 	if(OffImage != "")
 	{
-		m_OffImage = new CSurface(OffImage);
+		m_OffImage.reset( new CSurface(OffImage) );
 		m_OffImage->m_Cached=cached;
 	}
 	else
-		m_OffImage = 0;
+		m_OffImage = nullptr;
 
 	if(DisabledImage != "")
 	{
-		m_DisabledImage = new CSurface(DisabledImage);
+		m_DisabledImage.reset( new CSurface(DisabledImage) );
 		m_DisabledImage->m_Cached=cached;
 	}
 	else 
-		m_DisabledImage = 0;
+		m_DisabledImage = nullptr;
 
 	if(OnImage != "")
 	{
-		m_OnImage = new CSurface(OnImage);
+		m_OnImage.reset( new CSurface(OnImage) );
 		m_OnImage->m_Cached=cached;
 	}
 	else
-		m_OnImage = 0;
+		m_OnImage = nullptr;
 
 	m_CurrImage = m_OffImage;
 	SetPosition(x,y,width,height);
@@ -80,7 +103,7 @@ bool cButton::CreateButton(string OffImage, string DisabledImage, string OnImage
 			m_OnImage->SetAlpha(true);
 	}
 
-	m_Next = 0;
+	m_Next = nullptr;
 	m_ID = ID;
 
 	return true;
@@ -126,6 +149,8 @@ void cButton::Draw()
 		rect.w = m_Width;
 		rect.h = m_Height;
 
-		m_CurrImage->DrawSurface(m_XPos,m_YPos, 0, &rect, true);
+		m_CurrImage->DrawSurface(m_XPos,m_YPos, nullptr, &rect, true);
 	}
 }
+
+} // namespace WhoreMasterRenewal

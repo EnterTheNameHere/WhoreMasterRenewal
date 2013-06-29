@@ -23,25 +23,30 @@
 #define CRNG_H_INCLUDED_1519
 #pragma once
 
-#include <cstdlib>
-#include <ctime>
-
-typedef unsigned int u_int;
- 
-struct cRng
+namespace WhoreMasterRenewal
 {
+
+class cRng;
+extern cRng g_Dice;
+
+class cRng
+{
+public:
+/*
+ *	constructor and destructor
+ */
+	cRng();
+	~cRng();
 /*
  *	changed this to be the base random number generator 
  *	because it's easier to build other funcs around a
  *	function than an operator. Well, less messy, anyway.
  */
-	int random(int n); // returns int between 0 and n
+	int random( int n ); // returns int between 0 and n
 /*
  *	modulus operator re-implemented using random()
  */
-	int operator %(int n) {
-		return  random(n);
-	}
+	int operator %( int n );
 /*
  *	returns a number randomly distributed between
  *	min and max.
@@ -49,33 +54,30 @@ struct cRng
  *	if min > max, then returns number in the range 0 to 100
  *	in order to replicate how the girl stat generation works
  */
-	int in_range(int min, int max, int range=101);
+	int in_range( int min, int max, int range=101 );
 /*
  *	I was thinking of this as useful shorthand for all the
  *	(g_Dice % 100)+1 lines, but on reflection, I think 
  *	I prefer the function following
  */
-	int operator +(int n) { return random(100) + n; }
+	int operator +( int n );
 /*
  *	returns true n percent of the time. 
  *	so g_Dice.percent(20) will return true 20% of the time
  */
-	bool percent(int n) { return (1 + random(100)) < n; }
+	bool percent( int n );
 /*
  *	a couple of shorthand methods for decding the sex of
  *	children
  */
-	bool is_boy(int mod = 0);
-	bool is_girl(int mod = 0);
+	bool is_boy( int mod = 0 );
+	bool is_girl( int mod = 0 );
 /*
  *	we generate d100 rolls a lot
  */
-	int d100() { return random(100) + 1; }
-/*
- *	constructor and destructor
- */
-	cRng(){srand((int)time(0));}
-	~cRng(){}
+	int d100();
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CRNG_H_INCLUDED_1519

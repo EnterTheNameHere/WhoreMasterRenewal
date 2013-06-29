@@ -16,15 +16,108 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cBuilding.h"
 #include "CLog.h"
-#include "XmlUtil.h"
+#include "XmlMisc.h"
+#include "sFacility.h"
 
-ofstream &cBuilding::save(ofstream &ofs, string name)
+namespace WhoreMasterRenewal
 {
-	CLog log;
-	string s;
-	stringstream ss;
+
+cBuilding::cBuilding()
+{
+    ;
+}
+
+cBuilding::~cBuilding()
+{
+    if( m_reversion )
+    {
+        g_LogFile.ss() << "cBuilding::~cBuilding() : Warning: m_reversion is not nullptr\n";
+        g_LogFile.ssend();
+    }
+}
+
+int cBuilding::capacity()
+{
+    return m_capacity;
+}
+
+int cBuilding::free_space()
+{
+    return m_free;
+}
+
+int cBuilding::used_space()
+{
+    return m_capacity - m_free;
+}
+
+bool cBuilding::add(sFacility* fac)
+{
+    int needed = fac->space_taken();
+    if(needed > m_free)
+    {
+        return false;
+    }
+    m_free -= needed;
+    m_facilities.push_back(fac);
+    return true;
+}
+
+sFacility* cBuilding::remove(int i)
+{
+    sFacility* fac = m_facilities[i];
+    m_facilities.erase(m_facilities.begin()+i);
+    return fac;
+}
+
+sFacility* cBuilding::item_at(int i)
+{
+    return m_facilities[i];
+}
+
+sFacility* cBuilding::operator[](int i)
+{
+    return item_at(i);
+}
+
+int	cBuilding::size()
+{
+    return m_facilities.size();
+}
+
+void cBuilding::commit()
+{
+    for(u_int i = 0; i < m_facilities.size(); i++) {
+        m_facilities[i]->commit();
+    }
+}
+
+void cBuilding::revert()
+{
+    for(u_int i = 0; i < m_facilities.size(); i++) {
+        delete m_facilities[i];
+    }
+    m_facilities.clear();
+    if(!m_reversion) {
+        return;
+    }
+    m_free = m_capacity;
+    for(u_int i = 0; i < m_reversion->size(); i++) {
+        sFacility* fpt = (*m_reversion)[i];
+        m_facilities.push_back(fpt);
+        m_free -= fpt->space_taken();
+    }
+    delete m_reversion;
+    m_reversion = nullptr;
+}
+
+std::ofstream& cBuilding::save(std::ofstream& ofs, std::string name)
+{
+    std::string s;
+	std::stringstream ss;
 /*
  *	we're going to build an XML structure in memory
  *	and then splurt it down the profferred ostream.
@@ -41,7 +134,7 @@ ofstream &cBuilding::save(ofstream &ofs, string name)
 /*
  *	document root node. In this case we'll use a <building> tag
  */
-	TiXmlElement * root = new TiXmlElement("Building");
+	TiXmlElement* root = new TiXmlElement("Building");
 /*
  *	use an attribute to store the capacity
  *	we can re-create the used and free counts, but we
@@ -84,14 +177,13 @@ ofstream &cBuilding::save(ofstream &ofs, string name)
 	ss.str("");
 	ss << doc;
 	s = ss.str();
-	log.write(s);
+	g_LogFile.write(s);
 	ofs << s;
 	return ofs;
 }
 
-ifstream &cBuilding::load(ifstream &ifs)
+std::ifstream& cBuilding::load(std::ifstream& ifs)
 {
-	CLog log;
 	TiXmlDocument doc;
 	XmlUtil u("Loading building data from XML");
 /*
@@ -99,17 +191,17 @@ ifstream &cBuilding::load(ifstream &ifs)
  */
 	ifs >> doc;
 	if(doc.Error()) {
-		log.ss() << "error loading building data from XML: " << endl;
-		log.ss()<< "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol() << ": " << doc.ErrorDesc();
-		log.ssend();
+		g_LogFile.ss() << "error loading building data from XML: " << std::endl;
+		g_LogFile.ss()<< "Error: line " << doc.ErrorRow() << ", col " << doc.ErrorCol() << ": " << doc.ErrorDesc();
+		g_LogFile.ssend();
 		return ifs;
 	}
-	log.ss() << "Loaded XML string: " << doc ;
-	log.ssend();
+	g_LogFile.ss() << "Loaded XML string: " << doc ;
+	g_LogFile.ssend();
 /*
  *	get the docuement root
  */
-	TiXmlElement /**el,*/ *root_el = doc.RootElement();
+	TiXmlElement* root_el = doc.RootElement();
 /*
  *	check the root for the capacity elemeent
  */
@@ -171,12 +263,14 @@ void cBuilding::clear_reversion_list()
 	if(!m_reversion) {
 		return;
 	}
-	vFacilities &list = (*m_reversion);
+	vFacilities& list = (*m_reversion);
 	u_int lim = list.size();
  	for(u_int i = 0; i < lim; i++) {
 		delete list[i];
-		list[i] = 0;
+		list[i] = nullptr;
 	}
 	delete m_reversion;
-	m_reversion = 0;
+	m_reversion = nullptr;
 }
+
+} // namespace WhoreMasterRenewal

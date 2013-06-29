@@ -16,52 +16,45 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "XmlUtil.h"
+#include "XmlMisc.h"
 #include "CLog.h"
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
-
-bool XmlUtil::get_att(
-	TiXmlElement *el, const char *name, int &ipt, bool optional
-)
+namespace WhoreMasterRenewal
 {
-	CLog l;
+
+bool XmlUtil::get_att( TiXmlElement* el, const char* name, int& ipt, bool optional )
+{
 	if(el->Attribute(name, &ipt) || optional) {
 		return true;
 	}
-	l.ss()	<< "Warning: " << m_context << ": No '"
+	g_LogFile.ss()	<< "Warning: " << m_context << ": No '"
 		<< name
 		<< "' attribute: defaulting to "
 		<< ipt
 	;
-	l.ssend();
+	g_LogFile.ssend();
 	return false;
 }
 
-bool XmlUtil::get_att(
-	TiXmlElement *el, const char *name, double &dpt, bool optional
-)
+bool XmlUtil::get_att( TiXmlElement* el, const char* name, double& dpt, bool optional )
 {
-	CLog l;
 	if(el->Attribute(name, &dpt) || optional) {
 		return true;
 	}
-	l.ss()	<< "Warning: " << m_context << ": No '"
+	g_LogFile.ss()	<< "Warning: " << m_context << ": No '"
 		<< name
 		<< "' attribute: defaulting to "
 		<< dpt
 	;
-	l.ssend();
+	g_LogFile.ssend();
 	return false;
 }
 
-bool XmlUtil::get_att(
-	TiXmlElement *el, const char *name, bool &bval, bool optional
-)
+bool XmlUtil::get_att( TiXmlElement* el, const char* name, bool& bval, bool optional )
 {
-	CLog l;
-	const char *pt;
+	const char* pt;
 
 	pt = el->Attribute(name);
 
@@ -69,12 +62,12 @@ bool XmlUtil::get_att(
 		if(optional) {
 			return true;
 		}
-		l.ss()	<< "Warning: " << m_context << ": No '"
+		g_LogFile.ss()	<< "Warning: " << m_context << ": No '"
 			<< name
 			<< "' attribute: defaulting to "
 			<< bval
 		;
-		l.ssend();
+		g_LogFile.ssend();
 		return false;
 	}
 
@@ -82,8 +75,8 @@ bool XmlUtil::get_att(
 /*
  *      convert to a string, and then squash that to lower case
  */
-	string s = pt;
-	for(u_int i = 0; i < s.length(); i++)
+    std::string s = pt;
+	for(u_int i = 0; i < s.length(); ++i)
 	{
 		s[i] = tolower(s[i]);
 	}
@@ -99,22 +92,19 @@ bool XmlUtil::get_att(
 		bval = false;
 		return true;
 	}
-	l.ss()	<< "Error: " << m_context << ": Unexpected value '"
+	g_LogFile.ss()	<< "Error: " << m_context << ": Unexpected value '"
 		<< s
 		<< "' in binary attribute '"
 		<< name
 		<< "'"
 	;
-	l.ssend();
+	g_LogFile.ssend();
 	return false;
 }
 
-bool XmlUtil::get_att(
-	TiXmlElement *el, const char *name, string &s, bool optional
-)
+bool XmlUtil::get_att( TiXmlElement* el, const char* name, std::string& s, bool optional )
 {
-	CLog l;
-	const char *pt;
+	const char* pt;
 
 	pt = el->Attribute(name);
 	if(pt) {
@@ -122,11 +112,28 @@ bool XmlUtil::get_att(
 		return true;
 	}
 	if(optional) return true;
-	l.ss()	<< "Warning: " << m_context << ": No '"
+	g_LogFile.ss()	<< "Warning: " << m_context << ": No '"
 		<< name
 		<< "' attribute: defaulting to "
 		<< s;
-	l.ssend();
+	g_LogFile.ssend();
 	return false;
 }
 
+std::string& XmlUtil::context()
+{
+    return m_context;
+}
+
+void XmlUtil::context( std::string s )
+{
+    m_context = s;
+}
+
+XmlUtil::XmlUtil( std::string context )
+    : m_context( context )
+{
+    ;
+}
+
+} // namespace WhoreMasterRenewal

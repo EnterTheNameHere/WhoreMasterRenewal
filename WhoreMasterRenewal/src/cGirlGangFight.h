@@ -20,40 +20,16 @@
 #define CGIRLGANGFIGHT_H_INCLUDED_1529
 #pragma once
 
-#include <string>
-#include <vector>
+namespace WhoreMasterRenewal
+{
 
-#include "CLog.h"
+class Girl;
+struct sGang;
 
-using namespace std;
-
-struct	sGirl;
-struct	sGang;
-
-
-class cGirlGangFight {
-	sGirl	*m_girl;
-	CLog	l;
-
-	int		m_girl_stats;
-	int		m_goon_stats;
-	int		m_max_goons;
-//	double	m_ratio;
-//	int		m_dead_goons;
-
-	bool	m_girl_fights;
-	bool	m_girl_wins;
-	bool	m_player_wins;
-	bool	m_wipeout;
-	bool	m_unopposed;
-
-	double	m_odds;
-
-	void lose_vs_own_gang(sGang* gang);
-	void win_vs_own_gang(sGang* gang);
-	int use_potions(sGang *gang, int casualties);
+class cGirlGangFight
+{
 public:
-	cGirlGangFight(sGirl *girl);
+	cGirlGangFight( Girl *girl );
 
 	bool girl_fights()	{ return m_girl_fights; }
 	bool girl_submits()	{ return !m_girl_fights; }
@@ -64,6 +40,31 @@ public:
 	bool wipeout()		{ return m_wipeout; }
 
 //	int dead_goons()	{ return m_dead_goons; }
+
+private:
+    void lose_vs_own_gang(sGang* gang);
+	void win_vs_own_gang(sGang* gang);
+	int use_potions(sGang *gang, int casualties);
+    
+    
+    
+	Girl* m_girl;
+
+	int m_girl_stats = 0;
+	int m_goon_stats = 0;
+	int m_max_goons = 0;
+//	double m_ratio;
+//	int m_dead_goons;
+
+	bool m_girl_fights = false;
+	bool m_girl_wins = false;
+	bool m_player_wins = false;
+	bool m_wipeout = false;
+	bool m_unopposed = false;
+
+	double m_odds = 0.0;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif  // CGIRLGANGFIGHT_H_INCLUDED_1529

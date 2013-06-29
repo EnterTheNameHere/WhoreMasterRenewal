@@ -20,73 +20,60 @@
 #define CSCREENSLAVEMARKET_H_INCLUDED_1513
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "InterfaceWindowXML.hpp" // required inheritance
 
-class cBuilding;
+namespace WhoreMasterRenewal
+{
+
+class cScreenSlaveMarket;
+extern cScreenSlaveMarket g_SlaveMarket;
 
 class cScreenSlaveMarket : public cInterfaceWindowXML
 {
 public:
-
+    cScreenSlaveMarket();
+    virtual ~cScreenSlaveMarket();
+    
+    void init();
+    void process();
+    
+    void generate_unique_girl( int i, bool &unique );
+    bool check_events();
+    bool check_keys();
+    int &image_num() { return ImageNum; }
+    int &selected_item() { return selection; }
+    bool change_selected_girl();
+    
+    int multi_slave_first();
+    int multi_slave_next();
+    
 private:
-	int		selection;
-	int		DetailLevel;
-	int		ImageNum;
-	char	buffer[256];
-	int		sel_pos;
-
-	static bool ids_set;
-/*
- *	interface/event IDs
- */
-	int back_id;		// Back button
-	int more_id;		// More Details button
-	int buy_slave_id;	// Buy button
-	int cur_brothel_id;	// Current Brothel text
-	int slave_list_id;	// Slave listbox
-	int trait_list_id;	// Trait listbox
-	int details_id;		// Girl Details text
-	int trait_id;		// Trait text
-	int slave_image_id;	// Image of selected slave
-	int header_id;		// page header text ("Slave Market")
-
-	void set_ids();
-public:
-	cScreenSlaveMarket()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "slavemarket_screen.xml"
-		;
-		m_filename = dp.c_str();
-		selection = -1;
-		ImageNum = -1;
-		DetailLevel = 0;
-		sel_pos = 0;
-	}
-	~cScreenSlaveMarket() {}
-
-	void init();
-	void process();
-
-	void generate_unique_girl(int i, bool &unique);
-	bool check_events();
-	bool check_keys();
-	int &image_num() { return ImageNum; }
-	int &selected_item() { return selection; }
-	bool change_selected_girl();
-
-	int multi_slave_first() {
-		sel_pos = 0;
-		return GetNextSelectedItemFromList(slave_list_id, 0, sel_pos);
-	}
-
-	int multi_slave_next() {
-		return GetNextSelectedItemFromList(slave_list_id, sel_pos+1, sel_pos);
-	}
+    void set_ids();
+    
+    
+    
+    int selection = -1;
+    int DetailLevel = 0;
+    int ImageNum = -1;
+    char buffer[256];
+    int sel_pos = 0;
+    
+    static bool ids_set;
+    /*
+     *  interface/event IDs
+     */
+    int back_id = 0;        // Back button
+    int more_id = 0;        // More Details button
+    int buy_slave_id = 0;   // Buy button
+    int cur_brothel_id = 0; // Current Brothel text
+    int slave_list_id = 0;  // Slave listbox
+    int trait_list_id = 0;  // Trait listbox
+    int details_id = 0;     // Girl Details text
+    int trait_id = 0;       // Trait text
+    int slave_image_id = 0; // Image of selected slave
+    int header_id = 0;      // page header text ("Slave Market")
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENSLAVEMARKET_H_INCLUDED_1513

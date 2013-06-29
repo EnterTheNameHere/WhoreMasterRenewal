@@ -1,0 +1,19 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="Bank">
+        <div id="window">
+            <div id="contents">
+                Town Bank
+                Bank account: 4 014 gold
+                On hand: 2 048 gold
+                <button>Deposit</button>
+                <button>Withdraw</button>
+                <button>Deposit All</button>
+                <button>Withdraw All</button>
+                <button onclick="goto Town">Back</button>
+            </div>
+        </div>
+    </body>
+</rml>

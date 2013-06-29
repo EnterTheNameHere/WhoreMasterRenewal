@@ -16,23 +16,42 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "main.h"
-#include "cBrothel.h"
+
 #include "cScreenBuildingSetup.h"
+#include "Helper.hpp"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
+#include "cMessageBox.h"
 #include "cGold.h"
+#include "BrothelManager.hpp"
 #include "cTariff.h"
+#include "cInterfaceEvent.h"
+#include "InterfaceGlobals.h"
+#include "DirPath.h"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
+namespace WhoreMasterRenewal
+{
 
+static std::stringstream ss; /// @todo Get rid of this static variable
 static cTariff tariff;
-static stringstream ss;
 
 bool cScreenBuildingSetup::ids_set = false;
+
+cScreenBuildingSetup::cScreenBuildingSetup() : cInterfaceWindowXML()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "building_setup_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+
+cScreenBuildingSetup::~cScreenBuildingSetup()
+{
+    
+}
+
 
 void cScreenBuildingSetup::set_ids()
 {
@@ -89,13 +108,13 @@ void cScreenBuildingSetup::init()
 	ss << "Casino Staff: " << tariff.casino_staff_wages() << " gold / week";
 	EditTextItem(ss.str(), casinostaff_id);
 
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, curbrothel_id);
 
 	int number = g_Brothels.GetNumPotions();
 
-	string message = "You have: ";
+    std::string message = "You have: ";
 	message += toString(number);
 	EditTextItem(message, potionavail_id);
 	DisableCheckBox(autopotions_id, number < 1);
@@ -179,7 +198,7 @@ void cScreenBuildingSetup::check_events()
 		int number = g_Brothels.GetNumPotions();
 		if(number == MaxSupplies)
 		{
-			string message = "You can only store up to ";
+		    std::string message = "You can only store up to ";
 			message += toString(MaxSupplies);
 			message += " potions";
 			g_MessageQue.AddToQue(message, 0);
@@ -210,7 +229,7 @@ void cScreenBuildingSetup::check_events()
 		int number = g_Brothels.GetNumPotions();
 		if(number == MaxSupplies)
 		{
-			string message = "You can only store up to ";
+		    std::string message = "You can only store up to ";
 			message+=toString(MaxSupplies);
 			message += " potions";
 			g_MessageQue.AddToQue(message, 0);
@@ -277,3 +296,5 @@ void cScreenBuildingSetup::check_events()
 	if(g_InterfaceEvents.CheckCheckbox(nolesbian_id))
 		g_Brothels.GetBrothel(g_CurrBrothel)->m_RestrictLesbian = IsCheckboxOn(nolesbian_id);
 }
+
+} // namespace WhoreMasterRenewal

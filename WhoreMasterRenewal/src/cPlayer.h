@@ -21,38 +21,20 @@
 #define CPLAYER_H_INCLUDED_1521
 #pragma once
 
-#include <fstream>
 #include "Constants.h"
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
+#include <fstream>
 
-using namespace std;
+class TiXmlElement;
+class TiXmlHandle;
+
+namespace WhoreMasterRenewal
+{
 
 class cPlayer
 {
-private:
-	int Limit100(int nStat);								// Limit stats to -100 to 100
-	int	Scale200(int nStatMod, int nCurrentStatValue);		// Scale stat from 1 to nStatMod
-/*
- *	the suspicion level of the authorities.
- *	-100 means they are on players side
- *	+100 means they will probably raid his brothels
- */
-	int m_Suspicion;
-/*
- *	How good or evil the player is considered to be:
- *	-100 is evil while +100 is a saint
- */
-	int m_Disposition;
-/*
- *	how much the customers fear you:
- *	-100 is not at all while 100 means a lot
- */
-	int m_CustomerFear;
-
 public:
-	bool m_WinGame;
+	bool m_WinGame = false;
 	unsigned char m_Skills[NUM_SKILLS];
 	unsigned char m_Stats[NUM_STATS];
 
@@ -61,7 +43,7 @@ public:
 
 	TiXmlElement* SavePlayerXML(TiXmlElement* pRoot);
 	bool LoadPlayerXML(TiXmlHandle hPlayer);
-	void LoadPlayerLegacy(ifstream& ifs);
+	void LoadPlayerLegacy(std::ifstream& ifs);
 
 	int disposition()		{ return m_Disposition; }
 	int disposition(int n);
@@ -70,7 +52,28 @@ public:
 	int suspicion(int n);
 	int customerfear()		{ return m_CustomerFear; }
 	int customerfear(int n);
+
+private:
+	int Limit100(int nStat);								// Limit stats to -100 to 100
+	int	Scale200(int nStatMod, int nCurrentStatValue);		// Scale stat from 1 to nStatMod
+/*
+ *	the suspicion level of the authorities.
+ *	-100 means they are on players side
+ *	+100 means they will probably raid his brothels
+ */
+	int m_Suspicion = 0;
+/*
+ *	How good or evil the player is considered to be:
+ *	-100 is evil while +100 is a saint
+ */
+	int m_Disposition = 0;
+/*
+ *	how much the customers fear you:
+ *	-100 is not at all while 100 means a lot
+ */
+	int m_CustomerFear = 0;
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif	// CPLAYER_H_INCLUDED_1521

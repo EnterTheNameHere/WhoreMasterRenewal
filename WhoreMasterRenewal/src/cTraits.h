@@ -22,61 +22,57 @@
 #pragma once
 
 #include "Constants.h"
+
 #include <string>
-#include <fstream>
-using namespace std;
+
+namespace WhoreMasterRenewal
+{
+
+class cTraits;
+extern cTraits g_Traits;
 
 // Represents a single trait
 typedef struct sTrait
 {
-	char* m_Name;		// the name and unique ID of the trait
-	char* m_Desc;		// a description of the trait
+	char* m_Name = nullptr;		// the name and unique ID of the trait
+	char* m_Desc = nullptr;		// a description of the trait
 
-	sTrait* m_Next;		// the next trait in the list
+	sTrait* m_Next = nullptr;		// the next trait in the list
 
-	sTrait()
-	{
-		m_Name = m_Desc = 0;
-		m_Next = 0;
-	}
-
-	~sTrait()
-	{
-		if(m_Name)
-			delete [] m_Name;
-		m_Name = 0;
-		
-		if(m_Desc)
-			delete [] m_Desc;
-		m_Desc = 0;
-
-		if(m_Next)
-			delete m_Next;
-		m_Next = 0;
-	}
+	sTrait();
+	~sTrait();
+	
+	sTrait( const sTrait& ) = delete;
+	sTrait& operator = ( const sTrait& ) = delete;
+	
 }sTrait;
 
 // Manages and loads the traits file
 class cTraits
 {
 public:
-	cTraits(){m_ParentTrait=0;m_LastTrait=0;m_NumTraits=0;}
+	cTraits();
 	~cTraits();
-
+    
+    cTraits( const cTraits& ) = delete;
+	cTraits& operator = ( const cTraits& ) = delete;
+    
 	void Free();	// Delete all the loaded data
 
-	void LoadTraits(string filename);	// Loads the traits from a file (adding them to the existing traits)
-	void SaveTraits(string filename);	// Saves the traits to a file
+	void LoadTraits(std::string filename);	// Loads the traits from a file (adding them to the existing traits)
+	void SaveTraits(std::string filename);	// Saves the traits to a file
 	void AddTrait(sTrait* trait);
-	void RemoveTrait(string name);
-	sTrait* GetTrait(string name);
+	void RemoveTrait(std::string name);
+	sTrait* GetTrait(std::string name);
 	sTrait* GetTraitNum(int num);
 	int GetNumTraits() {return m_NumTraits;}
 
 private:
-	int m_NumTraits;
-	sTrait* m_ParentTrait;				// the first trait in the list
-	sTrait* m_LastTrait;				// the last trait in the list
+	int m_NumTraits = 0;
+	sTrait* m_ParentTrait = nullptr;				// the first trait in the list
+	sTrait* m_LastTrait = nullptr;				// the last trait in the list
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CTRAITS_H_INCLUDED_1509

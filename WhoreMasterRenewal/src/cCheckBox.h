@@ -20,34 +20,45 @@
 #define CCHECKBOX_H_INCLUDED_1527
 #pragma once
 
-#include "CSurface.h"
-#include "cInterfaceObject.h"
-#include "cInterfaceEvent.h"
-#include "cFont.h"
+#include "cInterfaceObject.h" // required inheritance
+#include "cFont.h" // required cFont
+
+#include <string>
+#include <memory>
+
+class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
 
 class CSurface;
 
 class cCheckBox : public cInterfaceObject
 {
 public:
-	cCheckBox() {m_Image = 0;m_Next=0;m_Border=m_Surface=0;m_StateOn=false;m_Disabled=false;}
-	~cCheckBox();
-
-	bool CreateCheckBox(int id, int x, int y, int width, int height, string text, int fontsize = 12);
+	cCheckBox();
+	virtual ~cCheckBox();
+    
+    cCheckBox( const cCheckBox& ) = delete;
+	cCheckBox& operator = ( const cCheckBox& ) = delete;
+    
+	bool CreateCheckBox(int id, int x, int y, int width, int height, std::string text, int fontsize = 12);
 	bool GetState() {return m_StateOn;}
 	void ButtonClicked(int x, int y);
 	void SetState(bool on) {m_StateOn = on;}
 
 	void Draw();
 
-	CSurface* m_Image;
-	SDL_Surface* m_Surface;
-	SDL_Surface* m_Border;
-	int m_ID;
-	bool m_StateOn;
-	cCheckBox* m_Next;	// next button on the window
-	cFont m_Font;
-	bool m_Disabled;
+	std::shared_ptr<CSurface> m_Image = nullptr;
+	SDL_Surface* m_Surface = nullptr;
+	SDL_Surface* m_Border = nullptr;
+	int m_ID = 0;
+	bool m_StateOn = false;
+	cCheckBox* m_Next = nullptr;	// next button on the window
+	cFont m_Font = {};
+	bool m_Disabled = false;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CCHECKBOX_H_INCLUDED_1527

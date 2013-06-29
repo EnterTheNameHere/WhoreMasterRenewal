@@ -17,15 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifdef LINUX
-#include "linux.h"
-#endif
-
-// #include <fstream>
-#include <cmath>
 #include "cPlayer.h"
 #include "XmlMisc.h"
 
+#include <cmath>
+
+namespace WhoreMasterRenewal
+{
 
 cPlayer::cPlayer()			// constructor
 {
@@ -34,8 +32,10 @@ cPlayer::cPlayer()			// constructor
 
 void cPlayer::SetToZero()
 {
-	m_CustomerFear = m_Disposition = m_Suspicion = 0;
-	m_WinGame=false;
+	m_CustomerFear = 0;
+	m_Disposition = 0;
+	m_Suspicion = 0;
+	m_WinGame = false;
 }
 
 
@@ -59,7 +59,7 @@ TiXmlElement* cPlayer::SavePlayerXML(TiXmlElement* pRoot)
 	return pPlayer;
 }
 
-void cPlayer::LoadPlayerLegacy(ifstream& ifs)
+void cPlayer::LoadPlayerLegacy(std::ifstream& ifs)
 {
 	int nTemp;
 
@@ -95,7 +95,7 @@ bool cPlayer::LoadPlayerXML(TiXmlHandle hPlayer)
 {
 	SetToZero();//init to 0
 	TiXmlElement* pPlayer = hPlayer.ToElement();
-	if (pPlayer == 0)
+	if (pPlayer == nullptr)
 	{
 		return false;
 	}
@@ -180,3 +180,5 @@ int cPlayer::customerfear(int n)
 	m_CustomerFear = Limit100(m_CustomerFear + n);
 	return m_CustomerFear;
 }
+
+} // namespace WhoreMasterRenewal

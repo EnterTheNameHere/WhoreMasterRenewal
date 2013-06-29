@@ -16,33 +16,47 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "cBrothel.h"
+
 #include "cScreenSlaveMarket.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "sFacilityList.h"
+#include "BrothelManager.hpp"
 #include "cGetStringScreenManager.h"
+#include "cMessageBox.h"
+#include "cInterfaceEvent.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "cTraits.h"
+#include "CLog.h"
+#include "cRng.h"
+#include "sConfig.h"
+#include "cTariff.h"
+#include "DirPath.h"
+#include "InterfaceProcesses.h"
+#include "InterfaceGlobals.h"
+#include "Girl.hpp"
 
-extern	bool			g_InitWin;
-extern	int			g_CurrBrothel;
-extern	cGold			g_Gold;
-extern	cBrothelManager		g_Brothels;
-extern	cWindowManager		g_WinManager;
-extern	cInterfaceEventManager	g_InterfaceEvents;
-extern sGirl* MarketSlaveGirls[8];
-extern int MarketSlaveGirlsDel[8];
-extern bool g_GenGirls;
-extern bool g_Cheats;
-
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
-
-extern void GetString();
-extern cInterfaceWindow g_GetString;
+namespace WhoreMasterRenewal
+{
 
 bool cScreenSlaveMarket::ids_set = false;
+
+cScreenSlaveMarket::cScreenSlaveMarket()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "slavemarket_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+
+cScreenSlaveMarket::~cScreenSlaveMarket()
+{
+    
+}
 
 void cScreenSlaveMarket::set_ids()
 {
@@ -74,10 +88,11 @@ void cScreenSlaveMarket::init()
 	DisableButton(buy_slave_id, true);
 	selection=-1;
 
-	g_LogFile.os() << "setting up slave market: genGirls = " << g_GenGirls << endl;
-
+	g_LogFile.ss() << "setting up slave market: genGirls = " << g_GenGirls << std::endl;
+    g_LogFile.ssend();
+    
 	ImageNum = -1;
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, cur_brothel_id);
 
@@ -96,7 +111,7 @@ void cScreenSlaveMarket::init()
  *			first of all, if there isn't a girl in this slot
  *			the rest doesn't matter much
  */
-			if(MarketSlaveGirls[i] == 0) {
+			if(MarketSlaveGirls[i] == nullptr) {
 				continue;
 			}
 /*
@@ -127,7 +142,7 @@ void cScreenSlaveMarket::init()
  *
  *		For now: is there a girl in the current slot?
  */
-		if(MarketSlaveGirls[i] != 0) {
+		if(MarketSlaveGirls[i] != nullptr) {
 /*
  *			Yes there is. Is it OK to delete her.
  *			If so, do it
@@ -138,7 +153,7 @@ void cScreenSlaveMarket::init()
 /*
  *			in any case, mark the slot as empty
  */
-			MarketSlaveGirls[i] = 0;
+			MarketSlaveGirls[i] = nullptr;
 		}
 
 /*
@@ -151,7 +166,7 @@ void cScreenSlaveMarket::init()
  *
  *		so we need a random one
  */
-		if(MarketSlaveGirls[i] == 0) {
+		if(MarketSlaveGirls[i] == nullptr) {
 			MarketSlaveGirls[i] = g_Girls.CreateRandomGirl(0, false, "", true);
 			MarketSlaveGirlsDel[i] = -1;
 		}
@@ -162,7 +177,7 @@ void cScreenSlaveMarket::init()
  *		in which case there's nothing more for this time round.
  *		(and arguably for the loop...)
  */
-		if(MarketSlaveGirls[i] == 0) {
+		if(MarketSlaveGirls[i] == nullptr) {
 			continue;
 		}
 /*
@@ -188,7 +203,7 @@ void cScreenSlaveMarket::init()
 	else
 		g_GenGirls = true;
 
-	string message = "Slave Market, ";
+    std::string message = "Slave Market, ";
 	message += g_Gold.sval();
 	message += " gold";
 	EditTextItem(message, header_id);
@@ -228,9 +243,10 @@ void cScreenSlaveMarket::init()
  *	something funny is going on, so splurge a
  *	diagnostic before exiting the func
  */
-	sGirl* g = MarketSlaveGirls[tmp];
-	if(g == 0) {
-		g_LogFile.os() << "error: null pointer for cursor entry in market" << endl;
+	Girl* g = MarketSlaveGirls[tmp];
+	if(g == nullptr) {
+		g_LogFile.ss() << "error: null pointer for cursor entry in market" << std::endl;
+		g_LogFile.ssend();
 		return;
 	}
 /*
@@ -281,7 +297,7 @@ void cScreenSlaveMarket::process()
 /*
  *	handle arrow keys
  */
-	//g_LogFile.os() << "... checking arrows" << endl;
+	//g_LogFile.os() << "... checking arrows" << std::endl;
  	if(check_keys())
 		return;
 
@@ -290,12 +306,12 @@ void cScreenSlaveMarket::process()
  */
 	init();
 
-	//g_LogFile.os() << "Slave Market called" << endl;
+	//g_LogFile.os() << "Slave Market called" << std::endl;
 
 /*
  *	check to see if there's a button event needing handling
  */
-	//g_LogFile.os() << "... checking buttons" << endl;
+	//g_LogFile.os() << "... checking buttons" << std::endl;
 	check_events();
 
 /*
@@ -318,14 +334,15 @@ void cScreenSlaveMarket::process()
 	if(index == -1) {
 		return;
 	}
-	sGirl *girl;
+	Girl *girl;
 	girl = MarketSlaveGirls[index];
 	if(!girl) {
-		g_LogFile.os() << "... no girl at index "
+		g_LogFile.ss() << "... no girl at index "
 		               << index
 			       << "- returning "
-			       << endl
+			       << std::endl
 		;
+		g_LogFile.ssend();
 		return;
 	}
 }
@@ -353,7 +370,7 @@ void cScreenSlaveMarket::generate_unique_girl(int i, bool &unique)
 /*
  *	try and get a struct for the girl in question
  */
- 	sGirl *gpt = g_Girls.GetGirl(g_Girls.GetSlaveGirl(g));
+ 	Girl *gpt = g_Girls.GetGirl(g_Girls.GetSlaveGirl(g));
 /*
  *	if we can't, we go home
  */
@@ -411,7 +428,7 @@ bool cScreenSlaveMarket::change_selected_girl()
  *	if the player selected an empty slot
  *	make that into "nothing selected" and return
  */
-	if(MarketSlaveGirls[selection] == 0)
+	if(MarketSlaveGirls[selection] == nullptr)
 		selection = -1;
 
 /*
@@ -433,7 +450,7 @@ bool cScreenSlaveMarket::change_selected_girl()
  *
  *	if we can't find the pointer. log an error and go home
  */
- 	sGirl *girl = MarketSlaveGirls[selection];
+ 	Girl *girl = MarketSlaveGirls[selection];
 	if(!girl) {
 		g_LogFile.ss()
 			<< "Warning: cScreenSlaveMarket::change_selected_girl"
@@ -442,7 +459,7 @@ bool cScreenSlaveMarket::change_selected_girl()
 		g_LogFile.ssend();
 		return true;
 	}
-	string detail;
+    std::string detail;
 
 	if(DetailLevel == 0)
 		detail = g_Girls.GetDetailsString(girl,true);
@@ -493,7 +510,7 @@ bool cScreenSlaveMarket::change_selected_girl()
  *	except that g_Girls.GetImageSurface sets the image number.
  *	I had to make image_num() supply a reference so it would compile
  */
-// 	g_LogFile.os() << "... setting image: " << ImageNum << endl;
+// 	g_LogFile.os() << "... setting image: " << ImageNum << std::endl;
 
 	SetImage(slave_image_id, g_Girls.GetImageSurface(girl, IMGTYPE_PROFILE, true, ImageNum));
 	if(g_Girls.IsAnimatedSurface(girl, IMGTYPE_PROFILE, ImageNum))
@@ -511,7 +528,7 @@ bool cScreenSlaveMarket::change_selected_girl()
 bool cScreenSlaveMarket::check_events()
 {
 	cTariff tariff;
-	sGirl *girl = MarketSlaveGirls[selection];
+	Girl *girl = MarketSlaveGirls[selection];
 /*
  *	no events means we can go home
  */
@@ -523,7 +540,7 @@ bool cScreenSlaveMarket::check_events()
  *	and we're done
  */
 	if(g_InterfaceEvents.CheckButton(back_id)) {
-		girl = 0;
+		girl = nullptr;
 		g_InitWin = true;
 		g_WinManager.Pop();
 		return true;
@@ -537,44 +554,44 @@ bool cScreenSlaveMarket::check_events()
 		){
 			girl = MarketSlaveGirls[selection];
 			int cost = tariff.slave_buy_price(girl);
-			cout << "Selection = " << selection
+			g_LogFile.ss() << "Selection = " << selection
 			     << ", girl = " << girl->m_Realname
-			     << endl
-			;
+			     << std::endl;
+            g_LogFile.ssend();
 /*
  *			can the player afford this particular playmate?
  */
 			if(g_Gold.slave_cost(cost) == false) {
-				string text = "You don't have enough money to purchase ";
+				std::string text = "You don't have enough money to purchase ";
 				text += girl->m_Realname;
 				g_MessageQue.AddToQue(text, 0);
 				break;
 			}
 
-			sBrothel* brothel = g_Brothels.GetBrothel(g_CurrBrothel);
+			Brothel* brothel = g_Brothels.GetBrothel(g_CurrBrothel);
 			if(g_Girls.GetRebelValue(girl, false) >= 35)
 			{
-				string text = girl->m_Realname;
+			    std::string text = girl->m_Realname;
 				text += " has been sent to your dungeon, as she is rebellious and poorly trained.";
 				g_MessageQue.AddToQue(text, 0);
 				g_Brothels.GetDungeon()->AddGirl(girl, DUNGEON_NEWSLAVE);
 			}
 			else if((brothel->m_NumRooms - brothel->m_NumGirls) == 0)
 			{
-				string text = girl->m_Realname;
+			    std::string text = girl->m_Realname;
 				text += " has been sent to your dungeon, since your current brothel is full.";
 				g_MessageQue.AddToQue(text, 0);
 				g_Brothels.GetDungeon()->AddGirl(girl, DUNGEON_NEWSLAVE);
 			}
 			else
 			{
-				string text = girl->m_Realname;
+			    std::string text = girl->m_Realname;
 				text += " has been sent to your current brothel.";
 				g_MessageQue.AddToQue(text, 0);
 				g_Brothels.AddGirl(g_CurrBrothel, girl);
 			}
 			EditTextItem("", details_id);
-			MarketSlaveGirls[selection] = 0;
+			MarketSlaveGirls[selection] = nullptr;
 		}
 		selection = -1;
 		g_InitWin = true;
@@ -609,3 +626,15 @@ bool cScreenSlaveMarket::check_events()
 	return false;
 }
 
+int cScreenSlaveMarket::multi_slave_first()
+{
+    sel_pos = 0;
+    return GetNextSelectedItemFromList(slave_list_id, 0, sel_pos);
+}
+
+int cScreenSlaveMarket::multi_slave_next()
+{
+    return GetNextSelectedItemFromList(slave_list_id, sel_pos+1, sel_pos);
+}
+
+} // namespace WhoreMasterRenewal

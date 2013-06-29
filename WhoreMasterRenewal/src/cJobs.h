@@ -22,109 +22,46 @@
 
 #include <string>
 #include <vector>
-using namespace std;
 
-struct sGirl;
-struct sBrothel;
+namespace WhoreMasterRenewal
+{
+
+class Girl;
+class Brothel;
 struct sGang;
 
 typedef unsigned int u_int;
 
-struct sFilm
-{
-	//int total_girls;
-	//int total_cost;
-	float quality_multiplyer;
-	vector<int> scene_quality;
-	char time;
-	int final_quality;
-	bool sex_acts_flags[5];
-	int total_customers;
-};
-
 struct sJobs
 {
-	string m_Name;
-	bool m_FreeGirlAble;
-	bool m_SlaveAble;
-	short m_MinPositions;
-	short m_MaxPositions;
-	// this looked like a comment that lost its // -- doc
-	//to much work atm
-	char m_Upkeep;
-	char m_GirlPay;
-	int m_ActionID;
-	string m_LikeWork;
-	string m_HateWork;
-	//string m_BrothelStatToUpdate;
-	int m_DependantSkill;
-	sJobs(void){}
-	void setup(
-		string name,
-		int min=0, int max=-1,
-		bool slave=true,
-		bool free=true,
-		char girlpay=0,
-		char up=0,
-		int id=0,
-		string like="",
-		string hate="",
-		//string brothel_stat="",
-		int skill=0
-	)
-	{
-		m_Name=name;
-		m_LikeWork=like;
-		m_HateWork=hate;
-		//m_BrothelStatToUpdate=brothel_stat;
-		m_DependantSkill=skill;
-		m_FreeGirlAble=free;
-		m_SlaveAble=slave;
-		m_MinPositions=min;
-		m_MaxPositions=max;
-		m_Upkeep=up;
-		m_GirlPay=girlpay;
-		m_ActionID=id;
-	}
-	~sJobs(void);
+    sJobs();
+	~sJobs();
+	
+	void setup( std::string name,
+                int min = 0,
+                int max = -1,
+                bool slave = true,
+                bool free = true,
+                char girlpay = 0,
+                char up = 0,
+                int id = 0,
+                std::string like = "",
+                std::string hate = "",
+                int skill = 0 );
+    
+    std::string m_Name = "Default sJobs::m_Name";
+	bool m_FreeGirlAble = false;
+	bool m_SlaveAble = false;
+	short m_MinPositions = 0;
+	short m_MaxPositions = 0;
+	char m_Upkeep = 0;
+	char m_GirlPay = 0;
+	int m_ActionID = 0;
+    std::string m_LikeWork = "Default sJobs::m_LikeWork";
+    std::string m_HateWork = "Default sJobs::m_HateWork";
+	int m_DependantSkill = 0;
 };
-//mainly a list of functions
-class cJobManager
-{
-	vector<sFilm *> film_list;
-public:
-	static vector<sJobs> job_list;
-	void setup_job_list();
-	bool generic_job(sGirl * girl,int job_num,sBrothel *,string &,int);
-	void WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight);
-	void WorkTraining(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkBar(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkHall(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkShow(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkCleaning(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkMatron(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkSecurity(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkAdvertising(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	bool WorkTorturer(sGirl* girl, sBrothel* brothel, int DayNight, string& summary);
-	void customer_rape(sGirl*);
-	bool gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_night);
-	bool girl_fights_rape(sGirl*, int);
-	int guard_coverage(vector<sGang*> *v=0);
-	bool work_related_violence(sGirl*, int, bool);
-	bool explore_catacombs(sGirl *);
-	bool beast_capture(sGirl * girl,sBrothel * brothel,string& summary,int);
-	bool work_show(sGirl * girl,sBrothel * brothel,string& summary,char job_id,int DayNight);
-	void update_film(sBrothel *);
-	long make_money_films();
 
-	//helpers
-	string get_job_name(int id){return job_list[id].m_Name;}
-	vector<sGirl*> girls_on_job(sBrothel *brothel, u_int job_wanted, int day_or_night);
-	sGirl **get_training_set(vector<sGirl*> &v);
-	void do_training(sBrothel* brothel, int DayNight);
-	void do_training_set(sGirl **girls, int day_night);
-	void do_solo_training(sGirl *girl, int day_night);
-};
+} // namespace WhoreMasterRenewal
 
 #endif // CJOBS_H_INCLUDED_1524

@@ -1,24 +1,23 @@
 
-
-#include "main.h"
-#include "cBrothel.h"
 #include "cScreenItemManagement.h"
+#include "Helper.hpp"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
+#include "BrothelManager.hpp"
 #include "cGold.h"
 #include "InterfaceGlobals.h"
 #include "InterfaceProcesses.h"
 #include "sConfig.h"
+#include "cMessageBox.h"
+#include "cInterfaceEvent.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "cInventory.h"
+#include "DirPath.h"
+#include "Girl.hpp"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cInventory g_InvManager;
-extern cWindowManager g_WinManager;
-extern bool g_AllTogle;
-extern string g_ReturnText;
-
-extern sGirl *selected_girl;
+namespace WhoreMasterRenewal
+{
 
 bool cScreenItemManagement::ids_set = false;
 
@@ -32,10 +31,25 @@ static int leftItem = -2;
 static int rightItem = -2;
 static int sel_next_l = -1;
 static int sel_next_r = -1;
-static string sel_name_l = "";
-static string sel_name_r = "";
+static std::string sel_name_l = "";
+static std::string sel_name_r = "";
 
 static SDL_Color* RarityColor[7];
+
+cScreenItemManagement::cScreenItemManagement()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "itemmanagement_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+
+cScreenItemManagement::~cScreenItemManagement()
+{
+    
+}
 
 
 void cScreenItemManagement::set_ids()
@@ -74,7 +88,7 @@ void cScreenItemManagement::init()
 
 ////////////////////
 
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, curbrothel_id);
 
@@ -112,10 +126,10 @@ void cScreenItemManagement::init()
 
 	// and girls from current brothel to list
 	int i=2;
-	sGirl* temp = g_Brothels.GetGirl(g_CurrBrothel, 0);
+	Girl* temp = g_Brothels.GetGirl(g_CurrBrothel, 0);
 	while(temp)
 	{
-		if(temp == 0)
+		if(temp == nullptr)
 			break;
 		if(g_AllTogle && selected_girl == temp)
 			rightOwner = i;
@@ -131,7 +145,7 @@ void cScreenItemManagement::init()
 	sDungeonGirl* temp2 = g_Brothels.GetDungeon()->GetGirl(0);
 	while(temp2)
 	{
-		if(temp2 == 0)
+		if(temp2 == nullptr)
 			break;
 		if(g_AllTogle && selected_girl == temp2->m_Girl)
 			rightOwner = i;
@@ -214,7 +228,7 @@ void cScreenItemManagement::check_events()
 
 		if(selection != -1)
 		{
-			string temp = "Cost: ";
+		    std::string temp = "Cost: ";
 			if(leftOwner == 0)
 			{
 				temp = "Value: ";
@@ -247,7 +261,7 @@ void cScreenItemManagement::check_events()
 			}
 			else
 			{
-				sGirl* targetGirl = 0;
+				Girl* targetGirl = nullptr;
 				if(leftOwner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 				else // dungeon girl
@@ -286,7 +300,7 @@ void cScreenItemManagement::check_events()
 
 		if(selection != -1)
 		{
-			string temp = "Cost: ";
+		    std::string temp = "Cost: ";
 			if(rightOwner == 0)
 			{
 				temp = "Value: ";
@@ -319,7 +333,7 @@ void cScreenItemManagement::check_events()
 			}
 			else
 			{
-				sGirl* targetGirl = 0;
+				Girl* targetGirl = nullptr;
 				if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 					targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 				else // dungeon girl
@@ -359,7 +373,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(equip_l_id))
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = nullptr;
 		if(leftOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 		else // dungeon girl
@@ -377,7 +391,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(unequip_l_id))
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = nullptr;
 		if(leftOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, leftOwner-2);
 		else // dungeon girl
@@ -395,7 +409,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(equip_r_id))
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = nullptr;
 		if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 		else // dungeon girl
@@ -414,7 +428,7 @@ void cScreenItemManagement::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(unequip_r_id))
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = nullptr;
 		if(rightOwner <= (g_Brothels.GetNumGirls(g_CurrBrothel)+1))	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, rightOwner-2);
 		else // dungeon girl
@@ -436,7 +450,7 @@ void cScreenItemManagement::check_events()
 void cScreenItemManagement::refresh_item_list(Side which_list)
 {
 	// good enough place as any to update the cost shown on the screen
-	string temp = "PLAYER GOLD: ";
+    std::string temp = "PLAYER GOLD: ";
 	temp += g_Gold.sval();
 	EditTextItem(temp, gold_id);
 
@@ -444,7 +458,7 @@ void cScreenItemManagement::refresh_item_list(Side which_list)
 //	rightOwner = GetSelectedItemFromList(owners_r_id);
 
 	int item_list, owner_list, *sel_pos, *owner, *other_owner;
-	string *sel_name;
+    std::string *sel_name;
 	if(which_list == Left)
 	{
 		item_list = items_l_id;
@@ -479,11 +493,11 @@ void cScreenItemManagement::refresh_item_list(Side which_list)
 				int ItemColor = -1;
 				if(g_Brothels.m_Inventory[i])
 				{
-					string it = g_Brothels.m_Inventory[i]->m_Name;
+				    std::string it = g_Brothels.m_Inventory[i]->m_Name;
 					if(*sel_name == it)  // if we just transferred this item here, might want to select it
 						*sel_pos = i;
 					it += " (";
-					it += toString(g_Brothels.m_NumItem[i]);
+					it += toString( static_cast<int>(g_Brothels.m_NumItem[i]) );
 					it += ")";
 					int item_type = g_Brothels.m_Inventory[i]->m_Type;
 					if(		(filter == 0)  // unfiltered?
@@ -526,7 +540,7 @@ void cScreenItemManagement::refresh_item_list(Side which_list)
 		}
 		else	// girl items
 		{
-			sGirl* targetGirl = 0;
+			Girl* targetGirl = nullptr;
 			if(*owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				targetGirl = g_Brothels.GetGirl(g_CurrBrothel, *owner-2);
 			else // dungeon girl
@@ -594,7 +608,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 		return;
 
 	int source_list, source_owner_list, source_owner, target_owner_list, target_owner;
-	string *item_name;
+    std::string *item_name;
 	if(transfer_from == Left)
 	{
 		source_list = items_l_id;
@@ -618,7 +632,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 	rightItem = GetLastSelectedItemFromList(items_r_id);
 	if(target_owner == 1)	// target is shop
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = nullptr;
 		if(source_owner > 1)	// taking from a girl and selling to shop
 		{
 			if(source_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
@@ -649,7 +663,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 //				*item_name = targetGirl->m_Inventory[selection]->m_Name;  // note name of item, for selection tracking in target list
 
 				// remove the item
-				targetGirl->m_Inventory[selection] = 0;
+				targetGirl->m_Inventory[selection] = nullptr;
 				targetGirl->m_EquipedItems[selection] = 0;
 				targetGirl->m_NumInventory--;
 
@@ -671,7 +685,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 				g_Brothels.m_NumItem[selection]--;
 				if(g_Brothels.m_NumItem[selection] == 0)
 				{
-					g_Brothels.m_Inventory[selection] = 0;
+					g_Brothels.m_Inventory[selection] = nullptr;
 					g_Brothels.m_EquipedItems[selection] = 0;
 					g_Brothels.m_NumInventory--;
 				}
@@ -717,7 +731,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 		else	// taking from girl
 		{
 			// take items from girl and give to player
-			sGirl* targetGirl = 0;
+			Girl* targetGirl = nullptr;
 			if(source_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				targetGirl = g_Brothels.GetGirl(g_CurrBrothel, GetSelectedItemFromList(source_owner_list)-2);
 			else	// dungeon girl
@@ -747,7 +761,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 				*item_name = targetGirl->m_Inventory[selection]->m_Name;  // note name of item, for selection tracking in target list
 
 				// remove the item from the girl
-				targetGirl->m_Inventory[selection] = 0;
+				targetGirl->m_Inventory[selection] = nullptr;
 				targetGirl->m_EquipedItems[selection] = 0;
 				targetGirl->m_NumInventory--;
 
@@ -757,7 +771,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 	}
 	else	// target is girl
 	{
-		sGirl* targetGirl = 0;
+		Girl* targetGirl = nullptr;
 		if(target_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 			targetGirl = g_Brothels.GetGirl(g_CurrBrothel, GetSelectedItemFromList(target_owner_list)-2);
 		else // dungeon girl
@@ -806,7 +820,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 				g_Brothels.m_NumItem[selection]--;
 				if(g_Brothels.m_NumItem[selection] == 0)
 				{
-					g_Brothels.m_Inventory[selection] = 0;
+					g_Brothels.m_Inventory[selection] = nullptr;
 					g_Brothels.m_EquipedItems[selection] = 0;
 					g_Brothels.m_NumInventory--;
 				}
@@ -870,7 +884,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 		}
 		else	// player forcing a girl to give to another girl
 		{
-			sGirl* fromGirl = 0;
+			Girl* fromGirl = nullptr;
 			if(source_owner <= g_Brothels.GetNumGirls(g_CurrBrothel)+1)	// brothel girl
 				fromGirl = g_Brothels.GetGirl(g_CurrBrothel, GetSelectedItemFromList(source_owner_list)-2);
 			else // dungeon girl
@@ -923,7 +937,7 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 				*item_name = fromGirl->m_Inventory[selection]->m_Name;  // note name of item, for selection tracking in target list
 
 				// remove the item from the girl
-				fromGirl->m_Inventory[selection] = 0;
+				fromGirl->m_Inventory[selection] = nullptr;
 				fromGirl->m_EquipedItems[selection] = 0;
 				fromGirl->m_NumInventory--;
 
@@ -943,3 +957,27 @@ void cScreenItemManagement::attempt_transfer(Side transfer_from)
 	SetSelectedItemInList(source_owner_list, source_owner);
 	SetSelectedItemInList(target_owner_list, target_owner);
 }
+
+int cScreenItemManagement::multi_left_first()
+{
+    sel_pos_l = 0;
+    return GetNextSelectedItemFromList(items_l_id, 0, sel_pos_l);
+}
+
+int cScreenItemManagement::multi_left_next()
+{
+    return GetNextSelectedItemFromList(items_l_id, sel_pos_l+1, sel_pos_l);
+}
+
+int cScreenItemManagement::multi_right_first()
+{
+    sel_pos_r = 0;
+    return GetNextSelectedItemFromList(items_r_id, 0, sel_pos_r);
+}
+
+int cScreenItemManagement::multi_right_next()
+{
+    return GetNextSelectedItemFromList(items_r_id, sel_pos_r+1, sel_pos_r);
+}
+
+} // namespace WhoreMasterRenewal

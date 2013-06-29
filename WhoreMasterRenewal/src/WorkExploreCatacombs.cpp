@@ -16,31 +16,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
+#include "Girl.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
+#include "BrothelManager.hpp"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGold g_Gold;
+#include <sstream>
 
-bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+namespace WhoreMasterRenewal
+{
+
+bool cJobManager::WorkExploreCatacombs(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
 {
 	int num_monsters = 0;
 	int type_monster_girls = 0;
@@ -50,7 +50,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 	long gold = 0;
 	int num_items = 0;
 	bool raped = false;
-	string message = "";
+    std::string message = "";
 
 	//standard job boilerpate
 	if(Preprocessing(ACTION_COMBAT, girl, brothel, DayNight, summary, message))
@@ -61,9 +61,9 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 
 	// determine if they fight any monsters
 	
-	if ((g_Dice%100)+1 > max(girl->combat(), girl->magic()))	// WD:	Allow best of Combat or Magic skill 
+	if ((g_Dice%100)+1 > std::max(girl->combat(), girl->magic()))	// WD:	Allow best of Combat or Magic skill 
 	{
-		stringstream noplay;
+		std::stringstream noplay;
 		noplay << "Nobody wants to play with you today in the catacombs :(";
 		girl->m_Events.AddMessage(noplay.str(), IMGTYPE_PROFILE, DayNight);
 		//return true;		// WD: not a refusal
@@ -77,14 +77,14 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 	{
 		int type = ((g_Dice%2)+1);	// 1 is beast 2 is monster girl
 
-		sGirl* tempgirl = g_Girls.CreateRandomGirl(18, false, false, false, true, false);
+		Girl* tempgirl = g_Girls.CreateRandomGirl(18, false, false, false, true, false);
 
 		Uint8 fight_outcome = g_Girls.girl_fights_girl(girl, tempgirl);
 		if (fight_outcome == 1)  // If she won
 		{
 			if(type == 2)  // Monster girl type
 			{
-				sGirl* ugirl = 0;
+				Girl* ugirl = nullptr;
 				bool unique = false;
 				if((g_Dice%100)+1 < 30)	// chance of getting unique girl
 					unique = true;
@@ -92,7 +92,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 				if(unique)  // Unique monster girl type
 				{
 					ugirl = g_Girls.GetRandomGirl(false, true);
-					if(ugirl == 0)
+					if(ugirl == nullptr)
 						unique = false;
 				}
 
@@ -114,7 +114,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 					// MYR: Commented out for local testing only. 
 
 					ugirl = g_Girls.CreateRandomGirl(0, false, false, true, true);
-					if(ugirl != 0)  // make sure a girl was returned
+					if(ugirl != nullptr)  // make sure a girl was returned
 					{
 						g_Brothels.GetDungeon()->AddGirl(ugirl, DUNGEON_GIRLCAPTURED);
 						type_monster_girls++;
@@ -133,7 +133,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 
 			if(tempgirl)
 				delete tempgirl;
-			tempgirl = 0;
+			tempgirl = nullptr;
 			break;
 		}
 		else if (fight_outcome == 0)  // it was a draw
@@ -143,11 +143,11 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 
 		if(tempgirl)
 			delete tempgirl;
-		tempgirl = 0;
+		tempgirl = nullptr;
 	} // # of monsters to fight loop
 
 
-	stringstream ss;
+	std::stringstream ss;
 	if (raped)
 	{
 		int NumMon = g_Dice%6 + 1;
@@ -183,7 +183,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 
 	int ItemPlace = 0;  // Place in 0..299
 
-	string item_list = "";
+    std::string item_list = "";
 	for(int i = num_monsters; i > 0; i--)
 	{
 		gold += (g_Dice%100) + 25;
@@ -210,7 +210,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 			{
 				for(int j=0; j<MAXNUM_INVENTORY; j++)
 				{
-					if(g_Brothels.m_Inventory[j] == 0) // Empty slot
+					if(g_Brothels.m_Inventory[j] == nullptr) // Empty slot
 					{
 						item_list += ((item_list=="") ? "" : ", ") + TempItem->m_Name;
 						g_Brothels.m_Inventory[j] = TempItem;
@@ -259,7 +259,7 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 		libido += 2;
 
 	girl->m_Pay += gold;
-	g_Girls.UpdateStat(girl, STAT_EXP, 15);
+	g_Girls.UpdateStat(girl, STAT_EXP, xp);
 	g_Girls.UpdateSkill(girl, SKILL_COMBAT, skill);
 	g_Girls.UpdateSkill(girl, SKILL_MAGIC, skill);
 	g_Girls.UpdateTempStat(girl, STAT_LIBIDO, libido);
@@ -272,3 +272,5 @@ bool cJobManager::WorkExploreCatacombs(sGirl* girl, sBrothel* brothel, int DayNi
 	
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

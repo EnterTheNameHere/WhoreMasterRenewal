@@ -16,30 +16,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "cBrothel.h"
+
 #include "cScreenHouse.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
+#include "BrothelManager.hpp"
 #include "cGangs.h"
+#include "GangManager.hpp"
+#include "cInterfaceEvent.h"
+#include "CLog.h"
+#include "DirPath.h"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
-extern cInterfaceEventManager g_InterfaceEvents;
-extern long g_IntReturn;
-extern cGangManager g_Gangs;
+namespace WhoreMasterRenewal
+{
 
-extern void GetString();
-extern cInterfaceWindow g_GetString;
-extern void GetInt();
-extern cInterfaceWindow g_GetInt;
-
-
-static string fmt_objective(stringstream &ss, string desc, int limit, int sofar=-1)
+static std::string fmt_objective(std::stringstream &ss, std::string desc, int limit, int sofar=-1)
 {
 	ss << desc;
 	if(limit != -1) {
@@ -54,6 +48,20 @@ static string fmt_objective(stringstream &ss, string desc, int limit, int sofar=
 
 
 bool cScreenHouse::ids_set = false;
+
+cScreenHouse::cScreenHouse() : cInterfaceWindowXML()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "house_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+cScreenHouse::~cScreenHouse()
+{
+    
+}
 
 void cScreenHouse::set_ids()
 {
@@ -71,12 +79,12 @@ void cScreenHouse::init()
 	Focused();
 	g_InitWin = false;
 
-	locale syslocale("");
-	stringstream ss;
+	std::locale syslocale("");
+	std::stringstream ss;
 	ss.imbue(syslocale);
 
 	ss << "CURRENT OBJECTIVE: ";
-	sObjective* obj = g_Brothels.GetObjective();
+	Objective* obj = g_Brothels.GetObjective();
 	if(obj)
 	{
 		switch(obj->m_Objective) {
@@ -149,7 +157,7 @@ void cScreenHouse::init()
 	;
 
 	EditTextItem(ss.str(), details_id);
-	obj = 0;
+	obj = nullptr;
 }
 
 void cScreenHouse::process()
@@ -191,3 +199,5 @@ void cScreenHouse::check_events()
 	}
 
 }
+
+} // namespace WhoreMasterRenewal

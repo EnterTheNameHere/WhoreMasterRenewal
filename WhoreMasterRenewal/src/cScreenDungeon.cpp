@@ -16,40 +16,59 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <string>
-#include <sstream>
-#include <algorithm>
+
+#include "cScreenDungeon.h"
 #include "InterfaceIDs.h"
 #include "InterfaceGlobals.h"
-#include "cScreenDungeon.h"
+#include "InterfaceProcesses.h"
 #include "cScriptManager.h"
-#include "cBrothel.h"
-#include "main.h"
+#include "Brothel.hpp"
 #include "DirPath.h"
 #include "cTariff.h"
 #include "cGirlGangFight.h"
 #include "cGirlTorture.h"
+#include "cWindowManager.h"
+#include "cMessageBox.h"
+#include "cListBox.h"
+#include "cInterfaceEvent.h"
+#include "BrothelManager.hpp"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "cRng.h"
+#include "DirPath.h"
+#include "CLog.h"
+#include "Girl.hpp"
 
-extern sInterfaceIDs g_interfaceid;
-extern	bool	g_InitWin;
-extern	cRng	g_Dice;
-extern	int		g_TalkCount;
-extern	bool	g_Cheats;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
-extern	bool	eventrunning;
+#include <string>
+#include <sstream>
+#include <algorithm>
+
+namespace WhoreMasterRenewal
+{
 
 static cPlayer* player = g_Brothels.GetPlayer();
 static cDungeon* dungeon = g_Brothels.GetDungeon();
 static cTariff tariff;
 
-extern sGirl *selected_girl;
-extern vector<int> cycle_girls;
-extern int cycle_pos;
-
-static vector<int> select_girls;
+static std::vector<int> select_girls;
 
 bool cScreenDungeon::ids_set = false;
+
+
+cScreenDungeon::cScreenDungeon()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "dungeon_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+
+cScreenDungeon::~cScreenDungeon()
+{
+    
+}
 
 
 void cScreenDungeon::set_ids()
@@ -81,24 +100,24 @@ void cScreenDungeon::init()
 	ClearListBox(girllist_id);
 
 	//get a list of all the column names, so we can find which data goes in that column
-	vector<string> columnNames;
+	std::vector<std::string> columnNames;
 	m_ListBoxes[girllist_id]->GetColumnNames(columnNames);
 	int numColumns = columnNames.size();
 
 /*
- *	Display the text: let's use a stringstream for this
+ *	Display the text: let's use a std::stringstream for this
  */
-	stringstream ss;
+	std::stringstream ss;
 	ss << "Your Dungeon where " << dungeon->GetNumDied() << " people have died.";
 	EditTextItem(ss.str(), header_id);
 	// Fill the list box
-	string* Data = new string[numColumns];
+	std::string* Data = new std::string[numColumns];
 	for(int i = 0; i < dungeon->GetNumGirls(); i++)	// add girls
 	{
 /*
  *		get the i-th girl
  */
-		sGirl *girl = dungeon->GetGirl(i)->m_Girl;
+		Girl *girl = dungeon->GetGirl(i)->m_Girl;
 /*
  *		if selected_girl is this girl, update selection
  */
@@ -135,7 +154,8 @@ void cScreenDungeon::init()
 	DisableButton(brandslave_id);
 	DisableButton(torture_id);
 	DisableButton(sellslave_id);
-	cout << "::init: disabling torture" << endl;
+	g_LogFile.ss() << "::init: disabling torture" << std::endl;
+	g_LogFile.ssend();
 	DisableButton(viewdetails_id);
 /*
  *	only enable "release all girls" if there are girls to release
@@ -172,14 +192,15 @@ void cScreenDungeon::selection_change()
  *	and we're done
  */
 	if(selection == -1) {
-		selected_girl = 0;
+		selected_girl = nullptr;
 		DisableButton(brandslave_id);
 		DisableButton(allowfood_id);
 		DisableButton(stopfood_id);
 		DisableButton(interact_id);
 		DisableButton(release_id);
 		DisableButton(torture_id);
-		cout << "selection = " << selection << " (-1) - disabling torture" << endl;
+		g_LogFile.ss() << "selection = " << selection << " (-1) - disabling torture" << std::endl;
+		g_LogFile.ssend();
 		DisableButton(viewdetails_id);
 		DisableButton(sellslave_id);
 		selection = -1;		// can this have changed?
@@ -190,7 +211,8 @@ void cScreenDungeon::selection_change()
  */
 	DisableButton(sellslave_id);
 	DisableButton(torture_id, !torture_possible());
-	cout << "selection = " << selection << " - enabling torture" << endl;
+	g_LogFile.ss() << "selection = " << selection << " - enabling torture" << std::endl;
+	g_LogFile.ssend();
 	DisableButton(interact_id, g_TalkCount == 0);
 	EnableButton(release_id);
 	DisableButton(brandslave_id);
@@ -212,7 +234,7 @@ void cScreenDungeon::selection_change()
  */
 	int num = selection;
 	sDungeonGirl* dgirl = dungeon->GetGirl(num);
-	sGirl * girl = dgirl->m_Girl;
+	Girl * girl = dgirl->m_Girl;
 /*
  *	again, we're just enabling and disabling buttons
  */
@@ -253,7 +275,7 @@ int cScreenDungeon::view_girl()
 /*
  *	if we can't find the girl, there's nothing we can do
  */
-	sGirl *girl = dungeon->GetGirl(selection)->m_Girl;
+	Girl *girl = dungeon->GetGirl(selection)->m_Girl;
 	if(!girl) {
 		return Continue;
 	}
@@ -297,7 +319,7 @@ int cScreenDungeon::enslave_customer(int girls_removed, int custs_removed)
 /*
  *	format the message
  */
-	stringstream ss;
+	std::stringstream ss;
 	ss <<	"You force the customer into slavery lawfully "
 	   <<	"for committing a crime against your business "
 	   <<	"and sell them for "
@@ -323,7 +345,7 @@ int cScreenDungeon::enslave_customer(int girls_removed, int custs_removed)
 	return 0;
 }
 
-void cScreenDungeon::set_slave_stats(sGirl *girl)
+void cScreenDungeon::set_slave_stats(Girl *girl)
 {
 	cConfig cfg;
 	girl->set_slave();
@@ -337,7 +359,7 @@ void cScreenDungeon::set_slave_stats(sGirl *girl)
 
 int cScreenDungeon::enslave()
 {
-	string message = "";
+    std::string message = "";
 	int numCustsRemoved = 0;
 	int numGirlsRemoved = 0;
 	int pos = 0, deadcount = 0;
@@ -365,7 +387,7 @@ int cScreenDungeon::enslave()
 		sDungeonGirl* dgirl = dungeon->GetGirl(
 			selection - numGirlsRemoved
 		);
-		sGirl *girl = dgirl->m_Girl;
+		Girl *girl = dgirl->m_Girl;
 /*
  *		nothing to do if she's _already_ enslaved
  */
@@ -504,7 +526,7 @@ void cScreenDungeon::release_all_customers()
 void cScreenDungeon::sell_slaves()
 {
 	int paid = 0, count = 0, deadcount = 0;
-	vector<int> girl_array;
+	std::vector<int> girl_array;
 	get_selected_girls(&girl_array);  // get and sort array of girls/customers
 
 	for(int i = girl_array.size(); i --> 0; )
@@ -518,10 +540,10 @@ void cScreenDungeon::sell_slaves()
 /*
  *		get the index of the girl,
  *		get the DungeonGirl entry
- *		and get the sGirl
+ *		and get the Girl
  */
 		sDungeonGirl* dgirl = dungeon->GetGirl(selection);
-		sGirl *girl = dgirl->m_Girl;
+		Girl *girl = dgirl->m_Girl;
 /*
  *		if she's not a slave, the player isn't allowed to sell her
  */
@@ -556,7 +578,7 @@ void cScreenDungeon::sell_slaves()
 		else
 		{  // random girls simply get removed from the game
 			delete girl;
-			girl = 0;
+			girl = nullptr;
 		}
 	}
 
@@ -566,7 +588,7 @@ void cScreenDungeon::sell_slaves()
 	if(count <= 0)
 		return;
 
-	stringstream ss;
+	std::stringstream ss;
 	ss.str("");
 	ss << "You sold ";
 	if(count > 1)
@@ -581,7 +603,7 @@ void cScreenDungeon::sell_slaves()
 
 void cScreenDungeon::release_all_girls()
 {
-	sBrothel *brothel = g_Brothels.GetBrothel(g_CurrBrothel);
+	Brothel *brothel = g_Brothels.GetBrothel(g_CurrBrothel);
 /*
  *	Is there room?
  */
@@ -602,7 +624,7 @@ void cScreenDungeon::release_all_girls()
  *		make sure there's room for another girl
  */
 		if(brothel->free_rooms() > 0) {
-			sGirl* girl = dungeon->RemoveGirl(dungeon->GetGirl(0));
+			Girl* girl = dungeon->RemoveGirl(dungeon->GetGirl(0));
 			g_Brothels.AddGirl(g_CurrBrothel, girl);
 			continue;
 		}
@@ -671,7 +693,7 @@ void cScreenDungeon::start_feeding()
 
 void cScreenDungeon::torture_customer(int girls_removed)
 {
-	string message = "Customer: ";
+    std::string message = "Customer: ";
 /*
  *	get the index number for the customer
  */
@@ -724,7 +746,7 @@ void cScreenDungeon::torture_customer(int girls_removed)
 }
 
 #if 0	// WD	Replaced by Doclox's cGirlTorture and cGirlGangFight code.
-bool cScreenDungeon::girl_fight_torture(sGirl *girl, string &message, bool &fight)
+bool cScreenDungeon::girl_fight_torture(Girl *girl, std::string &message, bool &fight)
 {
 	cGirlGangFight ggf(girl);
 
@@ -860,9 +882,9 @@ void cScreenDungeon::torture()
 void cScreenDungeon::release()
 {
 	cPlayer* player = g_Brothels.GetPlayer();
-	sBrothel *brothel = g_Brothels.GetBrothel(g_CurrBrothel);
+	Brothel *brothel = g_Brothels.GetBrothel(g_CurrBrothel);
 
-	vector<int> girl_array;
+	std::vector<int> girl_array;
 	get_selected_girls(&girl_array);  // get and sort array of girls/customers
 
 	for(int i = girl_array.size(); i --> 0; )
@@ -890,7 +912,7 @@ void cScreenDungeon::release()
 		int num = selection;
 		if((brothel->m_NumRooms - brothel->m_NumGirls) > 0)
 		{
-			sGirl* girl = dungeon->RemoveGirl(dungeon->GetGirl(num));
+			Girl* girl = dungeon->RemoveGirl(dungeon->GetGirl(num));
 			g_Brothels.AddGirl(g_CurrBrothel, girl);
 			continue;
 		}
@@ -947,7 +969,7 @@ void cScreenDungeon::talk()
 /*
  *	she's still alive. I guess we'll have to talk to her
  */
-	cTrigger* trig = 0;
+	cTrigger* trig = nullptr;
 /*
  *	is there a girl specific script for this interaction?
  */
@@ -1062,7 +1084,7 @@ int cScreenDungeon::process_events()
 
 void cScreenDungeon::process()
 {
-	static int selection = -1;
+	/*static int selection = -1; set but never used*/
 
 	// we need to make sure the ID variables are set
 	if(!ids_set)
@@ -1078,19 +1100,19 @@ void cScreenDungeon::process()
 
 	if(g_UpArrow)
 	{
-		selection = ArrowUpListBox(girllist_id);
+		/*selection = ArrowUpListBox(girllist_id); set but never used*/
 		g_UpArrow = false;
 		return;
 	}
 	else if(g_DownArrow)
 	{
-		selection = ArrowDownListBox(girllist_id);
+		/*selection = ArrowDownListBox(girllist_id); set but never used*/
 		g_DownArrow = false;
 		return;
 	}
 }
 
-void cScreenDungeon::get_selected_girls(vector<int> *girl_array)
+void cScreenDungeon::get_selected_girls(std::vector<int> *girl_array)
 {  // take passed vector and fill it with sorted list of girl/customer IDs
 	int pos = 0;
 	int GSelection = GetNextSelectedItemFromList(girllist_id, 0, pos);
@@ -1119,3 +1141,16 @@ void cScreenDungeon::store_selected_girls()
 			break;
 	}
 }
+
+int cScreenDungeon::multi_first()
+{
+    sel_pos = 0;
+    return GetNextSelectedItemFromList( girllist_id, 0, sel_pos );
+}
+
+int cScreenDungeon::multi_next()
+{
+    return GetNextSelectedItemFromList( girllist_id, sel_pos + 1, sel_pos );
+}
+
+} // namespace WhoreMasterRenewal

@@ -16,30 +16,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
+#include "Girl.hpp"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
 #include "cGangs.h"
+#include "BrothelManager.hpp"
 #include "cMessageBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
+#include <sstream>
 
-bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+namespace WhoreMasterRenewal
+{
+
+bool cJobManager::WorkFreetime(Girl* girl, Brothel* brothel, int DayNight, std::string& /*summary*/)
 {
 	//brothel->m_Filthiness++;
 	g_Girls.UpdateStat(girl, STAT_TIREDNESS, -20);
@@ -49,7 +50,7 @@ bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, str
 	g_Girls.UpdateTempStat(girl, STAT_LIBIDO, 5);
 	g_Girls.UpdateStat(girl, STAT_EXP, 1);   // Just because!
 
-	string message = "She rested and recovered some energy.";
+    std::string message = "She rested and recovered some energy.";
 
 	if(g_Dice%2 != 1)	// add inventory items since she is going shopping :D
 		return false;
@@ -82,13 +83,13 @@ bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, str
 	// 2. buy any items that catch her fancy
 	int numberToBuy = g_Dice%5;	// buy up to 10 things  MYR: Reduced to 5 to cut down on inventory clutter
 	int itemsBought = 0;
-	string buyList = "";
+    std::string buyList = "";
 
 	for(int i=0; i < numberToBuy && girl->m_NumInventory < 40; i++)
 	{
 		int item = g_InvManager.GetRandomShopItem();
 		int cost = g_InvManager.GetShopItem(item)->m_Cost;
-		string itemName = g_InvManager.GetShopItem(item)->m_Name;
+	    std::string itemName = g_InvManager.GetShopItem(item)->m_Name;
 
 		if(g_Girls.HasItem(girl, itemName) > -1)
 			continue;
@@ -98,7 +99,7 @@ bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, str
 		if(g_Dice.percent(g_InvManager.GetShopItem(item)->m_GirlBuyChance))
 		{
 			int chance = (g_Dice%100+1);
-			switch((int)g_InvManager.GetShopItem(item)->m_Type)
+			switch( static_cast<int>( g_InvManager.GetShopItem(item)->m_Type ) )
 			{
 				case INVRING:
 				{
@@ -221,7 +222,7 @@ bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, str
 				break;
 
 				default:
-                    g_LogFile.ss() << "switch ((int)g_InvManager.GetShopItem(item)->m_Type): unknown value \"" << ((int)g_InvManager.GetShopItem(item)->m_Type) << "\"\n" << __FILE__ << " " << __LINE__ << "\n";
+                    g_LogFile.ss() << "switch ((int)g_InvManager.GetShopItem(item)->m_Type): unknown value \"" << ( static_cast<int>( g_InvManager.GetShopItem(item)->m_Type ) ) << "\"\n" << __FILE__ << " " << __LINE__ << "\n";
 			} // Switch
 		}     // if buy
 	}         // for # buy chances
@@ -236,7 +237,7 @@ bool cJobManager::WorkFreetime(sGirl* girl, sBrothel* brothel, int DayNight, str
 	return false;
 }
 
-bool cJobManager::AddictBuysDrugs(string Addiction, string Drug, sGirl* girl, sBrothel* brothel, int DayNight)
+bool cJobManager::AddictBuysDrugs(std::string /*Addiction*/, std::string Drug, Girl* girl, Brothel* brothel, int /*DayNight*/)
 {
 	int id = g_InvManager.CheckShopItem(Drug);
 	if(id == -1)
@@ -266,3 +267,5 @@ bool cJobManager::AddictBuysDrugs(string Addiction, string Drug, sGirl* girl, sB
 	}
 
 }
+
+} // namespace WhoreMasterRenewal

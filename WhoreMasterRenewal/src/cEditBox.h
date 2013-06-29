@@ -20,39 +20,48 @@
 #define CEDITBOX_H_INCLUDED_1531
 #pragma once
 
+#include "cInterfaceObject.h" // required
+
 #include <string>
-using namespace std;
-#include "CSurface.h"
-#include "cInterfaceObject.h"
-#include "cInterfaceEvent.h"
-#include "cFont.h"
+
+class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
+class cFont;
 
 class cEditBox : public cInterfaceObject
 {
 public:
-	cEditBox() {m_Next = 0;m_FocusedBackground=m_Border=m_Background=0;m_Text=0;m_HasFocus=false;}
-	~cEditBox();
-
+	cEditBox();
+	virtual ~cEditBox();
+    
+    cEditBox( const cEditBox& ) = delete;
+	cEditBox& operator = ( const cEditBox& ) = delete;
+    
 	bool CreateEditBox(int ID, int x, int y, int width, int height, int BorderSize);
 	bool IsOver(int x, int y);
 	bool OnClicked(int x, int y);
 	void ClearText();
-	string GetText() {return m_Text->GetText();}
+    std::string GetText();
 
 	void UpdateText(char key, bool upper);
 
 	void Draw();
 
-	int m_ID;
-	cFont* m_Text;
-	bool m_HasFocus;
+	int m_ID = 0;
+	cFont* m_Text = nullptr;
+	bool m_HasFocus = false;
 
-	SDL_Surface* m_FocusedBackground;
-	SDL_Surface* m_Background;
-	SDL_Surface* m_Border;
-	int m_BorderSize;
+	SDL_Surface* m_FocusedBackground = nullptr;
+	SDL_Surface* m_Background = nullptr;
+	SDL_Surface* m_Border = nullptr;
+	int m_BorderSize = 0;
 	
-	cEditBox* m_Next;	// next button on the window
+	cEditBox* m_Next = nullptr;	// next button on the window
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CEDITBOX_H_INCLUDED_1531

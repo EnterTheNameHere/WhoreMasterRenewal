@@ -20,59 +20,63 @@
 #define CFONT_H_INCLUDED_1531
 #pragma once
 
-#include <SDL_ttf.h>
+#include <SDL_ttf.h> // required SDL_Color
+
 #include <string>
-using namespace std;
+
+namespace WhoreMasterRenewal
+{
 
 class cFont
 {
 public:
 	cFont();
 	~cFont();
-
+    
+    cFont( const cFont& ) = delete;
+	cFont& operator = ( const cFont& ) = delete;
+    
 	void Free();
 
 	void SetColor(unsigned char r, unsigned char g, unsigned char b);
 
-	// need to undefine the stupid windows headers macro DrawText
-    #ifdef DrawText
-    #undef DrawText
-    #endif
-	bool DrawText(int x, int y, SDL_Surface* destination = 0, bool multi = false);	// draws the text surface to the screen
-	bool DrawMultilineText(int x, int y, int linesToSkip = 0, int offsetY = 0, SDL_Surface* destination = 0);	// draws the text surface to the screen
-	bool LoadFont(string font, int size);
-	void SetText(string text);
-	string GetText() {return m_Text;}
-	void GetSize(string text, int &width, int &height){TTF_SizeText(m_Font, text.c_str(), &width, &height);}
+	bool DrawText(int x, int y, SDL_Surface* destination = nullptr, bool multi = false);	// draws the text surface to the screen
+	bool DrawMultilineText(int x, int y, int linesToSkip = 0, int offsetY = 0, SDL_Surface* destination = nullptr);	// draws the text surface to the screen
+	bool LoadFont(std::string font, int size);
+	void SetText(std::string text);
+	std::string GetText();
+	void GetSize(std::string text, int& width, int &height);
 	int GetWidth();
 	int GetHeight();
-	void SetMultiline(bool multi, int width, int height){m_IsMultiline=multi;m_Width = width;m_Height=height;}
+	void SetMultiline(bool multi, int width, int height);
 
-	int IsFontFixedWidth(){return TTF_FontFaceIsFixedWidth(m_Font);}
-	int GetFontHeight(){return TTF_FontHeight(m_Font);}	// returns the height in pixels of the font
-	int GetFontLineSkip(){return TTF_FontLineSkip(m_Font);}	// returns the number of pixels you should have between lines
-	void SetFontBold(bool Bold = true){TTF_SetFontStyle(m_Font, (Bold ? TTF_STYLE_BOLD : TTF_STYLE_NORMAL) );}
+	int IsFontFixedWidth();
+	int GetFontHeight();	// returns the height in pixels of the font
+	int GetFontLineSkip();	// returns the number of pixels you should have between lines
+	void SetFontBold(bool Bold = true);
 
-	int GetTotalNumberOfLines(){return m_NumLines;}
-	int GetLinesPerBox(){if(m_Lineskip>0)return (m_Height/m_Lineskip);else return m_Height/GetFontLineSkip();}
+	int GetTotalNumberOfLines();
+	int GetLinesPerBox();
 
 private:
-	TTF_Font* m_Font;
-	SDL_Color m_TextColor;
-	SDL_Surface* m_Message;	// for storing a single line message
-	SDL_Surface* m_MultilineMessage;	// for storing multiline messages
-	string m_Text;
-	bool m_NewText;	// variable for keeping track of if it needs to be updated
-	bool m_IsMultiline;
-	int m_Width;
-	int m_Height;
-	int m_Lineskip;
-	unsigned int m_NumLines;	// stores the total number of lines in the box
+	TTF_Font* m_Font = nullptr;
+	SDL_Color m_TextColor = {0,0,0,0};
+	SDL_Surface* m_Message = nullptr;	// for storing a single line message
+	SDL_Surface* m_MultilineMessage = nullptr;	// for storing multiline messages
+	std::string m_Text = "";
+	bool m_NewText = true;	// variable for keeping track of if it needs to be updated
+	bool m_IsMultiline = false;
+	int m_Width = 0;
+	int m_Height = 0;
+	int m_Lineskip = 0;
+	unsigned int m_NumLines = 0;	// stores the total number of lines in the box
 
 	// These functions are used internally to draw text to a surface
-	void RenderText(string text = "", bool multi = false);
-	void RenderMultilineText(string text);	// function that renders multiline text to the internal surface
-	string UpdateLineEndings(string text);  // added function to fix line endings ("/n"=>"/r/n") for Windows
+	void RenderText(std::string text = "", bool multi = false);
+	void RenderMultilineText(std::string text);	// function that renders multiline text to the internal surface
+	std::string UpdateLineEndings(std::string text);  // added function to fix line endings ("/n"=>"/r/n") for Windows
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CFONT_H_INCLUDED_1531

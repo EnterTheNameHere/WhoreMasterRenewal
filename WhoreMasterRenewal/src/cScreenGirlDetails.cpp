@@ -16,54 +16,60 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <algorithm>
-#include "cBrothel.h"
+
 #include "cScreenGirlDetails.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
+#include "BrothelManager.hpp"
 #include "cTariff.h"
 #include "cJobManager.h"
 #include "InterfaceProcesses.h"
+#include "InterfaceGlobals.h"
 #include "cGetStringScreenManager.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "cScriptManager.h"
+#include "Girl.hpp"
+#include "cMessageBox.h"
+#include "cInterfaceEvent.h"
+#include "cTraits.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "CLog.h"
+#include "DirPath.h"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
-extern long g_IntReturn;
-extern	int	g_TalkCount;
-extern bool g_AllTogle;
-extern cGangManager g_Gangs;
-extern bool g_Cheats;
-extern string g_ReturnText;
-extern	bool	eventrunning;
+#include <algorithm>
 
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
+namespace WhoreMasterRenewal
+{
 
 static cTariff tariff;
-static stringstream ss;
+static std::stringstream ss; /// @todo Get rid of this static variable
 
 static int ImageNum = -1;
 static int DetailLevel = 0;
 static int DayNight = 0;
 
-// need to undefine the stupid windows header macro SetJob
-#ifdef SetJob
-#undef SetJob
-#endif
 static bool SetJob = true;
 
-extern sGirl *selected_girl;
-extern vector<int> cycle_girls;
-extern int cycle_pos;
-
 bool cScreenGirlDetails::ids_set = false;
+
+cScreenGirlDetails::cScreenGirlDetails() : cInterfaceWindowXML()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "girl_details_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+
+cScreenGirlDetails::~cScreenGirlDetails()
+{
+    
+}
+
 
 void cScreenGirlDetails::set_ids()
 {
@@ -106,7 +112,7 @@ void cScreenGirlDetails::Free()
 void cScreenGirlDetails::init()
 {
 
-	if(selected_girl == 0)
+	if(selected_girl == nullptr)
 	{
 		g_WinManager.Pop();
 		g_InitWin = true;
@@ -132,7 +138,7 @@ void cScreenGirlDetails::init()
 	if(selected_girl->health() <= 0)
 	{
 		selected_girl = remove_selected_girl();
-		if(selected_girl == 0)
+		if(selected_girl == nullptr)
 		{
 			g_WinManager.Pop();
 			g_InitWin = true;
@@ -145,7 +151,7 @@ void cScreenGirlDetails::init()
 
 	EditTextItem(selected_girl->m_Realname, girlname_id);
 
-	string detail = (DetailLevel == 0) ? g_Girls.GetDetailsString(selected_girl) : g_Girls.GetMoreDetailsString(selected_girl);
+    std::string detail = (DetailLevel == 0) ? g_Girls.GetDetailsString(selected_girl) : g_Girls.GetMoreDetailsString(selected_girl);
 	EditTextItem(detail, girldesc_id);
 
 	if(selected_girl)
@@ -272,7 +278,7 @@ void cScreenGirlDetails::check_events()
 		// Rebelliousness might have changed, so update details
 		if(DetailLevel == 0)
 		{
-			string detail = g_Girls.GetDetailsString(selected_girl);
+		    std::string detail = g_Girls.GetDetailsString(selected_girl);
 			EditTextItem(detail, girldesc_id);
 		}
 
@@ -397,13 +403,13 @@ void cScreenGirlDetails::check_events()
 		}
 		else
 		{
-			sGirl* nextGirl = remove_selected_girl();
-			sGirl* tempGirl = g_Brothels.GetDungeon()->RemoveGirl(g_Brothels.GetDungeon()->GetGirl(g_Brothels.GetDungeon()->GetGirlPos(selected_girl)));
+			Girl* nextGirl = remove_selected_girl();
+			Girl* tempGirl = g_Brothels.GetDungeon()->RemoveGirl(g_Brothels.GetDungeon()->GetGirl(g_Brothels.GetDungeon()->GetGirlPos(selected_girl)));
 			g_Brothels.AddGirl(g_CurrBrothel, tempGirl);
 
 			if(g_Brothels.GetDungeon()->GetNumGirls() == 0)
 			{
-				selected_girl = 0;
+				selected_girl = nullptr;
 				g_WinManager.Pop();
 			}
 			else
@@ -414,7 +420,7 @@ void cScreenGirlDetails::check_events()
 	}
 	if(g_InterfaceEvents.CheckButton(senddungeon_id))
 	{
-		string message;
+	    std::string message;
 		g_Brothels.GetGirlPos(g_CurrBrothel, selected_girl);
 
 		// does she decide to fight back
@@ -453,8 +459,8 @@ void cScreenGirlDetails::check_events()
 					message += "After defeating you as well, she escapes to the outside.\n";
 					message += " She will escape for good in 6 weeks if you don't send someone after her.";
 
-					sGirl* nextGirl = remove_selected_girl();
-					sGirl* temp = selected_girl;
+					Girl* nextGirl = remove_selected_girl();
+					Girl* temp = selected_girl;
 					if(selected_girl->m_DayJob != JOB_INDUNGEON)
 						g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 					else
@@ -465,13 +471,13 @@ void cScreenGirlDetails::check_events()
 
 					g_Brothels.AddGirlToRunaways(temp);
 
-					string smess = "";
+				    std::string smess = "";
 					smess += temp->m_Realname;
 					smess += " has run away";
 					g_MessageQue.AddToQue(smess, 1);
 
 					selected_girl = nextGirl;
-					if(selected_girl == 0)
+					if(selected_girl == nullptr)
 						g_WinManager.Pop();
 				}
 				else	// otherwise put her in the dungeon
@@ -479,7 +485,7 @@ void cScreenGirlDetails::check_events()
 					int reason = DUNGEON_GIRLWHIM;
 					if(selected_girl->m_Spotted)
 						reason = DUNGEON_GIRLSTEAL;
-					sGirl* nextGirl = remove_selected_girl();
+					Girl* nextGirl = remove_selected_girl();
 					selected_girl->m_DayJob = selected_girl->m_NightJob = JOB_INDUNGEON;
 					g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 					g_Brothels.GetDungeon()->AddGirl(selected_girl,reason);
@@ -487,7 +493,7 @@ void cScreenGirlDetails::check_events()
 
 					if(g_Brothels.GetNumGirls(g_CurrBrothel) == 0)
 					{
-						selected_girl = 0;
+						selected_girl = nullptr;
 						g_WinManager.Pop();
 					}
 					else
@@ -508,7 +514,7 @@ void cScreenGirlDetails::check_events()
 				int reason = DUNGEON_GIRLWHIM;
 				if(selected_girl->m_Spotted)
 					reason = DUNGEON_GIRLSTEAL;
-				sGirl* nextGirl = remove_selected_girl();
+				Girl* nextGirl = remove_selected_girl();
 				g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 				g_Brothels.GetDungeon()->AddGirl(selected_girl,reason);
 
@@ -523,7 +529,7 @@ void cScreenGirlDetails::check_events()
 			int reason = DUNGEON_GIRLWHIM;
 			if(selected_girl->m_Spotted)
 				reason = DUNGEON_GIRLSTEAL;
-			sGirl* nextGirl = remove_selected_girl();
+			Girl* nextGirl = remove_selected_girl();
 			g_Brothels.RemoveGirl(g_CurrBrothel, selected_girl, false);
 			g_Brothels.GetDungeon()->AddGirl(selected_girl,reason);
 			message += "She goes quietly with a sullen look on her face.";
@@ -546,7 +552,7 @@ void cScreenGirlDetails::check_events()
 			if(selected_girl->m_DayJob != JOB_INDUNGEON)
 			{
 				int v[2] = {1,-1};
-				cTrigger* trig = 0;
+				cTrigger* trig = nullptr;
 				if(!(trig = selected_girl->m_Triggers.CheckForScript(TRIGGER_TALK, false, v)))	// trigger any girl specific talk script
 				{
 					// no, so trigger the default one
@@ -568,7 +574,7 @@ void cScreenGirlDetails::check_events()
 			else
 			{
 				int v[2] = {0,-1};
-				cTrigger* trig = 0;
+				cTrigger* trig = nullptr;
 				if(!(trig = selected_girl->m_Triggers.CheckForScript(TRIGGER_TALK, false, v)))	// trigger any girl specific talk script
 				{
 					// no, so trigger the default one
@@ -605,7 +611,7 @@ void cScreenGirlDetails::check_events()
 }
 
 
-bool cScreenGirlDetails::GirlDead(sGirl *dgirl)
+bool cScreenGirlDetails::GirlDead(Girl *dgirl)
 {
 	if(g_Girls.GetStat(dgirl, STAT_HEALTH) == 0)
 	{
@@ -624,7 +630,7 @@ void cScreenGirlDetails::RefreshJobList()
 	if (job_filter == -1)
 		return;
 
-	string text = "";
+    std::string text = "";
 	bool day = (DayNight == 0) ? true : false;
 
 	// populate Jobs listbox with jobs in the selected category
@@ -664,9 +670,9 @@ void cScreenGirlDetails::NextGirl()
 /*
  * return previous girl in the sorted list
  */
-sGirl *cScreenGirlDetails::get_prev_girl()
+Girl *cScreenGirlDetails::get_prev_girl()
 {
-	sGirl *prev_girl = 0;
+	Girl *prev_girl = nullptr;
 
 	if (cycle_girls.size() == 0)					// Myr: Found this case from an exception. Will test to see if this
 		return prev_girl;							//      is a good fix.
@@ -689,9 +695,9 @@ sGirl *cScreenGirlDetails::get_prev_girl()
 /*
  * return next girl in the sorted list
  */
-sGirl *cScreenGirlDetails::get_next_girl()
+Girl *cScreenGirlDetails::get_next_girl()
 {
-	sGirl *next_girl = 0;
+	Girl *next_girl = nullptr;
 
 	if (cycle_girls.size() == 0) // Myr: Found this case from an exception.
 		return next_girl;
@@ -714,12 +720,12 @@ sGirl *cScreenGirlDetails::get_next_girl()
 /*
  * the selected girl is to be removed from the current list; returns next selected girl
  */
-sGirl *cScreenGirlDetails::remove_selected_girl()
+Girl *cScreenGirlDetails::remove_selected_girl()
 {
-	sGirl *next_girl = 0;
+	Girl *next_girl = nullptr;
 
 	if(cycle_girls.size() == 0) {
-		return 0;
+		return nullptr;
 	}
 
 	int cur_id = cycle_girls[cycle_pos];
@@ -752,8 +758,9 @@ sGirl *cScreenGirlDetails::remove_selected_girl()
 /*
  * returns TRUE if the girl won
  */
-bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
+bool cScreenGirlDetails::do_take_gold(Girl *girl, std::string &message)
 {
+	// TODO: checking bool against integer
 	const int GIRL_LOSES = false;
 	const int GIRL_WINS = true;
 	bool girl_win_flag = GIRL_WINS;
@@ -800,14 +807,14 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
 		girl_win_flag = g_Gangs.GangCombat(girl, gang);
 /*
  *		if she didn't win, exit the loop
- */
+ */		// TODO: checking bool against integer
 		if(girl_win_flag == GIRL_LOSES) {
 			break;
 		}
 	}
 /*
  *	the "girl lost" case is easier
- */
+ */ // TODO: checking bool against integer
 	if(girl_win_flag == GIRL_LOSES) {		// put her in the dungeon
 		message += "She puts up a fight ";
 		if(gang && gang->m_Num == 0) {
@@ -837,8 +844,8 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
  */
 	message += "after defeating you as well she escapes to the outside.\n";
 
-	sGirl* nextGirl = remove_selected_girl();
-	sGirl* temp = girl;
+	Girl* nextGirl = remove_selected_girl();
+	Girl* temp = girl;
 /*
  *	what we have to do depends on whether she was in brothel
  *	or dungeon
@@ -857,7 +864,7 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
  */
 	g_Brothels.AddGirlToRunaways(temp);
 
-	string smess = "";
+    std::string smess = "";
 	smess += temp->m_Realname;
 	smess += " has run away";
 	g_MessageQue.AddToQue(smess, 1);
@@ -865,15 +872,15 @@ bool cScreenGirlDetails::do_take_gold(sGirl *girl, string &message)
 	selected_girl = nextGirl;
 	g_InitWin = true;
 
-	if(selected_girl == 0)
+	if(selected_girl == nullptr)
 		g_WinManager.Pop();
 
 	return true;	// the girl still won
 }
 
-void cScreenGirlDetails::take_gold(sGirl *girl)
+void cScreenGirlDetails::take_gold(Girl *girl)
 {
-	string message;
+    std::string message;
 	bool girl_win = do_take_gold(girl, message);
 /*
  *	if the girl won, then we're pretty much sorted
@@ -920,3 +927,5 @@ void cScreenGirlDetails::take_gold(sGirl *girl)
 	g_InitWin = true;
 	return;
 }
+
+} // namespace WhoreMasterRenewal

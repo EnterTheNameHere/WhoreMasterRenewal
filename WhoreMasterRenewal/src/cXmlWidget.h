@@ -21,27 +21,58 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
-struct sXmlWidgetPart {
+namespace WhoreMasterRenewal
+{
+
+struct sXmlWidgetPart
+{
 public:
-	int x, y, w, h, r, g, b;
-	int fontsize, bordersize;
-	bool stat, alpha, scale, hidden, events, multi, hide, cache;
-	string base, on, off, disabled, type, name, text, file, seq;
+	int x = {0};
+	int y = {0};
+	int w = {0};
+	int h = {0};
+	int r = {0};
+	int g = {0};
+	int b = {0};
+	
+	int fontsize = {0};
+	int bordersize = {0};
+	
+	bool stat = {false};
+	bool alpha = {false};
+	bool scale = {false};
+	bool hidden = {false};
+	bool events = {false};
+	bool multi = {false};
+	bool hide = {false};
+	bool cache = {false};
+	
+    std::string base = {"Default value"};
+    std::string on = {"Default value"};
+    std::string off = {"Default value"};
+    std::string disabled = {"Default value"};
+    std::string type = {"Default value"};
+    std::string name = {"Default value"};
+    std::string text = {"Default value"};
+    std::string file = {"Default value"};
+    std::string seq = {"Default value"};
 };
 
-class cXmlWidget {
-	vector<sXmlWidgetPart> list;
+class cXmlWidget
+{
 public:
-	cXmlWidget() {}
-	int size() {	return int(list.size()); }
-	sXmlWidgetPart& operator[](int i) {
-		return list[i];
-	}
-	void add(sXmlWidgetPart &part)
-	{
-		list.push_back(part);
-	}
+	cXmlWidget();
+	
+	int size();
+	sXmlWidgetPart& operator[](int i);
+	void add(sXmlWidgetPart &part);
+	
+private:
+    std::vector<sXmlWidgetPart> m_List;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CXMLWIDGET_H_INCLUDED_1508

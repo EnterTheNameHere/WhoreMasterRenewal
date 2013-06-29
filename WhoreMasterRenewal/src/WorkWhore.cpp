@@ -16,31 +16,34 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
+#include "BrothelManager.hpp"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "cMessageBox.h"
+#include "GameFlags.h"
+#include "Girl.hpp"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+
+#include <sstream>
 #include <algorithm>
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
+namespace WhoreMasterRenewal
+{
 
-bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkWhore(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
 {
 	// put that shit away, you'll scare off the customers!
 	g_Girls.UnequipCombat(girl);
@@ -99,8 +102,8 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 	 *	
 	 */
 
-	string fuckMessage	= "";
-	string message		= "";
+    std::string fuckMessage	= "";
+    std::string message		= "";
 	sCustomer Cust;
 	int NumCusts		= 0;		// Max number on customers the girl can fuck
 	int NumSleptWith	= 0;		// Total num customers she fucks this session
@@ -123,7 +126,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 	else
 		job				= girl->m_NightJob;
 	bStreetWork			= (job == JOB_WHORESTREETS);
-	stringstream ss;
+	std::stringstream ss;
 
 	girl->m_Pay = 0;
 
@@ -158,7 +161,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 		AskPrice	= AskPrice * 2 / 3;
 	}
 
-	NumCusts = min(NumCusts, 10);		// No more than 10 Customers per shift
+	NumCusts = std::min(NumCusts, 10);		// No more than 10 Customers per shift
 
 	// Complications
 
@@ -184,7 +187,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 				ss	<< girl->m_Realname << " ran into some enemy goons and was attacked.\n";
 
 				// WD: Health loss, Damage 0-15, 25% chance of 0 damage
-				iNum = max(g_Dice%20 - 5, 0);
+				iNum = std::max(g_Dice%20 - 5, 0);
 				iOriginal	= g_Girls.GetStat(girl, STAT_HEALTH);
 				g_Girls.UpdateStat(girl, STAT_HEALTH, -iNum);
 				iNum		= iOriginal - g_Girls.GetStat(girl, STAT_HEALTH);
@@ -226,7 +229,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 
 
 	// WD: Set the limits on the Number of customers a girl can try and fuck
-	LoopCount = max(NumCusts * 2, 5);
+	LoopCount = std::max(NumCusts * 2, 5);
 
 	// WD: limit to number of customers left
 	if(!bStreetWork && LoopCount >g_Customers.GetNumCustomers())		
@@ -282,7 +285,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 		if(Cust.m_Amount > 1 && is_sex_type_allowed(SKILL_GROUP, brothel))
 		{
 			group = true;
-			pay *= (int) Cust.m_Amount;	
+			pay *= static_cast<int>( Cust.m_Amount );	
 			if (Cust.m_SexPref == SKILL_GROUP)
 				pay = pay * 17 / 10;
 				// WD: this is complicated total for 1.7 * pay * num of customers
@@ -290,7 +293,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 		}
 
 		// WD: Has the customer have enough money
-		bCustCanPay = Cust.m_Money >= (unsigned)pay;	
+		bCustCanPay = Cust.m_Money >= static_cast<unsigned>( pay );	
 
 		// WD:	TRACE Customer Money = {Cust.m_Money}, Pay = {pay}, Can Pay = {bCustCanPay}
 
@@ -299,7 +302,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 		{
 			//continue;
 			// WD: Hack to avoid many newcustomer() calls
-			Cust.m_Money += (unsigned)pay;
+			Cust.m_Money += static_cast<unsigned>( pay );
 			bCustCanPay = true;
 		}
 
@@ -397,7 +400,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 					{
 						fuckMessage += " The customer couldn't pay and tried to run off. Your men caught him before he got out the door.";
 						SetGameFlag(FLAG_CUSTNOPAY);
-						pay = (int) Cust.m_Money;	// WD: Take what customer has
+						pay = static_cast<int>( Cust.m_Money );	// WD: Take what customer has
 						Cust.m_Money = 0;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 					}
 				}
@@ -417,7 +420,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 				else
 					fuckMessage += " The customer couldn't pay the full amount.";
 
-				pay = (int) Cust.m_Money;
+				pay = static_cast<int>( Cust.m_Money );
 				Cust.m_Money = 0;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 			}
 		}
@@ -436,7 +439,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 				else
 				{
 					fuckMessage += " The customer refused to pay and tried to run off. Your men caught him before he got out the door and forced him to pay.";
-					Cust.m_Money -= (unsigned) pay; // WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
+					Cust.m_Money -= static_cast<unsigned>( pay ); // WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 				}
 			}
 			else
@@ -456,12 +459,12 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 //					pay	+= (int)Cust.m_Money; // WD: Borked Cust.m_Money could have any amount and is +=
 					if (!bCustCanPay)
 					{
-						pay = (int) Cust.m_Money;
+						pay = static_cast<int>( Cust.m_Money );
 						
 						Cust.m_Money = 0;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 					}
 					else
-						Cust.m_Money -= (unsigned) pay;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
+						Cust.m_Money -= static_cast<unsigned>( pay );	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 				}
 				else
 					// she just accepts less then the agreed upon price
@@ -472,7 +475,7 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 						Cust.m_Money = 0;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 					}
 					else
-						Cust.m_Money -= (unsigned) pay;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
+						Cust.m_Money -= static_cast<unsigned>( pay );	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 
 
 			}
@@ -481,12 +484,12 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 
 		else  // Customer has enough money
 		{
-			Cust.m_Money -= (unsigned) pay; // WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
+			Cust.m_Money -= static_cast<unsigned>( pay ); // WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
 
 			// if he is happy and has some extra gold he will give a tip
-			if((int)Cust.m_Money >= 20 && Cust.m_Stats[STAT_HAPPINESS] > 90)	
+			if( static_cast<int>( Cust.m_Money ) >= 20 && Cust.m_Stats[STAT_HAPPINESS] > 90)	
 			{
-				tip = (int) Cust.m_Money;
+				tip = static_cast<int>( Cust.m_Money );
 				if(tip > 20)
 				{
 					Cust.m_Money -= 20;	// WD: ??? not needed Cust record is not saved when this fn ends!  Leave for now just in case ???
@@ -594,3 +597,5 @@ bool cJobManager::WorkWhore(sGirl* girl, sBrothel* brothel, int DayNight, string
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

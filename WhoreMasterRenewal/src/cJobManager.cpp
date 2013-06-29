@@ -16,29 +16,38 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <algorithm>
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
+#include "BrothelManager.hpp"
 #include "sConfig.h"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
 #include "cMessageBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
+#include "Girl.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
+#include <algorithm>
+#include <sstream>
+
+namespace WhoreMasterRenewal
+{
+
+cJobManager::~cJobManager()
+{
+    ;
+}
 
 void cJobManager::Setup()
 {
@@ -71,15 +80,6 @@ void cJobManager::Setup()
 	JobFunctions[JOB_STRIPPER] = &WorkBar;
 	JobFunctions[JOB_WHOREBAR] = &WorkWhore;
 	JobFunctions[JOB_SINGER] = &WorkBar;
-	// - Movie Crystal Studio
-	JobFunctions[JOB_FILMBEAST] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FILMSEX] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FILMANAL] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FILMLESBIAN] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FILMBONDAGE] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_FLUFFER] = &WorkFluffer;
-	JobFunctions[JOB_CAMERAMAGE] = &WorkVoid;	// ************** TODO
-	JobFunctions[JOB_CRYSTALPURIFIER] = &WorkVoid;	// ************** TODO
 	// - Community Centre
 	JobFunctions[JOB_COLLECTDONATIONS] = &WorkVoid;	// ************** TODO
 	JobFunctions[JOB_FEEDPOOR] = &WorkVoid;	// ************** TODO
@@ -187,26 +187,6 @@ void cJobManager::Setup()
 	JobName[JOB_SINGER] = "Singer";
 	JobDescription[JOB_SINGER] = "She will sing for the customers.";
 
-	JobFilterName[JOBFILTER_MOVIESTUDIO] = "Movie Studio";
-	JobFilterDescription[JOBFILTER_MOVIESTUDIO] = "These are jobs for running a movie studio.";
-	JobFilterIndex[JOBFILTER_MOVIESTUDIO] = JOB_FILMBEAST;
-	JobName[JOB_FILMBEAST] = "Film Bestiality";
-	JobDescription[JOB_FILMBEAST] = "She will film bestiality scenes.";
-	JobName[JOB_FILMSEX] = "Film Sex";
-	JobDescription[JOB_FILMSEX] = "She will film normal sex scenes.";
-	JobName[JOB_FILMANAL] = "Film Anal";
-	JobDescription[JOB_FILMANAL] = "She will film anal scenes.";
-	JobName[JOB_FILMLESBIAN] = "Film Lesbian";
-	JobDescription[JOB_FILMLESBIAN] = "She will do a lesbian scene.";
-	JobName[JOB_FILMBONDAGE] = "Film Bondage";
-	JobDescription[JOB_FILMBONDAGE] = "She will perform in bondage scenes.";
-	JobName[JOB_FLUFFER] = "Fluffer";
-	JobDescription[JOB_FLUFFER] = "She will keep the porn stars and animals aroused.";
-	JobName[JOB_CAMERAMAGE] = "Camera Mage";
-	JobDescription[JOB_CAMERAMAGE] = "She will film the scenes. (requires 1) (max 1)";
-	JobName[JOB_CRYSTALPURIFIER] = "Crystal Purifier";
-	JobDescription[JOB_CRYSTALPURIFIER] = "She will clean up the filmed scenes. (requires 1)";
-
 	JobFilterName[JOBFILTER_COMMUNITYCENTRE] = "Community Centre";
 	JobFilterDescription[JOBFILTER_COMMUNITYCENTRE] = "These are jobs for running a community centre.";
 	JobFilterIndex[JOBFILTER_COMMUNITYCENTRE] = JOB_COLLECTDONATIONS;
@@ -312,14 +292,14 @@ void cJobManager::free()
 
 // ----- Misc
 
-bool cJobManager::WorkVoid(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkVoid(Girl* girl, Brothel* /*brothel*/, int /*DayNight*/, std::string& summary)
 {
 	summary += "This job isn't implemented yet";
 	girl->m_Events.AddMessage("This job isn't implemented yet", IMGTYPE_PROFILE, EVENT_DEBUG);
 	return false;
 }
 
-bool cJobManager::Preprocessing(int action, sGirl* girl, sBrothel* brothel, int DayNight, string& summary, string& message)
+bool cJobManager::Preprocessing(int action, Girl* girl, Brothel* brothel, int DayNight, std::string& /*summary*/, std::string& /*message*/)
 {
 	brothel->m_Filthiness++;
 	g_Girls.AddTiredness(girl);
@@ -328,8 +308,8 @@ bool cJobManager::Preprocessing(int action, sGirl* girl, sBrothel* brothel, int 
 
 	{
 
-//		summary += "She has refused to work.\n";			// WD:	Refusal message done in cBrothelManager::UpdateGirls()
-		string msg = girl->m_Realname + " refused to work during the ";
+//		summary += "She has refused to work.\n";			// WD:	Refusal message done in BrothelManager::UpdateGirls()
+	    std::string msg = girl->m_Realname + " refused to work during the ";
 		if(DayNight == 0)
 			msg += "day";
 		else
@@ -343,13 +323,13 @@ bool cJobManager::Preprocessing(int action, sGirl* girl, sBrothel* brothel, int 
 	return false;
 }
 
-void cJobManager::GetMiscCustomer(sBrothel* brothel, sCustomer& cust)
+void cJobManager::GetMiscCustomer(Brothel* brothel, sCustomer& cust)
 {
 	g_Customers.GetCustomer(cust, brothel);
 	brothel->m_MiscCustomers+=1;
 }
 
-bool cJobManager::is_sex_type_allowed(unsigned int sex_type, sBrothel* brothel)
+bool cJobManager::is_sex_type_allowed(unsigned int sex_type, Brothel* brothel)
 {
 	if(sex_type == SKILL_ANAL && brothel->m_RestrictAnal)
 		return false;
@@ -369,11 +349,11 @@ bool cJobManager::is_sex_type_allowed(unsigned int sex_type, sBrothel* brothel)
 
 // ----- Job related
 
-vector<sGirl*> cJobManager::girls_on_job(sBrothel *brothel, u_int job_wanted, int day_or_night)
+std::vector<Girl*> cJobManager::girls_on_job(Brothel *brothel, u_int job_wanted, int day_or_night)
 {
 	u_int job_id;
-	sGirl* girl;
-	vector<sGirl*> v;
+	Girl* girl;
+	std::vector<Girl*> v;
 
 	for(girl = brothel->m_Girls; girl; girl = girl->m_Next) {
 		if (day_or_night == 0)
@@ -391,10 +371,10 @@ vector<sGirl*> cJobManager::girls_on_job(sBrothel *brothel, u_int job_wanted, in
 	return v;
 }
 
-bool cJobManager::is_job_employed(sBrothel * brothel,u_int job_wanted,int day_or_night)
+bool cJobManager::is_job_employed(Brothel * brothel,u_int job_wanted,int day_or_night)
 {
 	u_int job_id;
-	sGirl* girl;
+	Girl* girl;
 	for(girl = brothel->m_Girls; girl; girl = girl->m_Next) {
 		if(day_or_night == 0)
 			job_id = girl->m_DayJob;
@@ -406,13 +386,13 @@ bool cJobManager::is_job_employed(sBrothel * brothel,u_int job_wanted,int day_or
 	return false;
 }
 
-void cJobManager::do_advertising(sBrothel* brothel)
+void cJobManager::do_advertising(Brothel* brothel)
 {  // advertising jobs are handled before other jobs, more particularly before customer generation
 	brothel->m_AdvertisingLevel = 1.0;  // base multiplier
-	sGirl* current = brothel->m_Girls;
+	Girl* current = brothel->m_Girls;
 	while(current)
 	{
-		string summary = "";
+	    std::string summary = "";
 		bool refused = false;
 		if(current->m_DayJob == JOB_ADVERTISING)
 		{
@@ -432,7 +412,7 @@ void cJobManager::do_advertising(sBrothel* brothel)
 	}
 }
 
-int cJobManager::get_num_on_job(int job, int brothel_id, bool day_or_night)
+int cJobManager::get_num_on_job(int /*job*/, int /*brothel_id*/, bool /*day_or_night*/)
 {
 	return 0;
 }
@@ -486,16 +466,6 @@ bool cJobManager::is_job_Paid_Player(u_int Job)
  */
 
 #if 0
-		// - Movie Crystal Studio
-		Job ==	JOB_FILMBEAST			||	// films this sort of scene in the movie (uses beast resource)
-		Job ==	JOB_FILMSEX				||	// films this sort of scene in the movie
-		Job ==	JOB_FILMANAL			||	// films this sort of scene in the movie
-		Job ==	JOB_FILMLESBIAN			||	// films this sort of scene in the movie. thinking about changing to Lesbian
-		Job ==	JOB_FILMBONDAGE			||	// films this sort of scene in the movie
-		Job ==	JOB_FLUFFER				||	// Keeps the porn stars and animals aroused
-		Job ==	JOB_CAMERAMAGE			||	// Uses magic to record the scenes to crystals (requires at least 1)
-		Job ==	JOB_CRYSTALPURIFIER		||	// Post editing to get the best out of the film (requires at least 1)
-
 		// - Community Centre
 		Job ==	JOB_COLLECTDONATIONS	||	// collects money to help the poor
 		Job ==	JOB_FEEDPOOR			||	// work in a soup kitchen
@@ -550,9 +520,9 @@ bool cJobManager::is_job_Paid_Player(u_int Job)
 
 }
 
-string cJobManager::JobDescriptionCount(int job_id, int brothel_id, bool day)
+std::string cJobManager::JobDescriptionCount(int job_id, int brothel_id, bool day)
 {
-	stringstream text;
+	std::stringstream text;
 	text << JobName[job_id];
 	text << " (";
 	text << g_Brothels.GetNumGirlsOnJob(brothel_id, job_id, day);
@@ -560,7 +530,7 @@ string cJobManager::JobDescriptionCount(int job_id, int brothel_id, bool day)
 	return text.str();
 }
 
-bool cJobManager::HandleSpecialJobs(int TargetBrothel, sGirl* Girl, int JobID, int OldJobID, bool DayOrNight)
+bool cJobManager::HandleSpecialJobs(int TargetBrothel, Girl* Girl, int JobID, int OldJobID, bool DayOrNight)
 {
 	bool MadeChanges = true;  // whether a special case applies to specified job or not
 	// Special cases?
@@ -622,12 +592,12 @@ bool cJobManager::HandleSpecialJobs(int TargetBrothel, sGirl* Girl, int JobID, i
  * false if nothing happened, or if violence was committed
  * against the customer.
  */
-bool cJobManager::work_related_violence(sGirl* girl, int DayNight, bool streets)
+bool cJobManager::work_related_violence(Girl* girl, int DayNight, bool streets)
 {
 	cConfig cfg;
 	int rape_chance = (int)cfg.prostitution.rape_brothel();
-	//vector<sGang *> gang_v;
-	vector<sGang *> gangs_guarding = g_Gangs.gangs_on_mission(MISS_GUARDING);
+	//std::vector<sGang *> gang_v;
+	std::vector<sGang *> gangs_guarding = g_Gangs.gangs_on_mission(MISS_GUARDING);
 
 	//int gang_chance = guard_coverage(&gang_v);
 	int gang_coverage = guard_coverage(&gangs_guarding);
@@ -708,12 +678,12 @@ bool cJobManager::work_related_violence(sGirl* girl, int DayNight, bool streets)
 /*
  * We need a cGuards guard manager. Or possible a cGuardsGuards manager.
  */
-int cJobManager::guard_coverage(vector<sGang*> *vpt)
+int cJobManager::guard_coverage(std::vector<sGang*> *vpt)
 {
 	int pc = 0;
-	vector<sGang*> v = g_Gangs.gangs_on_mission(MISS_GUARDING);
+	std::vector<sGang*> v = g_Gangs.gangs_on_mission(MISS_GUARDING);
 
-	if(vpt != 0)
+	if(vpt != nullptr)
 		*vpt = v;
 
 	for(u_int i = 0; i < v.size(); i++) {
@@ -755,24 +725,24 @@ int cJobManager::guard_coverage(vector<sGang*> *vpt)
 
 // True means security intercepted the perp(s)
 
-bool cJobManager::security_stops_rape(sGirl * girl, sGang *enemy_gang, int day_night)
+bool cJobManager::security_stops_rape(Girl * girl, sGang *enemy_gang, int day_night)
 {
 	// MYR: Note to self: STAT_HOUSE isn't the brothel number :)
 	int GirlsBrothelNo = g_Brothels.GetGirlsCurrentBrothel(girl);
-	sBrothel * Brothl = g_Brothels.GetBrothel(GirlsBrothelNo);
+	Brothel * Brothl = g_Brothels.GetBrothel(GirlsBrothelNo);
 	int SecLev = Brothl->m_SecurityLevel, OrgNumMem = enemy_gang->m_Num;
-	sGirl * SecGuard;
+	Girl * SecGuard;
 
 	// A gang takes 5 security points per member to stop
 	if (SecLev < OrgNumMem * 5)
 		return false;
 
 	// Security guards on duty this shift
-	vector<sGirl *> SecGrd = g_Brothels.GirlsOnJob(GirlsBrothelNo, JOB_SECURITY, day_night == SHIFT_DAY);
+	std::vector<Girl *> SecGrd = g_Brothels.GirlsOnJob(GirlsBrothelNo, JOB_SECURITY, day_night == SHIFT_DAY);
 	// Security guards with enough health to fight
-	vector<sGirl *> SecGrdWhoCanFight;
+	std::vector<Girl *> SecGrdWhoCanFight;
 
-	if (SecGrd.size() == 0)
+	if( SecGrd.empty() )
 		return false;
 
 	// Remove security guards who are too wounded to fight
@@ -790,7 +760,7 @@ bool cJobManager::security_stops_rape(sGirl * girl, sGang *enemy_gang, int day_n
 	}
 
 	// If all the security guards are too wounded to fight
-	if (SecGrdWhoCanFight.size() == 0)
+	if( SecGrdWhoCanFight.empty() )
 		return false;
 
 	// Get a random security guard
@@ -820,7 +790,7 @@ bool cJobManager::security_stops_rape(sGirl * girl, sGang *enemy_gang, int day_n
 		g_Girls.UpdateEnjoyment(girl, ACTION_COMBAT, OrgNumMem - enemy_gang->m_Num, true);
 		g_Girls.UpdateEnjoyment(girl, ACTION_WORKSECURITY, OrgNumMem - enemy_gang->m_Num, true);
 
-		stringstream msg;
+		std::stringstream msg;
 
 		// I decided to not say gang in the text. It can be confused with a player or enemy organization's
 		// gang, when it is neither.
@@ -847,7 +817,7 @@ bool cJobManager::security_stops_rape(sGirl * girl, sGang *enemy_gang, int day_n
 	}
 	else  // Loss
 	{
-		stringstream ss;
+		std::stringstream ss;
 
 		ss << "Security Problem:\n" << "Trying to defend " << girl->m_Realname << ". You defeated "
 		   << (OrgNumMem - enemy_gang->m_Num) << " of " << OrgNumMem << " before:\n" << SecGuard->m_Realname << GetGirlAttackedString();
@@ -875,7 +845,7 @@ bool cJobManager::security_stops_rape(sGirl * girl, sGang *enemy_gang, int day_n
 	return res;
 }
 
-bool cJobManager::gang_stops_rape(sGirl* girl, vector<sGang *> gangs_guarding, sGang *enemy_gang,
+bool cJobManager::gang_stops_rape(Girl* girl, std::vector<sGang *> gangs_guarding, sGang *enemy_gang,
 	int coverage, int day_night)
 {
 	if((g_Dice%100 + 1) > coverage)
@@ -887,7 +857,7 @@ bool cJobManager::gang_stops_rape(sGirl* girl, vector<sGang *> gangs_guarding, s
 	bool guards_win = g_Gangs.GangBrawl(guarding_gang, enemy_gang);
 
 	if(!guards_win) {
-		stringstream gang_s, girl_s;
+		std::stringstream gang_s, girl_s;
 		gang_s << guarding_gang->m_Name << " was defeated defending " << girl->m_Realname << ".";
 		girl_s << guarding_gang->m_Name << " was defeated defending you from a gang of rapists.";
 		guarding_gang->m_Events.AddMessage(gang_s.str(), IMGTYPE_PROFILE,  EVENT_WARNING);
@@ -900,7 +870,7 @@ bool cJobManager::gang_stops_rape(sGirl* girl, vector<sGang *> gangs_guarding, s
  * dead customers should impact disposition and suspicion
  * might also need a bribe to cover it up
  */
-	stringstream gang_ss, girl_ss;
+	std::stringstream gang_ss, girl_ss;
 	int roll = g_Dice.random(100) + 1;
 	if(roll < guarding_gang->intelligence() / 2)
 	{
@@ -920,8 +890,9 @@ bool cJobManager::gang_stops_rape(sGirl* girl, vector<sGang *> gangs_guarding, s
 			<< girl->m_Realname << ".";
 		girl_ss	<< "Customer attempt to rape her, but guards " << guarding_gang->m_Name << " killed them.";
 	}
-	cout << "gang ss=" << gang_ss.str() << endl;
-	cout << "girl ss=" << girl_ss.str() << endl;
+	g_LogFile.ss() << "gang ss=" << gang_ss.str() << std::endl
+                << "girl ss=" << girl_ss.str() << std::endl;
+    g_LogFile.ssend();
 
 	girl->m_Events.AddMessage(girl_ss.str(), IMGTYPE_DEATH, day_night);
 	guarding_gang->m_Events.AddMessage(gang_ss.str(), IMGTYPE_PROFILE, EVENT_GANG);
@@ -935,7 +906,7 @@ bool cJobManager::gang_stops_rape(sGirl* girl, vector<sGang *> gangs_guarding, s
  * dead customers should impact disposition and suspicion
  * might also need a bribe to cover it up
  */
-bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_night)
+bool cJobManager::gang_stops_rape(Girl* girl, sGang *gang, int chance, int day_night)
 {
 	if(g_Dice.percent(chance) == false)
 		return false;
@@ -972,7 +943,7 @@ bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_
  *	never knows
  */
 	if(!gang_wins) {
-		string s;
+	    std::string s;
 		if(gang->m_Num == 1)
 			s =	"The leader of this gang is dead; killed attempting to prevent a rape. You may want to hire a new gang.";
 		else
@@ -983,7 +954,7 @@ bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_
 	return false;
 	}
 
-	stringstream gang_ss, girl_ss;
+	std::stringstream gang_ss, girl_ss;
 	int roll = g_Dice.random(100) + 1;
 	if(roll < gang->intelligence() / 2) {
 		gang_ss <<	"One of the " <<	gang->m_Name <<	" found a customer getting violent with "
@@ -1000,8 +971,9 @@ bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_
 			<<	girl->m_Realname;
 		girl_ss	<<	"Customer attempt to rape her but " << "the was killed by the guard.";
 	}
-	cout << "gang ss=" << gang_ss.str() << endl;
-	cout << "girl ss=" << girl_ss.str() << endl;
+	g_LogFile.ss() << "gang ss=" << gang_ss.str() << std::endl
+                << "girl ss=" << girl_ss.str() << std::endl;
+    g_LogFile.ssend();
 	gang->m_Events.AddMessage(gang_ss.str(), 0, 0);
 	girl->m_Events.AddMessage(girl_ss.str(), IMGTYPE_DEATH, day_night);
 	return true;
@@ -1010,7 +982,7 @@ bool cJobManager::gang_stops_rape(sGirl* girl, sGang *gang, int chance, int day_
 
 // true means she won
 
-bool cJobManager::girl_fights_rape(sGirl* girl, sGang *enemy_gang, int day_night)
+bool cJobManager::girl_fights_rape(Girl* girl, sGang *enemy_gang, int /*day_night*/)
 {
 	int OrgNumMem = enemy_gang->m_Num;
 
@@ -1037,7 +1009,7 @@ bool cJobManager::girl_fights_rape(sGirl* girl, sGang *enemy_gang, int day_night
 
 		g_Girls.UpdateEnjoyment(girl, ACTION_COMBAT, OrgNumMem - enemy_gang->m_Num, true);
 
-		stringstream msg;
+		std::stringstream msg;
 
 		// MYR: I decided to not say gang in the text. It can be confused with a player or enemy organization's
 		//     gang, when it is neither.
@@ -1074,9 +1046,9 @@ bool cJobManager::girl_fights_rape(sGirl* girl, sGang *enemy_gang, int day_night
  *
  * returns true if the girl is successful in fighting the rapist off
  */
-bool cJobManager::girl_fights_rape(sGirl* girl, int day_night)
+bool cJobManager::girl_fights_rape(Girl* girl, int day_night)
 {
-	string msg;
+    std::string msg;
 	bool res = false;
 	int roll = g_Dice%100;
 
@@ -1097,9 +1069,9 @@ bool cJobManager::girl_fights_rape(sGirl* girl, int day_night)
  * I think these next three could use a little detail
  * MYR: Added the requested detail (in GetGirlAttackedString() below)
  */
-void cJobManager::customer_rape(sGirl* girl)
+void cJobManager::customer_rape(Girl* girl)
 {
-	stringstream ss;
+	std::stringstream ss;
 
 	ss << girl->m_Realname << GetGirlAttackedString();
 
@@ -1120,7 +1092,7 @@ void cJobManager::customer_rape(sGirl* girl)
 	g_Girls.UpdateEnjoyment(girl, ACTION_SEX, -30, true);
 }
 #if 0
-void cJobManager::customer_rape(sGirl* girl)
+void cJobManager::customer_rape(Girl* girl)
 {
 	girl->m_Events.AddMessage(girl->m_Realname + " " + GetGirlAttackedString()/*"She was beaten and raped, and the perpetrator escaped"*/, IMGTYPE_DEATH, EVENT_DANGER);
 	g_Girls.UpdateStat(girl, STAT_HEALTH, -2);
@@ -1131,14 +1103,14 @@ void cJobManager::customer_rape(sGirl* girl)
 #endif
 
 // MYR: Lots of different ways to say the girl had a bad day
-// doc: let's have this return a string, instead of a stringstream:
+// doc: let's have this return a string, instead of a std::stringstream:
 // the caller doesn't need the stream and gcc is giving weird type coercion
 // errors
 
-string cJobManager::GetGirlAttackedString()
+std::string cJobManager::GetGirlAttackedString()
 {
 	int roll1 = 0, roll2 = 0, roll3 = 0;
-	stringstream ss;
+	std::stringstream ss;
 
 	ss << " was ";
 
@@ -1166,6 +1138,11 @@ string cJobManager::GetGirlAttackedString()
 	  case 19: ss << "tied up BDSM-style"; break;
 	  case 20: ss << "stretched out on the torture table"; break;
 	  case 21: ss << "tied up and hung from the rafters"; break;
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 
 	ss << " and ";
@@ -1193,6 +1170,11 @@ string cJobManager::GetGirlAttackedString()
 	  case 18: ss << "forced outside"; break;
 	  case 19: ss << "forced to walk on a knotted rope"; break;
 	  case 20: ss << "her skin was pierced by sharp things"; break;
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 
 	ss << " by ";
@@ -1221,6 +1203,11 @@ string cJobManager::GetGirlAttackedString()
 	  case 19: ss << "your mom (It runs in the family.)"; break;
 	  case 20: ss << "tentacles from the sewers."; break;
 	  case 21: ss << "a vengeful family member."; break;
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 
 	return ss.str();
@@ -1231,7 +1218,7 @@ string cJobManager::GetGirlAttackedString()
 /*
  * let's look at this a little differently...
  */
-void cJobManager::get_training_set(vector<sGirl*> &v, vector<sGirl*> &t_set)
+void cJobManager::get_training_set(std::vector<Girl*> &v, std::vector<Girl*> &t_set)
 {
 	u_int max = 4;
 	u_int v_siz = v.size();
@@ -1281,7 +1268,7 @@ void cJobManager::get_training_set(vector<sGirl*> &v, vector<sGirl*> &t_set)
 	}
 }
 
-bool cJobManager::WorkTraining(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+bool cJobManager::WorkTraining(Girl* /*girl*/, Brothel* /*brothel*/, int /*DayNight*/, std::string& /*summary*/)
 {
 	// training is already handled in UpdateGirls
 	//do_training(brothel, DayNight);
@@ -1289,7 +1276,7 @@ bool cJobManager::WorkTraining(sGirl* girl, sBrothel* brothel, int DayNight, str
 	return false;
 }
 
-void cJobManager::do_solo_training(sGirl *girl, int DayNight)
+void cJobManager::do_solo_training(Girl *girl, int DayNight)
 {
 	TrainableGirl trainee(girl);
 	girl->m_Events.AddMessage("She trained during this shift by herself, so learning anything worthwhile was difficult.", IMGTYPE_PROFILE, DayNight);
@@ -1305,17 +1292,17 @@ void cJobManager::do_solo_training(sGirl *girl, int DayNight)
  *	otherwise, pick a random attribute and raise it 1-3 points
  */
 	int amt = 1 + g_Dice%3;
-	string improved = trainee.update_random(amt);
-	stringstream ss;
+    std::string improved = trainee.update_random(amt);
+	std::stringstream ss;
 	ss.str("");
 	ss << "She managed to gain " << amt << " " << improved << ".";
 	girl->m_Events.AddMessage(ss.str(), IMGTYPE_PROFILE, EVENT_SUMMARY);
 }
 
-void cJobManager::do_training_set(vector<sGirl*> girls, int DayNight)
+void cJobManager::do_training_set(std::vector<Girl*> girls, int DayNight)
 {
-	sGirl *girl;
-	stringstream ss;
+	Girl *girl;
+	std::stringstream ss;
 /*
  *	we're getting a vector of 1-4 girls here
  *	(the one is possible if only one girl trains)
@@ -1332,10 +1319,10 @@ void cJobManager::do_training_set(vector<sGirl*> girls, int DayNight)
 		return;
 	}
 /*
- *	OK. Now, as I was saying. We have an array of sGirl* pointers..
+ *	OK. Now, as I was saying. We have an array of Girl* pointers..
  *	We need that to be a list of TrainableGirl objects:
  */
- 	vector<TrainableGirl> set;
+ 	std::vector<TrainableGirl> set;
 /*
  *	4 is the maximum set size. I should probably consider
  *	making that a class constant - or a static class member
@@ -1345,7 +1332,7 @@ void cJobManager::do_training_set(vector<sGirl*> girls, int DayNight)
 	for(u_int i = 0; i < num_girls; i++)
 	{
 		girl = girls[i];
-		if(girl == 0)
+		if(girl == nullptr)
 			break;
 		set.push_back(TrainableGirl(girl));
 	}
@@ -1356,7 +1343,7 @@ void cJobManager::do_training_set(vector<sGirl*> girls, int DayNight)
  *	three attributes for them to train
  */
 	IdealGirl ideal(set);
-	vector<int> indices = ideal.training_indices();
+	std::vector<int> indices = ideal.training_indices();
 /*
  *	OK. Loop over the girls, and then over the indices
  */
@@ -1397,7 +1384,7 @@ void cJobManager::do_training_set(vector<sGirl*> girls, int DayNight)
 			trainee[index].upd(inc);
 		}
 
-		sGirl *girl = trainee.girl();
+		Girl *girl = trainee.girl();
 /*
  *		need to do the  "she trained hard with ..." stuff here
  */
@@ -1444,13 +1431,13 @@ void cJobManager::do_training_set(vector<sGirl*> girls, int DayNight)
 	}
 }
 
-void cJobManager::do_training(sBrothel* brothel, int DayNight)
+void cJobManager::do_training(Brothel* brothel, int DayNight)
 {
 	cTariff tariff;
 	cConfig cfg;
 
-	vector<sGirl*> t_set;
-	vector<sGirl*> girls = girls_on_job(brothel, JOB_TRAINING, DayNight);
+	std::vector<Girl*> t_set;
+	std::vector<Girl*> girls = girls_on_job(brothel, JOB_TRAINING, DayNight);
 
 	for(u_int i = girls.size(); i --> 0; )
 	{  // no girls sneaking in training if she gave birth
@@ -1485,96 +1472,10 @@ void cJobManager::do_training(sBrothel* brothel, int DayNight)
  */
  	for(u_int i = 0; i < girls.size(); i++)
 	{
-		sGirl *girl = girls[i];
+		Girl *girl = girls[i];
 		g_Girls.AddTiredness(girl);
 		g_Girls.UpdateTempStat(girl, STAT_LIBIDO, 2);
 	}
 }
 
-// ----- Film & related
-
-void cJobManager::update_film(sBrothel * brothel)
-{
-
-	if(brothel->m_CurrFilm)
-	{
-		if(brothel->m_CurrFilm->time)
-			brothel->m_CurrFilm->time--;
-		else
-		{
-			brothel->m_CurrFilm->final_quality=0;
-			for(u_int i=0;i<brothel->m_CurrFilm->scene_quality.size();i++)
-			{
-				brothel->m_CurrFilm->final_quality+=(int)((float)brothel->m_CurrFilm->scene_quality[i]*brothel->m_CurrFilm->quality_multiplyer);
-			}
-			brothel->m_CurrFilm->total_customers=0;
-			char cust_mult=0;
-			for(int j=0;j<5;j++)
-			{
-				if(brothel->m_CurrFilm->sex_acts_flags[j])
-					cust_mult++;
-			}
-			brothel->m_CurrFilm->total_customers=cust_mult*brothel->m_CurrFilm->final_quality*10;
-			brothel->m_CurrFilm->final_quality/=brothel->m_CurrFilm->scene_quality.size();
-			film_list.push_back(brothel->m_CurrFilm);
-			brothel->m_CurrFilm=0;
-		}
-	}
-}
-
-long cJobManager::make_money_films()
-{
-	long income=0;
-	for(u_int i=0;i<film_list.size();i++)
-	{
-		income+=(long)((float)film_list[i]->final_quality*(float)film_list[i]->total_customers*.85f);
-		film_list[i]->total_customers=(int)((float)film_list[i]->total_customers*.85f);
-	}
-	return income;
-}
-
-void cJobManager::save_films(std::ofstream &ofs)
-{
-	ofs<<film_list.size()<<'\n';
-	for(u_int i=0;i<film_list.size();i++)
-	{
-		ofs<<film_list[i]->final_quality<<' '<<film_list[i]->quality_multiplyer<<' '<<film_list[i]->time<<' '<<film_list[i]->total_customers<<'\n';
-		for(int j=0;j<5;j++)
-		{
-			ofs<<film_list[i]->sex_acts_flags[j];
-			if(j!=4)
-			ofs<<' ';
-		}
-		ofs<<'\n';
-		ofs<<film_list[i]->scene_quality.size()<<'\n';
-			for(u_int j=0;j<film_list[i]->scene_quality.size();j++)
-			ofs<<film_list[i]->scene_quality[j]<<' ';
-		ofs<<'\n';
-	}
-}
-
-void cJobManager::load_films(std::ifstream &ifs)
-{
-	u_int temp;
-	ifs>>temp;
-	film_list.resize(temp);
-	if(ifs.peek()=='\n') ifs.ignore(1,'\n');
-	for(u_int i=0;i<film_list.size();i++)
-	{
-		film_list[i]=new sFilm;
-		ifs>>film_list[i]->final_quality;
-		ifs>>film_list[i]->quality_multiplyer;
-		ifs>>film_list[i]->time;
-		ifs>>film_list[i]->total_customers;
-		if(ifs.peek()=='\n') ifs.ignore(1,'\n');
-		for(int j=0;j<5;j++)
-			ifs>>film_list[i]->sex_acts_flags[j];
-		if(ifs.peek()=='\n') ifs.ignore(1,'\n');
-		ifs>>temp;
-		film_list[i]->scene_quality.resize(temp);
-		for(u_int j=0;j<temp;j++)
-		{
-			ifs>>film_list[i]->scene_quality[i];
-		}
-	}
-}
+} // namespace WhoreMasterRenewal

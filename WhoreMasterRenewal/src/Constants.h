@@ -20,21 +20,34 @@
 #define CONSTANTS_H_INCLUDED_1522
 #pragma once
 
-#include"cRng.h"
+#include <string>
 
+namespace WhoreMasterRenewal
+{
 
 typedef unsigned int u_int;
 
-// game version
-const int g_MajorVersion    = 1;
-const int g_MinorVersionA   = 3;
-const int g_MinorVersionB   = 0;
-const int g_StableVersion   = 4;
+// Game version. Semantic Versioning used, see: http://semver.org/
+const size_t g_MajorVersion = 0;
+const size_t g_MinorVersion = 0;
+const size_t g_PatchVersion = 0;
+const std::string g_MetadataVersion = "-alpha";
 
 enum {
 	SHIFT_DAY	= 0,
 	SHIFT_NIGHT	= 1
 };
+
+// Constants
+const int NUM_GAMEFLAGS = 5;
+
+// the game flags
+const int FLAG_CUSTNOPAY = 0;
+const int FLAG_DUNGEONGIRLDIE = 1;
+const int FLAG_DUNGEONCUSTDIE = 2;
+const int FLAG_CUSTGAMBCHEAT = 3;
+const int FLAG_RIVALLOSE = 4;
+
 
 // Editable Character Stats and skills (used for traits)
 const int          NUM_STATS            = 22;
@@ -142,6 +155,7 @@ const unsigned int JOB_STRIPPER         = 21;	// not added yet	// strips for the
 const unsigned int JOB_WHOREBAR         = 22;	// not added yet	// offers sexual services to customers
 const unsigned int JOB_SINGER           = 23;	// not added yet	// sings int the bar (girl needs singer trait)
 // - Movie Crystal Studio
+/// @todo Remove Movies from game...
 const unsigned int JOBFILTER_MOVIESTUDIO = 4;
 const unsigned int JOB_FILMBEAST        = 24;	// not added yet	// films this sort of scene in the movie (uses beast resource)
 const unsigned int JOB_FILMSEX          = 25;	// not added yet	// films this sort of scene in the movie
@@ -364,5 +378,7 @@ const int	EVENT_GANG			= 7;
 const int	EVENT_BROTHEL		= 8;
 const int	EVENT_NOWORK		= 10;
 const int	EVENT_DEBUG			= 99;
+
+} // namespace WhoreMasterRenewal
 
 #endif // CONSTANTS_H_INCLUDED_1522

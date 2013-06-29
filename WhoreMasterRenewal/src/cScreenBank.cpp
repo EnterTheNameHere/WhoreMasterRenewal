@@ -16,27 +16,38 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "cBrothel.h"
+
 #include "cScreenBank.h"
+#include "BrothelManager.hpp"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
+#include "cMessageBox.h"
 #include "cGold.h"
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
+#include "cInterfaceEvent.h"
+#include "DirPath.h"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
-extern cInterfaceEventManager g_InterfaceEvents;
-extern long g_IntReturn;
-
-extern void GetString();
-extern cInterfaceWindow g_GetString;
-extern void GetInt();
-extern cInterfaceWindow g_GetInt;
+namespace WhoreMasterRenewal
+{
 
 bool cScreenBank::ids_set = false;
+
+cScreenBank::cScreenBank() : cInterfaceWindowXML()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "bank_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+
+cScreenBank::~cScreenBank()
+{
+    
+}
 
 void cScreenBank::set_ids()
 {
@@ -79,11 +90,11 @@ void cScreenBank::init()
 		GetWithdraw = false;
 	}
 
-	locale syslocale("");
-	stringstream ss;
+	std::locale syslocale("");
+	std::stringstream ss;
 	ss.imbue(syslocale);
 
-	ss << "Bank account: " << g_Brothels.GetBankMoney() << " gold" << endl;
+	ss << "Bank account: " << g_Brothels.GetBankMoney() << " gold" << std::endl;
 	ss << "On hand: " << g_Gold.ival() << " gold";
 
 	EditTextItem(ss.str(), details_id);
@@ -165,3 +176,5 @@ void cScreenBank::check_events()
 	}
 
 }
+
+} // namespace WhoreMasterRenewal

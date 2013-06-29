@@ -16,37 +16,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
+#include "Girl.hpp"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGold g_Gold;
+#include <sstream>
 
-bool cJobManager::WorkMatron(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+namespace WhoreMasterRenewal
+{
+
+bool cJobManager::WorkMatron(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
 {
 	cTariff tariff;
 	if(DayNight == 1)
 		return false;
 
-	string message = "";
+    std::string message = "";
 	if(Preprocessing(ACTION_WORKMATRON, girl, brothel, DayNight, summary, message))
 		return true;
 
@@ -94,3 +93,5 @@ bool cJobManager::WorkMatron(sGirl* girl, sBrothel* brothel, int DayNight, strin
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

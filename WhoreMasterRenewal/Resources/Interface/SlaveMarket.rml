@@ -1,0 +1,25 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="SlaveMarket">
+        <div id="window">
+            <div id="contents">
+                Current Brothel: name
+                Statistics
+                <datagrid source="DebugGirlsList.girls">
+                    <col fields="name" style="text-align: left;">Slaves</col>
+                </datagrid>
+                Slave Market, 2048 gold
+                <img id="girlimage" src="../Characters/Dangerous Girl/Profile1.jpg" />
+                <button>Buy Selected Slave</button>
+                <button>More Details</button>
+                                <datagrid source="DebugGirlsList.traits">
+                    <col fields="traitname">Traits</col>
+                </datagrid>
+                Trait description
+                <button onclick="goto Town">Back</button>
+            </div>
+        </div>
+    </body>
+</rml>

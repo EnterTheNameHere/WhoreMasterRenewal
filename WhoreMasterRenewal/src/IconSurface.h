@@ -20,68 +20,36 @@
 #define ICONSURFACE_H_INCLUDED_1505
 #pragma once
 
-#ifdef LINUX
-#include "linux.h"
-#endif
+#include "CLog.h"
 #include "DirPath.h"
 #include "CSurface.h"
 
-class IconSurface : public CSurface {
+#include <string>
+
+namespace WhoreMasterRenewal
+{
+
+class IconSurface : public CSurface
+{
 public:
-	IconSurface(string name)
-	: CSurface(ImagePath(name + ".png"))
-	{
-	}
-	IconSurface(string name, const char *pt, const char *ext = ".jpg")
-	: CSurface()
-	//: CSurface(ImagePath((name + pt) + ext).c_str())
-	{
-		CLog log;
-
-		string full = "";
-		full += name;
-		full += pt;
-		full += ext;
-		ImagePath dp(full);
-
-		log.ss() << "IconSurface::IconSurface\n"
-			 << "	name = " << name << "\n"
-			 << "	ext  = " << ext  << "\n"
-			 << "	full = " << full  << "\n"
-			 << "	dp   = " << dp.c_str()  << "\n"
-		;
-		log.ssend();
-
-		// Undefine the stupid LoadImage macro from windows headers
-        #ifdef LoadImage
-        #undef LoadImage
-        #endif
-		LoadImage(dp.c_str(), true);
-	}
+	IconSurface( std::string name );
+	IconSurface( std::string name, const char* pt, const char* ext = ".jpg" );
 };
 
-class ButtonSurface : public CSurface {
+class ButtonSurface : public CSurface
+{
 public:
-	ButtonSurface (string name)
-	: CSurface(ButtonPath(name + ".png"))
-	{
-	}
-	ButtonSurface (string name, const char *pt, const char *ext = ".jpg")
-	: CSurface(ButtonPath((name + pt) + ext).c_str())
-	{
-	}
+	ButtonSurface( std::string name);
+	ButtonSurface( std::string name, const char *pt, const char *ext = ".jpg" );
 };
 
-class ImageSurface : public CSurface {
+class ImageSurface : public CSurface
+{
 public:
-	ImageSurface (string name)
-	: CSurface(ImagePath(name + ".png"))
-	{
-	}
-	ImageSurface (string name, const char *pt, const char *ext = ".jpg")
-	: CSurface(ImagePath((name + pt) + ext).c_str())
-	{
-	}
+	ImageSurface( std::string name );
+	ImageSurface( std::string name, const char *pt, const char *ext = ".jpg" );
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // ICONSURFACE_H_INCLUDED_1505

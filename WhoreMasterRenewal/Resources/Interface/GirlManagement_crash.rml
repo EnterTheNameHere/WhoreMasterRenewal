@@ -1,0 +1,40 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="GirlManagement">
+        <div id="window">
+            <div id="contents">
+                <div style="width: 400px; float: left; height: 100%;">
+                    <div style="text-align: left;"><img id="girlimage" src="../Characters/Dangerous Girl/Profile1.jpg" /></div>
+                    <div>Girl Description Placeholder</div>
+                </div>
+                <div style="margin-left: 400px;">
+                    <div>Current Brothel: name</div>
+                    <datagrid source="DebugGirlsList.girls">
+                        <col fields="name" width="30%" style="text-align: left;">Girl Name</col>
+                        <col fields="age" width="6%">Age</col>
+                        <col fields="looks" width="6%">Looks</col>
+                        <col fields="health" width="6%">HP</col>
+                        <col fields="mood" width="6%">Mood</col>
+                        <col fields="tired" width="6%">Tired</col>
+                        <col fields="dayjob" width="20%">Day Job</col>
+                        <col fields="nightjob" width="20%">Night Job</col>
+                    </datagrid>
+                    <div>
+                        <div style="float: left;">Day Job<br />Placeholder<br />Placeholder<br />Placeholder</div>
+                        <div style="float: left;">Night Job<br />Placeholder<br />Placeholder<br />Placeholder</div>
+                        <div style="float: left;">Job description<br />placeholder</div>
+                        <button onclick="goto GirlDetails">Girl Details</button><br />
+                        <button onclick="goto Transfer">Transfer Girls</button><br />
+                        <button onclick="unimplemented">Free Slave</button><br />
+                        <button onclick="unimplemented">Sell Slave</button><br />
+                        <button onclick="unimplemented">Fire Girl</button><br />
+                        <button onclick="goto MainScreen">Back</button>
+                    </div>
+                </div>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </body>
+</rml>

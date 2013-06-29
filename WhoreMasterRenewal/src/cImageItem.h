@@ -20,41 +20,49 @@
 #define CIMAGEITEM_H_INCLUDED_1527
 #pragma once
 
-#include "CSurface.h"
-#include "cAnimatedSurface.h"
-#include "cInterfaceObject.h"
+#include "cInterfaceObject.h" // required inheritance
+
+#include <string>
+#include <memory>
+
+struct SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
 
 class CSurface;
+class cAnimatedSurface;
 
 class cImageItem : public cInterfaceObject
 {
-	bool m_Hidden;
 public:
-	cImageItem() {
-		m_Image 	= 0;
-		m_Next		= 0;
-		m_Surface	= 0;
-		m_AnimatedImage = 0;
-		m_loaded	= false;
-		m_Hidden	= false;
-	}
-	~cImageItem();
+	cImageItem();
+	virtual ~cImageItem();
+	
+	cImageItem( const cImageItem& ) = delete;
+	cImageItem& operator = ( const cImageItem& ) = delete;
 
-	bool CreateImage(int id, string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
-	bool CreateAnimatedImage(int id, string filename, string dataFilename, int x, int y, int width, int height);
+	bool CreateImage(int id, std::string filename, int x, int y, int width, int height, bool statImage = false, int R = 0, int G = 0, int B = 0);
+	bool CreateAnimatedImage(int id, std::string filename, std::string dataFilename, int x, int y, int width, int height);
 
 	void Draw();
-
-	cAnimatedSurface* m_AnimatedImage;
-	CSurface* m_Image;
-	SDL_Surface* m_Surface;
-	int m_ID;
-	bool m_loaded;
-	cImageItem* m_Next;	// next button on the window
-
-	void hide()	{ m_Hidden = true; }
-	void unhide()	{ m_Hidden = false; }
-	void toggle()	{ m_Hidden = !m_Hidden; }
+    
+    void hide()	{ m_Hidden = true; }
+	void unhide() { m_Hidden = false; }
+	void toggle() { m_Hidden = !m_Hidden; }
+    
+    
+    
+	cAnimatedSurface* m_AnimatedImage = nullptr;
+	SDL_Surface* m_Surface = nullptr;
+	int m_ID = 0;
+	bool m_loaded = false;
+	cImageItem* m_Next = nullptr;	// next button on the window
+    std::shared_ptr<CSurface> m_Image = nullptr;
+private:
+    bool m_Hidden = false;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CIMAGEITEM_H_INCLUDED_1527

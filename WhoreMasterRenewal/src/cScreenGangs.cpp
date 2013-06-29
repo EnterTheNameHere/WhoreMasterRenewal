@@ -16,33 +16,45 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "main.h"
-#include "cBrothel.h"
+
 #include "cScreenGangs.h"
+#include "Helper.hpp"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "InterfaceProcesses.h"
+#include "InterfaceGlobals.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
+#include "cInterfaceEvent.h"
+#include "CLog.h"
+#include "cTariff.h"
+#include "DirPath.h"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cWindowManager g_WinManager;
-extern cInterfaceEventManager	g_InterfaceEvents;
-extern cGangManager g_Gangs;
-
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
+namespace WhoreMasterRenewal
+{
 
 static cTariff tariff;
-static stringstream ss;
+static std::stringstream ss;
 
 static int selection = -1;
 static int sel_recruit = -1;
 
 bool cScreenGangs::ids_set = false;
+
+cScreenGangs::cScreenGangs()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "gangs_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+cScreenGangs::~cScreenGangs()
+{
+    
+}
 
 void cScreenGangs::set_ids()
 {
@@ -67,9 +79,9 @@ void cScreenGangs::set_ids()
 	recruitlist_id = get_id("RecruitList");
 
 	//Set the default sort order for columns, so listboxes know the order in which data will be sent
-	string RecruitColumns[] = {"GangName", "Number", "Combat", "Magic", "Intelligence", "Agility", "Constitution", "Charisma"};
+    std::string RecruitColumns[] = {"GangName", "Number", "Combat", "Magic", "Intelligence", "Agility", "Constitution", "Charisma"};
 	SortColumns(recruitlist_id, RecruitColumns, 8);
-	string GangColumns[] = {"GangName", "Number", "Mission", "Combat", "Magic", "Intelligence", "Agility", "Constitution", "Charisma"};
+    std::string GangColumns[] = {"GangName", "Number", "Mission", "Combat", "Magic", "Intelligence", "Agility", "Constitution", "Charisma"};
 	SortColumns(ganglist_id, GangColumns, 9);
 }
 
@@ -122,8 +134,9 @@ void cScreenGangs::init()
 	}
 	else
 		DisableButton(weaponup_id);
-	string s = ss.str();
-	cout << "weapon text = '" << s << "'" << endl;
+	std::string s = ss.str();
+	g_LogFile.ss() << "weapon text = '" << s << "'" << std::endl;
+	g_LogFile.ssend();
 	EditTextItem(s, weaponlevel_id);
 
 	int *nets = g_Gangs.GetNets();
@@ -146,7 +159,7 @@ void cScreenGangs::init()
 	DisableButton(healbuy_id, *potions >= 200);
 	DisableCheckBox(healautobuy_id, *potions < 1);
 
-	string message;
+    std::string message;
 	buffer[0] = '\0';
 	if(g_Gangs.GetNumGangs() > 0)
 	{
@@ -154,7 +167,7 @@ void cScreenGangs::init()
 		for(int i=0; i < g_Gangs.GetNumGangs(); i++)
 		{
 			sGang* g = g_Gangs.GetGang(i);
-			if (g == 0)
+			if (g == nullptr)
 				g = g_Gangs.GetGang(i-1);
 
 			cost += tariff.goon_mission_cost(g->m_MissionID);
@@ -175,13 +188,14 @@ void cScreenGangs::init()
 /*
  *		loop through the gangs, populating the list box
  */
-	cout << "Setting gang mission descriptions" << endl;
+	g_LogFile.ss() << "Setting gang mission descriptions" << std::endl;
+	g_LogFile.ssend();
 	for(current = g_Gangs.GetGang(0); current; current = current->m_Next)
 	{
 /*
  *			format the string with the gang name, mission and number of men
  */
-		string Data[9];
+		std::string Data[9];
 		ss.str("");
 		ss << current->m_Name;
 		Data[0] = ss.str();
@@ -210,8 +224,9 @@ void cScreenGangs::init()
 		ss << (int)current->m_Stats[STAT_CHARISMA] << "%";
 		Data[8] = ss.str();
 
-//		cout << "Gang:\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
-//			<< "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << "\t" << Data[6] << endl;
+//		g_LogFile.ss() << "Gang:\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
+//			<< "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << "\t" << Data[6] << std::endl;
+//      g_LogFile.ssend();
 
 /*
  *			add the box to the list; red highlight gangs that are low on numbers
@@ -227,13 +242,14 @@ void cScreenGangs::init()
 /*
  *		loop through the gangs, populating the list box
  */
-	cout << "Setting recruitable gang info" << endl;
+	g_LogFile.ss() << "Setting recruitable gang info" << std::endl;
+	g_LogFile.ssend();
 	for(current = g_Gangs.GetHireableGang(0); current; current = current->m_Next)
 	{
 /*
  *			format the string with the gang name, mission and number of men
  */
-		string Data[8];
+		std::string Data[8];
 		ss.str("");
 		ss << current->m_Name;
 		Data[0] = ss.str();
@@ -259,8 +275,9 @@ void cScreenGangs::init()
 		ss << (int)current->m_Stats[STAT_CHARISMA] << "%";
 		Data[7] = ss.str();
 
-//		cout << "Recruitable\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
-//			<< "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << endl;
+//		g_LogFile.ss() << "Recruitable\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
+//			<< "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << std::endl;
+//      g_LogFile.ssend();
 
 /*
  *			add the box to the list
@@ -290,7 +307,9 @@ void cScreenGangs::init()
 	DisableButton(gangfire_id, (g_Gangs.GetNumGangs() <= 0)
 							|| (selection == -1));
 
-	potions = wlev = nets = 0;
+	potions = nullptr;
+	wlev = nullptr;
+	nets = nullptr;
 }
 
 void cScreenGangs::process()
@@ -354,7 +373,7 @@ void cScreenGangs::check_events()
 			*wlev += 1;
 			g_InitWin = true;
 		}
-		wlev = 0;
+		wlev = nullptr;
 		return;
 	}
 	if(g_InterfaceEvents.CheckButton(netbuy_id))
@@ -372,7 +391,7 @@ void cScreenGangs::check_events()
 				g_Gangs.KeepNetStocked(*nets);
 			g_InitWin = true;
 		}
-		nets = 0;
+		nets = nullptr;
 		return;
 	}
 	if(g_InterfaceEvents.CheckButton(healbuy_id))
@@ -388,7 +407,7 @@ void cScreenGangs::check_events()
 			*potions += amount;
 			g_InitWin = true;
 		}
-		potions = 0;
+		potions = nullptr;
 		return;
 	}
 	if(g_InterfaceEvents.CheckCheckbox(netautobuy_id))
@@ -419,19 +438,22 @@ void cScreenGangs::check_events()
 	}
 	if(g_InterfaceEvents.CheckListbox(recruitlist_id))
 	{
-		string ClickedHeader = HeaderClicked(recruitlist_id);
+	    std::string ClickedHeader = HeaderClicked(recruitlist_id);
 		if(ClickedHeader != "")
 		{
-			cout << "User clicked \"" << ClickedHeader << "\" column header on Recruit listbox" << endl;
+			g_LogFile.ss() << "User clicked \"" << ClickedHeader << "\" column header on Recruit listbox" << std::endl;
+            g_LogFile.ssend();
 			return;
 		}
 
-		cout << "selected recruitable gang changed" << endl;
+		g_LogFile.ss() << "selected recruitable gang changed" << std::endl;
+		g_LogFile.ssend();
 		sel_recruit = GetLastSelectedItemFromList(recruitlist_id);
 
 		if(ListDoubleClicked(recruitlist_id))
 		{
-			cout << "User double-clicked recruitable gang! Hiring if possible." << endl;
+			g_LogFile.ss() << "User double-clicked recruitable gang! Hiring if possible." << std::endl;
+			g_LogFile.ssend();
 			hire_recruitable();
 			return;
 		}
@@ -442,20 +464,22 @@ void cScreenGangs::check_events()
  */
 	if(g_InterfaceEvents.CheckListbox(ganglist_id))
 	{
-		string ClickedHeader = HeaderClicked(ganglist_id);
+	    std::string ClickedHeader = HeaderClicked(ganglist_id);
 		if(ClickedHeader != "")
 		{
-			cout << "User clicked \"" << ClickedHeader << "\" column header on Gangs listbox" << endl;
+			g_LogFile.ss() << "User clicked \"" << ClickedHeader << "\" column header on Gangs listbox" << std::endl;
+			g_LogFile.ssend();
 			return;
 		}
 
-		cout << "selected gang changed" << endl;
+		g_LogFile.ss() << "selected gang changed" << std::endl;
+		g_LogFile.ssend();
 		selection = GetLastSelectedItemFromList(ganglist_id);
 		if(selection != -1)
 		{
 			sGang* gang = g_Gangs.GetGang(selection);
 
-			string text = "Name: ";
+		    std::string text = "Name: ";
 			text += gang->m_Name;
 			text += "\n";
 			text += "Number: ";
@@ -485,14 +509,16 @@ void cScreenGangs::check_events()
  *			get the index into the missions list
  */
 		int mission_id =  GetLastSelectedItemFromList(missionlist_id);
-		cout << "selchange: mid = " << mission_id << endl;
+		g_LogFile.ss() << "selchange: mid = " << mission_id << std::endl;
+		g_LogFile.ssend();
 /*
  *			set the textfield with the long description and price
  *			for this mission
  */
 		set_mission_desc(mission_id);
 
-		cout << "selection change: rebuilding gang list box" << endl;
+		g_LogFile.ss() << "selection change: rebuilding gang list box" << std::endl;
+		g_LogFile.ssend();
 
 		for(int	selection = multi_first();
 			selection != -1;
@@ -503,7 +529,7 @@ void cScreenGangs::check_events()
  *				make sure we found the gang - pretty catastrophic
  *				if not, so log it if we do
  */
-			if(gang == 0) {
+			if(gang == nullptr) {
 				g_LogFile.ss()	<< "Error: No gang for index "
 				  		<< selection
 				;
@@ -539,7 +565,7 @@ void cScreenGangs::check_events()
 /*
  *				format the display line
  */
-			string Data[6];
+		    std::string Data[6];
 			ss.str("");
 			ss << gang->m_Name;
 			Data[0] = ss.str();
@@ -559,17 +585,17 @@ void cScreenGangs::check_events()
 			ss << (int)gang->m_Stats[STAT_INTELLIGENCE] << "%";
 			Data[5] = ss.str();
 
-//		    cout << "Gang:\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
-//			<< "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << "\t" << Data[6] << endl;
-//
-//			cout << "        index " << mission_id << ": " << ss.str() << endl;
+//		    g_LogFile.ss() << "Gang:\t" << Data[0] << "\t" << Data[1] << "\t" << Data[2]
+//			    << "\t" << Data[3] << "\t" << Data[4] << "\t" << Data[5] << "\t" << Data[6] << std::endl
+//              << "        index " << mission_id << ": " << ss.str() << std::endl;
+//          g_LogFile.ssend();
 /*
  *				and add it to the list
  */
 			SetSelectedItemText( ganglist_id, selection, Data, 6 );
 		}
 
-		string message = "";
+	    std::string message = "";
 		if(g_Gangs.GetNumGangs() > 0)
 		{
 			int cost = 0;
@@ -592,7 +618,7 @@ void cScreenGangs::check_events()
 }
 
 
-string cScreenGangs::mission_desc(int mid)
+std::string cScreenGangs::mission_desc(int mid)
 {
 	switch(mid) {
 	case MISS_GUARDING:
@@ -643,9 +669,10 @@ string cScreenGangs::mission_desc(int mid)
 }
 
 
-string cScreenGangs::short_mission_desc(int mid)
+std::string cScreenGangs::short_mission_desc(int mid)
 {
-	cout << "short_mission_desc(" << mid << ")" << endl;
+	g_LogFile.ss() << "short_mission_desc(" << mid << ")" << std::endl;
+	g_LogFile.ssend();
 	switch(mid)
 	{
 	case MISS_GUARDING:	return "Guarding";
@@ -672,7 +699,7 @@ int cScreenGangs::set_mission_desc(int mid)
 /*
  *	and get a description of the mission
  */
-	string desc = mission_desc(mid);
+    std::string desc = mission_desc(mid);
 /*
  *	stick 'em both together ...
  */
@@ -695,3 +722,16 @@ void cScreenGangs::hire_recruitable()
 	g_Gangs.HireGang(sel_recruit);
 	g_InitWin = true;
 }
+
+int cScreenGangs::multi_first()
+{
+    sel_pos = 0;
+    return GetNextSelectedItemFromList(ganglist_id, 0, sel_pos);
+}
+
+int cScreenGangs::multi_next()
+{
+    return GetNextSelectedItemFromList(ganglist_id, sel_pos+1, sel_pos);
+}
+
+} // namespace WhoreMasterRenewal

@@ -16,17 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cScriptUtils.h"
 #include "cGirls.h"
+#include "GirlManager.hpp"
+#include "BrothelManager.hpp"
 #include "cMessageBox.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
+#include "Girl.hpp"
 
-extern cGirls g_Girls;
-extern cMessageQue g_MessageQue;
-extern cBrothelManager g_Brothels;
-extern int g_CurrBrothel;
+namespace WhoreMasterRenewal
+{
 
-void cScriptUtils::add_girl_to_brothel(sGirl *girl)
+void cScriptUtils::add_girl_to_brothel(Girl *girl)
 {
 /*
  *	no girl -> nothing to do -> go home early
@@ -40,7 +42,7 @@ void cScriptUtils::add_girl_to_brothel(sGirl *girl)
 			how to fix it, so I'm explicitly setting the percentage to 60 here */
 	girl->m_Stats[STAT_HOUSE] = 60;
 
-	string text = girl->m_Realname;
+    std::string text = girl->m_Realname;
 /*
  *	OK: how rebellious is this floozy?
  */
@@ -74,3 +76,4 @@ void cScriptUtils::add_girl_to_brothel(sGirl *girl)
 	g_Brothels.AddGirl(g_CurrBrothel, girl);
 }
 
+} // namespace WhoreMasterRenewal

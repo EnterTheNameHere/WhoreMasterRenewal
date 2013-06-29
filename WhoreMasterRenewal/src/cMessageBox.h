@@ -20,9 +20,19 @@
 #define CMESSAGEBOX_H_INCLUDED_1522
 #pragma once
 
-// Includes
-#include "cFont.h"
-#include<queue>
+#include <string>
+
+class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
+class cMessageBox;
+extern cMessageBox g_MessageBox;
+class cMessageQue;
+extern cMessageQue g_MessageQue;
+
+class cFont;
 
 const int NUM_MESSBOXCOLOR = 4;
 
@@ -31,105 +41,76 @@ const int NUM_MESSBOXCOLOR = 4;
 class cMessageBox
 {
 public:
-	cMessageBox() {m_Color=0;m_TextAdvance=false;m_Font = 0;m_Text = "";for(int i=0; i<NUM_MESSBOXCOLOR; i++)m_Background[i]=0;m_Border=0;m_Active=false;m_Advance=false;m_Position=0;}
-	~cMessageBox();
-
-    // need to undefine the stupid windows headers macro CreateWindow
-    #ifdef CreateWindow
-    #undef CreateWindow
-    #endif
-	void CreateWindow(int x = 32, int y = 416, int width = 736, int height = 160, int BorderSize = 1, int FontSize = 16, bool scale = true);
-	void ChangeFontSize(int FontSize = 16);
-	void Draw();
-	void Advance();
-	void ResetWindow(string text, int color) {if(m_Font)m_Font->SetText(text);m_Text=text;m_Position=0;m_TextAdvance=false;m_Color = color;}
-	bool IsActive() {return m_Active;}
-	void SetActive(bool active) {m_Active = active;}
-
+    cMessageBox();
+    ~cMessageBox();
+    
+    cMessageBox( const cMessageBox& ) = delete;
+    cMessageBox& operator = ( const cMessageBox& ) = delete;
+    
+    void CreateWindow( int x = 32, int y = 416, int width = 736, int height = 160, int BorderSize = 1, int FontSize = 16, bool scale = true );
+    void ChangeFontSize( int FontSize = 16 );
+    void Draw();
+    void Advance();
+    void ResetWindow( std::string text, int color );
+    bool IsActive();
+    void SetActive( bool active );
+    
 private:
-	int m_XPos, m_YPos, m_Height, m_Width, m_BorderSize;
-
-	bool m_Active;
-	bool m_Advance;
-
-	SDL_Surface* m_Background[NUM_MESSBOXCOLOR];
-	SDL_Surface* m_Border;
-
-	cFont* m_Font;
-	string m_Text;	// contains the entire text string
-	int m_Position;	// where we are up too
-
-	bool m_TextAdvance;
-	int m_Color;	// used to determine which color to use
+    int m_XPos = 0;
+    int m_YPos = 0;
+    int m_Height = 0;
+    int m_Width = 0;
+    int m_BorderSize = 0;
+    
+    bool m_Active = false;
+    bool m_Advance = false;
+    
+    SDL_Surface* m_Background[NUM_MESSBOXCOLOR];
+    SDL_Surface* m_Border = nullptr;
+    
+    cFont* m_Font = nullptr;
+    std::string m_Text = "Default cMessageBox::m_Text value"; // contains the entire text string
+    int m_Position = 0; // where we are up too
+    
+    bool m_TextAdvance = false;
+    int m_Color = 0; // used to determine which color to use
 };
-
-extern cMessageBox g_MessageBox;
 
 typedef struct sMessage
 {
-	string m_Text;
-	int m_Color;
-	sMessage* m_Next;
-
-	sMessage() {m_Next=0;m_Color=0;m_Text="";}
-	~sMessage() {if(m_Next) delete m_Next; m_Next=0;}
-}sMessage;
+    sMessage();
+    ~sMessage();
+    
+    sMessage( const sMessage& ) = delete;
+    sMessage& operator = ( const sMessage& ) = delete;
+    
+    std::string m_Text = "Default sMessage::m_Text value";
+    int m_Color = 0;
+    sMessage* m_Next = nullptr;
+} sMessage;
 
 class cMessageQue
 {
 public:
-	cMessageQue() {m_Mess=0;m_Last=0;}
-	~cMessageQue() {Free();}
-
-	void Free()	{if(m_Mess) delete m_Mess; m_Last=m_Mess=0;}
-
-	void AddToQue(string text, int color)
-	{
-		if(text != "")
-		{
-			// Allocate a new process and push it on stack
-			sMessage *Ptr = new sMessage();
-
-			if(m_Last)
-			{
-				m_Last->m_Next = Ptr;
-				m_Last = Ptr;
-			}
-			else
-				m_Mess = m_Last = Ptr;
-			Ptr->m_Text = text;
-			Ptr->m_Color = color;
-		}
-	}
-
-	bool HasNext()
-	{
-		if(m_Mess)
-			return true;
-		return false;
-	}
-
-	void ActivateNext()
-	{
-		if(m_Mess)
-		{
-			sMessage *Ptr = m_Mess;
-			m_Mess = m_Mess->m_Next;
-			Ptr->m_Next = 0;
-			if(m_Mess == 0)
-				m_Last = 0;
-
-			g_MessageBox.ResetWindow(Ptr->m_Text, Ptr->m_Color);
-			g_MessageBox.SetActive(true);
-
-			delete Ptr;
-			Ptr = 0;
-		}
-	}
-
+    cMessageQue();
+    ~cMessageQue();
+    
+    cMessageQue( const cMessageQue& ) = delete;
+    cMessageQue& operator = ( const cMessageQue& ) = delete;
+    
+    void Free();
+    
+    void AddToQue( std::string text, int color );
+    
+    bool HasNext();
+    
+    void ActivateNext();
+    
 private:
-	sMessage* m_Mess;
-	sMessage* m_Last;
+    sMessage* m_Mess = nullptr;
+    sMessage* m_Last = nullptr;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CMESSAGEBOX_H_INCLUDED_1522

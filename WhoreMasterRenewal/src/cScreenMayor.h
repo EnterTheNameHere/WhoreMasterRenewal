@@ -20,44 +20,42 @@
 #define CSCREENMAYOR_H_INCLUDED_1514
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "InterfaceWindowXML.hpp" // required inheritance
+
+namespace WhoreMasterRenewal
+{
+
+class cScreenMayor;
+extern cScreenMayor g_MayorsOfficeScreen;
 
 class cScreenMayor : public cInterfaceWindowXML
 {
 public:
-
+    cScreenMayor();
+    virtual ~cScreenMayor();
+    
+    void init();
+    void process();
+    void check_events();
+    
 private:
-	bool	SetBribe;
-	char	buffer[256];
-
-	static bool ids_set;
-/*
- *	interface/event IDs
- */
-	int back_id;		// Back button
-	int bribe_id;		// Bribe button
-	int details_id;		// Mayor Details text
-	int header_id;		// page header text ("Town Hall")
-
-	void set_ids();
-public:
-	cScreenMayor()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "mayor_screen.xml"
-		;
-		m_filename = dp.c_str();
-		SetBribe = false;
-	}
-	~cScreenMayor() {}
-
-	void init();
-	void process();
-	void check_events();
+    void set_ids();
+    
+    
+    
+    bool SetBribe = false;
+    char buffer[256];
+    
+    static bool ids_set;
+    /*
+     *  interface/event IDs
+     */
+    int back_id = 0;        // Back button
+    int bribe_id = 0;       // Bribe button
+    int details_id = 0;     // Mayor Details text
+    int header_id = 0;      // page header text ("Town Hall")
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENMAYOR_H_INCLUDED_1514

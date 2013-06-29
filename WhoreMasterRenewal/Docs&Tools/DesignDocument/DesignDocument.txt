@@ -1,0 +1,527 @@
+
+Girl:
+	statistics:
+		Charisma
+		Happiness
+		Libido
+		Constitution
+		Intelligence
+		Confidence
+		Mana
+		Agility
+		Fame
+		Level
+		AskPrice:
+			:	girl->m_Stats[STAT_ASKPRICE] = 0;
+			:	SetStat(girl, STAT_ASKPRICE, 0);
+			:	int askPrice = (int)(((GetStat(girl, STAT_BEAUTY)+GetStat(girl, STAT_CHARISMA))/2)*0.6f);	// Initial price
+			:	askPrice += GetStat(girl, STAT_CONFIDENCE)/10;	// their confidence will make them think they are worth more
+			:	askPrice += GetStat(girl, STAT_INTELLIGENCE)/10;	// if they are smart they know they can get away with a little more
+			:	askPrice += GetStat(girl, STAT_FAME)/2;	// And lastly their fame can be quite useful too
+			:	if(GetStat(girl, STAT_LEVEL) > 0)
+			:		askPrice += GetStat(girl, STAT_LEVEL) * 10;  // MYR: Was * 1
+			:
+			:	/*
+			: 	*	I can't see the sense in reducing a slave's price
+			: 	*	if you can't sell slaves
+			: 	*
+			: 	*	if(girl->m_States&(1<<STATUS_SLAVE))
+			:	*	{
+			: 	*		SlaveNeg = (int)((float)askPrice*0.45f);
+			: 	*		askPrice -= SlaveNeg;
+			: 	*	}
+			: 	*/
+			:
+			:	if(vari)
+			:	{
+			:		int minVariance = 0 - (g_Dice%10)+1;
+			:		int maxVariance = (g_Dice%10)+1;
+			:		int variance = ((g_Dice%10)+maxVariance)-minVariance;
+			:		askPrice += variance;
+			:	}
+			:
+			:	if(askPrice > 100)
+			:		askPrice = 100;
+		House
+		Exp
+		Age
+		Obedience
+		Spirit
+		Beauty
+		Tiredness
+		Health
+		PCFear
+		PCLove
+		PCHate
+	skills:
+		Anal
+		Magic
+		BDSM
+		NormalSex
+		Bestiality
+		Group
+		Lesbian
+		Service
+		Strip
+		Combat
+	status:
+		None
+		Poisoned
+		Badly Poisoned
+		Pregnant
+		Pregnant by Player
+		Slave
+		Has Daughter
+		Has Son
+		Inseminated
+		Controlled
+		Catacombs
+	traits:
+		BigBoobs = 0
+		CuteGirl = 0
+		Dangerous = 0
+		Cool = 0
+		Nerd = 0
+		NonHuman = 0
+		Lolita = 0
+			:	if(age < 17)
+			:		AddTrait(newGirl, "Lolita");
+		Elegant = 0
+		Sexy = 0
+		NiceFigure = 0
+		NiceArse = 0
+		SmallBoobs = 0
+		Freak = 0
+		
+			:	if(age => 26)
+			:		(random) AddTrait( "MILF" );
+		
+		"Big Boobs"
+			: BigBoobs += 60
+			: CuteGirl -= 5
+			: Sexy += 10
+			: NiceFigure = 5
+			: SmallBoobs -= 50
+		"Abnormally Large Boobs"
+			: BigBoobs += 60
+			: CuteGirl -= 15
+			: NonHuman += 5
+			: Freak += 20
+			: SmallBoobs -= 50
+		"Small Scars"
+			: CuteGirl -= 5
+			: Dangerous += 5
+			: Cool += 2
+			: Freak += 2
+		"Cool Scars"
+			: CuteGirl -= 10
+			: Dangerous += 20
+			: Cool += 30
+			: Freak += 5
+		"Horrific Scars"
+			: CuteGirl -= 15
+			: Dangerous += 30
+			: Freak += 20
+		"Cool Person"
+			: Dangerous += 5
+			: Cool += 60
+			: Nerd -= 10
+		"Nerd"
+			: CuteGirl += 10
+			: Dangerous -= 30
+			: Cool -= 30
+			: Nerd += 60
+			: SmallBoobs += 5
+		"Clumsy"
+			: CuteGirl += 10;
+			: Dangerous -= 20;
+			: Cool -= 10;
+			: Nerd += 20;
+			: Freak += 5;
+		"Fast orgasms"
+			: Cool += 10;
+			: Sexy += 30;
+		"Slow orgasms"
+			: CuteGirl -= 5;
+			: Cool -= 5;
+			: Elegant += 5;
+			: Sexy -= 10;
+			: Freak += 5;
+		"Quick Learner"
+			: Cool -= 20;
+			: Nerd += 30;
+		"Slow Learner"
+			: CuteGirl += 10;
+			: Cool += 10;
+			: Nerd -= 20;
+		"Cute"
+			: CuteGirl += 60;
+			: Lolita += 20;
+			: SmallBoobs += 5;
+		"Strong"
+			: Dangerous += 20;
+			: Cool += 20;
+			: Nerd -= 30;
+			: NiceFigure += 20;
+			: NiceArse += 20;
+		"Psychic"
+			: Dangerous += 10;
+			: Nerd += 10;
+			: NonHuman += 10;
+			: Freak += 10;
+		"Strong Magic"
+			: Dangerous += 20;
+			: Nerd += 5;
+			: NonHuman += 5;
+			: Freak += 20;
+		"Shroud Addict"
+			: Dangerous += 5;
+			: Cool += 15;
+			: Nerd -= 10;
+			: Elegant -= 20;
+			: Sexy -= 20;
+			: Freak += 10;
+		"Fairy Dust Addict"
+			: Dangerous += 10;
+			: Cool += 20;
+			: Nerd -= 15;
+			: Elegant -= 25;
+			: Sexy -= 25;
+			: Freak += 15;
+		"Viras Blood Addict"
+			: Dangerous += 15;
+			: Cool += 25;
+			: Nerd -= 20;
+			: Elegant -= 30;
+			: Sexy -= 30;
+			: Freak += 20;
+		"Aggressive"
+			: CuteGirl -= 15;
+			: Dangerous += 20;
+			: Lolita -= 5;
+			: Elegant -= 10;
+			: Freak += 10;
+		"Not Human"
+			: NonHuman += 60;
+			: Freak += 10;
+		"Adventurer"
+			: Dangerous += 20;
+			: Cool += 10;
+			: Nerd -= 20;
+			: Elegant -= 5;
+		"Assassin"
+			: Dangerous += 25;
+			: Cool += 15;
+			: Nerd -= 25;
+			: Freak += 10;
+		"Lolita"
+			: BigBoobs -= 30;
+			: CuteGirl += 30;
+			: Dangerous -= 5;
+			: Lolita += 60;
+			: SmallBoobs += 15;
+		"Nervous"
+			: CuteGirl += 10;
+			: Nerd += 15;
+		"Good Kisser"
+			: Cool += 10;
+			: Sexy += 20;
+		"Nymphomaniac"
+			: Sexy += 15;
+			: Freak += 20;
+		"Elegant"
+			: Dangerous -= 30;
+			: Nerd -= 20;
+			: NonHuman -= 20;
+			: Elegant += 60;
+			: Freak -= 30;
+		"Fake orgasm expert"
+			: Sexy += 5;
+		"Sexy Air"
+			: Cool += 5;
+			: Elegant -= 5;
+			: Sexy += 10;
+		"Great Figure"
+			: BigBoobs += 10;
+			: Sexy += 10;
+			: NiceFigure += 60;
+		"Great Arse"
+			: Sexy += 10;
+			: NiceArse = 60;
+		"Small Boobs"
+			: BigBoobs -= 60;
+			: CuteGirl += 25;
+			: Lolita += 15;
+			: SmallBoobs += 60;
+		"Broken Will"
+			: Cool -= 40;
+			: Nerd -= 40;
+			: Elegant -= 40;
+			: Sexy -= 40;
+			: Freak += 40;
+		"Masochist"
+			: CuteGirl -= 10;
+			: Nerd -= 10;
+			: CuteGirl -= 15;
+			: Dangerous += 10;
+			: Elegant -= 10;
+			: Freak += 30;
+		"Sadistic"
+			: CuteGirl -= 20;
+			: Dangerous += 15;
+			: Nerd -= 10;
+			: Elegant -= 30;
+			: Sexy -= 10;
+			: Freak += 30;
+		"Tsundere"
+			: Dangerous += 5;
+			: Cool += 5;
+			: Nerd -= 5;
+			: Elegant -= 20;
+			: Freak += 10;
+		"Yandere"
+			: Dangerous += 5;
+			: Cool += 5;
+			: Nerd -= 5;
+			: Elegant -= 20;
+			: Freak += 10;
+		"Meek"
+			: CuteGirl += 15;
+			: Dangerous -= 30;
+			: Cool -= 30;
+			: Nerd += 30;
+		"Manly"
+			: CuteGirl -= 15;
+			: Dangerous += 5;
+			: Elegant -= 20;
+			: Sexy -= 20;
+			: NiceFigure -= 20;
+			: SmallBoobs += 10;
+			: Freak += 5;
+		"Merciless"
+			: CuteGirl -= 20;
+			: Dangerous += 20;
+			: Nerd -= 10;
+			: Elegant -= 5;
+		"Fearless"
+			: Dangerous += 20;
+			: Cool += 15;
+			: Nerd -= 10;
+			: Elegant -= 10;
+		"Iron Will"
+			: Dangerous += 10;
+			: Cool += 10;
+			: Nerd -= 5;
+			: Elegant -= 10;
+		"Twisted"
+			: CuteGirl -= 40;
+			: Dangerous += 30;
+			: Elegant -= 30;
+			: Sexy -= 20;
+			: Freak += 40;
+		"Optimist"
+			: Elegant += 5;
+		"Pessimist"
+			: Elegant -= 5;
+		"Dependant"
+			: CuteGirl += 5;
+			: Dangerous -= 20;
+			: Cool -= 5;
+			: Nerd += 5;
+			: Elegant -= 20;
+			: Sexy -= 20;
+			: Freak += 10;
+		"Sterile"
+			: Freak += 20;
+		"Fleet of Foot"
+			: Dangerous += 10;
+			: Sexy += 20;
+		"Tough"
+			: CuteGirl -= 5;
+			: Dangerous += 10;
+			: Cool += 10;
+			: Nerd -= 5;
+			: Elegant -= 5;
+		"One Eye"
+			: CuteGirl -= 20;
+			: Cool += 5;
+			: Dangerous += 10;
+			: Sexy -= 20;
+			: NiceFigure -= 10;
+			: Freak += 20;
+		"Eye Patch"
+			: CuteGirl -= 5;
+			: Dangerous += 5;
+			: Cool += 20;
+			: Sexy -= 5;
+			: Freak += 20;
+		"Futanari"
+			: CuteGirl -= 15;
+			: NonHuman += 10;
+			: Freak += 30;
+		"Construct"
+			: Dangerous += 10;
+			: NonHuman += 40;
+			: Freak += 20;
+		"Half-Construct"
+			: Dangerous += 5;
+			: NonHuman += 20;
+			: Freak += 20;
+		"Fragile"
+			: CuteGirl += 10;
+			: Nerd += 5;
+			: Freak += 10;
+		"Mind Fucked"
+			: CuteGirl -= 60;
+			: Dangerous -= 60;
+			: Cool -= 60;
+			: Nerd -= 60;
+			: Elegant -= 60;
+			: Sexy -= 60;
+			: Freak += 40;
+		"Charismatic"
+			: Elegant += 30;
+			: Sexy += 30;
+			: Freak -= 20;
+		"Charming"
+			: Elegant += 20;
+			: Sexy += 20;
+			: Freak -= 15;
+		"Long Legs"
+			: Sexy += 20;
+			: NiceFigure += 20;
+		"Puffy Nipples"
+			: BigBoobs += 10;
+			: CuteGirl += 5;
+			: SmallBoobs += 10;
+		"Perky Nipples"
+			: BigBoobs += 10;
+			: CuteGirl += 5;
+			: SmallBoobs += 10;
+		"Different Colored Eyes"
+			: NonHuman += 20;
+			: Freak += 10;
+		"Strange Eyes"
+			: NonHuman += 20;
+			: Freak += 15;
+		"Incorporial"
+			: NonHuman += 60;
+			: Freak += 40;
+		"MILF"
+			: Freak += 15;
+		"Cat Girl"
+			: CuteGirl += 20;
+			: NonHuman += 60;
+			: Freak += 5;
+		"Demon"
+			: Dangerous += 10;
+			: NonHuman += 60;
+			: Freak += 5;
+		"Malformed"
+			: NonHuman += 10;
+			: Freak += 50;
+		"Retarded"
+			: NonHuman += 2;
+			: Freak += 45;
+		
+		if(BigBoobs > SmallBoobs)
+			if(BigBoobs > 50)
+				girl->m_FetishTypes|=(1<<FETISH_BIGBOOBS);
+			else
+				if(SmallBoobs > 50)
+					girl->m_FetishTypes|=(1<<FETISH_SMALLBOOBS);
+		if(CuteGirl > 50)
+			girl->m_FetishTypes|=(1<<FETISH_CUTEGIRLS);
+		if(Dangerous > 50)
+			girl->m_FetishTypes|=(1<<FETISH_DANGEROUSGIRLS);
+		if(Cool > 50)
+			girl->m_FetishTypes|=(1<<FETISH_COOLGIRLS);
+		if(Nerd > 50)
+			girl->m_FetishTypes|=(1<<FETISH_NERDYGIRLS);
+		if(NonHuman > 50)
+			girl->m_FetishTypes|=(1<<FETISH_NONHUMAN);
+		if(Lolita > 50)
+			girl->m_FetishTypes|=(1<<FETISH_LOLITA);
+		if(Elegant > 50)
+			girl->m_FetishTypes|=(1<<FETISH_ELEGANT);
+		if(Sexy > 50)
+			girl->m_FetishTypes|=(1<<FETISH_SEXY);
+		if(NiceFigure > 50)
+			girl->m_FetishTypes|=(1<<FETISH_FIGURE);
+		if(NiceArse > 50)
+			girl->m_FetishTypes|=(1<<FETISH_ARSE);
+		if(Freak > 50)
+			girl->m_FetishTypes|=(1<<FETISH_FREAKYGIRLS);
+		
+	LevelUp():
+		if( level > 255 )
+			level = 255;
+		exp = 0;
+		if( level <= 20 )
+			LevelUpStats();
+		level += 1;
+		(every 5 levels there's chance for new trait)
+		{
+			rollRandom
+			if		10% && !"Good Kisser" => AddTrait("Good Kisser");
+			elif	20% "Nymphomaniac";
+			elif	30% "Fake orgasm expert";
+			elif	40% "Sexy Air";
+			elif	50% "Fleet of Foot";
+			elif	60% "Charismatic";
+			elif	70% "Charming";
+		}
+	
+	LevelUpStats():
+		if( "Quick Learner" )
+			diceSize = 4
+		else if( "Slow Learner" )
+			diceSize = 2
+		else
+			diceSize = 3
+		
+		UpdateStat( first 8 stats, (Dice%4 + 1) )
+		UpdateSkills( all skills, (Dice%4 + 1) )
+		
+	AddTiredness():
+		if( "Incorporial" )
+			tiredness = 0; return;
+		
+		tiredness = 10;
+		tiredness -= constitution / 10;
+		if( tiredness < 0 )
+			tiredness = 0;
+		if( tiredness => 100 )
+		{
+			tiredness = 100;
+			happiness--;
+			health--;
+		}
+	
+	GetMood():
+		hateLove = PCLOVE - PCHATE
+		"Feels the player "
+		hateLove?
+		100 "is her true love"
+		 80 "is attractive"
+		 60 "is good"
+		 40 "is easy going"
+		 20 "is ok"
+		-20 "is annoying"
+		-40 "isn't nice"
+		-60 "is mean"
+		-80 "is better of dead"
+		-100 "should die"
+		
+		PCFEAR?
+		100 "afraid he will kill her"
+		 80 "afraid he will hurt her"
+		 60 "fearful of him"
+		 40 "afraid of him"
+		
+		happiness?
+		 90 "happy"
+		 80 "joyful"
+		 60 "reasonable happy"
+		 40 "unhappy"
+		 0  "showing signs of depression

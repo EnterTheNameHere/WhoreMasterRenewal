@@ -20,11 +20,15 @@
 #define CLOG_H_INCLUDED_1524
 #pragma once
 
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
-using namespace std;
+
+namespace WhoreMasterRenewal
+{
+
+class CLog;
+extern CLog g_LogFile;
 
 struct CLogInner
 {
@@ -33,54 +37,32 @@ public:
 	~CLogInner();
 	void init();
 
-	void write(string text);
-	ofstream	&os()	{ return m_ofile; }
-	stringstream	&ss()	{ return m_ss; }
-	void ssend() {
-		write(m_ss.str());
-		m_ss.str("");
-	}
-static	bool setup;
-	ofstream m_ofile;
-	stringstream m_ss;
+	void write( std::string text );
+	std::ofstream& os();
+	std::stringstream& ss();
+	void ssend();
+    
+private:
+    static bool setup;
+	std::ofstream m_ofile;
+	std::stringstream m_ss;
 };
-
 
 class CLog
 {
 public:
-	CLog(bool a_glob = false) {
-		m_glob = a_glob;
-	}
-	~CLog() {
-		if(!m_glob) {
-			return;
-		}
-		if(inner) {
-			delete inner;
-		}
-		inner = 0;
-	}
-	void write(string text)
-	{
-		if(!inner) inner = new CLogInner();
-		inner->write(text);
-	}
-	ofstream	&os()	{
-		if(!inner) inner = new CLogInner();
-		return inner->m_ofile;
-	}
-	stringstream	&ss()	{
-		if(!inner) inner = new CLogInner();
-		return inner->m_ss;
-	}
-	void		ssend()	{
-		if(!inner) inner = new CLogInner();
-		inner->ssend();
-	}
+	CLog( bool a_glob = false );
+	~CLog();
+	
+	void write( std::string text );
+	std::stringstream& ss();
+	void ssend();
+	
 private:
 	bool m_glob;
-static	CLogInner *inner;
+    static CLogInner* inner;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CLOG_H_INCLUDED_1524

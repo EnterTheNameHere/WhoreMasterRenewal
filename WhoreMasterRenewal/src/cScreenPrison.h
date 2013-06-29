@@ -20,55 +20,52 @@
 #define CSCREENPRISON_H_INCLUDED_1514
 #pragma once
 
-#include "DirPath.h"
-#include "cInterfaceWindow.h"
-#include "InterfaceGlobals.h"
+#include "InterfaceWindowXML.hpp" // required inheritance
 
-class cBuilding;
+namespace WhoreMasterRenewal
+{
+
+class cScreenPrison;
+extern cScreenPrison g_PrisonScreen;
+
+class Girl;
 
 class cScreenPrison : public cInterfaceWindowXML
 {
 public:
-
+    cScreenPrison();
+    virtual ~cScreenPrison();
+    
+    void init();
+    void process();
+    void more_button();
+    void release_button();
+    void update_details();
+    Girl* get_selected_girl();
+    void selection_change();
+    bool check_keys();
+    
 private:
-	int		selection;
-	int		DetailLevel;
-	char	buffer[256];
-
-static	bool		ids_set;
-/*
- *	interface/event IDs
- */
-	int		header_id;	// screen header
-	int		back_id;	// Back button
-	int		more_id;	// More button
-	int		release_id;	// Release button
-	int		prison_list_id;	// Prisoner list
-	int		girl_desc_id;	// Girl description
-
-	void		set_ids();
-public:
-	cScreenPrison()
-	{
-		DirPath dp = DirPath()
-			<< "Resources"
-			<< "Interface"
-			<< "prison_screen.xml"
-		;
-		m_filename = dp.c_str();
-		selection = -1;
-	}
-	~cScreenPrison() {}
-
-	void init();
-	void process();
-	void more_button();
-	void release_button();
-	void update_details();
-	sGirl* get_selected_girl();
-	void selection_change();
-	bool check_keys();
-
+    void set_ids();
+    
+    
+    
+    int selection = -1;
+    int DetailLevel = 0;
+    char buffer[256];
+    
+    static bool ids_set;
+    /*
+     *  interface/event IDs
+     */
+    int header_id = 0;  // screen header
+    int back_id = 0;    // Back button
+    int more_id = 0;    // More button
+    int release_id = 0; // Release button
+    int prison_list_id = 0; // Prisoner list
+    int girl_desc_id = 0;   // Girl description
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCREENPRISON_H_INCLUDED_1514

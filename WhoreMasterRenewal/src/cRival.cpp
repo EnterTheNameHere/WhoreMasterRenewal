@@ -16,42 +16,45 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cRival.h"
-#include <stdlib.h>
-#include <fstream>
-#include <sstream>
-
-#ifdef LINUX
-#include "linux.h"
-#endif
-
-using namespace std;
-#include "cBrothel.h"
+#include "Brothel.hpp"
+#include "BrothelManager.hpp"
 #include "cMessageBox.h"
 #include "cGold.h"
 #include "GameFlags.h"
 #include "DirPath.h"
 #include "cGangs.h"
+#include "GangManager.hpp"
+#include "XmlMisc.h"
+#include "CLog.h"
+#include "cRng.h"
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
-extern cMessageQue g_MessageQue;
-extern cBrothelManager g_Brothels;
-extern CLog g_LogFile;
-extern cRng g_Dice;
-extern cGold g_Gold;
-extern cGangManager g_Gangs;
+#include <fstream>
+#include <sstream>
+#include <cstdlib>
 
-extern unsigned long g_Year;
-extern unsigned long g_Month;
-extern unsigned long g_Day;
+namespace WhoreMasterRenewal
+{
+
+cRival::cRival()
+{
+    ;
+}
+
+cRival::~cRival()
+{
+    if( m_Next )
+        delete m_Next;
+    
+    m_Next = nullptr;
+    m_Prev = nullptr;
+}
 
 cRivalManager::cRivalManager()
 {
-	m_Rivals=0;
-	m_NumRivals=0;
-	m_Last=0;
-	m_PlayerSafe = true;
-
-
 	DirPath first_names = DirPath()
 		<< "Resources"
 		<< "Data"
@@ -62,12 +65,27 @@ cRivalManager::cRivalManager()
 		<< "Data"
 		<< "RivalGangLastNames.txt"
 		;
-	names.load(first_names, last_names);
+	m_Names.load(first_names, last_names);
+}
+
+cRivalManager::~cRivalManager()
+{
+    Free();
+}
+
+void cRivalManager::Free()
+{
+    if( m_Rivals )
+        delete m_Rivals;
+    
+    m_Rivals = nullptr;
+    m_Last = nullptr;
+    m_NumRivals = 0;
 }
 
 static inline int max(int a, int b) { return((a > b) ? a : b); }
 
-void cRivalManager::rivals_plunder_pc_gold(cRival* rival, string& message)
+void cRivalManager::rivals_plunder_pc_gold(cRival* rival, std::string& message)
 {
 /*
  *	no gold to sieze? nothing to do.
@@ -80,7 +98,7 @@ void cRivalManager::rivals_plunder_pc_gold(cRival* rival, string& message)
  *	make a note of how much we have
  */
 	long pc_gold = g_Gold.ival();
-	long gold = g_Dice.random(min((long)2000, pc_gold));
+	long gold = g_Dice.random(std::min((long)2000, pc_gold));
 /*
  *	make sure there's at least 45 gold taken
  *	unless the pc has less than that, in which case
@@ -98,7 +116,7 @@ void cRivalManager::rivals_plunder_pc_gold(cRival* rival, string& message)
  *	format a message and store it in the string 
  *	that was passed to us
  */
-	stringstream ss;
+	std::stringstream ss;
 	ss << "They also take " << gold << " gold.";
 	message += ss.str();
 }
@@ -357,7 +375,7 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 							sGang* miss1 = g_Gangs.GetGangOnMission(MISS_GUARDING);
 							if(miss1)
 							{
-								string message;
+							    std::string message;
 								message += "Your guards encounter ";
 								message += curr->m_Name;
 								message += " going after some of your territory.";
@@ -380,11 +398,11 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 									g_MessageQue.AddToQue(message, 3);
 								}
 								delete rGang;
-								rGang = 0;
+								rGang = nullptr;
 							}
 							else
 							{
-								string message = "Your rival ";
+							    std::string message = "Your rival ";
 								message += curr->m_Name;
 								message += " has taken one of the undefended territories you control.";
 								g_MessageQue.AddToQue(message, 3);
@@ -396,7 +414,7 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 				}
 				else
 				{
-					string message = "The ";
+				    std::string message = "The ";
 					message += curr->m_Name;
 					message += " attacked the territories of ";
 					cRival* rival = GetRival(who);
@@ -451,7 +469,7 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 							sGang* miss1 = g_Gangs.GetGangOnMission(MISS_GUARDING);
 							if(miss1)
 							{
-								string message = "";
+							    std::string message = "";
 								message += "Your rival the ";
 								message += curr->m_Name;
 								message += " attack your assets.";
@@ -484,11 +502,11 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 									miss1->m_Events.AddMessage(message, IMGTYPE_PROFILE, EVENT_GANG);
 								}
 								delete rGang;
-								rGang = 0;
+								rGang = nullptr;
 							}
 							else
 							{
-								string message = "You have no guards so your rival ";
+							    std::string message = "You have no guards so your rival ";
 								message += curr->m_Name;
 								message += " attacks and ";
 								if(NumPlayerBussiness > 0 || g_Gold.ival() > 0)
@@ -510,7 +528,7 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 					}
 					else
 					{
-						string message = "The ";
+					    std::string message = "The ";
 						message += curr->m_Name;
 						message += " launched an assault on ";
 						cRival* rival = GetRival(who);
@@ -614,7 +632,7 @@ void cRivalManager::Update(int& NumPlayerBussiness)
 cRival* cRivalManager::GetRandomRival()
 {
 	if(m_NumRivals == 0)
-		return 0;
+		return nullptr;
 
 	if(m_NumRivals == 1)
 		return m_Rivals;
@@ -647,7 +665,7 @@ int cRivalManager::GetNumBusinesses()
 	return number;
 }
 
-cRival* cRivalManager::GetRival(string name)
+cRival* cRivalManager::GetRival(std::string name)
 {
 	cRival* current = m_Rivals;
 	while(current)
@@ -656,13 +674,13 @@ cRival* cRivalManager::GetRival(string name)
 			return current;
 		current = current->m_Next;
 	}
-	return 0;
+	return nullptr;
 }
 
 cRival* cRivalManager::get_influential_rival()
 {
 	cRival* current;
-	cRival* top = 0;
+	cRival* top = nullptr;
 /*
  *	we're looking for the rival with the most influence
  */
@@ -680,7 +698,7 @@ cRival* cRivalManager::get_influential_rival()
  *		And since we already weeded out
  *		the influence-less rivals at this point...
  */
-		if(top == 0) {
+		if(top == nullptr) {
 			top = current;
 			continue;
 		}
@@ -712,7 +730,7 @@ cRival* cRivalManager::GetRival(int number)
 		current = current->m_Next;
 	}
 
-	return 0;
+	return nullptr;
 }
 
 TiXmlElement* cRivalManager::SaveRivalsXML(TiXmlElement* pRoot)
@@ -722,7 +740,7 @@ TiXmlElement* cRivalManager::SaveRivalsXML(TiXmlElement* pRoot)
 	TiXmlElement* pRivals = new TiXmlElement("Rivals");
 	pRivalManager->LinkEndChild(pRivals);
 
-	string message = "";
+    std::string message = "";
 	cRival* current = m_Rivals;
 	while(current)
 	{
@@ -746,7 +764,7 @@ TiXmlElement* cRivalManager::SaveRivalsXML(TiXmlElement* pRoot)
 	return pRivalManager;
 }
 
-void cRivalManager::LoadRivalsLegacy(ifstream& ifs)
+void cRivalManager::LoadRivalsLegacy(std::ifstream& ifs)
 {
 	char buffer[1000];
 	Free();
@@ -754,7 +772,7 @@ void cRivalManager::LoadRivalsLegacy(ifstream& ifs)
 	int numRivalsToLoad = 0;
 	ifs>>numRivalsToLoad;
 	m_NumRivals = 0;
-	string message = "";
+    std::string message = "";
 	for(int i=0; i<numRivalsToLoad; i++)
 	{
 		cRival* current = new cRival();
@@ -778,18 +796,18 @@ bool cRivalManager::LoadRivalsXML(TiXmlHandle hRivalManager)
 {
 	Free();//everything should be init even if we failed to load an XML element
 	TiXmlElement* pRivalManager = hRivalManager.ToElement();
-	if (pRivalManager == 0)
+	if (pRivalManager == nullptr)
 	{
 		return false;
 	}
 
-	string message = "";
+    std::string message = "";
 	m_NumRivals = 0;
 	TiXmlElement* pRivals = pRivalManager->FirstChildElement("Rivals");
 	if (pRivals)
 	{
 		for(TiXmlElement* pRival = pRivals->FirstChildElement("Rival");
-			pRival != 0;
+			pRival != nullptr;
 			pRival = pRival->NextSiblingElement("Rival"))
 		{
 			cRival* current = new cRival();
@@ -820,7 +838,6 @@ bool cRivalManager::LoadRivalsXML(TiXmlHandle hRivalManager)
 
 void cRivalManager::CreateRival(long bribeRate, int extort, long gold, int bars, int gambHalls, int Girls, int brothels, int goons)
 {
-	ifstream in;
 	cRival* rival = new cRival();
 
 	DirPath first_names = DirPath()
@@ -844,7 +861,7 @@ void cRivalManager::CreateRival(long bribeRate, int extort, long gold, int bars,
 	rival->m_NumGamblingHalls = gambHalls;
 
 	for(;;) {
-		rival->m_Name = names.random();
+		rival->m_Name = m_Names.random();
 		if(!NameExists(rival->m_Name)) {
 			break;
 		}
@@ -852,7 +869,7 @@ void cRivalManager::CreateRival(long bribeRate, int extort, long gold, int bars,
 	AddRival(rival);
 }
 
-bool cRivalManager::NameExists(string name)
+bool cRivalManager::NameExists(std::string name)
 {
 	cRival* current = m_Rivals;
 	while(current)
@@ -866,7 +883,6 @@ bool cRivalManager::NameExists(string name)
 
 void cRivalManager::CreateRandomRival()
 {
-	ifstream in;
 	cRival* rival = new cRival();
 
 	DirPath first_names = DirPath()
@@ -888,7 +904,7 @@ void cRivalManager::CreateRandomRival()
 	rival->m_NumGangs = 10+g_Dice%5;
 	
 	for(;;) {
-		rival->m_Name = names.random();
+		rival->m_Name = m_Names.random();
 		if(!NameExists(rival->m_Name)) {
 			break;
 		}
@@ -919,8 +935,11 @@ void cRivalManager::RemoveRival(cRival* rival)
 		m_Rivals = rival->m_Next;
 	if(rival == m_Last)
 		m_Last = rival->m_Prev;
-	rival->m_Prev = rival->m_Next = 0;
+	rival->m_Prev = nullptr;
+	rival->m_Next = nullptr;
 	delete rival;
-	rival = 0;
+	rival = nullptr;
 	m_NumRivals--;
 }
+
+} // namespace WhoreMasterRenewal

@@ -22,29 +22,27 @@
 #define CRESOURCE_H_INCLUDED_1521
 #pragma once
 
-#include "CGraphics.h"
-
-extern CGraphics g_Graphics;
-
-class CResourceManager;
+namespace WhoreMasterRenewal
+{
 
 class CResource
 {
 public:
-	virtual void Register() {};		// registers the resource with the resource manager
-	virtual void Free() {}	// Free all data
-	virtual void FreeResources() {}	// Frees only the loaded data, this is so the class isn't destroyed
-	CResource() {
-		m_Next = 0;
-		m_Prev = 0;
-		m_TimeUsed = g_Graphics.GetTicks();
-	}
-	~CResource() {Free(); m_Next = 0; m_Prev = 0;}
-
-	CResource* m_Next;	// pointer to the next resource or null if end of list
-	CResource* m_Prev;	// Pointer to the previous resource or null if top of list
-	unsigned long m_TimeUsed;	// Stores the last time this resource was used
-	bool m_Registered;
+	virtual void Register(); // registers the resource with the resource manager
+	virtual void Free(); // Free all data
+	virtual void FreeResources(); // Frees only the loaded data, this is so the class isn't destroyed
+	CResource();
+	virtual ~CResource();
+    
+    CResource( const CResource& ) = delete;
+	CResource& operator = ( const CResource& ) = delete;
+    
+	CResource* m_Next = nullptr; // pointer to the next resource or null if end of list
+	CResource* m_Prev = nullptr; // Pointer to the previous resource or null if top of list
+	unsigned long m_TimeUsed = 0; // Stores the last time this resource was used
+	bool m_Registered = false;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CRESOURCE_H_INCLUDED_1521

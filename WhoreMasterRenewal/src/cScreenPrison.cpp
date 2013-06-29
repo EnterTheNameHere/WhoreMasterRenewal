@@ -16,37 +16,44 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "main.h"
-#include "cBrothel.h"
+
 #include "cScreenPrison.h"
+#include "Helper.hpp"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
+#include "BrothelManager.hpp"
 #include "sFacilityList.h"
 #include "cGetStringScreenManager.h"
+#include "cMessageBox.h"
+#include "cInterfaceEvent.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "DirPath.h"
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
+#include "Girl.hpp"
 
-#ifdef LINUX
-#include "linux.h"
-#endif
+namespace WhoreMasterRenewal
+{
 
-extern	bool			g_InitWin;
-extern	int			g_CurrBrothel;
-extern	cGold			g_Gold;
-extern	cBrothelManager		g_Brothels;
-extern	cWindowManager		g_WinManager;
-extern	cInterfaceEventManager	g_InterfaceEvents;
+cScreenPrison::cScreenPrison()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "prison_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
 
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
-
-extern void GetString();
-extern cInterfaceWindow g_GetString;
+cScreenPrison::~cScreenPrison()
+{
+    
+}
 
 void cScreenPrison::init()
 {
-	stringstream ss;
-
 	if(!g_InitWin) {
 		return;
 	}
@@ -63,11 +70,11 @@ void cScreenPrison::init()
 
 	int i=0;
 	ClearListBox(prison_list_id);
-	sGirl* pgirls = g_Brothels.GetPrison();
+	Girl* pgirls = g_Brothels.GetPrison();
 	while(pgirls)
 	{
 		//sGirls * girl = mg.girl;
-		string data = "";
+	    std::string data = "";
 		data += pgirls->m_Realname;
 		data += "  (release cost: ";
 
@@ -90,8 +97,6 @@ bool cScreenPrison::ids_set = false;
 
 void cScreenPrison::set_ids()
 {
-	stringstream ss;
-
 	ids_set		= true;
 	header_id	= get_id("ScreenHeader");
 	back_id		= get_id("BackButton");
@@ -197,7 +202,7 @@ void cScreenPrison::update_details()
 	if(selection == -1)
 		return;
 
-	sGirl* pgirls = get_selected_girl();
+	Girl* pgirls = get_selected_girl();
 	if(!pgirls)
 		return;
 
@@ -207,12 +212,12 @@ void cScreenPrison::update_details()
 		EditTextItem(g_Girls.GetDetailsString(pgirls,true), girl_desc_id);
 }
 
-sGirl* cScreenPrison::get_selected_girl()
+Girl* cScreenPrison::get_selected_girl()
 {
 	if(selection == -1)
-		return 0;
+		return nullptr;
 
-	sGirl* pgirls = g_Brothels.GetPrison();
+	Girl* pgirls = g_Brothels.GetPrison();
 	int i=0;
 	while(pgirls)
 	{
@@ -239,7 +244,7 @@ void cScreenPrison::release_button()
 	if(selection == -1)
 		return;
 
-	sGirl* pgirls = get_selected_girl();
+	Girl* pgirls = get_selected_girl();
 	if(!pgirls)
 		return;
 
@@ -261,16 +266,18 @@ void cScreenPrison::release_button()
 	g_Brothels.RemoveGirlFromPrison(pgirls);
 	if((g_Brothels.GetBrothel(g_CurrBrothel)->m_NumRooms - g_Brothels.GetBrothel(g_CurrBrothel)->m_NumGirls) == 0)
 	{
-		string text = pgirls->m_Realname;
+	    std::string text = pgirls->m_Realname;
 		text += " has been sent to your dungeon, since current brothel is full.";
 		g_MessageQue.AddToQue(text, 0);
 		g_Brothels.GetDungeon()->AddGirl(pgirls, DUNGEON_NEWGIRL);
 	}
 	else
 	{
-		string text = pgirls->m_Realname;
+	    std::string text = pgirls->m_Realname;
 		text += " has been sent to your current brothel.";
 		g_MessageQue.AddToQue(text, 0);
 		g_Brothels.AddGirl(g_CurrBrothel, pgirls);
 	}
 }
+
+} // namespace WhoreMasterRenewal

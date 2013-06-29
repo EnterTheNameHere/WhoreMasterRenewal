@@ -20,16 +20,10 @@
 #define GAMEFLAGS_H_INCLUDED_1506
 #pragma once
 
+#include "Constants.h"
 
-// Constants
-const int NUM_GAMEFLAGS = 5;
-
-// the game flags
-const int FLAG_CUSTNOPAY = 0;
-const int FLAG_DUNGEONGIRLDIE = 1;
-const int FLAG_DUNGEONCUSTDIE = 2;
-const int FLAG_CUSTGAMBCHEAT = 3;
-const int FLAG_RIVALLOSE = 4;
+namespace WhoreMasterRenewal
+{
 
 // Externs
 extern unsigned int g_GameFlags[NUM_GAMEFLAGS][2];
@@ -77,4 +71,7 @@ inline void ClearGameFlag(int flag);
 inline int GetGameFlag(int flag);
 inline bool CheckGameFlag(int flag);
 */
+
+} // namespace WhoreMasterRenewal
+
 #endif

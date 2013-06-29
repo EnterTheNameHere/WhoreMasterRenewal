@@ -1,0 +1,32 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="GirlDetails">
+        <div id="window">
+            <div id="contents">
+                Girl Name
+                Statistics
+                <button>More Details</button>
+                Use anti-pregnancy: <input type="checkbox" checked />
+                <image style="width: 552px; height: 604px;" src="../Characters/Dangerous Girl/Profile1.jpg" />
+                <datagrid source="DebugGirlsList.jobtypes">
+                    <col fields="jobtype">Job Types</col>
+                </datagrid>
+                <datagrid source="DebugGirlsList.jobnames">
+                    <col fields="jobname">Job Name</col>
+                </datagrid>
+                <datagrid source="DebugGirlsList.traits">
+                    <col fields="traitname">Traits</col>
+                </datagrid>
+                Trait description
+                <input type="range" min="0" max="100" step="5" orientation="vertical" value="85" />
+                House percentage
+                <button class="half">&lt;-Prev</button><button class="half">Next-&gt;</button>
+                <button class="half">Accom &uarr;</button><button class="half">Accom &darr;</button>
+                <button onclick="goto Inventory">Manage Inventory</button><button>Interact With</button><button>View Gallery</button>
+                <button>Send To Dungeon</button><button>Take Gold</button><button onclick="goto GirlManagement">Back</button>
+            </div>
+        </div>
+    </body>
+</rml>

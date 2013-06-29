@@ -16,13 +16,129 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cWindowManager.h"
 #include "CLog.h"
+#include "cInterfaceWindow.h"
+#include "InterfaceWindowXML.hpp"
 
-extern CLog g_LogFile;
+
+namespace WhoreMasterRenewal
+{
+
+sWindow::sWindow()
+{
+    ;
+}
+
+sWindow::~sWindow()
+{
+    if( m_Next )
+        delete m_Next;
+    m_Next = nullptr;
+    m_Interface = nullptr;
+}
 
 
-void cWindowManager::push(string window_name)
+cWindowManager::cWindowManager()
+{
+    ;
+}
+
+cWindowManager::~cWindowManager()
+{
+    if( m_Parent )
+        delete m_Parent;
+    m_Parent = nullptr;
+}
+
+void cWindowManager::add_window( std::string name, cInterfaceWindowXML* win)
+{
+    windows[name] = win;
+}
+
+// remove function from the stack
+void cWindowManager::Pop()
+{
+    if( m_Parent != nullptr )
+    {
+        sWindow *InterfacePtr = m_Parent;
+        m_Parent = m_Parent->m_Next;
+        InterfacePtr->m_Next = nullptr;
+        delete InterfacePtr;
+        InterfacePtr = nullptr;
+    }
+}
+
+void cWindowManager::PopToWindow(cInterfaceWindow* Interface)
+{
+    if(m_Parent != nullptr)
+    {
+        while(m_Parent->m_Interface != Interface)
+            Pop();
+    }
+}
+
+void cWindowManager::UpdateCurrent()
+{
+    if(!m_Parent) {
+        return;
+    }
+    if(m_Parent->xmlfunc)
+        m_Parent->XmlFunction(m_Parent->m_Interface);
+    else
+        m_Parent->Function();
+}
+
+void cWindowManager::UpdateMouseMovement(int x, int y)
+{
+    if(m_Parent)
+        m_Parent->m_Interface->UpdateWindow(x, y);
+}
+
+void cWindowManager::UpdateMouseDown(int x, int y)
+{
+    if(m_Parent)
+        m_Parent->m_Interface->MouseDown(x, y);
+}
+
+void cWindowManager::UpdateMouseClick(int x, int y, bool mouseWheelDown , bool mouseWheelUp )
+{
+    if(m_Parent)
+        m_Parent->m_Interface->Click(x, y, mouseWheelDown, mouseWheelUp);
+}
+
+void cWindowManager::UpdateKeyInput(char key, bool upper )
+{
+    if(m_Parent)
+        m_Parent->m_Interface->UpdateEditBoxes(key, upper);
+}
+
+bool cWindowManager::HasEditBox()
+{
+    if(!m_Parent)
+        return false;
+    
+    return m_Parent->m_Interface->HasEditBox();
+}
+
+cInterfaceWindow* cWindowManager::GetWindow()
+{
+    if(!m_Parent)
+        return nullptr;
+    
+    return m_Parent->m_Interface;
+}
+
+void cWindowManager::Draw()
+{
+    if(m_Parent)
+        m_Parent->m_Interface->Draw();
+}
+
+
+
+void cWindowManager::push(std::string window_name)
 {
 /*
  *	check the screen exists
@@ -53,7 +169,7 @@ void cInterfaceWindowXML::handler_func(cInterfaceWindowXML *wpt)
 void cWindowManager::Push(process_func Process, cInterfaceWindow* Interface)
 {
 	// Don't push a NULL value
-	if(Process == 0)  {
+	if(Process == nullptr)  {
 		return;
 	}
 	// Allocate a new process and push it on stack
@@ -71,7 +187,7 @@ void cWindowManager::Push(process_func Process, cInterfaceWindow* Interface)
 void cWindowManager::push(process_funcxml Process, cInterfaceWindow* Interface)
 {
 	// Don't push a NULL value
-	if(Process == 0)  {
+	if(Process == nullptr)  {
 		return;
 	}
 	// Allocate a new process and push it on stack
@@ -86,10 +202,4 @@ void cWindowManager::push(process_funcxml Process, cInterfaceWindow* Interface)
 	InterfacePtr->xmlfunc=true;
 }
 
-
-
-/*
-
-make: *** [cWindowManager.o] Error 1
-
- */
+} // namespace WhoreMasterRenewal

@@ -1,0 +1,33 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="MainScreen">
+        <div id="window">
+            <div id="contents">
+                <div style="text-align: left;">
+                    <span id="date">Date placeholder</span>, Brothel: <span id="brothel_name">Brothel name placeholder</span>
+                </div>
+                <div>
+                    <img style="float: left; width: 70%; height: 70%;" src="../Images/Brothel0.jpg" />
+                    <div id="brothel_statistics">
+                        Brothel statistics placeholder
+                        <button class="half" onclick="unimplemented">&lt;-Prev</button><button class="half" onclick="unimplemented">Next-&gt;</button>
+                        <button onclick="goto GirlManagement">Girl Management</button>
+                        <button onclick="goto GangManagement">Gang Management</button>
+                        <button onclick="goto BrothelSetup">Brothel Setup</button>
+                        <button onclick="goto Dungeon">Visit Dungeon</button>
+                        <button onclick="goto Town">Visit Town</button>
+                    <span style="clear: both;"></span>
+                    </div>
+                </div>
+                <div>
+                    <button onclick="goto MainMenu">Quit</button>
+                    <button onclick="unimplemented">Save Game</button>
+                    <button onclick="goto TurnSummary">Turn Summary</button>
+                    <button onclick="unimplemented; goto TurnSummary">Next Week >></button>
+                </div>
+            </div>
+        </div>
+    </body>
+</rml>

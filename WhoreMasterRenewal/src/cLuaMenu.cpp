@@ -16,11 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cLuaMenu.h"
 #include "cChoiceMessage.h"
+#include "cFont.h"
+#include "CLog.h"
+#include "CGraphics.h"
+#include "cLuaScript.h" // required cLuaState
+#include "sConfig.h" // required cConfig
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
 
-extern CGraphics g_Graphics;
-extern cChoiceManager g_ChoiceManager;
+namespace WhoreMasterRenewal
+{
 
 /*
  * OK: this is a little bit complicated
@@ -59,10 +67,12 @@ extern cChoiceManager g_ChoiceManager;
  *	6 : callback calls lua callback function
  */
 
-cLuaMenuInner *cLuaMenu::instance = 0;
+cLuaMenuInner *cLuaMenu::instance = nullptr;
 
 int cLuaMenuInner::get_int(const char *name, int def_val)
 {
+    cLuaState l;
+    
 	int rv = def_val;
 /*
  *	assuming the arg table is on top
@@ -94,9 +104,11 @@ int cLuaMenuInner::get_int(const char *name, int def_val)
 /*
  * same again, but with a string value
  */
-string cLuaMenuInner::get_string(const char *name, const char *def_val)
+std::string cLuaMenuInner::get_string(const char *name, const char *def_val)
 {
-	string str = def_val;
+    cLuaState l;
+    
+    std::string str = def_val;
 /*
  *	assuming the arg table is on top
  *	push the key name on top of that
@@ -126,8 +138,10 @@ string cLuaMenuInner::get_string(const char *name, const char *def_val)
 
 static void c_callback(int chosen);
 
-void cLuaMenuInner::whoops(string msg)
+void cLuaMenuInner::whoops(std::string msg)
 {
+    cLuaState l;
+    
 	lua_pushstring(l, msg.c_str());
 	lua_error(l);	// never returns
 }
@@ -145,6 +159,8 @@ void cLuaMenuInner::whoops(string msg)
  */
 int cLuaMenuInner::get_ref(const char *name)
 {
+    cLuaState l;
+    
 /*
  *	assuming the arg table is on top
  *	push the key name on top of that
@@ -175,11 +191,11 @@ int cLuaMenuInner::get_ref(const char *name)
  *	OK - to store the function we need to convert it into a reference
  *	A reference is just an integer index into the registry
  */
-	log.ss() << "storing lua callback as reference";
-	log.ssend();
+	g_LogFile.ss() << "storing lua callback as reference";
+	g_LogFile.ssend();
 	int index = luaL_ref(l, LUA_REGISTRYINDEX);
-	log.ss() << "storED lua callback as reference";
-	log.ssend();
+	g_LogFile.ss() << "storED lua callback as reference";
+	g_LogFile.ssend();
 /*
  *	that clears the callback off the stack
  *	so we just need to return the reference value
@@ -190,14 +206,16 @@ int cLuaMenuInner::get_ref(const char *name)
 
 str_vec cLuaMenuInner::get_caption_strings()
 {
+    cLuaState l;
+    
 	str_vec v;
 	int arg_table = lua_gettop(l);
 /*
  *	let's just make sure that really is a table on there
  */
  	if(lua_type(l, -1) != LUA_TTABLE) {
-		log.ss() << "error: parameter table not no top of stack";
-		log.ssend();
+		g_LogFile.ss() << "error: parameter table not no top of stack";
+		g_LogFile.ssend();
 	}
 /*
  *	the argument table contains a sub-table under the
@@ -222,6 +240,8 @@ str_vec cLuaMenuInner::get_caption_strings()
 
 str_vec cLuaMenuInner::traverse_caption_table()
 {
+    cLuaState l;
+    
 	str_vec v;
 	int choice_table = lua_gettop(l);
 /*
@@ -246,15 +266,15 @@ str_vec cLuaMenuInner::traverse_caption_table()
  *		old key (or nil) and the value will be
  *		on top of that
  */
- 		string option_pt = lua_tostring(l, -1);
-		//log.ss() << "traverse: '" << option_pt << "'";
-		//log.ssend();
+ 	    std::string option_pt = lua_tostring(l, -1);
+		//g_LogFile.ss() << "traverse: '" << option_pt << "'";
+		//g_LogFile.ssend();
 
 /*
  *		we need some storage for the string
  *		the doesn't depend on the Lua stack
  */
- 		string *strpt = new string(" ");
+ 	    std::string *strpt = new std::string(" ");
 		(*strpt) += option_pt;
 		v.push_back(strpt);
 /*
@@ -283,17 +303,17 @@ void cLuaMenuInner::calc_size_from_font(str_vec &v)
  *		so we know how big and wide to make the menu
  */
 		if(TTF_SizeText(fontpt, pt, &loc_w, &loc_h) == -1) {
-			log.ss() << "Error: can't render '" << pt << "'";
-			log.ssend();
+			g_LogFile.ss() << "Error: can't render '" << pt << "'";
+			g_LogFile.ssend();
 			continue;
 		}
 		maxw = loc_w > maxw ? loc_w : maxw;
 		maxh = loc_h > maxh ? loc_h : maxh;
 		//g_ChoiceManager.AddChoice(0, pt, i);
 	}
-	log.ss() << "width  = " << maxw << "\n";
-	log.ss() << "height = " << maxh << "\n";
-	log.ssend();
+	g_LogFile.ss() << "width  = " << maxw << "\n";
+	g_LogFile.ss() << "height = " << maxh << "\n";
+	g_LogFile.ssend();
 }
 
 void cLuaMenuInner::calc_co_ords(str_vec &v)
@@ -373,6 +393,8 @@ void cLuaMenuInner::write_captions()
 
 void cLuaMenuInner::show()
 {
+    cConfig cfg;
+    
 /*
  *	we have a shedload of args to decode
  *	these are all passed from Lua in a table
@@ -395,15 +417,15 @@ void cLuaMenuInner::show()
  *	OK. that was reasonably efficient.
  *	now we need to get the option strings
  */
-	log.ss() << "getting caption strings";
-	log.ssend();
+	g_LogFile.ss() << "getting caption strings";
+	g_LogFile.ssend();
  	captions = get_caption_strings();
 /*
  *	next we need to calculate co-rds for the values not
  *	specified
  */
-	log.ss() << "calculating co-ords";
-	log.ssend();
+	g_LogFile.ss() << "calculating co-ords";
+	g_LogFile.ssend();
  	calc_co_ords(captions);
 /*
  *	OK: now we should have everything we need to create 
@@ -416,8 +438,8 @@ void cLuaMenuInner::show()
 /*
  *	now we can do the menu
  */
-	log.ss() << "creating choice box";
-	log.ssend();
+	g_LogFile.ss() << "creating choice box";
+	g_LogFile.ssend();
 	g_ChoiceManager.CreateChoiceBox(
 		x, y, maxw + 20, maxh, 0, captions.size(), maxh, 0
 	);
@@ -457,14 +479,16 @@ static void c_callback(int option_number)
  */
 void cLuaMenuInner::clicked(int option_number)
 {
+    cLuaState l;
+    
 	g_ChoiceManager.Free();
-	g_ChoiceManager.set_callback(0);
+	g_ChoiceManager.set_callback(nullptr);
 /*
  *	we need to free up the string pointers used for captions
  */
 	for(unsigned int i = 0; i < captions.size(); i++) {
 		delete captions[i];
-		captions[i] = 0;
+		captions[i] = nullptr;
 	}
 	captions.clear();
 /*
@@ -486,8 +510,8 @@ void cLuaMenuInner::clicked(int option_number)
  */
  	if(lua_type(l, -1) != LUA_TFUNCTION) {
 		whoops("cLuaMenuInner::clicked: item in registry is not a function");
-		log.ss() << "ERROR: cLuaMenuInner::whoops is not supposed to return!!!";
-		log.ssend();
+		g_LogFile.ss() << "ERROR: cLuaMenuInner::whoops is not supposed to return!!!";
+		g_LogFile.ssend();
 	}
 /*
  *	if we get here, we have a function. Before calling it,
@@ -511,17 +535,29 @@ void cLuaMenuInner::clicked(int option_number)
 	if(rc == 0) {
 		return;
 	}
-	CLog log;
-	string errstr = lua_tostring(l, -1);
+	
+    std::string errstr = lua_tostring(l, -1);
 	lua_pop(l, 1);
-	log.ss()	<< "Script error in menu callback: "
+	g_LogFile.ss()	<< "Script error in menu callback: "
 			<< errstr
 	;
-	log.ssend();
+	g_LogFile.ssend();
 }
 
-/*
+void cLuaMenu::show()
+{
+    instance->show();
+}
 
- *
+void cLuaMenu::clicked( int option_number )
+{
+    instance->clicked( option_number );
+}
 
- */
+cLuaMenu::cLuaMenu()
+{
+    if( !instance )
+        instance = new cLuaMenuInner();
+}
+
+} // namespace WhoreMasterRenewal

@@ -16,70 +16,62 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <sstream>
 
-#ifdef LINUX
-#include "linux.h"
-#endif
-
-#include "main.h"
 #include "cDungeon.h"
-#include "cBrothel.h"
+#include "Helper.hpp"
+#include "Brothel.hpp"
 #include "cMessageBox.h"
 #include "cGangs.h"
 #include "strnatcmp.h"
 #include "cGirlTorture.h"
+#include "GameFlags.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "XmlMisc.h"
+#include "cRng.h"
+#include "CLog.h"
+#include "InterfaceProcesses.h"
+#include "BrothelManager.hpp"
+#include "Girl.hpp"
 
-extern cMessageQue		g_MessageQue;
-extern cGirls			g_Girls;
-extern cBrothelManager	g_Brothels;
-extern cRng				g_Dice;
-extern cGangManager		g_Gangs;
-extern char				buffer[1000];
+#include <sstream>
+
+namespace WhoreMasterRenewal
+{
 
 // strut sDungeonCust
-sDungeonCust::sDungeonCust()		// constructor
+sDungeonCust::sDungeonCust()
 {
-	m_Prev=m_Next = 0;
-	m_Weeks = 0;
-	m_Tort = false;
-	m_Feeding = true;
-	m_Health = 100;
+	;
 }
 
 sDungeonCust::~sDungeonCust()		// destructor
 {
 	if (m_Next)
 		delete m_Next;
-	m_Next = 0;
+	m_Next = nullptr;
 }
 
 // strut sDungeonGirl
-sDungeonGirl::sDungeonGirl()		// constructor
+sDungeonGirl::sDungeonGirl()
 {
-	m_Girl = 0;
-	m_Prev=m_Next = 0;
-	m_Weeks = 0;
-	m_Feeding = true;
+	;
 }
 
 sDungeonGirl::~sDungeonGirl() 		// destructor
 {
     if (m_Girl)
         delete m_Girl;
-    m_Girl = 0;
+    m_Girl = nullptr;
     if (m_Next)
         delete m_Next;
-    m_Next = 0;
+    m_Next = nullptr;
 }
 
 // class cDungeon
-cDungeon::cDungeon()		// constructor
+cDungeon::cDungeon()
 {
-    m_LastDGirl = m_Girls = 0;
-    m_LastDCusts = m_Custs = 0;
-    m_NumberDied = 0;
-    m_NumGirls = m_NumCusts = 0;
+    ;
 }
 
 cDungeon::~cDungeon()		// destructor
@@ -91,12 +83,19 @@ void cDungeon::Free()
 {
     if (m_Girls)
         delete m_Girls;
-    m_LastDGirl = m_Girls = 0;
+    
+    m_LastDGirl = nullptr;
+    m_Girls = nullptr;
+    
     if (m_Custs)
         delete m_Custs;
-    m_LastDCusts = m_Custs = 0;
-    m_NumberDied=0;
-    m_NumGirls = m_NumCusts = 0;
+    
+    m_LastDCusts = nullptr;
+    m_Custs = nullptr;
+    
+    m_NumberDied = 0;
+    m_NumGirls = 0;
+    m_NumCusts = 0;
 }
 
 TiXmlElement* cDungeon::SaveDungeonDataXML(TiXmlElement* pRoot)// saves all the people (they are stored with the dungeon)
@@ -111,7 +110,7 @@ TiXmlElement* cDungeon::SaveDungeonDataXML(TiXmlElement* pRoot)// saves all the 
 	TiXmlElement* pDungeonGirls = new TiXmlElement("Dungeon_Girls");
 	pDungeon->LinkEndChild(pDungeonGirls);
 	sDungeonGirl* girl = m_Girls;
-	string message = "";
+    std::string message = "";
 	while(girl)
 	{
 		message = "Saving Dungeon Girl: ";
@@ -152,7 +151,7 @@ TiXmlElement* cDungeon::SaveDungeonDataXML(TiXmlElement* pRoot)// saves all the 
 	return pDungeon;
 }
 
-void cDungeon::LoadDungeonDataLegacy(ifstream& ifs)	// loads all the people (they are stored with the dungeon)
+void cDungeon::LoadDungeonDataLegacy(std::ifstream& ifs)	// loads all the people (they are stored with the dungeon)
 {
 	Free();
 	int temp;
@@ -161,7 +160,7 @@ void cDungeon::LoadDungeonDataLegacy(ifstream& ifs)	// loads all the people (the
 	ifs>>m_NumberDied>>m_NumGirls>>m_NumCusts;
 
 	// load girls
-	string message = "";
+    std::string message = "";
 	for(int i=0; i<m_NumGirls; i++)
 	{
 		sDungeonGirl* girl = new sDungeonGirl();
@@ -176,7 +175,7 @@ void cDungeon::LoadDungeonDataLegacy(ifstream& ifs)	// loads all the people (the
 		if (ifs.peek()=='\n') ifs.ignore(1,'\n');
 		ifs>>girl->m_Reason>>girl->m_Weeks;
 
-		girl->m_Girl = new sGirl();
+		girl->m_Girl = new Girl();
 		g_Girls.LoadGirlLegacy(girl->m_Girl, ifs);
 
 		message = "Loading Dungeon Girl: ";
@@ -246,7 +245,7 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 {
 	Free();//everything should be init even if we failed to load an XML element
 	TiXmlElement* pDungeon = hDungeon.ToElement();
-	if (pDungeon == 0)
+	if (pDungeon == nullptr)
 	{
 		return false;
 	}
@@ -256,16 +255,16 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 
 	// load girls
 	m_NumGirls = 0;
-	string message = "";
+    std::string message = "";
 	TiXmlElement* pDungeonGirls = pDungeon->FirstChildElement("Dungeon_Girls");
 	if (pDungeonGirls)
 	{
 		for(TiXmlElement* pGirl = pDungeonGirls->FirstChildElement("Girl");
-			pGirl != 0;
+			pGirl != nullptr;
 			pGirl = pGirl->NextSiblingElement("Girl"))// load each girl and add her
 		{
 			sDungeonGirl* girl = new sDungeonGirl();
-			girl->m_Girl = new sGirl();
+			girl->m_Girl = new Girl();
 			bool success = girl->m_Girl->LoadGirlXML(TiXmlHandle(pGirl));
 			if (success == true)
 			{
@@ -299,7 +298,7 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 	if (pDungeonCustomers)
 	{
 		for(TiXmlElement* pCustomer = pDungeonCustomers->FirstChildElement("Customer");
-			pCustomer != 0;
+			pCustomer != nullptr;
 			pCustomer = pCustomer->NextSiblingElement("Customer"))
 		{
 			sDungeonCust* customer = new sDungeonCust();
@@ -318,7 +317,7 @@ bool cDungeon::LoadDungeonDataXML(TiXmlHandle hDungeon)	// loads all the people 
 	return true;
 }
 
-void cDungeon::AddGirl(sGirl* girl, int reason)
+void cDungeon::AddGirl(Girl* girl, int reason)
 {
 	if (reason == DUNGEON_GIRLKIDNAPPED)
 	{
@@ -388,9 +387,9 @@ void cDungeon::PlaceDungeonCustomer(sDungeonCust *newCust)
 	m_NumCusts++;
 }
 
-int cDungeon::GetGirlPos(sGirl* girl)
+int cDungeon::GetGirlPos(Girl* girl)
 {
-	if (girl == 0 || m_Girls == 0)
+	if (girl == nullptr || m_Girls == nullptr)
 		return -1;
 
 	sDungeonGirl* current = m_Girls;
@@ -403,13 +402,13 @@ int cDungeon::GetGirlPos(sGirl* girl)
 		current = current->m_Next;
 	}
 
-	if (current == 0)
+	if (current == nullptr)
 		return -1;
 
 	return count;
 }
 
-sGirl* cDungeon::RemoveGirl(sGirl* girl)	// this returns the girl, it must be placed somewhere or deleted
+Girl* cDungeon::RemoveGirl(Girl* girl)	// this returns the girl, it must be placed somewhere or deleted
 {
 	sDungeonGirl* current = m_Girls;
 	while(current)
@@ -422,10 +421,10 @@ sGirl* cDungeon::RemoveGirl(sGirl* girl)	// this returns the girl, it must be pl
 	if (current)
 		return RemoveGirl(current);
 
-	return 0;
+	return nullptr;
 }
 
-sGirl* cDungeon::RemoveGirl(sDungeonGirl* girl)	// this returns the girl, it must be placed somewhere or deleted
+Girl* cDungeon::RemoveGirl(sDungeonGirl* girl)	// this returns the girl, it must be placed somewhere or deleted
 {
 	girl->m_Girl->m_DayJob = girl->m_Girl->m_NightJob = JOB_RESTING;
 	if (girl->m_Next)
@@ -437,21 +436,22 @@ sGirl* cDungeon::RemoveGirl(sDungeonGirl* girl)	// this returns the girl, it mus
 	if (girl == m_Girls)
 		m_Girls = girl->m_Next;
 
-	sGirl* girlData = girl->m_Girl;
-	girl->m_Next = girl->m_Prev = 0;
-	girl->m_Girl = 0;
+	Girl* girlData = girl->m_Girl;
+	girl->m_Next = nullptr;
+	girl->m_Prev = nullptr;
+	girl->m_Girl = nullptr;
 
 	m_NumGirls--;
 
 	delete girl;
-	girl = 0;
+	girl = nullptr;
 
 	return girlData;
 }
 
 void cDungeon::RemoveCust(sDungeonCust* cust)
 {
-	if (cust == 0)
+	if (cust == nullptr)
 		return;
 
 	if (cust->m_Prev)
@@ -462,14 +462,15 @@ void cDungeon::RemoveCust(sDungeonCust* cust)
 		m_LastDCusts = cust->m_Prev;
 	if (cust == m_Custs)
 		m_Custs = cust->m_Next;
-	cust->m_Next = cust->m_Prev = 0;
+	cust->m_Next = nullptr;
+	cust->m_Prev = nullptr;
 	delete cust;
-	cust = 0;
+	cust = nullptr;
 
 	m_NumCusts--;
 }
 
-void cDungeon::OutputGirlRow(int i, string* Data, const vector<string>& columnNames)
+void cDungeon::OutputGirlRow(int i, std::string* Data, const std::vector<std::string>& columnNames)
 {
 	sDungeonGirl* girl = m_Girls;
 	int tmp = 0;
@@ -490,10 +491,10 @@ void cDungeon::OutputGirlRow(int i, string* Data, const vector<string>& columnNa
 	}
 }
 
-void sDungeonGirl::OutputGirlDetailString(string& Data, const string& detailName)
+void sDungeonGirl::OutputGirlDetailString(std::string& Data, const std::string& detailName)
 {
 	//given a statistic name, set a string to a value that represents that statistic
-	static stringstream ss;
+	static std::stringstream ss;
 	ss.str("");
 	if (detailName == "Rebelliousness")
 	{
@@ -552,7 +553,7 @@ void sDungeonGirl::OutputGirlDetailString(string& Data, const string& detailName
 	Data = ss.str();
 }
 
-void cDungeon::OutputCustRow(int i, string* Data, const vector<string>& columnNames)
+void cDungeon::OutputCustRow(int i, std::string* Data, const std::vector<std::string>& columnNames)
 {
 	sDungeonCust* cust = m_Custs;
 	int tmp = 0;
@@ -573,10 +574,10 @@ void cDungeon::OutputCustRow(int i, string* Data, const vector<string>& columnNa
 	}
 }
 
-void sDungeonCust::OutputCustDetailString(string& Data, const string& detailName)
+void sDungeonCust::OutputCustDetailString(std::string& Data, const std::string& detailName)
 {
 	//given a statistic name, set a string to a value that represents that statistic
-	static stringstream ss;
+	static std::stringstream ss;
 	ss.str("");
 	if (detailName == "Name")
 	{
@@ -632,7 +633,7 @@ void sDungeonCust::OutputCustDetailString(string& Data, const string& detailName
 sDungeonGirl* cDungeon::GetGirl(int i)
 {
 	if (i < 0)
-		return 0;
+		return nullptr;
 	sDungeonGirl* girl = m_Girls;
 	int tmp = 0;
 	while(girl)
@@ -646,7 +647,7 @@ sDungeonGirl* cDungeon::GetGirl(int i)
 	return girl;
 }
 
-sDungeonGirl* cDungeon::GetGirlByName(string name)
+sDungeonGirl* cDungeon::GetGirlByName(std::string name)
 {
 	sDungeonGirl* currentGirl = m_Girls;
 	while(currentGirl)
@@ -655,9 +656,9 @@ sDungeonGirl* cDungeon::GetGirlByName(string name)
 			return currentGirl;
 		currentGirl = currentGirl->m_Next;
 	}
-	return 0;
+	return nullptr;
 }
-int cDungeon::GetDungeonPos(sGirl* girl)
+int cDungeon::GetDungeonPos(Girl* girl)
 {
 	sDungeonGirl* tgirl = m_Girls;
 	int tmp = 0;
@@ -693,8 +694,8 @@ void cDungeon::Update()
  *	WD: GetNumGirlsOnJob() not testing if the girl worked
  *
  */
-	sGirl* TorturerGirlref = 0;
-	string msg, summary, girlName;
+	Girl* TorturerGirlref = nullptr;
+    std::string msg, summary, girlName;
 
 	// Reser counters
 	m_NumGirlsTort = m_NumCustsTort = 0;
@@ -717,7 +718,7 @@ void cDungeon::Update()
 		sDungeonGirl* current = m_Girls;
 		while(current)
 		{
-			sGirl* girl = current->m_Girl;
+			Girl* girl = current->m_Girl;
 			// Clear the girls' events from the last turn
 			girl->m_Events.Clear();
 
@@ -769,7 +770,7 @@ void cDungeon::Update()
 					continue;
 				}
 			}
-#endif
+#endif // #if 0
 /*
  *			DAILY Processing
  */
@@ -956,9 +957,8 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 //#define WDTEST // debuging
 #undef WDTEST
 
-	sGirl* girl = d_girl->m_Girl;
-	string msg;
-	string girlName	= girl->m_Realname;
+	Girl* girl = d_girl->m_Girl;
+    std::string girlName	= girl->m_Realname;
 
 	// Sanity check. Abort on dead girl
 	if (girl->health() <= 0)
@@ -968,7 +968,7 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 
 #ifdef WDTEST // debuging
 
-	string sum = "Start\n";
+    std::string sum = "Start\n";
 	sum	+= "   h=";
 	sum	+= toString(girl->happiness());
 	sum	+= "   o=";
@@ -984,7 +984,7 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 	sum	+= "  TD=";
 	sum	+= toString(girl->tiredness());
 
-#endif
+#endif // WDTEST
 
 	if (d_girl->m_Feeding)
 	{
@@ -1075,11 +1075,11 @@ void cDungeon::updateGirlTurnDungeonStats(sDungeonGirl* d_girl)
 	girl->m_Events.AddMessage(sum, IMGTYPE_PROFILE, EVENT_DEBUG);
 
 #undef WDTEST
-#endif
+#endif // WDTEST
 }
 
 #if 0		// WD	Moved to cGirlTorture class
-void cDungeon::doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, string& summary)
+void cDungeon::doTorturer(sDungeonGirl* d_girl, Girl* t_girl, std::string& summary)
 {
 /*
  *	WD:	Torturer tortures dungeon girl
@@ -1091,9 +1091,9 @@ void cDungeon::doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, string& summary)
  *	summary :	Summary messages are appended
  */
 
-	sGirl *girl		= d_girl->m_Girl;
-	string girlName = girl->m_Realname;
-	string msg		= "";
+	Girl *girl		= d_girl->m_Girl;
+    std::string girlName = girl->m_Realname;
+    std::string msg		= "";
 	int chance		= 0;
 	cConfig cfg;
 	int chance_div	=  cfg.initial.torture_mod();
@@ -1227,6 +1227,8 @@ void cDungeon::doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, string& summary)
 			t_girl->m_Events.AddMessage( msg, IMGTYPE_PROFILE, EVENT_DUNGEON);
 		}
 	}
-#endif
+#endif // #if 1
 }
-#endif
+#endif // #if 0
+
+} // namespace WhoreMasterRenewal

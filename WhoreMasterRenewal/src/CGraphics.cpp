@@ -16,20 +16,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "CGraphics.h"
-#include "fstream"
 #include "CLog.h"
 #include "DirPath.h"
-using namespace std;
-extern CLog g_LogFile;
+#include "InterfaceGlobals.h"
 
-int g_ScreenWidth = 800, g_ScreenHeight = 600;
-bool g_Fullscreen = false;
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+
+#include <fstream>
+
+namespace WhoreMasterRenewal
+{
+
+extern CGraphics g_Graphics;
 
 CGraphics::CGraphics()
 {
-	m_Screen = 0;
-	m_CurrentTime = 0;
+	;
 }
 
 CGraphics::~CGraphics()
@@ -41,7 +47,7 @@ void CGraphics::Free()
 {
 	TTF_Quit();
 	SDL_Quit();
-	m_Screen = 0;
+	m_Screen = nullptr;
 }
 
 void CGraphics::Begin()
@@ -71,18 +77,18 @@ bool CGraphics::End()
 	return true;
 }
 
-bool CGraphics::InitGraphics(string caption, int Width, int Height, int BPP)
+bool CGraphics::InitGraphics(std::string caption, int Width, int Height, int BPP)
 {
 	if(Width == 0 || Height == 0)
 	{
-		char buffer[1000];
-		ifstream incol;
+		std::ifstream incol;
 		// WD: Typecast to resolve ambiguous call in VS 2010
 		DirPath dp = DirPath() << "ScreenMode.txt";
 		g_LogFile.write("Reading Screen Mode");
 		incol.open(dp.c_str());
 		if(incol)
 		{
+			char buffer[1000];
 			incol.ignore(1000, '\n');	// ignore first line
 			incol>>g_ScreenWidth>>g_ScreenHeight;incol.ignore(1000, '\n');	// width/height
 			incol.getline(buffer, 1000, '\n');
@@ -125,7 +131,7 @@ bool CGraphics::InitGraphics(string caption, int Width, int Height, int BPP)
 		return false;
 	}
 	else
-		SDL_WM_SetIcon(loadIcon, NULL);
+		SDL_WM_SetIcon(loadIcon, nullptr);
 
 	// Setup the screen
 	g_LogFile.write("Determining Fullscreen or Windowed Mode");
@@ -141,7 +147,7 @@ bool CGraphics::InitGraphics(string caption, int Width, int Height, int BPP)
 
 	// set window caption
 	g_LogFile.write("Setting Window Caption");
-	SDL_WM_SetCaption(caption.c_str(), 0);
+	SDL_WM_SetCaption(caption.c_str(), nullptr );
 
 	// Init TTF
 	g_LogFile.write("Initializing TTF");
@@ -154,3 +160,25 @@ bool CGraphics::InitGraphics(string caption, int Width, int Height, int BPP)
 
 	return true;
 }
+
+SDL_Surface* CGraphics::GetScreen()
+{
+    return m_Screen;
+}
+
+unsigned int CGraphics::GetTicks()
+{
+    return m_CurrentTime;
+}
+
+int CGraphics::GetWidth()
+{
+    return m_ScreenWidth;
+}
+
+int CGraphics::GetHeight()
+{
+    return m_ScreenHeight;
+}
+
+} // namespace WhoreMasterRenewal

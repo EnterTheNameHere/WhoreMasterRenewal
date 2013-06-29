@@ -1,0 +1,19 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="Prison">
+        <div id="window">
+            <div id="contents">
+                Town Prison
+                <datagrid source="DebugGirlsList.girls">
+                    <col fields="name" style="text-align: left;">Prisoner</col>
+                </datagrid>
+                Statistics
+                <button>Release</button>
+                <button>More Details</button>
+                <button onclick="goto Town">Back</button>
+            </div>
+        </div>
+    </body>
+</rml>

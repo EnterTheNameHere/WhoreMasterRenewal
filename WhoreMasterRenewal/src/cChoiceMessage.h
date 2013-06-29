@@ -20,85 +20,70 @@
 #define CCHOICEMESSAGE_H_INCLUDED_1527
 #pragma once
 
-#include "CSurface.h"
-#include "cFont.h"
 #include <string>
-using namespace std;
+#include <memory>
+
+class SDL_Surface;
+
+namespace WhoreMasterRenewal
+{
+
+class cChoiceManager;
+extern cChoiceManager g_ChoiceManager;
+
+class cFont;
+class cChoice;
+class CSurface;
 
 typedef void (*menu_callback_type)(int);
 
 class cChoice	// represents a list of text selections and the currently selected text
 {
 public:
+	cChoice();
+	~cChoice();
+    
+    cChoice( const cChoice& ) = delete;
+	cChoice& operator = ( const cChoice& ) = delete;
+    
+	int m_NumChoices = 0;	// The number of choices available
+	std::string* m_Choices = nullptr;	// array of choices available
+	int m_CurrChoice = -1;	// The choice selected at present
+	int m_ID = 0;	// the id for this particular box
+	cChoice* m_Next = nullptr;	// the next choice box in the list
+	SDL_Surface* m_Background = nullptr;
+	SDL_Surface* m_Border = nullptr;
+	SDL_Surface* m_ElementBackground = nullptr;	// the background and border for the list elements
+	SDL_Surface* m_ElementSelectedBackground = nullptr;	// the background and border for the list elements
+	SDL_Surface* m_HeaderBackground = nullptr;
+	int m_XPos = 0;
+	int m_YPos = 0;
+	int m_Width = 0;
+	int m_Height = 0;
 
-	cChoice() {m_Next=0;m_Choices=0; m_NumChoices=0;m_CurrChoice=-1;m_Background=m_Border=0;m_ElementSelectedBackground=m_ElementBackground=0;m_Position=0;m_HeaderBackground=0;m_ScrollDisabled=false;}
-	~cChoice()
-	{
-		if(m_Next)
-			delete m_Next;
-		m_Next = 0;
-		if(m_Choices)
-			delete [] m_Choices;
-		m_Choices = 0;
-		if(m_Background)
-			SDL_FreeSurface(m_Background);
-		m_Background = 0;
-		if(m_Border)
-			SDL_FreeSurface(m_Border);
-		m_Border = 0;
-		if(m_ElementBackground)
-			SDL_FreeSurface(m_ElementBackground);
-		m_ElementBackground = 0;
-		if(m_ElementSelectedBackground)
-			SDL_FreeSurface(m_ElementSelectedBackground);
-		m_ElementSelectedBackground = 0;
-		if(m_HeaderBackground)
-			SDL_FreeSurface(m_HeaderBackground);
-		m_HeaderBackground = 0;
-	}
+	int m_NumDrawnElements = 0;
+	int m_eWidth = 0;
+	int m_eHeight = 0;
+	int m_Position = 0;
 
-
-
-	int m_NumChoices;	// The number of choices available
-	string* m_Choices;	// array of choices available
-	int m_CurrChoice;	// The choice selected at present
-	int m_ID;	// the id for this particular box
-	cChoice* m_Next;	// the next choice box in the list
-	SDL_Surface* m_Background;
-	SDL_Surface* m_Border;
-	SDL_Surface* m_ElementBackground;	// the background and border for the list elements
-	SDL_Surface* m_ElementSelectedBackground;	// the background and border for the list elements
-	SDL_Surface* m_HeaderBackground;
-	int m_XPos, m_YPos, m_Width, m_Height;
-
-	int m_NumDrawnElements;
-	int m_eWidth;
-	int m_eHeight;
-	int m_Position;
-
-	bool m_ScrollDisabled;
+	bool m_ScrollDisabled = false;
 };
 
 
 class cChoiceManager
 {
-	menu_callback_type m_callback;
 public:
-	cChoiceManager() {
-		m_Parent=0;
-		m_ActiveChoice=0;
-		m_DownOn=m_UpOn=m_UpOff=m_DownOff=0;
-		m_CurrUp=m_CurrDown=0;
-		m_Font=0;
-		m_callback = 0;
-	}
-	~cChoiceManager() {Free();}
-
+	cChoiceManager();
+	~cChoiceManager();
+    
+    cChoiceManager( const cChoiceManager& ) = delete;
+	cChoiceManager& operator = ( const cChoiceManager& ) = delete;
+    
 	void Free();
 	void CreateChoiceBox(int x, int y, int width, int height, int ID, int numChoices, int itemHeight, int MaxStrLen = 0);
 	void CreateChoiceBoxResize(int ID, int numChoices);
 	void BuildChoiceBox(int ID, int MaxStrLen);
-	void AddChoice(int ID, string text, int choiceID);
+	void AddChoice(int ID, std::string text, int choiceID);
 	void Draw();
 	int GetChoice(int ID);
 	void SetActive(int ID);
@@ -113,17 +98,21 @@ public:
 	bool find_active(int x, int y);
 
 private:
-	cChoice* m_Parent;
-	cChoice* m_ActiveChoice;
+    menu_callback_type m_callback = nullptr;
+    
+	cChoice* m_Parent = nullptr;
+	cChoice* m_ActiveChoice = nullptr;
 
-	cFont* m_Font;
+	cFont* m_Font = nullptr;
 
-	CSurface* m_UpOn;
-	CSurface* m_DownOn;
-	CSurface* m_UpOff;
-	CSurface* m_DownOff;
-	CSurface* m_CurrUp;
-	CSurface* m_CurrDown;
+	std::shared_ptr<CSurface> m_UpOn = nullptr;
+	std::shared_ptr<CSurface> m_DownOn = nullptr;
+	std::shared_ptr<CSurface> m_UpOff = nullptr;
+	std::shared_ptr<CSurface> m_DownOff = nullptr;
+	std::shared_ptr<CSurface> m_CurrUp = nullptr;
+	std::shared_ptr<CSurface> m_CurrDown = nullptr;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CCHOICEMESSAGE_H_INCLUDED_1527

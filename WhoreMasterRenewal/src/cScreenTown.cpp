@@ -16,35 +16,59 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "cBrothel.h"
+
 #include "cScreenTown.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
+#include "BrothelManager.hpp"
 #include "sFacilityList.h"
 #include "cGetStringScreenManager.h"
 #include "InterfaceProcesses.h"
 #include "cScriptManager.h"
+#include "cGangs.h"
+#include "GangManager.hpp"
+#include "cMessageBox.h"
+#include "cChoiceMessage.h"
+#include "cInterfaceEvent.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "CLog.h"
+#include "cRng.h"
+#include "sConfig.h"
+#include "DirPath.h"
+#include "cChoiceMessage.h"
+#include "cMessageBox.h"
+#include "DirPath.h"
+#include "cTriggers.h"
+#include "Girl.hpp"
+
 #include <iostream>
 #include <locale>
 #include <sstream>
-#include "cGangs.h"
 
-extern	bool			g_InitWin;
-extern	int			g_CurrBrothel;
-extern	cGold			g_Gold;
-extern	cBrothelManager		g_Brothels;
-extern	cWindowManager		g_WinManager;
-extern	cInterfaceEventManager	g_InterfaceEvents;
-extern bool g_WalkAround;
-extern bool g_Cheats;
-extern	bool	eventrunning;
-extern string g_ReturnText;
-extern cGangManager g_Gangs;
-extern bool g_AllTogle;
-
-extern cInterfaceWindow g_GetString;
+namespace WhoreMasterRenewal
+{
 
 bool cScreenTown::ids_set = false;
+
+cScreenTown::cScreenTown()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "town_screen.xml"
+    ;
+    m_filename = dp.c_str();
+    BuyBrothel = -1;
+    GetName = false;
+    m_first_walk = true;
+}
+
+cScreenTown::~cScreenTown()
+{
+    
+}
 
 void cScreenTown::set_ids()
 {
@@ -136,12 +160,12 @@ void cScreenTown::init()
  */
 	DisableButton(walk_id, g_WalkAround);
 
-	HideButton(brothel2_id, (g_Brothels.GetBrothel(1)==0));
-	HideButton(brothel3_id, (g_Brothels.GetBrothel(2)==0));
-	HideButton(brothel4_id, (g_Brothels.GetBrothel(3)==0));
-	HideButton(brothel5_id, (g_Brothels.GetBrothel(4)==0));
+	HideButton(brothel2_id, (g_Brothels.GetBrothel(1)==nullptr));
+	HideButton(brothel3_id, (g_Brothels.GetBrothel(2)==nullptr));
+	HideButton(brothel4_id, (g_Brothels.GetBrothel(3)==nullptr));
+	HideButton(brothel5_id, (g_Brothels.GetBrothel(4)==nullptr));
 
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, curbrothel_id);
 }
@@ -255,7 +279,7 @@ void cScreenTown::process()
 	}
 }
 
-string cScreenTown::walk_no_luck()
+std::string cScreenTown::walk_no_luck()
 {
 	if(m_first_walk) {
 		m_first_walk = false;
@@ -308,6 +332,12 @@ string cScreenTown::walk_no_luck()
 		"a discreet eye on her.  It's like that everywhere "
 		"today. Maybe tomorrow will be better."
 		;
+		
+    default:
+        std::stringstream local_ss;
+        local_ss << "Switch default case was hit unexpectingly.\n" << __LINE__ << ":" << __FILE__ << "\n";
+        g_LogFile.write( local_ss.str() );
+        break;
 	}
 /*
  *	I don't think this should happen, hence the overly dramatic prose
@@ -334,11 +364,11 @@ void cScreenTown::do_walk()
 /*
  *	let's get a girl for the player to meet
  */
-	sGirl *girl = g_Girls.GetRandomGirl();
+	Girl* girl = g_Girls.GetRandomGirl();
 /*
  *	if there's no girl, no meeting
  */
-	if(girl == 0) {
+	if(girl == nullptr) {
 		g_MessageQue.AddToQue(walk_no_luck(), 0);
 		return;
 	}
@@ -357,14 +387,13 @@ void cScreenTown::do_walk()
  *
  *	once scripts are stable
  */
-	string message = "You go out searching around town for any new girls, ";
+    std::string message = "You go out searching around town for any new girls, ";
 	message += "and you notice a potential new girl and walk up to her.";
 	g_MessageQue.AddToQue(message, 2);
 	int v[2] = {0,-1};
-	cTrigger* trig = 0;
+	cTrigger* trig = nullptr;
 
 	DirPath dp;
-	string filename;
 	cScriptManager sm;
 /*
  *	is there a girl specific talk script?
@@ -392,8 +421,8 @@ void cScreenTown::check_brothel(int BrothelNum)
 	if(g_Brothels.GetNumBrothels() == BrothelNum)
 	{	// player doesn't own this brothel... can he buy it?
 		static_brothel_data *bck = brothel_data + BrothelNum;
-		locale syslocale("");
-		stringstream ss;
+		std::locale syslocale("");
+		std::stringstream ss;
 		ss.imbue(syslocale);
 
 		if(!g_Gold.afford(bck->price) || g_Gangs.GetNumBusinessExtorted() < bck->business)
@@ -422,3 +451,5 @@ void cScreenTown::check_brothel(int BrothelNum)
 		g_WinManager.Pop();
 	}
 }
+
+} // namespace WhoreMasterRenewal

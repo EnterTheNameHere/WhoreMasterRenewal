@@ -20,10 +20,10 @@
 #define CSCRIPTS_H_INCLUDED_1512
 #pragma once
 
-#include <stdio.h>
 #include <string>
-using namespace std;
 
+namespace WhoreMasterRenewal
+{
 
 enum Types { _NONE = 0, _TEXT, _BOOL, _INT, _FLOAT, _CHOICE };
 //typedef unsigned char bool;
@@ -49,58 +49,28 @@ typedef struct sEntry	// represents a single entry in an action
 	};
 
 	// Structure constructor to clear to default values
-	sEntry()
-	{
-		m_Type = _NONE;
-		m_NumChoices = 0;
-		m_Choices = 0;
-		m_TypeID= 0;
-	}
+	sEntry();
 
 	// Structure destructor to clean up used resources
-	~sEntry()
-	{
-		// Special case for choice types
-		if((m_Type == _CHOICE) && m_Choices != 0)
-		{
-			if(m_NumChoices)
-			{
-				for(long i=0;i<m_NumChoices;i++)
-				{
-					delete [] m_Choices[i]; // Delete choice text
-					m_Choices[i] = 0;
-				}
-			}
-			delete [] m_Choices; // Delete choice array
-			m_Choices = 0;
-		}
-	}
+	~sEntry();
 }sEntry;
 
 // Structure that stores a single action and contains
 // a pointer for using linked lists.
 typedef struct sAction
 {
+public:
 	long m_ID; // Action ID (0 to # actions-1)
 	char m_Text[256]; // Action text
 	short m_NumEntries; // # of entries in action
-	sEntry *m_Entries; // Array of entry structures
-	sAction *m_Next; // Next action in linked list
+	sEntry* m_Entries; // Array of entry structures
+	sAction* m_Next; // Next action in linked list
 
-	sAction()
-	{
-		m_ID = 0; // Set all data to defaults
-		m_Text[0] = 0;
-		m_NumEntries = 0;
-		m_Entries = 0;
-		m_Next = 0;
-	}
-
-	~sAction()
-	{
-		if(m_Entries) delete [] m_Entries; m_Entries = 0; // Free entries array
-		if(m_Next) delete m_Next; m_Next = 0; // Delete next in list
-	}
+	sAction();
+	~sAction();
+	
+	sAction( const sAction& ) = delete;
+	sAction& operator = ( const sAction& ) = delete;
 } sAction;
 
 typedef struct sScriptEntry
@@ -116,121 +86,110 @@ typedef struct sScriptEntry
 		float m_fValue; // float value
 	};
 
-	char *m_Text; // Text buffer
+	char* m_Text; // Text buffer
 	unsigned char m_Var;
 
-	sScriptEntry()
-	{
-		m_Type = _NONE; // Clear to default values
-		m_IOValue = 0;
-		m_Text = 0;
-		m_Var = 0;
-	}
-
-	~sScriptEntry()
-	{
-		if(m_Text)
-			delete [] m_Text;
-		m_Text = 0;
-	} // Delete text buffer
+	sScriptEntry();
+	~sScriptEntry();
+	
+	sScriptEntry( const sScriptEntry& ) = delete;
+	sScriptEntry& operator = ( const sScriptEntry& ) = delete;
+	
 } sScriptEntry;
 
 typedef struct sScript
 {
 	long m_Type; // 0 to (number of actions-1)
 	long m_NumEntries; // # entries in this script action
-	sScriptEntry *m_Entries; // Array of entries
-	sScript *m_Prev; // Prev in linked list
-	sScript *m_Next; // Next in linked list
+	sScriptEntry* m_Entries; // Array of entries
+	sScript* m_Prev; // Prev in linked list
+	sScript* m_Next; // Next in linked list
 
-	sScript()
-	{
-		m_Type = 0; // Clear to defaults
-		m_NumEntries = 0;
-		m_Entries = 0;
-		m_Prev = m_Next = 0;
-	}
-
-	~sScript()
-	{
-		if(m_Entries)
-			delete [] m_Entries;
-		m_Entries = 0; // Delete entry array
-		if(m_Next)
-			delete m_Next;
-		m_Prev = m_Next = 0; // Delete next in linked list
-	}
+	sScript();
+	~sScript();
+	
+	sScript( const sScript& ) = delete;
+	sScript& operator = ( const sScript& ) = delete;
 } sScript;
 
 class cActionTemplate
 {
-private:
-	long m_NumActions; // # of actions in template
-	sAction *m_ActionParent; // list of template actions
-
-	// Functions for reading text (mainly used in actions)
-	bool GetNextQuotedLine(char *Data, FILE *fp, long MaxSize);
-	bool GetNextWord(char *Data, FILE *fp, long MaxSize);
-
 public:
-	cActionTemplate() {m_ActionParent=0;}
-	~cActionTemplate() {Free();}
-
+	cActionTemplate();
+	~cActionTemplate();
+    
+    cActionTemplate( const cActionTemplate& ) = delete;
+	cActionTemplate& operator = ( const cActionTemplate& ) = delete;
+    
 	// Load and free the action templates
 	bool Load();
-	bool Free(){if(m_ActionParent) delete m_ActionParent;m_ActionParent=0;m_NumActions=0;return true;}
+	bool Free();
 
 	// Get # actions in template, action parent,
 	// and specific action structure.
 	long GetNumActions() {return m_NumActions;}
-	sAction *GetActionParent(){return m_ActionParent;}
-	sAction *GetAction(long Num);
+	sAction* GetActionParent(){return m_ActionParent;}
+	sAction* GetAction(long Num);
 
 	// Get a specific type of sScript structure
-	sScript *CreateScriptAction(long Type);
+	sScript* CreateScriptAction(long Type);
 
 	// Get info about actions and entries
 	long GetNumEntries(long ActionNum);
-	sEntry *GetEntry(long ActionNum, long EntryNum);
+	sEntry* GetEntry(long ActionNum, long EntryNum);
 
 	// Expand action text using min/first/true choice values
-	bool ExpandDefaultActionText(char *Buffer, sAction *Action);
+	bool ExpandDefaultActionText(char* Buffer, sAction* Action);
 
 	// Expand action text using selections
-	bool ExpandActionText(char *Buffer, sScript *Script);
+	bool ExpandActionText(char* Buffer, sScript* Script);
+    
+private:
+	long m_NumActions; // # of actions in template
+	sAction* m_ActionParent; // list of template actions
+
+	// Functions for reading text (mainly used in actions)
+	bool GetNextQuotedLine(char* Data, FILE* fp, long MaxSize);
+	bool GetNextWord(char* Data, FILE* fp, long MaxSize);
 };
 
 // Class for processing scripts
 class cScript
 {
 protected:
-	long m_NumActions; // # of script actions loaded
-	sScript *m_ScriptParent; // Script linked list
-
+	cScript( sScript* scriptParent = nullptr, long numActions = 0 );
+	
 	// Overloadable functions for preparing for script
 	// processing and when processing completed
 	virtual bool Prepare() { return true; }
 	virtual bool Release() { return true; }
+	
+	long m_NumActions; // # of script actions loaded
+	sScript* m_ScriptParent; // Script linked list
 
 	// Process a single script action
-	virtual sScript *Process(sScript *Script) { return Script->m_Next; }
+	virtual sScript* Process( sScript* script ) { return script->m_Next; }
 
 public:
-	cScript() {m_ScriptParent=0;}; // Constructor
-	~cScript() {if(m_ScriptParent)delete m_ScriptParent; m_ScriptParent=0;}; // Destructor
+	virtual ~cScript();
+	
+	cScript( const cScript& ) = delete;
+	cScript& operator = ( const cScript& ) = delete;
 
-	bool Load(string filename); // Load a script
+	bool Load(std::string filename); // Load a script
 	bool Free(); // Free loaded script
 /*
  *	no idea if this stub needs to return true or false
  *	picked one at random to silence a compiler warning
  */
-	bool Execute(char *Filename=NULL) { Filename; return true; }; // Execute script
+	bool Execute(char* /*Filename=NULL*/) { /*Filename*/; return true; }; // Execute script
 };
 
 // General Functions
-sScript *LoadScriptFile(string Filename);
-bool SaveScriptFile(const char *Filename, sScript *ScriptRoot);
-void TraverseScript(sScript *pScript);
+sScript* LoadScriptFile(std::string Filename);
+bool SaveScriptFile(const char* Filename, sScript* ScriptRoot);
+void TraverseScript(sScript* pScript);
+
+} // namespace WhoreMasterRenewal
 
 #endif // CSCRIPTS_H_INCLUDED_1512

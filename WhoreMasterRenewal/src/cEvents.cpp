@@ -17,18 +17,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "cEvents.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+
 #include <algorithm>
 #include <iostream>
 #include <iterator>
 
-#include "cEvents.h"
-#include "cGirls.h"
+namespace WhoreMasterRenewal
+{
 
-using namespace std;
+CEvent::CEvent()
+{
+    ;
+}
 
-
-
-string CEvent::TitleText()
+std::string CEvent::TitleText()
 {
 
 /*
@@ -127,7 +132,7 @@ unsigned int CEvent::ListboxColour()
 	}
 }
 
- bool CEvent::IsUrgent()
+bool CEvent::IsUrgent()
 {
 	if(m_Event == EVENT_DANGER || m_Event == EVENT_WARNING || m_Event == EVENT_NOWORK)
 		return true;
@@ -148,16 +153,31 @@ bool CEvent::IsWarning()
 	return false;
 }
 
+bool CEvent::CmpEventPredicate( CEvent eFirst, CEvent /*eSecond*/ )
+{
+    // TODO: why are both sides same variables?
+    return eFirst.m_Ordinal < eFirst.m_Ordinal;
+}
+
+cEvents::cEvents()
+{
+    ;
+}
+
+cEvents::~cEvents()
+{
+    Free();
+}
 
 void cEvents::Free()
 {
-	events.clear();
+	m_Events.clear();
 	m_bSorted = false;
 }
 
 bool cEvents::HasUrgent()
 {
-	for (vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
+	for (std::vector<CEvent>::iterator iter = m_Events.begin(); iter != m_Events.end(); ++iter)
 	{
 		if(iter->IsUrgent())
 			return true;
@@ -167,7 +187,7 @@ bool cEvents::HasUrgent()
 
 bool cEvents::HasDanger()
 {
-	for (vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
+	for (std::vector<CEvent>::iterator iter = m_Events.begin(); iter != m_Events.end(); ++iter)
 	{
 		if(iter->IsDanger())
 			return true;
@@ -177,7 +197,7 @@ bool cEvents::HasDanger()
 
 bool cEvents::HasWarning()
 {
-	for (vector<CEvent>::iterator iter = events.begin(); iter != events.end(); ++iter)
+	for (std::vector<CEvent>::iterator iter = m_Events.begin(); iter != m_Events.end(); ++iter)
 	{
 		if(iter->IsWarning())
 			return true;
@@ -185,23 +205,19 @@ bool cEvents::HasWarning()
 	return false;
 }
 
-void cEvents::AddMessage(string message, int type, int eve)
+void cEvents::AddMessage(std::string message, int type, int eve)
 {
 	CEvent newEvent;
 	newEvent.m_MessageType	= type;
 	newEvent.m_Event		= eve;
 	newEvent.m_Message		= message;
 	//newEvent.m_Ordinal		= MakeOrdinal(eve);
-	events.push_back(newEvent);
+	m_Events.push_back(newEvent);
 }
 
-// need to undefine the stupid windows headers macro GetMessage
-#ifdef GetMessage
-#undef GetMessage
-#endif
 CEvent cEvents::GetMessage(int id)
 {
-	return events.at(id);
+	return m_Events.at(id);
 }
 
 //bool CEvent::CmpEventPredicate(CEvent eFirst, CEvent eSecond)
@@ -295,11 +311,9 @@ void cEvents::DoSort()
 {
 	if (!m_bSorted)
 	{
-		sort(events.begin(), events.end(), CEvent::CmpEventPredicate);
-		//stable_sort(events.begin(), events.end(), CEvent::CmpEventPredicate);
+		sort(m_Events.begin(), m_Events.end(), CEvent::CmpEventPredicate);
 		m_bSorted = true;
 	}
 }
 
-
-
+} // namespace WhoreMasterRenewal

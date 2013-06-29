@@ -16,28 +16,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <algorithm>
-#include "cBrothel.h"
+
 #include "cScreenGirlManagement.h"
+#include "Brothel.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cTariff.h"
 #include "cJobManager.h"
+#include "BrothelManager.hpp"
+#include "cChoiceMessage.h"
+#include "cMessageBox.h"
 #include "InterfaceProcesses.h"
+#include "InterfaceGlobals.h"
+#include "cInterfaceEvent.h"
+#include "cListBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "DirPath.h"
+#include "Girl.hpp"
 
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
+#include <algorithm>
 
-extern	bool	g_LeftArrow;
-extern	bool	g_RightArrow;
-extern	bool	g_UpArrow;
-extern	bool	g_DownArrow;
+namespace WhoreMasterRenewal
+{
 
 static cTariff tariff;
-static stringstream ss;
+static std::stringstream ss; /// @todo Get rid of this static variable
 
 static int lastNum = -1;
 static int ImageNum = -1;
@@ -47,18 +51,21 @@ static bool SellGirl = false;
 static int selection = -1;
 static int DayNight = 0;	// 1 is night, 0 is day.
 
-// need to undefine the stupid windows header macro SetJob
-#ifdef SetJob
-#undef SetJob
-#endif
 static bool SetJob = false;
 
-extern sGirl *selected_girl;
-extern vector<int> cycle_girls;
-extern int cycle_pos;
-
-
 bool cScreenGirlManagement::ids_set = false;
+
+cScreenGirlManagement::cScreenGirlManagement()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "girl_management_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+cScreenGirlManagement::~cScreenGirlManagement() {}
+
 
 void cScreenGirlManagement::set_ids()
 {
@@ -98,7 +105,7 @@ void cScreenGirlManagement::init()
  *			then sort the array, then step backwards from the last in the array
  *			This is necessary since removing a girl changes the IDs of all after her
  */
-			vector<int> girl_array;
+			std::vector<int> girl_array;
 			GetSelectedGirls(&girl_array);  // get and sort array of girls
 
 			// OK, we have the array, now step through it backwards
@@ -117,7 +124,7 @@ void cScreenGirlManagement::init()
 					else
 					{  // random girls simply get removed from the game
 						delete selected_girl;
-						selected_girl = 0;
+						selected_girl = nullptr;
 					}
 
 					g_Gold.slave_sales(cost);
@@ -134,7 +141,7 @@ void cScreenGirlManagement::init()
 	{
 		if(g_ChoiceManager.GetChoice(0) == 0)
 		{
-			vector<int> girl_array;
+			std::vector<int> girl_array;
 			GetSelectedGirls(&girl_array);  // get and sort array of girls
 
 			// OK, we have the array, now step through it backwards
@@ -151,7 +158,7 @@ void cScreenGirlManagement::init()
 					else
 					{  // random girls simply get removed from the game
 						delete selected_girl;
-						selected_girl = 0;
+						selected_girl = nullptr;
 					}
 
 					g_InitWin = true;
@@ -166,7 +173,7 @@ void cScreenGirlManagement::init()
 	{
 		if(g_ChoiceManager.GetChoice(0) == 0)
 		{
-			vector<int> girl_array;
+			std::vector<int> girl_array;
 			GetSelectedGirls(&girl_array);  // get and sort array of girls
 
 			// OK, we have the array, now step through it backwards
@@ -209,7 +216,7 @@ void cScreenGirlManagement::init()
 
 	selection = GetSelectedItemFromList(girllist_id);
 
-	string brothel = "Current Brothel: ";
+    std::string brothel = "Current Brothel: ";
 	brothel += g_Brothels.GetName(g_CurrBrothel);
 	EditTextItem(brothel, curbrothel_id);
 
@@ -228,15 +235,15 @@ void cScreenGirlManagement::init()
 	SetSelectedItemInList(jobtypelist_id, JOBFILTER_GENERAL);
 
 	//get a list of all the column names, so we can find which data goes in that column
-	vector<string> columnNames;
+	std::vector<std::string> columnNames;
 	m_ListBoxes[girllist_id]->GetColumnNames(columnNames);
 	int numColumns = columnNames.size();
-	string* Data = new string[numColumns];
+	std::string* Data = new std::string[numColumns];
 
 	// Add girls to list
 	for(int i=0; i<g_Brothels.GetNumGirls(g_CurrBrothel); i++)
 	{
-		sGirl* gir = g_Brothels.GetGirl(g_CurrBrothel, i);
+		Girl* gir = g_Brothels.GetGirl(g_CurrBrothel, i);
 		if (selected_girl == gir)
 			selection = i;
 
@@ -314,7 +321,7 @@ void cScreenGirlManagement::update_image()
 		bool Rand = false;
 		if(lastNum != selection)
 		{
-			string text = selected_girl->m_Desc;
+		    std::string text = selected_girl->m_Desc;
 			text += "\n\n";
 			text += g_Girls.GetGirlMood(selected_girl);
 			EditTextItem(text, girldesc_id);
@@ -459,7 +466,7 @@ void cScreenGirlManagement::check_events()
 			DisableButton(freeslave_id, true);
 			DisableButton(sellslave_id, true);
 			DisableButton(viewdetails_id, true);
-			selected_girl = 0;
+			selected_girl = nullptr;
 			selection = -1;
 		}
 		lastNum = -2;
@@ -530,7 +537,7 @@ void cScreenGirlManagement::check_events()
 	{
 		if(selected_girl)
 		{
-			stringstream ss;
+			std::stringstream ss;
 
 			if(IsMultiSelected(girllist_id))
 			{  // multiple girls selected
@@ -580,7 +587,7 @@ void cScreenGirlManagement::check_events()
 }
 
 
-bool cScreenGirlManagement::GirlDead(sGirl *dgirl)
+bool cScreenGirlManagement::GirlDead(Girl *dgirl)
 {
 	if(g_Girls.GetStat(dgirl, STAT_HEALTH) <= 0)
 	{
@@ -621,7 +628,7 @@ void cScreenGirlManagement::RefreshJobList()
 	if (job_filter == -1)
 		return;
 
-	string text = "";
+    std::string text = "";
 	bool day = (DayNight == 0) ? true : false;
 
 	// populate Jobs listbox with jobs in the selected category
@@ -647,7 +654,7 @@ void cScreenGirlManagement::RefreshJobList()
 }
 
 
-void cScreenGirlManagement::GetSelectedGirls(vector<int> *girl_array)
+void cScreenGirlManagement::GetSelectedGirls(std::vector<int> *girl_array)
 {  // take passed vector and fill it with sorted list of selected girl IDs
 	int pos = 0;
 	int GSelection = GetNextSelectedItemFromList(girllist_id, 0, pos);
@@ -679,3 +686,5 @@ void cScreenGirlManagement::ViewSelectedGirl()
 		return;
 	}
 }
+
+} // namespace WhoreMasterRenewal

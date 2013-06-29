@@ -20,10 +20,12 @@
 #define SFACILITY_H_INCLUDED_1500
 #pragma once
 
-#include <math.h>
-#include "cTariff.h"
+#include "cTariff.h" // required cTariff
 
-using namespace std;
+namespace WhoreMasterRenewal
+{
+
+struct sFacility;
 
 /*
  * I don't generally see the point of using chars over ints
@@ -45,43 +47,33 @@ using namespace std;
  */
 struct sBoundedVar
 {
-	int	m_min;
-	int	m_max;
-	int	m_curr;
+	int	m_min = 0;
+	int	m_max = 9;
+	int	m_curr = 0;
 /*
  *	defaults are set up for facility adjusters
  *	so range is 0-9, default to zero
  */
-	sBoundedVar() {
-		m_min = 0;
-		m_max = 9;
-		m_curr = 0;
-	}
+	sBoundedVar();
 /*
  *	but we could create one with any range
  */
-	sBoundedVar(int min, int max, int def=0) {
-		m_min = min;
-		m_max = max;
-		m_curr = def;
-	}
+	sBoundedVar( int min, int max, int def = 0 );
+	
+	virtual ~sBoundedVar();
 /*
  *	methods for adjuster buttons - simple increment with
  *	bounds checking
  */
-	void up() { if(m_curr < m_max) m_curr ++; }
-	void down() { if(m_curr > m_min) m_curr --; }
+	void up();
+	void down();
 /*
  *	operators = += -=
  */
-	int operator=(int val) { m_curr = val;  return bound(); }
-	int operator+=(int val) { m_curr += val;  return bound(); }
-	int operator-=(int val) { m_curr -= val; return bound(); }
-	int bound() {
-		if(m_curr < m_min) m_curr = m_min;
-		if(m_curr > m_max) m_curr = m_max;
-		return m_curr;
-	}
+	sBoundedVar& operator =( int val );
+	sBoundedVar& operator +=( int val );
+	sBoundedVar& operator -=( int val );
+	void bound();
 /*
  *	rather than a save method, just return an XML element
  *	that can be linked into a larger tree
@@ -95,11 +87,11 @@ struct sBoundedVar
  *		Curr	= "3"
  *	/>
  */
-	TiXmlElement	*to_xml(string name);
-	bool		from_xml(TiXmlElement *el);
+	TiXmlElement* to_xml( std::string name );
+	bool from_xml( TiXmlElement *el );
 };
 
-struct sFacility;
+
 
 /*
  * this is a bit of a mess from a model-view-controller point of view
@@ -109,55 +101,25 @@ struct sFacility;
  */
 struct sBoundedVar_Provides : public sBoundedVar
 {
-	int m_inc;			// increment - this per bump
-	int m_space;			// space taken
-	double m_slots_per_space;	// how many slots for one space?
+	int m_inc = 0;			// increment - this per bump
+	int m_space = 0;			// space taken
+	double m_slots_per_space = 0.0;	// how many slots for one space?
 
 /*
  *	we need to know how much extra space a bump would consume
  */
- 	int space_needed() {
-/*
- *		we always use a whole space
- *		if we get 4 kennels per space, then we bump
- *		in bundles of 4 slots and one space
- */
-		if(m_slots_per_space >= 1) {
-			return 1;
-		}
-/*
- *		otherwise we return the spaces needed for the
- *		next whole slot. Fractional slots are dropped
- */
- 		return int(floor(
-			(m_curr + 1) / m_slots_per_space
-		)) - m_space;
-	}
+ 	int space_needed();
 /*
  *	same exercise from a slot perspective
  */
-	int slots_needed() {
-		if(m_slots_per_space < 1) {
-			return 1;
-		}
-		return int(ceil(
-			(m_space + 1) * m_slots_per_space
-		)) - m_curr;
-	}
+	int slots_needed();
 
-	void init(sFacility *fac);
+	void init( sFacility* fac );
 
-	TiXmlElement	*to_xml(string name);
-	bool		from_xml(TiXmlElement *el);
+	TiXmlElement* to_xml( std::string name );
+	bool from_xml( TiXmlElement* el );
 
-	void up() {
-		int slot_inc = slots_needed();
-		if(m_curr + slot_inc > m_max) {
-			return;
-		}
-		m_space += space_needed();
-		m_curr += slot_inc;
-	}
+	void up();
 
 /*
  *	this is a little complicated
@@ -172,137 +134,58 @@ struct sBoundedVar_Provides : public sBoundedVar
  *	that fit in the new size. So if we get 4 kennels to the space,
  *	we reduce by 1 space and 4 kennel slots.
  */
-	void down() {
-		if(m_curr <= m_min) {
-			return;
-		}
-/*
- *		The simplest case is if we get one slot per space
- *		this probably collapses elegantly into one of the
- *		other cases, but since I'm having trouble getting
- *		my head around the problem, I'm going to invoke the KISS principle.
- *		Keep It Simple, Stupid.
- */
- 		if(m_slots_per_space == 1.0) {
-			m_curr --;
-			m_space --;
-			return;
-		}
-/*
- *		if the slots-per-space count is more than one
- *		we can just drop a space and re-calculate
- */
- 		if(m_slots_per_space > 1.0) {
-			m_space --;
-/*
- *			just because we get more than one
- *			that doesn't mean we get a whole number
- *			it might be a 3-for-two deal, for instance
- *
- *			so we use floor to drop any fractional slots
- *			from the calculation
- */
-			m_curr = int(floor(m_slots_per_space * m_space));
-			return;
-		}
-/*
- *		if we get here, we get less than one slot for a space
- *		so we drop the slot count by one, and then re-calculate space
- *		instead.
- */
- 		m_curr --;
-/*
- *		again, we might not get a whole number - dorms use 6 slots
- *		in 2 spaces, for instance. So make sure the space requirement
- *		rounds UP
- */
-		m_space = int(ceil(m_curr / m_slots_per_space));
-	}
-	int bound() {
-		if(m_curr < m_min) m_curr = m_min;
-		if(m_curr > m_max) m_curr = m_max;
-/*
- *		we're setting the slot count here,
- *		so calculate the space based on that
- */
-		m_space = int(ceil(m_curr / m_slots_per_space));
-		return m_curr;
-	}
+	void down();
+	int bound();
 };
 
 struct sFacility
 {
-	string		m_type_name;
-	string		m_instance_name;
-	string		m_desc;
-	int		m_space_taken;
-	int		m_slots;
-	int		m_base_price;
-	int		m_paid;
-	sBoundedVar_Provides	m_provides;
-	sBoundedVar	m_glitz;
-	sBoundedVar	m_secure;
-	sBoundedVar	m_stealth;
-	bool		new_flag;
-	cTariff		tariff;
+	sFacility();
+	sFacility( const sFacility& f );
 
-	sFacility() {
-		m_type_name = "";
-		m_instance_name = "";
-		m_desc = "";
-		m_space_taken = 0;
-		m_slots = 0;
-		m_base_price = 0;
-		new_flag = false;
-	}
-	sFacility(const sFacility& f) {
-		m_base_price	= f.m_base_price;
-		m_desc		= f.m_desc;
-		m_instance_name	= f.m_instance_name;
-		m_slots		= f.m_slots;
-		m_space_taken	= f.m_space_taken;
-		m_type_name	= f.m_type_name;
-		new_flag	= f.new_flag;
-	}
+	void commit();
 
-	void	commit()	{
-		new_flag	= false;
-		m_base_price	= 0;
-	}
+	std::string name();
+    std::string desc();
+    std::string type();
+    
+	int	space_taken();
+    
+	int	slots();
+	int	price();
+	int	glitz();
+	void glitz_up();
+	void glitz_down();
 
-	string	name()		{
-		if(m_instance_name != "") {
-			return m_instance_name;
-		}
-		return m_type_name;
-	}
+	int	secure();
+	void secure_up();
+	void secure_down();
 
-	string	desc()		{ return m_desc; }
-	string	type()		{ return m_type_name; }
-	int	space_taken()	{ return m_space_taken; }
-	int	slots()		{ return m_slots; }
-	int	price()		{ return tariff.buy_facility(m_base_price); }
-	int	glitz()		{ return m_glitz.m_curr; }
-	void	glitz_up()	{ m_glitz.up(); }
-	void	glitz_down()	{ m_glitz.down(); }
+	int	stealth();
+	void stealth_up();
+	void stealth_down();
 
-	int	secure()	{ return m_secure.m_curr; }
-	void	secure_up()	{ m_secure.up(); }
-	void	secure_down()	{ m_secure.down(); }
+	void load_from_xml( TiXmlElement* el );
 
-	int	stealth()	{ return m_stealth.m_curr; }
-	void	stealth_up()	{ m_stealth.up(); }
-	void	stealth_down()	{ m_stealth.down(); }
-
-	void	load_from_xml(TiXmlElement *el);
-
-	sFacility *clone()	{ return new sFacility(*this); }
+	sFacility* clone();
+	
+	
+	
+	std::string m_type_name = "";
+    std::string m_instance_name = "";
+    std::string m_desc = "";
+	int m_space_taken = 0;
+	int m_slots = 0;
+	int m_base_price = 0;
+	int m_paid = 0;
+	sBoundedVar_Provides m_provides = {};
+	sBoundedVar m_glitz = {};
+	sBoundedVar m_secure = {};
+	sBoundedVar m_stealth = {};
+	bool new_flag = false;
+	cTariff tariff = {};
 };
 
-/*
-
- *
-
- */
+} // namespace WhoreMasterRenewal
 
 #endif // SFACILITY_H_INCLUDED_1500

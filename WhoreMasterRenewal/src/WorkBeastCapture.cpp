@@ -16,33 +16,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
+#include "Girl.hpp"
 #include "cTariff.h"
 #include "cGold.h"
+#include "BrothelManager.hpp"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGold g_Gold;
+#include <sstream>
 
-bool cJobManager::WorkBeastCapture(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+namespace WhoreMasterRenewal
 {
-	string message = "";
+
+bool cJobManager::WorkBeastCapture(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
+{
+    std::string message = "";
 	if(Preprocessing(ACTION_COMBAT, girl, brothel, DayNight, summary, message))
 		return true;
 
@@ -50,7 +50,7 @@ bool cJobManager::WorkBeastCapture(sGirl* girl, sBrothel* brothel, int DayNight,
 	g_Girls.EquipCombat(girl);
 
 	// TODO need better dialog
-	sGirl* tempgirl = g_Girls.CreateRandomGirl(18, false, false, false, true, false);
+	Girl* tempgirl = g_Girls.CreateRandomGirl(18, false, false, false, true, false);
 
 	Uint8 fight_outcome = g_Girls.girl_fights_girl(girl, tempgirl);
 	if(fight_outcome == 1)	// she won
@@ -71,7 +71,7 @@ bool cJobManager::WorkBeastCapture(sGirl* girl, sBrothel* brothel, int DayNight,
     // Cleanup
 	if(tempgirl)
 		delete tempgirl;
-	tempgirl = 0;
+	tempgirl = nullptr;
 
 	// Improve girl
 	int xp = 8, libido = 2, skill = 1, BestSkill = g_Dice%4;
@@ -107,3 +107,5 @@ bool cJobManager::WorkBeastCapture(sGirl* girl, sBrothel* brothel, int DayNight,
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

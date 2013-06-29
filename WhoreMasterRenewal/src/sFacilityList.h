@@ -20,21 +20,29 @@
 #define SFACILITYLIST_H_INCLUDED_1459
 #pragma once
 
+#include "Constants.h"
+
 #include <vector>
 #include <string>
-#include "sFacility.h"
 
 class TiXmlElement;
 
+namespace WhoreMasterRenewal
+{
+
+struct sFacility;
+
 class sFacilityList {
-static vector<sFacility *> *list;
+static std::vector<sFacility *> *list;
 public:
 	sFacilityList();
 	u_int size()			{ return list->size();	}
 	sFacility *operator[](int i)	{ return (*list)[i];	}
 
-	bool	load_xml(string path);
+	bool	load_xml(std::string path);
 	bool	parse_facility(TiXmlElement*, sFacility &fac);
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // SFACILITYLIST_H_INCLUDED_1459

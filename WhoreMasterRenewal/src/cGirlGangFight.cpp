@@ -1,42 +1,38 @@
+
 #include "cGirlGangFight.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cGangs.h"
+#include "GangManager.hpp"
+#include "BrothelManager.hpp"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "cRng.h"
+#include "CLog.h"
+#include "Girl.hpp"
 
-extern cBrothelManager  g_Brothels;
-extern cGangManager     g_Gangs;
-
-cGirlGangFight::cGirlGangFight(sGirl *girl)
+namespace WhoreMasterRenewal
 {
-	m_girl	= girl;
-	m_girl_stats	= 0;
-/*
- *	set this up on the basis that she refuses to fight
- */
-	m_goon_stats	= 0;
-	m_max_goons 	= 0;
-//	m_ratio	 		= 0.0;
-//	m_dead_goons 	= 0;
-	m_girl_fights	= false;
-	m_girl_wins		= false;
-	m_wipeout		= false;
-	m_unopposed		= false;
-	m_player_wins	= false;
+
+cGirlGangFight::cGirlGangFight( Girl *girl )
+    : m_girl( girl )
+{
 /*
  *	decide if she's going to fight or flee
  */
 	if(!g_Brothels.FightsBack(m_girl)) {
 		return;
 	}
-	m_girl_fights	= true;
+	m_girl_fights = true;
 /*
  *	ok, she fights. Find all the gangs on guard duty
  */
 	m_girl_wins = false;
-	vector<sGang*> v = g_Gangs.gangs_on_mission(MISS_GUARDING);
+	std::vector<sGang*> v = g_Gangs.gangs_on_mission(MISS_GUARDING);
 /*
  *	no gang, so girl wins. PC combat is outside this class ATM
  */
-	if(v.size() == 0) {
+	if( v.empty() )
+	{
 		m_girl_wins = true;
 		m_unopposed = true;
 		return;
@@ -46,11 +42,11 @@ cGirlGangFight::cGirlGangFight(sGirl *girl)
  *	more evenly for multi-select brandings and the like
  */
 	int index = g_Dice.in_range(0, v.size()-1);
-	l.ss() << "\ncGirlGangFight: random gang index = " << index;
-	l.ssend();
+	g_LogFile.ss() << "\ncGirlGangFight: random gang index = " << index;
+	g_LogFile.ssend();
 	sGang *gang = v[index];
-	l.ss() << "\ncGirlGangFight: gang = " << gang->m_Name;
-	l.ssend();
+	g_LogFile.ss() << "\ncGirlGangFight: gang = " << gang->m_Name;
+	g_LogFile.ssend();
 /*
  *	4 + 1 for each gang on guard duty
  *	that way there's a benefit to multiple gangs guarding
@@ -111,9 +107,9 @@ cGirlGangFight::cGirlGangFight(sGirl *girl)
  */
 	int pc = static_cast <int> (m_odds * 100.0);
 	int roll = g_Dice.in_range(0, 100);
- 	l.ss() << "GirlGangFight: %    = " << pc << "\n";
- 	l.ss() << "GirlGangFight: roll = " << roll;
-	l.ssend();
+ 	g_LogFile.ss() << "GirlGangFight: %    = " << pc << "\n";
+ 	g_LogFile.ss() << "GirlGangFight: roll = " << roll;
+	g_LogFile.ssend();
  	if(roll >= pc) {
 		lose_vs_own_gang(gang);
 		return;
@@ -128,8 +124,8 @@ cGirlGangFight::cGirlGangFight(sGirl *girl)
 
 void cGirlGangFight::lose_vs_own_gang(sGang* gang)
 {
- 	l.ss() << "GirlGangFight: girl loses";
-	l.ssend();
+ 	g_LogFile.ss() << "GirlGangFight: girl loses";
+	g_LogFile.ssend();
 	m_girl_wins = false;
 /*
  *	She's going to get hurt some. Moderating this, we have the fact that
@@ -164,11 +160,11 @@ void cGirlGangFight::lose_vs_own_gang(sGang* gang)
  */
 	int casualties = use_potions(gang, g_Dice.in_range(1,6) - 3);
 	gang->m_Num -= casualties;
-	l.ss() << "adjusted gang casualties = " << casualties;
-	l.ssend();
+	g_LogFile.ss() << "adjusted gang casualties = " << casualties;
+	g_LogFile.ssend();
 }
 
-int cGirlGangFight::use_potions(sGang *gang, int casualties)
+int cGirlGangFight::use_potions(sGang* /*gang*/, int casualties)
 {
 /*
  *	if there's zero casualties - nothing do to
@@ -199,8 +195,8 @@ int cGirlGangFight::use_potions(sGang *gang, int casualties)
 
 void cGirlGangFight::win_vs_own_gang(sGang* gang)
 {
- 	l.ss() << "GirlGangFight: girl wins";
-	l.ssend();
+ 	g_LogFile.ss() << "GirlGangFight: girl wins";
+	g_LogFile.ssend();
 	m_girl_wins = true;
 /*
  *	Give her some damage from the combat. She won, so don't kill her.
@@ -249,4 +245,4 @@ void cGirlGangFight::win_vs_own_gang(sGang* gang)
 	}
 }
 
-
+} // namespace WhoreMasterRenewal

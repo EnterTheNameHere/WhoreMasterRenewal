@@ -20,55 +20,50 @@
 #define CBUTTON_H_INCLUDED_1533
 #pragma once
 
+#include "cInterfaceObject.h" // required inheritance
+
 #include <string>
-using namespace std;
-#include "CSurface.h"
-#include "cInterfaceObject.h"
-#include "cInterfaceEvent.h"
+#include <memory>
+
+namespace WhoreMasterRenewal
+{
 
 class CSurface;
 
 class cButton : public cInterfaceObject
 {
-	bool m_Hidden;
 public:
-	cButton() {
-		m_CurrImage = m_OffImage = m_DisabledImage = m_OnImage = 0;
-		m_Next=0;
-		m_Disabled=false;
-		m_Hidden=false;
-	}
-	~cButton();
+	cButton();
+	virtual ~cButton();
+	
+	cButton( const cButton& ) = delete;
+	cButton& operator = ( const cButton& ) = delete;
 
-	bool CreateButton(string OffImage, string DisabledImage, string OnImage, int ID, int x, int y, int width, int height, bool transparency = false,bool cached=false);
+	bool CreateButton(std::string OffImage, std::string DisabledImage, std::string OnImage, int ID, int x, int y, int width, int height, bool transparency = false,bool cached=false);
 	bool IsOver(int x, int y);
 	bool ButtonClicked(int x, int y);
-	void SetDisabled(bool disable)
-	{
-		m_Disabled = disable;
-		if(disable)
-			m_CurrImage = m_DisabledImage;
-		else
-			m_CurrImage = m_OffImage;
-	}
+	void SetDisabled(bool disable);
 
 	virtual void Draw();
 
 	void hide()	{ m_Hidden = true; }
 	void unhide()	{ m_Hidden = false; }
 	void toggle()	{ m_Hidden = !m_Hidden; }
+	
+private:
+    int m_ID = 0;
+    
+    std::shared_ptr<CSurface> m_OffImage = nullptr;
+	std::shared_ptr<CSurface> m_DisabledImage = nullptr;
+	std::shared_ptr<CSurface> m_OnImage = nullptr;
+	std::shared_ptr<CSurface> m_CurrImage = nullptr;
 
-	CSurface* m_OffImage;
-	CSurface* m_DisabledImage;
-	CSurface* m_OnImage;
-	CSurface* m_CurrImage;
-
-	bool m_Disabled;
-
-	int m_ID;
-
-	cButton* m_Next;	// next button on the window
+	cButton* m_Next = nullptr;	// next button on the window
+	
+	bool m_Disabled = false;
+    bool m_Hidden = false;
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif // CBUTTON_H_INCLUDED_1533

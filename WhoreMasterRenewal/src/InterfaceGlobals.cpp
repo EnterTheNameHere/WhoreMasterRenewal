@@ -16,10 +16,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "InterfaceGlobals.h"
-#include <iostream>
 #include "DirPath.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "Constants.h"
 #include "cTariff.h"
 #include "cWindowManager.h"
@@ -36,37 +36,16 @@
 #include "cScreenGirlManagement.h"
 #include "cScreenGirlDetails.h"
 #include "cScreenDungeon.h"
-using namespace std;
-extern sInterfaceIDs g_interfaceid;
-extern cWindowManager g_WinManager;
+#include "InterfaceIDs.h"
+#include "cMessageBox.h"
+#include "cChoiceMessage.h"
+#include "cInterfaceEvent.h"
+#include "CLog.h"
 
-cInterfaceEventManager g_InterfaceEvents;
-cInterfaceWindow g_MainMenu;
-cInterfaceWindow g_GetString;
-cInterfaceWindow g_BrothelManagement;
-cScreenGirlManagement g_GirlManagement;
-cScreenGangs g_GangManagement;
-cScreenGirlDetails g_GirlDetails;
-cInterfaceWindow g_ChangeJobs;
-cInterfaceWindow g_Turnsummary;
-cScreenDungeon g_Dungeon;
-cScreenSlaveMarket g_SlaveMarket;
-cScreenTown g_TownScreen;
-cInterfaceWindow g_Gallery;
-cScreenBuildingSetup g_BuildingSetupScreen;
-cInterfaceWindow g_GetInt;
-cInterfaceWindow g_LoadGame;
-cScreenMayor g_MayorsOfficeScreen;
-cScreenBank g_BankScreen;
-cScreenHouse g_PlayersHouse;
-cInterfaceWindow g_TransferGirls;
-cScreenItemManagement g_ItemManagement;
-cScreenPrison g_PrisonScreen;
-cBuildingManagement g_BuildingManagementScreen;
+#include <iostream>
 
-cMessageBox g_MessageBox;
-cChoiceManager g_ChoiceManager;
-cMessageQue g_MessageQue;
+namespace WhoreMasterRenewal
+{
 
 // interface colors
 unsigned char g_StaticImageR = 0, g_StaticImageG = 0, g_StaticImageB = 0;
@@ -111,9 +90,21 @@ unsigned char g_MessageBoxBackground2R = 0, g_MessageBoxBackground2G = 0, g_Mess
 unsigned char g_MessageBoxBackground3R = 0, g_MessageBoxBackground3G = 0, g_MessageBoxBackground3B = 0;
 unsigned char g_MessageBoxTextR = 0, g_MessageBoxTextG = 0, g_MessageBoxTextB = 0;
 
+unsigned long g_Year = 0;
+unsigned long g_Month = 0;
+unsigned long g_Day = 0;
+
+bool g_ShiftDown = false;
+bool g_CTRLDown = false;
+int g_ScreenWidth = 800;
+int g_ScreenHeight = 600;
+bool g_Fullscreen = false;
 
 void FreeInterface()
 {
+    //g_LogFile.ss() << "Freeing interface...";
+    //g_LogFile.ssend();
+    
 	g_MainMenu.Free();
 	g_GetString.Free();
 	g_BrothelManagement.Free();
@@ -138,10 +129,16 @@ void FreeInterface()
 	g_ItemManagement.Free();
 	g_PrisonScreen.Free();
 	g_BuildingManagementScreen.Reset();
+	
+	//g_LogFile.ss() << "Done freeing interface...";
+    //g_LogFile.ssend();
 }
 
 void ResetInterface()
 {
+    //g_LogFile.ss() << "Resetting interface...";
+    //g_LogFile.ssend();
+    
 	g_MainMenu.Reset();
 	g_GetString.Reset();
 	g_BrothelManagement.Reset();
@@ -165,15 +162,17 @@ void ResetInterface()
 	g_ItemManagement.Reset();
 	g_PrisonScreen.Reset();
 	g_BuildingManagementScreen.Reset();
+	
+	//g_LogFile.ss() << "Done resetting interface...";
+    //g_LogFile.ssend();
 }
 
 void LoadInterface()
 {
 	cTariff tariff;
-	stringstream ss;
 	int r=0, g=0, b=0;
 	int a=0, c=0, d=0, e=0;
-	ifstream incol;
+	std::ifstream incol;
 
 	// load 
 	// load interface colors
@@ -602,3 +601,5 @@ void LoadInterface()
 	g_interfaceid.STATIC_STATIC=1;//evil magic number
 	g_MessageBox.CreateWindow();
 }
+
+} // namespace WhoreMasterRenewal

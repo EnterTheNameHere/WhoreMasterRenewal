@@ -21,7 +21,10 @@
 #define CGAMEOBJECT_H_INCLUDED_1530
 #pragma once
 
-#include "CRenderQue.h"
+#include "CRenderQue.h" // required inheritance
+
+namespace WhoreMasterRenewal
+{
 
 class CGameObject : public CRenderObject
 {
@@ -43,5 +46,7 @@ protected:
 	int m_State;
 	bool m_Alive;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CGAMEOBJECT_H_INCLUDED_1530

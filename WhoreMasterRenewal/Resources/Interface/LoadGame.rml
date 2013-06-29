@@ -1,0 +1,16 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="LoadGame">
+        <div id="window">
+            <div id="contents">
+                <datagrid>
+                    <col >Date</col>
+                    <col >Filename</col>
+                </datagrid>
+                <button onclick="goto MainMenu">Back</button>
+            </div>
+        </div>
+    </body>
+</rml>

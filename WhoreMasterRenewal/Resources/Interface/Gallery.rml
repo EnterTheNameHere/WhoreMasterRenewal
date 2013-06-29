@@ -1,0 +1,26 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="Gallery">
+        <div id="window">
+            <div id="contents">
+                <div style="text-align: left;"><img id="girlimage" src="../Characters/Dangerous Girl/Profile1.jpg" /></div>
+                <button>Anal</button>
+                <button>BDSM</button>
+                <button>Ecchi</button>
+                <button>Group</button>
+                <button>Lesbian</button>
+                <button>Masturbation</button>
+                <button>Normal Sex</button>
+                <button>Oral Sex</button>
+                <button>Pregnant</button>
+                <button>Combat</button>
+                <button>Death/Attacked</button>
+                <button>Profile</button>
+                <button onclick="goto GirlDetails">Back</button>
+                <button class="half">&lt;- Prev</button><button class="half">Next -&gt;</button>
+            </div>
+        </div>
+    </body>
+</rml>

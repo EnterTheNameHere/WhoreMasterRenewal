@@ -20,17 +20,17 @@
 #define CDUNGEON_H_INCLUDED_1532
 #pragma once
 
-
 #include <string>
 #include <fstream>
+#include <vector>
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
+class TiXmlElement;
+class TiXmlHandle;
 
-#include "cGirls.h"
+namespace WhoreMasterRenewal
+{
 
-using namespace std;
-
+class Girl;
 class cGirlTorture;
 
 // Keeps track of customers in the dungeon
@@ -38,19 +38,25 @@ typedef struct sDungeonCust
 {
 	sDungeonCust();				// constructor
 	~sDungeonCust();			// destructor
-
-	bool			m_Feeding;	// are you feeding them
-	bool			m_Tort;		// if true then have already tortured today
-	int				m_Reason;	// the reason they are here
-	int				m_Weeks;	// the number of weeks they have been here
+    
+    sDungeonCust( const sDungeonCust& ) = delete;
+	sDungeonCust& operator = ( const sDungeonCust& ) = delete;
+    
+    void OutputCustDetailString(std::string& Data, const std::string& detailName);
+    
+    
+    
+    bool            m_Feeding = true;    // are you feeding them
+	bool			m_Tort = false;		// if true then have already tortured today
+	int				m_Reason = 0;	// the reason they are here
+	int				m_Weeks = 0;	// the number of weeks they have been here
 
 	// customer data
-	int				m_NumDaughters;
-	bool			m_HasWife;
-	sDungeonCust*	m_Next;
-	sDungeonCust*	m_Prev;
-	int				m_Health;
-	void OutputCustDetailString(string& Data, const string& detailName);
+	int				m_NumDaughters = 0;
+	bool			m_HasWife = 0;
+	sDungeonCust*	m_Next = nullptr;
+	sDungeonCust*	m_Prev = nullptr;
+	int				m_Health = 100;
 }sDungeonCust;
 
 // Keeps track of girls in the dungeon
@@ -58,56 +64,53 @@ typedef struct sDungeonGirl
 {
 	sDungeonGirl();						// constructor
 	~sDungeonGirl();					// destructor
-
-	bool			m_Feeding;			// are you feeding them
-	int				m_Reason;			// the reason they are here
-	int				m_Weeks;			// the number of weeks they have been here
+    
+    sDungeonGirl( const sDungeonGirl& ) = delete;
+	sDungeonGirl& operator = ( const sDungeonGirl& ) = delete;
+	
+	void OutputGirlDetailString(std::string& Data, const std::string& detailName);
+	
+	
+    
+	bool			m_Feeding = true;			// are you feeding them
+	int				m_Reason = 0;			// the reason they are here
+	int				m_Weeks = 0;			// the number of weeks they have been here
 
 	// customer data
-	sGirl*			m_Girl;
-	sDungeonGirl*	m_Next;
-	sDungeonGirl*	m_Prev;
-	void OutputGirlDetailString(string& Data, const string& detailName);
+	Girl*			m_Girl = nullptr;
+	sDungeonGirl*	m_Next = nullptr;
+	sDungeonGirl*	m_Prev = nullptr;
 }sDungeonGirl;
 
 
 // The dungeon
 class cDungeon
 {
-private:
-	sDungeonGirl* m_Girls;
-	sDungeonGirl* m_LastDGirl;
-	sDungeonCust* m_Custs;
-	sDungeonCust* m_LastDCusts;
-	unsigned long m_NumberDied;				// the total number of people that have died in the players dungeon
-	int m_NumGirls;
-	int m_NumCusts;
-
-	int m_NumGirlsTort;						//	WD:	Tracking for Torturer
-	int m_NumCustsTort;
-	void updateGirlTurnDungeonStats(sDungeonGirl* d_girl);
-
 public:
 	cDungeon();								// constructor
 	~cDungeon();							// destructor
+	
+	cDungeon( const cDungeon& ) = delete;
+	cDungeon& operator = ( const cDungeon& ) = delete;
+	
 	void Free();
 	TiXmlElement* SaveDungeonDataXML(TiXmlElement* pRoot);	// saves dungeon data
 	bool LoadDungeonDataXML(TiXmlHandle hDungeon);
-	void LoadDungeonDataLegacy(ifstream& ifs);	// loads dungeon data
-	void AddGirl(sGirl* girl, int reason);
+	void LoadDungeonDataLegacy(std::ifstream& ifs);	// loads dungeon data
+	void AddGirl(Girl* girl, int reason);
 	void AddCust(int reason, int numDaughters, bool hasWife);
-	void OutputGirlRow(int i, string* Data, const vector<string>& columnNames);
-	void OutputCustRow(int i, string* Data, const vector<string>& columnNames);
+	void OutputGirlRow(int i, std::string* Data, const std::vector<std::string>& columnNames);
+	void OutputCustRow(int i, std::string* Data, const std::vector<std::string>& columnNames);
 	sDungeonGirl* GetGirl(int i);
-	sDungeonGirl* GetGirlByName(string name);
+	sDungeonGirl* GetGirlByName(std::string name);
 	sDungeonCust* GetCust(int i);
-	int GetDungeonPos(sGirl* girl);
-	sGirl* RemoveGirl(sGirl* girl);
-	sGirl* RemoveGirl(sDungeonGirl* girl);	// releases or kills a girl
+	int GetDungeonPos(Girl* girl);
+	Girl* RemoveGirl(Girl* girl);
+	Girl* RemoveGirl(sDungeonGirl* girl);	// releases or kills a girl
 	void RemoveCust(sDungeonCust* cust);	// releases or kills a customer
 	void Update();
 
-	int GetGirlPos(sGirl* girl);
+	int GetGirlPos(Girl* girl);
 	int GetNumCusts()				{ return m_NumCusts; }
 	int GetNumGirls()				{ return m_NumGirls; }
 	unsigned long GetNumDied()		{ return m_NumberDied; }
@@ -119,11 +122,28 @@ public:
 
 
 	// WD:	Torturer tortures dungeon girl.
-	//void doTorturer(sDungeonGirl* d_girl, sGirl* t_girl, string& summary);	{ cGirlTorture::cGirlTorture(d_girl, t_girl) }
+	//void doTorturer(sDungeonGirl* d_girl, Girl* t_girl, std::string& summary);	{ cGirlTorture::cGirlTorture(d_girl, t_girl) }
 
 	void PlaceDungeonGirl(sDungeonGirl* newGirl);
 	void PlaceDungeonCustomer(sDungeonCust* newCust);
+
+private:
+    void updateGirlTurnDungeonStats(sDungeonGirl* d_girl);
+    
+    
+    
+	sDungeonGirl* m_Girls = nullptr;
+	sDungeonGirl* m_LastDGirl = nullptr;
+	sDungeonCust* m_Custs = nullptr;
+	sDungeonCust* m_LastDCusts = nullptr;
+	unsigned long m_NumberDied = 0;				// the total number of people that have died in the players dungeon
+	int m_NumGirls = 0;
+	int m_NumCusts = 0;
+
+	int m_NumGirlsTort = 0;						//	WD:	Tracking for Torturer
+	int m_NumCustsTort = 0;
 };
 
+} // namespace WhoreMasterRenewal
 
 #endif  // CDUNGEON_H_INCLUDED_1532

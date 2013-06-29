@@ -20,31 +20,43 @@
 #define CRENDERQUE_H_INCLUDED_1521
 #pragma once
 
-class CRenderObject;
+namespace WhoreMasterRenewal
+{
 
 // An object that can be added to the render que, eg a character, or a game object.
 class CRenderObject
 {
 public:
-	CRenderObject() {m_Next = 0;}
-	virtual void Draw() {};
-
-	CRenderObject* m_Next;
+    CRenderObject() : m_Next(nullptr) {};
+    virtual ~CRenderObject() {};
+    
+    CRenderObject( const CRenderObject& ) = delete;
+	CRenderObject& operator = ( const CRenderObject& ) = delete;
+    
+    virtual void Draw() {};
+    
+    CRenderObject* m_Next;
 };
 
 class CRenderQue
 {
 public:
-	CRenderQue() {m_Parent = 0; m_Last = 0;}
-	~CRenderQue() {m_Parent = 0; m_Last = 0;}
-
-	void DrawQue();
-	void ClearQue();
-
-	void AddObject(CRenderObject* object);
+    CRenderQue();
+    ~CRenderQue();
+    
+    CRenderQue( const CRenderQue& ) = delete;
+	CRenderQue& operator = ( const CRenderQue& ) = delete;
+    
+    void DrawQue();
+    void ClearQue();
+    
+    void AddObject( CRenderObject* object );
+    
 private:
-	CRenderObject* m_Parent;
-	CRenderObject* m_Last;
+    CRenderObject* m_Parent = nullptr;
+    CRenderObject* m_Last = nullptr;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CRENDERQUE_H_INCLUDED_1521

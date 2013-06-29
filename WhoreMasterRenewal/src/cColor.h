@@ -20,21 +20,22 @@
 #define CCOLOR_H_INCLUDED_1533
 #pragma once
 
-#include <iostream>
 #include <string>
-#include <SDL.h>
-#include "CLog.h"
-using namespace std;
 
-extern CLog g_LogFile;
 struct SDL_Color;
+
+namespace WhoreMasterRenewal
+{
+
+typedef uint8_t	Uint8; // Used by SDL
 
 class cColor
 {
 public:
-	Uint8 convertFromHex(string hex);
-
-	void HexToSDLColor(string HexColor, SDL_Color* SDLColor);
+	static Uint8 convertFromHex( std::string hex );
+	static void HexToSDLColor( std::string HexColor, SDL_Color* SDLColor );
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CCOLOR_H_INCLUDED_1533

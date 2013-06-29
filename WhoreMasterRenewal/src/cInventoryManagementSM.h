@@ -20,30 +20,29 @@
 #define CINVENTORYMANAGEMENTSM_H_INCLUDED_1525
 #pragma once
 
-class sGirl;
+namespace WhoreMasterRenewal
+{
 
-class cInventoryManagementSM {
-	int leftOwner;
-	int rightOwner;
-	int NumBrothelGirls;
-	int NumDungeonGirls;
-	int filter;
-	int leftItem;
-	int rightItem;
+class Girl;
+
+class cInventoryManagementSM
+{
 public:
-	cInventoryManagementSM() {
-		leftOwner	= 0;
-		rightOwner	= 1;
-		NumBrothelGirls	= 0;
-		NumDungeonGirls	= 0;
-		filter		= 0;
-		leftItem	= 0;
-		rightItem	= 0;
-	}
 	void init();
 	void handle_events();
 	void item_shift_r();
-	sGirl *get_girl_from_list(int owner_idx, int list_id);
+	Girl* get_girl_from_list(int owner_idx, int list_id);
+
+private:
+	int leftOwner = 0;
+	int rightOwner = 1;
+	int NumBrothelGirls = 0;
+	int NumDungeonGirls = 0;
+	int filter = 0;
+	int leftItem = 0;
+	int rightItem = 0;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CINVENTORYMANAGEMENTSM_H_INCLUDED_1525

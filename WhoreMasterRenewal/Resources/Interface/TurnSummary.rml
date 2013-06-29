@@ -1,0 +1,25 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="TurnSummary">
+        <div id="window">
+            <div id="contents">
+                <datagrid style="width: 160px; float: left;" source="DebugGirlsList.turnsummary">
+                    <col fields="category">Category:</col>
+                </datagrid>
+                <datagrid style="width: 160px; float: left;" source="DebugGirlsList.turnsummary">
+                    <col fields="item">Item:</col>
+                </datagrid>
+                <datagrid style="width: 160px; float: left;" source="DebugGirlsList.turnsummary">
+                    <col fields="event">Event:</col>
+                </datagrid>
+                <img id="girlimage" src="../Characters/Dangerous Girl/Profile1.jpg" />
+                <button>&lt;- Prev</button><button>Next -&gt;</button>
+                <button>Go To Selected</button>
+                <button>Next Week >></button>
+                <button onclick="goto MainScreen">Back</button>
+            </div>
+        </div>
+    </body>
+</rml>

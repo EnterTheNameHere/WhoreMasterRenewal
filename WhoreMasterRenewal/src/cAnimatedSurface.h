@@ -20,11 +20,13 @@
 #define CANIMATEDSURFACE_H_INCLUDED_1533
 #pragma once
 
-#include "CSurface.h"
+#include <SDL.h> // Required SDL_Rect
+
 #include <string>
-#include <iostream>
-#include <fstream>
-using namespace std;
+#include <memory>
+
+namespace WhoreMasterRenewal
+{
 
 class CSurface;
 
@@ -32,52 +34,60 @@ class CSurface;
 class cAnimatedSurface
 {
 public:
-	cAnimatedSurface() {m_Surface=0;m_SpriteSurface=0;}
-	~cAnimatedSurface() {m_Surface=0;if(m_SpriteSurface)SDL_FreeSurface(m_SpriteSurface);m_SpriteSurface=0;}
-
-	void PlayOnce(bool playOnce) {m_PlayOnce = playOnce;}
-
-	void Stop() {m_LastTime=0;}
-
-	bool DrawFrame(int x, int y, int width, int height, unsigned int currentTime);	// Updates animation according to speed, and then draws it on the screen
-	void SetData(int xPos, int yPos, int numFrames, int speed, int width, int height, CSurface* surface);
-	void UpdateSprite(SDL_Rect& rect, int width, int height);
-
+    cAnimatedSurface();
+    ~cAnimatedSurface();
+    
+    cAnimatedSurface( const cAnimatedSurface& ) = delete;
+    cAnimatedSurface& operator = ( const cAnimatedSurface& ) = delete;
+    
+    void PlayOnce( bool playOnce );
+    
+    void Stop();
+    
+    bool DrawFrame( int x, int y, int width, int height, unsigned int currentTime ); // Updates animation according to speed, and then draws it on the screen
+    void SetData( int xPos, int yPos, int numFrames, int speed, int width, int height, std::shared_ptr<CSurface> surface );
+    void UpdateSprite( SDL_Rect& rect, int width, int height );
+    
 private:
-	bool m_FrameDone;
-	bool m_PlayOnce;
-
-	int m_CurrentFrame;	// Current frame in a playing animation
-	int m_CurrentRow;	// current row playing the animation from
-	int m_CurrentColumn;
-	int m_Speed;	// Speed to play the animation (in time between draws)
-	int m_NumFrames;	// Number of frames in the animation
-	unsigned int m_LastTime;		// The last time animation was updated
-	int m_Rows;
-	int m_Colums;
-
-	CSurface* m_Surface;	// pointer to the image where all the sprites are kept
-	SDL_Surface* m_SpriteSurface;	// pointer to the image where the current sprite is kept
-	SDL_Rect m_Frames;	// Holds the data for ALL frames, since all frames have same width/height
+    bool m_FrameDone = false;
+    bool m_PlayOnce = false;
+    
+    int m_CurrentFrame = 0; // Current frame in a playing animation
+    int m_CurrentRow = 0;   // current row playing the animation from
+    int m_CurrentColumn = 0;
+    int m_Speed = 0;    // Speed to play the animation (in time between draws)
+    int m_NumFrames = 0;    // Number of frames in the animation
+    unsigned int m_LastTime = 0;        // The last time animation was updated
+    int m_Rows = 0;
+    int m_Colums = 0;
+    
+    std::shared_ptr<CSurface> m_Surface = nullptr;    // pointer to the image where all the sprites are kept
+    SDL_Surface* m_SpriteSurface = nullptr;   // pointer to the image where the current sprite is kept
+    SDL_Rect m_Frames = {0, 0, 0, 0}; // Holds the data for ALL frames, since all frames have same width/height
 };
 
 // Manages a file with multiple animations
 class CAnimatedSprite
 {
 public:
-	CAnimatedSprite(){m_Animations=0; m_Image=0;m_CurrAnimation=0;}
-	~CAnimatedSprite();
-
-	void Free();
-
-	bool LoadAnimations(string imgFilename, string animationData);
-	bool Draw(int x, int y, int width, int height, unsigned int currentTime);
-	void SetAnimation(int animation) {m_CurrAnimation = animation;}
-
+    CAnimatedSprite();
+    ~CAnimatedSprite();
+    
+    CAnimatedSprite( const CAnimatedSprite& ) = delete;
+    CAnimatedSprite& operator = ( const CAnimatedSprite& ) = delete;
+    
+    void Free();
+    
+    bool LoadAnimations( std::string imgFilename, std::string animationData );
+    bool Draw( int x, int y, int width, int height, unsigned int currentTime );
+    void SetAnimation( int animation );
+    
 private:
-	int m_CurrAnimation;
-	cAnimatedSurface* m_Animations;
-	CSurface* m_Image;
+    int m_CurrAnimation = 0;
+    cAnimatedSurface* m_Animations = nullptr;
+    std::shared_ptr<CSurface> m_Image = nullptr;
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CANIMATEDSURFACE_H_INCLUDED_1533

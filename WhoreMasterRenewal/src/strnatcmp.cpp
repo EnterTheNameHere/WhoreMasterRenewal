@@ -53,34 +53,36 @@
  * negative chars in their default char type.
  */
 
-#include <ctype.h>
-#include <string.h>
-#include <assert.h>
-#include <stdio.h>
-
 #include "strnatcmp.h"
 
+#include <cctype>
+#include <cstring>
+#include <cassert>
+#include <cstdio>
+
+namespace WhoreMasterRenewal
+{
 
 /* These are defined as macros to make it easier to adapt this code to
  * different characters types or comparison functions. */
 static inline int
 nat_isdigit(nat_char a)
 {
-     return isdigit((unsigned char) a);
+    return isdigit( static_cast<unsigned char>( a ) );
 }
 
 
 static inline int
 nat_isspace(nat_char a)
 {
-     return isspace((unsigned char) a);
+    return isspace( static_cast<unsigned char>( a ) );
 }
 
 
 static inline nat_char
 nat_toupper(nat_char a)
 {
-     return toupper((unsigned char) a);
+    return toupper( static_cast<unsigned char>( a ) );
 }
 
 
@@ -199,3 +201,5 @@ int strnatcmp(nat_char const *a, nat_char const *b) {
 int strnatcasecmp(nat_char const *a, nat_char const *b) {
      return strnatcmp0(a, b, 1);
 }
+
+} // namespace WhoreMasterRenewal

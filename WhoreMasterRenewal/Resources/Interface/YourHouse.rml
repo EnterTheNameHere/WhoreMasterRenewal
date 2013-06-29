@@ -1,0 +1,19 @@
+<rml>
+    <head>
+        <link type="text/rcss" href="SharedStyle.rcss" />
+    </head>
+    <body id="YourHouse">
+        <div id="window">
+            <div id="contents">
+                Your House
+                CURRENT OBJECTIVE: Purchase next brothel.
+                Current number of runaways: 0
+                
+                Current gold: 2 048
+                Bank account: 4 014
+                Businesses controlled: 42
+                <button onclick="goto Town">Back</button>
+            </div>
+        </div>
+    </body>
+</rml>

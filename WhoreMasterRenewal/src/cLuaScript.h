@@ -20,99 +20,103 @@
 #define CLUASCRIPT_H_INCLUDED_1523
 #pragma once
 
-#include <string>
-#include <iostream>
-#include <fstream>
-#include <sstream>
-
 extern "C" {
 #include "lua.h"
 #include "lualib.h"
 #include "lauxlib.h"
 }
 
-#include "CLog.h"
-#include "DirPath.h"
+#include <string>
 
-using namespace std;
+namespace WhoreMasterRenewal
+{
 
 int get_from_table(lua_State *L, int table, const char *key, bool &dest);
 int get_from_table(lua_State *L, int table, const char *key, int &dest);
-bool get_from_table(lua_State *L, int table, const char *key, string &dest);
+bool get_from_table(lua_State *L, int table, const char *key, std::string &dest);
 
 
 class cInterfaceWindowXML;
+class Girl;
 
-class cLuaStateInner {
+class cLuaStateInner
+{
 public:
-	lua_State       *L;
+	lua_State* L;
 
 	void set_lua_path();
-static  const std::string sandbox;
+    static const std::string sandbox;
+	
 	cLuaStateInner();
-	~cLuaStateInner() {
-		if(L) lua_close(L);
-	}
-	inline operator lua_State*() {
+	~cLuaStateInner();
+	
+	cLuaStateInner( const cLuaStateInner& ) = delete;
+	cLuaStateInner& operator = ( const cLuaStateInner& ) = delete;
+	
+	inline operator lua_State* ()
+	{
 		return L;
 	}
 };
 
-class cLuaState {
-	static cLuaStateInner *instance;
+class cLuaState
+{
 public:
-	cLuaState() {
-		if(!instance) instance = new cLuaStateInner();
-	}
-	inline operator lua_State*() {
+	cLuaState();
+	
+	inline operator lua_State* ()
+	{
 		return instance->L;
 	}
+	
+private:
+	static cLuaStateInner *instance;
 };
 
-struct sGirl;
-
-class cLuaScript {
-	cLuaState	l;
-	string		m_file;
-	bool		running;
-	CLog		log;
-/*
- *	these are going to hold lua references
- *	pointers to the script's init() and run() methods
- */
-	int		init_ref;
-	int		run_ref;
-/*
- *	the girl who is the subject (if any) of the event
- */
-	sGirl		*girl;
-
-	string slurp(string path);
-	void get_param_table();
-	bool get_from_space(const char *func);
+class cLuaScript
+{
 public:
-	cLuaScript() {
-		running = false;
-		girl	= 0;
-		init_ref= -1;
-		run_ref	= -1;
-	}
+	cLuaScript();
+	~cLuaScript();
+	
+	cLuaScript( const cLuaScript& ) = delete;
+	cLuaScript& operator = ( const cLuaScript& ) = delete;
+	
 	void log_error();
 
 	void set_param(const char *name, void *pointer);
 
-	bool load(string filename, sGirl *girl);
+	bool load(std::string filename, Girl *girl);
 
 	bool run(const char *func = "script");
 	bool process(cInterfaceWindowXML *window);
 	bool refresh(cInterfaceWindowXML *window);
-	bool call_handler(cInterfaceWindowXML *window, string handler_name);
+	bool call_handler(cInterfaceWindowXML *window, std::string handler_name);
 	int get_ref(const char *name);
 	bool run_by_ref(int ref);
-	void set_wm_girl(sGirl *girl);
+	void set_wm_girl(Girl *girl);
 	void set_wm_player();
+	
+private:
+	cLuaState l = {};
+    std::string m_file = "Default cLuaScript::m_file value";
+	bool running = false;
+/*
+ *	these are going to hold lua references
+ *	pointers to the script's init() and run() methods
+ */
+	int init_ref = -1;
+	int run_ref = -1;
+/*
+ *	the girl who is the subject (if any) of the event
+ */
+	Girl* girl = nullptr;
 
-	~cLuaScript() {}
+    std::string slurp(std::string path);
+	void get_param_table();
+	bool get_from_space(const char *func);
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CLUASCRIPT_H_INCLUDED_1523

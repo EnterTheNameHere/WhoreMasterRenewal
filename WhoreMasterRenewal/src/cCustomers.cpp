@@ -16,9 +16,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cCustomers.h"
-#include "cBrothel.h"
-extern cRng g_Dice;
+#include "Brothel.hpp"
+#include "cRng.h"
+
+namespace WhoreMasterRenewal
+{
+
+sCustomer::sCustomer()
+{
+    ;
+}
+
+sCustomer::~sCustomer()
+{
+    if( m_Next )
+        delete m_Next;
+    m_Next = nullptr;
+    m_Prev = nullptr;
+}
+
+
+cCustomers::cCustomers()
+{
+    ChangeCustomerBase();
+}
+
+cCustomers::~cCustomers()
+{
+    Free();
+}
 
 void cCustomers::Free()
 {
@@ -40,7 +68,7 @@ void cCustomers::Free()
 	return num;
 }*/
 
-void cCustomers::GetCustomer(sCustomer& customer, sBrothel * brothel)
+void cCustomers::GetCustomer(sCustomer& customer, Brothel * brothel)
 {
 	int level = (g_Dice%100)+1;	// what working class are they
 
@@ -112,14 +140,14 @@ void cCustomers::GetCustomer(sCustomer& customer, sBrothel * brothel)
 		customer.m_Class = 3;
 	}
 
-	customer.m_Next = 0;
+	customer.m_Next = nullptr;
 }
 
-void cCustomers::GenerateCustomers(sBrothel * brothel, int DayNight)
+void cCustomers::GenerateCustomers(Brothel * brothel, int DayNight)
 {
 	Free();	// Free any existing customers
 
-	stringstream ss;
+	std::stringstream ss;
 	ss.str("");
 /*
  *	no girls, no customers
@@ -304,3 +332,5 @@ void cCustomers::ChangeCustomerBase()
 		cust = 0;
 	}
 }*/
+
+} // namespace WhoreMasterRenewal

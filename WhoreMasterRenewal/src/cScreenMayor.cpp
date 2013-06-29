@@ -16,32 +16,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include "main.h"
-#include "cBrothel.h"
+
 #include "cScreenMayor.h"
+#include "Helper.hpp"
+#include "Brothel.hpp"
+#include "BrothelManager.hpp"
 #include "cWindowManager.h"
 #include "cGold.h"
 #include "cGetStringScreenManager.h"
 #include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
+#include "cInterfaceEvent.h"
+#include "DirPath.h"
 
-#ifdef LINUX
-#include "linux.h"
-#endif
-
-extern bool g_InitWin;
-extern int g_CurrBrothel;
-extern cGold g_Gold;
-extern cBrothelManager g_Brothels;
-extern cWindowManager g_WinManager;
-extern cInterfaceEventManager g_InterfaceEvents;
-extern long g_IntReturn;
-
-extern void GetString();
-extern cInterfaceWindow g_GetString;
-extern void GetInt();
-extern cInterfaceWindow g_GetInt;
+namespace WhoreMasterRenewal
+{
 
 bool cScreenMayor::ids_set = false;
+
+cScreenMayor::cScreenMayor()
+{
+    DirPath dp = DirPath()
+        << "Resources"
+        << "Interface"
+        << "mayor_screen.xml"
+    ;
+    m_filename = dp.c_str();
+}
+
+cScreenMayor::~cScreenMayor()
+{
+    
+}
+
 
 void cScreenMayor::set_ids()
 {
@@ -61,7 +68,7 @@ void cScreenMayor::init()
 	g_InitWin = false;
 
 ////////////////////
-	string data = "Influence Details\n";
+    std::string data = "Influence Details\n";
 
 	if(SetBribe)
 	{
@@ -178,3 +185,5 @@ void cScreenMayor::check_events()
 		return;
 	}
 }
+
+} // namespace WhoreMasterRenewal

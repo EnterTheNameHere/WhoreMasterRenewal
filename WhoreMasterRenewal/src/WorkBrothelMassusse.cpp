@@ -16,32 +16,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
+#include "Girl.hpp"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
 #include "cGold.h"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
+#include <sstream>
 
-bool cJobManager::WorkBrothelMasseuse(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+namespace WhoreMasterRenewal
 {
-	string message = "";
+
+bool cJobManager::WorkBrothelMasseuse(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
+{
+    std::string message = "";
 	if(Preprocessing(ACTION_SEX, girl, brothel, DayNight, summary, message))
 		return true;
 
@@ -58,6 +58,7 @@ bool cJobManager::WorkBrothelMasseuse(sGirl* girl, sBrothel* brothel, int DayNig
 		GetMiscCustomer(brothel, cust);
 		g_Girls.GirlFucks(girl, DayNight, &cust, false,message,n);
 		brothel->m_Happiness += 100;
+		/*
 		int imageType = IMGTYPE_SEX;
 		if(n == SKILL_ANAL)
 			imageType = IMGTYPE_ANAL;
@@ -71,6 +72,7 @@ bool cJobManager::WorkBrothelMasseuse(sGirl* girl, sBrothel* brothel, int DayNig
 			imageType = IMGTYPE_GROUP;
 		else if(n == SKILL_LESBIAN)
 			imageType = IMGTYPE_LESBIAN;
+        */
 		g_Girls.UpdateTempStat(girl, STAT_LIBIDO, -4);
 
 		// work out the pay between the house and the girl
@@ -91,3 +93,5 @@ bool cJobManager::WorkBrothelMasseuse(sGirl* girl, sBrothel* brothel, int DayNig
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

@@ -16,14 +16,19 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "Constants.h"
 #include "XmlMisc.h"
+#include "BrothelManager.hpp"
 #include "cGirls.h"
-#include "cBrothel.h"
-extern cBrothelManager g_Brothels;
-extern CLog g_LogFile;
-extern cTraits g_Traits;
-extern cInventory g_InvManager;
+#include "GirlManager.hpp"
+#include "Brothel.hpp"
+#include "Girl.hpp"
+#include "cTraits.h"
+#include "cInventory.h"
+
+namespace WhoreMasterRenewal
+{
 
 const char* actionTypeNames[] = 
 {
@@ -142,7 +147,7 @@ TiXmlElement* SaveStatsXML(TiXmlElement* pRoot,
 	pRoot->LinkEndChild(pStats);
 	for(int i=0; i<NUM_STATS; i++)
 	{
-		TiXmlElement* pStat = new TiXmlElement(XMLifyString(sGirl::stat_names[i]));
+		TiXmlElement* pStat = new TiXmlElement(XMLifyString(Girl::stat_names[i]));
 		pStats->LinkEndChild(pStat);
 		pStat->SetAttribute("Value", stats[i]);
 		if (statMods && statMods[i])
@@ -163,13 +168,13 @@ bool LoadStatsXML(TiXmlHandle hStats,
 				  int tempStats[])
 {
 	TiXmlElement* pStats = hStats.ToElement();
-	if (pStats == 0)
+	if (pStats == nullptr)
 	{
 		return false;
 	}
 	for(int i=0; i<NUM_STATS; i++)
 	{
-		TiXmlElement* pStat = pStats->FirstChildElement(XMLifyString(sGirl::stat_names[i]));
+		TiXmlElement* pStat = pStats->FirstChildElement(XMLifyString(Girl::stat_names[i]));
 		if (pStat)
 		{
 			int tempInt = 0;
@@ -194,9 +199,9 @@ TiXmlElement* SaveSkillsXML(TiXmlElement* pRoot,
 {
 	TiXmlElement* pSkills = new TiXmlElement("Skills");
 	pRoot->LinkEndChild(pSkills);
-	for(int i=0; i<NUM_SKILLS; i++)
+	for( unsigned int i = 0; i < NUM_SKILLS; ++i )
 	{
-		TiXmlElement* pSkill = new TiXmlElement(XMLifyString(sGirl::skill_names[i]));
+		TiXmlElement* pSkill = new TiXmlElement(XMLifyString(Girl::skill_names[i]));
 		pSkills->LinkEndChild(pSkill);
 		pSkill->SetAttribute("Value", skills[i]);
 		if (skillMods && skillMods[i])
@@ -217,13 +222,13 @@ bool LoadSkillsXML(TiXmlHandle hSkills,
 				   int tempSkills[])
 {
 	TiXmlElement* pSkills = hSkills.ToElement();
-	if (pSkills == 0)
+	if (pSkills == nullptr)
 	{
 		return false;
 	}
-	for(int i=0; i<NUM_SKILLS; i++)
+	for( unsigned int i = 0; i < NUM_SKILLS; ++i )
 	{
-		TiXmlElement* pSkill = pSkills->FirstChildElement(XMLifyString(sGirl::skill_names[i]));
+		TiXmlElement* pSkill = pSkills->FirstChildElement(XMLifyString(Girl::skill_names[i]));
 		if (pSkill)
 		{
 			int tempInt = 0;
@@ -246,7 +251,7 @@ TiXmlElement* SaveJobsXML(TiXmlElement* pRoot,
 {
 	TiXmlElement* pJobs = new TiXmlElement("Jobs");
 	pRoot->LinkEndChild(pJobs);
-	for(int i=0; i<NUMJOBTYPES; i++)
+	for( unsigned int i = 0; i < NUMJOBTYPES; ++i )
 	{
 		TiXmlElement* pJob = new TiXmlElement(XMLifyString(g_Brothels.m_JobManager.JobName[i]));
 		pJobs->LinkEndChild(pJob);
@@ -285,7 +290,7 @@ bool LoadTraitsXML(TiXmlHandle hTraits,
 {
 	numTraits = 0;
 	TiXmlElement* pTraits = hTraits.ToElement();
-	if (pTraits == 0)
+	if (pTraits == nullptr)
 	{
 		return false;
 	}
@@ -350,7 +355,7 @@ bool LoadActionsXML(TiXmlHandle hActions,
 					int enjoyments[])
 {
 	TiXmlElement* pActions = hActions.ToElement();
-	if (pActions == 0)
+	if (pActions == nullptr)
 	{
 		return false;
 	}
@@ -401,7 +406,7 @@ bool LoadInventoryXML(TiXmlHandle hInventory,
 {
 	numItems = 0;
 	TiXmlElement* pInventory = hInventory.ToElement();
-	if (pInventory == 0)
+	if (pInventory == nullptr)
 	{
 		return false;
 	}
@@ -410,7 +415,7 @@ bool LoadInventoryXML(TiXmlHandle hInventory,
 	if (pItems)
 	{
 		for(TiXmlElement* pItem = pItems->FirstChildElement("Item");
-			pItem != 0;
+			pItem != nullptr;
 			pItem = pItem->NextSiblingElement("Item"))
 		{
 			if (pItem->Attribute("Name"))
@@ -439,3 +444,4 @@ bool LoadInventoryXML(TiXmlHandle hInventory,
 	return true;
 }
 
+} // namespace WhoreMasterRenewal

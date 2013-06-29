@@ -16,33 +16,32 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #include "cJobManager.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "cCustomers.h"
 #include "cRng.h"
 #include "cInventory.h"
 #include "sConfig.h"
 #include "cRival.h"
-#include <sstream>
 #include "CLog.h"
 #include "cTrainable.h"
 #include "cTariff.h"
+#include "Girl.hpp"
 #include "cGold.h"
 #include "cGangs.h"
 #include "cMessageBox.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
 
-extern cRng g_Dice;
-extern CLog g_LogFile;
-extern cCustomers g_Customers;
-extern cInventory g_InvManager;
-extern cBrothelManager g_Brothels;
-extern cGangManager g_Gangs;
-extern cMessageQue g_MessageQue;
-extern cGold g_Gold;
+#include <sstream>
 
-bool cJobManager::WorkHall(sGirl* girl, sBrothel* brothel, int DayNight, string& summary)
+namespace WhoreMasterRenewal
 {
-	string message = "";
+
+bool cJobManager::WorkHall(Girl* girl, Brothel* brothel, int DayNight, std::string& summary)
+{
+    std::string message = "";
 	g_Girls.UpdateTempStat(girl, STAT_LIBIDO, 1);
 	if(Preprocessing(ACTION_WORKHALL, girl, brothel, DayNight, summary, message))	// they refuse to have work in the hall
 		return true;
@@ -67,8 +66,10 @@ bool cJobManager::WorkHall(sGirl* girl, sBrothel* brothel, int DayNight, string&
 	girl->m_Events.AddMessage(message, IMGTYPE_PROFILE, DayNight);
 
 	// work out the pay between the house and the girl
-	girl->m_Pay += (g_Dice%((int)(((g_Girls.GetStat(girl, STAT_BEAUTY)+g_Girls.GetStat(girl, STAT_CHARISMA))/2)*0.5f)))+10;
-	string pay = "";
+	int maxPay = ( g_Girls.GetStat( girl, STAT_BEAUTY ) + g_Girls.GetStat( girl, STAT_CHARISMA ) ) / 2;
+	maxPay /= 2;
+	girl->m_Pay += ( g_Dice % maxPay ) + 10;
+    std::string pay = "";
 //	g_Brothels.CalculatePay(brothel,girl, pay, girl->m_Pay, DayNight);  // No longer used this way?
 	girl->m_Events.AddMessage(pay, IMGTYPE_PROFILE, DayNight);
 
@@ -96,3 +97,5 @@ bool cJobManager::WorkHall(sGirl* girl, sBrothel* brothel, int DayNight, string&
 
 	return false;
 }
+
+} // namespace WhoreMasterRenewal

@@ -20,79 +20,61 @@
 #define CEVENTS_H_INCLUDED_1531
 #pragma once
 
+#include "Constants.h"
+
 #include <string>
 #include <vector>
 
-#include "Constants.h"
-
-using namespace std;
-
-#if 0
-// Event types moved to Constants.h
-const int	EVENT_DAYSHIFT		= 0;
-const int	EVENT_NIGHTSHIFT	= 1;
-const int	EVENT_WARNING		= 2;
-const int	EVENT_DANGER		= 3;
-const int	EVENT_SUMMARY		= 4;
-const int	EVENT_DUNGEON		= 5;			// For torturer reports
-const int	EVENT_MATRON		= 6;			// For Matron reports
-const int	EVENT_GANG			= 7;
-const int	EVENT_BROTHEL		= 8;
-const int	EVENT_DEBUG			= 99;
-#endif
-
+namespace WhoreMasterRenewal
+{
 
 class CEvent
 {
 public:
-	unsigned char	m_Event;				// type of event
-	unsigned char	m_MessageType;			// Image Type of message
-	string			m_Message;
-
-	//string		name;					//	name of who this event applies to, usually girl name
-	//int			imageType;
-	//int			imageNum;
-
-	string			TitleText();			//	Default listbox Text
-	unsigned int	ListboxColour();		//	Default Listbox Colour
-	unsigned int	m_Ordinal;				//  Used for sort order
-	bool			IsUrgent();
-	bool			IsDanger();
-	bool			IsWarning();
-	static bool		CmpEventPredicate(CEvent eFirst, CEvent eSecond)
-					{
-						return eFirst.m_Ordinal < eFirst.m_Ordinal;
-					}
+    CEvent();
+    
+    std::string TitleText();            //  Default listbox Text
+    unsigned int ListboxColour();       //  Default Listbox Colour
+    bool IsUrgent();
+    bool IsDanger();
+    bool IsWarning();
+    static bool CmpEventPredicate( CEvent eFirst, CEvent /*eSecond*/ );
+    
+    
+    
+    unsigned char m_Event = 0;              // type of event
+    unsigned char m_MessageType = 0;        // Image Type of message
+    std::string m_Message = "";
+    unsigned int m_Ordinal = 0;             //  Used for sort order
 };
 
 class cEvents
 {
 public:
-	cEvents()		{ m_bSorted = false; }	// constructor
-	~cEvents()		{Free();}				// destructor
-
-	void			Free();
-	void			Clear() {Free();}
-//	void			DisplayMessages();		// No definition
-	void			AddMessage(string message, int nImgType, int nEvent);
-
-	// need to undefine the stupid windows header macro GetMessage
-    #ifdef GetMessage
-    #undef GetMessage
-    #endif
-	CEvent			GetMessage(int id);
-	int				GetNumEvents() 			{ return events.size(); }
-	bool			IsEmpty()				{ return events.empty() ; }
-	bool			HasUrgent();
-	bool			HasDanger();
-	bool			HasWarning();
-	void			DoSort();
-
-
+    cEvents();
+    ~cEvents();
+    
+    void Free();
+    void Clear()                { Free(); }
+    void AddMessage( std::string message, int nImgType, int nEvent );
+    
+    CEvent GetMessage( int id );
+    int GetNumEvents()          { return m_Events.size(); }
+    bool IsEmpty()              { return m_Events.empty() ; }
+    bool HasUrgent();
+    bool HasDanger();
+    bool HasWarning();
+    void DoSort();
+    
 private:
-	vector<CEvent>	events;
-	bool			m_bSorted;				// flag to only allow sort once
-	unsigned int	MakeOrdinal(int nEvent);
+    unsigned int MakeOrdinal( int nEvent );
+    
+    
+    
+    std::vector<CEvent> m_Events = {};
+    bool m_bSorted = false;                         // flag to only allow sort once
 };
+
+} // namespace WhoreMasterRenewal
 
 #endif // CEVENTS_H_INCLUDED_1531

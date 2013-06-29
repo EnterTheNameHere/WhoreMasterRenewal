@@ -17,24 +17,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define TIXML_USE_STL
-#include "tinyxml.h"
-
 #include "sFacilityList.h"
+#include "sFacility.h"
 #include "DirPath.h"
 #include "FileList.h"
 #include "CLog.h"
+#include "XmlMisc.h"
 
-vector<sFacility *> *sFacilityList::list = 0;
+namespace WhoreMasterRenewal
+{
 
-static string g_filename;
+std::vector<sFacility *> *sFacilityList::list = nullptr;
 
 sFacilityList::sFacilityList()
 {
 	if(list) {
 		return;
 	}
-	list = new vector<sFacility *>;
+	list = new std::vector<sFacility *>;
 /*
  *	build a list of XML room definition files
  */
@@ -42,13 +42,11 @@ sFacilityList::sFacilityList()
 /*
  *	loop through files and load them
  */
-	CLog log;
  	for(int i = 0; i < fl.size(); i++) {
 /*
  *		get the file name
  */
-		string file = fl[i].full();
-		g_filename = file;
+	    std::string file = fl[i].full();
 /*
  *		try and load it
  */
@@ -58,34 +56,32 @@ sFacilityList::sFacilityList()
 /*
  *		moan if we failed at that task
  */
-		log.ss()<< "Error: failed to parse file '"
+		g_LogFile.ss()<< "Error: failed to parse file '"
 			<< file
 			<< "': continuing..."
 		;
-		log.ssend();
+		g_LogFile.ssend();
 	}
 }
 
 
-bool sFacilityList::load_xml(string filename)
+bool sFacilityList::load_xml(std::string filename)
 {
-	CLog log;
-
 	TiXmlDocument doc(filename);
 	if(!doc.LoadFile()) {
-		log.ss()<< "sFacilityList::load_xml: load failure for file '"
+		g_LogFile.ss()<< "sFacilityList::load_xml: load failure for file '"
 			<< filename
 			<< "'"
-			<< endl
+			<< std::endl
 		;
-		log.ss()<< "Error: line "
+		g_LogFile.ss()<< "Error: line "
 			<< doc.ErrorRow()
 			<< ", col "
 			<< doc.ErrorCol()
 			<< ": "
 			<< doc.ErrorDesc()
 		;
-		log.ssend();
+		g_LogFile.ssend();
 		return false;
 	}
 /*
@@ -115,3 +111,4 @@ bool sFacilityList::load_xml(string filename)
 	return true;
 }
 
+} // namespace WhoreMasterRenewal

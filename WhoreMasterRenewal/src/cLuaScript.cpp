@@ -17,36 +17,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
- #define LUA_COMPAT_MODULE
-
+#define LUA_COMPAT_MODULE
 
 #include "cLuaScript.h"
 #include "cLuaMenu.h"
 #include "cScriptUtils.h"
 #include "CLog.h"
+#include "BrothelManager.hpp"
 #include "cMessageBox.h"
 #include "cChoiceMessage.h"
-#include "cBrothel.h"
+#include "Brothel.hpp"
 #include "DirPath.h"
 #include "FileList.h"
-#include "SDLStuff.h"
 #include "sConfig.h"
 #include "cInterfaceWindow.h"
 #include "cWindowManager.h"
 #include "cScriptManager.h"
+#include "cTraits.h"
+#include "cGirls.h"
+#include "GirlManager.hpp"
+#include "CGraphics.h"
+#include "InterfaceGlobals.h"
+#include "InterfaceProcesses.h"
+#include "Girl.hpp"
 
+#include <iostream>
+#include <sstream>
 
-
-extern CGraphics g_Graphics;
-extern cChoiceManager g_ChoiceManager;
-extern cMessageQue g_MessageQue;
-extern cBrothelManager g_Brothels;
-extern int g_CurrBrothel;
-extern cWindowManager g_WinManager;
-extern cInterfaceWindow g_BrothelManagement;
-extern bool g_InitWin;
-
+namespace WhoreMasterRenewal
+{
 
 typedef int (*lua_func)(lua_State *L);
 
@@ -59,7 +58,7 @@ static const char *stats[] = {
 	"spirit",	"beauty",       "tiredness",
 	"health",       "pc_fear",	 "pc_love",
 	"pc_hate",
-	0
+	nullptr
 };
 
 /*
@@ -77,7 +76,7 @@ static const char *skills[] =
 	"service",
 	"strip",
 	"combat",
-	0
+	nullptr
 };
 
 static void add_to_table(lua_State *L, int table, const char *key, lua_func f)
@@ -101,7 +100,7 @@ static void add_to_table(lua_State *L, int table, const char *key, int value)
 	lua_settable(L, table);
 }
 
-static void add_to_table(lua_State *L, int table, const char *key, string value)
+static void add_to_table(lua_State *L, int table, const char *key, std::string value)
 {
 	lua_pushstring(L, key);
 	lua_pushstring(L, value.c_str());
@@ -123,22 +122,23 @@ static void add_to_table(lua_State *L, int table, const char *key, void *value)
 	force	= { false | true },
  }
  */
-static int sex(lua_State *L)
-{
-	CLog log;
- 	int argtab = lua_gettop(L);
-/*
- *	make sure it exists and is in fact a table
- */
-	if(argtab == 0) {
-		log.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
-		log.ssend();
-		return 1;
-	}
-	luaL_checktype(L, argtab, LUA_TTABLE);
-
-	//get_from_table(L, argtab, "girl", girl);
-}
+// unused function
+//static int sex(lua_State *L)
+//{
+// 	int argtab = lua_gettop(L);
+// /*
+//  *	make sure it exists and is in fact a table
+//  */
+//	if(argtab == 0) {
+//		g_LogFile.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
+//		g_LogFile.ssend();
+//		return 1;
+//	}
+//	luaL_checktype(L, argtab, LUA_TTABLE);
+//
+//	//get_from_table(L, argtab, "girl", girl);
+//	return 0;
+//}
 
 /*
  * usage is: dir1, dir2, dir3 ... dirN, pattern
@@ -147,15 +147,14 @@ static int sex(lua_State *L)
  */
 static int get_files(lua_State *L)
 {
-	CLog log;
  	DirPath dp;
 /*
  *	pop the pattern string off the end
  */
  	const char *pattern = lua_tostring(L, -1);
 	if(!pattern) {
-		log.ss() << "Error: nil pattern!";
-		log.ssend();
+		g_LogFile.ss() << "Error: nil pattern!";
+		g_LogFile.ssend();
 		return 0;
 	}
 	lua_pop(L, 1);
@@ -167,8 +166,8 @@ static int get_files(lua_State *L)
 	for(int i = 0; i < top; i++) {
 		dp << lua_tostring(L, i+1);
 	}
-	log.ss() << "get_files: looking in '" << dp << "' for " << pattern;
-	log.ssend();
+	g_LogFile.ss() << "get_files: looking in '" << dp << "' for " << pattern;
+	g_LogFile.ssend();
 /*
  *	use the path and pattern to generate a list of matching files
  */
@@ -187,8 +186,8 @@ static int get_files(lua_State *L)
 	for(int i = 0; i < fl.size(); i++) {
 		const char *pt = fl[i].full().c_str();
 
-		log.ss() << "	found: '" << pt << "'";
-		log.ssend();
+		g_LogFile.ss() << "	found: '" << pt << "'";
+		g_LogFile.ssend();
 
 		lua_pushinteger(L, i+1);
 		lua_pushstring(L, pt);
@@ -198,7 +197,7 @@ static int get_files(lua_State *L)
 }
 
 
-static int menu_show(lua_State *L)
+static int menu_show(lua_State* /*L*/)
 {
 	cLuaMenu lmenu;
 
@@ -208,27 +207,25 @@ static int menu_show(lua_State *L)
 }
 
 
-static int get_sdl_ticks(lua_State *L)
+static int get_sdl_ticks(lua_State* L)
 {
 	lua_pushinteger(L, g_Graphics.GetTicks());
 	return 1;
 }
 
-static int pop_window(lua_State *L)
+static int pop_window(lua_State* /*L*/)
 {
-	CLog log;
-
-	log.ss()
+	g_LogFile.ss()
 		<< "popping window stack"
 	;
-	log.ssend();
+	g_LogFile.ssend();
 
 	cWindowManager wman;
 	wman.Pop();
 	return 0;
 }
 
-bool get_from_table(lua_State *L, int table, const char *key, string &dest)
+bool get_from_table(lua_State *L, int table, const char *key, std::string &dest)
 {
 	lua_pushstring(L, key);
 	lua_gettable(L, table);
@@ -283,7 +280,7 @@ int get_from_table(lua_State *L, int table, const char *key, bool &dest)
 }
 
 /*
- * take a girl object and update the corresponding sGirl struct
+ * take a girl object and update the corresponding Girl struct
  *
  * some use cases:
  *
@@ -300,7 +297,7 @@ int get_from_table(lua_State *L, int table, const char *key, bool &dest)
  */
 static int update_girl(lua_State *L)
 {
- 	string s;
+    std::string s;
 	const char *pt;
 	luaL_checktype(L, 1, LUA_TTABLE);
 /*
@@ -319,7 +316,7 @@ static int update_girl(lua_State *L)
 			"girl.update: supplied object has no pointer"
 		);
 	}
-	sGirl *girl = (sGirl *) lua_touserdata(L, -1);
+	Girl *girl = (Girl *) lua_touserdata(L, -1);
 /*
  *	set the stack back to the lua_girl
  */
@@ -384,13 +381,13 @@ static int update_girl(lua_State *L)
 static int log_from_lua(lua_State *L)
 {
 	const char *msg = luaL_checkstring(L, 1);
-	string s = "Lua Script: ";
-	CLog log;
-	log.write(s + msg);
+    std::string s = "Lua Script: ";
+	
+	g_LogFile.write(s + msg);
 	return 0;
 }
 
-static int game_over(lua_State *L)
+static int game_over(lua_State* /*L*/)
 {
 	cScriptManager sm;
 
@@ -402,7 +399,7 @@ static int game_over(lua_State *L)
 	return 0;
 }
 
-static void add_trait_table(lua_State *L, sGirl *girl, int table)
+static void add_trait_table(lua_State *L, Girl *girl, int table)
 {
 /*
  *	push the string "traits" onto the stack - this is going to be the key
@@ -434,7 +431,7 @@ static void add_trait_table(lua_State *L, sGirl *girl, int table)
  * really this needs a LuaGirl class and a lot more thought
  * for now, this is enough to add the girl to the current brothel
  */
-static void make_lua_girl(lua_State *L, sGirl *girl)
+static void make_lua_girl(lua_State *L, Girl *girl)
 {
 	const char *pt;
 /*
@@ -442,7 +439,7 @@ static void make_lua_girl(lua_State *L, sGirl *girl)
  *	that way we null out any pre-existing girl to show that
  *	there is no target girl for the current event
  */
-	if(girl == 0) {
+	if(girl == nullptr) {
 		lua_pushnil(L);
 		return;
 	}
@@ -458,7 +455,7 @@ static void make_lua_girl(lua_State *L, sGirl *girl)
  	add_to_table(L, table, "real_name", girl->m_Realname);
  	add_to_table(L, table, "desc", girl->m_Desc);
 /*
- *	let's add the sGirl pointer as light userdata
+ *	let's add the Girl pointer as light userdata
  */
  	add_to_table(L, table, "pointer", (void *)girl);
 /*
@@ -497,7 +494,7 @@ static void make_lua_girl(lua_State *L, sGirl *girl)
 
 static int create_random_girl(lua_State *L)
 {
-	CLog log;
+	
 
 	int age		= 17;
 	bool global	= false;	// set to true to add her to the pool
@@ -514,8 +511,8 @@ static int create_random_girl(lua_State *L)
  *	make sure it exists and is in fact a table
  */
 	if(argtab == 0) {
-		log.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
-		log.ssend();
+		g_LogFile.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
+		g_LogFile.ssend();
 		return 1;
 	}
 	luaL_checktype(L, argtab, LUA_TTABLE);
@@ -532,7 +529,7 @@ static int create_random_girl(lua_State *L)
 /*
  *	now create the girl
  */
-	sGirl *girl = g_Girls.CreateRandomGirl(
+	Girl *girl = g_Girls.CreateRandomGirl(
 		age,		// age
 		global,		// add to global girl list flag
 		slave,		// create as slave flag
@@ -549,18 +546,18 @@ static int create_random_girl(lua_State *L)
 
 static int queue_message(lua_State *L)
 {
-	CLog log;
+	
 
 	const char *msg = luaL_checkstring(L, 1);
 	int color = luaL_checkint(L, 2);
 
-	log.ss() << "adding to message queue: '" << msg << "\n";
-	log.ss() << "Before add: has = " << g_MessageQue.HasNext();
-	log.ssend();
+	g_LogFile.ss() << "adding to message queue: '" << msg << "\n";
+	g_LogFile.ss() << "Before add: has = " << g_MessageQue.HasNext();
+	g_LogFile.ssend();
 
 	g_MessageQue.AddToQue(msg, color);
-	log.ss() << "After add: has = " << g_MessageQue.HasNext();
-	log.ssend();
+	g_LogFile.ss() << "After add: has = " << g_MessageQue.HasNext();
+	g_LogFile.ssend();
 	return 0;
 }
 
@@ -582,7 +579,7 @@ static int queue_message(lua_State *L)
  */
 static int add_cust_to_brothel(lua_State *L)
 {
-	CLog log;
+	
 /*
  *	OK - do we have a parameter?
  */
@@ -591,15 +588,15 @@ static int add_cust_to_brothel(lua_State *L)
  *	if not, log a warning and return false
  */
 	if(argtab == 0) {
-		log.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
-		log.ssend();
+		g_LogFile.ss() << "Warning: missing parameter for wm.add_cust_to_brothel";
+		g_LogFile.ssend();
 		return 1;
 	}
 	luaL_checktype(L, argtab, LUA_TTABLE);
 /*
  *	OK. parameters currently recognised are
  *
- *		string	: reason
+ *	    std::string : reason
  *		bool	: wife
  *		int	: daughters
  */
@@ -608,7 +605,7 @@ static int add_cust_to_brothel(lua_State *L)
 	if(lua_isnil(L, -1)) {
 		return luaL_error(L, "wm.add_cust_to_brothel: missing reason");
 	}
-	string reason = lua_tostring(L, -1);
+    std::string reason = lua_tostring(L, -1);
 	lua_pop(L, 1);
 /*
  *	this would be a good place to check that string
@@ -651,7 +648,7 @@ static int add_cust_to_brothel(lua_State *L)
 
 static int add_girl_to_brothel(lua_State *L)
 {
-	CLog log;
+	
 /*
  *	OK - do we have a parameter?
  */
@@ -660,8 +657,8 @@ static int add_girl_to_brothel(lua_State *L)
  *	if not, log a warning and return false
  */
 	if(top == 0) {
-		log.ss() << "Warning: missing parameter for wm.add_girl_to_brothel";
-		log.ssend();
+		g_LogFile.ss() << "Warning: missing parameter for wm.add_girl_to_brothel";
+		g_LogFile.ssend();
 		lua_pushnil(L);
 		return 1;
 	}
@@ -675,7 +672,7 @@ static int add_girl_to_brothel(lua_State *L)
 /*
  *	now convert that back to a pointer
  */
-	sGirl *girl = (sGirl *) lua_touserdata(L, -1);
+	Girl *girl = (Girl *) lua_touserdata(L, -1);
 /*
  *	add the girl
  */
@@ -698,12 +695,12 @@ static const luaL_Reg funx [] = {
 	{ "pop_window", pop_window },
 	{ "log", log_from_lua },
 	{ "message", queue_message },
-	{ 0, 0 }
+	{ nullptr, nullptr }
 };
 
 cLuaStateInner::cLuaStateInner()
+    : L( luaL_newstate() )
 {
-	L = luaL_newstate();
 	luaL_openlibs(L);
 /*
  *	this should put all the functions in the "wm" namespace.
@@ -737,27 +734,27 @@ cLuaStateInner::set_param(const char *name, void *pt)
 }
  */
 
-cLuaStateInner *cLuaState::instance = 0;
+cLuaStateInner *cLuaState::instance = nullptr;
 
-string cLuaScript::slurp(string path)
+std::string cLuaScript::slurp(std::string path)
 {
-	ifstream ifs(path.c_str(), ifstream::in);
-	stringstream sstr;
+	std::ifstream ifs(path.c_str(), std::ifstream::in);
+	std::stringstream sstr;
 	sstr << ifs.rdbuf();
 	return sstr.str();
 }
 
 void cLuaScript::log_error()
 {
-	CLog log;
-	string errstr = lua_tostring(l, -1);
+	
+    std::string errstr = lua_tostring(l, -1);
 	lua_pop(l, 1);
-	log.ss()	<< "Script error in '"
+	g_LogFile.ss()	<< "Script error in '"
 			<< m_file
 			<< "': "
 			<< errstr
 	;
-	log.ssend();
+	g_LogFile.ssend();
 }
 
 int cLuaScript::get_ref(const char *name)
@@ -767,47 +764,47 @@ int cLuaScript::get_ref(const char *name)
  */
 	lua_getglobal(l, name);
 	if(lua_isnil(l, -1)) {
-		log.ss()
+		g_LogFile.ss()
 			<< "cLuaScript::get_ref - can't find "
 			<< "'" << name << "'"
 		;
-		log.ssend();
+		g_LogFile.ssend();
 		return 0;
 	}
 /*
  *	turn it into a reference
  */
 	int ref = luaL_ref(l, LUA_REGISTRYINDEX);
-	log.ss() << "stored '" << name << "' as reference " << ref;
-	log.ssend();
+	g_LogFile.ss() << "stored '" << name << "' as reference " << ref;
+	g_LogFile.ssend();
 /*
  *	return the reference number
  */
  	return ref;
 }
 
-bool cLuaScript::load(string filename, sGirl *a_girl)
+bool cLuaScript::load(std::string filename, Girl *a_girl)
 {
 	int rc;
 	m_file = filename;
 	girl = a_girl;
 
-	log.ss() << "cLuaScript::load: " << filename;
-	log.ssend();
+	g_LogFile.ss() << "cLuaScript::load: " << filename;
+	g_LogFile.ssend();
 /*
  *	We need to open the file to make sure it exists and can be read
  *
  *	There doesn't seem to be a better, cross platform way
  *	to do this
  */
-	ifstream ifs(m_file.c_str(), ifstream::in);
+	std::ifstream ifs(m_file.c_str(), std::ifstream::in);
 	bool ok = ifs.good();
 	ifs.close();
 	if(!ok) return false;
 /*
  *	So: slurp the file
  */
-	string prog = slurp(m_file);
+    std::string prog = slurp(m_file);
 /*
  *	load the string
  */
@@ -840,15 +837,15 @@ bool cLuaScript::load(string filename, sGirl *a_girl)
  */
  	init_ref = get_ref("init");
  	run_ref = get_ref("run");
-	log.ss() << "init_ref = " << init_ref << "\n";
-	log.ss() << "run_ref  = " << run_ref;
-	log.ssend();
+	g_LogFile.ss() << "init_ref = " << init_ref << "\n";
+	g_LogFile.ss() << "run_ref  = " << run_ref;
+	g_LogFile.ssend();
 /*
  *	check the return code
  */
 	rc = lua_toboolean(l, -1);
-	log.ss() << "script ready: return value " << rc;
-	log.ssend();
+	g_LogFile.ss() << "script ready: return value " << rc;
+	g_LogFile.ssend();
 	return (rc != 0);
 }
 
@@ -896,22 +893,22 @@ static void make_lua_player(lua_State *L, cPlayer *player)
 /*
  * this sets the wm.girl field to the girl passed
  */
-void cLuaScript::set_wm_girl(sGirl *girl)
+void cLuaScript::set_wm_girl(Girl *girl)
 {
 /*
  *	get the "wm" symbol on the stack to start with
  */
  	lua_getglobal(l, "wm");
-	assert(lua_isnil(l, -1) == 0);
+	//assert(lua_isnil(l, -1) == 0);
 	int wm = lua_gettop(l);
-	log.ss() << "cLuaScript::set_wm_girl: wm index at " << wm;
-	log.ssend();
+	g_LogFile.ss() << "cLuaScript::set_wm_girl: wm index at " << wm;
+	g_LogFile.ssend();
 /*
  *	now push the key "girl" on after it
  */
  	lua_pushstring(l, "girl");
 /*
- *	now format the sGirl data as a Lua table
+ *	now format the Girl data as a Lua table
  */
 	make_lua_girl(l, girl);
 /*
@@ -936,18 +933,18 @@ void cLuaScript::set_wm_player()
  */
  	lua_pushstring(l, "player");
 /*
- *	now format the sGirl data as a Lua table
+ *	now format the Girl data as a Lua table
  */
 	make_lua_player(l, player);
-	bool flag = !lua_isnil(l, -1);
-	assert(flag);
+	//bool flag = !lua_isnil(l, -1);
+	//assert(flag);
 /*
  *	last store the data in wm
  */
  	lua_settable(l, wm);
 }
 
-bool cLuaScript::run(const char *func)
+bool cLuaScript::run(const char* /*func*/)
 {
 	bool ok;
 /*
@@ -971,34 +968,34 @@ bool cLuaScript::run(const char *func)
  *		rabbit rabbit rabbit rabbit
  *		yak yak yak yak yak
  */
-		log.ss() << "running init method";
-		log.ss() << "init_ref = " << init_ref << "\n";
-		log.ss() << "run_ref  = " << run_ref << "\n";
-		log.ssend();
+		g_LogFile.ss() << "running init method";
+		g_LogFile.ss() << "init_ref = " << init_ref << "\n";
+		g_LogFile.ss() << "run_ref  = " << run_ref << "\n";
+		g_LogFile.ssend();
 /*
  *		run the init function
  */
 		if(!run_by_ref(init_ref)) {
-			log.ss() << "script init method failed"
+			g_LogFile.ss() << "script init method failed"
 			;
-			log.ssend();
+			g_LogFile.ssend();
 			return false;
 		}
 	}
 	running = true;
-	log.ss() << "running run method";
-	log.ssend();
+	g_LogFile.ss() << "running run method";
+	g_LogFile.ssend();
 	ok = run_by_ref(run_ref);
-	log.ss() << "run method called: returns " << ok ;
-	log.ssend();
+	g_LogFile.ss() << "run method called: returns " << ok ;
+	g_LogFile.ssend();
 	return ok;
 }
 
 bool cLuaScript::run_by_ref(int ref)
 {
 	int rc;
-	log.ss() << "about to call reference: " << ref ;
-	log.ssend();
+	g_LogFile.ss() << "about to call reference: " << ref ;
+	g_LogFile.ssend();
 /*
  *	look up the funciton
  */
@@ -1044,13 +1041,21 @@ bool cLuaScript::run_by_ref(int ref)
 }
 
 
-/*
+cLuaState::cLuaState()
+{
+    if(!instance)
+        instance = new cLuaStateInner();
+}
 
-g++  -D LINUX -I /usr/include/SDL -g -Wall -D LUA_USE_MKSTEMP  -c -o cLuaScript.o cLuaScript.cpp
-cLuaScript.cpp: In function 'void make_lua_girl(lua_State*, sGirl*)':
-cLuaScript.cpp:429: error: 'add_trait_table' was not declared in this scope
-cLuaScript.cpp: At global scope:
-cLuaScript.cpp:795: warning: 'void add_trait_table(lua_State*, sGirl*, int)' defined but not used
-make: *** [cLuaScript.o] Error 1
 
- */
+cLuaScript::cLuaScript()
+{
+    ;
+}
+
+cLuaScript::~cLuaScript()
+{
+    ;
+}
+
+} // namespace WhoreMasterRenewal

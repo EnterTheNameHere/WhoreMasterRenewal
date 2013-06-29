@@ -16,38 +16,104 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#include <iostream>
+
 #include "CLog.h"
 
-bool CLogInner::setup = false;
+#include <iostream>
+
+namespace WhoreMasterRenewal
+{
+
+std::ofstream& CLogInner::os()
+{
+    return m_ofile;
+}
+
+std::stringstream& CLogInner::ss()
+{
+    return m_ss;
+}
+
+void CLogInner::ssend()
+{
+    write( m_ss.str() );
+    m_ss.str("");
+}
 
 CLogInner::CLogInner()
+    : m_ofile(), m_ss()
 {
-	if(!setup) {
+	if( !setup )
+    {
 		init();
 	}
 }
 
 void CLogInner::init()
 {
-	cout << "CLogInner::init" << endl;
-	if(setup) return;
+	if( setup )
+        return;
+    
+    std::cout << "CLogInner::init" << std::endl;
 	setup = true;
 	m_ofile.open("gamelog.txt");
 }
 
 CLogInner::~CLogInner()
 {
+    write( "Finished Logging..." );
+    
 	m_ofile.close();
 }
 
-void CLogInner::write(string text)
+void CLogInner::write( std::string text )
 {
-	m_ofile<<text<<endl;
-	m_ofile.flush();
-#ifdef LINUX
-	std::cout << text << endl;
-#endif
+    if( m_ofile.is_open() )
+        m_ofile << text << std::endl;
+	std::cout << text << std::endl;
 }
 
-CLogInner *CLog::inner = 0;
+CLog::CLog( bool a_glob )
+    : m_glob( a_glob )
+{
+    
+}
+
+CLog::~CLog()
+{
+    if( !m_glob )
+    {
+        return;
+    }
+    if( inner )
+    {
+        delete inner;
+    }
+    inner = nullptr;
+}
+
+void CLog::write( std::string text )
+{
+    if( !inner )
+        inner = new CLogInner();
+    inner->write( text );
+}
+
+std::stringstream& CLog::ss()
+{
+    if( !inner )
+        inner = new CLogInner();
+    return inner->ss();
+}
+
+void CLog::ssend()
+{
+    if( !inner )
+        inner = new CLogInner();
+    inner->ssend();
+}
+
+bool CLogInner::setup = false;
+CLogInner* CLog::inner = nullptr;
+
+} // namespace WhoreMasterRenewal
