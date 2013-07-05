@@ -7,9 +7,24 @@
 namespace WhoreMasterRenewal
 {
 
-Logger::Logger( const std::string& filename, bool append ) :
-    m_LogFileStream()
+namespace
 {
+    bool l_LoggingFileInitialized = false;
+}
+
+Logger::Logger( bool /*append*/, const std::string& filename )
+{
+    // If not initialized, open file as non-append
+    if( !l_LoggingFileInitialized )
+    {
+        m_LogFileStream.open( filename, std::ios_base::out );
+        l_LoggingFileInitialized = true;
+    }
+    else
+    {
+        m_LogFileStream.open(  filename, std::ios_base::out | std::ios_base::app );
+    }
+    
     //if( m_FirstRun )
     //{
     //    sf::Lock lock( m_Mutex );
@@ -18,11 +33,11 @@ Logger::Logger( const std::string& filename, bool append ) :
     //        {
     //            m_FirstRun = false;
     //            
-                if( append )
-                    m_LogFileStream.open( filename, std::ios_base::out | std::ios_base::app );
-                else
-                    m_LogFileStream.open( filename, std::ios_base::out );
-                
+    //            if( append )
+    //                m_LogFileStream.open( filename, std::ios_base::out | std::ios_base::app );
+    //            else
+    //                m_LogFileStream.open( filename, std::ios_base::out );
+    //            
     //            if( !m_LogFileStream.is_open() )
     //            {
     //                m_FailedToOpenLogFile = true;
