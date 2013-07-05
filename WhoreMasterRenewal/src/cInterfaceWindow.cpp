@@ -133,12 +133,12 @@ void cInterfaceWindow::Free()
 		delete m_Sliders[i];
 	m_Sliders.clear();
 
-	if(m_Background)
-		SDL_FreeSurface(m_Background);
+//	if(m_Background)
+//		SDL_FreeSurface(m_Background);
 	m_Background = nullptr;
 
-	if(m_Border)
-		SDL_FreeSurface(m_Border);
+//	if(m_Border)
+//		SDL_FreeSurface(m_Border);
 	m_Border = nullptr;
 }
 
@@ -228,11 +228,11 @@ void cInterfaceWindow::Draw()
 		offset.y = m_YPos;
 
 		// blit to the screen
-		SDL_BlitSurface(m_Border, nullptr, g_Graphics.GetScreen(), &offset);
+//		SDL_BlitSurface(m_Border, nullptr, g_Graphics.GetScreen(), &offset);
 
 		offset.x = m_XPos+m_BorderSize;
 		offset.y = m_YPos+m_BorderSize;
-		SDL_BlitSurface(m_Background, nullptr, g_Graphics.GetScreen(), &offset);
+//		SDL_BlitSurface(m_Background, nullptr, g_Graphics.GetScreen(), &offset);
 	}
 
 	if(m_BackgroundSurface)
@@ -462,11 +462,11 @@ void cInterfaceWindow::CreateWindow(int x, int y, int width, int height, int Bor
 
 	m_BorderSize = BorderSize;
 	SetPosition(x,y,width,height);
-	m_Border = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, 0,0,0,0);
-	SDL_FillRect(m_Border, nullptr,SDL_MapRGB(m_Border->format,g_WindowBorderR,g_WindowBorderG,g_WindowBorderB));
+//	m_Border = SDL_CreateRGBSurface(SDL_SWSURFACE, width, height, 32, 0,0,0,0);
+//	SDL_FillRect(m_Border, nullptr,SDL_MapRGB(m_Border->format,g_WindowBorderR,g_WindowBorderG,g_WindowBorderB));
 
-	m_Background = SDL_CreateRGBSurface(SDL_SWSURFACE, width-(BorderSize*2), height-(BorderSize*2), 32, 0,0,0,0);
-	SDL_FillRect(m_Background, nullptr,SDL_MapRGB(m_Background->format,g_WindowBackgroundR,g_WindowBackgroundG,g_WindowBackgroundB));
+//	m_Background = SDL_CreateRGBSurface(SDL_SWSURFACE, width-(BorderSize*2), height-(BorderSize*2), 32, 0,0,0,0);
+//	SDL_FillRect(m_Background, nullptr,SDL_MapRGB(m_Background->format,g_WindowBackgroundR,g_WindowBackgroundG,g_WindowBackgroundB));
 }
 
 void cInterfaceWindow::SetBackgroundImage(std::string file)

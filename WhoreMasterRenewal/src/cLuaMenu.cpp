@@ -293,7 +293,7 @@ void cLuaMenuInner::calc_size_from_font(str_vec &v)
 
 	maxh = maxw = 0;
 
-	TTF_Font *fontpt = TTF_OpenFont(font_file.c_str(), font_size);
+//	TTF_Font *fontpt = TTF_OpenFont(font_file.c_str(), font_size);
 
 	for(i = 0; i < v.size(); i++) {
 		int loc_w, loc_h;
@@ -302,11 +302,11 @@ void cLuaMenuInner::calc_size_from_font(str_vec &v)
  *		for each menu caption, we want the height and width
  *		so we know how big and wide to make the menu
  */
-		if(TTF_SizeText(fontpt, pt, &loc_w, &loc_h) == -1) {
-			g_LogFile.ss() << "Error: can't render '" << pt << "'";
-			g_LogFile.ssend();
-			continue;
-		}
+//		if(TTF_SizeText(fontpt, pt, &loc_w, &loc_h) == -1) {
+//			g_LogFile.ss() << "Error: can't render '" << pt << "'";
+//			g_LogFile.ssend();
+//			continue;
+//		}
 		maxw = loc_w > maxw ? loc_w : maxw;
 		maxh = loc_h > maxh ? loc_h : maxh;
 		//g_ChoiceManager.AddChoice(0, pt, i);

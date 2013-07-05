@@ -45,34 +45,34 @@ CGraphics::~CGraphics()
 
 void CGraphics::Free()
 {
-	TTF_Quit();
-	SDL_Quit();
+//	TTF_Quit();
+//	SDL_Quit();
 	m_Screen = nullptr;
 }
 
 void CGraphics::Begin()
 {
 	m_FPS.Start();
-	m_CurrentTime = SDL_GetTicks();
+//	m_CurrentTime = SDL_GetTicks();
 	//Fill the screen white
-	SDL_FillRect(m_Screen, &m_Screen->clip_rect, SDL_MapRGB(m_Screen->format, 0, 0, 0));
+//	SDL_FillRect(m_Screen, &m_Screen->clip_rect, SDL_MapRGB(m_Screen->format, 0, 0, 0));
 }
 
 bool CGraphics::End()
 {
 	// flip the surface
-	if(SDL_Flip(m_Screen) == -1)
-	{
-		g_LogFile.write(SDL_GetError());
-		return false;
-	}
+//	if(SDL_Flip(m_Screen) == -1)
+//	{
+//		g_LogFile.write(SDL_GetError());
+//		return false;
+//	}
 
 	// Maintain framerate
-	if((m_FPS.GetTicks() < 1000 / FRAMES_PER_SECOND))
-	{
-		//Sleep the remaining frame time
-		SDL_Delay((1000/FRAMES_PER_SECOND)-m_FPS.GetTicks());
-	}
+//	if((m_FPS.GetTicks() < 1000 / FRAMES_PER_SECOND))
+//	{
+//		//Sleep the remaining frame time
+//		SDL_Delay((1000/FRAMES_PER_SECOND)-m_FPS.GetTicks());
+//	}
 
 	return true;
 }
@@ -112,51 +112,51 @@ bool CGraphics::InitGraphics(std::string caption, int Width, int Height, int BPP
 
 	// init SDL
 	g_LogFile.write("Initializing SDL");
-	if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
-	{
-		g_LogFile.write("Poop. SDL_INIT_EVERYTHING failed.");
-		g_LogFile.write(SDL_GetError());
-		return false;
-	}
+//	if(SDL_Init(SDL_INIT_EVERYTHING) == -1)
+//	{
+//		g_LogFile.write("Poop. SDL_INIT_EVERYTHING failed.");
+//		g_LogFile.write(SDL_GetError());
+//		return false;
+//	}
 	m_ScreenBPP = BPP;
 
 	// set window icon
 	g_LogFile.write("Setting Window Icon");
-	SDL_Surface* loadIcon = IMG_Load(ImagePath("window_icon.png"));
-	if(!loadIcon)
-	{
-		g_LogFile.write("Error setting window icon (window_icon.png)");
-		g_LogFile.write(SDL_GetError());
-		g_LogFile.write(IMG_GetError());
-		return false;
-	}
-	else
-		SDL_WM_SetIcon(loadIcon, nullptr);
+//	SDL_Surface* loadIcon = IMG_Load(ImagePath("window_icon.png"));
+//	if(!loadIcon)
+//	{
+//		g_LogFile.write("Error setting window icon (window_icon.png)");
+//		g_LogFile.write(SDL_GetError());
+//		g_LogFile.write(IMG_GetError());
+//		return false;
+//	}
+//	else
+//		SDL_WM_SetIcon(loadIcon, nullptr);
 
 	// Setup the screen
 	g_LogFile.write("Determining Fullscreen or Windowed Mode");
-	if(g_Fullscreen == false)
-		m_Screen = SDL_SetVideoMode(m_ScreenWidth, m_ScreenHeight, m_ScreenBPP, SDL_SWSURFACE);
-	else
-		m_Screen = SDL_SetVideoMode(m_ScreenWidth, m_ScreenHeight, m_ScreenBPP, SDL_SWSURFACE|SDL_FULLSCREEN);
+//	if(g_Fullscreen == false)
+//		m_Screen = SDL_SetVideoMode(m_ScreenWidth, m_ScreenHeight, m_ScreenBPP, SDL_SWSURFACE);
+//	else
+//		m_Screen = SDL_SetVideoMode(m_ScreenWidth, m_ScreenHeight, m_ScreenBPP, SDL_SWSURFACE|SDL_FULLSCREEN);
 	if(!m_Screen)	// check for error
 	{
-		g_LogFile.write(SDL_GetError());
+//		g_LogFile.write(SDL_GetError());
 		return false;
 	}
 
 	// set window caption
 	g_LogFile.write("Setting Window Caption");
-	SDL_WM_SetCaption(caption.c_str(), nullptr );
+//	SDL_WM_SetCaption(caption.c_str(), nullptr );
 
 	// Init TTF
 	g_LogFile.write("Initializing TTF");
-	if(TTF_Init() == -1)
-	{
-		g_LogFile.write("Error with TTF_Init()");
-		g_LogFile.write(TTF_GetError());
-		return false;
-	}
+//	if(TTF_Init() == -1)
+//	{
+//		g_LogFile.write("Error with TTF_Init()");
+//		g_LogFile.write(TTF_GetError());
+//		return false;
+//	}
 
 	return true;
 }

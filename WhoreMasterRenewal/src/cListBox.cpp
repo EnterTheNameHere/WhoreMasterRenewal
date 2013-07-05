@@ -75,55 +75,55 @@ cListBox::~cListBox()
     m_LastItem = nullptr;
     m_LastSelected = nullptr;
     
-    if( m_Background )
-        SDL_FreeSurface( m_Background );
+//    if( m_Background )
+//        SDL_FreeSurface( m_Background );
         
     m_Background = nullptr;
     
-    if( m_Border )
-        SDL_FreeSurface( m_Border );
+//    if( m_Border )
+//        SDL_FreeSurface( m_Border );
         
     m_Border = nullptr;
     
-    if( m_RedBackground )
-        SDL_FreeSurface( m_RedBackground );
+//    if( m_RedBackground )
+//        SDL_FreeSurface( m_RedBackground );
         
     m_RedBackground = nullptr;
     
-    if( m_DarkBlueBackground )
-        SDL_FreeSurface( m_DarkBlueBackground );
+//    if( m_DarkBlueBackground )
+//        SDL_FreeSurface( m_DarkBlueBackground );
         
     m_DarkBlueBackground = nullptr;
     
-    if( m_HeaderBackground )
-        SDL_FreeSurface( m_HeaderBackground );
+//    if( m_HeaderBackground )
+//        SDL_FreeSurface( m_HeaderBackground );
         
     m_HeaderBackground = nullptr;
     
     m_HeaderSortBack = nullptr;
     
-    if( m_SelectedRedBackground )
-        SDL_FreeSurface( m_SelectedRedBackground );
+//    if( m_SelectedRedBackground )
+//        SDL_FreeSurface( m_SelectedRedBackground );
         
     m_SelectedRedBackground = nullptr;
     
-    if( m_SelectedDarkBlueBackground )
-        SDL_FreeSurface( m_SelectedDarkBlueBackground );
+//    if( m_SelectedDarkBlueBackground )
+//        SDL_FreeSurface( m_SelectedDarkBlueBackground );
         
     m_SelectedDarkBlueBackground = nullptr;
     
-    if( m_ElementBackground )
-        SDL_FreeSurface( m_ElementBackground );
+//    if( m_ElementBackground )
+//        SDL_FreeSurface( m_ElementBackground );
         
     m_ElementBackground = nullptr;
     
-    if( m_ElementSelectedBackground )
-        SDL_FreeSurface( m_ElementSelectedBackground );
+//    if( m_ElementSelectedBackground )
+//        SDL_FreeSurface( m_ElementSelectedBackground );
         
     m_ElementSelectedBackground = nullptr;
     
-    if( m_ElementBorder )
-        SDL_FreeSurface( m_ElementBorder );
+//    if( m_ElementBorder )
+//        SDL_FreeSurface( m_ElementBorder );
         
     m_ElementBorder = nullptr;
     
@@ -424,7 +424,7 @@ void cListBox::OnClicked( int x, int y, bool mouseWheelDown, bool mouseWheelUp )
                     m_LastClickTime = m_CurrentClickTime;
                     m_LastClickX = m_CurrentClickX;
                     m_LastClickY = m_CurrentClickY;
-                    m_CurrentClickTime = SDL_GetTicks();
+//                    m_CurrentClickTime = SDL_GetTicks();
                     m_CurrentClickX = x;
                     m_CurrentClickY = y;
                     
@@ -514,11 +514,11 @@ void cListBox::CreateListbox( int ID, int x, int y, int width, int height, int B
     
     m_BorderSize = BorderSize;
     SetPosition( x, y, width, height );
-    m_Border = SDL_CreateRGBSurface( SDL_SWSURFACE, width, height, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_Border, nullptr, SDL_MapRGB( m_Border->format, g_ListBoxBorderR, g_ListBoxBorderG, g_ListBoxBorderB ) );
+//    m_Border = SDL_CreateRGBSurface( SDL_SWSURFACE, width, height, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_Border, nullptr, SDL_MapRGB( m_Border->format, g_ListBoxBorderR, g_ListBoxBorderG, g_ListBoxBorderB ) );
     
-    m_Background = SDL_CreateRGBSurface( SDL_SWSURFACE, width - ( BorderSize * 2 ) - 16, height - ( BorderSize * 2 ), 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_Background, nullptr, SDL_MapRGB( m_Background->format, g_ListBoxBackgroundR, g_ListBoxBackgroundG, g_ListBoxBackgroundB ) );
+//    m_Background = SDL_CreateRGBSurface( SDL_SWSURFACE, width - ( BorderSize * 2 ) - 16, height - ( BorderSize * 2 ), 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_Background, nullptr, SDL_MapRGB( m_Background->format, g_ListBoxBackgroundR, g_ListBoxBackgroundG, g_ListBoxBackgroundB ) );
     
     m_NumDrawnElements = height / LISTBOX_ITEMHEIGHT;
     
@@ -528,86 +528,86 @@ void cListBox::CreateListbox( int ID, int x, int y, int width, int height, int B
     m_eWidth = ( width - ( BorderSize * 2 ) );
     m_eHeight = LISTBOX_ITEMHEIGHT;
     
-    m_RedBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_RedBackground, nullptr, SDL_MapRGB( m_RedBackground->format, g_ListBoxS1ElementBackgroundR, g_ListBoxS1ElementBackgroundG, g_ListBoxS1ElementBackgroundB ) );
+//    m_RedBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_RedBackground, nullptr, SDL_MapRGB( m_RedBackground->format, g_ListBoxS1ElementBackgroundR, g_ListBoxS1ElementBackgroundG, g_ListBoxS1ElementBackgroundB ) );
     
-    m_DarkBlueBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_DarkBlueBackground, nullptr, SDL_MapRGB( m_DarkBlueBackground->format, g_ListBoxS2ElementBackgroundR, g_ListBoxS2ElementBackgroundG, g_ListBoxS2ElementBackgroundB ) );
+//    m_DarkBlueBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_DarkBlueBackground, nullptr, SDL_MapRGB( m_DarkBlueBackground->format, g_ListBoxS2ElementBackgroundR, g_ListBoxS2ElementBackgroundG, g_ListBoxS2ElementBackgroundB ) );
     
-    m_ElementBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_ElementBackground, nullptr, SDL_MapRGB( m_ElementBackground->format, g_ListBoxElementBackgroundR, g_ListBoxElementBackgroundG, g_ListBoxElementBackgroundB ) );
+//    m_ElementBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_ElementBackground, nullptr, SDL_MapRGB( m_ElementBackground->format, g_ListBoxElementBackgroundR, g_ListBoxElementBackgroundG, g_ListBoxElementBackgroundB ) );
     
-    m_ElementSelectedBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_ElementSelectedBackground, nullptr, SDL_MapRGB( m_ElementSelectedBackground->format, g_ListBoxSelectedElementR, g_ListBoxSelectedElementG, g_ListBoxSelectedElementB ) );
+//    m_ElementSelectedBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_ElementSelectedBackground, nullptr, SDL_MapRGB( m_ElementSelectedBackground->format, g_ListBoxSelectedElementR, g_ListBoxSelectedElementG, g_ListBoxSelectedElementB ) );
     
-    m_SelectedRedBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_SelectedRedBackground, nullptr, SDL_MapRGB( m_SelectedRedBackground->format, g_ListBoxSelectedS1ElementR, g_ListBoxSelectedS1ElementG, g_ListBoxSelectedS1ElementB ) );
+//    m_SelectedRedBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_SelectedRedBackground, nullptr, SDL_MapRGB( m_SelectedRedBackground->format, g_ListBoxSelectedS1ElementR, g_ListBoxSelectedS1ElementG, g_ListBoxSelectedS1ElementB ) );
     
-    m_SelectedDarkBlueBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_SelectedDarkBlueBackground, nullptr, SDL_MapRGB( m_SelectedDarkBlueBackground->format, g_ListBoxSelectedS2ElementR, g_ListBoxSelectedS2ElementG, g_ListBoxSelectedS2ElementB ) );
+//    m_SelectedDarkBlueBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 2 - 16, m_eHeight - 2, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_SelectedDarkBlueBackground, nullptr, SDL_MapRGB( m_SelectedDarkBlueBackground->format, g_ListBoxSelectedS2ElementR, g_ListBoxSelectedS2ElementG, g_ListBoxSelectedS2ElementB ) );
     
-    m_ElementBorder = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 16, m_eHeight, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_ElementBorder, nullptr, SDL_MapRGB( m_ElementBorder->format, g_ListBoxElementBorderR, g_ListBoxElementBorderG, g_ListBoxElementBorderB ) );
+//    m_ElementBorder = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - 16, m_eHeight, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_ElementBorder, nullptr, SDL_MapRGB( m_ElementBorder->format, g_ListBoxElementBorderR, g_ListBoxElementBorderG, g_ListBoxElementBorderB ) );
     
     // "beveled" looking border for bottom & right sides of list element
     dest_rect.x = m_BorderSize;
     dest_rect.y = m_BorderSize;
     dest_rect.h = m_eHeight - m_BorderSize;
     dest_rect.w = m_eWidth - m_BorderSize - 16;
-    SDL_FillRect( m_ElementBorder, &dest_rect, SDL_MapRGB( m_ElementBorder->format, g_ListBoxElementBorderHR, g_ListBoxElementBorderHG, g_ListBoxElementBorderHB ) );
+//    SDL_FillRect( m_ElementBorder, &dest_rect, SDL_MapRGB( m_ElementBorder->format, g_ListBoxElementBorderHR, g_ListBoxElementBorderHG, g_ListBoxElementBorderHB ) );
     
     if( ShowHeaders )
     {
         // background for optional column header box
         int scroll_space = ( HeaderSort ) ? 0 : 16;
         dest_rect.w = m_eWidth - m_BorderSize - scroll_space;
-        m_HeaderBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - scroll_space, m_eHeight, 32, 0, 0, 0, 0 );
-        SDL_FillRect( m_HeaderBackground, nullptr, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderR, g_ListBoxHeaderBorderG, g_ListBoxHeaderBorderB ) );
-        SDL_FillRect( m_HeaderBackground, &dest_rect, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderHR, g_ListBoxHeaderBorderHG, g_ListBoxHeaderBorderHB ) );
+//        m_HeaderBackground = SDL_CreateRGBSurface( SDL_SWSURFACE, m_eWidth - scroll_space, m_eHeight, 32, 0, 0, 0, 0 );
+//        SDL_FillRect( m_HeaderBackground, nullptr, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderR, g_ListBoxHeaderBorderG, g_ListBoxHeaderBorderB ) );
+//        SDL_FillRect( m_HeaderBackground, &dest_rect, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderHR, g_ListBoxHeaderBorderHG, g_ListBoxHeaderBorderHB ) );
         dest_rect.h = m_eHeight - ( m_BorderSize * 2 );
         dest_rect.w = m_eWidth - ( m_BorderSize * 2 ) - scroll_space;
-        SDL_FillRect( m_HeaderBackground, &dest_rect, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBackgroundR, g_ListBoxHeaderBackgroundG, g_ListBoxHeaderBackgroundB ) );
+//        SDL_FillRect( m_HeaderBackground, &dest_rect, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBackgroundR, g_ListBoxHeaderBackgroundG, g_ListBoxHeaderBackgroundB ) );
         
         DirPath dp = ImagePath( "ListboxSort" );
         std::string Asc = std::string( dp.c_str() ) + "Asc.png";
         std::string Desc = std::string( dp.c_str() ) + "Desc.png";
         std::string None = std::string( dp.c_str() ) + "None.png";
         
-        if( m_HeaderSortAsc == nullptr )
-            m_HeaderSortAsc = IMG_Load( Asc.c_str() );
+//        if( m_HeaderSortAsc == nullptr )
+//            m_HeaderSortAsc = IMG_Load( Asc.c_str() );
             
-        if( m_HeaderSortDesc == nullptr )
-            m_HeaderSortDesc = IMG_Load( Desc.c_str() );
+//        if( m_HeaderSortDesc == nullptr )
+//            m_HeaderSortDesc = IMG_Load( Desc.c_str() );
             
-        if( m_HeaderUnSort == nullptr )
-            m_HeaderUnSort = IMG_Load( None.c_str() );
+//        if( m_HeaderUnSort == nullptr )
+//            m_HeaderUnSort = IMG_Load( None.c_str() );
             
         // draw the "un-sort" clickable header
         if( HeaderSort )
         {
             m_Divider.x = m_eWidth - 17;
             m_Divider.w = 2;
-            SDL_FillRect(
-                m_HeaderBackground,
-                &m_Divider,
-                SDL_MapRGB(
-                    m_HeaderBackground->format,
-                    g_ListBoxHeaderBorderHR,
-                    g_ListBoxHeaderBorderHG,
-                    g_ListBoxHeaderBorderHB
-                )
-            );
+//            SDL_FillRect(
+//                m_HeaderBackground,
+//                &m_Divider,
+//                SDL_MapRGB(
+//                    m_HeaderBackground->format,
+//                    g_ListBoxHeaderBorderHR,
+//                    g_ListBoxHeaderBorderHG,
+//                    g_ListBoxHeaderBorderHB
+//                )
+//            );
             m_Divider.x++;
             m_Divider.w = 1;
             m_Divider.h--;
-            SDL_FillRect( m_HeaderBackground, &m_Divider, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderR, g_ListBoxHeaderBorderG, g_ListBoxHeaderBorderB ) );
+//            SDL_FillRect( m_HeaderBackground, &m_Divider, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderR, g_ListBoxHeaderBorderG, g_ListBoxHeaderBorderB ) );
             m_Divider.h++;
             
             dest_rect.x = m_eWidth - 15;
             dest_rect.y = m_BorderSize;
             dest_rect.h = m_eHeight - 2;
             dest_rect.w = 14;
-            SDL_BlitSurface( m_HeaderUnSort, nullptr, m_HeaderBackground, &dest_rect );
+//            SDL_BlitSurface( m_HeaderUnSort, nullptr, m_HeaderBackground, &dest_rect );
         }
     }
     
@@ -643,11 +643,11 @@ void cListBox::Draw()
         offset.y = m_YPos;
         
         // blit to the screen
-        SDL_BlitSurface( m_Border, nullptr, g_Graphics.GetScreen(), &offset );
+//        SDL_BlitSurface( m_Border, nullptr, g_Graphics.GetScreen(), &offset );
         
         offset.x = m_XPos + m_BorderSize;
         offset.y = m_YPos + m_BorderSize;
-        SDL_BlitSurface( m_Background, nullptr, g_Graphics.GetScreen(), &offset );
+//        SDL_BlitSurface( m_Background, nullptr, g_Graphics.GetScreen(), &offset );
     }
     
     // Show column header box if enabled
@@ -657,7 +657,7 @@ void cListBox::Draw()
         offset.y = m_YPos + m_BorderSize;
         
         // blit to the screen
-        SDL_BlitSurface( m_HeaderBackground, nullptr, g_Graphics.GetScreen(), &offset );
+//        SDL_BlitSurface( m_HeaderBackground, nullptr, g_Graphics.GetScreen(), &offset );
         
         m_Font.SetColor( g_ListBoxHeaderTextR, g_ListBoxHeaderTextG, g_ListBoxHeaderTextB );
         
@@ -676,7 +676,7 @@ void cListBox::Draw()
                 if( i == 0 )
                     sort_offset.x += 2 + m_BorderSize;
                     
-                SDL_BlitSurface( m_HeaderSortBack, nullptr, g_Graphics.GetScreen(), &sort_offset );
+//                SDL_BlitSurface( m_HeaderSortBack, nullptr, g_Graphics.GetScreen(), &sort_offset );
             }
             
             m_Font.SetText( m_Header[i] );
@@ -716,28 +716,28 @@ void cListBox::Draw()
             offset.y += LISTBOX_ITEMHEIGHT;
             
         // blit to the screen
-        SDL_BlitSurface( m_ElementBorder, nullptr, g_Graphics.GetScreen(), &offset );
+//        SDL_BlitSurface( m_ElementBorder, nullptr, g_Graphics.GetScreen(), &offset );
         
         offset.x = offset.x + 1;
         offset.y = offset.y + 1;
         
         if( current->m_Selected )
         {
-            if( current->m_Color == 1 )
-                SDL_BlitSurface( m_SelectedRedBackground, nullptr, g_Graphics.GetScreen(), &offset );
-            else if( current->m_Color == 2 )
-                SDL_BlitSurface( m_SelectedDarkBlueBackground, nullptr, g_Graphics.GetScreen(), &offset );
-            else
-                SDL_BlitSurface( m_ElementSelectedBackground, nullptr, g_Graphics.GetScreen(), &offset );
+//            if( current->m_Color == 1 )
+//                SDL_BlitSurface( m_SelectedRedBackground, nullptr, g_Graphics.GetScreen(), &offset );
+//            else if( current->m_Color == 2 )
+//                SDL_BlitSurface( m_SelectedDarkBlueBackground, nullptr, g_Graphics.GetScreen(), &offset );
+//            else
+//                SDL_BlitSurface( m_ElementSelectedBackground, nullptr, g_Graphics.GetScreen(), &offset );
         }
         else
         {
-            if( current->m_Color == 1 )
-                SDL_BlitSurface( m_RedBackground, nullptr, g_Graphics.GetScreen(), &offset );
-            else if( current->m_Color == 2 )
-                SDL_BlitSurface( m_DarkBlueBackground, nullptr, g_Graphics.GetScreen(), &offset );
-            else
-                SDL_BlitSurface( m_ElementBackground, nullptr, g_Graphics.GetScreen(), &offset );
+//            if( current->m_Color == 1 )
+//                SDL_BlitSurface( m_RedBackground, nullptr, g_Graphics.GetScreen(), &offset );
+//            else if( current->m_Color == 2 )
+//                SDL_BlitSurface( m_DarkBlueBackground, nullptr, g_Graphics.GetScreen(), &offset );
+//            else
+//                SDL_BlitSurface( m_ElementBackground, nullptr, g_Graphics.GetScreen(), &offset );
         }
         
         // if we have a custom text color specified, use it
@@ -1019,12 +1019,12 @@ void cListBox::DefineColumns( std::string name[], std::string header[], int offs
             
         m_Divider.x = m_ColumnOffset[i] - 4;
         m_Divider.w = 2;
-        SDL_FillRect( m_HeaderBackground, &m_Divider, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderHR, g_ListBoxHeaderBorderHG, g_ListBoxHeaderBorderHB ) );
+//        SDL_FillRect( m_HeaderBackground, &m_Divider, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderHR, g_ListBoxHeaderBorderHG, g_ListBoxHeaderBorderHB ) );
         m_Divider.x++;
         m_Divider.w = 1;
         m_Divider.y++;
         m_Divider.h--;
-        SDL_FillRect( m_HeaderBackground, &m_Divider, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderR, g_ListBoxHeaderBorderG, g_ListBoxHeaderBorderB ) );
+//        SDL_FillRect( m_HeaderBackground, &m_Divider, SDL_MapRGB( m_HeaderBackground->format, g_ListBoxHeaderBorderR, g_ListBoxHeaderBorderG, g_ListBoxHeaderBorderB ) );
         m_Divider.y--;
         m_Divider.h++;
     }
@@ -1252,10 +1252,10 @@ void cListBox::SortByColumn( std::string ColumnName, bool Descending )
             
         double stretch = ( double )dwidth / ( double )m_HeaderSortDesc->w;
         
-        if( Descending )
-            m_HeaderSortBack = zoomSurface( m_HeaderSortDesc, stretch, 1, 1 );
-        else
-            m_HeaderSortBack = zoomSurface( m_HeaderSortAsc, stretch, 1, 1 );
+//        if( Descending )
+//            m_HeaderSortBack = zoomSurface( m_HeaderSortDesc, stretch, 1, 1 ); // SDL
+//        else
+//            m_HeaderSortBack = zoomSurface( m_HeaderSortAsc, stretch, 1, 1 ); // SDL
     }
     
     m_ScrollBar->SetTopValue( m_Position );

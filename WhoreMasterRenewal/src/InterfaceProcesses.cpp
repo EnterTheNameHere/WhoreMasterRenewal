@@ -163,7 +163,7 @@ void MainMenu()
 		{
 			SDL_Event evn;
 			evn.type = SDL_QUIT;
-			SDL_PushEvent(&evn);
+//			SDL_PushEvent(&evn);
 		}
 	}
 }

@@ -57,18 +57,18 @@ void CSurface::Free()
     if( m_SaveSurface )
         return;
     
-    if( m_Temp )
-        SDL_FreeSurface( m_Temp );
+//    if( m_Temp )
+//        SDL_FreeSurface( m_Temp );
     
     m_Temp = nullptr;
     
-    if( m_Surface )
-        SDL_FreeSurface( m_Surface );
+//    if( m_Surface )
+//        SDL_FreeSurface( m_Surface );
     
     m_Surface = nullptr;
     
-    if( m_SpriteImage )
-        SDL_FreeSurface( m_SpriteImage );
+//    if( m_SpriteImage )
+//        SDL_FreeSurface( m_SpriteImage );
     
     m_SpriteImage = nullptr;
     
@@ -96,37 +96,37 @@ bool CSurface::LoadImage( std::string filename, bool load )
     SDL_Surface* loadedImage = nullptr;
     
     // Load image
-    loadedImage = IMG_Load( filename.c_str() );
+//    loadedImage = IMG_Load( filename.c_str() );
     
     if( loadedImage )
     {
         // Convert image to screen BPP
-        if( m_UseAlpha )
-            m_Surface = SDL_DisplayFormatAlpha( loadedImage );
-        else
-            m_Surface = SDL_DisplayFormat( loadedImage );
+//        if( m_UseAlpha )
+//            m_Surface = SDL_DisplayFormatAlpha( loadedImage );
+//        else
+//            m_Surface = SDL_DisplayFormat( loadedImage );
             
         // Free old surface
-        SDL_FreeSurface( loadedImage );
+//        SDL_FreeSurface( loadedImage );
     }
     else
     {
         g_LogFile.write( "CSurface LoadImage loadedImage error with filename: " + m_Filename );
-        g_LogFile.write( SDL_GetError() );
-        g_LogFile.write( IMG_GetError() );
+//        g_LogFile.write( SDL_GetError() );
+//        g_LogFile.write( IMG_GetError() );
         return false;
     }
     
     if( !m_Surface )
     {
         g_LogFile.write( "CSurface LoadImage !m_Surface error with filename: " + m_Filename );
-        g_LogFile.write( SDL_GetError() );
-        g_LogFile.write( IMG_GetError() );
+//        g_LogFile.write( SDL_GetError() );
+//        g_LogFile.write( IMG_GetError() );
         return false;
     }
     
-    if( m_UseKey && !m_UseAlpha )
-        SDL_SetColorKey( m_Surface, SDL_SRCCOLORKEY, m_ColorKey );
+//    if( m_UseKey && !m_UseAlpha )
+//        SDL_SetColorKey( m_Surface, SDL_SRCCOLORKEY, m_ColorKey );
     
     return true;
 }
@@ -136,21 +136,21 @@ bool CSurface::LoadSurface( SDL_Surface* inputsurface )
     SDL_Surface* loadedImage = inputsurface;
     
     // Convert image to screen BPP
-    if( m_UseAlpha )
-        m_Surface = SDL_DisplayFormatAlpha( loadedImage );
-    else
-        m_Surface = SDL_DisplayFormat( loadedImage );
+//    if( m_UseAlpha )
+//        m_Surface = SDL_DisplayFormatAlpha( loadedImage );
+//    else
+//        m_Surface = SDL_DisplayFormat( loadedImage );
     
     if( !m_Surface )
     {
         g_LogFile.write( "CSurface LoadSurface !m_Surface error with filename: " + m_Filename );
-        g_LogFile.write( SDL_GetError() );
-        g_LogFile.write( IMG_GetError() );
+//        g_LogFile.write( SDL_GetError() );
+//        g_LogFile.write( IMG_GetError() );
         return false;
     }
     
-    if( m_UseKey && !m_UseAlpha )
-        SDL_SetColorKey( m_Surface, SDL_SRCCOLORKEY, m_ColorKey );
+//    if( m_UseKey && !m_UseAlpha )
+//        SDL_SetColorKey( m_Surface, SDL_SRCCOLORKEY, m_ColorKey );
     
     loaded = true;
     
@@ -159,7 +159,7 @@ bool CSurface::LoadSurface( SDL_Surface* inputsurface )
 
 void CSurface::SetColorKey( unsigned char r, unsigned char g, unsigned char b )
 {
-    m_ColorKey = SDL_MapRGB( g_Graphics.GetScreen()->format, r, g, b );
+//    m_ColorKey = SDL_MapRGB( g_Graphics.GetScreen()->format, r, g, b );
 }
 
 void CSurface::SetAlpha( bool UseAlpha )
@@ -171,8 +171,8 @@ bool CSurface::ResizeSprite( SDL_Surface* image, SDL_Rect* clip, bool maintainRa
 {
     double scaleX, scaleY;
     
-    if( m_SpriteImage ) // free old image
-        SDL_FreeSurface( m_SpriteImage );
+//    if( m_SpriteImage ) // free old image
+//        SDL_FreeSurface( m_SpriteImage );
         
     m_SpriteImage = nullptr;
     
@@ -185,7 +185,7 @@ bool CSurface::ResizeSprite( SDL_Surface* image, SDL_Rect* clip, bool maintainRa
             else    // assume the height is larger
                 scaleX = scaleY = ( ( double )clip->h / ( double )image->h );
                 
-            m_SpriteImage = zoomSurface( image, scaleX, scaleY, 1 );
+//            m_SpriteImage = zoomSurface( image, scaleX, scaleY, 1 );
         }
     }
     else
@@ -194,7 +194,7 @@ bool CSurface::ResizeSprite( SDL_Surface* image, SDL_Rect* clip, bool maintainRa
         {
             scaleX = ( ( double )clip->w / ( double )image->w );
             scaleY = ( ( double )clip->h / ( double )image->h );
-            m_SpriteImage = zoomSurface( image, scaleX, scaleY, 1 );
+//            m_SpriteImage = zoomSurface( image, scaleX, scaleY, 1 );
         }
     }
     
@@ -214,7 +214,7 @@ bool CSurface::DrawSprite( int x, int y )
     offset.x = x;
     offset.y = y;
     
-    SDL_BlitSurface( m_SpriteImage, nullptr, g_Graphics.GetScreen(), &offset );
+//    SDL_BlitSurface( m_SpriteImage, nullptr, g_Graphics.GetScreen(), &offset );
     
     return true;
 }
@@ -245,23 +245,23 @@ bool CSurface::DrawSurface( int x, int y, SDL_Surface* destination, SDL_Rect* cl
             return false;
         }
         
-        if( m_Temp )
-            SDL_FreeSurface( m_Temp );
+//        if( m_Temp )
+//            SDL_FreeSurface( m_Temp );
             
         m_Temp = nullptr;
         
         if( !loaded )
         {
-            if( !LoadImage( m_Filename ) )
-            {
-                g_LogFile.ss()
-                        <<  "ERROR - Loading Image '"
-                        <<  m_Filename
-                        <<  "'"
-                        ;
-                g_LogFile.ssend();
-                return false;
-            }
+//            if( !LoadImage( m_Filename ) )
+//            {
+//                g_LogFile.ss()
+//                        <<  "ERROR - Loading Image '"
+//                        <<  m_Filename
+//                        <<  "'"
+//                        ;
+//                g_LogFile.ssend();
+//                return false;
+//            }
             
             if( m_Cached )
             {
@@ -285,7 +285,7 @@ bool CSurface::DrawSurface( int x, int y, SDL_Surface* destination, SDL_Rect* cl
                     else    // assume the height is larger
                         scaleX = scaleY = ( ( double )clip->h / ( double )m_Surface->h );
                         
-                    m_Temp = zoomSurface( m_Surface, scaleX, scaleY, 1 );
+//                    m_Temp = zoomSurface( m_Surface, scaleX, scaleY, 1 );
                 }
             }
             else
@@ -294,7 +294,7 @@ bool CSurface::DrawSurface( int x, int y, SDL_Surface* destination, SDL_Rect* cl
                 {
                     scaleX = ( ( double )clip->w / ( double )m_Surface->w );
                     scaleY = ( ( double )clip->h / ( double )m_Surface->h );
-                    m_Temp = zoomSurface( m_Surface, scaleX, scaleY, 1 );
+//                    m_Temp = zoomSurface( m_Surface, scaleX, scaleY, 1 );
                 }
             }
         }
@@ -304,8 +304,8 @@ bool CSurface::DrawSurface( int x, int y, SDL_Surface* destination, SDL_Rect* cl
             {
                 if( m_Temp->w != clip->w && m_Temp->h != clip->h )
                 {
-                    if( m_Temp ) // free old image
-                        SDL_FreeSurface( m_Temp );
+//                    if( m_Temp ) // free old image
+//                        SDL_FreeSurface( m_Temp );
                         
                     m_Temp = nullptr;
                     
@@ -314,21 +314,21 @@ bool CSurface::DrawSurface( int x, int y, SDL_Surface* destination, SDL_Rect* cl
                     else    // assume the height is larger
                         scaleX = scaleY = ( ( double )clip->h / ( double )m_Surface->h );
                         
-                    m_Temp = zoomSurface( m_Surface, scaleX, scaleY, 1 );
+//                    m_Temp = zoomSurface( m_Surface, scaleX, scaleY, 1 );
                 }
             }
             else
             {
                 if( m_Temp->w != clip->w || m_Temp->h != clip->h )
                 {
-                    if( m_Temp ) // free old image
-                        SDL_FreeSurface( m_Temp );
+//                    if( m_Temp ) // free old image
+//                        SDL_FreeSurface( m_Temp );
                         
                     m_Temp = nullptr;
                     
                     scaleX = ( ( double )clip->w / ( double )m_Surface->w );
                     scaleY = ( ( double )clip->h / ( double )m_Surface->h );
-                    m_Temp = zoomSurface( m_Surface, scaleX, scaleY, 1 );
+//                    m_Temp = zoomSurface( m_Surface, scaleX, scaleY, 1 );
                 }
             }
         }
@@ -344,22 +344,22 @@ bool CSurface::DrawSurface( int x, int y, SDL_Surface* destination, SDL_Rect* cl
     
     if( destination )
     {
-        if( m_Temp )
-            error = SDL_BlitSurface( m_Temp, clip, destination, &offset );
-        else
-            error = SDL_BlitSurface( m_Surface, clip, destination, &offset );
+//        if( m_Temp )
+//            error = SDL_BlitSurface( m_Temp, clip, destination, &offset );
+//        else
+//            error = SDL_BlitSurface( m_Surface, clip, destination, &offset );
     }
     else    // blit to the screen
     {
-        if( m_Temp )
-            error = SDL_BlitSurface( m_Temp, clip, g_Graphics.GetScreen(), &offset );
-        else
-            error = SDL_BlitSurface( m_Surface, clip, g_Graphics.GetScreen(), &offset );
+//        if( m_Temp )
+//            error = SDL_BlitSurface( m_Temp, clip, g_Graphics.GetScreen(), &offset );
+//        else
+//            error = SDL_BlitSurface( m_Surface, clip, g_Graphics.GetScreen(), &offset );
     }
     
     if( error == -1 )
     {
-        g_LogFile.ss() << "Error Blitting surface (" << m_Filename << ") - " << SDL_GetError();
+//        g_LogFile.ss() << "Error Blitting surface (" << m_Filename << ") - " << SDL_GetError();
         g_LogFile.ssend();
         return false;
     }
@@ -370,8 +370,8 @@ bool CSurface::DrawSurface( int x, int y, SDL_Surface* destination, SDL_Rect* cl
 void CSurface::MakeColoredSurface( int width, int height, int red, int green, int blue, int BPP )
 {
     m_ColoredSurface = true;
-    m_Surface = SDL_CreateRGBSurface( SDL_SWSURFACE, width, height, BPP, 0, 0, 0, 0 );
-    SDL_FillRect( m_Surface, nullptr, SDL_MapRGB( m_Surface->format, red, green, blue ) );
+//    m_Surface = SDL_CreateRGBSurface( SDL_SWSURFACE, width, height, BPP, 0, 0, 0, 0 );
+//    SDL_FillRect( m_Surface, nullptr, SDL_MapRGB( m_Surface->format, red, green, blue ) );
 }
 
 } // namespace WhoreMasterRenewal

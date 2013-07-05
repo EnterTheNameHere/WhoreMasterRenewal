@@ -90,21 +90,21 @@ void cSlider::LoadInitial()
     std::string bg = std::string( dp.c_str() ) + "Rail.png";
     std::string bgd = std::string( dp.c_str() ) + "RailDisabled.png";
     SDL_Surface* TmpImg;
-    TmpImg = IMG_Load( bg.c_str() );
-    m_ImgRailDefault = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( bgd.c_str() );
-    m_ImgRailDisabled = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( off.c_str() );
-    m_ImgButtonOff = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( on.c_str() );
-    m_ImgButtonOn = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( disabled.c_str() );
-    m_ImgButtonDisabled = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( bg.c_str() );
+//    m_ImgRailDefault = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( bgd.c_str() );
+//    m_ImgRailDisabled = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( off.c_str() );
+//    m_ImgButtonOff = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( on.c_str() );
+//    m_ImgButtonOn = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( disabled.c_str() );
+//    m_ImgButtonDisabled = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
 }
 
 int cSlider::SetRange( int min, int max, int value, int increment )
@@ -276,7 +276,7 @@ void cSlider::Draw()
     int error = 0;
     
     // draw left half of background rail
-    error = SDL_BlitSurface( m_ImgRail, BGLeft, g_Graphics.GetScreen(), &dstRect );
+//    error = SDL_BlitSurface( m_ImgRail, BGLeft, g_Graphics.GetScreen(), &dstRect );
     
     if( error == -1 )
     {
@@ -286,7 +286,7 @@ void cSlider::Draw()
     
     // draw right half of background rail
     dstRect.x += BGLeft->w;
-    error = SDL_BlitSurface( m_ImgRail, BGRight, g_Graphics.GetScreen(), &dstRect );
+//    error = SDL_BlitSurface( m_ImgRail, BGRight, g_Graphics.GetScreen(), &dstRect );
     
     if( error == -1 )
     {
@@ -296,7 +296,7 @@ void cSlider::Draw()
     
     // draw slider drag button
     dstRect.x = m_XPos + m_Offset;
-    error = SDL_BlitSurface( m_ImgButton, nullptr, g_Graphics.GetScreen(), &dstRect );
+//    error = SDL_BlitSurface( m_ImgButton, nullptr, g_Graphics.GetScreen(), &dstRect );
     
     if( error == -1 )
     {
@@ -307,7 +307,7 @@ void cSlider::Draw()
 
 void cSlider::LogSliderError( std::string description )
 {
-    g_LogFile.ss() << description << " - " << SDL_GetError();
+//    g_LogFile.ss() << description << " - " << SDL_GetError();
     g_LogFile.ssend();
 }
 

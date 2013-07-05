@@ -32,8 +32,8 @@ cAnimatedSurface::~cAnimatedSurface()
 {
     m_Surface = nullptr;
     
-    if( m_SpriteSurface )
-        SDL_FreeSurface( m_SpriteSurface );
+//    if( m_SpriteSurface )
+//        SDL_FreeSurface( m_SpriteSurface );
         
     m_SpriteSurface = nullptr;
 }
@@ -125,11 +125,11 @@ void cAnimatedSurface::SetData( int xPos, int yPos, int numFrames, int speed, in
     m_Frames.h = height;
     
     // prepare the sprite surface
-    if( m_SpriteSurface )
-        SDL_FreeSurface( m_SpriteSurface );
+//    if( m_SpriteSurface )
+//        SDL_FreeSurface( m_SpriteSurface );
         
     m_SpriteSurface = nullptr;
-    m_SpriteSurface = SDL_CreateRGBSurface( SDL_SWSURFACE, m_Frames.w, m_Frames.h, 32, 0, 0, 0, 0 );
+//    m_SpriteSurface = SDL_CreateRGBSurface( SDL_SWSURFACE, m_Frames.w, m_Frames.h, 32, 0, 0, 0, 0 );
     
     m_Surface = surface;
 }

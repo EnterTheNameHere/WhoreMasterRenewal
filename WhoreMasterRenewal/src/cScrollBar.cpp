@@ -101,20 +101,20 @@ void cScrollBar::LoadInitial()
     std::string on = std::string( dp.c_str() ) + "LongOn.png";
     std::string bg = std::string( dp.c_str() ) + "LongBackground.png";
     std::string notches = std::string( dp.c_str() ) + "Notches.png";
-    m_ImgBarBG = IMG_Load( bg.c_str() );
+//    m_ImgBarBG = IMG_Load( bg.c_str() );
     SDL_Surface* TmpImg;
-    TmpImg = IMG_Load( disabled.c_str() );
-    m_ImgBarDisabled = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( off.c_str() );
-    m_ImgBarOff = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( on.c_str() );
-    m_ImgBarOn = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( notches.c_str() );
-    m_ImgNotches = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( disabled.c_str() );
+//    m_ImgBarDisabled = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( off.c_str() );
+//    m_ImgBarOff = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( on.c_str() );
+//    m_ImgBarOn = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( notches.c_str() );
+//    m_ImgNotches = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
     m_NotchOffset = int( ( ( double )m_ImgNotches->h / 2 ) );
     std::string updisabled = std::string( dp.c_str() ) + "UpDisabled.png";
     std::string upoff = std::string( dp.c_str() ) + "UpOff.png";
@@ -122,24 +122,24 @@ void cScrollBar::LoadInitial()
     std::string downdisabled = std::string( dp.c_str() ) + "DownDisabled.png";
     std::string downoff = std::string( dp.c_str() ) + "DownOff.png";
     std::string downon = std::string( dp.c_str() ) + "DownOn.png";
-    TmpImg = IMG_Load( updisabled.c_str() );
-    m_ImgButtonUpDisabled = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( upoff.c_str() );
-    m_ImgButtonUpOff = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( upon.c_str() );
-    m_ImgButtonUpOn = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( downdisabled.c_str() );
-    m_ImgButtonDownDisabled = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( downoff.c_str() );
-    m_ImgButtonDownOff = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
-    TmpImg = IMG_Load( downon.c_str() );
-    m_ImgButtonDownOn = SDL_DisplayFormatAlpha( TmpImg );
-    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( updisabled.c_str() );
+//    m_ImgButtonUpDisabled = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( upoff.c_str() );
+//    m_ImgButtonUpOff = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( upon.c_str() );
+//    m_ImgButtonUpOn = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( downdisabled.c_str() );
+//    m_ImgButtonDownDisabled = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( downoff.c_str() );
+//    m_ImgButtonDownOff = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
+//    TmpImg = IMG_Load( downon.c_str() );
+//    m_ImgButtonDownOn = SDL_DisplayFormatAlpha( TmpImg );
+//    SDL_FreeSurface( TmpImg );
 }
 
 void cScrollBar::UpdateScrollBar()
@@ -339,7 +339,7 @@ void cScrollBar::Draw()
     
     // draw "up" button
     dstRect.y = m_YPos;
-    error = SDL_BlitSurface( m_ImgButtonUp, nullptr, g_Graphics.GetScreen(), &dstRect );
+//    error = SDL_BlitSurface( m_ImgButtonUp, nullptr, g_Graphics.GetScreen(), &dstRect );
     
     if( error == -1 )
     {
@@ -349,7 +349,7 @@ void cScrollBar::Draw()
     
     // draw "down" button
     dstRect.y = m_YPos + m_Height - m_ImgButtonDown->h;
-    error = SDL_BlitSurface( m_ImgButtonDown, nullptr, g_Graphics.GetScreen(), &dstRect );
+//    error = SDL_BlitSurface( m_ImgButtonDown, nullptr, g_Graphics.GetScreen(), &dstRect );
     
     if( error == -1 )
     {
@@ -359,7 +359,7 @@ void cScrollBar::Draw()
     
     // draw top half of background
     dstRect.y = m_YPos + m_ImgButtonUp->h;
-    error = SDL_BlitSurface( m_ImgBarBG, m_RectBGTop, g_Graphics.GetScreen(), &dstRect );
+//    error = SDL_BlitSurface( m_ImgBarBG, m_RectBGTop, g_Graphics.GetScreen(), &dstRect );
     
     if( error == -1 )
     {
@@ -369,7 +369,7 @@ void cScrollBar::Draw()
     
     // draw bottom half of background
     dstRect.y += m_RectBGTop->h;
-    error = SDL_BlitSurface( m_ImgBarBG, m_RectBGBottom, g_Graphics.GetScreen(), &dstRect );
+//    error = SDL_BlitSurface( m_ImgBarBG, m_RectBGBottom, g_Graphics.GetScreen(), &dstRect );
     
     if( error == -1 )
     {
@@ -379,7 +379,7 @@ void cScrollBar::Draw()
     
     // draw top half of bar
     dstRect.y = m_YPos + m_ImgButtonUp->h + m_BarTop;
-    error = SDL_BlitSurface( m_ImgBar, m_RectTop, g_Graphics.GetScreen(), &dstRect );
+//    error = SDL_BlitSurface( m_ImgBar, m_RectTop, g_Graphics.GetScreen(), &dstRect );
     
     if( error == -1 )
     {
@@ -389,7 +389,7 @@ void cScrollBar::Draw()
     
     // draw bottom half of bar
     dstRect.y += m_RectTop->h;
-    error = SDL_BlitSurface( m_ImgBar, m_RectBottom, g_Graphics.GetScreen(), &dstRect );
+//    error = SDL_BlitSurface( m_ImgBar, m_RectBottom, g_Graphics.GetScreen(), &dstRect );
     
     if( error == -1 )
     {
@@ -401,7 +401,7 @@ void cScrollBar::Draw()
     {
         // draw notches in the center
         dstRect.y -= m_NotchOffset;
-        error = SDL_BlitSurface( m_ImgNotches, nullptr, g_Graphics.GetScreen(), &dstRect );
+//        error = SDL_BlitSurface( m_ImgNotches, nullptr, g_Graphics.GetScreen(), &dstRect );
         
         if( error == -1 )
         {
@@ -413,7 +413,7 @@ void cScrollBar::Draw()
 
 void cScrollBar::LogScrollBarError( std::string description )
 {
-    g_LogFile.ss() << description << " - " << SDL_GetError();
+//    g_LogFile.ss() << description << " - " << SDL_GetError();
     g_LogFile.ssend();
 }
 

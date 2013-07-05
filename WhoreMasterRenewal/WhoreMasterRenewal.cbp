@@ -8,6 +8,7 @@
 		<Option virtualFolders="Resources\;Resources\Interface\;Resources\Interface\Screens\;Resources\Scripts\;" />
 		<Build>
 			<Target title="Debug">
+				<Option platforms="Windows;" />
 				<Option output="../bin/WhoreMasterRenewal-DEBUG" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin" />
 				<Option object_output="obj/Debug/" />
@@ -44,20 +45,12 @@
 					<Add option="-Wsign-promo" />
 				</Compiler>
 				<Linker>
-					<Add library="mingw32" />
-					<Add library="Dependencies\SDL\lib\libSDLmain.a" />
-					<Add library="Dependencies\lua\lib\liblua.a" />
-					<Add library="Dependencies\SDL\lib\libSDL_gfx.a" />
 					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
-					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
-					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
-					<Add library="Dependencies\SDL\lib\libSDL.a" />
-					<Add library="opengl32" />
-					<Add library="gdi32" />
-					<Add library="winmm" />
+					<Add library="Dependencies\lua\lib\liblua.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
+				<Option platforms="Windows;" />
 				<Option output="../bin/WhoreMasterRenewal" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="../bin" />
 				<Option object_output="obj/Release/" />
@@ -66,64 +59,12 @@
 				<Compiler>
 					<Add option="-fexpensive-optimizations" />
 					<Add option="-O3" />
+					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-Wdisabled-optimization" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="mingw32" />
-					<Add library="Dependencies\SDL\lib\libSDLmain.a" />
-					<Add library="Dependencies\lua\lib\liblua.a" />
-					<Add library="Dependencies\SDL\lib\libSDL_gfx.a" />
-					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
-					<Add library="Dependencies\SDL\lib\SDL_ttf.lib" />
-					<Add library="Dependencies\SDL\lib\SDL_image.lib" />
-					<Add library="Dependencies\SDL\lib\libSDL.a" />
-					<Add library="opengl32" />
-					<Add library="gdi32" />
-					<Add library="winmm" />
-				</Linker>
-			</Target>
-			<Target title="Profiling">
-				<Option output="../bin/WhoreMasterRenewal-PROFILING" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="../bin" />
-				<Option object_output="obj/Profiling/" />
-				<Option type="1" />
-				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-Winit-self" />
-					<Add option="-Wredundant-decls" />
-					<Add option="-Wcast-align" />
-					<Add option="-Wundef" />
-					<Add option="-Wfloat-equal" />
-					<Add option="-Winline" />
-					<Add option="-Wunreachable-code" />
-					<Add option="-Wmissing-declarations" />
-					<Add option="-Wmissing-include-dirs" />
-					<Add option="-Wswitch-default" />
-					<Add option="-Weffc++" />
-					<Add option="-Wmain" />
-					<Add option="-pedantic" />
-					<Add option="-Wzero-as-null-pointer-constant" />
-					<Add option="-Wextra" />
-					<Add option="-Wall" />
-					<Add option="-pg" />
-					<Add option="-g" />
-					<Add option="-Wno-unknown-pragmas" />
-					<Add option="-Wformat=2" />
-					<Add option="-Wunused-local-typedefs" />
-					<Add option="-Wuninitialized" />
-					<Add option="-Wtrampolines" />
-					<Add option="-Wunsafe-loop-optimizations" />
-					<Add option="-Wcast-qual" />
-					<Add option="-Wlogical-op" />
-					<Add option="-Wmissing-format-attribute" />
-					<Add option="-Winvalid-pch" />
-					<Add option="-Wvector-operation-performance" />
-					<Add option="-Wsign-promo" />
-				</Compiler>
-				<Linker>
-					<Add option="-pg -lgmon" />
 					<Add library="mingw32" />
 					<Add library="Dependencies\SDL\lib\libSDLmain.a" />
 					<Add library="Dependencies\lua\lib\liblua.a" />

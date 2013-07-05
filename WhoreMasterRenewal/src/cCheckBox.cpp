@@ -35,13 +35,13 @@ cCheckBox::cCheckBox() : cInterfaceObject()
 
 cCheckBox::~cCheckBox()
 {
-    if( m_Surface )
-        SDL_FreeSurface( m_Surface );
+//    if( m_Surface )
+//        SDL_FreeSurface( m_Surface );
         
     m_Surface = nullptr;
     
-    if( m_Border )
-        SDL_FreeSurface( m_Border );
+//    if( m_Border )
+//        SDL_FreeSurface( m_Border );
         
     m_Border = nullptr;
     
@@ -61,11 +61,11 @@ bool cCheckBox::CreateCheckBox( int id, int x, int y, int width, int height, std
 {
     m_ID = id;
     
-    m_Border = SDL_CreateRGBSurface( SDL_SWSURFACE, width, height, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_Border, nullptr, SDL_MapRGB( m_Border->format, g_CheckBoxBorderR, g_CheckBoxBorderG, g_CheckBoxBorderB ) );
+//    m_Border = SDL_CreateRGBSurface( SDL_SWSURFACE, width, height, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_Border, nullptr, SDL_MapRGB( m_Border->format, g_CheckBoxBorderR, g_CheckBoxBorderG, g_CheckBoxBorderB ) );
     
-    m_Surface = SDL_CreateRGBSurface( SDL_SWSURFACE, width - 2, height - 2, 32, 0, 0, 0, 0 );
-    SDL_FillRect( m_Surface, nullptr, SDL_MapRGB( m_Surface->format, g_CheckBoxBackgroundR, g_CheckBoxBackgroundG, g_CheckBoxBackgroundB ) );
+//    m_Surface = SDL_CreateRGBSurface( SDL_SWSURFACE, width - 2, height - 2, 32, 0, 0, 0, 0 );
+//    SDL_FillRect( m_Surface, nullptr, SDL_MapRGB( m_Surface->format, g_CheckBoxBackgroundR, g_CheckBoxBackgroundG, g_CheckBoxBackgroundB ) );
     
     SetPosition( x, y, width, height );
     
@@ -92,11 +92,11 @@ void cCheckBox::Draw()
     SDL_Rect offset;
     offset.x = m_XPos + off;
     offset.y = m_YPos;
-    SDL_BlitSurface( m_Border, nullptr, g_Graphics.GetScreen(), &offset );
+//    SDL_BlitSurface( m_Border, nullptr, g_Graphics.GetScreen(), &offset );
     
     offset.x = m_XPos + 1 + off;
     offset.y = m_YPos + 1;
-    SDL_BlitSurface( m_Surface, nullptr, g_Graphics.GetScreen(), &offset );
+//    SDL_BlitSurface( m_Surface, nullptr, g_Graphics.GetScreen(), &offset );
     
     if( m_StateOn == true )
     {

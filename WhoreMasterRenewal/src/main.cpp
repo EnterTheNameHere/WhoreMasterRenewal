@@ -63,7 +63,9 @@
 #include "cScreenTown.h"
 #include "cGetStringScreenManager.h"
 
-#include <SDL.h>
+//#include <SDL.h>
+#include <SDL_events.h>
+#include <SDL_keysym.h>
 
 #include <sstream>
 #include <string>
@@ -286,182 +288,184 @@ int main_old(int ac, char* av[])
 		return 1;
 
 	g_WinManager.Push(MainMenu, &g_MainMenu);
-
+    
+    running = false;
+    
 	while(running)
 	{
-        while(SDL_PollEvent(&vent))
-		{
-			if(vent.type == SDL_QUIT)
-				running = false;
-			else if(vent.type == SDL_MOUSEBUTTONUP)
-			{
-				if(mouseDown == true)
-				{
-					if (g_DragScrollBar != nullptr)
-					{
-						g_DragScrollBar->SetTopValue(g_DragScrollBar->m_ItemTop);
-						g_DragScrollBar = nullptr;
-					}
-					else if(g_DragSlider != nullptr)
-					{
-						g_DragSlider->EndDrag();
-						g_DragSlider = nullptr;
-					}
-					else if(g_MessageBox.IsActive())
-						g_MessageBox.Advance();
-					else if(g_ChoiceManager.IsActive())
-						g_ChoiceManager.ButtonClicked(vent.motion.x, vent.motion.y);
-					else
-						g_WinManager.UpdateMouseClick(vent.motion.x, vent.motion.y);
-					mouseDown = false;
-				}
-			}
-			else if(vent.type == SDL_MOUSEBUTTONDOWN)
-			{
-				if(vent.button.button == SDL_BUTTON_WHEELDOWN)
-				{
-					g_WinManager.UpdateMouseClick(vent.motion.x, vent.motion.y, true, false);
-				}
-				else if(vent.button.button == SDL_BUTTON_WHEELUP)
-				{
-					g_WinManager.UpdateMouseClick(vent.motion.x, vent.motion.y, false, true);
-				}
-				else if(vent.button.button == SDL_BUTTON_LEFT)
-				{
-					//srand(SDL_GetTicks());
-					if(mouseDown == false)
-						mouseDown = true;
-					g_WinManager.UpdateMouseDown(vent.motion.x, vent.motion.y);
-				}
-//
-//				horizontal mouse scroll events happen here,
-//              as do right and middle clicks.
-//
-				else {
-					// do nothing ...
-				}
-			}
-			else if(vent.type == SDL_KEYUP)
-			{
-				if(!g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())
-				{
-					if(vent.key.keysym.sym == SDLK_RSHIFT || vent.key.keysym.sym == SDLK_LSHIFT)	// enable multi select
-						g_ShiftDown = false;
-					else if(vent.key.keysym.sym == SDLK_RCTRL || vent.key.keysym.sym == SDLK_LCTRL)	// enable multi select
-						g_CTRLDown = false;
-
-					if(vent.key.keysym.sym == SDLK_UP)
-						g_UpArrow = false;
-					else if(vent.key.keysym.sym == SDLK_DOWN)
-						g_DownArrow = false;
-					else if(vent.key.keysym.sym == SDLK_LEFT)
-						g_LeftArrow = false;
-					else if(vent.key.keysym.sym == SDLK_RIGHT)
-						g_RightArrow = false;
-				}
-			}
-			else if(vent.type == SDL_KEYDOWN)
-			{
-				if(!g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())
-				{
-					if(g_WinManager.HasEditBox())
-					{
-						if(vent.key.keysym.sym == SDLK_BACKSPACE)
-							g_WinManager.UpdateKeyInput('-');
-						else if(vent.key.keysym.sym == SDLK_RETURN)
-							g_EnterKey = true;
-						else if((vent.key.keysym.sym >= 97 && vent.key.keysym.sym <= 122) || vent.key.keysym.sym == 39 || vent.key.keysym.sym == 32 || (vent.key.keysym.sym >= 48 && vent.key.keysym.sym <= 57) || ((vent.key.keysym.sym >= 256 && vent.key.keysym.sym <= 265)))
-						{
-							if(vent.key.keysym.sym >= 256)
-							{
-								if(vent.key.keysym.sym == 256)
-									vent.key.keysym.sym = SDLK_0;
-								else if(vent.key.keysym.sym == 257)
-									vent.key.keysym.sym = SDLK_1;
-								else if(vent.key.keysym.sym == 258)
-									vent.key.keysym.sym = SDLK_2;
-								else if(vent.key.keysym.sym == 259)
-									vent.key.keysym.sym = SDLK_3;
-								else if(vent.key.keysym.sym == 260)
-									vent.key.keysym.sym = SDLK_4;
-								else if(vent.key.keysym.sym == 261)
-									vent.key.keysym.sym = SDLK_5;
-								else if(vent.key.keysym.sym == 262)
-									vent.key.keysym.sym = SDLK_6;
-								else if(vent.key.keysym.sym == 263)
-									vent.key.keysym.sym = SDLK_7;
-								else if(vent.key.keysym.sym == 264)
-									vent.key.keysym.sym = SDLK_8;
-								else if(vent.key.keysym.sym == 265)
-									vent.key.keysym.sym = SDLK_9;
-							}
-
-							if(vent.key.keysym.mod & KMOD_LSHIFT || vent.key.keysym.mod & KMOD_RSHIFT || vent.key.keysym.mod & KMOD_CAPS)
-								g_WinManager.UpdateKeyInput( static_cast<char>( vent.key.keysym.sym ), true);
-							else
-								g_WinManager.UpdateKeyInput( static_cast<char>( vent.key.keysym.sym ) );
-						}
-					}
-					else	// hotkeys
-					{
-						handle_hotkeys();
-					}
-				}
-			}
-			else if(vent.type == SDL_MOUSEMOTION)
-			{
-				if(!g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())
-				{
-					// if dragging a scrollbar, send movements to it exclusively until mouseup
-					if (g_DragScrollBar != nullptr)
-						g_DragScrollBar->DragMove(vent.motion.y);
-					// if dragging a slider, send movements to it exclusively until mouseup
-					else if(g_DragSlider != nullptr)
-						g_DragSlider->DragMove(vent.motion.x);
-					// update interface
-					else
-						g_WinManager.UpdateMouseMovement(vent.motion.x, vent.motion.y);
-				}
-				else
-					g_ChoiceManager.IsOver(vent.motion.x, vent.motion.y);
-			}
-		}
-
-		//		if(!sleeping)
+//        while(SDL_PollEvent(&vent))
 //		{
-			// Clear the screen
-			g_Graphics.Begin();
-
-			// draw the background image
-			SDL_Rect clip;
-			clip.x = 0;
-			clip.y = 0;
-			clip.w = g_ScreenWidth;
-			clip.h = g_ScreenHeight;
-			g_BackgroundImage->DrawSurface(clip.x,clip.y,nullptr,&clip,true);
-
-			// Draw the interface
-			g_WinManager.Draw();
-
-			if(!g_MessageBox.IsActive() && g_MessageQue.HasNext())
-				g_MessageQue.ActivateNext();
-
-			if(eventrunning && !g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())	// run any events that are being run
-				GameEvents();
-
-			// Run the interface
-			if(!g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())
-				g_WinManager.UpdateCurrent();
-
-			// Draw Any message boxes
-			if(g_MessageBox.IsActive())
-			{
-				g_MessageBox.Draw();
-			}
-			else if(g_ChoiceManager.IsActive() && !g_MessageQue.HasNext())
-				g_ChoiceManager.Draw();
-
-			g_Graphics.End();
+//			if(vent.type == SDL_QUIT)
+//				running = false;
+//			else if(vent.type == SDL_MOUSEBUTTONUP)
+//			{
+//				if(mouseDown == true)
+//				{
+//					if (g_DragScrollBar != nullptr)
+//					{
+//						g_DragScrollBar->SetTopValue(g_DragScrollBar->m_ItemTop);
+//						g_DragScrollBar = nullptr;
+//					}
+//					else if(g_DragSlider != nullptr)
+//					{
+//						g_DragSlider->EndDrag();
+//						g_DragSlider = nullptr;
+//					}
+//					else if(g_MessageBox.IsActive())
+//						g_MessageBox.Advance();
+//					else if(g_ChoiceManager.IsActive())
+//						g_ChoiceManager.ButtonClicked(vent.motion.x, vent.motion.y);
+//					else
+//						g_WinManager.UpdateMouseClick(vent.motion.x, vent.motion.y);
+//					mouseDown = false;
+//				}
+//			}
+//			else if(vent.type == SDL_MOUSEBUTTONDOWN)
+//			{
+//				if(vent.button.button == SDL_BUTTON_WHEELDOWN)
+//				{
+//					g_WinManager.UpdateMouseClick(vent.motion.x, vent.motion.y, true, false);
+//				}
+//				else if(vent.button.button == SDL_BUTTON_WHEELUP)
+//				{
+//					g_WinManager.UpdateMouseClick(vent.motion.x, vent.motion.y, false, true);
+//				}
+//				else if(vent.button.button == SDL_BUTTON_LEFT)
+//				{
+//					//srand(SDL_GetTicks());
+//					if(mouseDown == false)
+//						mouseDown = true;
+//					g_WinManager.UpdateMouseDown(vent.motion.x, vent.motion.y);
+//				}
+////
+////				horizontal mouse scroll events happen here,
+////              as do right and middle clicks.
+////
+//				else {
+//					// do nothing ...
+//				}
+//			}
+//			else if(vent.type == SDL_KEYUP)
+//			{
+//				if(!g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())
+//				{
+//					if(vent.key.keysym.sym == SDLK_RSHIFT || vent.key.keysym.sym == SDLK_LSHIFT)	// enable multi select
+//						g_ShiftDown = false;
+//					else if(vent.key.keysym.sym == SDLK_RCTRL || vent.key.keysym.sym == SDLK_LCTRL)	// enable multi select
+//						g_CTRLDown = false;
+//
+//					if(vent.key.keysym.sym == SDLK_UP)
+//						g_UpArrow = false;
+//					else if(vent.key.keysym.sym == SDLK_DOWN)
+//						g_DownArrow = false;
+//					else if(vent.key.keysym.sym == SDLK_LEFT)
+//						g_LeftArrow = false;
+//					else if(vent.key.keysym.sym == SDLK_RIGHT)
+//						g_RightArrow = false;
+//				}
+//			}
+//			else if(vent.type == SDL_KEYDOWN)
+//			{
+//				if(!g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())
+//				{
+//					if(g_WinManager.HasEditBox())
+//					{
+//						if(vent.key.keysym.sym == SDLK_BACKSPACE)
+//							g_WinManager.UpdateKeyInput('-');
+//						else if(vent.key.keysym.sym == SDLK_RETURN)
+//							g_EnterKey = true;
+//						else if((vent.key.keysym.sym >= 97 && vent.key.keysym.sym <= 122) || vent.key.keysym.sym == 39 || vent.key.keysym.sym == 32 || (vent.key.keysym.sym >= 48 && vent.key.keysym.sym <= 57) || ((vent.key.keysym.sym >= 256 && vent.key.keysym.sym <= 265)))
+//						{
+//							if(vent.key.keysym.sym >= 256)
+//							{
+//								if(vent.key.keysym.sym == 256)
+//									vent.key.keysym.sym = SDLK_0;
+//								else if(vent.key.keysym.sym == 257)
+//									vent.key.keysym.sym = SDLK_1;
+//								else if(vent.key.keysym.sym == 258)
+//									vent.key.keysym.sym = SDLK_2;
+//								else if(vent.key.keysym.sym == 259)
+//									vent.key.keysym.sym = SDLK_3;
+//								else if(vent.key.keysym.sym == 260)
+//									vent.key.keysym.sym = SDLK_4;
+//								else if(vent.key.keysym.sym == 261)
+//									vent.key.keysym.sym = SDLK_5;
+//								else if(vent.key.keysym.sym == 262)
+//									vent.key.keysym.sym = SDLK_6;
+//								else if(vent.key.keysym.sym == 263)
+//									vent.key.keysym.sym = SDLK_7;
+//								else if(vent.key.keysym.sym == 264)
+//									vent.key.keysym.sym = SDLK_8;
+//								else if(vent.key.keysym.sym == 265)
+//									vent.key.keysym.sym = SDLK_9;
+//							}
+//
+//							if(vent.key.keysym.mod & KMOD_LSHIFT || vent.key.keysym.mod & KMOD_RSHIFT || vent.key.keysym.mod & KMOD_CAPS)
+//								g_WinManager.UpdateKeyInput( static_cast<char>( vent.key.keysym.sym ), true);
+//							else
+//								g_WinManager.UpdateKeyInput( static_cast<char>( vent.key.keysym.sym ) );
+//						}
+//					}
+//					else	// hotkeys
+//					{
+//						handle_hotkeys();
+//					}
+//				}
+//			}
+//			else if(vent.type == SDL_MOUSEMOTION)
+//			{
+//				if(!g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())
+//				{
+//					// if dragging a scrollbar, send movements to it exclusively until mouseup
+//					if (g_DragScrollBar != nullptr)
+//						g_DragScrollBar->DragMove(vent.motion.y);
+//					// if dragging a slider, send movements to it exclusively until mouseup
+//					else if(g_DragSlider != nullptr)
+//						g_DragSlider->DragMove(vent.motion.x);
+//					// update interface
+//					else
+//						g_WinManager.UpdateMouseMovement(vent.motion.x, vent.motion.y);
+//				}
+//				else
+//					g_ChoiceManager.IsOver(vent.motion.x, vent.motion.y);
+//			}
+//		}
+//
+//		//		if(!sleeping)
+////		{
+//			// Clear the screen
+//			g_Graphics.Begin();
+//
+//			// draw the background image
+//			SDL_Rect clip;
+//			clip.x = 0;
+//			clip.y = 0;
+//			clip.w = g_ScreenWidth;
+//			clip.h = g_ScreenHeight;
+//			g_BackgroundImage->DrawSurface(clip.x,clip.y,nullptr,&clip,true);
+//
+//			// Draw the interface
+//			g_WinManager.Draw();
+//
+//			if(!g_MessageBox.IsActive() && g_MessageQue.HasNext())
+//				g_MessageQue.ActivateNext();
+//
+//			if(eventrunning && !g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())	// run any events that are being run
+//				GameEvents();
+//
+//			// Run the interface
+//			if(!g_MessageBox.IsActive() && !g_ChoiceManager.IsActive())
+//				g_WinManager.UpdateCurrent();
+//
+//			// Draw Any message boxes
+//			if(g_MessageBox.IsActive())
+//			{
+//				g_MessageBox.Draw();
+//			}
+//			else if(g_ChoiceManager.IsActive() && !g_MessageQue.HasNext())
+//				g_ChoiceManager.Draw();
+//
+//			g_Graphics.End();
 //		}
 //		else
 //			SDL_Delay(1000);
