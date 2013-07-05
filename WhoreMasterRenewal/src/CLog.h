@@ -30,28 +30,10 @@ namespace WhoreMasterRenewal
 class CLog;
 extern CLog g_LogFile;
 
-struct CLogInner
-{
-public:
-	CLogInner();
-	~CLogInner();
-	void init();
-
-	void write( std::string text );
-	std::ofstream& os();
-	std::stringstream& ss();
-	void ssend();
-    
-private:
-    static bool setup;
-	std::ofstream m_ofile;
-	std::stringstream m_ss;
-};
-
 class CLog
 {
 public:
-	CLog( bool a_glob = false );
+	CLog();
 	~CLog();
 	
 	void write( std::string text );
@@ -59,8 +41,7 @@ public:
 	void ssend();
 	
 private:
-	bool m_glob;
-    static CLogInner* inner;
+	std::stringstream m_ss = {};
 };
 
 } // namespace WhoreMasterRenewal

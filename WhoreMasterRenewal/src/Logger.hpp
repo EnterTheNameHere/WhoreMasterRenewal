@@ -11,7 +11,7 @@ namespace WhoreMasterRenewal
 class Logger
 {
 public:
-    Logger( const std::string& filename = "GameLog.txt", bool append = true );
+    Logger( bool append = true, const std::string& filename = "GameLog.txt" );
     ~Logger();
     
     Logger& operator << ( char value );
@@ -38,7 +38,7 @@ public:
     Logger& operator << ( const unsigned char* value );
     
 private:
-    std::ofstream m_LogFileStream;
+    std::ofstream m_LogFileStream = {};
     //sf::Mutex m_Mutex;
     
     //static bool m_FirstRun;
