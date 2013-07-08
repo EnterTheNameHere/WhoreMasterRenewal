@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 namespace WhoreMasterRenewal
 {
@@ -222,6 +223,31 @@ Logger& Logger::operator << ( const unsigned char* value )
     if( m_LogFileStream.is_open() )
         m_LogFileStream << value;
     
+    return *this;
+}
+
+// TODO: We should probably replace "magic" code with simple inheritance
+Logger& Logger::operator << ( std::ostream& (*func)( std::ostream& ) )
+{
+    std::stringstream out;
+    func(out);
+    *this << out.str();
+    return *this;
+}
+
+Logger& Logger::operator << ( std::ios& (*func)( std::ios& ) )
+{
+    std::stringstream out;
+    func(out);
+    *this << out.str();
+    return *this;
+}
+
+Logger& Logger::operator << ( std::ios_base& (*func)( std::ios_base& ) )
+{
+    std::stringstream out;
+    func(out);
+    *this << out.str();
     return *this;
 }
 

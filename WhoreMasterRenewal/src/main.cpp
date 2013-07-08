@@ -83,7 +83,7 @@ void Shutdown();
 bool Init();
 
 // Events
-CLog g_LogFile(true);
+CLog g_LogFile;
 SDL_Event vent;
 BrothelManager g_Brothels;
 cCustomers g_Customers;

@@ -37,6 +37,10 @@ public:
     Logger& operator << ( const char* value );
     Logger& operator << ( const unsigned char* value );
     
+    Logger& operator << ( std::ios_base& (*func) (std::ios_base&) );
+    Logger& operator << ( std::ios& (*func) (std::ios&) );
+    Logger& operator << ( std::ostream& (*func) (std::ostream&) );
+    
 private:
     std::ofstream m_LogFileStream = {};
     //sf::Mutex m_Mutex;

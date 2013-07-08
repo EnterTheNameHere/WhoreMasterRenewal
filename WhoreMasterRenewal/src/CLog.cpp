@@ -37,7 +37,7 @@ CLog::~CLog()
 
 void CLog::write( std::string text )
 {
-    Logger() << text;
+    Logger() << text << std::endl;
 }
 
 std::stringstream& CLog::ss()
