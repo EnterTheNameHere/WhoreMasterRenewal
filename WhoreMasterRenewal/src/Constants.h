@@ -31,7 +31,7 @@ typedef unsigned int u_int;
 const size_t g_MajorVersion = 0;
 const size_t g_MinorVersion = 0;
 const size_t g_PatchVersion = 0;
-const std::string g_MetadataVersion = "-alpha";
+const std::string g_MetadataVersion = "-SFML-alpha";
 
 enum {
 	SHIFT_DAY	= 0,
