@@ -48,8 +48,9 @@
 					<Add option="-Wsign-promo" />
 				</Compiler>
 				<Linker>
-					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
 					<Add library="Dependencies\lua\lib\liblua.a" />
+					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
+					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-graphics-s-d.a" />
 					<Add library="glew" />
 					<Add library="Dependencies\SFML\lib\libsfml-window-s-d.a" />
@@ -77,6 +78,7 @@
 					<Add option="-s" />
 					<Add library="Dependencies\lua\lib\liblua.a" />
 					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
+					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-graphics-s.a" />
 					<Add library="glew" />
 					<Add library="Dependencies\SFML\lib\libsfml-window-s.a" />
