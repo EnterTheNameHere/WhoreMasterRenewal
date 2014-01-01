@@ -50,9 +50,9 @@
 				<Linker>
 					<Add library="Dependencies\lua\lib\liblua.a" />
 					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
-					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-graphics-s-d.a" />
-					<Add library="glew" />
+					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
+					<Add library="Dependencies\glew\lib\libglew.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-window-s-d.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-system-s-d.a" />
 					<Add library="opengl32" />
@@ -78,9 +78,9 @@
 					<Add option="-s" />
 					<Add library="Dependencies\lua\lib\liblua.a" />
 					<Add library="Dependencies\TinyXML\lib\libTinyXML.a" />
-					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-graphics-s.a" />
-					<Add library="glew" />
+					<Add library="Dependencies\jpeg\lib\libjpeg-s.a" />
+					<Add library="Dependencies\glew\lib\libglew.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-window-s.a" />
 					<Add library="Dependencies\SFML\lib\libsfml-system-s.a" />
 					<Add library="opengl32" />
@@ -94,11 +94,15 @@
 			<Add option='-isystem &quot;Dependencies\SDL\include\SDL&quot;' />
 			<Add option='-isystem &quot;Dependencies\lua\include&quot;' />
 			<Add option='-isystem &quot;Dependencies\TinyXML\include&quot;' />
+			<Add option='-isystem &quot;Dependencies\SFML\include&quot;' />
+			<Add option='-isystem &quot;Dependencies\jpeg\include&quot;' />
 			<Add option="-D_UNICODE" />
 			<Add option="-DSFML_STATIC" />
 			<Add directory="Dependencies/SDL/include/SDL" />
 			<Add directory="Dependencies/lua/include" />
 			<Add directory="Dependencies/TinyXML/include" />
+			<Add directory="Dependencies/SFML/include" />
+			<Add directory="Dependencies/jpeg/include" />
 		</Compiler>
 		<Linker>
 			<Add option="-static" />
@@ -167,6 +171,7 @@
 		<Unit filename="src/Logger.hpp" />
 		<Unit filename="src/MasterFile.cpp" />
 		<Unit filename="src/MasterFile.h" />
+		<Unit filename="src/WindowManager.hpp" />
 		<Unit filename="src/WorkAdvertising.cpp" />
 		<Unit filename="src/WorkBar.cpp" />
 		<Unit filename="src/WorkBeastCapture.cpp" />

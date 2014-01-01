@@ -11,6 +11,6 @@ Thumbs.db
 /Docs
 !/Docs/doxygen/WhoreMasterRenewal
 !/Docs/index.html
-
 /WhoreMasterRenewal/.cccc
 /WhoreMasterRenewal/WhoreMasterRenewal.cppcheck
+/WhoreMasterRenewal/WhoreMasterRenewal_build_log.html

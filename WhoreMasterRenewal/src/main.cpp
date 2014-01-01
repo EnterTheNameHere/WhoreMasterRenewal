@@ -62,6 +62,7 @@
 #include "cScreenSlaveMarket.h"
 #include "cScreenTown.h"
 #include "cGetStringScreenManager.h"
+#include "WindowManager.hpp"
 
 //#include <SDL.h>
 #include <SDL_events.h>
@@ -581,7 +582,8 @@ int main( int argc, char* argv[] )
     
     try
     {
-        wmr::main_old( argc, argv );
+        wmr::WindowManager wmanager;
+        wmanager.Run();
     }
     catch( std::exception& ex )
     {
